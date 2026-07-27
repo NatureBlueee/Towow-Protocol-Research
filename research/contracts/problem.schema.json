@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/problem.schema.json",
+  "title": "ProblemContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "id",
+    "version",
+    "status",
+    "title",
+    "question",
+    "research_object",
+    "target_transition",
+    "invariants",
+    "unit_of_analysis",
+    "scope",
+    "out_of_scope",
+    "key_unknowns",
+    "competing_explanations",
+    "strong_baselines",
+    "observable_outcomes",
+    "falsification_conditions",
+    "reopen_conditions",
+    "evidence_requirements",
+    "decision_authority",
+    "companion_markdown"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "ProblemContract"},
+    "id": {"type": "string", "pattern": "^PRB-[A-Z0-9-]+$"},
+    "version": {"type": "string", "pattern": "^v[0-9]+(?:\\.[0-9]+)?$"},
+    "status": {
+      "enum": ["SEED", "CANDIDATE", "ACTIVE", "REOPENED", "SUPERSEDED"]
+    },
+    "title": {"type": "string", "minLength": 8},
+    "question": {"type": "string", "minLength": 100},
+    "research_object": {"type": "string", "minLength": 20},
+    "target_transition": {"type": "string", "minLength": 20},
+    "invariants": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "unit_of_analysis": {"type": "string", "minLength": 10},
+    "scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 4}
+    },
+    "out_of_scope": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 4}
+    },
+    "key_unknowns": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "competing_explanations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "claim", "distinguishing_observation"],
+        "properties": {
+          "id": {"type": "string"},
+          "claim": {"type": "string", "minLength": 12},
+          "distinguishing_observation": {"type": "string", "minLength": 12}
+        }
+      }
+    },
+    "strong_baselines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "authority_model", "comparison_obligation"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "authority_model": {"type": "string", "minLength": 8},
+          "comparison_obligation": {"type": "string", "minLength": 12}
+        }
+      }
+    },
+    "observable_outcomes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "falsification_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 12}
+    },
+    "reopen_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 12}
+    },
+    "evidence_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "decision_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activate", "reopen", "supersede"],
+      "properties": {
+        "activate": {"const": "USER"},
+        "reopen": {"const": "USER"},
+        "supersede": {"const": "USER"}
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "companion_markdown": {"type": "string", "pattern": "\\.md$"}
+  }
+}

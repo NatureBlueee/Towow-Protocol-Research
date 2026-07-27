@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/blind-review.schema.json",
+  "title": "BlindReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "status",
+    "strongest_counterarguments",
+    "unsupported_inferences",
+    "erased_distinctions",
+    "missing_evidence",
+    "baseline_challenges",
+    "recommendation",
+    "cannot_conclude"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "BlindReview"},
+    "status": {"enum": ["COMPLETED", "INCONCLUSIVE", "REFUSED"]},
+    "strongest_counterarguments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "unsupported_inferences": {"type": "array", "items": {"type": "string"}},
+    "erased_distinctions": {"type": "array", "items": {"type": "string"}},
+    "missing_evidence": {"type": "array", "items": {"type": "string"}},
+    "baseline_challenges": {"type": "array", "items": {"type": "string"}},
+    "recommendation": {
+      "enum": [
+        "ACTIVATE_CANDIDATE_V1",
+        "REWRITE_BEFORE_ACTIVATION",
+        "KEEP_MULTIPLE_CANDIDATES",
+        "REJECT_CURRENT_FRAME",
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "cannot_conclude": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    }
+  }
+}

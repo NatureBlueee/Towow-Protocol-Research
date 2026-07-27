@@ -43,3 +43,47 @@ Entity、Mandate、RelationVersion、Assertion、Commitment、Operation 继续�
 Formation planner、Capability assurance 或 Harness 的 Problem/Design/Engineering IR。
 
 跨内核只统一身份引用、版本、事件、证据、来源和依赖。
+
+## 2026-07-28 — 采用有界高自治、按需批次和分级晋升
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ENVIRONMENT-V1",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "IMPLEMENT_RESEARCH_ENVIRONMENT",
+    "REGISTER_PROBLEM_V0_AS_SEED",
+    "ACTIVATE_SEVEN_NATIVE_DEFINITION_LINES",
+    "AUTO_VALIDATE_ARCHIVE_SYNTHETIC_LOCAL_SCENARIOS",
+    "RUN_ON_DEMAND_BATCHES",
+    "USE_CODEX_PRIMARY_CLAUDE_BLIND_REVIEW"
+  ],
+  "does_not_authorize": [
+    "ACTIVATE_PROBLEM_V1",
+    "ACTIVATE_REAL_SCENARIO",
+    "PROMOTE_STABLE_CLAIM",
+    "CONTACT_REAL_PARTICIPANTS",
+    "SEND_BATCH_TO_CODEX",
+    "SEND_BLIND_REVIEW_TO_CLAUDE",
+    "SEND_PRIVATE_ARCHIVE_TO_EXTERNAL_REVIEWER",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "允许 Agent 在冻结的问题与场景边界内自主提出子问题和候选结果，但让核心问题、现实场景、稳定主张和现实行动继续由用户决定。"
+}
+```
+<!-- research-decision:end -->
+
+当前长问题登记为 `Problem v0 / SEED`。第一批恢复全部七条原生研究线，而不是先压缩成少数
+统一机制。Codex 在本地来源白名单上运行；Claude 只接收隔离、最小且不包含预期答案的盲审
+材料。自动结果最高只能进入候选区。
+
+## 2026-07-28 — 原始档案使用哈希指针，运行区有硬预算
+
+v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每条研究线的 worktree。Git 跟踪
+`research/sources/archive-v1.2.json` 中的 manifest 指针、治理工具、研究契约、候选返回和
+正式成果。
+
+`.research-runtime/` 每批上限 250 MiB、总上限 2 GiB。达到上限时拒绝新运行，不自动删除
+历史证据。

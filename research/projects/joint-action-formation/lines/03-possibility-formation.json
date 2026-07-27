@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-03-POSSIBILITY-FORMATION",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "POSSIBILITY_FORMATION",
+  "title": "可能性形成",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-FORM-001",
+    "CAP-FORM-002",
+    "CAP-FORM-003",
+    "CAP-FORM-004",
+    "CAP-FORM-005"
+  ],
+  "local_question": "一个当前不可达或不可判断的联合行动，何时因反例、probe、条件创造、任务重表示或新伙伴而真正出现新路径，而不只是发现了原本存在的路径？",
+  "blocked_decision": "决定 PFE 是承重的形成策略、一般方法库、过程记录，还是应被更简单的搜索与协商取代。",
+  "reverse_result": "若冻结前已存在等价路径、移除 formation operator 后结果不变，或新增步骤只增加文本与治理成本，则 PFE 的核心地位必须降级。",
+  "minimum_discriminator": "保存冻结前态、operator、后态和消融结果，要求 operator 后首次出现合格路径且移除后再次失败。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "无法区分发现已有路径与形成新路径",
+    "两次运行没有提出新的可消融 operator 或反例",
+    "把更多协商文本直接当作 formation"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "不能以 PFE 名称或流程存在证明因果形成",
+    "必须给静态搜索、强中心规划和普通协商公平消融"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/03-possibility-formation.md"
+}

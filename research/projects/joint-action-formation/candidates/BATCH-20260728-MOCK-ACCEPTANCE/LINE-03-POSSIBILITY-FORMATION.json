@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-MOCK-ACCEPTANCE-LINE-03-POSSIBILITY-FORMATION",
+  "batch_id": "BATCH-20260728-MOCK-ACCEPTANCE",
+  "line_id": "LINE-03-POSSIBILITY-FORMATION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "b5616842b65074819d3f82792d6e033c9bd6ce8fd8e383ecc4bdade9027198e6",
+  "direct_observations": [
+    "v0 提到条件创造，但没有把冻结前路径、operator 后路径和消融写入问题判据。"
+  ],
+  "source_statements": [
+    {
+      "statement": "原生能力档案将可能性形成作为独立问题线保存。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+      "source_range": "1-20"
+    }
+  ],
+  "inferences": [
+    "Problem v1 应要求区分发现已有路径与因 operator 产生新路径。"
+  ],
+  "design_proposals": [
+    "保留本线的失败判别和反向结果，等待与其他线并列比较后再决定是否合并。"
+  ],
+  "negative_results": [
+    "当前合成与档案证据不足以证明 PFE 是普遍核心引擎。"
+  ],
+  "alternative_explanations": [
+    "强中心研究者可能在不拆分研究线的情况下得到相同区分，必须作为直接综合基线比较。"
+  ],
+  "evidence_refs": [
+    "CAP-FORM-001",
+    "CAP-FORM-002",
+    "CAP-FORM-003",
+    "CAP-FORM-004",
+    "CAP-FORM-005"
+  ],
+  "applicability": "仅适用于 Problem v0 的本地档案问题定义批次。",
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效",
+    "不能证明多 Agent 研究优于单一强研究者",
+    "不能代表真人 Principal 的授权、承诺或接受",
+    "不能将 Problem v0 或任何候选自动晋升为 ACTIVE"
+  ],
+  "candidate_claims": [
+    "Problem v1 应要求区分发现已有路径与因 operator 产生新路径。"
+  ],
+  "new_discriminators": [
+    "冻结行动图，加入一个可定位 operator，再移除它并观察合格路径是否随之出现和消失。"
+  ],
+  "cost": {
+    "elapsed_seconds": 0.0,
+    "output_bytes": 1890
+  }
+}

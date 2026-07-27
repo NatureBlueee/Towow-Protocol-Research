@@ -1,11 +1,42 @@
 # 当前研究现场
 
-更新时间：2026-07-27
+<!-- research-state:start -->
+```json
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-28",
+  "current_project": "research/projects/joint-action-formation",
+  "seed_problem": "research/projects/joint-action-formation/problem/v0.json",
+  "active_problem": null,
+  "validated_scenario": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
+  "active_mechanism_scenario": null,
+  "active_lines": [
+    "LINE-01-DISCOVERY-BOUNDARY",
+    "LINE-02-RELATION-CONSTITUTION",
+    "LINE-03-POSSIBILITY-FORMATION",
+    "LINE-04-CAPABILITY-REALIZATION",
+    "LINE-05-AUTHORITY-NORMS",
+    "LINE-06-REALITY-EFFECT",
+    "LINE-07-RUNTIME-EVOLUTION"
+  ],
+  "current_batch": ".research-runtime/BATCH-20260728-V0-DEFINITION-R4/plan.json",
+  "pending_user_decisions": [
+    "是否批准 current_batch 的 disclosure-manifest.json 所列冻结输入发送给 OpenAI Codex",
+    "在七线问题定义批次和盲审完成后，选择、重写或拒绝 Problem v1"
+  ],
+  "canonical_source": "research/sources/archive-v1.2.json"
+}
+```
+<!-- research-state:end -->
+
+更新时间：2026-07-28
 
 ## 当前任务
 
-截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前不继续统一理论、
-启动新实验或修改原始成果；先把审计结果作为后续研究的真实导航环境。
+截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
+研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
+不是统一答案。mock 七线闭环已经通过；真实 `v0` 定义批次已经冻结输入，等待用户对精确
+payload 指纹作出外发授权后，由七条原生研究线在隔离条件下分别攻击和重构。
 
 ## 唯一最新源包
 
@@ -16,7 +47,9 @@
 
 ## 当前工作入口
 
-`research/projects/a2a-reconstruction/README.md`
+当前试点：`research/projects/joint-action-formation/README.md`
+
+历史档案与能力审计：`research/projects/a2a-reconstruction/README.md`
 
 重点入口：
 
@@ -60,8 +93,9 @@
 
 ## 审计后的下一条高价值线索
 
-研究顺序已收束为 Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate explain-back、Q3 单案
-causal formation、Q5 真实复用。它们只是后续排序，本阶段没有启动。
+先运行七条原生研究线的问题定义批次，并在不暴露预期答案的情况下形成 Claude 盲审。只有
+用户明确激活 `Problem v1` 后，才从 Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate
+explain-back、Q3 单案 causal formation、Q5 真实复用中选择机制实验。
 
 任何实验开工前必须说明会改变哪个设计、反向结果是什么以及三类结果怎样修改系统；否则转入
 CI、实现保障或档案校准。

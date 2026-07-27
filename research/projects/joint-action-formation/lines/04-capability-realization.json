@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-04-CAPABILITY-REALIZATION",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "CAPABILITY_REALIZATION",
+  "title": "能力兑现",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-CAP-001",
+    "CAP-CAP-002",
+    "CAP-CAP-003",
+    "CAP-CAP-004",
+    "CAP-CAP-005"
+  ],
+  "local_question": "主体或 Agent 声称能做、环境中逻辑可做、获得权限后可做、经留出任务证明可做和在目标域稳定兑现之间必须保留哪些区别？",
+  "blocked_decision": "决定能力合同、probe、环境版本和 Defeater 哪些必须成为可验证关系条件，哪些只是实现细节。",
+  "reverse_result": "若静态能力声明在迁移、权限变化和留出任务上已足够可靠，额外能力兑现机制没有净增值，则应降级为可选保障。",
+  "minimum_discriminator": "用未用于自报或实现的留出任务，在绑定环境、账户、权限和版本下产生独立可读回结果，并测试撤销或漂移。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "把语言自报、安装状态或单次成功当作稳定能力",
+    "两次运行没有产生新的能力兑现判别",
+    "需要扩大未授权账户、工具或环境权限"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "生成能力声明的模型或任务不能同时充当唯一验证者",
+    "必须区分 Capability Envelope 与 Authority Envelope"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/04-capability-realization.md"
+}

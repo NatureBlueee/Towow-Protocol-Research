@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-MOCK-ACCEPTANCE-LINE-07-RUNTIME-EVOLUTION",
+  "batch_id": "BATCH-20260728-MOCK-ACCEPTANCE",
+  "line_id": "LINE-07-RUNTIME-EVOLUTION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "396b56c0fd3c422a8fd56516bde826c667c511f7913af4ee6959012d6718f8d2",
+  "direct_observations": [
+    "v0 包含学习、退出和重开，但没有说明哪些改变应局部重开、哪些使整段关系失效。"
+  ],
+  "source_statements": [
+    {
+      "statement": "原生能力档案将运行与演化作为独立问题线保存。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "1-20"
+    }
+  ],
+  "inferences": [
+    "Problem v1 应把关系连续性定义为版本与责任谱系连续，而非所有事实不变。"
+  ],
+  "design_proposals": [
+    "保留本线的失败判别和反向结果，等待与其他线并列比较后再决定是否合并。"
+  ],
+  "negative_results": [
+    "日志存在和进程存活不能证明关系长期有效。"
+  ],
+  "alternative_explanations": [
+    "强中心研究者可能在不拆分研究线的情况下得到相同区分，必须作为直接综合基线比较。"
+  ],
+  "evidence_refs": [
+    "CAP-RUN-001",
+    "CAP-RUN-002",
+    "CAP-RUN-003",
+    "CAP-RUN-004",
+    "CAP-RUN-005",
+    "CAP-RUN-006",
+    "CAP-RUN-007"
+  ],
+  "applicability": "仅适用于 Problem v0 的本地档案问题定义批次。",
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效",
+    "不能证明多 Agent 研究优于单一强研究者",
+    "不能代表真人 Principal 的授权、承诺或接受",
+    "不能将 Problem v0 或任何候选自动晋升为 ACTIVE"
+  ],
+  "candidate_claims": [
+    "Problem v1 应把关系连续性定义为版本与责任谱系连续，而非所有事实不变。"
+  ],
+  "new_discriminators": [
+    "分别注入模型升级、授权撤销和证据失效，检验局部重开是否保留旧责任。"
+  ],
+  "cost": {
+    "elapsed_seconds": 0.0,
+    "output_bytes": 1928
+  }
+}

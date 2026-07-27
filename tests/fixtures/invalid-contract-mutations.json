@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "name": "problem_without_strong_baseline",
+      "base": "research/projects/joint-action-formation/problem/v0.json",
+      "remove": ["strong_baselines"],
+      "expected_error_fragment": "strong_baselines"
+    },
+    {
+      "name": "scenario_without_authority_root",
+      "base": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
+      "remove": ["participants", 0, "authority_root"],
+      "expected_error_fragment": "authority_root"
+    },
+    {
+      "name": "scenario_without_effect_witness",
+      "base": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
+      "remove": ["effect_witness"],
+      "expected_error_fragment": "effect_witness"
+    },
+    {
+      "name": "scenario_without_failure_semantics",
+      "base": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
+      "remove": ["outcome_semantics", "failure"],
+      "expected_error_fragment": "failure"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/scenario.schema.json",
+  "title": "ScenarioContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "id",
+    "version",
+    "status",
+    "scenario_class",
+    "study_mode",
+    "title",
+    "problem_ref",
+    "participants",
+    "initial_state",
+    "unknowns",
+    "allowed_actions",
+    "prohibited_actions",
+    "disclosure_boundary",
+    "cost_and_reversibility",
+    "effect_witness",
+    "domain_adoption",
+    "acceptance",
+    "outcome_semantics",
+    "strongest_credible_baseline",
+    "activation",
+    "cannot_support",
+    "companion_markdown"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "ScenarioContract"},
+    "id": {"type": "string", "pattern": "^SCN-[A-Z0-9-]+$"},
+    "version": {"type": "string", "pattern": "^v[0-9]+(?:\\.[0-9]+)?$"},
+    "status": {"enum": ["PROPOSED", "VALIDATED", "ACTIVE", "CLOSED", "REOPENED"]},
+    "scenario_class": {"enum": ["ARCHIVE", "SYNTHETIC", "LOCAL_SANDBOX", "REAL"]},
+    "study_mode": {
+      "enum": ["PROBLEM_DEFINITION", "MECHANISM", "SOURCE_ACQUISITION", "REALITY_TEST"]
+    },
+    "title": {"type": "string", "minLength": 8},
+    "problem_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {"type": "string"},
+        "version": {"type": "string"}
+      }
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity_id",
+          "entity_type",
+          "principal",
+          "authority_root",
+          "authority_scope"
+        ],
+        "properties": {
+          "entity_id": {"type": "string"},
+          "entity_type": {"type": "string"},
+          "principal": {"type": "string", "minLength": 3},
+          "authority_root": {"type": "string", "minLength": 3},
+          "authority_scope": {"type": "string", "minLength": 8}
+        }
+      }
+    },
+    "initial_state": {"type": "string", "minLength": 20},
+    "unknowns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "allowed_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 5}
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 5}
+    },
+    "disclosure_boundary": {"type": "string", "minLength": 20},
+    "cost_and_reversibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cost_limit", "reversibility", "stop_rule"],
+      "properties": {
+        "cost_limit": {"type": "string"},
+        "reversibility": {"type": "string", "minLength": 8},
+        "stop_rule": {"type": "string", "minLength": 8}
+      }
+    },
+    "effect_witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "target_domain", "witness", "success_observation", "failure_observation"],
+      "properties": {
+        "kind": {"enum": ["RESEARCH_ARTIFACT", "SANDBOX_EFFECT", "REAL_EFFECT"]},
+        "target_domain": {"type": "string", "minLength": 4},
+        "witness": {"type": "string", "minLength": 8},
+        "success_observation": {"type": "string", "minLength": 8},
+        "failure_observation": {"type": "string", "minLength": 8}
+      }
+    },
+    "domain_adoption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "required_receipt"],
+      "properties": {
+        "authority": {"type": "string", "minLength": 3},
+        "required_receipt": {"type": "string", "minLength": 5}
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "required_evidence"],
+      "properties": {
+        "authority": {"type": "string", "minLength": 3},
+        "required_evidence": {"type": "string", "minLength": 5}
+      }
+    },
+    "outcome_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["success", "failure", "unknown"],
+      "properties": {
+        "success": {"type": "string", "minLength": 8},
+        "failure": {"type": "string", "minLength": 8},
+        "unknown": {"type": "string", "minLength": 8}
+      }
+    },
+    "strongest_credible_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "fairness_requirements"],
+      "properties": {
+        "id": {"type": "string"},
+        "description": {"type": "string", "minLength": 12},
+        "fairness_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 8}
+        }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requires_user_approval", "approval_decision_id"],
+      "properties": {
+        "requires_user_approval": {"type": "boolean"},
+        "approval_decision_id": {"type": ["string", "null"]}
+      }
+    },
+    "cannot_support": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "companion_markdown": {"type": "string", "pattern": "\\.md$"}
+  }
+}

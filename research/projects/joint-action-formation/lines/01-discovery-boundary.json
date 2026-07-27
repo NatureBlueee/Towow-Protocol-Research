@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-01-DISCOVERY-BOUNDARY",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "DISCOVERY_BOUNDARY",
+  "title": "发现与边界",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-DISC-001",
+    "CAP-DISC-002",
+    "CAP-DISC-003",
+    "CAP-DISC-004",
+    "CAP-DISC-005",
+    "CAP-DISC-006",
+    "CAP-DISC-007"
+  ],
+  "local_question": "在不能复制完整本地世界时，任务相关边界怎样被逐步发现；NAC、自然语言查询、Agent Card 与动态 Oracle 各自区分了什么情况？",
+  "blocked_decision": "决定发现与有限披露是核心构成机制、可替换 provider，还是强模型和普通查询已经足够。",
+  "reverse_result": "若强自然语言查询在同等预算、隐私和漏配风险下持续不劣于专门边界机制，则 NAC 或相关发现层应降级。",
+  "minimum_discriminator": "构造静态画像会漏掉必要条件、完整披露又不可接受的任务族，并公平比较分阶段边界查询与最强自然语言基线。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "开始要求披露完整本地世界或未经授权材料",
+    "两次运行没有产生新的可判别场景或反例",
+    "结论只能依赖 NAC 名称存在而非可观察差异"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "不能以历史术语已进入统一论文作为能力保留证据",
+    "必须给最强自然语言与权威感知中心基线完整机会"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/01-discovery-boundary.md"
+}

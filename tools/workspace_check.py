@@ -21,6 +21,7 @@ IGNORED_DIRS = {
     ".git",
     ".ai-bridge",
     ".ai-research",
+    ".research-runtime",
     "towow_a2a_round5_codexpro_local_research_packet_v1.0",
 }
 
@@ -132,6 +133,9 @@ def main() -> int:
         ROOT / "research/README.md",
         ROOT / "research/NOW.md",
         ROOT / "research/DECISIONS.md",
+        ROOT / "research/sources/archive-v1.2.json",
+        ROOT / "research/contracts/problem.schema.json",
+        ROOT / "tools/researchctl.py",
     ]
     for path in required:
         if not path.is_file():

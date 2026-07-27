@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-02-RELATION-CONSTITUTION",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "RELATION_CONSTITUTION",
+  "title": "问题与关系构成",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-REL-001",
+    "CAP-REL-002",
+    "CAP-REL-003",
+    "CAP-REL-004",
+    "CAP-REL-005"
+  ],
+  "local_question": "当目标、参与者、角色、行动语言和接受方式都未完整给定时，什么互动足以称为构成了一个新问题和跨主体关系，而不只是重新描述已有任务？",
+  "blocked_decision": "决定 RelationVersion 或等价结构是否必须表达关系如何被共同构成，以及哪些内容不能由中心任务定义代替。",
+  "reverse_result": "若预先定义任务的强中心基线能够无损吸收参与者异议、角色变化和目标重构，则独立的关系构成层应缩小或降级。",
+  "minimum_discriminator": "选择一个参与者集合、目标或动作空间会因主体反对和修正而改变的案例，与预定义任务加审批的强基线比较。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "把所有异议都重新命名为已有任务参数",
+    "两次运行没有产生新的构成与协调判别",
+    "候选关系无法回到各 Principal 的理解与拒绝权"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "不得以术语数量或本体完整度代替关系构成证据",
+    "必须公平比较预定义任务加审批的中心方案"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/02-relation-constitution.md"
+}

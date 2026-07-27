@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-06-REALITY-EFFECT",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "REALITY_EFFECT",
+  "title": "现实效力",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-EFF-001",
+    "CAP-EFF-002",
+    "CAP-EFF-003",
+    "CAP-EFF-004",
+    "CAP-EFF-005"
+  ],
+  "local_question": "消息交付、ActionAttempt、独立可读回 Effect、目标域采用、验证、Principal 接受和结算之间必须保留哪些状态，才能判断结果真的作数？",
+  "blocked_decision": "决定现实效力链哪些环节是不可替代的权威事实，哪些可由现有事务、回执或验收系统承担。",
+  "reverse_result": "若现有事务回执与验收机制已经完整覆盖 Effect、Adoption 和 Acceptance 且不会误报，则专门效力链应缩小。",
+  "minimum_discriminator": "构造执行成功但目标域未采用、目标域采用但 Principal 未接受，以及接受后被 Defeater 重开的三个分离案例。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "把 producer PASS、消息 ACK 或模型判断当作目标域 Effect",
+    "两次运行没有产生新的效力链分离案例",
+    "需要未经授权地写入现实目标域"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "结果生产者不能同时充当唯一 Effect witness 和 Acceptance authority",
+    "必须允许中心事务系统和人类验收作为强基线"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/06-reality-effect.md"
+}

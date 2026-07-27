@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/run-manifest.schema.json",
+  "title": "RunManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "batch_id",
+    "line_id",
+    "mode",
+    "status",
+    "problem_ref",
+    "scenario_ref",
+    "input_hash",
+    "source_allowlist",
+    "protected_hashes",
+    "runner",
+    "attempt",
+    "started_at",
+    "finished_at",
+    "exit_code",
+    "result_sha256",
+    "cost"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "RunManifest"},
+    "run_id": {"type": "string"},
+    "batch_id": {"type": "string"},
+    "line_id": {"type": "string"},
+    "mode": {"enum": ["mock", "codex"]},
+    "status": {
+      "enum": ["PLANNED", "RUNNING", "COMPLETED", "FAILED", "POLICY_VIOLATION", "STALE_FOR_CURRENT"]
+    },
+    "problem_ref": {"type": "string"},
+    "scenario_ref": {"type": "string"},
+    "input_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_allowlist": {"type": "array", "items": {"type": "string"}},
+    "protected_hashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^(?:[a-f0-9]{64}|MISSING)$"}
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "version"],
+      "properties": {
+        "command": {"type": "string"},
+        "version": {"type": "string"}
+      }
+    },
+    "attempt": {"type": "integer", "minimum": 0, "maximum": 2},
+    "started_at": {"type": ["string", "null"]},
+    "finished_at": {"type": ["string", "null"]},
+    "exit_code": {"type": ["integer", "null"]},
+    "result_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["elapsed_seconds", "output_bytes"],
+      "properties": {
+        "elapsed_seconds": {"type": "number", "minimum": 0},
+        "output_bytes": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

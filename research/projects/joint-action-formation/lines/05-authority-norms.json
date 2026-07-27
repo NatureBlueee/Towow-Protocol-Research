@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-05-AUTHORITY-NORMS",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "AUTHORITY_NORMS",
+  "title": "权威与规范",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-AUTH-001",
+    "CAP-AUTH-002",
+    "CAP-AUTH-003",
+    "CAP-AUTH-004",
+    "CAP-AUTH-005"
+  ],
+  "local_question": "Entity 身份、Principal、Authority Root、角色权限、Mandate Version、执行能力和原生认领之间应怎样分离，才能防止认证、执行成功或模型推断冒充主体决定？",
+  "blocked_decision": "决定哪些权威与规范对象必须成为不可绕过的正式边界，以及怎样让有限授权在关系形成和运行中持续可检查。",
+  "reverse_result": "若成熟 RBAC、审批链和审计日志能无损表达全部相关权威差异且成本更低，新增规范对象应合并或降级。",
+  "minimum_discriminator": "构造同一 Entity 内多角色、多 Mandate Version 且能力相同但授权不同的场景，测试系统能否阻止越权目标改变与伪接受。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "把身份认证、能力或执行成功自动当作 Principal 授权",
+    "两次运行没有产生新的权威旁路反例",
+    "需要模型替现实主体产生原生承诺或接受"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "不得以密码学认证替代 Mandate 内容与版本验证",
+    "必须公平比较 RBAC、审批链和既有制度基线"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/05-authority-norms.md"
+}

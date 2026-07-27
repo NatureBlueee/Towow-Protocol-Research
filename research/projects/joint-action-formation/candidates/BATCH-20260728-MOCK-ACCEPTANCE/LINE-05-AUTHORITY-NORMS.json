@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-MOCK-ACCEPTANCE-LINE-05-AUTHORITY-NORMS",
+  "batch_id": "BATCH-20260728-MOCK-ACCEPTANCE",
+  "line_id": "LINE-05-AUTHORITY-NORMS",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "f0bd10733cab29be31bab6b7e04c559b651516e835c680291da3dd00e57520b3",
+  "direct_observations": [
+    "v0 强调有限授权，但尚未明确同一 Entity 内多个 Authority Locus 冲突时的决定规则。"
+  ],
+  "source_statements": [
+    {
+      "statement": "原生能力档案将权威与规范作为独立问题线保存。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "1-20"
+    }
+  ],
+  "inferences": [
+    "Problem v1 应把 Entity 连续性与 Principal 原生认领严格分开。"
+  ],
+  "design_proposals": [
+    "保留本线的失败判别和反向结果，等待与其他线并列比较后再决定是否合并。"
+  ],
+  "negative_results": [
+    "更强执行器不会自动提高授权安全或目标忠实。"
+  ],
+  "alternative_explanations": [
+    "强中心研究者可能在不拆分研究线的情况下得到相同区分，必须作为直接综合基线比较。"
+  ],
+  "evidence_refs": [
+    "CAP-AUTH-001",
+    "CAP-AUTH-002",
+    "CAP-AUTH-003",
+    "CAP-AUTH-004",
+    "CAP-AUTH-005"
+  ],
+  "applicability": "仅适用于 Problem v0 的本地档案问题定义批次。",
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效",
+    "不能证明多 Agent 研究优于单一强研究者",
+    "不能代表真人 Principal 的授权、承诺或接受",
+    "不能将 Problem v0 或任何候选自动晋升为 ACTIVE"
+  ],
+  "candidate_claims": [
+    "Problem v1 应把 Entity 连续性与 Principal 原生认领严格分开。"
+  ],
+  "new_discriminators": [
+    "保持能力相同，只改变 Mandate Version，测试系统是否阻止目标改变和伪接受。"
+  ],
+  "cost": {
+    "elapsed_seconds": 0.0,
+    "output_bytes": 1852
+  }
+}

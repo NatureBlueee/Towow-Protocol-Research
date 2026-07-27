@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/research-result.schema.json",
+  "title": "ResearchResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "batch_id",
+    "line_id",
+    "status",
+    "question_version",
+    "scenario_version",
+    "input_hash",
+    "direct_observations",
+    "source_statements",
+    "inferences",
+    "design_proposals",
+    "negative_results",
+    "alternative_explanations",
+    "evidence_refs",
+    "applicability",
+    "cannot_support",
+    "candidate_claims",
+    "new_discriminators",
+    "cost"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "ResearchResult"},
+    "run_id": {"type": "string"},
+    "batch_id": {"type": "string"},
+    "line_id": {"type": "string"},
+    "status": {"enum": ["COMPLETED", "INCONCLUSIVE", "REFUSED", "FAILED"]},
+    "question_version": {"type": "string"},
+    "scenario_version": {"type": "string"},
+    "input_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "direct_observations": {"type": "array", "items": {"type": "string"}},
+    "source_statements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statement", "source_locator", "source_range"],
+        "properties": {
+          "statement": {"type": "string"},
+          "source_locator": {"type": "string"},
+          "source_range": {"type": "string"}
+        }
+      }
+    },
+    "inferences": {"type": "array", "items": {"type": "string"}},
+    "design_proposals": {"type": "array", "items": {"type": "string"}},
+    "negative_results": {"type": "array", "items": {"type": "string"}},
+    "alternative_explanations": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "applicability": {"type": "string", "minLength": 8},
+    "cannot_support": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "candidate_claims": {"type": "array", "items": {"type": "string"}},
+    "new_discriminators": {"type": "array", "items": {"type": "string"}},
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["elapsed_seconds", "output_bytes"],
+      "properties": {
+        "elapsed_seconds": {"type": "number", "minimum": 0},
+        "output_bytes": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

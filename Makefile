@@ -1,4 +1,4 @@
-.PHONY: help check env new-study research-index research-view-check research-audit-check
+.PHONY: help check env new-study research-index research-view-check research-audit-check research-governance-check research-status research-batch-plan
 
 PYTHON ?= python3
 
@@ -9,6 +9,9 @@ help:
 	@echo "make research-index           Rebuild A2A catalogs and derived views"
 	@echo "make research-view-check      Check A2A catalog and provenance integrity"
 	@echo "make research-audit-check     Check A2A capability audit and cross-links"
+	@echo "make research-governance-check Validate bounded research contracts and tests"
+	@echo "make research-status          Show the current research truth surface"
+	@echo "make research-batch-plan MODE=mock Plan an isolated seven-line batch"
 
 check:
 	$(PYTHON) tools/workspace_check.py
@@ -28,3 +31,13 @@ research-view-check:
 
 research-audit-check:
 	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/check_a2a_design_audit.py
+
+research-governance-check:
+	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py validate --strict
+	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) -m unittest -v tests.test_researchctl
+
+research-status:
+	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py status
+
+research-batch-plan:
+	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py batch plan --mode "$(or $(MODE),mock)"

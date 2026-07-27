@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "kind": "ScenarioContract",
+  "id": "SCN-PROBLEM-DEFINITION-ARCHIVE",
+  "version": "v0",
+  "status": "VALIDATED",
+  "scenario_class": "ARCHIVE",
+  "study_mode": "PROBLEM_DEFINITION",
+  "title": "七条原生研究线独立攻击 Problem v0",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v0"
+  },
+  "participants": [
+    {
+      "entity_id": "ENT-RESEARCH-OWNER",
+      "entity_type": "RESEARCH_PRINCIPAL",
+      "principal": "研究用户",
+      "authority_root": "当前研究决定与明确确认",
+      "authority_scope": "激活、重开或替代正式研究问题，并决定现实材料和场景能否使用"
+    },
+    {
+      "entity_id": "ENT-BOUNDED-RESEARCH-RUNTIME",
+      "entity_type": "AGENT_EXECUTION_ENVIRONMENT",
+      "principal": "用户授权的研究执行环境",
+      "authority_root": "DEC-2026-07-28-ENVIRONMENT-V1",
+      "authority_scope": "只生成候选问题、反例、场景要求和证据建议，不得激活正式问题"
+    }
+  ],
+  "initial_state": "Problem v0 已有较完整表述，但历史研究曾因过度整合而丢失原生机制的判别力；七条研究线尚未在隔离条件下分别攻击这一表述。",
+  "unknowns": [
+    "v0 是否混合了多个应分别研究的问题",
+    "哪些原生差异必须保留，哪些历史术语可以降级",
+    "哪些现实场景能真正区分七条研究线的主张",
+    "怎样的反向结果会迫使每条研究线降级"
+  ],
+  "allowed_actions": [
+    "读取列入白名单的本地档案与审计材料",
+    "提出候选定义、反例、判别场景和降级条件",
+    "保存结构化观察、推断、负结果与设计提案",
+    "为用户形成可比较的 v1 候选材料"
+  ],
+  "prohibited_actions": [
+    "修改 NOW、DECISIONS、Problem v0 或其他研究线输入",
+    "接触真人、私有账户或生产系统",
+    "把合成或档案分析写成现实效力证明",
+    "自动激活 Problem v1 或稳定主张",
+    "因多数意见删除少数线、拒绝、Unknown 或负结果"
+  ],
+  "disclosure_boundary": "只向 worker 提供 Problem v0、该研究线契约及其本地来源白名单；提交前不提供其他研究线结果、预期答案或候选综合。",
+  "cost_and_reversibility": {
+    "cost_limit": "每线最多 30 分钟、两次尝试、2 MiB 结构化输出；整批最多 250 MiB。",
+    "reversibility": "所有输出停留在 ignored runtime 或候选目录，不改变正式问题和历史档案。",
+    "stop_rule": "超出时间、空间、来源或权限边界立即停止；连续两轮没有新判别信息则关闭同质重复。"
+  },
+  "effect_witness": {
+    "kind": "RESEARCH_ARTIFACT",
+    "target_domain": "本地候选研究区",
+    "witness": "researchctl finalize 生成且通过 Schema、来源与隔离检查的七线返回包",
+    "success_observation": "七条独立返回均存在，真实分歧和不可合并项没有被综合器删除。",
+    "failure_observation": "返回缺失、越界引用、相互污染、无法复现，或综合只剩无来源的平均表述。"
+  },
+  "domain_adoption": {
+    "authority": "本地候选研究区",
+    "required_receipt": "finalization manifest 与每个返回包 SHA-256；这不是现实世界 Domain Adoption。"
+  },
+  "acceptance": {
+    "authority": "研究用户",
+    "required_evidence": "用户对 Problem v1 候选作出激活、重写、拒绝或继续研究的明确决定。"
+  },
+  "outcome_semantics": {
+    "success": "形成可追溯且具有真实分歧的 v1 候选材料，不意味着核心问题已正确。",
+    "failure": "七线无法独立返回、边界被突破，或结果无法指出会改变问题定义的现实差异。",
+    "unknown": "材料不足以选择唯一 v1，但已明确还需创造的场景、证据或表达条件。"
+  },
+  "strongest_credible_baseline": {
+    "id": "BASE-DIRECT-INTEGRATION",
+    "description": "由单一强研究者直接阅读全部档案并综合出一个新版问题定义。",
+    "fairness_requirements": [
+      "允许基线访问相同材料和推理时间",
+      "比较是否保留原生差异、负结果和来源谱系",
+      "比较新增多线成本是否带来更强判别力"
+    ]
+  },
+  "activation": {
+    "requires_user_approval": false,
+    "approval_decision_id": "DEC-2026-07-28-ENVIRONMENT-V1"
+  },
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效",
+    "不能证明多 Agent 研究优于单一强研究者",
+    "不能代表真人 Principal 的授权、承诺或接受",
+    "不能将 Problem v0 或任何候选自动晋升为 ACTIVE"
+  ],
+  "source_refs": [
+    "research/projects/a2a-reconstruction/04_audit/README.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.md"
+}

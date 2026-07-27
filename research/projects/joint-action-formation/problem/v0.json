@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "kind": "ProblemContract",
+  "id": "PRB-JOINT-ACTION-FORMATION",
+  "version": "v0",
+  "status": "SEED",
+  "title": "不可折叠主权条件下的共同可行动性构成",
+  "question": "怎样让一个对外具有连续身份、可认证权威、有限授权和可追责性的 Agent Entity——其内部可能包含多人、多角色、多模型、多工具、多账户、工作流以及多个局部权威——在不暴露、复制或交出其完整内部世界的情况下，与其他无法互相替代、也不能彼此代行权威的实体，形成一种新的、真实可执行且能够共同承担后果的关系；并在问题、参与者、角色、行动语言、可行条件、权威边界、证据、效力和接受方式尚未完整存在时，使这项关系从机会发现持续运行到构成、授权、承诺、执行、采用、接受、学习、退出与局部重开，同时相较强中心 Agent、平台流程或人类经纪创造净正价值？",
+  "research_object": "多个不可互相替代的 Principal 世界之间，一项原本不存在、不可行或不可判断的联合行动关系如何被构成并获得规范效力与现实效力。",
+  "target_transition": "从只有局部世界、未知条件和候选可能性，转变为必要主体可以理解、修正、拒绝、授权、承诺、执行、验证和承担后果的版本化共同可行动性。",
+  "invariants": [
+    "认证 Agent Entity 不等于授权其表达 Principal 的所有观点或决定",
+    "能力提升不能自动扩大 Authority Envelope 或改变主体目标",
+    "主体不必复制完整本地世界，也不以全局语义共识作为成功条件",
+    "执行成功不能替代目标域采用、Principal 接受与责任归属",
+    "拒绝、Unknown、退出和重开必须保持为真实可能结果"
+  ],
+  "unit_of_analysis": "一个有版本边界的跨 Principal 关系形成与运行 episode，而不是单条消息、一次模型调用或孤立任务完成。",
+  "scope": [
+    "问题与参与者尚未完整给定时的关系构成",
+    "任务相关边界发现与有限披露",
+    "可能性与能力条件的形成和兑现",
+    "授权、承诺、现实效力、采用、接受、退出与重开",
+    "相对强基线的净价值和治理成本"
+  ],
+  "out_of_scope": [
+    "把 Agent 间消息传输本身当作关系形成",
+    "预先固定目标和角色的普通任务分工优化",
+    "要求所有主体共享完整世界模型或统一本体",
+    "仅凭合成实验宣称现实人或组织已经接受",
+    "由模型替 Principal 宣布意愿、授权或责任"
+  ],
+  "key_unknowns": [
+    "哪些差异必须成为正式事实，哪些只应是策略、provider 或派生视图",
+    "交互何时真正改变可达行动空间，而不只是增加谈判文本",
+    "有限披露怎样既避免漏掉必要条件又不复制完整私有世界",
+    "AgentExecution 的成功怎样与 Principal 的原生认领和接受保持分离",
+    "分布式构成相较强中心、平台或人类经纪是否有可重复的净增值",
+    "关系运行中的漂移、失败和新证据怎样触发局部而非全局重开"
+  ],
+  "competing_explanations": [
+    {
+      "id": "ALT-INTEROP",
+      "claim": "更好的 Agent Card、自然语言查询和任务协议已经足以解决大多数问题。",
+      "distinguishing_observation": "强互操作基线在相同披露、授权和验收约束下达到同等结果与更低成本。"
+    },
+    {
+      "id": "ALT-CENTRAL",
+      "claim": "一个具有正确治理和权限隔离的强中心 Agent 能更有效地构成并运行关系。",
+      "distinguishing_observation": "权威感知中心方案在形成率、错误率、隐私和净价值上不劣于联邦式方案。"
+    },
+    {
+      "id": "ALT-INSTITUTION",
+      "claim": "真正承重的是合同、组织和人类制度，Agent 协议只提供自动化便利。",
+      "distinguishing_observation": "移除通爻特有机制后，既有制度仍能产生相同权威与现实效力。"
+    },
+    {
+      "id": "ALT-FORMATION",
+      "claim": "边界探测、反例和条件创造能形成静态匹配与协调无法产生的新行动路径。",
+      "distinguishing_observation": "冻结前态无合格路径，引入可定位 operator 后出现路径，消融 operator 后路径再次消失。"
+    },
+    {
+      "id": "ALT-NET-NEGATIVE",
+      "claim": "新增价值被协调、披露、验证、等待、治理和恢复成本吞噬。",
+      "distinguishing_observation": "即使关系形成成功，其总净价值仍不高于可信基线。"
+    }
+  ],
+  "strong_baselines": [
+    {
+      "id": "BASE-AUTHORITY-AWARE-CENTRAL",
+      "name": "权威感知的强中心 Agent",
+      "authority_model": "中心可以规划和协调，但每项高后果决定仍需回到对应 Principal 或 Authority Locus。",
+      "comparison_obligation": "给予同等模型、工具、查询机会、预算和恢复机制，不以越权中心作为稻草人。"
+    },
+    {
+      "id": "BASE-PLATFORM-WORKFLOW",
+      "name": "平台工作流与审批链",
+      "authority_model": "平台保存角色、权限、任务和审批状态，由预定义流程推动现实执行。",
+      "comparison_obligation": "允许平台使用成熟的规则、表单、通知、回滚与审计能力。"
+    },
+    {
+      "id": "BASE-HUMAN-BROKER",
+      "name": "人类经纪或项目经理",
+      "authority_model": "人类通过访谈、转介、解释和现实关系确认协调必要主体。",
+      "comparison_obligation": "计入其真实时间成本，也承认其隐性知识与社会合法性优势。"
+    }
+  ],
+  "observable_outcomes": [
+    "候选行动空间是否出现冻结前不存在且满足必要条件的新路径",
+    "必要 Principal 是否分别理解、修正、拒绝或认领其权限范围",
+    "现实执行是否产生独立可读回的目标域 Effect",
+    "目标域是否采用结果且 Principal 是否独立接受",
+    "失败、撤销、退出和重开是否保持局部、可追责和可恢复",
+    "新增价值是否高于发现、协调、披露、验证、治理和恢复成本"
+  ],
+  "falsification_conditions": [
+    "强中心或现有平台在公平条件下持续达到相同或更好结果且成本更低",
+    "所谓 formation 在冻结前已存在等价路径，或消融形成 operator 后结果不变",
+    "Agent 的执行结果无法获得必要 Principal 的理解、授权或接受",
+    "跨世界关系只能依赖复制完整本地世界或冒领他方权威才能运行",
+    "净价值在现实任务中持续为零或为负"
+  ],
+  "reopen_conditions": [
+    "新证据表明当前问题错误地合并了不可兼容的形成与运行机制",
+    "出现当前七条研究线均无法表达的现实失败或权威主体",
+    "模型、工具或制度变化使原有强基线和成本结构发生实质改变",
+    "已接受关系的 Effect、Adoption 或 Acceptance 被新证据撤销"
+  ],
+  "evidence_requirements": [
+    "问题版本、场景版本、运行环境和来源可追溯",
+    "最强可信替代方案在同等约束下比较",
+    "观察、来源、推断、设计提案和主体接受严格分开",
+    "有信息价值的失败、拒绝、Unknown 和负净价值不得删除",
+    "合成结果不得自动外推到真人、组织或生产环境"
+  ],
+  "decision_authority": {
+    "activate": "USER",
+    "reopen": "USER",
+    "supersede": "USER"
+  },
+  "source_refs": [
+    "research/projects/a2a-reconstruction/00_orientation/CURRENT_GLOBAL_VIEW.md",
+    "research/projects/a2a-reconstruction/00_orientation/DRIFT_AND_TURNING_POINTS.md",
+    "research/projects/a2a-reconstruction/04_audit/README.md"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/problem/v0.md"
+}

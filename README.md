@@ -63,3 +63,17 @@ make new-study STUDY=<short-name>
 点。临时思考可以临时存在，不必把每一步都制度化。
 
 当前状态是“环境已准备”，不是理论完成、第五轮完成或任何生产验证。
+
+## 有界自动研究
+
+首个试点位于 `research/projects/joint-action-formation/`。当前问题是 `v0 / SEED`，七条原生
+研究线可以在冻结输入上按需并行，但不能自动修改正式问题、现实场景、稳定主张或用户决定。
+
+```bash
+make research-governance-check
+make research-status
+make research-batch-plan MODE=mock
+```
+
+运行器的详细接口见 `python3 tools/researchctl.py --help`。`.research-runtime/` 保存被 Git
+忽略的隔离运行状态；通过校验的结果只有在 `finalize` 后才进入项目候选区，仍不等于晋升。

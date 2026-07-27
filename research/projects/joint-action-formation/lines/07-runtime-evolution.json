@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "LineContract",
+  "id": "LINE-07-RUNTIME-EVOLUTION",
+  "version": "v0",
+  "status": "ACTIVE",
+  "native_line": "RUNTIME_EVOLUTION",
+  "title": "运行与演化",
+  "problem_ref": {"id": "PRB-JOINT-ACTION-FORMATION", "version": "v0"},
+  "capability_ids": [
+    "CAP-RUN-001",
+    "CAP-RUN-002",
+    "CAP-RUN-003",
+    "CAP-RUN-004",
+    "CAP-RUN-005",
+    "CAP-RUN-006",
+    "CAP-RUN-007"
+  ],
+  "local_question": "关系形成后，模型、Mandate、账户、能力、证据和目标域不断变化时，怎样保持版本连续、局部重开、退出和学习，而不把旧接受永久化或每次全局重建？",
+  "blocked_decision": "决定哪些运行状态、Defeater、版本和恢复机制必须进入正式关系内核，以及怎样限制长期治理成本。",
+  "reverse_result": "若不可变一次性合同加普通监控和人工更新能以更低成本安全处理漂移，则持续关系运行内核应降级。",
+  "minimum_discriminator": "在已形成关系中分别注入模型升级、授权撤销、账户离线、证据失效和目标变化，观察是否能局部重开并保持责任谱系。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md"
+  ],
+  "budget": {"max_minutes": 30, "max_attempts": 2, "max_output_bytes": 2097152},
+  "stop_conditions": [
+    "通过覆盖旧版本或删除失败历史制造连续性",
+    "两次运行没有产生新的漂移或恢复判别",
+    "局部失败只能通过全局重新授权解决"
+  ],
+  "expected_return": [
+    "v0_omissions",
+    "irreducible_distinctions",
+    "discriminating_scenarios",
+    "downgrade_conditions",
+    "candidate_problem_revision",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "提交前不得读取其他六条研究线的运行结果",
+    "不得把日志存在、进程存活或版本号递增当作关系连续性证明",
+    "必须比较普通监控、工作流版本与人工治理基线"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/lines/07-runtime-evolution.md"
+}

@@ -77,3 +77,54 @@
 - 什么证据会让我们改变看法。
 
 稳定不是永不改变，而是改变时能指出触发它的新证据。
+
+## 7. 有界自动研究的最低契约
+
+自动研究不是把判断权交给后台任务。它只在明确的 `ProblemContract`、`ScenarioContract`
+和 `LineContract` 内生成候选证据：
+
+- 没有问题版本、场景版本和强基线，不开跑；
+- 每条研究线在提交前不读取其他线的结果；
+- 所有输入按内容哈希冻结，输入变化不会覆盖旧运行；
+- worker 只写自己的运行目录，不能修改 `NOW.md`、`DECISIONS.md` 或正式问题；
+- 观察、来源、推断、设计建议和负结果分开返回；
+- 自动结果最高为 `CANDIDATE` 或 `SUPPORTED_LOCAL`；
+- 真人、私有材料、生产 Effect、正式问题和稳定主张始终需要用户确认。
+
+### 推荐命令
+
+```bash
+make research-governance-check
+python3 tools/researchctl.py status
+python3 tools/researchctl.py batch plan --mode mock
+python3 tools/researchctl.py batch run --plan .research-runtime/<batch-id>/plan.json
+python3 tools/researchctl.py review prepare --batch <batch-id>
+python3 tools/researchctl.py finalize --batch <batch-id>
+```
+
+真实 Codex 批次把 `--mode mock` 改成 `--mode codex`。Claude 盲审包只负责准备材料，不自动
+发送；先检查包中没有未经授权的私有来源、预期答案或其他身份泄露，再决定是否调用外部模型。
+
+`codex` 计划会生成 `disclosure-manifest.json`，其中列出每个实际 payload 的路径、字节数、
+SHA-256、唯一来源和目的地。即使环境层已经选择“Codex 主跑”，仍需用户对具体
+`batch_id@plan_fingerprint` 记录 `SEND_BATCH_TO_CODEX` 决定，再运行：
+
+```bash
+python3 tools/researchctl.py batch authorize --batch <batch-id> --decision-id <decision-id>
+```
+
+Claude 盲审同样绑定 `batch_id@payload_sha256` 和单独的
+`SEND_BLIND_REVIEW_TO_CLAUDE` 决定。批准一个批次不会自动批准后续批次或变化后的 payload。
+
+## 8. 问题定义批次先于机制实验
+
+当核心问题仍是 `SEED` 时，只允许 `PROBLEM_DEFINITION` 场景。七条原生研究线分别说明：
+
+1. 当前问题遗漏或错误折叠了什么；
+2. 去掉本线区分会重现什么现实错误；
+3. 什么场景能区分本线解释与最强替代解释；
+4. 什么反向结果会迫使本线降级；
+5. 它能够和不能够支持什么。
+
+综合发生在七线提交之后，并必须保留冲突。只有用户记录 `ACTIVATE_PROBLEM` 决定后，机制和
+现实效力研究才可以开始。

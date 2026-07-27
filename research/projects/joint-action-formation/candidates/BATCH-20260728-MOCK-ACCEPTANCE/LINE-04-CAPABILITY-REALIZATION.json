@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-MOCK-ACCEPTANCE-LINE-04-CAPABILITY-REALIZATION",
+  "batch_id": "BATCH-20260728-MOCK-ACCEPTANCE",
+  "line_id": "LINE-04-CAPABILITY-REALIZATION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "38f33040efc7017245290f208f304b5f2fcd1bd9e4c2cd4b08970fc3ea5fc120",
+  "direct_observations": [
+    "v0 容易把形成可能性与能力已兑现放在同一句中，缺少环境和权限版本。"
+  ],
+  "source_statements": [
+    {
+      "statement": "原生能力档案将能力兑现作为独立问题线保存。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "1-20"
+    }
+  ],
+  "inferences": [
+    "Problem v1 应把能力候选、probe 支持和目标域稳定兑现分层。"
+  ],
+  "design_proposals": [
+    "保留本线的失败判别和反向结果，等待与其他线并列比较后再决定是否合并。"
+  ],
+  "negative_results": [
+    "语言自报与单次成功均不能支持长期 Capability Envelope。"
+  ],
+  "alternative_explanations": [
+    "强中心研究者可能在不拆分研究线的情况下得到相同区分，必须作为直接综合基线比较。"
+  ],
+  "evidence_refs": [
+    "CAP-CAP-001",
+    "CAP-CAP-002",
+    "CAP-CAP-003",
+    "CAP-CAP-004",
+    "CAP-CAP-005"
+  ],
+  "applicability": "仅适用于 Problem v0 的本地档案问题定义批次。",
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效",
+    "不能证明多 Agent 研究优于单一强研究者",
+    "不能代表真人 Principal 的授权、承诺或接受",
+    "不能将 Problem v0 或任何候选自动晋升为 ACTIVE"
+  ],
+  "candidate_claims": [
+    "Problem v1 应把能力候选、probe 支持和目标域稳定兑现分层。"
+  ],
+  "new_discriminators": [
+    "在未见留出任务和权限撤销后重复验证同一能力合同。"
+  ],
+  "cost": {
+    "elapsed_seconds": 0.0,
+    "output_bytes": 1835
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/line.schema.json",
+  "title": "LineContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "id",
+    "version",
+    "status",
+    "native_line",
+    "title",
+    "problem_ref",
+    "capability_ids",
+    "local_question",
+    "blocked_decision",
+    "reverse_result",
+    "minimum_discriminator",
+    "source_allowlist",
+    "budget",
+    "stop_conditions",
+    "expected_return",
+    "independence_rules",
+    "companion_markdown"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "LineContract"},
+    "id": {"type": "string", "pattern": "^LINE-[0-9]{2}-[A-Z0-9-]+$"},
+    "version": {"type": "string", "pattern": "^v[0-9]+(?:\\.[0-9]+)?$"},
+    "status": {"enum": ["DRAFT", "ACTIVE", "PAUSED", "CLOSED", "REOPENED"]},
+    "native_line": {
+      "enum": [
+        "DISCOVERY_BOUNDARY",
+        "RELATION_CONSTITUTION",
+        "POSSIBILITY_FORMATION",
+        "CAPABILITY_REALIZATION",
+        "AUTHORITY_NORMS",
+        "REALITY_EFFECT",
+        "RUNTIME_EVOLUTION"
+      ]
+    },
+    "title": {"type": "string", "minLength": 4},
+    "problem_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {"type": "string"},
+        "version": {"type": "string"}
+      }
+    },
+    "capability_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^CAP-[A-Z]+-[0-9]{3}$"}
+    },
+    "local_question": {"type": "string", "minLength": 30},
+    "blocked_decision": {"type": "string", "minLength": 20},
+    "reverse_result": {"type": "string", "minLength": 20},
+    "minimum_discriminator": {"type": "string", "minLength": 20},
+    "source_allowlist": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_minutes", "max_attempts", "max_output_bytes"],
+      "properties": {
+        "max_minutes": {"type": "integer", "minimum": 1, "maximum": 120},
+        "max_attempts": {"type": "integer", "minimum": 1, "maximum": 2},
+        "max_output_bytes": {"type": "integer", "minimum": 1024, "maximum": 10485760}
+      }
+    },
+    "stop_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "expected_return": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "independence_rules": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "companion_markdown": {"type": "string", "pattern": "\\.md$"}
+  }
+}
