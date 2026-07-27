@@ -1,0 +1,11 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.3, ranksep=0.33, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=10.5, margin="0.16,0.09", width=5.8];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=8.5];
+  l1 [label="形式与定义证据\n不可能性、职责分离、不变量",fillcolor="#F3F4F6"];
+  l2 [label="合成机制证据\n隔离变量、反例、状态机与算法可行性",fillcolor="#EEF6FF"];
+  l3 [label="真实仓库/运行时证据\nretry、partial effect、readback、环境与成本",fillcolor="#FEF3C7"];
+  l4 [label="跨技术权威域 scoped evidence\nadopt/revoke/offline/restart/holdout",fillcolor="#FFF7ED"];
+  l5 [label="真实 Principal 证据（尚缺）\n人的认领、联合行动、责任与经济净价值",fillcolor="#FEE2E2"];
+  l1 -> l2 -> l3 -> l4 -> l5;
+}

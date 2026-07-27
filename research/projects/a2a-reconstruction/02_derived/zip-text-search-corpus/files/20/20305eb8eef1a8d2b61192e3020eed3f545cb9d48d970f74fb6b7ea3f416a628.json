@@ -1,0 +1,28 @@
+{
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "PYTHONPATH=/private/tmp/harness-towow-a2a-r5-2/harness/src:/private/tmp/harness-towow-a2a-r5-2",
+    "TOWOW_LIVE_SPAWN=",
+    "/Users/nature/个人项目/Harness/harness/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-a2a-r5-2-pytest/cap-05",
+    "-q",
+    "tests/unit/l0/test_coldstart_budget.py::test_load_tolerates_historical_dup_seqs",
+    "tests/unit/l0/test_coldstart_budget.py::test_load_rejects_torn_stale_optional_posting_with_non_touching_tail",
+    "tests/unit/l0/test_coldstart_budget.py::test_load_still_rejects_torn_posting_when_tail_touches_bucket",
+    "tests/unit/l0/test_coldstart_budget.py::test_load_path_matches_rebuild_byte_for_byte",
+    "tests/unit/l0/test_coldstart_budget.py::test_fold_input_hash_collision_last_wins_matches_rebuild"
+  ],
+  "cwd": "/private/tmp/harness-towow-a2a-r5-2/harness",
+  "started_at_utc": "2026-07-24T14:33:21.215454+00:00",
+  "ended_at_utc": "2026-07-24T14:33:22.757378+00:00",
+  "wall_seconds": 1.5419528484344482,
+  "exit_code": 0,
+  "stdout": "......                                                                   [100%]\n6 passed in 0.98s\n",
+  "stderr": ""
+}

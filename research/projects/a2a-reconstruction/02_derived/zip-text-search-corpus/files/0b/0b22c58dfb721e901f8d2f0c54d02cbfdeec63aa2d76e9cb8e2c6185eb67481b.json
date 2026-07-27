@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "message", "disclosures", "conditions", "unknowns"],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["ASK", "REFUSE", "UNKNOWN", "COUNTER", "PROPOSE", "ACCEPT", "REJECT"]
+    },
+    "message": {"type": "string"},
+    "disclosures": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "conditions": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

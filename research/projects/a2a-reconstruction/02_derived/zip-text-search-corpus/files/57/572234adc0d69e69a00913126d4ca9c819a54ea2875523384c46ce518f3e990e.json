@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Towow Public Trace Event v0.6",
+  "type": "object",
+  "required": [
+    "case_id",
+    "event_id",
+    "event_date",
+    "label",
+    "actor",
+    "authority_locus",
+    "event_type",
+    "relation_version",
+    "schema_dimensions",
+    "material_schema_change",
+    "source_ids",
+    "observation_status",
+    "institutional_frame",
+    "relation_version_scope",
+    "standing_types",
+    "declared_enacted_gap",
+    "stability_dimensions",
+    "compile_mode",
+    "reopen_triggers",
+    "formation_operators",
+    "retrospective_selection_risk"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "event_date": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "authority_locus": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "relation_version": {
+      "type": "string"
+    },
+    "schema_dimensions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "R",
+          "V",
+          "T",
+          "A",
+          "E",
+          "D",
+          "O"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "material_schema_change": {
+      "type": "boolean"
+    },
+    "source_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "observation_status": {
+      "enum": [
+        "OBSERVED",
+        "ASSERTED",
+        "ADJUDICATED",
+        "INFERRED",
+        "UNKNOWN"
+      ]
+    },
+    "institutional_frame": {
+      "type": "string"
+    },
+    "relation_version_scope": {
+      "enum": [
+        "INSTITUTIONAL_FRAME",
+        "RELATION_SPECIFIC",
+        "RELATION_RUNTIME",
+        "BOTH",
+        "RESEARCH_OBSERVATION"
+      ]
+    },
+    "standing_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "declared_enacted_gap": {
+      "type": "boolean"
+    },
+    "stability_dimensions": {
+      "type": "object",
+      "required": [
+        "technical_operational",
+        "authority_governance",
+        "epistemic_assurance",
+        "normative_legitimacy",
+        "economic_resource"
+      ],
+      "properties": {
+        "technical_operational": {
+          "enum": [
+            "OPEN",
+            "CONDITIONAL",
+            "STABLE",
+            "FAILED",
+            "NOT_ASSESSED"
+          ]
+        },
+        "authority_governance": {
+          "enum": [
+            "OPEN",
+            "CONDITIONAL",
+            "STABLE",
+            "FAILED",
+            "NOT_ASSESSED"
+          ]
+        },
+        "epistemic_assurance": {
+          "enum": [
+            "OPEN",
+            "CONDITIONAL",
+            "STABLE",
+            "FAILED",
+            "NOT_ASSESSED"
+          ]
+        },
+        "normative_legitimacy": {
+          "enum": [
+            "OPEN",
+            "CONDITIONAL",
+            "STABLE",
+            "FAILED",
+            "NOT_ASSESSED"
+          ]
+        },
+        "economic_resource": {
+          "enum": [
+            "OPEN",
+            "CONDITIONAL",
+            "STABLE",
+            "FAILED",
+            "NOT_ASSESSED"
+          ]
+        }
+      }
+    },
+    "compile_mode": {
+      "type": "string"
+    },
+    "reopen_triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "formation_operators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retrospective_selection_risk": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "compressed_stream_visibility": {
+      "enum": [
+        "FULL",
+        "PARTIAL",
+        "NONE",
+        "NOT_ASSESSED"
+      ]
+    },
+    "institutional_frame_sufficiency": {
+      "type": "string"
+    },
+    "reserved_contingency": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

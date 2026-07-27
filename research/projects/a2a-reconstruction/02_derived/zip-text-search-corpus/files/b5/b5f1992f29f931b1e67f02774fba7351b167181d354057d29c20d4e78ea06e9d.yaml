@@ -1,0 +1,69 @@
+decisions:
+- id: D-001
+  status: accepted
+  decision: PRSE-OS 独立于具体 Harness 和模型。
+  reason: 保持运行主体中立与长期可迁移。
+  supersedes: []
+- id: D-002
+  status: accepted
+  decision: 产品规范、方法规范、Harness 实现和 Reference Project 分层。
+  reason: 避免执行细节污染产品语义。
+  supersedes: []
+- id: D-003
+  status: accepted
+  decision: 对象先于页面；UI 是受控投影。
+  reason: 防止前端容器反向定义产品。
+  supersedes: []
+- id: D-004
+  status: accepted
+  decision: 宏观主弧线与多对象生命周期并存。
+  reason: 处理披露、验证、撤销、争议等非线性现实。
+  supersedes:
+  - single-global-state-machine
+- id: D-005
+  status: accepted
+  decision: DomainEvent、AuditRecord、Evidence、ActivityProjection 分离。
+  reason: 不同事实职责和保留策略不同。
+  supersedes:
+  - event-ledger-as-everything
+- id: D-006
+  status: accepted
+  decision: VerificationResult 与 AcceptanceDecision 分离。
+  reason: 机器判定不能自动承担业务后果。
+  supersedes:
+  - verification-equals-acceptance
+- id: D-007
+  status: accepted
+  decision: Agent 通过 CapabilityProfile 定义，不靠 Persona 身份。
+  reason: 路由需要知识、方法、工具、Scope 和 Authority。
+  supersedes:
+  - expert-role-prompt
+- id: D-008
+  status: accepted
+  decision: 上下文按最小充分原则路由，并保存 provenance/freshness/permissions。
+  reason: AI 的关键风险是信息渠道失控。
+  supersedes:
+  - load-all-context
+- id: D-009
+  status: accepted
+  decision: 对外语言通过 ClaimRegistry 编译和回译。
+  reason: 防止内部概念变成夸大的市场承诺。
+  supersedes:
+  - copy-internal-language-outward
+- id: D-010
+  status: accepted
+  decision: 质量要求优先描述 Outcome/Evidence/Process Constraint，Agent 数量通常仅为 Resource Plan。
+  reason: 实例数量不等于独立信息增益。
+  supersedes:
+  - fixed-agent-count-as-quality
+- id: D-011
+  status: accepted
+  decision: 方法运行产生 MethodEvent 和健康指标。
+  reason: 使方法本身可观测、可诊断和可改进。
+  supersedes:
+  - method-as-black-box
+- id: D-012
+  status: accepted
+  decision: 召集台是第一份 reference implementation，而不是 PRSE 唯一适用领域。
+  reason: 需要同时保留真实验证与跨产品迁移。
+  supersedes: []

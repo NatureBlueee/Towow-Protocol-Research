@@ -1,0 +1,16 @@
+{
+  "tested_payload_manifest_sha256": "6e9ee0e002996bf13c84b8116a62a1133154cfbe8104b62aeffc3e917800e4da",
+  "archive_hash_record": "../../towow-a2a-r5-4-return-packet.tar.gz.sha256",
+  "relocated_root": "fresh temporary directory outside the source worktree",
+  "commands": [
+    "python3 tools/verify_return_packet.py .",
+    "python3 tools/replay_identity_semantics.py experiments/r5-4-run-001-source-identity/inputs/mixed_legacy_identity_fixture.json",
+    "python3 tools/recompute_packet_costs.py ."
+  ],
+  "exit_codes": [0, 0, 0],
+  "manifest_files": 161,
+  "passed": true,
+  "warnings": [
+    "Two preserved pre-model conformance stdout files are empty; normalized failure evidence is present."
+  ]
+}

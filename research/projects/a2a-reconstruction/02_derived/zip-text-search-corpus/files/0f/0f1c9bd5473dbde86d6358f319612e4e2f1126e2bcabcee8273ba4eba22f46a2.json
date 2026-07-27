@@ -1,0 +1,137 @@
+{
+  "content_hash": "b4409f2295bfe112eb431e74a2460afbf4973af9c3c8ef27292e7274144c0033",
+  "created_at": "2026-07-26T07:29:45.947493+00:00",
+  "instance": {
+    "archival_case_id": "PEA-06",
+    "no_causal_claim": true,
+    "qualified_revision": "TRANSFORMATION",
+    "source_basis": "public formal archive",
+    "state": "DIVEST_REQUIRED"
+  },
+  "relation_id": "SHADOW-GIPHY",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "Effect distinct from Settlement",
+      "standing/jurisdiction",
+      "data-derivative assertion",
+      "challenge horizon",
+      "divestiture effect witness"
+    ],
+    "unobservable": [
+      "complete third-party worlds",
+      "all strategic use of data",
+      "long-run welfare"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "remedy_completion": {
+        "required_roles": [
+          "cma"
+        ]
+      }
+    },
+    "actions": {
+      "close_case": {
+        "actor_roles": [
+          "cma"
+        ],
+        "material": true
+      },
+      "sell_giphy": {
+        "actor_roles": [
+          "meta",
+          "purchaser"
+        ],
+        "material": true,
+        "produces_effect": true
+      }
+    },
+    "authority_rules": {
+      "close_case": [
+        "cma"
+      ],
+      "sell_giphy": [
+        "meta",
+        "purchaser"
+      ]
+    },
+    "challenge_rules": {
+      "post_close_review": {
+        "reopen": "new_defeater_or_noncompliance",
+        "status": "CLOSED_WITHIN_OBSERVED_SCOPE"
+      }
+    },
+    "data_rules": {
+      "giphy_data": {
+        "holder": "purchaser_after_sale",
+        "scope": "observed_divestiture"
+      }
+    },
+    "jurisdiction_rules": {
+      "UK_competition": {
+        "authority": "cma",
+        "disposition": "DIVEST_REQUIRED",
+        "required": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "advertising_services": {},
+      "giphy_data": {},
+      "ownership": {}
+    },
+    "roles": {
+      "cma": {
+        "external_jurisdiction": true
+      },
+      "giphy": {},
+      "meta": {},
+      "purchaser": {},
+      "third_parties": {
+        "affected_standing": true
+      }
+    },
+    "schema_id": "shadow-giphy",
+    "settlement_rules": {
+      "remedy": {
+        "requires": [
+          "divestiture_effect",
+          "CMA_case_closure"
+        ],
+        "scope": "UK_competition_case_through_divestiture"
+      }
+    },
+    "standing_rules": {
+      "competition_challenge": [
+        "cma",
+        "third_parties"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "sell_giphy",
+        "from": "DIVEST_REQUIRED",
+        "to": "DIVESTED"
+      },
+      {
+        "action": "close_case",
+        "from": "DIVESTED",
+        "to": "SCOPED_SETTLED"
+      }
+    ],
+    "version": "3",
+    "witness_rules": {
+      "sell_giphy": {
+        "source": "divestiture_closing_record"
+      }
+    }
+  },
+  "status": "DIVEST_REQUIRED",
+  "version": 3
+}

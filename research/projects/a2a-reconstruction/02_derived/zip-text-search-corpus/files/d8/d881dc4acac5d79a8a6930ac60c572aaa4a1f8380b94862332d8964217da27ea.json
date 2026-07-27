@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ChangeSet",
+  "type": "object",
+  "required": [
+    "change_id",
+    "reason",
+    "changed_nodes",
+    "impacted_artifacts",
+    "migration",
+    "validation"
+  ],
+  "properties": {
+    "change_id": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "changed_nodes": {
+      "type": "array"
+    },
+    "impacted_artifacts": {
+      "type": "array"
+    },
+    "migration": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "array"
+    }
+  }
+}

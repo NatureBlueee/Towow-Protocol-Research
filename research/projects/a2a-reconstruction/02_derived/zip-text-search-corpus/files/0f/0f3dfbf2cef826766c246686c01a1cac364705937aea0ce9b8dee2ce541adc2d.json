@@ -1,0 +1,120 @@
+{
+  "content_hash": "7e83d4f77ec2d10822be4c7921351189885190ab44b542898c704a64c8f476c8",
+  "created_at": "2026-07-26T07:29:45.945339+00:00",
+  "instance": {
+    "archival_case_id": "PEA-06",
+    "no_causal_claim": true,
+    "qualified_revision": "EXPANSION",
+    "source_basis": "public formal archive",
+    "state": "COMMITTED"
+  },
+  "relation_id": "SHADOW-GIPHY",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "Effect distinct from Settlement",
+      "standing/jurisdiction",
+      "data-derivative assertion",
+      "challenge horizon",
+      "divestiture effect witness"
+    ],
+    "unobservable": [
+      "complete third-party worlds",
+      "all strategic use of data",
+      "long-run welfare"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "bilateral": {
+        "required_roles": [
+          "meta",
+          "giphy"
+        ]
+      }
+    },
+    "actions": {
+      "close_bilateral": {
+        "actor_roles": [
+          "meta",
+          "giphy"
+        ],
+        "material": true,
+        "produces_effect": true
+      }
+    },
+    "authority_rules": {
+      "close_bilateral": [
+        "meta",
+        "giphy"
+      ]
+    },
+    "challenge_rules": {
+      "post_close_review": {
+        "status": "OPEN"
+      }
+    },
+    "data_rules": {
+      "giphy_data": {
+        "derived_signal_risk": "unreviewed",
+        "holder": "meta_after_close"
+      }
+    },
+    "jurisdiction_rules": {
+      "UK_competition": {
+        "authority": "cma",
+        "required": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "advertising_services": {},
+      "giphy_data": {},
+      "ownership": {}
+    },
+    "roles": {
+      "cma": {
+        "external_jurisdiction": true
+      },
+      "giphy": {},
+      "meta": {},
+      "third_parties": {
+        "affected_standing": true
+      }
+    },
+    "schema_id": "shadow-giphy",
+    "settlement_rules": {
+      "bilateral": {
+        "excludes": [
+          "UK_competition_clearance"
+        ],
+        "scope": "corporate_effect_only"
+      }
+    },
+    "standing_rules": {
+      "competition_challenge": [
+        "cma",
+        "third_parties"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "close_bilateral",
+        "from": "COMMITTED",
+        "to": "EFFECT_OCCURRED"
+      }
+    ],
+    "version": "1",
+    "witness_rules": {
+      "close_bilateral": {
+        "source": "corporate_closing_record"
+      }
+    }
+  },
+  "status": "COMMITTED",
+  "version": 1
+}

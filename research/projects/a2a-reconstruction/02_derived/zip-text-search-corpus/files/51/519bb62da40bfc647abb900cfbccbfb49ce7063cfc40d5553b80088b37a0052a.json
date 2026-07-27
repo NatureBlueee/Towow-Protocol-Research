@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EscalationCase",
+  "type": "object",
+  "required": [
+    "case_id",
+    "question",
+    "known_facts",
+    "attempts",
+    "reason",
+    "required_human_output"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "known_facts": {
+      "type": "array"
+    },
+    "attempts": {
+      "type": "array"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "required_human_output": {
+      "type": "string"
+    },
+    "impact": {
+      "type": "array"
+    }
+  }
+}

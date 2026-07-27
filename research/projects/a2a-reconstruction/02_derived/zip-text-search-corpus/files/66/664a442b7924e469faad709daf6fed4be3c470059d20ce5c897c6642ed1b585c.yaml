@@ -1,0 +1,28 @@
+workflow:
+  id: iteration
+  entry_artifact: ChangeRequest
+  stages:
+    - id: classify_change
+      outputs: [ChangeSet, AffectedConcerns, RiskLevel]
+    - id: impact_scan
+      outputs: [ImpactedConcepts, ImpactedLoops, ImpactedViews, ImpactedClaims]
+      gate: G2_semantic_ready
+    - id: targeted_research
+      condition: evidence_gap_or_external_change
+      outputs: [EvidenceDelta]
+      gate: G1_evidence_ready
+    - id: remodel
+      outputs: [UpdatedDecisions, UpdatedModels]
+      gate: G3_closed_loop_ready
+    - id: reproject
+      outputs: [UpdatedViews, UpdatedStateMatrices]
+      gate: G4_experience_ready
+    - id: revalidate
+      outputs: [RegressionValidation, ContradictionScan, LanguageDriftReport]
+      gate: G7_handoff_ready
+
+rules:
+  - unchanged_artifacts_must_be_explicitly_reconfirmed
+  - old_decisions_cannot_remain_active_if_superseded
+  - external_claims_must_be_recompiled_after_semantic_change
+  - prototype_changes_do_not_implicitly_change_domain_model

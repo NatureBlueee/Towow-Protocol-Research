@@ -1,0 +1,573 @@
+{
+  "candidate_concepts": [
+    "UsageGrant",
+    "DataUseEvent",
+    "DerivationRecord",
+    "JointArtifactRights",
+    "LearningUpdate"
+  ],
+  "conditional_promotions": [
+    "Mandate",
+    "Commitment"
+  ],
+  "counterexamples": [
+    {
+      "naive": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 2,
+        "grant_expires": 86,
+        "grant_issued": 6,
+        "grant_revoked": 21,
+        "learning_persistent": false,
+        "learning_time": null,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "evaluation"
+        ],
+        "rights_amend_time": 28,
+        "rights_amended": [
+          "provider"
+        ],
+        "rights_independent_ratification": true,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 1,
+        "use_purpose": "coordination",
+        "use_time": 28
+      },
+      "truth": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": true,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 63,
+        "grant_issued": 2,
+        "grant_revoked": null,
+        "learning_persistent": true,
+        "learning_time": 94,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "training"
+        ],
+        "rights_amend_time": 27,
+        "rights_amended": [
+          "buyer",
+          "provider"
+        ],
+        "rights_independent_ratification": true,
+        "rights_initial": [
+          "provider"
+        ],
+        "scenario_id": 2,
+        "use_purpose": "training",
+        "use_time": 68
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": true,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 87,
+        "grant_issued": 8,
+        "grant_revoked": 73,
+        "learning_persistent": true,
+        "learning_time": 30,
+        "missing_parent_at": 0,
+        "permitted_purposes": [
+          "coordination",
+          "delivery",
+          "evaluation",
+          "training"
+        ],
+        "rights_amend_time": 85,
+        "rights_amended": [
+          "provider"
+        ],
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 3,
+        "use_purpose": "delivery",
+        "use_time": 34
+      },
+      "truth": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": false,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": true
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 66,
+        "grant_issued": 7,
+        "grant_revoked": null,
+        "learning_persistent": false,
+        "learning_time": null,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "delivery",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 4,
+        "use_purpose": "training",
+        "use_time": 29
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": true
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 5,
+        "grant_expires": 57,
+        "grant_issued": 2,
+        "grant_revoked": null,
+        "learning_persistent": true,
+        "learning_time": 45,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "delivery",
+          "evaluation",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 5,
+        "use_purpose": "coordination",
+        "use_time": 80
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 2,
+        "grant_expires": 82,
+        "grant_issued": 0,
+        "grant_revoked": 75,
+        "learning_persistent": false,
+        "learning_time": null,
+        "missing_parent_at": 1,
+        "permitted_purposes": [
+          "coordination",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer"
+        ],
+        "scenario_id": 6,
+        "use_purpose": "evaluation",
+        "use_time": 45
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": false,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 5,
+        "grant_expires": 68,
+        "grant_issued": 3,
+        "grant_revoked": null,
+        "learning_persistent": false,
+        "learning_time": 57,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "coordination",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 7,
+        "use_purpose": "coordination",
+        "use_time": 12
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": true
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 5,
+        "grant_expires": 63,
+        "grant_issued": 1,
+        "grant_revoked": 53,
+        "learning_persistent": true,
+        "learning_time": 25,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "delivery",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "provider"
+        ],
+        "scenario_id": 8,
+        "use_purpose": "coordination",
+        "use_time": 8
+      },
+      "truth": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 4,
+        "grant_expires": 102,
+        "grant_issued": 5,
+        "grant_revoked": null,
+        "learning_persistent": false,
+        "learning_time": null,
+        "missing_parent_at": null,
+        "permitted_purposes": [
+          "coordination"
+        ],
+        "rights_amend_time": 74,
+        "rights_amended": [
+          "provider"
+        ],
+        "rights_independent_ratification": true,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 9,
+        "use_purpose": "delivery",
+        "use_time": 33
+      },
+      "truth": {
+        "current_joint_rights": [
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": true,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 75,
+        "grant_issued": 4,
+        "grant_revoked": 78,
+        "learning_persistent": false,
+        "learning_time": null,
+        "missing_parent_at": 0,
+        "permitted_purposes": [
+          "coordination",
+          "evaluation",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer"
+        ],
+        "scenario_id": 10,
+        "use_purpose": "evaluation",
+        "use_time": 26
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": false,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": true
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 70,
+        "grant_issued": 4,
+        "grant_revoked": null,
+        "learning_persistent": false,
+        "learning_time": 47,
+        "missing_parent_at": 0,
+        "permitted_purposes": [
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer"
+        ],
+        "scenario_id": 11,
+        "use_purpose": "delivery",
+        "use_time": 90
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": false,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": false
+      }
+    },
+    {
+      "naive": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": true,
+        "persistent_learning_authorized": false,
+        "use_authorized_at_event_time": false
+      },
+      "scenario": {
+        "derivation_depth": 1,
+        "grant_expires": 59,
+        "grant_issued": 5,
+        "grant_revoked": null,
+        "learning_persistent": true,
+        "learning_time": 19,
+        "missing_parent_at": 0,
+        "permitted_purposes": [
+          "coordination",
+          "delivery",
+          "evaluation",
+          "training"
+        ],
+        "rights_amend_time": null,
+        "rights_amended": null,
+        "rights_independent_ratification": false,
+        "rights_initial": [
+          "buyer",
+          "provider"
+        ],
+        "scenario_id": 12,
+        "use_purpose": "training",
+        "use_time": 30
+      },
+      "truth": {
+        "current_joint_rights": [
+          "buyer",
+          "provider"
+        ],
+        "joint_rights_requires_independent_object": false,
+        "lineage_complete": false,
+        "persistent_learning_authorized": true,
+        "use_authorized_at_event_time": true
+      }
+    }
+  ],
+  "experiment": "ontology_reduction_trace_preservation",
+  "interpretation_limit": "Constructive representation test over an explicit generator. It shows that protocol object proliferation is unnecessary for these queries; it does not prove the five distinctions are unimportant or that real legal regimes accept the mapping.",
+  "joint_rights_promoted_count": 12312,
+  "joint_rights_promoted_rate": 0.24624,
+  "naive_error_counts": {
+    "joint_rights_requires_independent_object": 12312,
+    "lineage_complete": 12546,
+    "persistent_learning_authorized": 6712,
+    "use_authorized_at_event_time": 17356
+  },
+  "naive_query_error_rate": 0.195704,
+  "naive_total_query_errors": 48926,
+  "query_count_per_scenario": 5,
+  "reduced_error_counts": {},
+  "reduced_mapping": {
+    "DataUseEvent": "Event subtype",
+    "DerivationRecord": "provenance edge/payload on the produced assertion or artifact",
+    "JointArtifactRights": "policy attachment; promoted to Commitment only when independently ratified/amendable",
+    "LearningUpdate": "Effect event subtype; independently governed object only for persistent high-risk state",
+    "UsageGrant": "Mandate specialization when independently issued/revoked; otherwise policy field"
+  },
+  "reduced_total_query_errors": 0,
+  "scenario_count": 50000,
+  "seed": 20260726,
+  "top_level_candidate_types_after_default": 1,
+  "top_level_candidate_types_before": 5
+}

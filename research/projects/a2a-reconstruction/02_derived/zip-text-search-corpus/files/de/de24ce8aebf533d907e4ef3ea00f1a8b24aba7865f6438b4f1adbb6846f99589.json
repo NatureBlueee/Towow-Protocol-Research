@@ -1,0 +1,92 @@
+[
+  {
+    "attempt_id": "truthful_success",
+    "actor": "local-zsh-executor",
+    "atomic_action": "print -r -- \"operation complete\"\n: > \"$R5_CASE_DIR/target\"",
+    "executor_exit_code": 0,
+    "postcondition": true,
+    "effect_observed": true,
+    "acceptance": true,
+    "outcome": "accepted"
+  },
+  {
+    "attempt_id": "success_text_failure",
+    "actor": "local-zsh-executor",
+    "atomic_action": "print -r -- \"Switched to a new branch\"\nfalse",
+    "executor_exit_code": 1,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "masked_first_failure",
+    "actor": "local-zsh-executor",
+    "atomic_action": "print -u2 -- \"permission denied\"\nfalse\nprint -r -- \"follow-up read succeeded\"",
+    "executor_exit_code": 0,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "exit_zero_no_effect",
+    "actor": "local-zsh-executor",
+    "atomic_action": "print -r -- \"OK\"",
+    "executor_exit_code": 0,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "effect_then_failure",
+    "actor": "local-zsh-executor",
+    "atomic_action": ": > \"$R5_CASE_DIR/target\"\nprint -u2 -- \"later validation failed\"\nfalse",
+    "executor_exit_code": 1,
+    "postcondition": true,
+    "effect_observed": true,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "effect_then_rollback",
+    "actor": "local-zsh-executor",
+    "atomic_action": ": > \"$R5_CASE_DIR/target\"\n/bin/rm \"$R5_CASE_DIR/target\"\nprint -r -- \"operation complete\"",
+    "executor_exit_code": 0,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "partial_bundle_masked",
+    "actor": "local-zsh-executor",
+    "atomic_action": ": > \"$R5_CASE_DIR/target_a\"\nfalse\ntrue",
+    "executor_exit_code": 0,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  },
+  {
+    "attempt_id": "explicit_refusal",
+    "actor": "local-zsh-executor",
+    "atomic_action": "print -r -- \"REFUSED: no authorized operator\"\nexit 3",
+    "executor_exit_code": 3,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "refused"
+  },
+  {
+    "attempt_id": "actual_git_switch_sandbox_lock",
+    "actor": "Codex exec_command composite invocation",
+    "atomic_action": "git switch -c research/towow-r5-20260724-local; git branch --show-current; git status ...",
+    "executor_exit_code": 0,
+    "postcondition": false,
+    "effect_observed": false,
+    "acceptance": false,
+    "outcome": "failed"
+  }
+]

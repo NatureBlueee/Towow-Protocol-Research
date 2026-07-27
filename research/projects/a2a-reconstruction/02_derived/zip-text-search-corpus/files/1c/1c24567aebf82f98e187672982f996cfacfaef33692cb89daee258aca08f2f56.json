@@ -1,0 +1,203 @@
+{
+  "run_id": "r5-2-run-002-capability-holdout",
+  "research_question": "Can a six-axis readiness claim prospectively predict held-out Harness task and environment outcomes better than a static installed claim?",
+  "objective": {
+    "original": "Predict whether a task can be completed correctly in the intended source, authority, resource, observation, and recovery context before execution.",
+    "version_id": "objective-r5-2-capability-v1",
+    "critical_value_dimensions": [
+      "coverage",
+      "selective_risk",
+      "false_capability",
+      "false_impossibility",
+      "provenance",
+      "probe_cost"
+    ],
+    "revisions": []
+  },
+  "reality_level": "E3",
+  "started_at": "2026-07-24T14:20:46Z",
+    "ended_at": "2026-07-24T16:35:23Z",
+    "status": "completed",
+  "workspace": {
+    "repo_root": "/private/tmp/harness-towow-a2a-r5-2",
+    "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+        "final_commit": "7690db92a",
+    "branch_or_worktree": "codex/towow-a2a-r5-2-research"
+  },
+  "strategies": [
+    {
+      "name": "B0_installed",
+      "role": "static existence/version baseline",
+      "budget": null
+    },
+    {
+      "name": "T1_six_axis",
+      "role": "prospective readiness claim",
+      "budget": null
+    }
+  ],
+  "interventions": [
+    {
+      "kind": "environment_transfer",
+      "description": "Run with and without explicit worktree source provenance."
+    }
+  ],
+  "holdout_design": {
+    "task_family_holdouts": [
+      "coldstart_index",
+            "semantic_freshness"
+        ],
+        "environment_holdout": "shared venv source provenance",
+        "withdrawn_after_preregistration": "one tool-availability case excluded from active scope and scoring"
+  },
+  "models_agents_tools": [
+    {
+      "name": "Codex",
+      "model": "GPT-5 family; exact deployment unavailable"
+    },
+    {
+      "name": "Python",
+      "version": "3.12.12"
+    },
+    {
+      "name": "pytest",
+      "version": "9.0.3"
+    }
+  ],
+    "costs": {
+        "status": "complete",
+        "started_at": "2026-07-24T14:20:46Z",
+        "captured_command_wall_seconds": 14.651177644729614,
+        "detail_path": "costs.json"
+  },
+  "human_interventions": [],
+    "results": {
+        "ordinary_executable_tasks": 6,
+        "six_axis_coverage": "6/6",
+        "six_axis_first_attempt_accuracy": "4/6 (66.7%)",
+        "static_installed_first_attempt_accuracy": "3/6 (50%)",
+        "post_intervention_accuracy": "6/6 (not counted as prospective holdout)",
+        "authorization_negative": "canonical ledger write not attempted",
+        "withdrawn_cases_scored": 0
+    },
+    "failures": [
+        {
+            "task_id": "cap-test-03-fork-timeout-retry",
+            "kind": "formation_condition_missing",
+            "result": "five setup errors because the declared basetemp parent did not exist"
+        },
+        {
+            "task_id": "cap-test-04-escalation-reflow",
+            "kind": "formation_condition_missing",
+            "result": "19 failures because /private/tmp was not Python's authoritative system temp root for the Harness test guard"
+        }
+    ],
+    "claim_updates": [
+        {
+            "claim_id": "C-CAP-002-A",
+            "status": "falsified_at_threshold",
+            "reason": "66.7% first-attempt accuracy was below the preregistered 80%"
+        },
+        {
+            "claim_id": "C-CAP-002-B",
+            "status": "supported",
+            "reason": "the unqualified shared venv exited zero while importing main-tree source"
+        },
+        {
+            "claim_id": "C-CAP-002-C",
+            "status": "qualified",
+            "reason": "explicit PYTHONPATH was necessary but insufficient without exact parent-path and temp-root conditions"
+        }
+    ],
+  "evidence_paths": [
+        "hypothesis.md",
+        "inputs/predictions_before.json",
+        "analysis.md",
+        "outputs/scorecard.csv",
+        "costs.json",
+        "human_interventions.jsonl",
+        "boundary_and_disclosure.json",
+        "traces/cap-env-01-explicit-worktree-import.json",
+        "traces/cap-env-02-unqualified-shared-venv.json",
+        "traces/cap-test-03-fork-timeout-retry.json",
+        "traces/cap-test-03-fork-timeout-retry-attempt2.json",
+        "traces/cap-test-04-escalation-reflow.json",
+        "traces/cap-test-04-escalation-reflow-attempt2.json",
+        "traces/cap-test-04-escalation-reflow-attempt3.json",
+        "traces/cap-test-05-index-freshness.json",
+        "traces/cap-test-06-semantic-toctou.json"
+    ],
+    "commands": [
+        {
+            "command": "explicit worktree import provenance probe",
+            "exit_code": 0
+        },
+        {
+            "command": "unqualified shared-venv import provenance probe",
+            "exit_code": 0
+        },
+        {
+            "command": "pytest tests/unit/l1/test_fork_timeout_retry_sessionid.py (first attempt)",
+            "exit_code": 1
+        },
+        {
+            "command": "pytest tests/unit/l1/test_fork_timeout_retry_sessionid.py (environment corrected)",
+            "exit_code": 0
+        },
+        {
+            "command": "pytest tests/unit/l2/test_t_lrf_06_escalation_answer_reflow.py (first and second attempts)",
+            "exit_code": 1
+        },
+        {
+            "command": "pytest tests/unit/l2/test_t_lrf_06_escalation_answer_reflow.py (system temp root)",
+            "exit_code": 0
+        },
+        {
+            "command": "pytest selected cold-start/index freshness holdouts",
+            "exit_code": 0
+        },
+        {
+            "command": "pytest selected semantic freshness holdouts",
+            "exit_code": 0
+        }
+    ],
+  "external_effects": [],
+  "preregistered_claims": [
+    {
+      "claim_id": "C-CAP-002-A",
+      "prediction": "At least 80 percent correct executable outcomes with at least 70 percent coverage.",
+      "abstention_allowed": true,
+      "scope": "baseline-commit local tasks",
+      "stop_rule": "At least six executable tasks, two held-out families, one negative, one environment transfer, and one intervention."
+    },
+    {
+      "claim_id": "C-CAP-002-B",
+      "prediction": "Static installed baseline falsely marks the unqualified shared-venv worktree task ready.",
+      "abstention_allowed": false,
+      "scope": "environment provenance transfer",
+      "stop_rule": "Same as C-CAP-002-A."
+    },
+    {
+      "claim_id": "C-CAP-002-C",
+      "prediction": "Explicit worktree PYTHONPATH makes selected baseline tasks reachable and observable without changing authority or external effects.",
+      "abstention_allowed": false,
+      "scope": "selected deterministic tests",
+      "stop_rule": "Stop immediately on a boundary breach; otherwise complete holdouts."
+    }
+  ],
+  "acceptance_contract": {
+    "oracle": "actual import provenance, exit status, test assertions, state readback, and external-effect check",
+    "metrics": [
+      "coverage",
+      "accuracy",
+      "selective_risk",
+      "false_capability",
+      "false_impossibility",
+      "probe_wall_time"
+    ]
+  },
+  "artifact_ids": [
+    "run-r5-2-002-preregistration",
+    "capability-predictions-before-v1"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "run": "allbuddy-source-v5-canonical-cancel-race",
+  "completed_at_utc": "2026-07-25T06:44:50Z",
+  "verification": {
+    "vitest_files_passed": 8,
+    "vitest_tests_passed": 49,
+    "typecheck": "passed",
+    "target_lint": "passed",
+    "desktop_chromium_tests_passed": 1,
+    "desktop_chromium_duration_seconds": 38.2
+  },
+  "abort_before_adoption": {
+    "canonical_state": "not_adopted",
+    "revision": 1,
+    "world_claimed": true,
+    "world_acked": true
+  },
+  "abort_after_adoption_commit_before_response": {
+    "history": [
+      {
+        "state": "adopted",
+        "revision": 1,
+        "world_claimed": false,
+        "superseded_by": "revision 2"
+      },
+      {
+        "state": "revoked",
+        "revision": 2,
+        "world_claimed": true
+      }
+    ],
+    "claimed_lineage": [
+      {
+        "revision": 1
+      },
+      {
+        "revision": 2
+      }
+    ],
+    "historical_revision_1_readback": "adopted",
+    "canonical_revision_2_readback": "revoked",
+    "ui_message": "result was adopted and is now revoked"
+  },
+  "redaction": {
+    "artifact_body_omitted": true,
+    "tenant_omitted": true,
+    "session_capability_omitted": true,
+    "reader_capability_omitted": true,
+    "world_claim_capability_omitted": true,
+    "lease_tokens_omitted": true,
+    "operation_ids_omitted": true
+  }
+}

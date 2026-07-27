@@ -1,0 +1,37 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.25, nodesep=0.35, ranksep=0.5, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded", fontname="Noto Sans CJK SC", fontsize=12, margin="0.12,0.08", color="#444444"];
+  edge [color="#666666", penwidth=1.2, arrowsize=0.65];
+  subgraph cluster_a {
+    label="纵向轴：共同现实生成链"; fontname="Noto Sans CJK SC"; fontsize=14; color="#999999";
+    a1 [label="主权世界"];
+    a2 [label="边界与发现"];
+    a3 [label="共同问题/行动介质"];
+    a4 [label="可能性形成"];
+    a5 [label="能力资格化"];
+    a6 [label="认领/承诺"];
+    a7 [label="执行/采纳/接受"];
+    a1->a2->a3->a4->a5->a6->a7;
+  }
+  subgraph cluster_b {
+    label="横向轴：贯穿语义"; fontname="Noto Sans CJK SC"; fontsize=14; color="#999999";
+    b1 [label="认识语义"];
+    b2 [label="生成语义"];
+    b3 [label="规范语义"];
+    b4 [label="操作语义"];
+    b5 [label="经济语义"];
+    b1->b2->b3->b4->b5 [style=invis];
+  }
+  subgraph cluster_c {
+    label="成熟度轴：从猜想到现实"; fontname="Noto Sans CJK SC"; fontsize=14; color="#999999";
+    c1 [label="Unknown / Hypothesis"];
+    c2 [label="Candidate / Counterfactual"];
+    c3 [label="Sandboxed / Witnessed"];
+    c4 [label="Qualified / Recognized"];
+    c5 [label="Committed / Performed"];
+    c6 [label="Verified / Adopted / Accepted / Settled"];
+    c1->c2->c3->c4->c5->c6;
+  }
+  a4 -> b2 [style=dashed, label="每层都受五类语义约束", fontname="Noto Sans CJK SC", fontsize=10];
+  b3 -> c3 [style=dashed, label="每个对象都处于某个成熟度", fontname="Noto Sans CJK SC", fontsize=10];
+}

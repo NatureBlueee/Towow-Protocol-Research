@@ -1,0 +1,1061 @@
+{
+  "version": "0.5",
+  "design": "purposive maximum-contrast archival calibration; not representative",
+  "coder": "single-researcher structured first pass; no intercoder reliability claim",
+  "cases": [
+    {
+      "case_id": "PEA-01",
+      "title": "LinkedIn–Microsoft：多方探索经委员会、董事会与股东批准成为可交割关系",
+      "domain": "corporate_transaction",
+      "period": "2016",
+      "source_family": "SEC_background_and_effect",
+      "selection_reason": "同时呈现候选发现、组织内权威分工和最终Effect。",
+      "baseline_relation": "LinkedIn独立运营，并与多个潜在方探索交易或战略关系。",
+      "authority_topology": [
+        {
+          "function": "exploration",
+          "locus": "CEO/management"
+        },
+        {
+          "function": "process_supervision",
+          "locus": "Transactions Committee"
+        },
+        {
+          "function": "agreement_approval",
+          "locus": "Board"
+        },
+        {
+          "function": "ratification",
+          "locus": "stockholders"
+        },
+        {
+          "function": "effect",
+          "locus": "corporate closing authorities"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "多家潜在方被接触，交易委员会监督过程。",
+          "source_refs": [
+            "AC-SEC-LINKEDIN-PROXY"
+          ]
+        },
+        {
+          "event": "董事会推荐并提交股东批准。",
+          "source_refs": [
+            "AC-SEC-LINKEDIN-PROXY"
+          ]
+        },
+        {
+          "event": "交易完成，LinkedIn成为Microsoft全资子公司。",
+          "source_refs": [
+            "AC-SEC-MSFT-LINKEDIN-8K"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "T",
+            "A",
+            "O"
+          ],
+          "description": "探索关系转为需要委员会、董事会、股东与法定交割的并购路径。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "EXPANSION",
+        "secondary": [
+          "TRANSFORMATION"
+        ],
+        "explanation": "新增一条获得相称公司权威批准并能完成交割的路径，同时角色和效力结构改变。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": false,
+        "reopen_or_challenge_after_tentative_state": false,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": true,
+        "protective_contraction": false,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "COMPLETED_WITHIN_OBSERVED_CORPORATE_SCOPE",
+        "jurisdictions": [
+          "reported corporate/securities process"
+        ],
+        "challenge_horizon": "not evaluated beyond closing",
+        "residual_unknowns": [
+          "post-close business acceptance",
+          "unreported stakeholder effects"
+        ]
+      },
+      "claim_updates": [
+        "C03",
+        "C04",
+        "C14",
+        "C31"
+      ],
+      "alternative_explanations": [
+        "可由传统并购治理完整解释，不是A2A机制证据。",
+        "披露不含全部非正式影响。"
+      ],
+      "limits": [
+        "无Agent干预。",
+        "无explain-back。",
+        "无匹配基线。"
+      ],
+      "sources": [
+        "AC-SEC-LINKEDIN-PROXY",
+        "AC-SEC-MSFT-LINKEDIN-8K"
+      ]
+    },
+    {
+      "case_id": "PEA-02",
+      "title": "Red Hat–IBM：既有合作、替代结构与并购风险分配的演化",
+      "domain": "corporate_transaction",
+      "period": "2018–2019",
+      "source_family": "SEC_background_and_effect",
+      "selection_reason": "同一双方从合作与替代交易结构演化为全资并购。",
+      "baseline_relation": "Red Hat与IBM已有商业合作，并存在保持独立、少数股权或其他候选。",
+      "authority_topology": [
+        {
+          "function": "option_generation",
+          "locus": "management/advisers"
+        },
+        {
+          "function": "negotiation",
+          "locus": "executives/counsel"
+        },
+        {
+          "function": "approval",
+          "locus": "Board"
+        },
+        {
+          "function": "ratification",
+          "locus": "stockholders"
+        },
+        {
+          "function": "effect",
+          "locus": "closing authorities"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "既有合作和替代结构进入评估。",
+          "source_refs": [
+            "AC-SEC-REDHAT-PROXY"
+          ]
+        },
+        {
+          "event": "排他、终止费、监管失败与人员连续性被协商。",
+          "source_refs": [
+            "AC-SEC-REDHAT-PROXY"
+          ]
+        },
+        {
+          "event": "IBM完成收购。",
+          "source_refs": [
+            "AC-SEC-REDHAT-8K"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "T",
+            "A",
+            "O"
+          ],
+          "description": "关系类别、退出与风险分配发生变化。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "TRANSFORMATION",
+        "secondary": [
+          "EXPANSION"
+        ],
+        "explanation": "不是固定合同内调参，而是在关系类别和权威/风险结构之间选择。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": false,
+        "reopen_or_challenge_after_tentative_state": false,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": true,
+        "protective_contraction": false,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "COMPLETED_WITHIN_REPORTED_SCOPE",
+        "jurisdictions": [
+          "reported corporate/regulatory scope"
+        ],
+        "challenge_horizon": "not longitudinally assessed",
+        "residual_unknowns": [
+          "culture commitments realized",
+          "employee/ecosystem acceptance"
+        ]
+      },
+      "claim_updates": [
+        "C10",
+        "C14",
+        "C27",
+        "C31"
+      ],
+      "alternative_explanations": [
+        "传统顾问和董事会已经执行了形成工作。",
+        "proxy是授权叙事而非全部分歧。"
+      ],
+      "limits": [
+        "无Agent因果。",
+        "无长期接受。"
+      ],
+      "sources": [
+        "AC-SEC-REDHAT-PROXY",
+        "AC-SEC-REDHAT-8K"
+      ]
+    },
+    {
+      "case_id": "PEA-03",
+      "title": "Twitter–Musk：签署、信息访问、终止争议与强制履行",
+      "domain": "corporate_transaction",
+      "period": "2022",
+      "source_family": "SEC_contract_and_effect",
+      "selection_reason": "区分当前偏好、合同Commitment、信息权、终止权与Effect。",
+      "baseline_relation": "双方已签并购协议，但签署后围绕信息、终止和履行产生争议。",
+      "authority_topology": [
+        {
+          "function": "contract_commitment",
+          "locus": "boards/officers"
+        },
+        {
+          "function": "information_access",
+          "locus": "contract-defined parties"
+        },
+        {
+          "function": "enforcement",
+          "locus": "court/contract remedies"
+        },
+        {
+          "function": "effect",
+          "locus": "closing authorities"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "合同界定信息访问与协作范围。",
+          "source_refs": [
+            "AC-SEC-TWITTER-PROXY"
+          ]
+        },
+        {
+          "event": "双方围绕终止依据与履行发生争议，协议含specific performance路径。",
+          "source_refs": [
+            "AC-SEC-TWITTER-PROXY"
+          ]
+        },
+        {
+          "event": "交易最终完成。",
+          "source_refs": [
+            "AC-SEC-TWITTER-8K"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "description": "签署后的信息、终止与强制履行路径决定何种处置仍合法。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "EPISTEMIC_CLARIFICATION",
+        "secondary": [
+          "TRANSFORMATION"
+        ],
+        "explanation": "公开档案清楚区分承诺与偏好变化，但不能单独识别哪一形成操作造成最终完成。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": false,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": false,
+        "protective_contraction": false,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "COMPLETED_AFTER_DISPUTE",
+        "jurisdictions": [
+          "contract/corporate scope"
+        ],
+        "challenge_horizon": "observed through closing",
+        "residual_unknowns": [
+          "subjective acceptance",
+          "post-close value"
+        ]
+      },
+      "claim_updates": [
+        "C04",
+        "C27",
+        "C31"
+      ],
+      "alternative_explanations": [
+        "诉讼/合同压力而非新关系形成解释结果。"
+      ],
+      "limits": [
+        "无Agent。",
+        "无法冻结全部私有前态。"
+      ],
+      "sources": [
+        "AC-SEC-TWITTER-PROXY",
+        "AC-SEC-TWITTER-8K"
+      ]
+    },
+    {
+      "case_id": "PEA-04",
+      "title": "Spirit–Frontier–JetBlue：竞争方案、访问撤销、预付款与最终终止",
+      "domain": "corporate_transaction",
+      "period": "2022–2024",
+      "source_family": "SEC_competing_transaction_and_followup",
+      "selection_reason": "观察竞争候选、数据室、监管保障、真实预付款Effect和最终NoDeal。",
+      "baseline_relation": "Spirit与Frontier已有方案，JetBlue提出竞争交易。",
+      "authority_topology": [
+        {
+          "function": "proposal",
+          "locus": "Frontier/JetBlue"
+        },
+        {
+          "function": "data_access",
+          "locus": "Spirit process authorities"
+        },
+        {
+          "function": "recommendation",
+          "locus": "Spirit Board"
+        },
+        {
+          "function": "regulatory_risk_bearing",
+          "locus": "contract parties"
+        },
+        {
+          "function": "effect",
+          "locus": "payment/termination authorities"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "竞争方案触发数据室、董事会比较和监管风险条件变化。",
+          "source_refs": [
+            "AC-SEC-SPIRIT-PROXY"
+          ]
+        },
+        {
+          "event": "部分访问和排他安排随过程变化。",
+          "source_refs": [
+            "AC-SEC-SPIRIT-PROXY"
+          ]
+        },
+        {
+          "event": "最终交易终止，但此前已发生持续预付款等Effect。",
+          "source_refs": [
+            "AC-SEC-SPIRIT-10Q"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "T",
+            "A",
+            "D",
+            "O"
+          ],
+          "description": "候选方、访问权、退出费和监管风险分配改变合法轨迹。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "TRANSFORMATION",
+        "secondary": [
+          "PROTECTIVE_CONTRACTION"
+        ],
+        "explanation": "竞争方案重构关系路径；最终收缩到NoDeal，且过程Effect不能被最终状态抹去。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": true,
+        "relation_class_transformation": true,
+        "protective_contraction": true,
+        "data_derivative_issue": true,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "TERMINATED_AFTER_INTERMEDIATE_EFFECTS",
+        "jurisdictions": [
+          "corporate/competition process as reported"
+        ],
+        "challenge_horizon": "observed through termination and disclosed follow-up",
+        "residual_unknowns": [
+          "counterfactual survival/value"
+        ]
+      },
+      "claim_updates": [
+        "C13",
+        "C14",
+        "C23",
+        "C27"
+      ],
+      "alternative_explanations": [
+        "宏观与企业财务因素也解释终止和后续结果。"
+      ],
+      "limits": [
+        "无法估计NoDeal净福利。",
+        "无Agent因果。"
+      ],
+      "sources": [
+        "AC-SEC-SPIRIT-PROXY",
+        "AC-SEC-SPIRIT-10Q"
+      ]
+    },
+    {
+      "case_id": "PEA-05",
+      "title": "Microsoft–Activision：禁止原交易后剥离云流媒体权利形成新交易",
+      "domain": "regulatory_transaction",
+      "period": "2022–2023",
+      "source_family": "CMA_original_and_restructured",
+      "selection_reason": "最清楚的relation transformation：目标相近但权利对象、角色和路径改变。",
+      "baseline_relation": "原交易拟由Microsoft收购Activision全部范围。",
+      "authority_topology": [
+        {
+          "function": "proposal/commitment",
+          "locus": "Microsoft/Activision"
+        },
+        {
+          "function": "external_jurisdiction",
+          "locus": "CMA"
+        },
+        {
+          "function": "rights_holder",
+          "locus": "Ubisoft in restructured deal"
+        },
+        {
+          "function": "undertaking/enforcement",
+          "locus": "CMA and parties"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "CMA认定原交易在英国云游戏市场产生竞争问题并禁止。",
+          "source_refs": [
+            "AC-CMA-ACTIVISION-ORIGINAL"
+          ]
+        },
+        {
+          "event": "新交易排除非EEA云流媒体权利，并在交割前将相关权利转给Ubisoft。",
+          "source_refs": [
+            "AC-CMA-ACTIVISION-RESTRUCTURED"
+          ]
+        },
+        {
+          "event": "CMA接受undertakings并同意新范围交易完成。",
+          "source_refs": [
+            "AC-CMA-ACTIVISION-RESTRUCTURED"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "V",
+            "T",
+            "A",
+            "D",
+            "O"
+          ],
+          "description": "交易对象、权利持有人、许可路径、监管条件与结果范围被重构。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "TRANSFORMATION",
+        "secondary": [
+          "PROTECTIVE_CONTRACTION",
+          "EXPANSION"
+        ],
+        "explanation": "原路径被删除，新增以不同权利结构运行的路径；不能写成原合同参数变化。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": true,
+        "protective_contraction": true,
+        "data_derivative_issue": true,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "CLEARED_AND_CLOSED_FOR_RESTRUCTURED_SCOPE",
+        "jurisdictions": [
+          "UK competition scope plus referenced EEA arrangements"
+        ],
+        "challenge_horizon": "through accepted undertakings and clearance",
+        "residual_unknowns": [
+          "long-run market effects"
+        ]
+      },
+      "claim_updates": [
+        "C14",
+        "C26",
+        "C27",
+        "C28",
+        "C31"
+      ],
+      "alternative_explanations": [
+        "传统监管补救理论已能解释，无需Towow。"
+      ],
+      "limits": [
+        "不证明Agent会更快提出该结构。",
+        "不证明净福利。"
+      ],
+      "sources": [
+        "AC-CMA-ACTIVISION-ORIGINAL",
+        "AC-CMA-ACTIVISION-RESTRUCTURED"
+      ]
+    },
+    {
+      "case_id": "PEA-06",
+      "title": "Meta–Giphy：已完成交易被外部权威重开并要求剥离",
+      "domain": "regulatory_transaction",
+      "period": "2020–2023",
+      "source_family": "CMA_regulatory_and_third_party",
+      "selection_reason": "检验Effect不等于Settlement以及数据使用的派生信号。",
+      "baseline_relation": "Meta已完成收购Giphy，双边所有权Effect已经发生。",
+      "authority_topology": [
+        {
+          "function": "bilateral_effect",
+          "locus": "Meta/Giphy closing"
+        },
+        {
+          "function": "external_jurisdiction",
+          "locus": "CMA"
+        },
+        {
+          "function": "affected-interest evidence",
+          "locus": "third parties represented in inquiry"
+        },
+        {
+          "function": "remedy/enforcement",
+          "locus": "CMA"
+        },
+        {
+          "function": "divestiture_effect",
+          "locus": "sale process"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "完成交易后CMA继续/重开竞争审查。",
+          "source_refs": [
+            "AC-CMA-GIPHY"
+          ]
+        },
+        {
+          "event": "第三方材料提出聚合搜索、IP和使用趋势可能产生战略洞察。",
+          "source_refs": [
+            "AC-CMA-GIPHY"
+          ]
+        },
+        {
+          "event": "CMA要求剥离，之后出售完成并关闭案件。",
+          "source_refs": [
+            "AC-CMA-GIPHY"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "T",
+            "A",
+            "E",
+            "D",
+            "O"
+          ],
+          "description": "外部standing和数据派生证据改变已发生Effect的可接受状态。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "PROTECTIVE_CONTRACTION",
+        "secondary": [
+          "TRANSFORMATION"
+        ],
+        "explanation": "已完成路径从合格空间移除并通过剥离重构现实。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": true,
+        "relation_class_transformation": true,
+        "protective_contraction": true,
+        "data_derivative_issue": true,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "BILATERAL_EFFECT_REOPENED_THEN_DIVESTED",
+        "jurisdictions": [
+          "UK competition scope"
+        ],
+        "challenge_horizon": "through divestiture and case closure",
+        "residual_unknowns": [
+          "all affected-party representation",
+          "long-run effects"
+        ]
+      },
+      "claim_updates": [
+        "C16",
+        "C23",
+        "C26",
+        "C27",
+        "C28",
+        "C30"
+      ],
+      "alternative_explanations": [
+        "监管结论是制度判断，不等于全体社会福利真值。"
+      ],
+      "limits": [
+        "第三方摘要非逐字稿/总体样本。",
+        "无Agent。"
+      ],
+      "sources": [
+        "AC-CMA-GIPHY"
+      ]
+    },
+    {
+      "case_id": "PEA-07",
+      "title": "Sainsbury’s–Asda：保护性不成交作为有效处置",
+      "domain": "regulatory_transaction",
+      "period": "2018–2019",
+      "source_family": "CMA_regulatory_outcome",
+      "selection_reason": "对成交率目标的直接负控制。",
+      "baseline_relation": "双方希望合并并提出消费者利益主张。",
+      "authority_topology": [
+        {
+          "function": "proposal",
+          "locus": "merging parties"
+        },
+        {
+          "function": "external_jurisdiction",
+          "locus": "CMA"
+        },
+        {
+          "function": "affected-interest representation",
+          "locus": "competition process"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "CMA认定交易可能导致价格、质量和选择等损害并禁止。",
+          "source_refs": [
+            "AC-CMA-SAINSBURY-ASDA"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "A",
+            "E",
+            "O"
+          ],
+          "description": "外部权威使COMMIT路径转为REJECT/NO-DEAL。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "PROTECTIVE_CONTRACTION",
+        "secondary": [],
+        "explanation": "合法路径被删除；系统成功不能用成交率判断。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": false,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": false,
+        "protective_contraction": true,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": false,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "PROHIBITED_IN_OBSERVED_JURISDICTION",
+        "jurisdictions": [
+          "UK competition scope"
+        ],
+        "challenge_horizon": "public decision scope",
+        "residual_unknowns": [
+          "full counterfactual welfare",
+          "other jurisdictions"
+        ]
+      },
+      "claim_updates": [
+        "C13",
+        "C23",
+        "C26",
+        "C28"
+      ],
+      "alternative_explanations": [
+        "监管预测可能有误；公开摘要不足以重算福利。"
+      ],
+      "limits": [
+        "不证明禁止的经济净价值。"
+      ],
+      "sources": [
+        "AC-CMA-SAINSBURY-ASDA"
+      ]
+    },
+    {
+      "case_id": "PEA-08",
+      "title": "Deloitte：团队成员移除后能力证据不能静默继承",
+      "domain": "public_procurement",
+      "period": "2023",
+      "source_family": "GAO_bid_protest",
+      "selection_reason": "检验Capability是关系条件而非实体永久标签。",
+      "baseline_relation": "投标/授标评价依赖被提议的团队和能力证据。",
+      "authority_topology": [
+        {
+          "function": "proposal",
+          "locus": "offeror"
+        },
+        {
+          "function": "evaluation/award",
+          "locus": "agency"
+        },
+        {
+          "function": "challenge/adjudication",
+          "locus": "GAO"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "关键teaming partner在提交后被移除。",
+          "source_refs": [
+            "AC-GAO-DELOITTE"
+          ]
+        },
+        {
+          "event": "机构未合理考虑该变化对履约能力与评价的影响。",
+          "source_refs": [
+            "AC-GAO-DELOITTE"
+          ]
+        },
+        {
+          "event": "GAO反对用事后解释替代同期记录。",
+          "source_refs": [
+            "AC-GAO-DELOITTE"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "A",
+            "E",
+            "O"
+          ],
+          "description": "能力来源和团队角色改变，使原资格证据失效。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "PROTECTIVE_CONTRACTION",
+        "secondary": [
+          "EPISTEMIC_CLARIFICATION"
+        ],
+        "explanation": "原授标/资格路径因能力依赖失效而退出合格空间。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": false,
+        "protective_contraction": true,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": true,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "AWARD_PATH_CHALLENGED_AND_REEVALUATION_REQUIRED",
+        "jurisdictions": [
+          "US federal procurement protest scope"
+        ],
+        "challenge_horizon": "decision scope",
+        "residual_unknowns": [
+          "eventual contract performance"
+        ]
+      },
+      "claim_updates": [
+        "C07",
+        "C14",
+        "C26",
+        "C28",
+        "C30"
+      ],
+      "alternative_explanations": [
+        "采购规则特定，不必然外推所有组织。"
+      ],
+      "limits": [
+        "争议样本。",
+        "无Agent。"
+      ],
+      "sources": [
+        "AC-GAO-DELOITTE"
+      ]
+    },
+    {
+      "case_id": "PEA-09",
+      "title": "Safal：廉价自我声明不等于有意义的利益冲突验证",
+      "domain": "public_procurement",
+      "period": "2018–2019",
+      "source_family": "GAO_bid_protest",
+      "selection_reason": "现实证据门对“自报即可”的反例。",
+      "baseline_relation": "机构依赖供应商对潜在组织利益冲突的声明。",
+      "authority_topology": [
+        {
+          "function": "self_assertion",
+          "locus": "offeror"
+        },
+        {
+          "function": "verification/evaluation",
+          "locus": "agency"
+        },
+        {
+          "function": "challenge/adjudication",
+          "locus": "GAO"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "机构接受自我证明但未进行有意义的审查。",
+          "source_refs": [
+            "AC-GAO-SAFAL"
+          ]
+        },
+        {
+          "event": "GAO认定该过程不足。",
+          "source_refs": [
+            "AC-GAO-SAFAL"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "A",
+            "E",
+            "O"
+          ],
+          "description": "证据合格规则决定声明能否支持授标。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "PROTECTIVE_CONTRACTION",
+        "secondary": [
+          "EPISTEMIC_CLARIFICATION"
+        ],
+        "explanation": "廉价Assertion被降级，原资格路径不再成立。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": true,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": false,
+        "protective_contraction": true,
+        "data_derivative_issue": false,
+        "identity_authority_failure": false,
+        "evidence_gate_failure": true,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "EVALUATION_FOUND_INADEQUATE",
+        "jurisdictions": [
+          "US federal procurement protest scope"
+        ],
+        "challenge_horizon": "decision scope",
+        "residual_unknowns": [
+          "subsequent corrective action outcome"
+        ]
+      },
+      "claim_updates": [
+        "C04",
+        "C14",
+        "C26",
+        "C30"
+      ],
+      "alternative_explanations": [
+        "结论依赖该采购规则与事实。"
+      ],
+      "limits": [
+        "不能估计一般虚假声明率。"
+      ],
+      "sources": [
+        "AC-GAO-SAFAL"
+      ]
+    },
+    {
+      "case_id": "PEA-10",
+      "title": "FHWA/Walsh：实体歧义使认证、签署与保证责任失效",
+      "domain": "public_procurement",
+      "period": "1995",
+      "source_family": "GAO_bid_protest",
+      "selection_reason": "最直接的Entity identity与signatory authority反例。",
+      "baseline_relation": "投标文件表面存在名称、签字和保证文件。",
+      "authority_topology": [
+        {
+          "function": "entity_identification",
+          "locus": "bidder/agency"
+        },
+        {
+          "function": "signature/binding authority",
+          "locus": "signatory"
+        },
+        {
+          "function": "bid guarantee",
+          "locus": "surety"
+        },
+        {
+          "function": "adjudication",
+          "locus": "GAO"
+        }
+      ],
+      "key_events": [
+        {
+          "event": "投标材料无法确定实际投标实体。",
+          "source_refs": [
+            "AC-GAO-WALSH"
+          ]
+        },
+        {
+          "event": "签署者绑定权和保证责任因此不确定。",
+          "source_refs": [
+            "AC-GAO-WALSH"
+          ]
+        }
+      ],
+      "schema_deltas": [
+        {
+          "dimensions": [
+            "R",
+            "A",
+            "E",
+            "O"
+          ],
+          "description": "身份和绑定权不清使提交不能形成有效Commitment。",
+          "materiality": "MATERIAL"
+        }
+      ],
+      "qualified_space_revision": {
+        "primary": "PROTECTIVE_CONTRACTION",
+        "secondary": [],
+        "explanation": "删除一条无法确定责任主体的伪合格路径。"
+      },
+      "observations": {
+        "distinct_authority_functions": true,
+        "external_authority_changed_path": true,
+        "reopen_or_challenge_after_tentative_state": false,
+        "pre_final_real_effect": false,
+        "relation_class_transformation": false,
+        "protective_contraction": true,
+        "data_derivative_issue": false,
+        "identity_authority_failure": true,
+        "evidence_gate_failure": true,
+        "subjective_acceptance_observed": false,
+        "agent_mediated_causality_observed": false,
+        "comparable_net_surplus_observed": false
+      },
+      "settlement_scope": {
+        "status": "BID_NONRESPONSIVE_WITHIN_DECISION_SCOPE",
+        "jurisdictions": [
+          "US federal procurement protest scope at the time"
+        ],
+        "challenge_horizon": "decision scope",
+        "residual_unknowns": [
+          "modern doctrine/application"
+        ]
+      },
+      "claim_updates": [
+        "C02",
+        "C03",
+        "C04",
+        "C26",
+        "C30",
+        "C31"
+      ],
+      "alternative_explanations": [
+        "历史法律规则可能变化。"
+      ],
+      "limits": [
+        "不能直接外推当前所有采购。"
+      ],
+      "sources": [
+        "AC-GAO-WALSH"
+      ]
+    }
+  ]
+}

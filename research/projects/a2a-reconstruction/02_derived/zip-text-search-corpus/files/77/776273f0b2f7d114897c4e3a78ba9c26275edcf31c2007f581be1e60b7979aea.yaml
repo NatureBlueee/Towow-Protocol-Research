@@ -1,0 +1,18 @@
+id: semantic_consistency
+concern: semantic_consistency
+inputs:
+- Artifact
+- RelevantSpecNodes
+checks:
+- 术语唯一
+- 对象有身份与生命周期
+- 无 UI 容器绑架本体
+- 旧节点不再生效
+result_schema: ../validation-report.schema.json
+severity_policy:
+  critical: 阻止发布
+  major: 默认阻止，除非有批准豁免
+  minor: 可发布但需登记
+independence_requirement: 高风险产物不得由完全相同执行上下文最终自证
+known_blind_spots:
+- Validator 只能检查已编码规则，不能证明现实价值本身

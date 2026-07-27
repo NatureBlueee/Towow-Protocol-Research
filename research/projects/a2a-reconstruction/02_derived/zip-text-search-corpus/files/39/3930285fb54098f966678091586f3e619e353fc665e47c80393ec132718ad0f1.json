@@ -1,0 +1,71 @@
+{
+  "reports": [
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [],
+      "reachable_actions": [
+        "evaluate_capability",
+        "make_award"
+      ],
+      "readiness": "READY",
+      "ready": true,
+      "relation_version": 1,
+      "settlement_scope": {
+        "challenge_horizon": "through_award_and_protest_window",
+        "covered_jurisdictions": [],
+        "open_material_challenges": [],
+        "required_external_standing": [],
+        "required_jurisdictions": [],
+        "reviewed_external_standing": []
+      },
+      "state": "SUBMITTED",
+      "warnings": []
+    },
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [
+        {
+          "code": "UNRESOLVED_MATERIAL_COUNTEREXAMPLE",
+          "subject": "1"
+        },
+        {
+          "code": "MISSING_REQUIRED_STANCE",
+          "subject": "agency"
+        }
+      ],
+      "reachable_actions": [
+        "adjudicate_protest",
+        "notify_team_change",
+        "reevaluate_capability"
+      ],
+      "readiness": "NOT_READY",
+      "ready": false,
+      "relation_version": 2,
+      "settlement_scope": {
+        "challenge_horizon": "until_reasonable_reevaluation",
+        "covered_jurisdictions": [
+          "GAO_protest"
+        ],
+        "open_material_challenges": [
+          "sustained_protest_and_reevaluation_pending"
+        ],
+        "required_external_standing": [
+          "gao"
+        ],
+        "required_jurisdictions": [
+          "GAO_protest"
+        ],
+        "reviewed_external_standing": [
+          "gao"
+        ]
+      },
+      "state": "AWARDED",
+      "warnings": [
+        {
+          "code": "OPEN_MATERIAL_CHALLENGE_COMPILED_WITH_CONTINGENCY",
+          "subject": "sustained_protest_and_reevaluation_pending"
+        }
+      ]
+    }
+  ]
+}

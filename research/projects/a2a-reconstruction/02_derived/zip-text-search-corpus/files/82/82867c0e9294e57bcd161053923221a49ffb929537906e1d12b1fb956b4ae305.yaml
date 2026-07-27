@@ -1,0 +1,23 @@
+tests:
+- id: T001_manifest
+  input: package root
+  assert: package.manifest.yaml can be parsed and entrypoints resolve
+- id: T002_normative
+  input: spec nodes
+  assert: MUST/SHOULD/MAY fields use valid normative levels
+- id: T003_supersession
+  input: node graph
+  assert: superseded nodes are not treated as current
+- id: T004_context_gap
+  input: task with missing required context pack
+  assert: consumer emits explicit gap instead of fabricating
+- id: T005_validator_independence
+  input: high-risk artifact
+  assert: producer and final reviewer are not identical execution context
+- id: T006_language_drift
+  input: external claim
+  assert: claim maps to approved internal capability and evidence
+- id: T007_blind_handoff
+  input: released project pack
+  assert: blind consumer reconstructs product definition, non-goals, objects and loops
+    within tolerance

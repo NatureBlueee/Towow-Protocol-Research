@@ -1,0 +1,35 @@
+ui_contract:
+  core: 界面是同一产品世界针对角色和任务的受控投影。
+  must_answer:
+  - 我在哪里
+  - 主对象是什么
+  - 当前事实与状态
+  - 下一步由谁负责
+  - 哪些是证据/AI 建议/正式决定
+  - 动作后果
+  - 恢复路径
+  - 可见权限原因
+  legibility:
+    3_seconds:
+    - 位置
+    - 对象
+    - 状态
+    - 主动作
+    30_seconds:
+    - 原因
+    - 参与者
+    - 风险
+    - 阻塞
+    3_minutes:
+    - 证据
+    - 关系
+    - 历史
+    - 权限
+    - 后果
+  surface_kinds:
+  - CollectionOrQueue
+  - ObjectWorkspace
+  - DecisionRoom
+  - Composer
+  - NetworkOrMap
+  - ReportView

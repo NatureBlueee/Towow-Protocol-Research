@@ -1,0 +1,507 @@
+diff --git a/harness/src/towow/l0/commit_gate/concept_retire_gate.py b/harness/src/towow/l0/commit_gate/concept_retire_gate.py
+index c069d517c..3ea5f5d1d 100644
+--- a/harness/src/towow/l0/commit_gate/concept_retire_gate.py
++++ b/harness/src/towow/l0/commit_gate/concept_retire_gate.py
+@@ -200,6 +200,17 @@ def _ref_field(ref: Mapping[str, Any], *names: str) -> str:
+     return ""
+ 
+ 
++def _reference_source(ref: Mapping[str, Any]) -> str:
++    """Read the source owner from canonical typed or legacy endpoint reference state."""
++    direct = _ref_field(ref, "source_concept_id")
++    if direct:
++        return direct
++    endpoint = ref.get("source_entity")
++    if isinstance(endpoint, Mapping):
++        return _ref_field(endpoint, "id", "entity_id")
++    return ""
++
++
+ # ── 退役/升级动作提取 ───────────────────────────────────────────────────────────
+ def _extract_retiring(
+     domain_intents: Iterable[Any],
+@@ -265,7 +276,9 @@ def _extract_retiring(
+ # ── 本批迁移动作收集 (这一 stage 把哪些依赖迁完了) ─────────────────────────────────
+ @dataclass(frozen=True)
+ class _BatchMigrations:
+-    removed_reference_ids: frozenset[str]  # 本批 AtReferenceRemoved 删掉的引用 id
++    # Canonical identity is (source, locator).  source=None is a historical source-less removal
++    # whose original semantics were global.
++    removed_reference_instances: frozenset[tuple[str | None, str]]
+     repointed_sources: frozenset[str]  # 本批把引用重指到某新版本的源概念
+     batch_concept_ids: frozenset[str]  # 本批 (co-)创建/supersede 的概念 (源自身迁了)
+ 
+@@ -274,7 +287,7 @@ def _collect_batch_migrations(
+     domain_intents: Iterable[Any],
+     new_version_ids: frozenset[str],
+ ) -> _BatchMigrations:
+-    removed: set[str] = set()
++    removed: set[tuple[str | None, str]] = set()
+     repointed: set[str] = set()
+     batch_concepts: set[str] = set()
+     for intent in domain_intents:
+@@ -290,10 +303,15 @@ def _collect_batch_migrations(
+                 if eid:
+                     batch_concepts.add(str(eid))
+         elif et == _AT_REFERENCE_REMOVED:
++            before = _payload_of(intent).get("before_state")
++            before = before if isinstance(before, dict) else {}
+             after = _after_state(intent)
+-            ref_id = _ref_field(after, "at_reference", "reference_id")
++            ref_id = _ref_field(before, "at_reference", "reference_id") or _ref_field(
++                after, "at_reference", "reference_id",
++            )
++            source = _reference_source(before) or _reference_source(after)
+             if ref_id:
+-                removed.add(ref_id)
++                removed.add((source or None, ref_id))
+         elif et == _AT_REFERENCE_ADDED:
+             after = _after_state(intent)
+             target = _ref_field(after, "target_concept_name")
+@@ -302,7 +320,7 @@ def _collect_batch_migrations(
+             if source and target and any(_resolves_to(target, nv) for nv in new_version_ids):
+                 repointed.add(source)
+     return _BatchMigrations(
+-        removed_reference_ids=frozenset(removed),
++        removed_reference_instances=frozenset(removed),
+         repointed_sources=frozenset(repointed),
+         batch_concept_ids=frozenset(batch_concepts),
+     )
+@@ -443,7 +461,8 @@ def check_concept_retire_migration(
+                     "依赖的 @ 引用重指到新版本 (AtReferenceAdded), 或删除 (AtReferenceRemoved)。前几个 stage "
+                     "已重指到新版本的依赖会被 committed 历史证据自动认作迁完。退役 intent 的 "
+                     "semantic_annotation.migrated_concept_ids 自报已不能单独放行 (finding-r016: 自报无证据可绕过); "
+-                    "标了自报但无证据的依赖会显示 via=declared_but_unverified 并仍被拦。全部迁完前退役被硬拦 (fail-closed)。"
++                    "标了自报但无证据的依赖会显示 via=declared_but_unverified 并仍被拦。"
++                    "全部迁完前退役被硬拦 (fail-closed)。"
+                 ),
+             },
+             notices=notices,
+@@ -466,7 +485,9 @@ def _migration_status(
+     committed 历史已重指新版本。`migrated_concept_ids` 自报**不再单独放行** —— 一条仍 active 的
+     explicit-decision 引用必须由真证据清掉; 自报只在拒批留痕里标"declared_but_unverified", 不放行。
+     """
+-    if reference_id and reference_id in batch.removed_reference_ids:
++    if reference_id and (
++        (source or None, reference_id) in batch.removed_reference_instances
++    ):
+         return True, "at_reference_removed_in_batch"
+     if source and source in batch.repointed_sources:
+         return True, "at_reference_repointed_to_new_in_batch"
+diff --git a/harness/src/towow/l0/projection/projection.py b/harness/src/towow/l0/projection/projection.py
+index af02607cb..a38841220 100644
+--- a/harness/src/towow/l0/projection/projection.py
++++ b/harness/src/towow/l0/projection/projection.py
+@@ -2372,7 +2372,11 @@ class ProjectionStore:
+           AtReferenceAutoUpdated      → locked_event_id := new_lock (脱 stale, 跟随最新);
+           AtReferenceTargetSuperseded → target_superseded_at := new_target_event +
+                                          pending_status (pinned_to_old / awaiting_decision).
+-        Dedup by reference_id (or at_reference key) keeps re-replay idempotent (§6).
++        A locator is not globally unique: two source concepts may hold the same typed @ locator.
++        The materialized identity is therefore (source_concept_id, reference_id).  Missing source
++        is a distinct legacy identity class, not a wildcard: a source-less event can match only a
++        source-less row.  This keeps replay idempotent without collapsing two owners or letting
++        historical events mutate newly source-scoped rows.
+         """
+         existing = self.read("at_reference_graph") or {}
+         refs = _as_list(existing.get("references"))
+@@ -2384,55 +2388,63 @@ class ProjectionStore:
+             ref_id = after.get("reference_id")
+             if isinstance(ref_id, str):
+                 # T-L0-08 source_entity/target_entity shape.
+-                if not any(r.get("reference_id") == ref_id for r in refs):
+-                    refs.append(
+-                        {
+-                            "reference_id": ref_id,
+-                            "source": _endpoint(after.get("source_entity")),
+-                            "target": _endpoint(after.get("target_entity")),
+-                            "reference_type": after.get("reference_type", ""),
+-                            "is_active": True,
+-                            "created_at_event_id": ev.event_id,
+-                        },
+-                    )
++                source = _endpoint(after.get("source_entity"))
++                source_id = _reference_source_id({"source": source})
++                new_ref = {
++                    "reference_id": ref_id,
++                    "source": source,
++                    "target": _endpoint(after.get("target_entity")),
++                    "reference_type": after.get("reference_type", ""),
++                    "is_active": True,
++                    "created_at_event_id": ev.event_id,
++                }
++                _upsert_reference(refs, source_id, ref_id, new_ref)
+             else:
+                 # T-L1-14: M-1.2 typed @ locator CLI shape (no reference_id; keyed by at_reference).
+                 at_ref = after.get("at_reference")
+-                if isinstance(at_ref, str) and not any(r.get("reference_id") == at_ref for r in refs):
+-                    refs.append(
+-                        {
+-                            "reference_id": at_ref,
+-                            "source_concept_id": after.get("source_concept_id", ""),
+-                            "target_concept_name": after.get("target_concept_name", ""),
+-                            "locator_type": after.get("locator_type", ""),
+-                            "field_path": after.get("field_path"),
+-                            "state_anchor": after.get("state_anchor"),
+-                            # locked_event_id is the @-suffix lock if present, else the add event.
+-                            "locked_event_id": after.get("lock_event_id") or ev.event_id,
+-                            "on_target_supersede_policy": after.get("on_target_supersede_policy"),
+-                            "is_active": True,
+-                            "is_stale": False,
+-                            "created_at_event_id": ev.event_id,
+-                        },
+-                    )
++                source_id = _reference_source_id(after)
++                if isinstance(at_ref, str):
++                    new_ref = {
++                        "reference_id": at_ref,
++                        "source_concept_id": source_id or "",
++                        "target_concept_name": after.get("target_concept_name", ""),
++                        "locator_type": after.get("locator_type", ""),
++                        "field_path": after.get("field_path"),
++                        "state_anchor": after.get("state_anchor"),
++                        # locked_event_id is the @-suffix lock if present, else the add event.
++                        "locked_event_id": after.get("lock_event_id") or ev.event_id,
++                        "on_target_supersede_policy": after.get("on_target_supersede_policy"),
++                        "is_active": True,
++                        "is_stale": False,
++                        "created_at_event_id": ev.event_id,
++                    }
++                    _upsert_reference(refs, source_id, at_ref, new_ref)
+         elif ev.event_type is EventType.AT_REFERENCE_REMOVED:
+             before = payload.get("before_state")
+             before = before if isinstance(before, dict) else {}
+-            ref_id = after.get("reference_id") or before.get("reference_id")
++            ref_id = (
++                after.get("reference_id")
++                or after.get("at_reference")
++                or before.get("reference_id")
++                or before.get("at_reference")
++            )
++            source_id = _reference_source_id(before) or _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     r["is_active"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_AUTO_UPDATED:
+             ref_id = after.get("reference_id")
++            source_id = _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     # auto_accept_latest: 跟随到 supersede 后新 lock → 不再 stale。
+                     r["locked_event_id"] = after.get("new_lock_event_id") or r.get("locked_event_id")
+                     r["is_stale"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_TARGET_SUPERSEDED:
+             ref_id = after.get("reference_id")
++            source_id = _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     # pin_to_snapshot / explicit_decision_required: target 已 supersede, ref 未跟随。
+                     r["is_stale"] = True
+                     r["target_superseded_at_event_id"] = after.get("new_target_event_id")
+@@ -3030,6 +3042,50 @@ def _endpoint(raw: object) -> dict[str, object]:
+     }
+ 
+ 
++def _reference_source_id(value: object) -> str | None:
++    """Extract the canonical source owner from typed or endpoint-shaped reference data."""
++    if not isinstance(value, dict):
++        return None
++    direct = value.get("source_concept_id")
++    if isinstance(direct, str) and direct:
++        return direct
++    for key in ("source_entity", "source"):
++        endpoint = value.get(key)
++        if not isinstance(endpoint, dict):
++            continue
++        entity_id = endpoint.get("id", endpoint.get("entity_id"))
++        if isinstance(entity_id, str) and entity_id:
++            return entity_id
++    return None
++
++
++def _reference_instance_matches(
++    reference: dict[str, object],
++    source_id: str | None,
++    reference_id: object,
++) -> bool:
++    """Match one source-scoped instance; ``None`` is a legacy identity, never a wildcard."""
++    if reference.get("reference_id") != reference_id:
++        return False
++    return _reference_source_id(reference) == source_id
++
++
++def _upsert_reference(
++    references: list[dict[str, object]],
++    source_id: str | None,
++    reference_id: str,
++    value: dict[str, object],
++) -> None:
++    """Replay-safe upsert keyed by (source owner, locator), not locator alone."""
++    for existing in references:
++        if _reference_instance_matches(existing, source_id, reference_id) and (
++            source_id is not None or _reference_source_id(existing) is None
++        ):
++            existing.update(value)
++            return
++    references.append(value)
++
++
+ def _as_list(value: object) -> list[dict[str, object]]:
+     """Coerce a loaded JSON value into list[dict] for reducer manipulation."""
+     if not isinstance(value, list):
+@@ -3232,5 +3288,3 @@ def derive_coupling_backfill(
+         isolated_before=iso_before,
+         isolated_after=iso_after,
+     )
+-
+-
+diff --git a/harness/src/towow/l1/consensus_invalidation.py b/harness/src/towow/l1/consensus_invalidation.py
+index 77958dc80..9d0a1dba6 100644
+--- a/harness/src/towow/l1/consensus_invalidation.py
++++ b/harness/src/towow/l1/consensus_invalidation.py
+@@ -19,10 +19,9 @@
+ 
+ from __future__ import annotations
+ 
+-import json
+ from typing import TYPE_CHECKING
+ 
+-from towow.l0.event_log.segments import iter_raw_event_lines
++from towow.l0.event_log.event_log import EventLog
+ from towow.schemas.enums import EventType, LockingPolicy
+ 
+ if TYPE_CHECKING:
+@@ -40,6 +39,32 @@ def _after(e: dict[str, object]) -> dict[str, object]:
+     return {}
+ 
+ 
++def _before(e: dict[str, object]) -> dict[str, object]:
++    p = e.get("payload")
++    if isinstance(p, dict):
++        b = p.get("before_state")
++        if isinstance(b, dict):
++            return b
++    return {}
++
++
++def _reference_id(state: dict[str, object]) -> str | None:
++    value = state.get("at_reference") or state.get("reference_id")
++    return value if isinstance(value, str) and value else None
++
++
++def _source_id(state: dict[str, object]) -> str | None:
++    direct = state.get("source_concept_id")
++    if isinstance(direct, str) and direct:
++        return direct
++    endpoint = state.get("source_entity")
++    if isinstance(endpoint, dict):
++        value = endpoint.get("id", endpoint.get("entity_id"))
++        if isinstance(value, str) and value:
++            return value
++    return None
++
++
+ def _resolves_to(stored_target_name: object, superseded_concept_id: str) -> bool:
+     """Does a stored @ ref target_concept_name resolve to the just-superseded concept_id?
+ 
+@@ -61,30 +86,39 @@ def _resolves_to(stored_target_name: object, superseded_concept_id: str) -> bool
+ def active_references_to(towow_dir: Path, superseded_concept_id: str) -> list[dict[str, object]]:
+     """All AtReferenceAdded whose parsed target resolves to ``superseded_concept_id`` (not later removed).
+ 
+-    Reads the canonical log across all physical segments. A reference is dropped if a matching
+-    AtReferenceRemoved (by at_reference string) appears later (向后兼容 removal, though the
+-    consensus CLI does not currently remove refs).
++    Reads only the two relevant event-type postings (O(K), never the whole ledger). A reference is
++    dropped if a matching AtReferenceRemoved appears later. Canonical removals carry
++    ``before_state.reference_id``; legacy producers used ``after_state.at_reference``, so both
++    shapes remain readable.
+     """
+-    added: list[dict[str, object]] = []
+-    removed_refs: set[str] = set()
+-    for line in iter_raw_event_lines(towow_dir):
+-        try:
+-            rec = json.loads(line)
+-        except json.JSONDecodeError:
+-            continue
+-        if not isinstance(rec, dict):
+-            continue
+-        et = rec.get("event_type")
+-        if et == "AtReferenceAdded":
+-            a = _after(rec)
+-            if _resolves_to(a.get("target_concept_name"), superseded_concept_id):
+-                added.append({**a, "_event_id": rec.get("event_id")})
+-        elif et == "AtReferenceRemoved":
++    active: dict[tuple[str | None, str], dict[str, object]] = {}
++    event_log = EventLog(towow_dir / "events.log")
++    relevant = [
++        *event_log.get_events_by_type(EventType.AT_REFERENCE_ADDED),
++        *event_log.get_events_by_type(EventType.AT_REFERENCE_REMOVED),
++    ]
++    for record in sorted(relevant, key=lambda item: (item.sequence_number, item.event_id)):
++        rec = record.model_dump(mode="json")
++        if record.event_type is EventType.AT_REFERENCE_ADDED:
+             a = _after(rec)
+-            ref = a.get("at_reference")
+-            if isinstance(ref, str):
+-                removed_refs.add(ref)
+-    return [r for r in added if r.get("at_reference") not in removed_refs]
++            ref_id = _reference_id(a)
++            if ref_id is not None and _resolves_to(a.get("target_concept_name"), superseded_concept_id):
++                active[(_source_id(a), ref_id)] = {**a, "_event_id": record.event_id}
++        else:
++            before = _before(rec)
++            after = _after(rec)
++            ref_id = _reference_id(before) or _reference_id(after)
++            source_id = _source_id(before) or _source_id(after)
++            if ref_id is None:
++                continue
++            if source_id is not None:
++                active.pop((source_id, ref_id), None)
++            else:
++                # Missing source is a distinct legacy identity class, not a wildcard.  Historical
++                # source-less removals still fold source-less rows, but cannot erase canonical
++                # source-scoped instances added later.
++                active.pop((None, ref_id), None)
++    return list(active.values())
+ 
+ 
+ def _record_hash_of(towow_dir: Path, event_id: str) -> str | None:
+@@ -129,6 +163,7 @@ def plan_aux_events(
+     out: list[tuple[EventType, dict[str, object]]] = []
+     for ref in active_references_to(towow_dir, superseded_concept_id):
+         ref_id = str(ref.get("at_reference", ""))
++        source_id = ref.get("source_concept_id")
+         old_lock = str(ref.get("lock_event_id") or ref.get("_event_id") or "")
+         old_state_hash = ref.get("locked_at_state_hash")
+         policy = _policy_of(ref)
+@@ -138,6 +173,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_AUTO_UPDATED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_lock_event_id": supersede_event_id,
+                         "old_locked_at_state_hash": old_state_hash,
+@@ -153,6 +189,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         # pin 不跟随: 锁状态 hash 保持旧 snapshot; 仅记录新 target 指纹供漂移可见
+@@ -170,6 +207,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         "locked_at_state_hash": old_state_hash,
+diff --git a/harness/tests/cia/test_t_r01_6.py b/harness/tests/cia/test_t_r01_6.py
+index 27d05584a..fba7acd5f 100644
+--- a/harness/tests/cia/test_t_r01_6.py
++++ b/harness/tests/cia/test_t_r01_6.py
+@@ -83,8 +83,19 @@ def _concept_created_supersede(
+     )
+ 
+ 
+-def _at_ref_removed(at_reference: str) -> SimpleNamespace:
+-    return SimpleNamespace(event_type="AtReferenceRemoved", payload={"after_state": {"at_reference": at_reference}})
++def _at_ref_removed(at_reference: str, source: str | None = None) -> SimpleNamespace:
++    if source is None:
++        return SimpleNamespace(
++            event_type="AtReferenceRemoved",
++            payload={"after_state": {"at_reference": at_reference}},
++        )
++    return SimpleNamespace(
++        event_type="AtReferenceRemoved",
++        payload={"before_state": {
++            "reference_id": at_reference,
++            "source_entity": {"type": "concept", "id": source},
++        }},
++    )
+ 
+ 
+ def _at_ref_added(source: str, target_concept_name: str) -> SimpleNamespace:
+@@ -239,6 +250,27 @@ def test_migrated_via_at_reference_removed_in_batch_passes() -> None:
+     assert any(f.via == "at_reference_removed_in_batch" for f in result.findings)
+ 
+ 
++def test_source_scoped_removal_cannot_migrate_another_owner() -> None:
++    """Removing A's shared locator is not evidence that B migrated away from the target."""
++    retire = _proposal_supersede("c-old@v1")
++    locator = "@concept:c-old"
++    removal = _at_ref_removed(locator, source="c-dep-a@v1")
++    result = check_concept_retire_migration(
++        [retire, removal],
++        superseded_concept_resolver=_no_resolver,
++        active_references_for=_refs_for({
++            "c-old@v1": [
++                _ref("c-dep-a@v1", "c-old", at_reference=locator),
++                _ref("c-dep-b@v1", "c-old", at_reference=locator),
++            ],
++        }),
++    )
++    assert result.passed is False
++    by_source = {finding.source_concept_id: finding for finding in result.findings}
++    assert by_source["c-dep-a@v1"].via == "at_reference_removed_in_batch"
++    assert by_source["c-dep-b@v1"].via == "unmigrated"
++
++
+ def test_migrated_via_repoint_to_new_version_passes() -> None:
+     """本批把依赖重指到新版本 (AtReferenceAdded → 新 id) → 放行。"""
+     retire = _proposal_supersede("c-old@v1", replacement="c-new@v1")
+diff --git a/harness/tests/unit/l0/test_reducers_batch0b.py b/harness/tests/unit/l0/test_reducers_batch0b.py
+index 816e0d515..9130e1fce 100644
+--- a/harness/tests/unit/l0/test_reducers_batch0b.py
++++ b/harness/tests/unit/l0/test_reducers_batch0b.py
+@@ -217,6 +217,45 @@ def test_at_reference_graph_materializes_and_deactivates(tmp_path: Path) -> None
+     assert ref2["is_active"] is False, "AtReferenceRemoved marks is_active=false, not delete"
+ 
+ 
++def test_at_reference_graph_scopes_locator_identity_by_source(tmp_path: Path) -> None:
++    store = ProjectionStore(tmp_path / "graph")
++    locator = "@concept:shared-target@v1"
++    for sequence, source in enumerate(("consumer-a@v1", "consumer-b@v1"), start=1):
++        store._apply(
++            _record(
++                EventType.AT_REFERENCE_ADDED,
++                {"after_state": {
++                    "source_concept_id": source,
++                    "at_reference": locator,
++                    "target_concept_name": "shared-target",
++                }},
++                sequence,
++            ),
++        )
++
++    store._apply(
++        _record(
++            EventType.AT_REFERENCE_REMOVED,
++            {"before_state": {
++                "reference_id": locator,
++                "source_entity": {"type": "concept", "id": "consumer-a@v1"},
++            }},
++            3,
++        ),
++    )
++
++    graph = store.read("at_reference_graph")
++    assert graph is not None
++    states = {
++        (ref["source_concept_id"], ref["reference_id"]): ref["is_active"]
++        for ref in graph["references"]
++    }
++    assert states == {
++        ("consumer-a@v1", locator): False,
++        ("consumer-b@v1", locator): True,
++    }
++
++
+ # ═══ T-L0-07 ownership reducer ════════════════════════════════════════════════
+ 
+ 

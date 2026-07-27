@@ -1,0 +1,146 @@
+{
+  "packet_id": "towow-a2a-round5-codex-local-research-packet",
+  "version": "1.1.0",
+  "created_at_utc": "2026-07-24T00:00:00Z",
+  "language": "zh-CN",
+  "purpose": "Transfer the current Towow A2A research state to an independent local Codex laboratory that directly operates on a real workspace, while preserving research continuity, autonomy, safety, and evidence discipline.",
+  "execution_model": {
+    "agent": "local Codex Agent",
+    "workspace_access": "direct",
+    "bridge_required": false,
+    "production_validation": false
+  },
+  "baseline": {
+    "research_stage": "Round 5 first reality closure",
+    "current_system": "Towow A2A Current System v0.5 consolidated into 01_CURRENT_SYSTEM.md",
+    "real_user_workspace_validation_completed": false
+  },
+  "authority_order": [
+    "User authorization and local AGENTS.md",
+    "03_EXECUTION_AND_SAFETY_CHARTER.md",
+    "04_EVIDENCE_CONTRACT.md",
+    "02_LOCAL_RESEARCH_MISSION.md",
+    "01_CURRENT_SYSTEM.md",
+    "templates and candidate suggestions"
+  ],
+  "required_return_artifacts": [
+    "RETURN_SUMMARY.md",
+    "ENVIRONMENT_FACTS.json",
+    "RESEARCH_STATE.yaml",
+    "DECISION_LOG.md",
+    "CLAIM_EVIDENCE_UPDATE.csv",
+    "NEXT_RESEARCH_ACTIONS.md",
+    "MANIFEST.json",
+    "CHECKSUMS.sha256"
+  ],
+  "files": [
+    {
+      "path": "00_README_START_HERE.md",
+      "role": "entry point and direct local Codex usage instructions",
+      "bytes": 4884,
+      "sha256": "bfb5fed1e9fe7fc4d42dfbb3f5388c02f49e279a8f557d04aa5de5c0b0030dea"
+    },
+    {
+      "path": "01_CURRENT_SYSTEM.md",
+      "role": "current unified theory and evidence boundary",
+      "bytes": 17019,
+      "sha256": "da1603ea1a3811c372c1e2ca09210b5928df050b2a853a06f70cca994b355102"
+    },
+    {
+      "path": "02_LOCAL_RESEARCH_MISSION.md",
+      "role": "research mission, autonomy and continuous loop",
+      "bytes": 9330,
+      "sha256": "244ea209ed2280f24b300220f766678cc98c831b90921c8a73c1f4f16faae61f"
+    },
+    {
+      "path": "03_EXECUTION_AND_SAFETY_CHARTER.md",
+      "role": "direct local execution, safety and sovereignty charter",
+      "bytes": 7391,
+      "sha256": "166e894fc6c2655a21e45c25ff62c01dc24cf804a15d13d6b73333b0aea3d6a6"
+    },
+    {
+      "path": "04_EVIDENCE_CONTRACT.md",
+      "role": "evidence and reproducibility requirements",
+      "bytes": 8398,
+      "sha256": "b7b90d300a15bec2c8bf685a653a2ff38f2a908006c9f6fadc2dc5e8e4511860"
+    },
+    {
+      "path": "05_CODEX_BOOTSTRAP_PROMPT.md",
+      "role": "copy-paste bootstrap prompt for a local Codex workspace session",
+      "bytes": 8166,
+      "sha256": "a12d5793222a1d7e0579ac43d997cc8a959a9129575dd3b814d39a86a96e99c3"
+    },
+    {
+      "path": "06_RETURN_PACKET_TEMPLATE.md",
+      "role": "required return packet structure",
+      "bytes": 6549,
+      "sha256": "2af706eeb56bb63f9f0a246aaf99f008df52e66c87e9764028bac79f44918242"
+    },
+    {
+      "path": "baseline/CLAIM_EVIDENCE_BASELINE_R5.csv",
+      "role": "prior claim/evidence baseline",
+      "bytes": 8090,
+      "sha256": "7b9b08693885688811f232ccbb3f688f367996d56ef3b03cf631d55af006b438"
+    },
+    {
+      "path": "baseline/FIRST_REALITY_CLOSURE.json",
+      "role": "minimal first reality closure baseline",
+      "bytes": 2106,
+      "sha256": "cb1bcaaa5dc016873777d9c9a5a83059d9baedc1e8f47293b7f79d007160ff01"
+    },
+    {
+      "path": "schemas/evidence_item.schema.json",
+      "role": "machine-checkable evidence item schema",
+      "bytes": 1348,
+      "sha256": "6746acfa18ac6f0ec6755be921d31309f892ff196f29755eeb4cd4a8a2442d6b"
+    },
+    {
+      "path": "schemas/experiment_record.schema.json",
+      "role": "machine-checkable experiment schema",
+      "bytes": 3990,
+      "sha256": "8108c56f3041dcdb37e6d12f4a50e811f01a3ef6bf3544b16ce624a71d23e03e"
+    },
+    {
+      "path": "schemas/return_packet_manifest.schema.json",
+      "role": "machine-checkable return manifest schema",
+      "bytes": 1710,
+      "sha256": "1a8275bcb4af616c7c6757b813ef9816ee9014699021fc2a9ad4ed641cde0e5c"
+    },
+    {
+      "path": "templates/DECISION_LOG.md",
+      "role": "append-only research decision template",
+      "bytes": 424,
+      "sha256": "d154f8a60c371d4fe30617919748ffdff1d327cc268e5fe08eecdbfeda1666d6"
+    },
+    {
+      "path": "templates/EXPERIMENT_CARD.md",
+      "role": "experiment design and analysis template",
+      "bytes": 750,
+      "sha256": "ded98d133fb4dca6592fe5b4bf2f8719c58d053723b58c053e9925735953e2fb"
+    },
+    {
+      "path": "templates/LOCAL_WORKSPACE_SMOKE_TASK.md",
+      "role": "minimal direct local workspace validation task",
+      "bytes": 1401,
+      "sha256": "4475ed0cab0b3d2b6ed7be38e8a671567ece217b93a6ab1a4eae8968abc0c29f"
+    },
+    {
+      "path": "templates/RESEARCH_STATE.yaml",
+      "role": "persistent research state template",
+      "bytes": 672,
+      "sha256": "8d29b247964af810e74b423d83970bd0250419ac062ce3fa7127f0fc841ee6b7"
+    },
+    {
+      "path": "templates/RETURN_PACKET_MANIFEST.json",
+      "role": "return packet manifest template",
+      "bytes": 477,
+      "sha256": "3927cc9ea4d0f0dc613b04934a51e9e8ef8ce433105866e84e9e62cdef19d14a"
+    },
+    {
+      "path": "07_MANIFEST.json",
+      "role": "packet manifest",
+      "bytes": null,
+      "sha256": null
+    }
+  ]
+}

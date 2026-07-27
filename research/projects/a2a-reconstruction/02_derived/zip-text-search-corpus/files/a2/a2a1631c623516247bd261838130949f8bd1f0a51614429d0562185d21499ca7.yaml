@@ -1,0 +1,35 @@
+id: blind_consumer_test
+purpose: 让无历史上下文消费者重建产品并评分。
+when_to_use:
+- 相关 concern 进入正式规格或发生重要变更时
+not_for:
+- 替代责任主体作最终高后果决定
+inputs:
+- RunManifest
+- RelevantContextPacks
+outputs:
+- BlindConsumerReport
+required_context:
+- core_method
+- project_core
+- task_pack
+steps:
+- 确认问题和 Scope
+- 装载最小充分上下文
+- 执行方法变换
+- 暴露未知与冲突
+- 生成标准 Artifact
+- 提交独立 Validator
+validators:
+- artifact_contract
+- traceability
+- concern_specific_validator
+failure_modes:
+- 缺少必要证据
+- Scope 越界
+- 把假设写成事实
+- 输出无法追溯
+escalation_triggers:
+- 连续两轮关键失败
+- 需要正式责任判断
+- 证据冲突无法消解

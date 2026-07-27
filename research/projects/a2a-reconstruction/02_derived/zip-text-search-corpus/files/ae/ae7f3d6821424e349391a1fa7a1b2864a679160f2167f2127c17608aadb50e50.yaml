@@ -1,0 +1,49 @@
+version: 0.1.0
+groups:
+  epistemic:
+    ResearchQuestion: 需要回答、可被研究或验证的问题。
+    EvidenceItem: 标准、论文、案例、访谈、数据或观察，带来源、范围与可信度。
+    Claim: 由证据支持的陈述，必须注明类型和强度。
+    Assumption: 暂时依赖但尚未充分验证的前提。
+    Hypothesis: 可被证伪的预测。
+  normative:
+    Principle: 跨场景应持续成立的设计准则。
+    Decision: 已作出的选择、理由、替代方案和后果。
+    Requirement: 系统、服务、界面或流程必须满足的条件。
+    Constraint: 不可违反或只能在明确条件下改变的限制。
+  semantic:
+    Concept: 被定义的意义单位。
+    DomainObject: 拥有身份、属性、关系或生命周期的领域实体。
+    ValueObject: 由值而非身份定义的语义对象。
+    Relation: 对象之间有方向和约束的关系。
+    Lifecycle: 对象从产生到终止的状态与转移。
+    Policy: 在条件下允许、要求或禁止动作的规则。
+    DomainEvent: 已经发生并影响领域理解的事实。
+  experience:
+    ClosedLoop: 从用户动机到结果、反馈和沉淀的完整链条。
+    View: 同一领域世界针对角色或任务的受控投影。
+    InteractionState: 界面在正常、空、错、权限、等待、冲突等条件下的可见状态。
+    ExternalClaim: 面向外部受众的价值或能力表述，必须回指内部依据。
+  runtime:
+    CapabilityProfile: 知识、方法、工具、范围、权限、质量记录的组合。
+    Skill: 有输入、步骤、输出、失败模式和验证器的可复用程序。
+    ContextPack: 有来源、版本、范围、有效期和使用限制的知识包。
+    RunManifest: 一次方法运行的任务、风险、资源、产物和成功条件。
+    Artifact: 按契约生成的研究、模型、规格或表达产物。
+    ValidationRule: 用于检查产物的明确规则。
+    ValidationReport: 规则执行后的结果、证据、严重度和修复建议。
+    EscalationCase: 自动流程无法可靠处理而进入人类或更高权限审查的案例。
+    ChangeSet: 对规范、对象、方法或表达的版本化修改。
+key_relations:
+- ResearchQuestion is_answered_by Claim
+- Claim is_supported_by EvidenceItem
+- Decision resolves ResearchQuestion
+- Decision creates_or_changes Requirement
+- Requirement constrains DomainObject_or_ClosedLoop_or_View
+- ClosedLoop traverses DomainObject_and_Lifecycle
+- View projects DomainObject_and_ClosedLoop
+- ExternalClaim translates Claim_and_Decision
+- Skill consumes ContextPack_and_produces Artifact
+- CapabilityProfile is_eligible_for Skill
+- ValidationReport evaluates Artifact
+- ChangeSet impacts Decision_Requirement_View_and_ExternalClaim

@@ -1,0 +1,76 @@
+gates:
+  G0_mission_ready:
+    checks:
+      - problem_and_outcome_are_distinct
+      - stakeholders_and_decision_owners_identified
+      - non_goals_explicit
+      - unknowns_visible
+    fail_if:
+      - task_is_only_a_feature_request_without_problem_frame
+
+  G1_evidence_ready:
+    checks:
+      - authoritative_or_primary_sources_present
+      - success_and_failure_cases_present
+      - evidence_scope_and_freshness_recorded
+      - assumptions_distinguished_from_facts
+    fail_if:
+      - major_decision_relies_only_on_analogy_or_opinion
+
+  G2_semantic_ready:
+    checks:
+      - canonical_terms_defined
+      - objects_have_identity_and_lifecycle
+      - relations_are_directional_and_meaningful
+      - no_unresolved_same_term_different_meaning
+      - UI_containers_not_used_as_domain_objects
+    fail_if:
+      - multiple_incompatible_product_worlds_remain
+
+  G3_closed_loop_ready:
+    checks:
+      - user_motivation_to_terminal_value_is_complete
+      - responsibility_is_explicit
+      - evidence_and_decisions_are_distinct
+      - failure_revocation_timeout_and_recovery_exist
+      - system_learning_or_record_is_defined
+    fail_if:
+      - only_happy_path_or_page_sequence_exists
+
+  G4_experience_ready:
+    checks:
+      - each_surface_has_one_primary_object
+      - 3s_30s_3min_contract_defined
+      - state_matrix_complete
+      - permissions_and_consequences_visible
+      - visualizations_can_reach_underlying_facts
+    fail_if:
+      - interface_invents_new_domain_rules
+
+  G5_assurance_ready:
+    checks:
+      - safety_privacy_accessibility_and_AI_risks_mapped
+      - high_consequence_actions_have_human_or_authority_boundary
+      - escalation_conditions_defined
+      - recovery_and_audit_present
+    fail_if:
+      - responsibility_is_delegated_to_AI_without_accountable_owner
+
+  G6_language_ready:
+    checks:
+      - external_claims_trace_to_internal_sources
+      - capability_status_is_not_exaggerated
+      - terminology_mapping_exists
+      - forbidden_expressions_checked
+    fail_if:
+      - marketing_text_creates_new_product_capability
+
+  G7_handoff_ready:
+    checks:
+      - all_mandatory_artifacts_present
+      - decisions_and_changes_traceable
+      - no_critical_gate_failure
+      - blind_agent_can_reconstruct_product_world
+      - open_questions_and_limits_explicit
+    fail_if:
+      - correct_result_requires_unwritten_conversation_history

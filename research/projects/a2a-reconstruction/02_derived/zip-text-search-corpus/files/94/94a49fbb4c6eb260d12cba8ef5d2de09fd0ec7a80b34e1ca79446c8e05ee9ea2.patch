@@ -1,0 +1,143 @@
+diff --git a/harness/src/towow/l2/bg_worktree_poller.py b/harness/src/towow/l2/bg_worktree_poller.py
+index 25a02eee2..ab89a0ab7 100644
+--- a/harness/src/towow/l2/bg_worktree_poller.py
++++ b/harness/src/towow/l2/bg_worktree_poller.py
+@@ -23,6 +23,7 @@
+ 
+ from __future__ import annotations
+ 
++import contextlib
+ import json
+ import subprocess
+ import sys
+@@ -73,11 +74,9 @@ def _emit_obligation_violated_stale_base(
+ ) -> None:
+     """W hard enforce audit trail: emit ObligationViolated when bg worktree base != main HEAD.
+ 
+-    Best-effort — failure to emit is non-fatal (poller can't import full
+-    schemas in subprocess context cleanly; we write a path-B style NodeTouched
+-    JSONL line directly).
++    Best-effort — failure to emit is non-fatal. The record still goes through
++    EventLog's path-B writer so canonical readers receive writer-stamped fields.
+     """
+-    event_id = f"evt-{uuid.uuid4().hex[:32]}"
+     intent_id = f"oblig-violate-stale-{uuid.uuid4().hex[:8]}"
+     payload = {
+         "target_entity_type": "obligation",
+@@ -98,40 +97,40 @@ def _emit_obligation_violated_stale_base(
+             "recommended_action": "fix",
+         },
+     }
+-    record = {
+-        "event_id": event_id,
+-        "event_type": "NodeTouched",
+-        "event_category": "envelope",
+-        "payload": payload,
+-        "provenance": {
+-            "actor_type": "system",
+-            "actor_id": "bg-worktree-poller",
+-            "session_id": f"sess-poller-{bg_short_id}",
+-        },
+-        "base_classification": "discardable_noise",
+-        "supersede": {"is_supersede": False},
+-        "subjects": [
+-            {
+-                "entity_type": "obligation",
+-                "entity_id": "v3-fork-base-must-be-main-head",
+-                "role": "primary",
+-            },
++    from towow.l0.event_log import EventLog
++    from towow.schemas.enums import (
++        ActorType,
++        BaseClassification,
++        EventCategory,
++        EventType,
++        SubjectEntityType,
++        SubjectRole,
++    )
++    from towow.schemas.event_intent import EventIntent, ProvenanceHint, Subject, Supersede
++
++    intent = EventIntent(
++        local_intent_id=intent_id,
++        event_type=EventType.NODE_TOUCHED,
++        event_category=EventCategory.ENVELOPE,
++        payload=payload,
++        provenance_hint=ProvenanceHint(
++            actor_type=ActorType.SYSTEM.value,
++            actor_id="bg-worktree-poller",
++            session_id=f"sess-poller-{bg_short_id}",
++        ),
++        base_classification=BaseClassification.DISCARDABLE_NOISE,
++        supersede=Supersede(is_supersede=False),
++        subjects=[
++            Subject(
++                entity_type=SubjectEntityType.OBLIGATION,
++                entity_id="v3-fork-base-must-be-main-head",
++                role=SubjectRole.PRIMARY,
++            ),
+         ],
+-        "schema_version": "1.0.0",
+-        "local_intent_id": intent_id,
+-        "emitted_at_unix": time.time(),
+-    }
+-    # T-L0-04: append to the *active* segment (events/hot/events-NNNNNN.jsonl after rotation,
+-    # else base events.log) — writing the raw NodeTouched straight to events.log after rotation
+-    # would bury it behind sealed segments where main's segment-spanning readers still find it,
+-    # but the seq-free raw line belongs at the live write head. segments.py is a leaf module
+-    # (no heavy deps) so importing it keeps the poller's minimal import surface.
+-    import contextlib
+-
+-    from towow.l0.event_log.segments import append_raw_event_line
+-
+-    with contextlib.suppress(OSError):  # best-effort; don't fail poller
+-        append_raw_event_line(main_towow, json.dumps(record, ensure_ascii=False))
++        schema_version="1.0.0",
++    )
++    with contextlib.suppress(OSError, RuntimeError, ValueError):  # best-effort; don't fail poller
++        EventLog(main_towow / "events.log").write_direct(intent)
+ 
+ 
+ def poll_loop(
+diff --git a/harness/tests/unit/test_bg_worktree_poller.py b/harness/tests/unit/test_bg_worktree_poller.py
+index d9fa69ff7..4baa84440 100644
+--- a/harness/tests/unit/test_bg_worktree_poller.py
++++ b/harness/tests/unit/test_bg_worktree_poller.py
+@@ -19,7 +19,9 @@ import threading
+ import time
+ from typing import TYPE_CHECKING
+ 
++from towow.l0.event_log import EventLog
+ from towow.l2.bg_worktree_poller import poll_loop
++from towow.schemas.enums import EventType
+ 
+ if TYPE_CHECKING:
+     from pathlib import Path
+@@ -133,7 +135,7 @@ def test_t_fix_poll3_missing_state(tmp_path: Path, monkeypatch) -> None:
+ def test_t_fix_poll4_stale_base_emits_obligation_violated(
+     tmp_path: Path, monkeypatch,
+ ) -> None:
+-    """Daemon worktree HEAD differs from main HEAD → poll emits ObligationViolated."""
++    """Daemon worktree HEAD differs → raw bytes and canonical readback both retain the audit."""
+     monkeypatch.setattr("pathlib.Path.home", lambda: tmp_path)
+     jobs_root = tmp_path / ".claude" / "jobs"
+     main_wt = tmp_path / "main"
+@@ -167,6 +169,19 @@ def test_t_fix_poll4_stale_base_emits_obligation_violated(
+     assert daemon_head[:12] in desc
+     assert main_head_v1[:12] in desc
+ 
++    # A raw JSON line is only a filesystem effect. The audit trail is accepted only
++    # when a fresh canonical reader can validate and return the writer-stamped record.
++    canonical = EventLog(main_wt / ".towow" / "events.log")
++    visible = [
++        record
++        for record in canonical.get_events_by_type(EventType.NODE_TOUCHED)
++        if record.payload.get("stub_original_payload", {}).get("kind")
++        == "ObligationViolated"
++    ]
++    assert len(visible) == 1
++    assert visible[0].sequence_number >= 0
++    assert visible[0].record_hash
++
+ 
+ def test_t_fix_poll4_same_base_no_violation(tmp_path: Path, monkeypatch) -> None:
+     """Daemon worktree HEAD == main HEAD → no ObligationViolated emitted."""

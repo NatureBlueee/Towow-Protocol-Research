@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunManifest",
+  "type": "object",
+  "required": [
+    "run_id",
+    "mode",
+    "mission",
+    "non_goals",
+    "concerns",
+    "required_outputs",
+    "success_criteria"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "mission": {
+      "type": "string"
+    },
+    "non_goals": {
+      "type": "array"
+    },
+    "concerns": {
+      "type": "array"
+    },
+    "risk": {
+      "type": "object"
+    },
+    "required_outputs": {
+      "type": "array"
+    },
+    "success_criteria": {
+      "type": "array"
+    }
+  }
+}

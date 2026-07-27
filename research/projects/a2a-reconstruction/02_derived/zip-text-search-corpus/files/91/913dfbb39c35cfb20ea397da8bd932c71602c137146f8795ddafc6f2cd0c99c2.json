@@ -1,0 +1,30 @@
+{
+  "source": "Direct observation in this Codex turn before the holdout cases were executed.",
+  "events": [
+    {
+      "case_id": "actual_git_switch_sandbox_lock",
+      "source": "actual_workspace_trace",
+      "actor": "Codex exec_command composite invocation",
+      "command": "git switch -c research/towow-r5-20260724-local; git branch --show-current; git status ...",
+      "command_hash": "f7988a9cfbb12dd0d677deb3d8c7ae172c7cdd1787575bf3804313c7bb65ec32",
+      "outer_exit_code": 0,
+      "stdout": "Switched to a new branch 'research/towow-r5-20260724-local'\nmain\n",
+      "stderr": "error: cannot lock ref 'HEAD': Unable to create '/Users/nature/通爻协议研究/.git/HEAD.lock': Operation not permitted\n",
+      "state_before": [
+        "branch=main",
+        "HEAD=unborn"
+      ],
+      "state_after": [
+        "branch=main",
+        "HEAD=unborn"
+      ],
+      "postcondition_passed": false,
+      "ground_truth_effect": false,
+      "ground_truth_acceptance": false,
+      "ground_truth_outcome": "failed",
+      "partial_effect_paths": [],
+      "duration_ms": null,
+      "evidence_note": "The shell tool returned the last command's status. A separate read-back proved the branch transition did not occur."
+    }
+  ]
+}

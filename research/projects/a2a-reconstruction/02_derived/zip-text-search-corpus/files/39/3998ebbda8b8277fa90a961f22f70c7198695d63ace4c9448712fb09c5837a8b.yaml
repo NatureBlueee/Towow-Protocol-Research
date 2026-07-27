@@ -1,0 +1,81 @@
+loops:
+- id: capability_formation
+  name: 能力形成闭环
+  path:
+  - source_context
+  - CapabilityClaim
+  - Offer
+  - Evidence
+  - Case
+  - updated_capability
+  terminal_value: 主体的经验被转成可理解、可选择、可验证的协作能力。
+  must_include:
+  - 用户确认
+  - 来源
+  - 敏感边界
+  - 后续履约反馈
+- id: opportunity_formation
+  name: 机会形成闭环
+  path:
+  - Intent
+  - structured_scope
+  - expected_outcome
+  - acceptance_basis
+  - Opportunity
+  terminal_value: 模糊问题变成能够被响应和组织的机会。
+  must_include:
+  - 非目标
+  - 边界
+  - 未知
+  - 披露要求
+- id: summon_collaboration
+  name: 召集协作闭环
+  path:
+  - Opportunity
+  - participants
+  - roles
+  - commitments
+  - deliverables
+  - Evidence
+  - VerificationResult
+  - AcceptanceDecision
+  terminal_value: 临时协作产生有责任、有证据、可决定的结果。
+  must_include:
+  - 失败
+  - 退出
+  - 换人
+  - 超时
+  - 争议
+  - 归因
+- id: controlled_disclosure
+  name: 受控披露闭环
+  path:
+  - DisclosureRequest
+  - terms
+  - DisclosureGrant
+  - access
+  - expire_or_revoke
+  - audit
+  terminal_value: 信息在可理解的条件下被访问，并保持主权与可追责性。
+  must_include:
+  - 目的
+  - 范围
+  - 期限
+  - 访问方式
+  - 撤销后果
+- id: organizational_reporting
+  name: 组织汇报闭环
+  path:
+  - DomainEvent
+  - object_facts
+  - metric_definition
+  - ReportSnapshot
+  - drill_down
+  - decision_or_action
+  terminal_value: 组织网络的真实变化被解释、下钻并用于决策。
+  must_include:
+  - 口径
+  - 来源
+  - 时间范围
+  - 事实下钻
+  - 不可伪装的未知

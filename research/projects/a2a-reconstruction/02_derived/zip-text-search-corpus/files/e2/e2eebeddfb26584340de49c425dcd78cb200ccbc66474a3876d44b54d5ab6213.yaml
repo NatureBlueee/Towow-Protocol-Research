@@ -1,0 +1,62 @@
+method:
+  id: prse-os
+  name: 产品研究与规格工程操作系统
+  version: 0.1.0
+  status: draft-reference
+  purpose: >
+    通过可追溯的研究、建模、设计、验证、表达和治理机制，
+    生产可被人类与智能体共同执行的产品规格。
+  implementation_neutral: true
+
+run_modes:
+  new_product:
+    workflow: 05_workflows/new_product.yaml
+  iteration:
+    workflow: 05_workflows/iteration.yaml
+  spec_audit:
+    workflow: 05_workflows/spec_audit.yaml
+  language_translation:
+    workflow: 05_workflows/language_translation.yaml
+
+mandatory_invariants:
+  - every_decision_has_rationale_and_alternatives
+  - every_requirement_maps_to_object_loop_or_view
+  - every_external_claim_maps_to_internal_evidence
+  - every_high_risk_output_has_independent_review
+  - every_failed_gate_is_visible
+  - agents_and_humans_use_same_artifact_contracts
+  - ui_must_project_domain_not_invent_it
+  - unknowns_are_first_class_objects
+  - changes_require_impact_analysis
+
+quality_gates:
+  - G0_mission_ready
+  - G1_evidence_ready
+  - G2_semantic_ready
+  - G3_closed_loop_ready
+  - G4_experience_ready
+  - G5_assurance_ready
+  - G6_language_ready
+  - G7_handoff_ready
+
+canonical_registries:
+  - ConceptRegistry
+  - EvidenceRegistry
+  - DecisionRegistry
+  - RequirementRegistry
+  - CapabilityRegistry
+  - MethodRegistry
+  - RiskRegistry
+  - ClaimRegistry
+  - ViewRegistry
+  - ChangeRegistry
+
+required_run_outputs:
+  - RunManifest
+  - CapabilityPlan
+  - ContextLoadRecord
+  - ArtifactBundle
+  - ValidationReports
+  - DecisionLog
+  - OpenIssues
+  - RunReport

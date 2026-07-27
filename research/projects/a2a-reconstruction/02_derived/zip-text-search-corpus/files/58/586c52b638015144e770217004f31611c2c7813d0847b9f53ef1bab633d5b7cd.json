@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Towow R5.4 return packet manifest",
+  "type": "object",
+  "required": ["packet_id", "schema_version", "files"],
+  "properties": {
+    "packet_id": {"const": "towow-a2a-r5-4-return-packet"},
+    "schema_version": {"const": "towow-r5-return-manifest-v1"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "size", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "size": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": true
+}

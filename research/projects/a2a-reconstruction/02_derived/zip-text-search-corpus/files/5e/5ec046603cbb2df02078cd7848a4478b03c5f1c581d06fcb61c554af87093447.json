@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "summary", "unified_diff", "covered_surfaces", "risks", "unknowns"],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["PROPOSE_PATCH", "UNKNOWN", "REFUSE"]
+    },
+    "summary": {"type": "string"},
+    "unified_diff": {"type": "string"},
+    "covered_surfaces": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "risks": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "content_hash": "665f865bd49d3f2c418c522135fbd1c85aef3e2de20941faca1395f7221a5d80",
+  "created_at": "2026-07-26T07:29:45.951074+00:00",
+  "instance": {
+    "archival_case_id": "PEA-08",
+    "no_causal_claim": true,
+    "qualified_revision": "EXPANSION",
+    "source_basis": "public formal archive",
+    "state": "SUBMITTED"
+  },
+  "relation_id": "SHADOW-DELOITTE",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "capability assertion dependencies",
+      "source contemporaneity",
+      "post-hoc explanation flag",
+      "challenge and reevaluation",
+      "no silent capability inheritance"
+    ],
+    "unobservable": [
+      "full private capability",
+      "ultimate performance",
+      "Agent contribution"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "award": {
+        "required_roles": [
+          "agency"
+        ]
+      }
+    },
+    "actions": {
+      "evaluate_capability": {
+        "actor_roles": [
+          "agency"
+        ],
+        "material": true
+      },
+      "make_award": {
+        "actor_roles": [
+          "agency"
+        ],
+        "material": true,
+        "produces_effect": true
+      },
+      "submit_proposal": {
+        "actor_roles": [
+          "deloitte",
+          "teaming_partner"
+        ],
+        "material": true
+      }
+    },
+    "authority_rules": {
+      "evaluate_capability": [
+        "agency"
+      ],
+      "make_award": [
+        "agency"
+      ],
+      "submit_proposal": [
+        "deloitte",
+        "teaming_partner"
+      ]
+    },
+    "challenge_rules": {
+      "award": {
+        "status": "challengeable"
+      }
+    },
+    "data_rules": {},
+    "jurisdiction_rules": {
+      "GAO_protest": {
+        "authority": "gao",
+        "required_if_challenged": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "award": {},
+      "proposal": {},
+      "team_capability": {}
+    },
+    "roles": {
+      "agency": {},
+      "deloitte": {},
+      "gao": {
+        "adjudicator": true
+      },
+      "teaming_partner": {}
+    },
+    "schema_id": "shadow-deloitte",
+    "settlement_rules": {
+      "award": {
+        "requires": [
+          "contemporaneous_capability_evaluation",
+          "no_sustained_material_protest"
+        ]
+      }
+    },
+    "standing_rules": {
+      "bid_protest": [
+        "eligible_protester",
+        "gao"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "submit_proposal",
+        "from": "DRAFT",
+        "to": "SUBMITTED"
+      },
+      {
+        "action": "evaluate_capability",
+        "from": "SUBMITTED",
+        "to": "EVALUATED"
+      },
+      {
+        "action": "make_award",
+        "from": "EVALUATED",
+        "to": "AWARDED"
+      }
+    ],
+    "version": "1",
+    "witness_rules": {
+      "make_award": {
+        "source": "agency_award_record"
+      }
+    }
+  },
+  "status": "SUBMITTED",
+  "version": 1
+}

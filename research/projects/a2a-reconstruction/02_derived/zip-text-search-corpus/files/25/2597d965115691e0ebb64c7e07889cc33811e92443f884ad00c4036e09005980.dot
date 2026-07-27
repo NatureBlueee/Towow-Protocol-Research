@@ -1,0 +1,13 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.25, nodesep=0.35, ranksep=0.4, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded", fontname="Noto Sans CJK SC", fontsize=12, margin="0.12,0.08", color="#444444"];
+  edge [color="#666666", penwidth=1.2, arrowsize=0.7];
+  s1 [label="逐份重读原始论文、规格、实验和返回包"];
+  s2 [label="建立全量主张谱系\n原始主张 → 修正 → 当前强度"];
+  s3 [label="建立概念依赖图\n问题 → 概念 → 机制 → 接口"];
+  s4 [label="建立证据—主张—Design Delta 矩阵"];
+  s5 [label="提出新的统一模型\n允许重命名、合并、恢复与淘汰"];
+  s6 [label="撰写长篇建设性系统论文\n70–100+页主文 + 形式化/证据附录"];
+  s7 [label="独立复核\n遗漏检查、反例、盲读、可实现性"];
+  s1->s2->s3->s4->s5->s6->s7;
+}

@@ -1,0 +1,19 @@
+tests:
+- id: T001_manifest
+  assert: package manifest parses and entrypoints exist
+- id: T002_yaml_json
+  assert: all YAML and JSON parse
+- id: T003_supersession
+  assert: superseded nodes are not active
+- id: T004_context_gap
+  assert: missing required pack emits explicit gap
+- id: T005_validator_independence
+  assert: high-risk producer and final reviewer are not identical context
+- id: T006_language_drift
+  assert: external claim maps to approved internal sources
+- id: T007_blind_handoff
+  assert: blind consumer reconstructs product within tolerance
+- id: T008_change_propagation
+  assert: semantic change identifies affected loops/views/claims/tests
+- id: T009_prototype_anchoring
+  assert: old prototype is treated as evidence, not normative structure

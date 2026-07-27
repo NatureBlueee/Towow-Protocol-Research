@@ -1,0 +1,122 @@
+{
+  "schema_version": "towow-r5-generative-a2a-prereg-v1",
+  "run_id": "r5-4-run-001-source-identity",
+  "frozen_at_utc": "2026-07-24T18:31:32Z",
+  "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+  "real_task": {
+    "defect": "reference lifecycle operations collide when independent source owners use the same locator",
+    "public_goal": "preserve independent source-owned reference lifecycles across add, remove, replay, supersede response, and concept-retire migration without reducing existing compatibility",
+    "target_files": [
+      "harness/src/towow/l0/projection/projection.py",
+      "harness/src/towow/l1/consensus_invalidation.py",
+      "harness/src/towow/l0/commit_gate/concept_retire_gate.py"
+    ],
+    "preexisting_hidden_oracle_commit": "083fbf40f5db96f5b583ec73be84e5bcd8a34bfb",
+    "oracle_is_not_shown_to_models": true
+  },
+  "agents": [
+    {
+      "id": "source-owner-a",
+      "private_context": "inputs/agent_a_private.md",
+      "authority": ["disclose_A_summary", "accept_A_remove_semantics"],
+      "cannot": ["accept_B_survival_semantics", "apply_patch"]
+    },
+    {
+      "id": "source-owner-b",
+      "private_context": "inputs/agent_b_private.md",
+      "authority": ["disclose_B_summary", "veto_cross_owner_effect", "accept_B_survival_semantics"],
+      "cannot": ["accept_A_remove_semantics", "apply_patch"]
+    },
+    {
+      "id": "builder",
+      "private_context": "public source only plus the condition-specific contract",
+      "authority": ["propose_patch"],
+      "cannot": ["self_accept", "read_hidden_oracle"]
+    }
+  ],
+  "functional_boundary": {
+    "model_runner": "Claude Code CLI 2.1.219",
+    "flags": [
+      "--safe-mode",
+      "--tools empty",
+      "--permission-mode dontAsk",
+      "--no-chrome",
+      "--no-session-persistence",
+      "--output-format json",
+      "--json-schema"
+    ],
+    "private_prompt_transport": "stdin, never argv",
+    "model_tools": [],
+    "authority_enforcement": "deterministic broker accepts actions by runner-bound role id, not text self-identification",
+    "known_limitation": "the root research coordinator can read both synthetic dossiers; this is model-context separation, not OS-level or sovereign organizational isolation"
+  },
+  "conditions": [
+    {
+      "id": "static",
+      "description": "one builder sees public code, public symptom, and a static capability card; no owner query"
+    },
+    {
+      "id": "least_privilege_central",
+      "description": "a central builder receives answers from both owners to the same fixed narrow query set, but not raw dossiers"
+    },
+    {
+      "id": "direct_a2a",
+      "description": "owners choose questions, refusals, disclosures, counterconditions, and a signed joint contract; a separate builder implements only that contract"
+    },
+    {
+      "id": "no_interaction_ablation",
+      "description": "represented by static condition; removes adaptive questions and joint contract"
+    }
+  ],
+  "fixed_central_queries": [
+    "Which fields identify the local owner and locator?",
+    "What exact effect must a local removal have and must not have?",
+    "What backward-compatibility behavior is mandatory for source-less historical events?",
+    "Which downstream folds or auxiliary events must preserve the same identity?"
+  ],
+  "model_assignment": {
+    "alias": "sonnet",
+    "same_builder_model_across_conditions": true,
+    "max_budget_usd_per_call": 0.75,
+    "maximum_calls": 10,
+    "retries": 0
+  },
+  "acceptance": {
+    "goal_value_dimensions": [
+      "owner-local removal works",
+      "other owner survives",
+      "replay idempotency",
+      "supersede response remains owner-scoped",
+      "concept-retire migration cannot borrow another owner's removal",
+      "historical source-less events remain explicitly compatible",
+      "existing relevant tests do not regress"
+    ],
+    "target_domain_adoption": "candidate patch applies cleanly to an isolated HEAD snapshot and passes the experiment-owned hidden evaluator",
+    "subject_acceptance": "both source owners sign the exact lifecycle contract; B may veto the patch rationale",
+    "final_acceptance": "target adoption plus subject acceptance; either alone is insufficient"
+  },
+  "causal_pressure": {
+    "primary": "paired same-task static, central, and direct-A2A runs",
+    "ablation": "remove adaptive interaction",
+    "independent_oracle": "compare behavior and missing surfaces with preexisting unmerged commit only after outputs freeze",
+    "not_randomized": true,
+    "causal_grade_ceiling": "quasi-causal local mechanism support"
+  },
+  "costs": [
+    "input_tokens",
+    "output_tokens",
+    "model_cost_usd",
+    "wall_clock_seconds",
+    "model_calls",
+    "disclosed_fields",
+    "human_interventions",
+    "verification_seconds",
+    "rework",
+    "recovery"
+  ],
+  "stopping_rules": [
+    "all three conditions have frozen outputs and deterministic adoption results",
+    "at least one independent review or oracle comparison is complete",
+    "or a real model/auth/runtime blocker prevents calls after one bounded diagnostic"
+  ]
+}

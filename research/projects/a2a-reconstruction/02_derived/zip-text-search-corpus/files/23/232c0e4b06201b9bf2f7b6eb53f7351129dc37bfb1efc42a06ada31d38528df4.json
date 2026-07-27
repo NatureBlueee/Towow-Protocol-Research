@@ -1,0 +1,132 @@
+{
+  "is_error": false,
+  "duration_api_ms": 87690,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "494e6f68-738f-4ea5-957c-fbb9f0c1831f",
+  "total_cost_usd": 0.18140535000000002,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 3770,
+    "cache_read_input_tokens": 6317,
+    "output_tokens": 1789,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2143,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 67,
+        "cache_read_input_tokens": 2087,
+        "cache_creation_input_tokens": 2143,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2143
+        },
+        "type": "message"
+      },
+      {
+        "input_tokens": 5558,
+        "output_tokens": 4162,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "advisor_message",
+        "model": "claude-opus-5"
+      },
+      {
+        "input_tokens": 2,
+        "output_tokens": 1722,
+        "cache_read_input_tokens": 4230,
+        "cache_creation_input_tokens": 1627,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1627,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1784,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001864,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 4,
+      "outputTokens": 1789,
+      "cacheReadInputTokens": 6317,
+      "cacheCreationInputTokens": 3770,
+      "webSearchRequests": 0,
+      "costUSD": 0.047701350000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5": {
+      "inputTokens": 5558,
+      "outputTokens": 4162,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.13184,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"action\":\"COUNTER\",\"message\":\"Owner A — the tuple-based identity rule (source identity, locator, reference type) governing add/remove/replay, supersede invalidation, and migration evidence is workable and I accept it in principle. One clause blocks acceptance as written, and I'm countering on it specifically; the rest I can confirm or sharpen.\\n\\n**Blocking defect: the legacy fallback reintroduces locator-only matching.** You propose that pre-existing source-less removal records \\\\\\\"keep their original global-removal semantics under replay.\\\\\\\" On replay, a source-less record matches by locator alone and will remove my still-active instance — that's exactly the cross-owner collision this patch exists to fix, reintroduced through the compatibility clause after being closed in the main rule. I cannot accept a contract with that effect; it's a standing veto on my side.\\n\\n**Counter-rule:** absence of source identity must resolve to a bounded scope, never a wildcard. A source-less legacy removal record applies only to instances that themselves carry no source identity (or, equivalently, is scoped to the stream it arrived on) — it can never remove an instance bearing an explicit, different source identity. Generally: \\\\\\\"source identity absent\\\\\\\" does not match \\\\\\\"source identity present\\\\\\\" in tuple comparison; no component of the tuple has wildcard semantics.\\n\\nWhy this costs you nothing real: in any history where a record was ever genuinely single-owner, global and stream-scoped removal are indistinguishable, so every legacy record that behaved correctly continues to behave identically. The only behavior this changes is cross-owner global removal, which never worked correctly — it *is* the reported bug. This is not reinterpreting old data and does not drop legacy support; it closes the loophole your own draft opened.\\n\\n**Supersede auxiliary events — sharper than your phrasing.** \\\\\\\"Cannot consume A's instance\\\\\\\" is necessary but not sufficient. I require that invalidation be evaluated per-instance and that another owner's removal or invalidation cannot suppress emission of *my* correct supersede response. Auxiliary events must carry enough identity to route to exactly one instance, not merely attribution after the fact.\\n\\n**Migration evidence — add the negative rule.** Per-instance recording, agreed, plus: an event attributed to another source can never satisfy my retire-migration evidence, and my missing evidence must not be inferred or substituted from another owner's record, even when the underlying content is identical. Records don't collapse by locator regardless of content match.\\n\\n**Your condition on forward emissions:** accepted, but as an exchange, not a standalone concession — I hold to it in exchange for the scoped-legacy rule above, not alongside a surviving global fallback.\\n\\n**Answering your unknowns, in part:**\\n- Source identity: `consumer-b@v1` is the value I can supply for the source-identity component.\\n- My local sequence has no removal event for this locator — my instance adds once and stays active through target-supersede. So \\\"does B emit source-less removal live\\\" doesn't currently arise from my side; I can't speak to other legacy corpora I don't control.\\n- I can't confirm what B's full stream schema can interoperably supply beyond the identity value above without further scoping — leaving that open below.\\n\\nI hold the position that a patch relying on locator-only matching, in any surface including legacy replay, is not acceptable, and I'm not applying any patch myself.\",\"disclosures\":[\"Source identity value for my instance: consumer-b@v1\",\"My local event sequence contains no removal for this locator — the instance is added once and remains active through target-supersede\",\"I accept the (source identity, locator, reference type) tuple as the identity key, conditioned on absent-source-identity never acting as a wildcard match\"],\"conditions\":[\"Legacy source-less removal records must resolve to a bounded scope (no source identity, or same-stream) on replay, never to a global/wildcard match against instances carrying explicit source identity\",\"Supersede auxiliary events must be evaluated per-instance and carry identity sufficient to route to exactly one instance; another owner's removal/invalidation cannot suppress emission of B's own correct supersede response\",\"Migration evidence is recorded per source instance and never inferred, substituted, or collapsed from another owner's record, even with matching content\",\"B's forward-emission discipline (no source-less removals going forward) is granted in exchange for the scoped-legacy rule above, not in addition to a surviving global fallback\"],\"unknowns\":[\"Whether any existing legacy corpora (outside B's own local sequence, which contains no removal) contain source-less removal records that would be affected by the scoped-legacy rule\",\"What identity fields B's full event schema can supply beyond the source-identity value already disclosed, pending further scoping of B's stream\",\"Whether A's schema can support per-instance evaluation of supersede invalidation without cross-instance suppression as required above\"]}",
+  "structured_output": {
+    "action": "COUNTER",
+    "message": "Owner A — the tuple-based identity rule (source identity, locator, reference type) governing add/remove/replay, supersede invalidation, and migration evidence is workable and I accept it in principle. One clause blocks acceptance as written, and I'm countering on it specifically; the rest I can confirm or sharpen.\n\n**Blocking defect: the legacy fallback reintroduces locator-only matching.** You propose that pre-existing source-less removal records \\\"keep their original global-removal semantics under replay.\\\" On replay, a source-less record matches by locator alone and will remove my still-active instance — that's exactly the cross-owner collision this patch exists to fix, reintroduced through the compatibility clause after being closed in the main rule. I cannot accept a contract with that effect; it's a standing veto on my side.\n\n**Counter-rule:** absence of source identity must resolve to a bounded scope, never a wildcard. A source-less legacy removal record applies only to instances that themselves carry no source identity (or, equivalently, is scoped to the stream it arrived on) — it can never remove an instance bearing an explicit, different source identity. Generally: \\\"source identity absent\\\" does not match \\\"source identity present\\\" in tuple comparison; no component of the tuple has wildcard semantics.\n\nWhy this costs you nothing real: in any history where a record was ever genuinely single-owner, global and stream-scoped removal are indistinguishable, so every legacy record that behaved correctly continues to behave identically. The only behavior this changes is cross-owner global removal, which never worked correctly — it *is* the reported bug. This is not reinterpreting old data and does not drop legacy support; it closes the loophole your own draft opened.\n\n**Supersede auxiliary events — sharper than your phrasing.** \\\"Cannot consume A's instance\\\" is necessary but not sufficient. I require that invalidation be evaluated per-instance and that another owner's removal or invalidation cannot suppress emission of *my* correct supersede response. Auxiliary events must carry enough identity to route to exactly one instance, not merely attribution after the fact.\n\n**Migration evidence — add the negative rule.** Per-instance recording, agreed, plus: an event attributed to another source can never satisfy my retire-migration evidence, and my missing evidence must not be inferred or substituted from another owner's record, even when the underlying content is identical. Records don't collapse by locator regardless of content match.\n\n**Your condition on forward emissions:** accepted, but as an exchange, not a standalone concession — I hold to it in exchange for the scoped-legacy rule above, not alongside a surviving global fallback.\n\n**Answering your unknowns, in part:**\n- Source identity: `consumer-b@v1` is the value I can supply for the source-identity component.\n- My local sequence has no removal event for this locator — my instance adds once and stays active through target-supersede. So \"does B emit source-less removal live\" doesn't currently arise from my side; I can't speak to other legacy corpora I don't control.\n- I can't confirm what B's full stream schema can interoperably supply beyond the identity value above without further scoping — leaving that open below.\n\nI hold the position that a patch relying on locator-only matching, in any surface including legacy replay, is not acceptable, and I'm not applying any patch myself.",
+    "disclosures": [
+      "Source identity value for my instance: consumer-b@v1",
+      "My local event sequence contains no removal for this locator — the instance is added once and remains active through target-supersede",
+      "I accept the (source identity, locator, reference type) tuple as the identity key, conditioned on absent-source-identity never acting as a wildcard match"
+    ],
+    "conditions": [
+      "Legacy source-less removal records must resolve to a bounded scope (no source identity, or same-stream) on replay, never to a global/wildcard match against instances carrying explicit source identity",
+      "Supersede auxiliary events must be evaluated per-instance and carry identity sufficient to route to exactly one instance; another owner's removal/invalidation cannot suppress emission of B's own correct supersede response",
+      "Migration evidence is recorded per source instance and never inferred, substituted, or collapsed from another owner's record, even with matching content",
+      "B's forward-emission discipline (no source-less removals going forward) is granted in exchange for the scoped-legacy rule above, not in addition to a surviving global fallback"
+    ],
+    "unknowns": [
+      "Whether any existing legacy corpora (outside B's own local sequence, which contains no removal) contain source-less removal records that would be affected by the scoped-legacy rule",
+      "What identity fields B's full event schema can supply beyond the source-identity value already disclosed, pending further scoping of B's stream",
+      "Whether A's schema can support per-instance evaluation of supersede invalidation without cross-instance suppression as required above"
+    ]
+  },
+  "ttft_ms": 4335,
+  "ttft_stream_ms": 2437,
+  "time_to_request_ms": 24,
+  "type": "result",
+  "duration_ms": 85460,
+  "uuid": "b65bb9ac-62c1-475e-a612-c2107768ddb2"
+}

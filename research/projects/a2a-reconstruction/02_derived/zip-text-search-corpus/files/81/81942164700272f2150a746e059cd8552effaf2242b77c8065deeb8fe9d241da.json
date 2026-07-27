@@ -1,0 +1,199 @@
+{
+  "run_id": "r5-run-004-sovereign-workspace",
+  "research_question": "Can OS-enforced local subjects complete and validate the actual packet audit while the runtime coordinator cannot read declared private files, and is the path worth its cost relative to centralized access?",
+  "objective": {
+    "original": "Compare static, centralized, bounded-sovereign, and tampered paths on one unchanged real local data task.",
+    "version_id": "objective-r5-local-v1",
+    "critical_value_dimensions": [
+      "unchanged audit goal",
+      "declared private file confidentiality",
+      "separate attribution",
+      "tamper refusal",
+      "coordination cost visibility",
+      "no overclaim beyond boundary coverage"
+    ],
+    "revisions": []
+  },
+  "reality_level": "E3",
+  "started_at": "2026-07-24T12:49:00Z",
+  "ended_at": "2026-07-24T12:54:09Z",
+  "status": "completed",
+  "workspace": {
+    "repo_root": "/Users/nature/通爻协议研究",
+    "baseline_commit": "UNBORN:null",
+    "final_commit": null,
+    "branch_or_worktree": "research/towow-r5-20260724-local"
+  },
+  "subjects": [
+    {
+      "id": "producer",
+      "process": "sandbox-exec Python role",
+      "private_resources": [
+        "synthetic canary",
+        "Ed25519 private key"
+      ]
+    },
+    {
+      "id": "validator",
+      "process": "sandbox-exec Python role",
+      "private_resources": [
+        "synthetic canary",
+        "Ed25519 private key",
+        "acceptance policy"
+      ]
+    },
+    {
+      "id": "coordinator",
+      "process": "sandbox-exec Python role",
+      "denied_resources": [
+        "producer and validator declared private files",
+        "packet baseline CSV"
+      ]
+    }
+  ],
+  "sovereignty": {
+    "classification": "partial_sovereign",
+    "enforcement": "macOS sandbox-exec literal file-read and file-write denies on canonical paths",
+    "successful_attempt": "attempt3-canonical-path",
+    "trusted_test_controller_omniscient": true,
+    "no_omniscient_runtime_fallback": true,
+    "dynamic_private_files_covered": false,
+    "directory_listing_confidentiality_tested": false
+  },
+  "strategies": [
+    {
+      "name": "static capability cards",
+      "role": "discovery-only baseline",
+      "budget": null
+    },
+    {
+      "name": "centralized omniscient process",
+      "role": "strong simple baseline",
+      "budget": null
+    },
+    {
+      "name": "signed bounded-sovereign process flow",
+      "role": "privacy/attribution strategy",
+      "budget": {
+        "processes": 4
+      }
+    },
+    {
+      "name": "post-signature tamper",
+      "role": "adversarial intervention",
+      "budget": null
+    }
+  ],
+  "interventions": [
+    {
+      "attempt": 1,
+      "change": "directory subpath deny",
+      "result": "failed boundary probes"
+    },
+    {
+      "attempt": 2,
+      "change": "literal file deny",
+      "result": "failed because /var display path did not match /private/var kernel path"
+    },
+    {
+      "attempt": 3,
+      "change": "canonicalize temporary root before compiling literal policy",
+      "result": "all declared coordinator and cross-subject probes denied"
+    },
+    {
+      "name": "tamper report after producer signature",
+      "result": "validator refused invalid producer signature"
+    }
+  ],
+  "holdout_design": {
+    "tamper_case": "report reachable count changed after producer signature",
+    "boundary_replay": "same task and roles; only policy-path representation changed between attempts"
+  },
+  "models_agents_tools": [
+    {
+      "agent": "/root",
+      "model": "gpt-5.6-sol",
+      "role_processes": "deterministic Python 3.9.6",
+      "isolation": "/usr/bin/sandbox-exec",
+      "signature": "cryptography 46.0.3 Ed25519"
+    }
+  ],
+  "costs": {
+    "api_cost": 0,
+    "external_calls": 0,
+    "observed_approval_gates_before_success": 6,
+    "observed_lab_attempts": 3,
+    "observed_total_lab_processes": 27,
+    "observed_total_lab_process_ms": 7663.998,
+    "successful_central_process_ms": 247.222,
+    "successful_sovereign_process_ms": 1123.066,
+    "successful_runtime_process_time_ratio": 4.542742959768953
+  },
+  "human_interventions": [
+    {
+      "type": "authorization",
+      "count_in_this_run": 3,
+      "total_formation_and_run_gates": 6
+    }
+  ],
+  "results": {
+    "static_profile_accepted": false,
+    "static_profile_status": "unknown",
+    "centralized_accepted": true,
+    "centralized_declared_private_exposure": true,
+    "partial_sovereign_accepted": true,
+    "partial_sovereign_declared_private_or_packet_read_allowed": false,
+    "tampered_accepted": false,
+    "tamper_reason": "invalid_producer_signature",
+    "exact_report_hash_matched_in_honest_run": true,
+    "centralized_is_lower_cost_without_privacy_value": true
+  },
+  "failures": [
+    {
+      "attempt": 1,
+      "classification": "boundary_bypass"
+    },
+    {
+      "attempt": 2,
+      "classification": "resource_identity_mismatch"
+    }
+  ],
+  "claim_updates": [
+    {
+      "claim_id": "R5-LOCAL-C06",
+      "status": "supported",
+      "claim": "BoundaryPolicy correctness depends on canonical OS resource identity; syntactically valid deny text failed until /var was resolved to /private/var."
+    },
+    {
+      "claim_id": "R5-LOCAL-C07",
+      "status": "qualified",
+      "claim": "A bounded literal-file sovereign flow can preserve declared private files and reject post-signature tampering on the actual packet audit, but is 4.54x the central process time and is not full private-world sovereignty."
+    }
+  ],
+  "evidence_paths": [
+    "outputs/summary.json",
+    "outputs/records.json",
+    "attempt2-literal-deny/outputs/summary.json",
+    "attempt2-literal-deny/outputs/records.json",
+    "attempt3-canonical-path/outputs/summary.json",
+    "attempt3-canonical-path/outputs/records.json",
+    "outputs/observed_cost_and_classification_correction.json",
+    "analysis.md",
+    "failures/"
+  ],
+  "commands": [
+    {
+      "command": "sovereign_workspace_lab.py attempt 1 (outside sandbox after approval)",
+      "exit_code": 0
+    },
+    {
+      "command": "sovereign_workspace_lab.py attempt 2 literal deny (outside sandbox after approval)",
+      "exit_code": 0
+    },
+    {
+      "command": "sovereign_workspace_lab.py attempt 3 canonical path (outside sandbox after approval)",
+      "exit_code": 0
+    }
+  ],
+  "external_effects": []
+}

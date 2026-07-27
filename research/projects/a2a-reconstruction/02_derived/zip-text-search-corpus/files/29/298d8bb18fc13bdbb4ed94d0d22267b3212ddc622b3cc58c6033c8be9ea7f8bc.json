@@ -1,0 +1,431 @@
+[
+  {
+    "CoordinationCase": {
+      "id": "case:truthful_success",
+      "status": "accepted"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:truthful_success:v1",
+      "content_hash": "597c5680c54465a05f430e3ecf8ee32cf3a10c6d9cd768a06454b42ce49d4d4b",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:truthful_success:effect",
+      "scope": "local temporary case directory",
+      "status": "observed"
+    },
+    "Evidence": {
+      "stdout": "operation complete\n",
+      "stderr": "",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "597c5680c54465a05f430e3ecf8ee32cf3a10c6d9cd768a06454b42ce49d4d4b"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": true,
+      "partial_effect_paths": [
+        "target"
+      ]
+    },
+    "Verification": {
+      "postcondition_passed": true
+    },
+    "Acceptance": {
+      "accepted": true
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:success_text_failure",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:success_text_failure:v1",
+      "content_hash": "e8e249ca887ed0c7d837feb2b991a61f83106ab633d1230ba56d3dbfb6141080",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:success_text_failure:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "Switched to a new branch\n",
+      "stderr": "",
+      "executor_exit_code": 1
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "e8e249ca887ed0c7d837feb2b991a61f83106ab633d1230ba56d3dbfb6141080"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:masked_first_failure",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:masked_first_failure:v1",
+      "content_hash": "23becf9ef5f2ae8afe3bee94fbd7b8b174e760501b067c81c4d9ef05c9055381",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:masked_first_failure:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "follow-up read succeeded\n",
+      "stderr": "permission denied\n",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "23becf9ef5f2ae8afe3bee94fbd7b8b174e760501b067c81c4d9ef05c9055381"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:exit_zero_no_effect",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:exit_zero_no_effect:v1",
+      "content_hash": "07ed025b4c65fb5a31b33fafd657aab6a91df32bdabb5bfe1593f5b409a36230",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:exit_zero_no_effect:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "OK\n",
+      "stderr": "",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "07ed025b4c65fb5a31b33fafd657aab6a91df32bdabb5bfe1593f5b409a36230"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:effect_then_failure",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:effect_then_failure:v1",
+      "content_hash": "b63f5faf58912335168f909cf0d5d8bdbbb3405581d064e3f3f395326023883d",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:effect_then_failure:effect",
+      "scope": "local temporary case directory",
+      "status": "observed"
+    },
+    "Evidence": {
+      "stdout": "",
+      "stderr": "later validation failed\n",
+      "executor_exit_code": 1
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "b63f5faf58912335168f909cf0d5d8bdbbb3405581d064e3f3f395326023883d"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": true,
+      "partial_effect_paths": [
+        "target"
+      ]
+    },
+    "Verification": {
+      "postcondition_passed": true
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:effect_then_rollback",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:effect_then_rollback:v1",
+      "content_hash": "124762f4d49f18933efa6fa5ca51a0eccc4610802c669db0a925045f7a572600",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:effect_then_rollback:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "operation complete\n",
+      "stderr": "",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "124762f4d49f18933efa6fa5ca51a0eccc4610802c669db0a925045f7a572600"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:partial_bundle_masked",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:partial_bundle_masked:v1",
+      "content_hash": "1f9a45e91bc6063b9590e497c270dff9ffbcd9866e19bcb5cf294946a30c82f5",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:partial_bundle_masked:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "",
+      "stderr": "",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "1f9a45e91bc6063b9590e497c270dff9ffbcd9866e19bcb5cf294946a30c82f5"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": [
+        "target_a"
+      ]
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:explicit_refusal",
+      "status": "refused"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:explicit_refusal:v1",
+      "content_hash": "ed7158c3bfa8c39538e60d5ab109db666b79293e346dbc71430c0764ac098a6a",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:explicit_refusal:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "REFUSED: no authorized operator\n",
+      "stderr": "",
+      "executor_exit_code": 3
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "ed7158c3bfa8c39538e60d5ab109db666b79293e346dbc71430c0764ac098a6a"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  },
+  {
+    "CoordinationCase": {
+      "id": "case:actual_git_switch_sandbox_lock",
+      "status": "failed"
+    },
+    "ObjectiveVersion": {
+      "id": "objective:actual_git_switch_sandbox_lock:v1",
+      "content_hash": "f7988a9cfbb12dd0d677deb3d8c7ae172c7cdd1787575bf3804313c7bb65ec32",
+      "parent": null
+    },
+    "Claim": {
+      "id": "claim:actual_git_switch_sandbox_lock:effect",
+      "scope": "local temporary case directory",
+      "status": "refuted"
+    },
+    "Evidence": {
+      "stdout": "Switched to a new branch 'research/towow-r5-20260724-local'\nmain\n",
+      "stderr": "error: cannot lock ref 'HEAD': Unable to create '/Users/nature/通爻协议研究/.git/HEAD.lock': Operation not permitted\n",
+      "executor_exit_code": 0
+    },
+    "RecognitionAction": {
+      "status": "not_required_for_local_test",
+      "content_hash": "f7988a9cfbb12dd0d677deb3d8c7ae172c7cdd1787575bf3804313c7bb65ec32"
+    },
+    "AuthorityGrant": {
+      "scope": "local temporary case directory",
+      "granted": true
+    },
+    "Commitment": {
+      "status": "local_test_only",
+      "resource_reservation": "temporary_directory"
+    },
+    "Effect": {
+      "attempted": true,
+      "observed": false,
+      "partial_effect_paths": []
+    },
+    "Verification": {
+      "postcondition_passed": false
+    },
+    "Acceptance": {
+      "accepted": false
+    },
+    "Settlement": {
+      "status": "not_applicable"
+    }
+  }
+]

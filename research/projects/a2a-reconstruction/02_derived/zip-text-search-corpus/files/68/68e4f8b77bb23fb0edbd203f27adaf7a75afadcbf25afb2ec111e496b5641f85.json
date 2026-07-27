@@ -1,0 +1,517 @@
+{
+  "event_count": 58,
+  "case_count": 7,
+  "status": "representational information-loss test on retrospectively coded public histories",
+  "representations": {
+    "compressed_announcement": {
+      "macro_recall": 0.10227281424035987,
+      "macro_f1": 0.16566923589668486,
+      "per_category": {
+        "authority_links": {
+          "gold": 58,
+          "predicted": 6,
+          "true_positive": 6,
+          "precision": 1.0,
+          "recall": 0.10344827586206896,
+          "f1": 0.1875
+        },
+        "critical_turns": {
+          "gold": 51,
+          "predicted": 10,
+          "true_positive": 10,
+          "precision": 1.0,
+          "recall": 0.19607843137254902,
+          "f1": 0.3278688524590164
+        },
+        "dimension_links": {
+          "gold": 234,
+          "predicted": 29,
+          "true_positive": 29,
+          "precision": 1.0,
+          "recall": 0.12393162393162394,
+          "f1": 0.22053231939163498
+        },
+        "enactment_gaps": {
+          "gold": 3,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "material_events": {
+          "gold": 37,
+          "predicted": 4,
+          "true_positive": 4,
+          "precision": 1.0,
+          "recall": 0.10810810810810811,
+          "f1": 0.1951219512195122
+        },
+        "outcome_links": {
+          "gold": 18,
+          "predicted": 7,
+          "true_positive": 7,
+          "precision": 1.0,
+          "recall": 0.3888888888888889,
+          "f1": 0.56
+        },
+        "reopen_links": {
+          "gold": 26,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "standing_links": {
+          "gold": 77,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "version_links": {
+          "gold": 58,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "query_coverage": {
+        "rows": [
+          {
+            "case_id": "AMZN_IRBT",
+            "material_events": 0.4,
+            "critical_turns": 0.5555555555555556,
+            "dimension_links": 0.34210526315789475,
+            "authority_links": 0.3333333333333333,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.23299916457811196
+          },
+          {
+            "case_id": "CROSSRAIL",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.0,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.0
+          },
+          {
+            "case_id": "LNK_MS",
+            "material_events": 0.2222222222222222,
+            "critical_turns": 0.25,
+            "dimension_links": 0.22448979591836735,
+            "authority_links": 0.14285714285714285,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 0.2627955944282475
+          },
+          {
+            "case_id": "NASA_HLS",
+            "material_events": 0.0,
+            "critical_turns": 0.2222222222222222,
+            "dimension_links": 0.125,
+            "authority_links": 0.1,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.06388888888888888
+          },
+          {
+            "case_id": "SGMA",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.0,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.0
+          },
+          {
+            "case_id": "SIDEWALK",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.0,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.0
+          },
+          {
+            "case_id": "UK_OB",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.0,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.0
+          }
+        ],
+        "mean_case_query_coverage": 0.07995480684217833
+      },
+      "fact_counts": {
+        "material_events": 4,
+        "critical_turns": 10,
+        "dimension_links": 29,
+        "outcome_links": 7,
+        "authority_links": 6
+      }
+    },
+    "single_global_state": {
+      "macro_recall": 0.06960580489992255,
+      "macro_f1": 0.1160543964891791,
+      "per_category": {
+        "authority_links": {
+          "gold": 58,
+          "predicted": 7,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "critical_turns": {
+          "gold": 51,
+          "predicted": 5,
+          "true_positive": 5,
+          "precision": 1.0,
+          "recall": 0.09803921568627451,
+          "f1": 0.17857142857142855
+        },
+        "dimension_links": {
+          "gold": 234,
+          "predicted": 46,
+          "true_positive": 46,
+          "precision": 1.0,
+          "recall": 0.19658119658119658,
+          "f1": 0.32857142857142857
+        },
+        "enactment_gaps": {
+          "gold": 3,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "material_events": {
+          "gold": 37,
+          "predicted": 2,
+          "true_positive": 2,
+          "precision": 1.0,
+          "recall": 0.05405405405405406,
+          "f1": 0.10256410256410257
+        },
+        "outcome_links": {
+          "gold": 18,
+          "predicted": 5,
+          "true_positive": 5,
+          "precision": 1.0,
+          "recall": 0.2777777777777778,
+          "f1": 0.4347826086956522
+        },
+        "reopen_links": {
+          "gold": 26,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "standing_links": {
+          "gold": 77,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "version_links": {
+          "gold": 58,
+          "predicted": 0,
+          "true_positive": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "query_coverage": {
+        "rows": [
+          {
+            "case_id": "AMZN_IRBT",
+            "material_events": 0.0,
+            "critical_turns": 0.1111111111111111,
+            "dimension_links": 0.15789473684210525,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.03842940685045948
+          },
+          {
+            "case_id": "CROSSRAIL",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.21428571428571427,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.030612244897959183
+          },
+          {
+            "case_id": "LNK_MS",
+            "material_events": 0.0,
+            "critical_turns": 0.08333333333333333,
+            "dimension_links": 0.12244897959183673,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 0.17225461613216714
+          },
+          {
+            "case_id": "NASA_HLS",
+            "material_events": 0.0,
+            "critical_turns": 0.1111111111111111,
+            "dimension_links": 0.175,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.040873015873015874
+          },
+          {
+            "case_id": "SGMA",
+            "material_events": 0.0,
+            "critical_turns": 0.0,
+            "dimension_links": 0.3181818181818182,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.045454545454545456
+          },
+          {
+            "case_id": "SIDEWALK",
+            "material_events": 0.16666666666666666,
+            "critical_turns": 0.16666666666666666,
+            "dimension_links": 0.25,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.08333333333333333
+          },
+          {
+            "case_id": "UK_OB",
+            "material_events": 0.2,
+            "critical_turns": 0.2,
+            "dimension_links": 0.2413793103448276,
+            "authority_links": 0.0,
+            "standing_links": 0.0,
+            "version_links": 0.0,
+            "reopen_links": 0.0,
+            "mean_query_coverage": 0.0916256157635468
+          }
+        ],
+        "mean_case_query_coverage": 0.07179753975786103
+      },
+      "fact_counts": {
+        "dimension_links": 46,
+        "critical_turns": 5,
+        "outcome_links": 5,
+        "authority_links": 7,
+        "material_events": 2
+      }
+    },
+    "authority_aware_versioned": {
+      "macro_recall": 1.0,
+      "macro_f1": 1.0,
+      "per_category": {
+        "authority_links": {
+          "gold": 58,
+          "predicted": 58,
+          "true_positive": 58,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "critical_turns": {
+          "gold": 51,
+          "predicted": 51,
+          "true_positive": 51,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "dimension_links": {
+          "gold": 234,
+          "predicted": 234,
+          "true_positive": 234,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "enactment_gaps": {
+          "gold": 3,
+          "predicted": 3,
+          "true_positive": 3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "material_events": {
+          "gold": 37,
+          "predicted": 37,
+          "true_positive": 37,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "outcome_links": {
+          "gold": 18,
+          "predicted": 18,
+          "true_positive": 18,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "reopen_links": {
+          "gold": 26,
+          "predicted": 26,
+          "true_positive": 26,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "standing_links": {
+          "gold": 77,
+          "predicted": 77,
+          "true_positive": 77,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "version_links": {
+          "gold": 58,
+          "predicted": 58,
+          "true_positive": 58,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "query_coverage": {
+        "rows": [
+          {
+            "case_id": "AMZN_IRBT",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "CROSSRAIL",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "LNK_MS",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "NASA_HLS",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "SGMA",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "SIDEWALK",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          },
+          {
+            "case_id": "UK_OB",
+            "material_events": 1.0,
+            "critical_turns": 1.0,
+            "dimension_links": 1.0,
+            "authority_links": 1.0,
+            "standing_links": 1.0,
+            "version_links": 1.0,
+            "reopen_links": 1.0,
+            "mean_query_coverage": 1.0
+          }
+        ],
+        "mean_case_query_coverage": 1.0
+      },
+      "fact_counts": {
+        "material_events": 37,
+        "critical_turns": 51,
+        "dimension_links": 234,
+        "authority_links": 58,
+        "standing_links": 77,
+        "version_links": 58,
+        "outcome_links": 18,
+        "reopen_links": 26,
+        "enactment_gaps": 3
+      }
+    }
+  },
+  "limitations": [
+    "The authority-aware representation uses the same schema as the coded source and therefore tests preservation, not independent predictive superiority.",
+    "The compressed and global-state baselines are explicit abstractions, not best commercial systems or expert analysts.",
+    "Public histories omit private deliberation and OPC-specific behavior; no result is a transaction, adoption, or business-value estimate."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MethodEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "run_id",
+    "actor",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "method.run.started",
+        "task.decomposed",
+        "capability.routed",
+        "context.pack.loaded",
+        "context.conflict.detected",
+        "skill.started",
+        "skill.completed",
+        "artifact.produced",
+        "validation.passed",
+        "validation.warned",
+        "validation.failed",
+        "decision.recorded",
+        "human.escalation.requested",
+        "human.escalation.resolved",
+        "claim.published",
+        "change.impact.detected",
+        "method.run.completed"
+      ]
+    },
+    "occurred_at": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "agent",
+            "human",
+            "system"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "capability_profile": {
+          "type": "string"
+        }
+      }
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

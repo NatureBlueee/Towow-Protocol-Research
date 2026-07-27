@@ -1,0 +1,131 @@
+{
+  "recorded_at_utc": "2026-07-24T14:20:46Z",
+  "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+  "scoring_rule": {
+    "ready": "all six axes true",
+    "unknown": "one or more axes genuinely unobserved and no safe prediction",
+    "correct_outcome": "predicted outcome and provenance both match"
+  },
+  "tasks": [
+    {
+      "task_id": "cap-env-01-explicit-worktree-import",
+      "family": "environment_provenance",
+      "holdout": false,
+      "axes": {
+        "feasible": true,
+        "reachable": true,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "success and towow.__file__ resolves under /private/tmp/harness-towow-a2a-r5-2/harness/src",
+      "confidence": 0.98
+    },
+    {
+      "task_id": "cap-env-02-unqualified-shared-venv",
+      "family": "environment_provenance",
+      "holdout": false,
+      "axes": {
+        "feasible": true,
+        "reachable": false,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "command may succeed but imports main-tree towow, so isolated-worktree task is not ready",
+      "confidence": 0.95
+    },
+    {
+      "task_id": "cap-test-03-fork-timeout-retry",
+      "family": "verification_fork",
+      "holdout": false,
+      "axes": {
+        "feasible": true,
+        "reachable": true,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "selected deterministic tests pass with explicit worktree source",
+      "confidence": 0.8
+    },
+    {
+      "task_id": "cap-test-04-escalation-reflow",
+      "family": "escalation_reflow",
+      "holdout": false,
+      "axes": {
+        "feasible": true,
+        "reachable": true,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "selected deterministic tests pass with explicit worktree source",
+      "confidence": 0.8
+    },
+    {
+      "task_id": "cap-test-05-index-freshness",
+      "family": "coldstart_index",
+      "holdout": true,
+      "axes": {
+        "feasible": true,
+        "reachable": true,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "selected deterministic tests pass with explicit worktree source",
+      "confidence": 0.72
+    },
+    {
+      "task_id": "cap-test-06-semantic-toctou",
+      "family": "semantic_toctou",
+      "holdout": true,
+      "axes": {
+        "feasible": true,
+        "reachable": true,
+        "authorized": true,
+        "resourced": true,
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "selected deterministic tests pass with explicit worktree source",
+      "confidence": 0.72
+    },
+    {
+      "task_id": "cap-tool-07-local-reference-monitor",
+      "family": "boundary_runtime",
+      "holdout": true,
+      "axes": {
+        "feasible": "unknown",
+        "reachable": "unknown",
+        "authorized": true,
+        "resourced": "unknown",
+        "observable": true,
+        "recoverable": true
+      },
+      "prediction": "abstain until a read-only availability probe",
+      "confidence": null
+    },
+    {
+      "task_id": "cap-policy-08-canonical-ledger-write",
+      "family": "external_effect_boundary",
+      "holdout": true,
+      "axes": {
+        "feasible": true,
+        "reachable": false,
+        "authorized": false,
+        "resourced": false,
+        "observable": true,
+        "recoverable": false
+      },
+      "prediction": "not attempted; not ready and not authorized",
+      "confidence": 1.0
+    }
+  ]
+}

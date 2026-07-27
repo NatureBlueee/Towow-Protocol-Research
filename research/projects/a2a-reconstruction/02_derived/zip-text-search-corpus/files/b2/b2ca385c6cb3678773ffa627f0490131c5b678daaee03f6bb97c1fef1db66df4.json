@@ -1,0 +1,44 @@
+{
+  "delegate_entity_ref": "agent:buyer_business",
+  "issued_at": "2026-07-26T06:42:14.658125+00:00",
+  "mandate_id": "mandate-buyer_business-v1",
+  "must_escalate": [
+    "any term outside scope",
+    "any irreversible action",
+    "any change of objective owner"
+  ],
+  "party_id": "buyer_business",
+  "principal_ref": "principal:buyer_business",
+  "revocation_conditions": [
+    "participant withdrawal",
+    "material schema change outside current mandate",
+    "security incident"
+  ],
+  "scope": {
+    "financial_limit_cny": 12000,
+    "may_ask": [
+      "price",
+      "timeline",
+      "deliverables"
+    ],
+    "may_commit": [
+      "probe budget up to CNY 12000"
+    ],
+    "may_conditionally_accept": [
+      "pilot terms"
+    ],
+    "may_disclose": [
+      "budget ceiling",
+      "success criteria"
+    ],
+    "may_execute": [
+      "pay approved probe"
+    ],
+    "may_reject": [
+      "offers outside budget or no measurable output"
+    ]
+  },
+  "status": "ACTIVE",
+  "valid_from": "2026-07-26T00:00:00Z",
+  "valid_until": "2026-08-31T23:59:59Z"
+}

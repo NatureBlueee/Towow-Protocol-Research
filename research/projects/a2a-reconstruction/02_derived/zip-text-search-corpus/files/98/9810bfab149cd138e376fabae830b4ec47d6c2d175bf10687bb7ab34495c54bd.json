@@ -1,0 +1,280 @@
+{
+  "case_id": "microsoft_linkedin",
+  "title": "Microsoft acquisition of LinkedIn",
+  "domain": "public-company merger and acquisition",
+  "period": "2016",
+  "outcome": "COMPLETED",
+  "research_role": "mature institutional frame / CollapseSafe comparator",
+  "coding_status": "single_coder_provisional",
+  "case_selection_rationale": "A high-value, nontrivial relation was coordinated through a mature legal, board, advisor, disclosure and regulatory frame. It is a negative case against assuming that complexity requires Towow-style open formation.",
+  "source_ids": [
+    "ML-01",
+    "ML-02",
+    "ML-03"
+  ],
+  "evidence_coverage": {
+    "source_proximity": 2,
+    "process_granularity": 2,
+    "authority_visibility": 2,
+    "effect_observability": 2,
+    "participant_voice_coverage": 0,
+    "counterfactual_support": 1,
+    "triangulation": 2,
+    "selection_bias_risk": "medium"
+  },
+  "initial_relation_frame": {
+    "frame_scope": "mature_institutional_m_and_a_frame",
+    "R": "Boards, transaction committee, CEOs, controlling shareholder, advisors, competing bidders, shareholders and regulators.",
+    "V": "Strategic alternatives, bid, cash/share consideration, exclusivity, antitrust obligations, termination fee, superior proposal, board recommendation and closing.",
+    "T": "Explore alternatives → bids/diligence → exclusivity/negotiation → board approval → shareholder/regulatory conditions → closing or termination/superior proposal.",
+    "A": "Board fiduciary authority, committee/advisor process, shareholder/regulatory rights and defined CEO/executive roles.",
+    "E": "Formal bids, fairness/financial advice, board records, signed merger agreement, votes/approvals and SEC closing filing.",
+    "D": "Confidential diligence and regulated disclosure; not reconstructed in full from public records.",
+    "O": "Best value reasonably attainable, definitive agreement, conditions, superior-proposal/termination path and completed merger."
+  },
+  "authority_topology": [
+    {
+      "locus": "LinkedIn Board",
+      "powers": [
+        "evaluate alternatives",
+        "approve/recommend transaction",
+        "change recommendation under defined conditions"
+      ]
+    },
+    {
+      "locus": "Transactions Committee/advisors",
+      "powers": [
+        "conduct process, negotiate and advise; not final principal"
+      ]
+    },
+    {
+      "locus": "Microsoft Board/executives",
+      "powers": [
+        "authorize offer and agreement"
+      ]
+    },
+    {
+      "locus": "shareholders/regulators",
+      "powers": [
+        "vote/appraisal and required legal approvals"
+      ]
+    },
+    {
+      "locus": "competing bidders",
+      "powers": [
+        "submit/revise proposals; no authority over LinkedIn acceptance"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "event_id": "ML-E01",
+      "date": "2016-02/2016-03",
+      "label": "Strategic relationship discussions open multiple alternatives",
+      "event_type": "discovery",
+      "materiality": "INSTANCE_WITHIN_MATURE_FRAME",
+      "changed_components": [
+        "R",
+        "V",
+        "O"
+      ],
+      "formation_operators": [
+        "actor_enrollment"
+      ],
+      "description": "Executives discuss enhanced commercial relations and possible combinations while LinkedIn also considers standalone and other strategic alternatives.",
+      "source_ids": [
+        "ML-01"
+      ],
+      "authority_effect": "Executives can initiate exploration but not bind final acceptance.",
+      "outcome_effect": "Creates candidate paths inside an established corporate frame.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E02",
+      "date": "2016-03/2016-04",
+      "label": "Board and Transactions Committee formalize decision authority",
+      "event_type": "authority_activation",
+      "materiality": "INSTANCE_WITHIN_MATURE_FRAME",
+      "changed_components": [
+        "R",
+        "A",
+        "T",
+        "E"
+      ],
+      "formation_operators": [
+        "staged_approval",
+        "independent_challenge"
+      ],
+      "description": "The board delegates process work to a committee and advisors while retaining fiduciary approval authority.",
+      "source_ids": [
+        "ML-01"
+      ],
+      "authority_effect": "Clarifies locus and separation of recommendation from final approval.",
+      "outcome_effect": "Makes the search/negotiation process reviewable.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E03",
+      "date": "2016-04/2016-06",
+      "label": "Multiple bidders revise price and form of consideration",
+      "event_type": "negotiation",
+      "materiality": "INSTANCE_PARAMETER_CHANGE",
+      "changed_components": [
+        "V",
+        "O"
+      ],
+      "formation_operators": [
+        "countercondition"
+      ],
+      "description": "Bids and price move through multiple rounds; the central economic parameter changes inside a stable transaction grammar.",
+      "source_ids": [
+        "ML-01"
+      ],
+      "authority_effect": "No new authority locus is created by price change.",
+      "outcome_effect": "Improves terms without constituting a new institutional frame.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E04",
+      "date": "2016-05/2016-06",
+      "label": "Exclusivity and superior-proposal conditions shape negotiation path",
+      "event_type": "schema_specialization",
+      "materiality": "MATERIAL_RELATION_TERM_CHANGE",
+      "changed_components": [
+        "T",
+        "A",
+        "O"
+      ],
+      "formation_operators": [
+        "commitment_binding",
+        "scope_contraction"
+      ],
+      "description": "Exclusivity, information rights and later superior-proposal/termination provisions constrain which future negotiation paths remain valid.",
+      "source_ids": [
+        "ML-01"
+      ],
+      "authority_effect": "Board authority remains bounded by fiduciary and contract rules.",
+      "outcome_effect": "Changes the specific relation trace while staying within mature M&A meta-rules.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E05",
+      "date": "2016-06",
+      "label": "Non-price terms define risk, antitrust, termination and support obligations",
+      "event_type": "schema_specialization",
+      "materiality": "MATERIAL_RELATION_TERM_CHANGE",
+      "changed_components": [
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "countercondition",
+        "commitment_binding"
+      ],
+      "description": "The relation includes antitrust obligations, termination fees, board-recommendation changes, support agreements and conditions—not only price.",
+      "source_ids": [
+        "ML-01"
+      ],
+      "authority_effect": "Distributes risk and future decision authority.",
+      "outcome_effect": "Creates a precise executable commitment bundle.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E06",
+      "date": "2016-06-11/2016-06-13",
+      "label": "Boards approve and parties sign definitive agreement",
+      "event_type": "commitment",
+      "materiality": "MATERIAL_RELATION_CHANGE",
+      "changed_components": [
+        "A",
+        "T",
+        "O"
+      ],
+      "formation_operators": [
+        "staged_approval",
+        "commitment_binding"
+      ],
+      "description": "Authorized boards/parties approve and announce a definitive agreement at $196 per share, subject to conditions.",
+      "source_ids": [
+        "ML-01",
+        "ML-03"
+      ],
+      "authority_effect": "Converts negotiation into binding commitments by proper loci.",
+      "outcome_effect": "Moves from candidate to committed relation.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "ML-E07",
+      "date": "2016-12-08",
+      "label": "Merger closes",
+      "event_type": "operation_and_effect",
+      "materiality": "INSTANCE_EXECUTION",
+      "changed_components": [
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "compilation"
+      ],
+      "description": "The acquisition completes and shares convert under the agreement.",
+      "source_ids": [
+        "ML-02"
+      ],
+      "authority_effect": "Regulatory/company filings witness the legal effect.",
+      "outcome_effect": "Produces the target-world Effect; long-run value remains separate.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    }
+  ],
+  "operation_effect_adoption_acceptance": {
+    "operation": "Diligence, bids, negotiation, approvals and legal closing operations were performed.",
+    "effect": "LinkedIn became a wholly owned Microsoft subsidiary and shares converted at the agreed consideration.",
+    "adoption": "Boards, shareholders/regulators and corporate systems implemented the transaction.",
+    "acceptance": "Formal legal/corporate acceptance is evidenced; employee/member/social acceptance and long-run strategic value are not proved."
+  },
+  "supports": [
+    "Complexity alone does not justify an open-ended A2A formation layer.",
+    "A mature institutional frame can safely centralize advisors, data rooms and negotiation while preserving board/shareholder/regulatory authority.",
+    "Material relation terms can change without changing the higher-level institutional grammar.",
+    "CollapseSafe depends on institutional sufficiency, not on whether every term is a simple parameter."
+  ],
+  "does_not_support": [
+    "It does not show private worlds were fully represented or that all stakeholders benefited.",
+    "It does not prove an Agent could replace boards, advisors or fiduciary judgment.",
+    "Public filings cannot reconstruct all rejected alternatives or informal influence."
+  ],
+  "competing_explanations": [
+    "The transaction may have succeeded because of concentrated authority and mature law rather than any superior coordination process.",
+    "SEC disclosure is ex post and legally curated.",
+    "Long-run integration outcomes are outside the coded period."
+  ],
+  "design_delta": [
+    "Refine CollapseSafe: a relation can be safely collapsed when a legitimate institutional frame already supplies roles, authority, evidence, dispute, exit and settlement—even if deal terms are complex.",
+    "Support two resolution levels using metadata/reference, not new roots: institutional frame and relation-specific version.",
+    "Do not route mature transactions to Towow formation merely because many clauses change.",
+    "Keep legal Effect distinct from strategic/business Acceptance."
+  ],
+  "unknowns": [
+    "Private diligence facts",
+    "Employee/member preferences",
+    "Counterfactual value of competing bids",
+    "Long-run strategic acceptance"
+  ],
+  "chronology_preserving_diagnostic": {
+    "pre_outcome_material_gaps": [
+      "specific price/risk allocation",
+      "antitrust and termination obligations",
+      "approval conditions"
+    ],
+    "subsequent_observed_change": "These gaps were resolved through standard committee, board, contract and regulatory procedures.",
+    "gate_interpretation": "Once the definitive agreement and required approvals/witnesses were in place, a deterministic closing workflow was appropriate; persistent intelligent negotiation was unnecessary."
+  }
+}

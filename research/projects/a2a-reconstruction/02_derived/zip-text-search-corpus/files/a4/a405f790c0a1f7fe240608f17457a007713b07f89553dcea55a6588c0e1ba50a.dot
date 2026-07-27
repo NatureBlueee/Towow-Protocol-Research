@@ -1,0 +1,16 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.45, ranksep=0.55, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", fillcolor="#F6F7F9", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=11, margin="0.16,0.10"];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=9];
+  p1 [label="Principal A\n私有世界 / 权威 / 资源 / 拒绝权", fillcolor="#EEF6FF"];
+  p2 [label="Principal B\n私有世界 / 权威 / 资源 / 接受权", fillcolor="#EEF6FF"];
+  b1 [label="动态边界\nClaim · Evidence · Witness · Unknown"];
+  b2 [label="动态边界\nCountercondition · Local Probe · Refuse"];
+  c [label="共同协调介质\nObjectiveVersion · SharedArtifact/JAA · Stance", fillcolor="#FFF7ED"];
+  f [label="生成式形成\n发现缺口 → 创造条件 → 局部试验 → 修改方案", fillcolor="#FEF3C7"];
+  r [label="现实生效链\nRecognition → Commitment → ActionAttempt → Effect\n→ Domain Adoption → Verification → Acceptance", fillcolor="#ECFDF5"];
+  t [label="Trust / Effect Adapter\nWoWok、企业系统、平台托管、结算与争议", fillcolor="#F5F3FF"];
+  p1 -> b1; p2 -> b2; b1 -> c; b2 -> c; c -> f; f -> c [label="反例 / 修订", dir=back]; c -> r; r -> t;
+  p1 -> r [style=dashed, label="认领 / 授权"];
+  p2 -> r [style=dashed, label="采纳 / 接受"];
+}

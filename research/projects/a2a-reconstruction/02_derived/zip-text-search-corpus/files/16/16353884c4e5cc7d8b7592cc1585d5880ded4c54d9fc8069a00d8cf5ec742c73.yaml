@@ -1,0 +1,64 @@
+nodes:
+- id: summon.product.definition
+  type: DECISION
+  title: 产品定义
+  status: accepted
+  scope:
+  - summon
+  normative_level: MUST
+  statement: 召集台是 OPC 协作空间中的机会编排与可验证协作系统。
+  rationale: 避免被压缩为外包市场、项目管理工具、AI 助手或运营大屏。
+- id: summon.product.non_goal.marketplace
+  type: REQUIREMENT
+  title: 不等于通用接单市场
+  status: accepted
+  scope:
+  - summon
+  - p0
+  normative_level: MUST_NOT
+  statement: P0 不得把产品主要表达为按职位或价格撮合劳动力的通用接单市场。
+- id: summon.product.object_before_page
+  type: PRINCIPLE
+  title: 对象先于页面
+  status: accepted
+  scope:
+  - summon
+  - ui
+  normative_level: MUST
+  statement: UI 必须投影领域对象、状态、关系和后果，不得由卡片、Tab 或菜单反向发明产品本体。
+- id: summon.product.verification_not_acceptance
+  type: PRINCIPLE
+  title: 验证不等于接受
+  status: accepted
+  scope:
+  - summon
+  - verification
+  normative_level: MUST
+  statement: VerificationResult 与 AcceptanceDecision 必须保持语义分离。
+- id: summon.product.agent_authority
+  type: PRINCIPLE
+  title: Agent 有执行身份但不承担最终责任
+  status: accepted
+  scope:
+  - summon
+  - agent
+  normative_level: MUST
+  statement: Agent 动作必须可归因到委托和权限；正式承诺、接受与高后果决定必须由有权主体承担。
+- id: summon.product.disclosure
+  type: PRINCIPLE
+  title: 披露是条件化授权
+  status: accepted
+  scope:
+  - summon
+  - disclosure
+  normative_level: MUST
+  statement: 披露必须体现最小必要、目的限定、范围、期限、可撤销/过期与可追责；不得退化为普通文件分享。
+- id: summon.product.unknowns
+  type: UNKNOWN
+  title: 尚未定型的运行实现
+  status: accepted
+  scope:
+  - summon
+  - implementation
+  normative_level: INFORMATIVE
+  statement: 具体 Harness、模型、Agent 数量、自动化拓扑和实现技术仍待研究，不构成当前产品规范。

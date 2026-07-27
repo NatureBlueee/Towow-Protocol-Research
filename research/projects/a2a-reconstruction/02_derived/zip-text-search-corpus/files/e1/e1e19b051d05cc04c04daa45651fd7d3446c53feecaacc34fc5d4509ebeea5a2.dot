@@ -1,0 +1,21 @@
+
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.35, ranksep=0.5, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded", fontname="Noto Sans CJK SC", fontsize=12];
+  edge [fontname="Noto Sans CJK SC", fontsize=10];
+  outside [label="外部世界\n客户 · 平台 · 合作伙伴 · 监管 · 其他 Agent", shape=box3d];
+  subgraph cluster_entity {
+    label="Agent Entity：一个外部责任根，内部复数";
+    fontname="Noto Sans CJK SC"; fontsize=14; style="rounded";
+    root [label="Accountability Root\n身份 · 责任 · 最终升级"];
+    roles [label="角色\n销售 / 交付 / 财务 / 数据 / 个人"];
+    agents [label="Agent Instances\n模型 · 工作流 · 子 Agent"];
+    resources [label="资源与风险\n现金 · 注意力 · 信誉 · 法律 · 数据"];
+    mandates [label="版本化 Mandate\n范围 · 预算 · 数据 · 时间 · 撤销"];
+    local [label="私有世界 / Local Oracle\n历史 · 目标 · 工具 · Unknown"];
+    root -> roles; root -> mandates; roles -> agents; roles -> resources; local -> agents; mandates -> agents;
+  }
+  outside -> mandates [label="关系请求 / 证据 / challenge"];
+  agents -> outside [label="Operation / Artifact"];
+  outside -> root [label="Effect / Adoption / Acceptance"];
+}

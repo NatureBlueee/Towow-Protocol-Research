@@ -1,0 +1,137 @@
+[
+  {
+    "case_id": "docker_daemon_query",
+    "partition": "holdout",
+    "operation": "Read the local Docker daemon server version without starting a container.",
+    "static_profile_evidence": [
+      "docker binary present",
+      "docker client version 29.1.3"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": "unknown",
+    "scoped_claim_reason": "Binary and client version do not establish daemon/socket availability under the current seatbelt.",
+    "actual": false,
+    "actual_evidence": {
+      "command": [
+        "/usr/local/bin/docker",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "exit_code": 1,
+      "stdout": "\n",
+      "stderr": "permission denied while trying to connect to the docker API at unix:///Users/nature/.docker/run/docker.sock\n",
+      "timed_out": false,
+      "duration_ms": 823.377,
+      "actual": false,
+      "postcondition": "exit 0 and a non-empty local daemon server version"
+    }
+  },
+  {
+    "case_id": "sandbox_exec_allow_true",
+    "partition": "holdout",
+    "operation": "Launch /usr/bin/true under a permissive sandbox-exec profile.",
+    "static_profile_evidence": [
+      "/usr/bin/sandbox-exec exists"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": "unknown",
+    "scoped_claim_reason": "Executable presence does not establish that nested sandbox profile application is permitted.",
+    "actual": false,
+    "actual_evidence": {
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)\n(allow default)",
+        "/usr/bin/true"
+      ],
+      "exit_code": 71,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "timed_out": false,
+      "duration_ms": 14.072,
+      "actual": false,
+      "postcondition": "sandbox-exec applies the profile and the child exits 0"
+    }
+  },
+  {
+    "case_id": "sandbox_exec_deny_canary",
+    "partition": "holdout",
+    "operation": "Use sandbox-exec to deny a child process access to one synthetic private canary while the parent can read it.",
+    "static_profile_evidence": [
+      "/usr/bin/sandbox-exec exists"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": "unknown",
+    "scoped_claim_reason": "The boundary requires both successful profile application and observed access denial, neither yet tested.",
+    "actual": false,
+    "actual_evidence": {
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1)\n(allow default)\n(deny file-read* (literal \"/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-canary-zjgiujz2/private_canary.txt\"))",
+        "/bin/cat",
+        "/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-canary-zjgiujz2/private_canary.txt"
+      ],
+      "exit_code": 71,
+      "stdout": "",
+      "stderr": "sandbox-exec: sandbox_apply: Operation not permitted\n",
+      "timed_out": false,
+      "duration_ms": 13.719,
+      "actual": false,
+      "postcondition": "parent reads synthetic canary; sandboxed child is denied; profile application itself succeeds",
+      "parent_read_ok": true,
+      "profile_apply_error": true,
+      "canary_value_sha256": "252d745c8181cb963e3c42a05ad14f92200cecc2ced04793149de61f21382700"
+    }
+  },
+  {
+    "case_id": "git_branch_default_seatbelt",
+    "partition": "retrospective_calibration",
+    "operation": "Create a top-level repository branch through an unapproved git switch -c path.",
+    "static_profile_evidence": [
+      "git binary present",
+      "workspace writable"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": false,
+    "scoped_claim_reason": "Top-level .git is read-only in the default sandbox and the observed HEAD.lock attempt failed.",
+    "actual": false,
+    "actual_evidence": {
+      "actual": false,
+      "evidence": "Observed HEAD.lock failure and unchanged branch postcondition."
+    }
+  },
+  {
+    "case_id": "git_branch_approved_route",
+    "partition": "retrospective_calibration",
+    "operation": "Create a top-level repository branch through the pre-approved git checkout -b route.",
+    "static_profile_evidence": [
+      "git binary present"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": true,
+    "scoped_claim_reason": "The exact action prefix is pre-approved and the postcondition was verified.",
+    "actual": true,
+    "actual_evidence": {
+      "actual": true,
+      "evidence": "Approved git checkout -b route followed by verified branch read-back."
+    }
+  },
+  {
+    "case_id": "codexpro_remote_agent_execution",
+    "partition": "retrospective_calibration",
+    "operation": "Execute a local or remote model Agent from the CodexPro bridge itself.",
+    "static_profile_evidence": [
+      "CodexPro connector and agent-oriented handoff tools visible"
+    ],
+    "static_profile_prediction": true,
+    "scoped_claim_prediction": false,
+    "scoped_claim_reason": "CodexPro self-test terms_boundary explicitly reports provides_models=false and remote_agent_execution=false.",
+    "actual": false,
+    "actual_evidence": {
+      "actual": false,
+      "evidence": "CodexPro self-test terms_boundary remote_agent_execution=false."
+    }
+  }
+]

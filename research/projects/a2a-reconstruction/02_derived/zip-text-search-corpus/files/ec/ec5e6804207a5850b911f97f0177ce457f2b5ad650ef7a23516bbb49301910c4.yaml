@@ -1,0 +1,26 @@
+adapter_id: replace-with-local-harness
+runtime:
+  name: Your Harness
+  version: unknown
+  root_path: ./
+mappings:
+  agent: agents/*
+  skill: skills/*
+  context_pack: knowledge-packs/*
+  work_item: runs/*/tasks/*
+  artifact: runs/*/artifacts/*
+  validator: evals/*
+  event: traces/events.jsonl
+  escalation: human-inbox/*
+supported_hooks:
+- read_package
+- resolve_context
+- route_capability
+- execute_method
+- validate_artifact
+- emit_method_event
+- escalate
+unsupported_semantics: []
+event_export: jsonl
+artifact_store: filesystem
+context_resolution: router

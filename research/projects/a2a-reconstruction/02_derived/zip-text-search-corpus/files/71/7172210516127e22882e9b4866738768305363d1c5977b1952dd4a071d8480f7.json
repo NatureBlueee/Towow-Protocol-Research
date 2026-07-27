@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HarnessAdapter",
+  "type": "object",
+  "required": [
+    "adapter_id",
+    "runtime",
+    "mappings",
+    "supported_hooks"
+  ],
+  "properties": {
+    "adapter_id": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "object"
+    },
+    "mappings": {
+      "type": "object"
+    },
+    "supported_hooks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_semantics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_export": {
+      "type": "string"
+    },
+    "artifact_store": {
+      "type": "string"
+    },
+    "context_resolution": {
+      "type": "string"
+    }
+  }
+}

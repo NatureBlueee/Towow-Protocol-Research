@@ -1,0 +1,188 @@
+{
+  "reports": [
+    {
+      "classification": "MATERIAL_SCHEMA_CHANGE",
+      "findings": [
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.award",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.continued_awardability",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.adjudicate_protest",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.evaluate_capability",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.make_award",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.notify_team_change",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.reevaluate_capability",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.submit_proposal",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.adjudicate_protest",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.evaluate_capability",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.make_award",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.notify_team_change",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.reevaluate_capability",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.submit_proposal",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.award.required_action",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.award.status",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "jurisdiction_rules",
+          "kind": "jurisdiction_rule_change",
+          "material": true,
+          "path": "jurisdiction_rules.GAO_protest.required",
+          "reason": "The jurisdiction_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "jurisdiction_rules",
+          "kind": "jurisdiction_rule_change",
+          "material": true,
+          "path": "jurisdiction_rules.GAO_protest.required_if_challenged",
+          "reason": "The jurisdiction_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "roles",
+          "kind": "role_change",
+          "material": true,
+          "path": "roles.teaming_partner",
+          "reason": "The role participates in a reachable action or is active in the current instance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.award.requires",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.award.status",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "transitions",
+          "kind": "transition_change",
+          "material": true,
+          "path": "transitions",
+          "reason": "The change alters a transition whose source is reachable from the current state."
+        },
+        {
+          "component": "version",
+          "kind": "metadata_or_extension",
+          "material": false,
+          "path": "version",
+          "reason": "The change is outside the operational relation schema."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": true,
+          "path": "witness_rules.make_award",
+          "reason": "The witness_rules change applies to a reachable action or disposition."
+        }
+      ],
+      "from_version": 1,
+      "material": true,
+      "notes": [
+        "The set of actions reachable from the current state changed.",
+        "Re-form only the affected dependency subgraph; do not reopen unrelated settled nodes."
+      ],
+      "reachable_actions": [
+        "evaluate_capability",
+        "make_award"
+      ],
+      "to_version": 2
+    }
+  ]
+}

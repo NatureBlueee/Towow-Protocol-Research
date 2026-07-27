@@ -1,0 +1,295 @@
+{
+  "case_id": "crossrail",
+  "title": "Crossrail / Elizabeth line",
+  "domain": "major infrastructure and systems integration",
+  "period": "2011–2024",
+  "outcome": "DELIVERED_AFTER_MAJOR_REOPEN",
+  "research_role": "effect-chain and integration-authority stress case",
+  "coding_status": "single_coder_provisional",
+  "case_selection_rationale": "Many locally contracted outputs had to become one operational railway. The case exposes the gap between package completion, system integration, assurance and entry into service.",
+  "source_ids": [
+    "CR-01",
+    "CR-02",
+    "CR-03",
+    "CR-04"
+  ],
+  "evidence_coverage": {
+    "source_proximity": 2,
+    "process_granularity": 2,
+    "authority_visibility": 2,
+    "effect_observability": 2,
+    "participant_voice_coverage": 2,
+    "counterfactual_support": 0,
+    "triangulation": 2,
+    "selection_bias_risk": "medium"
+  },
+  "initial_relation_frame": {
+    "frame_scope": "programme_and_system_integration_frame",
+    "R": "Joint sponsors, Crossrail Ltd board/executive, programme partners, 36 main contractors, regulators, operators and assurance bodies.",
+    "V": "Packages, interfaces, requirements, configuration, testing, commissioning, assurance, operational handover and entry into service.",
+    "T": "Design/build packages → integrate interfaces → verify/validate → assure/approve → hand over → operate; delay/reset/replan paths.",
+    "A": "Sponsors set requirements/funding; Crossrail Ltd acts as integrator; contractors own packages; external bodies approve safety/operation.",
+    "E": "Integrated schedule, interface evidence, verification/validation, independent assurance, operational readiness and regulator approval.",
+    "D": "Programme controls, risk, schedule, design/configuration and assurance information sharing.",
+    "O": "Not package completion, but safe integrated railway entry into service and benefits realization."
+  },
+  "authority_topology": [
+    {
+      "locus": "Joint sponsors (DfT/TfL)",
+      "powers": [
+        "requirements",
+        "funding",
+        "oversight",
+        "intervention"
+      ]
+    },
+    {
+      "locus": "Crossrail Ltd Board/executive",
+      "powers": [
+        "programme integration",
+        "delivery management",
+        "risk reporting"
+      ]
+    },
+    {
+      "locus": "contractors",
+      "powers": [
+        "package delivery; limited interface responsibility under contract design"
+      ]
+    },
+    {
+      "locus": "system integration authority",
+      "powers": [
+        "requirements, interfaces, configuration, verification and integration review"
+      ]
+    },
+    {
+      "locus": "regulators/operational authorities",
+      "powers": [
+        "assurance, safety approval and entry-into-service acceptance"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "event_id": "CR-E01",
+      "date": "2011–2012",
+      "label": "System Integration Management Plan establishes integration authority",
+      "event_type": "compilation",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "V",
+        "T",
+        "A",
+        "E"
+      ],
+      "formation_operators": [
+        "standardization",
+        "authority_reallocation",
+        "compilation"
+      ],
+      "description": "The plan formally defines Crossrail as systems integrator and creates integration, requirements, interface, configuration, verification and assurance processes.",
+      "source_ids": [
+        "CR-01"
+      ],
+      "authority_effect": "Creates explicit integration authority and review structures.",
+      "outcome_effect": "Defines how package outputs should become system Effect.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E02",
+      "date": "2013–2018",
+      "label": "Contract/package design leaves Crossrail holding interface risk",
+      "event_type": "institutional_arrangement",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "commitment_binding"
+      ],
+      "description": "Individual contractors were not required to manage many cross-contract interfaces; the delivery organization retained integration and compensation risk.",
+      "source_ids": [
+        "CR-02"
+      ],
+      "authority_effect": "Centralizes system integration responsibility while distributing package execution.",
+      "outcome_effect": "Creates costly dependency and change-control exposure.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E03",
+      "date": "2015–2018",
+      "label": "Aspirational plan and optimistic assurance obscure integrated risk",
+      "event_type": "evidence_failure",
+      "materiality": "REOPEN_REQUIRED",
+      "changed_components": [
+        "T",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "evidence_demand",
+        "independent_challenge"
+      ],
+      "description": "Programme management relied on a plan that did not adequately represent interdependencies, while assurance did not expose the true scale of integration risk.",
+      "source_ids": [
+        "CR-02",
+        "CR-04"
+      ],
+      "authority_effect": "Weakens sponsors’ ability to exercise timely intervention authority.",
+      "outcome_effect": "Local progress signals fail to prove integrated readiness.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E04",
+      "date": "2018-08",
+      "label": "Opening delay reveals failure of end-to-end effect chain",
+      "event_type": "effect_failure",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "T",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "reopen"
+      ],
+      "description": "The planned December 2018 opening becomes unattainable; the programme requires a new realistic bottom-up plan and reset.",
+      "source_ids": [
+        "CR-02",
+        "CR-03"
+      ],
+      "authority_effect": "Triggers sponsor/governance intervention.",
+      "outcome_effect": "Invalidates prior readiness disposition.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E05",
+      "date": "2018–2019",
+      "label": "Governance and management reset",
+      "event_type": "schema_revision",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "authority_reallocation",
+        "independent_challenge",
+        "reopen"
+      ],
+      "description": "Independent reviews call for clearer decision rights, transparent risk information, independent assurance, integration accountability and lifecycle-appropriate governance.",
+      "source_ids": [
+        "CR-02",
+        "CR-03"
+      ],
+      "authority_effect": "Strengthens oversight and challenge channels.",
+      "outcome_effect": "Rebuilds the route from evidence to decisions and operational outcome.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E06",
+      "date": "2022",
+      "label": "Elizabeth line enters service",
+      "event_type": "operation_and_effect",
+      "materiality": "INSTANCE_EXECUTION",
+      "changed_components": [
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "compilation"
+      ],
+      "description": "The integrated railway reaches operational entry into service after replanning, testing, assurance and staged completion.",
+      "source_ids": [
+        "CR-04"
+      ],
+      "authority_effect": "Operational authorities and sponsors accept sufficient readiness.",
+      "outcome_effect": "Produces the target-world Effect that package progress alone could not prove.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "CR-E07",
+      "date": "2024",
+      "label": "Interview-based lessons institutionalize lifecycle controls",
+      "event_type": "institutionalization",
+      "materiality": "NON_MATERIAL_TO_CLOSED_CASE",
+      "changed_components": [
+        "R",
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "independent_challenge",
+        "institutionalization"
+      ],
+      "description": "A 90+ interview review codifies lessons on autonomy, integration accountability, control gates, evolving governance, realistic ranges and assurance.",
+      "source_ids": [
+        "CR-04"
+      ],
+      "authority_effect": "Feeds future sponsor authority and project governance.",
+      "outcome_effect": "Compiles historical learning into future institutional rules rather than changing the completed railway relation.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    }
+  ],
+  "operation_effect_adoption_acceptance": {
+    "operation": "Hundreds of design, construction, systems, test and handover operations were performed across packages.",
+    "effect": "A safe, integrated railway capable of carrying passengers—not package completion—was the decisive target-world Effect.",
+    "adoption": "Operational organizations took over and the Elizabeth line entered service.",
+    "acceptance": "Entry into service and sponsor/regulator approvals provide operational acceptance; broader benefit realization is a separate long-run question."
+  },
+  "supports": [
+    "ActionAttempt/package output is not equivalent to integrated system Effect.",
+    "A formal integration schema can exist while enacted authority, evidence and incentives fail.",
+    "Compile readiness requires end-to-end outcome witnesses and dependency-realistic evidence, not optimistic local progress.",
+    "Reopen can be triggered by assurance and governance failure, not only technical version change."
+  ],
+  "does_not_support": [
+    "It does not involve autonomous AI Agents or private digital worlds.",
+    "It does not prove that a different information architecture alone would have prevented delay.",
+    "Retrospective lessons do not identify a single cause of a complex programme failure."
+  ],
+  "competing_explanations": [
+    "Fixed-date political/sponsor pressure, commercial incentives, construction uncertainty and organizational culture may independently explain failure.",
+    "The integration plan may have been adequate on paper but under-resourced or weakly enforced.",
+    "Eventual delivery may reflect extraordinary additional resources rather than superior governance alone."
+  ],
+  "design_delta": [
+    "Separate declared schema from enacted schema: authority and witness rules must have observable enforcement, not only documentation.",
+    "Operation/Effect/Adoption/Acceptance must be end-to-end and target-world specific.",
+    "Compile readiness needs dependency realism, integrated assurance and incentive alignment.",
+    "Add assurance failure, reporting opacity and objective drift to Defeater/reopen triggers."
+  ],
+  "unknowns": [
+    "Exact counterfactual cost of alternative contract/interface allocation",
+    "Private board/executive deliberations",
+    "Causal weights among schedule, culture, incentives and technical complexity"
+  ],
+  "chronology_preserving_diagnostic": {
+    "pre_outcome_material_gaps": [
+      "interdependency-realistic plan",
+      "integrated technical/programmatic assurance",
+      "effective sponsor levers",
+      "interface-accountability alignment"
+    ],
+    "subsequent_observed_change": "Delay and reviews led to reset, stronger oversight and revised integration/readiness practices.",
+    "gate_interpretation": "A gate based on package progress would pass incorrectly; an end-to-end Effect gate would remain closed."
+  }
+}

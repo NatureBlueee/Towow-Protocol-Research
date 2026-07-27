@@ -1,0 +1,2788 @@
+diff --git a/app/_components/product/ProductShell.tsx b/app/_components/product/ProductShell.tsx
+index ef14329..b203d62 100644
+--- a/app/_components/product/ProductShell.tsx
++++ b/app/_components/product/ProductShell.tsx
+@@ -2,6 +2,7 @@
+ 
+ import Link from "next/link";
+ import {
++  useCallback,
+   useEffect,
+   useMemo,
+   useRef,
+@@ -61,6 +62,18 @@ interface WorkspaceRunResult {
+     readonly kind: string;
+   }[];
+   readonly artifact?: WorkspaceArtifact;
++  readonly adoptionOffer?: {
++    readonly reference: string;
++    readonly operationId: string;
++  };
++}
++
++interface AdoptionPostcondition {
++  readonly artifact: WorkspaceArtifact;
++  readonly readback: {
++    readonly state: "adopted" | "not_adopted" | "revoked";
++    readonly revision: number;
++  };
+ }
+ 
+ interface ArtifactCard {
+@@ -76,6 +89,7 @@ interface ArtifactCard {
+ 
+ interface ActiveRunContext {
+   readonly sequence: number;
++  readonly operationId: string;
+   readonly role: ProductRole;
+   readonly kind: WorkspaceTaskKind;
+   readonly query: string;
+@@ -90,6 +104,25 @@ interface PendingRun {
+ 
+ type ModalId = "search" | "new-task" | "orchestration" | null;
+ type RightTab = "progress" | "files" | "artifact";
++const ADOPTION_OPERATION_PREFIX = "allbuddy:consumer-operation:v3:";
++type AdoptionMarkerIntent = "adopt" | "cancel" | "cancel_reconciled";
++
++function parseAdoptionMarker(value: string | null): AdoptionMarkerIntent {
++  if (value === null) return "adopt";
++  try {
++    const parsed = JSON.parse(value) as { readonly intent?: unknown };
++    if (
++      parsed.intent === "cancel"
++      || parsed.intent === "cancel_reconciled"
++      || parsed.intent === "adopt"
++    ) {
++      return parsed.intent;
++    }
++  } catch {
++    // v3 markers stored the raw operation ID and mean normal recovery.
++  }
++  return "adopt";
++}
+ 
+ function Icon({ name, size = 18 }: { readonly name: IconName; readonly size?: number }) {
+   const props = {
+@@ -230,6 +263,7 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+   const pendingRunRef = useRef<PendingRun | null>(null);
+   const activeRunRef = useRef<ActiveRunContext | null>(null);
+   const activeRequestRef = useRef<AbortController | null>(null);
++  const uncertainOperationRef = useRef<string | null>(null);
+   const runSequenceRef = useRef(0);
+ 
+   const preset = ROLE_PRESETS[role];
+@@ -263,6 +297,22 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+     setTaskStatusState(next);
+   };
+ 
++  const writeOperationMarker = useCallback((
++    operationId: string,
++    intent: AdoptionMarkerIntent,
++  ): boolean => {
++    try {
++      window.localStorage.setItem(
++        `${ADOPTION_OPERATION_PREFIX}${operationId}`,
++        JSON.stringify({ operationId, intent }),
++      );
++      return true;
++    } catch {
++      // The canonical source remains authoritative; caller reports Unknown.
++      return false;
++    }
++  }, []);
++
+   const cancelActiveRun = () => {
+     runSequenceRef.current += 1;
+     activeRequestRef.current?.abort();
+@@ -271,6 +321,31 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+     pendingRunRef.current = null;
+   };
+ 
++  const requestCanonicalCancellation = useCallback(async (
++    operationId: string,
++  ): Promise<"not_adopted" | "revoked" | "unknown"> => {
++    writeOperationMarker(operationId, "cancel");
++    try {
++      const response = await fetch("/api/workspace/adoption/cancel", {
++        method: "POST",
++        headers: { "content-type": "application/json" },
++        body: JSON.stringify({ operationId }),
++      });
++      if (!response.ok) return "unknown";
++      const readback = await response.json() as {
++        readonly state: "adopted" | "not_adopted" | "revoked";
++      };
++      if (readback.state !== "not_adopted" && readback.state !== "revoked") {
++        return "unknown";
++      }
++      writeOperationMarker(operationId, "cancel_reconciled");
++      uncertainOperationRef.current = null;
++      return readback.state;
++    } catch {
++      return "unknown";
++    }
++  }, [writeOperationMarker]);
++
+   useEffect(() => {
+     const onKeyDown = (event: KeyboardEvent) => {
+       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+@@ -289,6 +364,89 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+ 
+   useEffect(() => () => activeRequestRef.current?.abort(), []);
+ 
++  useEffect(() => {
++    let cancelled = false;
++    const restoreAcceptedArtifacts = async () => {
++      const markers = Object.keys(window.localStorage)
++        .filter((key) => key.startsWith(ADOPTION_OPERATION_PREFIX))
++        .map((key) => {
++          const operationId = key.slice(ADOPTION_OPERATION_PREFIX.length);
++          return {
++            operationId,
++            intent: parseAdoptionMarker(window.localStorage.getItem(key)),
++          };
++        });
++      const restored = await Promise.all(markers.map(async ({ operationId, intent }) => {
++        try {
++          if (intent === "cancel_reconciled") return null;
++          if (intent === "cancel") {
++            await requestCanonicalCancellation(operationId);
++            return null;
++          }
++          const recoveryResponse = await fetch("/api/workspace/adoption/recover", {
++            method: "POST",
++            headers: { "content-type": "application/json" },
++            body: JSON.stringify({ operationId }),
++          });
++          if (!recoveryResponse.ok) return null;
++          const recovery = await recoveryResponse.json() as {
++            reference: string;
++            operationId: string;
++            phase: "prepared" | "artifact_persisted" | "decided";
++          };
++          if (recovery.phase === "prepared") {
++            const review = await fetch("/api/workspace/adoption/review", {
++              method: "POST",
++              headers: { "content-type": "application/json" },
++              body: JSON.stringify(recovery),
++            });
++            if (!review.ok) return null;
++          }
++          if (recovery.phase !== "decided") {
++            const adoption = await fetch("/api/workspace/adoption", {
++              method: "POST",
++              headers: { "content-type": "application/json" },
++              body: JSON.stringify(recovery),
++            });
++            if (!adoption.ok) return null;
++          }
++          const readback = await fetch("/api/workspace/adoption/artifact", {
++            method: "POST",
++            headers: { "content-type": "application/json" },
++            body: JSON.stringify(recovery),
++          });
++          if (!readback.ok) return null;
++          const postcondition = await readback.json() as AdoptionPostcondition;
++          return postcondition.readback.state === "adopted" ? postcondition.artifact : null;
++        } catch {
++          // Retain the operation marker. A later reload can retry without
++          // changing a prepared record into a false failure or losing intent.
++          return null;
++        }
++      }));
++      if (cancelled) return;
++      const available = restored.filter((item): item is WorkspaceArtifact => item !== null);
++      if (available.length === 0) return;
++      setArtifacts((current) => [
++        ...available.map((item) => ({
++          id: item.id,
++          title: item.title,
++          summary: item.summary,
++          project: item.projectLabel,
++          version: "v1",
++          updated: "已恢复",
++          color: "jade",
++          artifact: item,
++        })),
++        ...current.filter((item) => !available.some((restoredItem) => restoredItem.id === item.id)),
++      ]);
++    };
++    void restoreAcceptedArtifacts();
++    return () => {
++      cancelled = true;
++    };
++  }, [requestCanonicalCancellation]);
++
+   const openView = (view: ViewId) => {
+     setActiveView(view);
+     setNavOpen(false);
+@@ -297,7 +455,12 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+ 
+   const switchRole = (next: ProductRole) => {
+     const nextPreset = ROLE_PRESETS[next];
++    const pendingOperation = activeRunRef.current?.operationId
++      ?? uncertainOperationRef.current;
+     cancelActiveRun();
++    if (pendingOperation !== null && pendingOperation !== undefined) {
++      void requestCanonicalCancellation(pendingOperation);
++    }
+     setRole(next);
+     setQuery(nextPreset.defaultQuery);
+     setActiveAgentId(null);
+@@ -312,19 +475,89 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+     setToast(`已切换到${nextPreset.label}工作面；任务、项目和企业记忆仍来自同一 substrate。`);
+   };
+ 
+-  const finalizeRun = (body: WorkspaceRunResult, context: ActiveRunContext) => {
++  const finalizeRun = async (body: WorkspaceRunResult, context: ActiveRunContext) => {
+     if (activeRunRef.current?.sequence !== context.sequence || activeRunRef.current.role !== context.role) return;
+-    activeRequestRef.current = null;
+-    activeRunRef.current = null;
+     pendingRunRef.current = null;
+     setResult(body);
+-    if (body.status === "completed" && body.artifact) {
+-      setTaskStatus("completed");
++    if (body.status === "completed" && body.artifact && !body.adoptionOffer) {
++      window.localStorage.removeItem(`${ADOPTION_OPERATION_PREFIX}${context.operationId}`);
++      uncertainOperationRef.current = null;
++      activeRequestRef.current = null;
++      activeRunRef.current = null;
++      setTaskStatus("aborted");
+       setArtifact(body.artifact);
+       setRightTab("artifact");
+-      setArtifacts((current) => [{ id: body.artifact!.id, title: body.artifact!.title, summary: body.artifact!.summary, project: body.artifact!.projectLabel, version: "v1", updated: "刚刚", color: context.role === "owner" ? "jade" : "blue", artifact: body.artifact }, ...current.filter((item) => item.id !== body.artifact!.id)]);
+-      setToast(`任务完成：「${body.artifact.title}」已沉淀为 Artifact。`);
++      setToast("产物已经生成，但消费者采用权威未配置；未写入 Artifact 库。");
++      return;
++    }
++    if (body.status === "completed" && body.artifact && body.adoptionOffer) {
++      const reviewResponse = await fetch("/api/workspace/adoption/review", {
++        method: "POST",
++        headers: { "content-type": "application/json" },
++        body: JSON.stringify(body.adoptionOffer),
++        signal: activeRequestRef.current?.signal,
++      });
++      if (!reviewResponse.ok) {
++        activeRequestRef.current = null;
++        activeRunRef.current = null;
++        setTaskStatus("aborted");
++        setRightTab("progress");
++        setToast("产物未能从消费者持久存储中读回；采用状态保持未知。");
++        return;
++      }
++      await reviewResponse.json();
++      const adoptionResponse = await fetch("/api/workspace/adoption", {
++        method: "POST",
++        headers: { "content-type": "application/json" },
++        body: JSON.stringify(body.adoptionOffer),
++        signal: activeRequestRef.current?.signal,
++      });
++      if (activeRunRef.current?.sequence !== context.sequence || activeRunRef.current.role !== context.role) return;
++      if (!adoptionResponse.ok) {
++        activeRequestRef.current = null;
++        activeRunRef.current = null;
++        setTaskStatus("aborted");
++        setArtifact(body.artifact);
++        setRightTab("artifact");
++        setToast("产物已经生成，但目标消费者未确认采用；未写入 Artifact 库。");
++        return;
++      }
++      await adoptionResponse.json();
++      const postconditionResponse = await fetch("/api/workspace/adoption/artifact", {
++        method: "POST",
++        headers: { "content-type": "application/json" },
++        body: JSON.stringify(body.adoptionOffer),
++        signal: activeRequestRef.current?.signal,
++      });
++      if (!postconditionResponse.ok) {
++        activeRequestRef.current = null;
++        activeRunRef.current = null;
++        setTaskStatus("aborted");
++        setRightTab("progress");
++        setToast("采用写入后无法从 canonical source 独立读回；状态保持未知。");
++        return;
++      }
++      const postcondition = await postconditionResponse.json() as AdoptionPostcondition;
++      if (activeRunRef.current?.sequence !== context.sequence || activeRunRef.current.role !== context.role) return;
++      activeRequestRef.current = null;
++      activeRunRef.current = null;
++      if (postcondition.readback.state !== "adopted") {
++        setTaskStatus("aborted");
++        setRightTab("progress");
++        setToast("消费者没有采用该产物；未写入 Artifact 库。");
++        return;
++      }
++      setTaskStatus("completed");
++      uncertainOperationRef.current = null;
++      setArtifact(postcondition.artifact);
++      setRightTab("artifact");
++      setArtifacts((current) => [{ id: postcondition.artifact.id, title: postcondition.artifact.title, summary: postcondition.artifact.summary, project: postcondition.artifact.projectLabel, version: "v1", updated: "刚刚", color: context.role === "owner" ? "jade" : "blue", artifact: postcondition.artifact }, ...current.filter((item) => item.id !== postcondition.artifact.id)]);
++      setToast(`任务完成：「${postcondition.artifact.title}」已沉淀为 Artifact。`);
+     } else {
++      window.localStorage.removeItem(`${ADOPTION_OPERATION_PREFIX}${context.operationId}`);
++      uncertainOperationRef.current = null;
++      activeRequestRef.current = null;
++      activeRunRef.current = null;
+       setTaskStatus("aborted");
+       setRightTab("progress");
+       setToast(body.error ?? "任务未完成，请检查输入后重试。");
+@@ -334,15 +567,34 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+   const runTask = async () => {
+     if (!query.trim() || taskStatus === "running" || taskStatus === "paused") return;
+     const submitted = query.trim();
++    try {
++      const sessionResponse = await fetch("/api/workspace/adoption/session", {
++        method: "POST",
++      });
++      if (!sessionResponse.ok) {
++        setToast("无法建立可恢复的消费者会话；本次任务未启动。");
++        return;
++      }
++    } catch {
++      setToast("无法建立可恢复的消费者会话；本次任务未启动。");
++      return;
++    }
+     const sequence = ++runSequenceRef.current;
++    const operationId = crypto.randomUUID();
++    if (!writeOperationMarker(operationId, "adopt")) {
++      setToast("无法建立可恢复的消费者操作；本次任务未启动。");
++      return;
++    }
+     const context: ActiveRunContext = {
+       sequence,
++      operationId,
+       role,
+       kind: activeOrchestration ? "orchestration" : activeAgent?.taskKind ?? preset.kind,
+       query: submitted,
+       agentId: activeAgent?.runtimeAgentId,
+       orchestration: activeOrchestration ?? undefined,
+     };
++    uncertainOperationRef.current = operationId;
+     const controller = new AbortController();
+     activeRequestRef.current?.abort();
+     activeRequestRef.current = controller;
+@@ -357,7 +609,7 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+     setToast(`${workspaceAgent} 已接手，正在读取企业记忆。`);
+     try {
+       const [response] = await Promise.all([
+-        fetch("/api/workspace/run", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ kind: context.kind, role: context.role, query: context.query, agentId: context.agentId, orchestration: context.orchestration }), signal: controller.signal }),
++        fetch("/api/workspace/run", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ operationId: context.operationId, kind: context.kind, role: context.role, query: context.query, agentId: context.agentId, orchestration: context.orchestration }), signal: controller.signal }),
+         new Promise((resolve) => window.setTimeout(resolve, 850)),
+       ]);
+       const body = (await response.json()) as WorkspaceRunResult;
+@@ -367,10 +619,15 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+         setToast("结果已经准备好；点击继续后再呈现，当前上下文保持不变。");
+         return;
+       }
+-      finalizeRun(body, context);
+-    } catch (error) {
++      await finalizeRun(body, context);
++    } catch {
+       if (activeRunRef.current?.sequence !== sequence || controller.signal.aborted) return;
+-      finalizeRun({ taskId: `local-${sequence}`, status: "failed", query: context.query, error: error instanceof Error ? error.message : String(error), steps: [], sources: [] }, context);
++      activeRequestRef.current = null;
++      activeRunRef.current = null;
++      pendingRunRef.current = null;
++      setTaskStatus("aborted");
++      setRightTab("progress");
++      setToast("响应中断；采用状态保持未知，操作标识已保留，可在刷新后恢复。");
+     }
+   };
+ 
+@@ -384,22 +641,41 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+     if (taskStatus !== "paused") return;
+     const pending = pendingRunRef.current;
+     pendingRunRef.current = null;
+-    if (pending) finalizeRun(pending.body, pending.context);
++    if (pending) void finalizeRun(pending.body, pending.context);
+     else {
+       setTaskStatus("running");
+       setToast("任务继续执行。");
+     }
+   };
+ 
+-  const abortTask = () => {
++  const abortTask = async () => {
+     if (taskStatus !== "running" && taskStatus !== "paused") return;
++    const operationId = activeRunRef.current?.operationId
++      ?? uncertainOperationRef.current;
+     cancelActiveRun();
+     setTaskStatus("aborted");
+-    setToast("本次任务已终止，没有生成新的业务 Artifact。");
++    if (operationId === null || operationId === undefined) {
++      setToast("终止请求已发出；canonical 采用状态仍需核对。");
++      return;
++    }
++    setToast("终止请求已发出，正在核对 canonical 采用状态。");
++    const state = await requestCanonicalCancellation(operationId);
++    if (state === "not_adopted") {
++      setToast("终止已确认；结果未被消费者采用。");
++    } else if (state === "revoked") {
++      setToast("终止已确认；结果曾被采用，现已撤销。");
++    } else {
++      setToast("终止请求待核对；结果可能已经被采用，状态保持 Unknown。");
++    }
+   };
+ 
+   const resetTask = () => {
++    const pendingOperation = activeRunRef.current?.operationId
++      ?? uncertainOperationRef.current;
+     cancelActiveRun();
++    if (pendingOperation !== null && pendingOperation !== undefined) {
++      void requestCanonicalCancellation(pendingOperation);
++    }
+     setResult(null);
+     setArtifact(null);
+     setTaskStatus("idle");
+@@ -504,7 +780,7 @@ export function ProductShell({ initialProjection }: ProductShellProps) {
+         <div className={styles.taskStripActions}>
+           {taskStatus === "running" && <button type="button" onClick={pauseTask}><Icon name="pause" size={14}/>暂停</button>}
+           {taskStatus === "paused" && <button type="button" onClick={resumeTask}><Icon name="play" size={14}/>继续</button>}
+-          {(taskStatus === "running" || taskStatus === "paused") && <button type="button" onClick={abortTask}><Icon name="stop" size={14}/>终止</button>}
++          {(taskStatus === "running" || taskStatus === "paused") && <button type="button" onClick={() => void abortTask()}><Icon name="stop" size={14}/>终止</button>}
+           {(taskStatus === "completed" || taskStatus === "aborted") && <button type="button" onClick={resetTask}><Icon name="plus" size={14}/>新任务</button>}
+         </div>
+       </div>
+diff --git a/app/_lib/consumer-adoption-runtime.ts b/app/_lib/consumer-adoption-runtime.ts
+new file mode 100644
+index 0000000..ad7ccf7
+--- /dev/null
++++ b/app/_lib/consumer-adoption-runtime.ts
+@@ -0,0 +1,148 @@
++import "server-only";
++
++import { createHash } from "node:crypto";
++
++import {
++  ConsumerAuthorityConflictError,
++  ConsumerAuthorityUnavailableError,
++  RecoverableConsumerAuthority,
++  type ConsumerAdoptionReadback,
++  type ExternalReaderHandle,
++  type WorldOutboxDelivery,
++} from "@/core/adoption/recoverable-consumer-authority";
++import { createFoshanAluminumEnterprise } from "@/fixtures/factory-foshan-aluminum/enterprise";
++
++const enterpriseId = createFoshanAluminumEnterprise().id;
++const storePath = process.env.ALLBUDDY_ADOPTION_STORE_PATH;
++const worldClaimCapability = process.env.ALLBUDDY_WORLD_CLAIM_CAPABILITY;
++
++function authority(): RecoverableConsumerAuthority {
++  if (!storePath || !worldClaimCapability) {
++    throw new ConsumerAuthorityUnavailableError();
++  }
++  return new RecoverableConsumerAuthority(storePath);
++}
++
++export interface ProductShellAdoptionOffer {
++  readonly reference: string;
++  readonly operationId: string;
++}
++
++export function isConsumerAuthorityConfigured(): boolean {
++  return Boolean(storePath && worldClaimCapability);
++}
++
++export function prepareProductShellAdoption(input: {
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++  readonly taskId: string;
++  readonly artifactId: string;
++  readonly artifact: unknown;
++}): ProductShellAdoptionOffer | undefined {
++  if (!isConsumerAuthorityConfigured()) return undefined;
++  return authority().prepare({
++    operationId: input.operationId,
++    tenantId: enterpriseId,
++    tenantSessionCapability: input.tenantSessionCapability,
++    worldClaimCapability: worldClaimCapability!,
++    taskId: input.taskId,
++    artifactId: input.artifactId,
++    consumerId: "allbuddy:product-shell",
++    artifact: input.artifact,
++  });
++}
++
++export function reviewProductShellArtifact(input: {
++  readonly reference: string;
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++}): { readonly artifact: unknown; readonly phase: "artifact_persisted" | "decided" } {
++  return authority().reviewPersistedArtifact(input);
++}
++
++export function recordProductShellAdoption(input: {
++  readonly reference: string;
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++}): ConsumerAdoptionReadback {
++  return authority().recordDecision({
++    ...input,
++    state: "adopted",
++    readerViewerId: "agent-world:local-external-acceptance",
++  });
++}
++
++export function readProductShellPostcondition(input: {
++  readonly reference: string;
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++}): { readonly artifact: unknown; readonly readback: ConsumerAdoptionReadback } {
++  return authority().readConsumerPostcondition(input);
++}
++
++export function recoverProductShellOperation(input: {
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++}) {
++  return authority().recoverOperation(input);
++}
++
++export function reviseProductShellAdoption(input: {
++  readonly reference: string;
++  readonly tenantSessionCapability: string;
++  readonly updateOperationId: string;
++  readonly expectedRevision: number;
++  readonly state: "adopted" | "not_adopted" | "revoked";
++}): ConsumerAdoptionReadback {
++  return authority().revise(input);
++}
++
++export function cancelProductShellAdoption(input: {
++  readonly operationId: string;
++  readonly tenantSessionCapability: string;
++}): ConsumerAdoptionReadback {
++  return authority().cancelOperation({
++    ...input,
++    cancelOperationId: `cancel_${createHash("sha256")
++      .update(input.operationId, "utf8")
++      .digest("hex")
++      .slice(0, 32)}`,
++    readerViewerId: "agent-world:local-external-acceptance",
++  });
++}
++
++export function readExternalAdoption(
++  input: ExternalReaderHandle & { readonly revision: number },
++): ConsumerAdoptionReadback {
++  return authority().read(input);
++}
++
++export function claimWorldOutbox(input: {
++  readonly worldClaimCapability: string;
++  readonly worldId: string;
++  readonly leaseMs: number;
++}): readonly WorldOutboxDelivery[] {
++  return authority().claimWorldOutbox(input);
++}
++
++export function ackWorldOutbox(input: {
++  readonly worldClaimCapability: string;
++  readonly worldId: string;
++  readonly reference: string;
++  readonly eventId: string;
++  readonly leaseToken: string;
++}): void {
++  authority().ackWorldOutbox(input);
++}
++
++export function isConsumerAuthorityUnavailable(
++  error: unknown,
++): error is ConsumerAuthorityUnavailableError {
++  return error instanceof ConsumerAuthorityUnavailableError;
++}
++
++export function isConsumerAuthorityConflict(
++  error: unknown,
++): error is ConsumerAuthorityConflictError {
++  return error instanceof ConsumerAuthorityConflictError;
++}
+diff --git a/app/_lib/consumer-adoption-session.ts b/app/_lib/consumer-adoption-session.ts
+new file mode 100644
+index 0000000..e666b38
+--- /dev/null
++++ b/app/_lib/consumer-adoption-session.ts
+@@ -0,0 +1,32 @@
++import "server-only";
++
++import { randomBytes } from "node:crypto";
++
++export const CONSUMER_SESSION_COOKIE = "allbuddy_consumer_session_v1";
++
++function cookieValue(request: Request, name: string): string | undefined {
++  const header = request.headers.get("cookie");
++  if (header === null) return undefined;
++  for (const item of header.split(";")) {
++    const [key, ...value] = item.trim().split("=");
++    if (key === name) return decodeURIComponent(value.join("="));
++  }
++  return undefined;
++}
++
++export function readConsumerSession(request: Request): string | undefined {
++  const value = cookieValue(request, CONSUMER_SESSION_COOKIE);
++  return value && value.length >= 32 ? value : undefined;
++}
++
++export function ensureConsumerSession(request: Request): {
++  readonly capability: string;
++  readonly newlyIssued: boolean;
++} {
++  const existing = readConsumerSession(request);
++  if (existing !== undefined) return { capability: existing, newlyIssued: false };
++  return {
++    capability: randomBytes(32).toString("base64url"),
++    newlyIssued: true,
++  };
++}
+diff --git a/app/api/external/adoption-outbox/ack/route.ts b/app/api/external/adoption-outbox/ack/route.ts
+new file mode 100644
+index 0000000..377d76d
+--- /dev/null
++++ b/app/api/external/adoption-outbox/ack/route.ts
+@@ -0,0 +1,52 @@
++import { NextResponse } from "next/server";
++
++import {
++  ackWorldOutbox,
++  isConsumerAuthorityUnavailable,
++} from "@/app/_lib/consumer-adoption-runtime";
++
++export const runtime = "nodejs";
++
++function bearer(request: Request): string | undefined {
++  const authorization = request.headers.get("authorization");
++  return authorization?.startsWith("Bearer ") ? authorization.slice(7) : undefined;
++}
++
++export async function POST(request: Request) {
++  let body: {
++    worldId?: unknown;
++    reference?: unknown;
++    eventId?: unknown;
++    leaseToken?: unknown;
++  };
++  try {
++    body = await request.json() as typeof body;
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const credential = bearer(request);
++  if (
++    credential === undefined
++    || typeof body.worldId !== "string"
++    || typeof body.reference !== "string"
++    || typeof body.eventId !== "string"
++    || typeof body.leaseToken !== "string"
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    ackWorldOutbox({
++      worldClaimCapability: credential,
++      worldId: body.worldId,
++      reference: body.reference,
++      eventId: body.eventId,
++      leaseToken: body.leaseToken,
++    });
++    return NextResponse.json({ acknowledged: true });
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/external/adoption-outbox/claim/route.ts b/app/api/external/adoption-outbox/claim/route.ts
+new file mode 100644
+index 0000000..a3b3171
+--- /dev/null
++++ b/app/api/external/adoption-outbox/claim/route.ts
+@@ -0,0 +1,46 @@
++import { NextResponse } from "next/server";
++
++import {
++  claimWorldOutbox,
++  isConsumerAuthorityUnavailable,
++} from "@/app/_lib/consumer-adoption-runtime";
++
++export const runtime = "nodejs";
++
++function bearer(request: Request): string | undefined {
++  const authorization = request.headers.get("authorization");
++  return authorization?.startsWith("Bearer ") ? authorization.slice(7) : undefined;
++}
++
++export async function POST(request: Request) {
++  let body: { worldId?: unknown; leaseMs?: unknown };
++  try {
++    body = await request.json() as { worldId?: unknown; leaseMs?: unknown };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const credential = bearer(request);
++  if (
++    credential === undefined
++    || typeof body.worldId !== "string"
++    || !Number.isInteger(body.leaseMs)
++    || (body.leaseMs as number) < 1
++    || (body.leaseMs as number) > 60_000
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json({
++      deliveries: claimWorldOutbox({
++        worldClaimCapability: credential,
++        worldId: body.worldId,
++        leaseMs: body.leaseMs as number,
++      }),
++    });
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/external/adoption-readback/route.ts b/app/api/external/adoption-readback/route.ts
+new file mode 100644
+index 0000000..c9375d1
+--- /dev/null
++++ b/app/api/external/adoption-readback/route.ts
+@@ -0,0 +1,48 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityUnavailable,
++  readExternalAdoption,
++} from "@/app/_lib/consumer-adoption-runtime";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: {
++    reference?: unknown;
++    viewerId?: unknown;
++    readCapability?: unknown;
++    revision?: unknown;
++  };
++  try {
++    body = await request.json() as {
++      reference?: unknown;
++      viewerId?: unknown;
++      readCapability?: unknown;
++      revision?: unknown;
++    };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  if (
++    typeof body.reference !== "string"
++    || typeof body.viewerId !== "string"
++    || typeof body.readCapability !== "string"
++    || !Number.isInteger(body.revision)
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(readExternalAdoption({
++      reference: body.reference,
++      viewerId: body.viewerId,
++      readCapability: body.readCapability,
++      revision: body.revision as number,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/artifact/route.ts b/app/api/workspace/adoption/artifact/route.ts
+new file mode 100644
+index 0000000..f902619
+--- /dev/null
++++ b/app/api/workspace/adoption/artifact/route.ts
+@@ -0,0 +1,38 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityUnavailable,
++  readProductShellPostcondition,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: { reference?: unknown; operationId?: unknown };
++  try {
++    body = await request.json() as { reference?: unknown; operationId?: unknown };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (
++    typeof body.reference !== "string"
++    || typeof body.operationId !== "string"
++    || session === undefined
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(readProductShellPostcondition({
++      reference: body.reference,
++      operationId: body.operationId,
++      tenantSessionCapability: session,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/cancel/route.ts b/app/api/workspace/adoption/cancel/route.ts
+new file mode 100644
+index 0000000..83447e1
+--- /dev/null
++++ b/app/api/workspace/adoption/cancel/route.ts
+@@ -0,0 +1,37 @@
++import { NextResponse } from "next/server";
++
++import {
++  cancelProductShellAdoption,
++  isConsumerAuthorityConflict,
++  isConsumerAuthorityUnavailable,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: { operationId?: unknown };
++  try {
++    body = await request.json() as typeof body;
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (session === undefined || typeof body.operationId !== "string") {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(cancelProductShellAdoption({
++      operationId: body.operationId,
++      tenantSessionCapability: session,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityConflict(error)) {
++      return NextResponse.json({ error: "conflict" }, { status: 409 });
++    }
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/recover/route.ts b/app/api/workspace/adoption/recover/route.ts
+new file mode 100644
+index 0000000..4400241
+--- /dev/null
++++ b/app/api/workspace/adoption/recover/route.ts
+@@ -0,0 +1,33 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityUnavailable,
++  recoverProductShellOperation,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: { operationId?: unknown };
++  try {
++    body = await request.json() as { operationId?: unknown };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (typeof body.operationId !== "string" || session === undefined) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(recoverProductShellOperation({
++      operationId: body.operationId,
++      tenantSessionCapability: session,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/review/route.ts b/app/api/workspace/adoption/review/route.ts
+new file mode 100644
+index 0000000..1dec327
+--- /dev/null
++++ b/app/api/workspace/adoption/review/route.ts
+@@ -0,0 +1,38 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityUnavailable,
++  reviewProductShellArtifact,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: { reference?: unknown; operationId?: unknown };
++  try {
++    body = await request.json() as { reference?: unknown; operationId?: unknown };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (
++    typeof body.reference !== "string"
++    || typeof body.operationId !== "string"
++    || session === undefined
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(reviewProductShellArtifact({
++      reference: body.reference,
++      operationId: body.operationId,
++      tenantSessionCapability: session,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/revise/route.ts b/app/api/workspace/adoption/revise/route.ts
+new file mode 100644
+index 0000000..907f0d9
+--- /dev/null
++++ b/app/api/workspace/adoption/revise/route.ts
+@@ -0,0 +1,53 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityConflict,
++  isConsumerAuthorityUnavailable,
++  reviseProductShellAdoption,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++const STATES = new Set(["adopted", "not_adopted", "revoked"]);
++
++export async function POST(request: Request) {
++  let body: {
++    reference?: unknown;
++    updateOperationId?: unknown;
++    expectedRevision?: unknown;
++    state?: unknown;
++  };
++  try {
++    body = await request.json() as typeof body;
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (
++    typeof body.reference !== "string"
++    || typeof body.updateOperationId !== "string"
++    || !Number.isInteger(body.expectedRevision)
++    || typeof body.state !== "string"
++    || !STATES.has(body.state)
++    || session === undefined
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(reviseProductShellAdoption({
++      reference: body.reference,
++      tenantSessionCapability: session,
++      updateOperationId: body.updateOperationId,
++      expectedRevision: body.expectedRevision as number,
++      state: body.state as "adopted" | "not_adopted" | "revoked",
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    if (isConsumerAuthorityConflict(error)) {
++      return NextResponse.json({ error: "conflict" }, { status: 409 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/route.ts b/app/api/workspace/adoption/route.ts
+new file mode 100644
+index 0000000..712770d
+--- /dev/null
++++ b/app/api/workspace/adoption/route.ts
+@@ -0,0 +1,42 @@
++import { NextResponse } from "next/server";
++
++import {
++  isConsumerAuthorityConflict,
++  isConsumerAuthorityUnavailable,
++  recordProductShellAdoption,
++} from "@/app/_lib/consumer-adoption-runtime";
++import { readConsumerSession } from "@/app/_lib/consumer-adoption-session";
++
++export const runtime = "nodejs";
++
++export async function POST(request: Request) {
++  let body: { reference?: unknown; operationId?: unknown };
++  try {
++    body = await request.json() as { reference?: unknown; operationId?: unknown };
++  } catch {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  const session = readConsumerSession(request);
++  if (
++    typeof body.reference !== "string"
++    || typeof body.operationId !== "string"
++    || session === undefined
++  ) {
++    return NextResponse.json({ error: "unavailable" }, { status: 404 });
++  }
++  try {
++    return NextResponse.json(recordProductShellAdoption({
++      reference: body.reference,
++      operationId: body.operationId,
++      tenantSessionCapability: session,
++    }));
++  } catch (error) {
++    if (isConsumerAuthorityUnavailable(error)) {
++      return NextResponse.json({ error: "unavailable" }, { status: 404 });
++    }
++    if (isConsumerAuthorityConflict(error)) {
++      return NextResponse.json({ error: "conflict" }, { status: 409 });
++    }
++    throw error;
++  }
++}
+diff --git a/app/api/workspace/adoption/session/route.ts b/app/api/workspace/adoption/session/route.ts
+new file mode 100644
+index 0000000..2db0ef5
+--- /dev/null
++++ b/app/api/workspace/adoption/session/route.ts
+@@ -0,0 +1,34 @@
++import { NextResponse } from "next/server";
++
++import {
++  CONSUMER_SESSION_COOKIE,
++  ensureConsumerSession,
++} from "@/app/_lib/consumer-adoption-session";
++import { isConsumerAuthorityConfigured } from "@/app/_lib/consumer-adoption-runtime";
++
++export const runtime = "nodejs";
++
++/**
++ * Establish the consumer authority before a recoverable operation starts.
++ *
++ * A run must never be the response that first carries this capability: if that
++ * response is lost, the browser could not authenticate recovery of the record
++ * the server had already prepared.
++ */
++export async function POST(request: Request) {
++  if (!isConsumerAuthorityConfigured()) {
++    return NextResponse.json({ configured: false });
++  }
++  const session = ensureConsumerSession(request);
++  const response = NextResponse.json({ configured: true });
++  if (session.newlyIssued) {
++    response.cookies.set(CONSUMER_SESSION_COOKIE, session.capability, {
++      httpOnly: true,
++      sameSite: "strict",
++      secure: false,
++      path: "/",
++      maxAge: 60 * 60 * 24,
++    });
++  }
++  return response;
++}
+diff --git a/app/api/workspace/run/route.ts b/app/api/workspace/run/route.ts
+index be91b0d..0fa1f84 100644
+--- a/app/api/workspace/run/route.ts
++++ b/app/api/workspace/run/route.ts
+@@ -6,6 +6,13 @@ import {
+   runWorkspaceTask,
+   type WorkspaceRunRequest,
+ } from "@/app/_lib/workspace-runtime";
++import {
++  isConsumerAuthorityConfigured,
++  prepareProductShellAdoption,
++} from "@/app/_lib/consumer-adoption-runtime";
++import {
++  readConsumerSession,
++} from "@/app/_lib/consumer-adoption-session";
+ 
+ export const runtime = "nodejs";
+ const MAX_QUERY_LENGTH = 4_000;
+@@ -20,7 +27,7 @@ function badRequest(message: string) {
+  * 前端仍消费同一 WorkspaceRunResult。
+  */
+ export async function POST(request: Request) {
+-  let body: Partial<WorkspaceRunRequest>;
++  let body: Partial<WorkspaceRunRequest> & { operationId?: unknown };
+   try {
+     body = (await request.json()) as Partial<WorkspaceRunRequest>;
+   } catch {
+@@ -42,6 +49,19 @@ export async function POST(request: Request) {
+       { status: 413 },
+     );
+   }
++  if (
++    isConsumerAuthorityConfigured()
++    && (typeof body.operationId !== "string" || body.operationId.length < 8)
++  ) {
++    return badRequest("operationId 必须由消费者在执行前生成");
++  }
++  const sessionCapability = readConsumerSession(request);
++  if (isConsumerAuthorityConfigured() && sessionCapability === undefined) {
++    return NextResponse.json(
++      { error: "必须先建立可恢复的消费者会话" },
++      { status: 401 },
++    );
++  }
+ 
+   const result = await runWorkspaceTask({
+     kind: body.kind,
+@@ -51,5 +71,20 @@ export async function POST(request: Request) {
+     orchestration: body.orchestration,
+   });
+ 
+-  return NextResponse.json(result, { status: result.status === "completed" ? 200 : 422 });
++  if (result.status === "completed" && result.artifact !== undefined) {
++    const adoptionOffer = prepareProductShellAdoption({
++      operationId: typeof body.operationId === "string" ? body.operationId : crypto.randomUUID(),
++      tenantSessionCapability: sessionCapability ?? "",
++      taskId: result.taskId,
++      artifactId: result.artifact.id,
++      artifact: result.artifact,
++    });
++    const response = NextResponse.json({
++      ...result,
++      ...(adoptionOffer === undefined ? {} : { adoptionOffer }),
++    });
++    return response;
++  }
++
++  return NextResponse.json(result, { status: 422 });
+ }
+diff --git a/core/adoption/recoverable-consumer-authority.ts b/core/adoption/recoverable-consumer-authority.ts
+new file mode 100644
+index 0000000..f8b3131
+--- /dev/null
++++ b/core/adoption/recoverable-consumer-authority.ts
+@@ -0,0 +1,761 @@
++import {
++  createHash,
++  randomBytes,
++  randomUUID,
++  timingSafeEqual,
++} from "node:crypto";
++import {
++  closeSync,
++  existsSync,
++  fsyncSync,
++  linkSync,
++  mkdirSync,
++  openSync,
++  readFileSync,
++  readdirSync,
++  renameSync,
++  statSync,
++  unlinkSync,
++  writeFileSync,
++} from "node:fs";
++import { join } from "node:path";
++
++export type ConsumerAdoptionState = "adopted" | "not_adopted" | "revoked";
++
++export interface ConsumerAdoptionReadback {
++  readonly reference: string;
++  readonly issuer: "allbuddy:consumer-adoption";
++  readonly policy: "local-recoverable-outbox-v3";
++  readonly state: ConsumerAdoptionState;
++  readonly revision: number;
++  readonly observedAt: string;
++}
++
++export interface ExternalReaderHandle {
++  readonly reference: string;
++  readonly viewerId: string;
++  readonly readCapability: string;
++}
++
++export interface WorldOutboxDelivery {
++  readonly eventId: string;
++  readonly reference: string;
++  readonly revision: number;
++  readonly leaseToken: string;
++  readonly lineage: readonly {
++    readonly eventId: string;
++    readonly revision: number;
++  }[];
++  readonly readerHandle: ExternalReaderHandle;
++}
++
++interface StoredRevision {
++  readonly operationId: string;
++  readonly state: ConsumerAdoptionState;
++  readonly revision: number;
++  readonly observedAt: string;
++  readonly expectedRevision?: number;
++}
++
++interface StoredOutboxEntry {
++  readonly eventId: string;
++  readonly revision: number;
++  leaseOwner: string | null;
++  leaseToken: string | null;
++  leaseExpiresAtMs: number | null;
++  ackedAt: string | null;
++  supersededByEventId: string | null;
++}
++
++interface StoredAdoption {
++  readonly version: 3;
++  readonly reference: string;
++  readonly operationId: string;
++  readonly tenantId: string;
++  readonly tenantSessionHash: string;
++  readonly worldClaimHash: string;
++  readonly requestDigest: string;
++  readonly taskId: string;
++  readonly artifactId: string;
++  readonly consumerId: string;
++  readonly artifact: unknown;
++  phase: "prepared" | "artifact_persisted" | "decided";
++  artifactReadAt: string | null;
++  worldReaderHandle: ExternalReaderHandle | null;
++  readonly history: StoredRevision[];
++  readonly outbox: StoredOutboxEntry[];
++}
++
++export class ConsumerAuthorityUnavailableError extends Error {
++  constructor() {
++    super("consumer authority reference is unavailable");
++    this.name = "ConsumerAuthorityUnavailableError";
++  }
++}
++
++export class ConsumerAuthorityConflictError extends Error {
++  constructor() {
++    super("consumer authority revision conflict");
++    this.name = "ConsumerAuthorityConflictError";
++  }
++}
++
++function capability(): string {
++  return randomBytes(32).toString("base64url");
++}
++
++function hash(value: string): string {
++  return createHash("sha256").update(value, "utf8").digest("hex");
++}
++
++function hashMatches(storedHash: string, candidate: string): boolean {
++  const stored = Buffer.from(storedHash, "hex");
++  const actual = Buffer.from(hash(candidate), "hex");
++  return stored.length === actual.length && timingSafeEqual(stored, actual);
++}
++
++function referenceFor(sessionCapability: string, operationId: string): string {
++  const digest = hash(`reference\0${sessionCapability}\0${operationId}`);
++  return `car_${digest.slice(0, 8)}-${digest.slice(8, 12)}-${digest.slice(12, 16)}-${digest.slice(16, 20)}-${digest.slice(20, 32)}`;
++}
++
++function eventId(reference: string, revision: number): string {
++  return `evt_${hash(`${reference}\0${revision}`).slice(0, 32)}`;
++}
++
++function prepareRequestDigest(input: {
++  readonly tenantId: string;
++  readonly worldClaimCapability: string;
++  readonly taskId: string;
++  readonly artifactId: string;
++  readonly consumerId: string;
++  readonly artifact: unknown;
++}): string {
++  return hash(JSON.stringify([
++    input.tenantId,
++    hash(input.worldClaimCapability),
++    input.taskId,
++    input.artifactId,
++    input.consumerId,
++    input.artifact,
++  ]));
++}
++
++function publicReadback(record: StoredAdoption): ConsumerAdoptionReadback {
++  const current = record.history.at(-1);
++  if (current === undefined) throw new ConsumerAuthorityUnavailableError();
++  return publicRevisionReadback(record.reference, current);
++}
++
++function publicRevisionReadback(
++  reference: string,
++  revision: StoredRevision,
++): ConsumerAdoptionReadback {
++  return {
++    reference,
++    issuer: "allbuddy:consumer-adoption",
++    policy: "local-recoverable-outbox-v3",
++    state: revision.state,
++    revision: revision.revision,
++    observedAt: revision.observedAt,
++  };
++}
++
++const REFERENCE_PATTERN = /^car_[0-9a-f-]{36}$/;
++const OPERATION_PATTERN = /^[A-Za-z0-9_-]{8,128}$/;
++const LOCK_WAIT_BUFFER = new Int32Array(new SharedArrayBuffer(4));
++
++/**
++ * Local same-host synthetic authority.
++ *
++ * - prepare is idempotent by authenticated session + caller operationId;
++ * - review, decision and consumer readback use the pre-existing HttpOnly-style
++ *   session capability, not a secret returned by the mutation response;
++ * - adoption/revision and a durable World outbox entry share one atomic record;
++ * - World claims at-least-once, persists independently, then acknowledges.
++ */
++export class RecoverableConsumerAuthority {
++  private readonly recordsDirectory: string;
++  private readonly locksDirectory: string;
++  private readonly nowMs: () => number;
++
++  constructor(
++    rootDirectory: string,
++    nowMs: () => number = () => Date.now(),
++  ) {
++    this.recordsDirectory = join(rootDirectory, "records");
++    this.locksDirectory = join(rootDirectory, "locks");
++    this.nowMs = nowMs;
++    mkdirSync(this.recordsDirectory, { recursive: true });
++    mkdirSync(this.locksDirectory, { recursive: true });
++  }
++
++  prepare(input: {
++    readonly operationId: string;
++    readonly tenantId: string;
++    readonly tenantSessionCapability: string;
++    readonly worldClaimCapability: string;
++    readonly taskId: string;
++    readonly artifactId: string;
++    readonly consumerId: string;
++    readonly artifact: unknown;
++  }): { readonly reference: string; readonly operationId: string } {
++    this.assertOperation(input.operationId);
++    const reference = referenceFor(input.tenantSessionCapability, input.operationId);
++    const requestDigest = prepareRequestDigest(input);
++    return this.withRecordLock(reference, () => {
++      if (existsSync(this.recordPath(reference))) {
++        const existing = this.readRecord(reference);
++        if (
++          existing.operationId !== input.operationId
++          || !hashMatches(existing.tenantSessionHash, input.tenantSessionCapability)
++          || existing.requestDigest !== requestDigest
++        ) {
++          throw new ConsumerAuthorityUnavailableError();
++        }
++        return { reference, operationId: input.operationId };
++      }
++      const record: StoredAdoption = {
++        version: 3,
++        reference,
++        operationId: input.operationId,
++        tenantId: input.tenantId,
++        tenantSessionHash: hash(input.tenantSessionCapability),
++        worldClaimHash: hash(input.worldClaimCapability),
++        requestDigest,
++        taskId: input.taskId,
++        artifactId: input.artifactId,
++        consumerId: input.consumerId,
++        artifact: structuredClone(input.artifact),
++        phase: "prepared",
++        artifactReadAt: null,
++        worldReaderHandle: null,
++        history: [],
++        outbox: [],
++      };
++      this.writeNewRecord(record);
++      return { reference, operationId: input.operationId };
++    });
++  }
++
++  reviewPersistedArtifact(input: {
++    readonly reference: string;
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++  }): { readonly artifact: unknown; readonly phase: "artifact_persisted" | "decided" } {
++    return this.withRecordLock(input.reference, () => {
++      const record = this.requireConsumerRecord(input);
++      if (record.phase === "prepared") {
++        record.phase = "artifact_persisted";
++        record.artifactReadAt = this.nowIso();
++        this.writeRecord(record);
++      }
++      return {
++        artifact: structuredClone(record.artifact),
++        phase: record.phase,
++      };
++    });
++  }
++
++  recordDecision(input: {
++    readonly reference: string;
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++    readonly state: Exclude<ConsumerAdoptionState, "revoked">;
++    readonly readerViewerId: string;
++  }): ConsumerAdoptionReadback {
++    return this.withRecordLock(input.reference, () => {
++      const record = this.requireConsumerRecord(input);
++      if (record.phase === "prepared") throw new ConsumerAuthorityConflictError();
++      const current = record.history.at(-1);
++      if (current !== undefined) {
++        if (current.operationId !== input.operationId || current.state !== input.state) {
++          throw new ConsumerAuthorityConflictError();
++        }
++        return publicReadback(record);
++      }
++      const readerHandle: ExternalReaderHandle = {
++        reference: record.reference,
++        viewerId: input.readerViewerId,
++        readCapability: capability(),
++      };
++      record.phase = "decided";
++      record.worldReaderHandle = readerHandle;
++      record.history.push({
++        operationId: input.operationId,
++        state: input.state,
++        revision: 1,
++        observedAt: this.nowIso(),
++      });
++      record.outbox.push({
++        eventId: eventId(record.reference, 1),
++        revision: 1,
++        leaseOwner: null,
++        leaseToken: null,
++        leaseExpiresAtMs: null,
++        ackedAt: null,
++        supersededByEventId: null,
++      });
++      this.writeRecord(record);
++      return publicReadback(this.readRecord(record.reference));
++    });
++  }
++
++  readConsumerPostcondition(input: {
++    readonly reference: string;
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++  }): { readonly artifact: unknown; readonly readback: ConsumerAdoptionReadback } {
++    const record = this.requireConsumerRecord(input);
++    if (record.phase !== "decided") throw new ConsumerAuthorityUnavailableError();
++    return {
++      artifact: structuredClone(record.artifact),
++      readback: publicReadback(record),
++    };
++  }
++
++  recoverOperation(input: {
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++  }): {
++    readonly reference: string;
++    readonly operationId: string;
++    readonly phase: StoredAdoption["phase"];
++    readonly artifact?: unknown;
++    readonly readback?: ConsumerAdoptionReadback;
++  } {
++    this.assertOperation(input.operationId);
++    const reference = referenceFor(
++      input.tenantSessionCapability,
++      input.operationId,
++    );
++    const record = this.requireConsumerRecord({
++      reference,
++      operationId: input.operationId,
++      tenantSessionCapability: input.tenantSessionCapability,
++    });
++    return {
++      reference,
++      operationId: input.operationId,
++      phase: record.phase,
++      ...(record.phase === "prepared" ? {} : { artifact: structuredClone(record.artifact) }),
++      ...(record.phase === "decided" ? { readback: publicReadback(record) } : {}),
++    };
++  }
++
++  revise(input: {
++    readonly reference: string;
++    readonly tenantSessionCapability: string;
++    readonly updateOperationId: string;
++    readonly expectedRevision: number;
++    readonly state: ConsumerAdoptionState;
++  }): ConsumerAdoptionReadback {
++    this.assertOperation(input.updateOperationId);
++    return this.withRecordLock(input.reference, () => {
++      const record = this.requireSessionRecord(
++        input.reference,
++        input.tenantSessionCapability,
++      );
++      const replay = record.history.find((item) => item.operationId === input.updateOperationId);
++      if (replay !== undefined) {
++        if (
++          replay.expectedRevision !== input.expectedRevision
++          || replay.state !== input.state
++        ) {
++          throw new ConsumerAuthorityConflictError();
++        }
++        return publicRevisionReadback(record.reference, replay);
++      }
++      const current = record.history.at(-1);
++      if (current === undefined || current.revision !== input.expectedRevision) {
++        throw new ConsumerAuthorityConflictError();
++      }
++      const nextRevision = current.revision + 1;
++      const nextEventId = eventId(record.reference, nextRevision);
++      record.history.push({
++        operationId: input.updateOperationId,
++        state: input.state,
++        revision: nextRevision,
++        observedAt: this.nowIso(),
++        expectedRevision: input.expectedRevision,
++      });
++      record.outbox.push({
++        eventId: nextEventId,
++        revision: nextRevision,
++        leaseOwner: null,
++        leaseToken: null,
++        leaseExpiresAtMs: null,
++        ackedAt: null,
++        supersededByEventId: null,
++      });
++      this.writeRecord(record);
++      return publicReadback(this.readRecord(record.reference));
++    });
++  }
++
++  cancelOperation(input: {
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++    readonly cancelOperationId: string;
++    readonly readerViewerId: string;
++  }): ConsumerAdoptionReadback {
++    this.assertOperation(input.operationId);
++    this.assertOperation(input.cancelOperationId);
++    const reference = referenceFor(
++      input.tenantSessionCapability,
++      input.operationId,
++    );
++    return this.withRecordLock(reference, () => {
++      const record = this.requireConsumerRecord({
++        reference,
++        operationId: input.operationId,
++        tenantSessionCapability: input.tenantSessionCapability,
++      });
++      const replay = record.history.find(
++        (item) => item.operationId === input.cancelOperationId,
++      );
++      if (replay !== undefined) {
++        if (replay.state !== "not_adopted" && replay.state !== "revoked") {
++          throw new ConsumerAuthorityConflictError();
++        }
++        return publicRevisionReadback(record.reference, replay);
++      }
++      const current = record.history.at(-1);
++      const nextState: ConsumerAdoptionState = current === undefined
++        ? "not_adopted"
++        : "revoked";
++      if (current?.state === "revoked" || current?.state === "not_adopted") {
++        return publicReadback(record);
++      }
++      if (record.worldReaderHandle === null) {
++        record.worldReaderHandle = {
++          reference: record.reference,
++          viewerId: input.readerViewerId,
++          readCapability: capability(),
++        };
++      }
++      const nextRevision = (current?.revision ?? 0) + 1;
++      const nextEventId = eventId(record.reference, nextRevision);
++      record.phase = "decided";
++      record.history.push({
++        operationId: input.cancelOperationId,
++        state: nextState,
++        revision: nextRevision,
++        observedAt: this.nowIso(),
++        ...(current === undefined ? {} : { expectedRevision: current.revision }),
++      });
++      for (const pending of record.outbox) {
++        if (
++          pending.ackedAt === null
++          && pending.leaseOwner === null
++          && pending.supersededByEventId === null
++        ) {
++          pending.supersededByEventId = nextEventId;
++        }
++      }
++      record.outbox.push({
++        eventId: nextEventId,
++        revision: nextRevision,
++        leaseOwner: null,
++        leaseToken: null,
++        leaseExpiresAtMs: null,
++        ackedAt: null,
++        supersededByEventId: null,
++      });
++      this.writeRecord(record);
++      return publicRevisionReadback(
++        record.reference,
++        record.history.at(-1)!,
++      );
++    });
++  }
++
++  read(input: ExternalReaderHandle & { readonly revision: number }): ConsumerAdoptionReadback {
++    const record = this.readRecord(input.reference);
++    const handle = record.worldReaderHandle;
++    if (
++      handle === null
++      || handle.viewerId !== input.viewerId
++      || !hashMatches(hash(handle.readCapability), input.readCapability)
++    ) {
++      throw new ConsumerAuthorityUnavailableError();
++    }
++    const revision = record.history.find((item) => item.revision === input.revision);
++    if (revision === undefined) throw new ConsumerAuthorityUnavailableError();
++    return publicRevisionReadback(record.reference, revision);
++  }
++
++  claimWorldOutbox(input: {
++    readonly worldClaimCapability: string;
++    readonly worldId: string;
++    readonly leaseMs: number;
++  }): readonly WorldOutboxDelivery[] {
++    const now = this.nowMs();
++    const deliveries: WorldOutboxDelivery[] = [];
++    for (const reference of this.listReferences()) {
++      const delivery = this.withRecordLock(reference, () => {
++        const record = this.readRecord(reference);
++        if (!hashMatches(record.worldClaimHash, input.worldClaimCapability)) return null;
++        const pending = record.outbox.find((entry) => (
++          entry.ackedAt === null
++          && entry.supersededByEventId === null
++          && (
++            entry.leaseExpiresAtMs === null
++            || entry.leaseExpiresAtMs <= now
++          )
++        ));
++        if (pending === undefined || record.worldReaderHandle === null) return null;
++        pending.leaseOwner = input.worldId;
++        pending.leaseToken = capability();
++        pending.leaseExpiresAtMs = now + input.leaseMs;
++        this.writeRecord(record);
++        return {
++          eventId: pending.eventId,
++          reference: record.reference,
++          revision: pending.revision,
++          leaseToken: pending.leaseToken,
++          lineage: record.outbox
++            .filter((entry) => entry.revision <= pending.revision)
++            .map((entry) => ({
++              eventId: entry.eventId,
++              revision: entry.revision,
++            })),
++          readerHandle: structuredClone(record.worldReaderHandle),
++        };
++      });
++      if (delivery !== null) deliveries.push(delivery);
++    }
++    return deliveries;
++  }
++
++  ackWorldOutbox(input: {
++    readonly worldClaimCapability: string;
++    readonly worldId: string;
++    readonly reference: string;
++    readonly eventId: string;
++    readonly leaseToken: string;
++  }): void {
++    this.withRecordLock(input.reference, () => {
++      const record = this.readRecord(input.reference);
++      if (!hashMatches(record.worldClaimHash, input.worldClaimCapability)) {
++        throw new ConsumerAuthorityUnavailableError();
++      }
++      const entry = record.outbox.find((candidate) => candidate.eventId === input.eventId);
++      if (
++        entry === undefined
++        || entry.leaseOwner !== input.worldId
++        || entry.leaseToken !== input.leaseToken
++      ) {
++        throw new ConsumerAuthorityUnavailableError();
++      }
++      if (entry.ackedAt === null) {
++        entry.ackedAt = this.nowIso();
++        this.writeRecord(record);
++      }
++    });
++  }
++
++  recordCount(): number {
++    return this.listReferences().length;
++  }
++
++  private requireConsumerRecord(input: {
++    readonly reference: string;
++    readonly operationId: string;
++    readonly tenantSessionCapability: string;
++  }): StoredAdoption {
++    const record = this.requireSessionRecord(
++      input.reference,
++      input.tenantSessionCapability,
++    );
++    if (record.operationId !== input.operationId) {
++      throw new ConsumerAuthorityUnavailableError();
++    }
++    return record;
++  }
++
++  private requireSessionRecord(
++    reference: string,
++    tenantSessionCapability: string,
++  ): StoredAdoption {
++    const record = this.readRecord(reference);
++    if (!hashMatches(record.tenantSessionHash, tenantSessionCapability)) {
++      throw new ConsumerAuthorityUnavailableError();
++    }
++    return record;
++  }
++
++  private listReferences(): string[] {
++    return readdirSync(this.recordsDirectory)
++      .filter((name) => name.endsWith(".json"))
++      .map((name) => name.slice(0, -5));
++  }
++
++  private withRecordLock<T>(reference: string, action: () => T): T {
++    this.assertReference(reference);
++    const lockPath = join(this.locksDirectory, `${reference}.lock`);
++    const deadline = Date.now() + 10_000;
++    let descriptor: number | undefined;
++    const ownerToken = randomUUID();
++    while (descriptor === undefined) {
++      try {
++        descriptor = openSync(lockPath, "wx", 0o600);
++        writeFileSync(
++          descriptor,
++          `${JSON.stringify({ pid: process.pid, ownerToken, createdAtMs: Date.now() })}\n`,
++          { encoding: "utf8" },
++        );
++        fsyncSync(descriptor);
++      } catch (error) {
++        if ((error as NodeJS.ErrnoException).code !== "EEXIST" || Date.now() >= deadline) {
++          throw new ConsumerAuthorityUnavailableError();
++        }
++        this.breakOrphanedLock(lockPath);
++        Atomics.wait(LOCK_WAIT_BUFFER, 0, 0, 5);
++      }
++    }
++    try {
++      return action();
++    } finally {
++      closeSync(descriptor);
++      this.unlinkOwnedLock(lockPath, ownerToken);
++    }
++  }
++
++  private breakOrphanedLock(lockPath: string): void {
++    try {
++      const before = statSync(lockPath);
++      let parsed: { readonly pid?: unknown; readonly ownerToken?: unknown };
++      try {
++        parsed = JSON.parse(readFileSync(lockPath, "utf8")) as typeof parsed;
++      } catch {
++        if (Date.now() - before.mtimeMs >= 1_000) {
++          this.unlinkUnchangedLock(lockPath, before);
++        }
++        return;
++      }
++      if (
++        typeof parsed.pid !== "number"
++        || typeof parsed.ownerToken !== "string"
++        || this.processIsAlive(parsed.pid)
++      ) {
++        return;
++      }
++      this.unlinkUnchangedLock(lockPath, before);
++    } catch {
++      // A live owner may still be initializing the file, or another waiter
++      // may already have removed it. In either case the normal retry loop wins.
++    }
++  }
++
++  private unlinkUnchangedLock(
++    lockPath: string,
++    before: NonNullable<ReturnType<typeof statSync>>,
++  ): void {
++    const after = statSync(lockPath);
++    if (
++      before.ino === after.ino
++      && before.mtimeMs === after.mtimeMs
++      && before.size === after.size
++    ) {
++      unlinkSync(lockPath);
++    }
++  }
++
++  private unlinkOwnedLock(lockPath: string, ownerToken: string): void {
++    try {
++      const parsed = JSON.parse(readFileSync(lockPath, "utf8")) as {
++        readonly ownerToken?: unknown;
++      };
++      if (parsed.ownerToken === ownerToken) unlinkSync(lockPath);
++    } catch {
++      // Never delete a lock that cannot be proven to belong to this holder.
++    }
++  }
++
++  private processIsAlive(pid: number): boolean {
++    if (!Number.isSafeInteger(pid) || pid <= 0) return true;
++    try {
++      process.kill(pid, 0);
++      return true;
++    } catch (error) {
++      return (error as NodeJS.ErrnoException).code !== "ESRCH";
++    }
++  }
++
++  private readRecord(reference: string): StoredAdoption {
++    try {
++      const parsed = JSON.parse(readFileSync(this.recordPath(reference), "utf8")) as StoredAdoption;
++      if (parsed.version !== 3 || parsed.reference !== reference) {
++        throw new ConsumerAuthorityUnavailableError();
++      }
++      return parsed;
++    } catch (error) {
++      if (error instanceof ConsumerAuthorityUnavailableError) throw error;
++      throw new ConsumerAuthorityUnavailableError();
++    }
++  }
++
++  private writeRecord(record: StoredAdoption): void {
++    const temporary = this.writeTemporaryRecord(record);
++    renameSync(temporary, this.recordPath(record.reference));
++    this.fsyncDirectory(this.recordsDirectory);
++  }
++
++  private writeNewRecord(record: StoredAdoption): void {
++    const temporary = this.writeTemporaryRecord(record);
++    try {
++      linkSync(temporary, this.recordPath(record.reference));
++      this.fsyncDirectory(this.recordsDirectory);
++    } finally {
++      try {
++        unlinkSync(temporary);
++      } catch {
++        // The canonical hard link, once created, remains the only authority.
++      }
++    }
++  }
++
++  private writeTemporaryRecord(record: StoredAdoption): string {
++    const temporary = join(
++      this.recordsDirectory,
++      `${record.reference}.${process.pid}.${randomUUID()}.tmp`,
++    );
++    const descriptor = openSync(temporary, "wx", 0o600);
++    try {
++      writeFileSync(descriptor, `${JSON.stringify(record)}\n`, {
++        encoding: "utf8",
++      });
++      fsyncSync(descriptor);
++    } finally {
++      closeSync(descriptor);
++    }
++    return temporary;
++  }
++
++  private fsyncDirectory(directory: string): void {
++    const descriptor = openSync(directory, "r");
++    try {
++      fsyncSync(descriptor);
++    } finally {
++      closeSync(descriptor);
++    }
++  }
++
++  private recordPath(reference: string): string {
++    this.assertReference(reference);
++    return join(this.recordsDirectory, `${reference}.json`);
++  }
++
++  private nowIso(): string {
++    return new Date(this.nowMs()).toISOString();
++  }
++
++  private assertReference(reference: string): void {
++    if (!REFERENCE_PATTERN.test(reference)) throw new ConsumerAuthorityUnavailableError();
++  }
++
++  private assertOperation(operationId: string): void {
++    if (!OPERATION_PATTERN.test(operationId)) throw new ConsumerAuthorityUnavailableError();
++  }
++}
+diff --git a/next.config.ts b/next.config.ts
+index e9ffa30..5c0235f 100644
+--- a/next.config.ts
++++ b/next.config.ts
+@@ -1,7 +1,7 @@
+ import type { NextConfig } from "next";
+ 
+ const nextConfig: NextConfig = {
+-  /* config options here */
++  allowedDevOrigins: ["127.0.0.1"],
+ };
+ 
+ export default nextConfig;
+diff --git a/tests/fixtures/adoption-authority-worker.mjs b/tests/fixtures/adoption-authority-worker.mjs
+new file mode 100644
+index 0000000..2b88f54
+--- /dev/null
++++ b/tests/fixtures/adoption-authority-worker.mjs
+@@ -0,0 +1,67 @@
++import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
++import { join } from "node:path";
++
++import { RecoverableConsumerAuthority } from "../../core/adoption/recoverable-consumer-authority.ts";
++
++const [mode, root, first, second, third, fourth, fifth] = process.argv.slice(2);
++const authority = new RecoverableConsumerAuthority(root);
++
++if (mode === "prepare") {
++  authority.prepare({
++    operationId: `op_worker_${first.padStart(4, "0")}`,
++    tenantId: "tenant-a",
++    tenantSessionCapability: second,
++    worldClaimCapability: third,
++    taskId: `task-${first}`,
++    artifactId: `artifact-${first}`,
++    consumerId: "allbuddy:product-shell",
++    artifact: { id: `artifact-${first}` },
++  });
++  process.stdout.write("success\n");
++} else if (mode === "decide") {
++  const readback = authority.recordDecision({
++    reference: first,
++    operationId: second,
++    tenantSessionCapability: third,
++    state: "adopted",
++    readerViewerId: "agent-world",
++  });
++  process.stdout.write(`${JSON.stringify(readback)}\n`);
++} else if (mode === "world") {
++  const worldStore = first;
++  const worldClaim = second;
++  const worldId = third;
++  const leaseMs = Number(fourth);
++  const ackMode = fifth;
++  mkdirSync(worldStore, { recursive: true });
++  const deliveries = authority.claimWorldOutbox({
++    worldClaimCapability: worldClaim,
++    worldId,
++    leaseMs,
++  });
++  for (const delivery of deliveries) {
++    const target = join(worldStore, `${delivery.eventId}.json`);
++    const { leaseToken: _leaseToken, ...persistedDelivery } = delivery;
++    try {
++      writeFileSync(target, `${JSON.stringify(persistedDelivery)}\n`, { flag: "wx", mode: 0o600 });
++    } catch (error) {
++      if (error.code !== "EEXIST") throw error;
++      const existing = JSON.parse(readFileSync(target, "utf8"));
++      if (JSON.stringify(existing) !== JSON.stringify(persistedDelivery)) {
++        throw new Error("World dedupe collision");
++      }
++    }
++    if (ackMode === "ack") {
++      authority.ackWorldOutbox({
++        worldClaimCapability: worldClaim,
++        worldId,
++        reference: delivery.reference,
++        eventId: delivery.eventId,
++        leaseToken: delivery.leaseToken,
++      });
++    }
++  }
++  process.stdout.write(`${JSON.stringify(deliveries.map((item) => item.eventId))}\n`);
++} else {
++  throw new Error(`unknown worker mode: ${mode}`);
++}
+diff --git a/tests/smoke/e2e/consumer-adoption.spec.ts b/tests/smoke/e2e/consumer-adoption.spec.ts
+new file mode 100644
+index 0000000..9b11134
+--- /dev/null
++++ b/tests/smoke/e2e/consumer-adoption.spec.ts
+@@ -0,0 +1,263 @@
++import { expect, test } from "@playwright/test";
++
++const WORLD_CLAIM = "synthetic-world-claim-e2e-000000000000";
++
++async function dismissOnboarding(page: import("@playwright/test").Page) {
++  const dialog = page.getByRole("dialog", { name: "新手引导" });
++  await dialog.waitFor({ state: "visible", timeout: 5_000 }).catch(() => undefined);
++  if (!await dialog.isVisible().catch(() => false)) return;
++  await dialog.getByRole("button", { name: "关闭新手引导" }).click();
++  await expect(dialog).toBeHidden();
++}
++
++test("ProductShell adopts only a persisted Artifact and restores it after reload", async ({ page }) => {
++  test.setTimeout(90_000);
++  await page.goto("/");
++  await dismissOnboarding(page);
++
++  const query = page.getByPlaceholder("用一句话说你现在要解决的事…");
++  await query.fill("SENTINEL_BROWSER_PRIVATE_91bd 帮我看看客户情况");
++  await page.getByRole("button", { name: "发送任务" }).click();
++  await expect(page.getByText(/^任务完成：.*已沉淀为 Artifact。$/)).toBeVisible({
++    timeout: 30_000,
++  });
++
++  const claimed = await page.request.post("/api/external/adoption-outbox/claim", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: { worldId: "agent-world-e2e", leaseMs: 10_000 },
++  });
++  expect(claimed.ok()).toBeTruthy();
++  const { deliveries } = await claimed.json() as {
++    deliveries: {
++      eventId: string;
++      reference: string;
++      revision: number;
++      leaseToken: string;
++      lineage: { eventId: string; revision: number }[];
++      readerHandle: {
++        reference: string;
++        viewerId: string;
++        readCapability: string;
++      };
++    }[];
++  };
++  expect(deliveries).toHaveLength(1);
++  const [delivery] = deliveries;
++
++  const accepted = await page.request.post("/api/external/adoption-readback", {
++    data: { ...delivery.readerHandle, revision: delivery.revision },
++  });
++  expect(accepted.ok()).toBeTruthy();
++  const publicReadback = JSON.stringify(await accepted.json());
++  expect(publicReadback).toContain('"state":"adopted"');
++  expect(publicReadback).not.toContain("SENTINEL_BROWSER_PRIVATE_91bd");
++  expect(publicReadback).not.toContain("enterprise:");
++  expect(publicReadback).not.toContain("客户情况");
++
++  const denied = await page.request.post("/api/external/adoption-readback", {
++    data: {
++      ...delivery.readerHandle,
++      revision: delivery.revision,
++      readCapability: "wrong",
++    },
++  });
++  const missing = await page.request.post("/api/external/adoption-readback", {
++    data: {
++      ...delivery.readerHandle,
++      revision: delivery.revision,
++      reference: "car_00000000-0000-0000-0000-000000000000",
++    },
++  });
++  expect(denied.status()).toBe(404);
++  expect(missing.status()).toBe(404);
++  expect(await denied.json()).toEqual(await missing.json());
++  const acknowledged = await page.request.post("/api/external/adoption-outbox/ack", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: {
++      worldId: "agent-world-e2e",
++      reference: delivery.reference,
++      eventId: delivery.eventId,
++      leaseToken: delivery.leaseToken,
++    },
++  });
++  expect(acknowledged.ok()).toBeTruthy();
++
++  await page.reload();
++  await dismissOnboarding(page);
++  await page.getByRole("button", { name: "Artifact 库" }).click();
++  await expect(page.getByRole("button", { name: /客户经营全景/ }).first()).toBeVisible();
++  await expect(page.getByText("已恢复").first()).toBeVisible();
++
++  const revoked = await page.request.post("/api/workspace/adoption/revise", {
++    data: {
++      reference: delivery.reference,
++      updateOperationId: `rev_${crypto.randomUUID()}`,
++      expectedRevision: 1,
++      state: "revoked",
++    },
++  });
++  expect(revoked.ok()).toBeTruthy();
++  expect(await revoked.json()).toMatchObject({ state: "revoked", revision: 2 });
++  const revokedClaim = await page.request.post("/api/external/adoption-outbox/claim", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: { worldId: "agent-world-e2e", leaseMs: 10_000 },
++  });
++  const revokedDeliveries = (await revokedClaim.json() as {
++    deliveries: typeof deliveries;
++  }).deliveries;
++  expect(revokedDeliveries).toHaveLength(1);
++  const [revokedDelivery] = revokedDeliveries;
++  const revokedReadback = await page.request.post("/api/external/adoption-readback", {
++    data: {
++      ...revokedDelivery.readerHandle,
++      revision: revokedDelivery.revision,
++    },
++  });
++  expect(await revokedReadback.json()).toMatchObject({ state: "revoked", revision: 2 });
++  const revokedAck = await page.request.post("/api/external/adoption-outbox/ack", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: {
++      worldId: "agent-world-e2e",
++      reference: revokedDelivery.reference,
++      eventId: revokedDelivery.eventId,
++      leaseToken: revokedDelivery.leaseToken,
++    },
++  });
++  expect(revokedAck.ok()).toBeTruthy();
++
++  // The consumer session exists before /run. Losing the run response therefore
++  // loses no recovery authority: session + the pre-existing operation ID find
++  // the prepared record without response-carried secrets.
++  const responseLossOperation = crypto.randomUUID();
++  const ignoredRunResponse = await page.request.post("/api/workspace/run", {
++    data: {
++      operationId: responseLossOperation,
++      kind: "customer-analysis",
++      role: "owner",
++      query: "模拟首次 run 响应整体丢失",
++    },
++  });
++  expect(ignoredRunResponse.ok()).toBeTruthy();
++  const recovered = await page.request.post("/api/workspace/adoption/recover", {
++    data: { operationId: responseLossOperation },
++  });
++  expect(recovered.ok()).toBeTruthy();
++  expect(await recovered.json()).toMatchObject({
++    operationId: responseLossOperation,
++    phase: "prepared",
++  });
++
++  // Hold a completed server response outside the browser, explicitly abort,
++  // then release it. Reload must not convert that prepared record to adoption.
++  let releaseResponse!: () => void;
++  const responseGate = new Promise<void>((resolve) => {
++    releaseResponse = resolve;
++  });
++  let markServerPrepared!: () => void;
++  const serverPrepared = new Promise<void>((resolve) => {
++    markServerPrepared = resolve;
++  });
++  await page.route("**/api/workspace/run", async (route) => {
++    const response = await route.fetch();
++    markServerPrepared();
++    await responseGate;
++    await route.fulfill({ response }).catch(() => undefined);
++  });
++  await page.goto("/");
++  await dismissOnboarding(page);
++  const abortQuery = page.getByPlaceholder("用一句话说你现在要解决的事…");
++  await abortQuery.fill("这条任务会在服务端 prepare 后被消费者明确终止");
++  await page.getByRole("button", { name: "发送任务" }).click();
++  await serverPrepared;
++  await page.getByRole("button", { name: "终止" }).click();
++  releaseResponse();
++  await page.unroute("**/api/workspace/run");
++  await page.reload();
++  await dismissOnboarding(page);
++  const afterAbort = await page.request.post("/api/external/adoption-outbox/claim", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: { worldId: "agent-world-after-abort", leaseMs: 10_000 },
++  });
++  const abortedDeliveries = (await afterAbort.json() as {
++    deliveries: typeof deliveries;
++  }).deliveries;
++  expect(abortedDeliveries).toHaveLength(1);
++  const [abortedDelivery] = abortedDeliveries;
++  const abortedReadback = await page.request.post("/api/external/adoption-readback", {
++    data: {
++      ...abortedDelivery.readerHandle,
++      revision: abortedDelivery.revision,
++    },
++  });
++  expect(await abortedReadback.json()).toMatchObject({
++    state: "not_adopted",
++    revision: 1,
++  });
++  await page.request.post("/api/external/adoption-outbox/ack", {
++    headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++    data: {
++      worldId: "agent-world-after-abort",
++      reference: abortedDelivery.reference,
++      eventId: abortedDelivery.eventId,
++      leaseToken: abortedDelivery.leaseToken,
++    },
++  });
++
++  // Decisive race: adoption commits on the server while its response is held.
++  // User termination must become canonical revocation, not a client-only abort.
++  let releaseAdoptionResponse!: () => void;
++  const adoptionResponseGate = new Promise<void>((resolve) => {
++    releaseAdoptionResponse = resolve;
++  });
++  let markAdoptionCommitted!: () => void;
++  const adoptionCommitted = new Promise<void>((resolve) => {
++    markAdoptionCommitted = resolve;
++  });
++  await page.route("**/api/workspace/adoption", async (route) => {
++    const response = await route.fetch();
++    markAdoptionCommitted();
++    await adoptionResponseGate;
++    await route.fulfill({ response }).catch(() => undefined);
++  });
++  const raceQuery = page.getByPlaceholder("用一句话说你现在要解决的事…");
++  await raceQuery.fill("采用提交后响应丢失，再由消费者终止");
++  await page.getByRole("button", { name: "发送任务" }).click();
++  await adoptionCommitted;
++  await page.getByRole("button", { name: "终止" }).click();
++  await expect(page.getByText("终止已确认；结果曾被采用，现已撤销。")).toBeVisible();
++  releaseAdoptionResponse();
++  await page.unroute("**/api/workspace/adoption");
++
++  const afterCommittedAbort = await page.request.post(
++    "/api/external/adoption-outbox/claim",
++    {
++      headers: { authorization: `Bearer ${WORLD_CLAIM}` },
++      data: { worldId: "agent-world-after-committed-abort", leaseMs: 10_000 },
++    },
++  );
++  const correctionDeliveries = (await afterCommittedAbort.json() as {
++    deliveries: typeof deliveries;
++  }).deliveries;
++  expect(correctionDeliveries).toHaveLength(1);
++  const [correction] = correctionDeliveries;
++  expect(correction).toMatchObject({
++    revision: 2,
++    lineage: [{ revision: 1 }, { revision: 2 }],
++  });
++  const historicalAdoption = await page.request.post(
++    "/api/external/adoption-readback",
++    { data: { ...correction.readerHandle, revision: 1 } },
++  );
++  const canonicalRevocation = await page.request.post(
++    "/api/external/adoption-readback",
++    { data: { ...correction.readerHandle, revision: 2 } },
++  );
++  expect(await historicalAdoption.json()).toMatchObject({
++    state: "adopted",
++    revision: 1,
++  });
++  expect(await canonicalRevocation.json()).toMatchObject({
++    state: "revoked",
++    revision: 2,
++  });
++});
+diff --git a/tests/unit/consumer-adoption-ledger.test.ts b/tests/unit/consumer-adoption-ledger.test.ts
+new file mode 100644
+index 0000000..c4cfe1a
+--- /dev/null
++++ b/tests/unit/consumer-adoption-ledger.test.ts
+@@ -0,0 +1,473 @@
++import { execFile } from "node:child_process";
++import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
++import { join } from "node:path";
++import { tmpdir } from "node:os";
++import { promisify } from "node:util";
++
++import { describe, expect, it } from "vitest";
++
++import {
++  ConsumerAuthorityConflictError,
++  ConsumerAuthorityUnavailableError,
++  RecoverableConsumerAuthority,
++} from "../../core/adoption/recoverable-consumer-authority";
++
++const execFileAsync = promisify(execFile);
++const WORKER = join(process.cwd(), "tests/fixtures/adoption-authority-worker.mjs");
++const SESSION_A = "synthetic-session-tenant-a-000000000000";
++const SESSION_B = "synthetic-session-tenant-b-000000000000";
++const WORLD_CLAIM = "synthetic-world-claim-0000000000000000";
++
++function fixture() {
++  const root = mkdtempSync(join(tmpdir(), "allbuddy-adoption-v3-"));
++  let now = Date.parse("2026-07-25T05:50:00.000Z");
++  return {
++    root,
++    advance(ms: number) {
++      now += ms;
++    },
++    authority: new RecoverableConsumerAuthority(root, () => now),
++  };
++}
++
++function prepare(
++  authority: RecoverableConsumerAuthority,
++  input: {
++    operationId?: string;
++    tenantId?: string;
++    session?: string;
++    sentinel?: string;
++  } = {},
++) {
++  const operationId = input.operationId ?? `op_${crypto.randomUUID()}`;
++  const sentinel = input.sentinel ?? "private-body";
++  return authority.prepare({
++    operationId,
++    tenantId: input.tenantId ?? "tenant-a",
++    tenantSessionCapability: input.session ?? SESSION_A,
++    worldClaimCapability: WORLD_CLAIM,
++    taskId: `task-${sentinel}`,
++    artifactId: `artifact-${sentinel}`,
++    consumerId: "allbuddy:product-shell",
++    artifact: { id: `artifact-${sentinel}`, body: sentinel },
++  });
++}
++
++function reviewAndDecide(
++  authority: RecoverableConsumerAuthority,
++  prepared: ReturnType<typeof prepare>,
++  session = SESSION_A,
++  state: "adopted" | "not_adopted" = "adopted",
++) {
++  authority.reviewPersistedArtifact({
++    ...prepared,
++    tenantSessionCapability: session,
++  });
++  return authority.recordDecision({
++    ...prepared,
++    tenantSessionCapability: session,
++    state,
++    readerViewerId: "agent-world",
++  });
++}
++
++describe("recoverable consumer authority and durable World outbox", () => {
++  it("makes prepare idempotent by authenticated session and operationId", () => {
++    const { authority } = fixture();
++    const operationId = `op_${crypto.randomUUID()}`;
++    const first = prepare(authority, { operationId });
++    const retry = prepare(authority, { operationId });
++    expect(retry).toEqual(first);
++    expect(authority.recordCount()).toBe(1);
++    expect(() => prepare(authority, {
++      operationId,
++      tenantId: "tenant-other",
++      sentinel: "different-request",
++    })).toThrow(ConsumerAuthorityUnavailableError);
++    const otherPrincipal = prepare(authority, {
++      operationId,
++      tenantId: "tenant-b",
++      session: SESSION_B,
++    });
++    expect(otherPrincipal.reference).not.toBe(first.reference);
++    expect(authority.recordCount()).toBe(2);
++  });
++
++  it("requires persistent review, then recovers the same adopted fact after response loss", () => {
++    const { root, authority } = fixture();
++    const prepared = prepare(authority);
++    expect(() => authority.recordDecision({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++      state: "adopted",
++      readerViewerId: "agent-world",
++    })).toThrow(ConsumerAuthorityConflictError);
++
++    authority.reviewPersistedArtifact({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++    });
++    authority.recordDecision({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++      state: "adopted",
++      readerViewerId: "agent-world",
++    });
++    // Simulate a lost mutation response: retain only pre-existing session + operationId.
++    const restarted = new RecoverableConsumerAuthority(root);
++    const recovered = restarted.recoverOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++    });
++    expect(recovered).toMatchObject({
++      reference: prepared.reference,
++      phase: "decided",
++      readback: { state: "adopted", revision: 1 },
++    });
++    expect(restarted.readConsumerPostcondition({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++    })).toMatchObject({
++      artifact: { id: "artifact-private-body", body: "private-body" },
++      readback: { state: "adopted", revision: 1 },
++    });
++  });
++
++  it("uses expectedRevision CAS and idempotent update operationIds", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    const updateOperationId = `rev_${crypto.randomUUID()}`;
++    expect(authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId,
++      expectedRevision: 1,
++      state: "revoked",
++    })).toMatchObject({ state: "revoked", revision: 2 });
++    expect(authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId: `rev_${crypto.randomUUID()}`,
++      expectedRevision: 2,
++      state: "adopted",
++    })).toMatchObject({ state: "adopted", revision: 3 });
++    expect(authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId,
++      expectedRevision: 1,
++      state: "revoked",
++    })).toMatchObject({ state: "revoked", revision: 2 });
++    expect(() => authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId,
++      expectedRevision: 999,
++      state: "not_adopted",
++    })).toThrow(ConsumerAuthorityConflictError);
++    expect(authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId,
++      expectedRevision: 1,
++      state: "revoked",
++    })).toMatchObject({ state: "revoked", revision: 2 });
++    expect(() => authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId: `rev_${crypto.randomUUID()}`,
++      expectedRevision: 1,
++      state: "adopted",
++    })).toThrow(ConsumerAuthorityConflictError);
++  });
++
++  it("keeps wrong session, wrong viewer, wrong bearer and missing reference indistinguishable", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    expect(() => authority.readConsumerPostcondition({
++      ...prepared,
++      tenantSessionCapability: SESSION_B,
++    })).toThrowError("consumer authority reference is unavailable");
++    const [delivery] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    const denied = [
++      { ...delivery.readerHandle, revision: delivery.revision, viewerId: "other-viewer" },
++      { ...delivery.readerHandle, revision: delivery.revision, readCapability: "wrong" },
++      {
++        ...delivery.readerHandle,
++        revision: delivery.revision,
++        reference: "car_00000000-0000-0000-0000-000000000000",
++      },
++    ];
++    for (const input of denied) {
++      expect(() => authority.read(input)).toThrowError("consumer authority reference is unavailable");
++    }
++  });
++
++  it("redelivers the same outbox event until World persists and acknowledges it", () => {
++    const { authority, advance } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    const [first] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-before-persist-crash",
++      leaseMs: 100,
++    });
++    expect(authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-before-persist-crash",
++      leaseMs: 100,
++    })).toHaveLength(0);
++    advance(101);
++    const [retry] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-after-restart",
++      leaseMs: 100,
++    });
++    expect(retry).toMatchObject({
++      eventId: first.eventId,
++      reference: first.reference,
++      revision: first.revision,
++      readerHandle: first.readerHandle,
++    });
++    expect(retry.leaseToken).not.toBe(first.leaseToken);
++    authority.ackWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-after-restart",
++      reference: retry.reference,
++      eventId: retry.eventId,
++      leaseToken: retry.leaseToken,
++    });
++    expect(authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-after-restart",
++      leaseMs: 100,
++    })).toHaveLength(0);
++  });
++
++  it("allows an independent World process to persist, crash before ack, dedupe and ack", async () => {
++    const { root, authority } = fixture();
++    const worldStore = mkdtempSync(join(tmpdir(), "agent-world-inbox-"));
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    await execFileAsync(process.execPath, [
++      WORKER, "world", root, worldStore, WORLD_CLAIM, "world-process", "1", "no-ack",
++    ]);
++    await new Promise((resolve) => setTimeout(resolve, 5));
++    await execFileAsync(process.execPath, [
++      WORKER, "world", root, worldStore, WORLD_CLAIM, "world-process", "100", "ack",
++    ]);
++    const persisted = readdirSync(worldStore).filter((name) => name.endsWith(".json"));
++    expect(persisted).toHaveLength(1);
++    expect(JSON.parse(readFileSync(join(worldStore, persisted[0]), "utf8"))).toMatchObject({
++      reference: prepared.reference,
++      revision: 1,
++    });
++    expect(authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-process",
++      leaseMs: 100,
++    })).toHaveLength(0);
++  });
++
++  it("does not project private content, raw tenant, query or bearer into World readback", () => {
++    const { authority } = fixture();
++    const sentinel = "SENTINEL_PRIVATE_QUERY_7f4d";
++    const prepared = prepare(authority, {
++      tenantId: `tenant-a-${sentinel}`,
++      sentinel,
++    });
++    reviewAndDecide(authority, prepared);
++    const [delivery] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    const payload = JSON.stringify(authority.read({
++      ...delivery.readerHandle,
++      revision: delivery.revision,
++    }));
++    expect(payload).not.toContain(sentinel);
++    expect(payload).not.toContain("tenant-a");
++    expect(payload).not.toContain("artifact");
++    expect(payload).not.toContain("task-");
++    expect(payload).not.toContain(delivery.readerHandle.readCapability);
++  });
++
++  it("reads the claimed historical revision instead of silently returning latest", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    const [adopted] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    authority.revise({
++      reference: prepared.reference,
++      tenantSessionCapability: SESSION_A,
++      updateOperationId: `rev_${crypto.randomUUID()}`,
++      expectedRevision: 1,
++      state: "revoked",
++    });
++    expect(authority.read({
++      ...adopted.readerHandle,
++      revision: adopted.revision,
++    })).toMatchObject({ state: "adopted", revision: 1 });
++  });
++
++  it("serializes cancel before adoption into one not-adopted authority fact", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    const cancelled = authority.cancelOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++      cancelOperationId: `cancel_${crypto.randomUUID()}`,
++      readerViewerId: "agent-world",
++    });
++    expect(cancelled).toMatchObject({ state: "not_adopted", revision: 1 });
++    expect(() => authority.recordDecision({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++      state: "adopted",
++      readerViewerId: "agent-world",
++    })).toThrow(ConsumerAuthorityConflictError);
++    const [delivery] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    expect(delivery).toMatchObject({
++      revision: 1,
++      lineage: [{ revision: 1 }],
++    });
++    expect(authority.read({
++      ...delivery.readerHandle,
++      revision: 1,
++    })).toMatchObject({ state: "not_adopted", revision: 1 });
++  });
++
++  it("turns abort after adoption commit into a monotonic revocation", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    const cancelOperationId = `cancel_${crypto.randomUUID()}`;
++    expect(authority.cancelOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++      cancelOperationId,
++      readerViewerId: "agent-world",
++    })).toMatchObject({ state: "revoked", revision: 2 });
++    expect(authority.cancelOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++      cancelOperationId,
++      readerViewerId: "agent-world",
++    })).toMatchObject({ state: "revoked", revision: 2 });
++    const [delivery] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    expect(delivery).toMatchObject({
++      revision: 2,
++      lineage: [{ revision: 1 }, { revision: 2 }],
++    });
++    expect(authority.read({
++      ...delivery.readerHandle,
++      revision: 1,
++    })).toMatchObject({ state: "adopted", revision: 1 });
++    expect(authority.read({
++      ...delivery.readerHandle,
++      revision: 2,
++    })).toMatchObject({ state: "revoked", revision: 2 });
++  });
++
++  it("keeps an already claimed adoption and appends a claimable correction", () => {
++    const { authority } = fixture();
++    const prepared = prepare(authority);
++    reviewAndDecide(authority, prepared);
++    const [adopted] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    authority.cancelOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++      cancelOperationId: `cancel_${crypto.randomUUID()}`,
++      readerViewerId: "agent-world",
++    });
++    authority.ackWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      reference: adopted.reference,
++      eventId: adopted.eventId,
++      leaseToken: adopted.leaseToken,
++    });
++    const [revoked] = authority.claimWorldOutbox({
++      worldClaimCapability: WORLD_CLAIM,
++      worldId: "world-a",
++      leaseMs: 100,
++    });
++    expect(revoked).toMatchObject({
++      revision: 2,
++      lineage: [{ revision: 1 }, { revision: 2 }],
++    });
++  });
++
++  it("recovers an orphaned same-host process lock without waiting for the deadline", () => {
++    const { root, authority } = fixture();
++    const prepared = prepare(authority);
++    writeFileSync(
++      join(root, "locks", `${prepared.reference}.lock`),
++      `${JSON.stringify({
++        pid: 99_999_999,
++        ownerToken: "orphaned-owner",
++        createdAtMs: Date.now() - 60_000,
++      })}\n`,
++      { mode: 0o600 },
++    );
++    const startedAt = Date.now();
++    authority.reviewPersistedArtifact({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++    });
++    expect(Date.now() - startedAt).toBeLessThan(500);
++  });
++
++  it("preserves all 64 cross-process prepares", async () => {
++    const { root, authority } = fixture();
++    await Promise.all(Array.from({ length: 64 }, (_, index) => (
++      execFileAsync(process.execPath, [
++        WORKER, "prepare", root, String(index), SESSION_A, WORLD_CLAIM,
++      ])
++    )));
++    expect(authority.recordCount()).toBe(64);
++  }, 30_000);
++
++  it("converges 64 cross-process retries to one adoption fact", async () => {
++    const { root, authority } = fixture();
++    const prepared = prepare(authority);
++    authority.reviewPersistedArtifact({
++      ...prepared,
++      tenantSessionCapability: SESSION_A,
++    });
++    const results = await Promise.all(Array.from({ length: 64 }, () => (
++      execFileAsync(process.execPath, [
++        WORKER, "decide", root, prepared.reference, prepared.operationId, SESSION_A,
++      ]).then(({ stdout }) => JSON.parse(stdout))
++    )));
++    expect(results.every((item) => item.reference === prepared.reference)).toBe(true);
++    expect(results.every((item) => item.revision === 1 && item.state === "adopted")).toBe(true);
++    expect(authority.recoverOperation({
++      operationId: prepared.operationId,
++      tenantSessionCapability: SESSION_A,
++    })).toMatchObject({ readback: { revision: 1 } });
++  }, 30_000);
++});

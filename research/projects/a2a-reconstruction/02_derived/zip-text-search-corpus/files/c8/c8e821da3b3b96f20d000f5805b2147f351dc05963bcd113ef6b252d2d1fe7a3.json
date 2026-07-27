@@ -1,0 +1,49 @@
+{
+  "run": "allbuddy-source-v4-e2e",
+  "completed_at_utc": "2026-07-25T06:18:36Z",
+  "browser_result": {
+    "project": "desktop-chromium",
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "duration_seconds": 31.2
+  },
+  "accepted_then_revoked": {
+    "reference": "car_0d1a2f75-e630-ddab-2644-50333105c631",
+    "phase": "decided",
+    "artifact_persisted": true,
+    "world_reader_configured": true,
+    "history": [
+      {
+        "state": "adopted",
+        "revision": 1,
+        "event_id": "evt_28e3b3a6c7a7fa95ceec5faf29d473ca",
+        "acked": true
+      },
+      {
+        "state": "revoked",
+        "revision": 2,
+        "event_id": "evt_59569ee9b6bb4f75a4ec5ff55078e067",
+        "acked": true
+      }
+    ]
+  },
+  "response_loss_recovery": {
+    "phase_after_recovery": "prepared",
+    "history_count": 0,
+    "outbox_count": 0
+  },
+  "explicit_abort_after_server_prepare": {
+    "phase_after_reload": "prepared",
+    "history_count": 0,
+    "outbox_count": 0,
+    "world_claim_delivery_count": 0
+  },
+  "redaction": {
+    "artifact_body_omitted": true,
+    "tenant_omitted": true,
+    "session_capability_omitted": true,
+    "reader_capability_omitted": true,
+    "world_claim_capability_omitted": true,
+    "lease_tokens_omitted": true
+  }
+}

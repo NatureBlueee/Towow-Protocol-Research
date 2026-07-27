@@ -1,0 +1,122 @@
+{
+  "run_id": "r5-4-run-001-source-identity",
+  "research_question": "Can functionally separated real-model owners form an accepted source-owned reference solution unavailable to static or least-privilege-central baselines, and is the increment worth its cost?",
+  "claim_ids": [
+    "R54-GEN-001",
+    "R54-CENTRAL-001",
+    "R54-BOUNDARY-001"
+  ],
+  "result_classifications": [
+    "repo_specific_defect",
+    "transferable_design_principle",
+    "mechanism_evidence"
+  ],
+  "preregistered": true,
+  "environment": {
+    "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+    "runner": "Claude Code CLI 2.1.219",
+    "isolation": "tool-less functional model-context separation"
+  },
+  "agents": [
+    {
+      "agent_id": "source-owner-a",
+      "model_or_runtime": {"alias": "sonnet", "observed": "claude-sonnet-5"},
+      "private_context_scope": "A source lifecycle and legacy compatibility requirement",
+      "tools": [],
+      "authority": {"may_accept": "A semantics", "may_not_accept": "B semantics"},
+      "acceptance_role": "A-side signer"
+    },
+    {
+      "agent_id": "source-owner-b",
+      "model_or_runtime": {"alias": "sonnet", "observed": "claude-sonnet-5"},
+      "private_context_scope": "B active lifecycle, supersede entitlement, and isolation veto",
+      "tools": [],
+      "authority": {"may_veto": "cross-owner effect", "may_not_accept": "A semantics"},
+      "acceptance_role": "B-side signer"
+    },
+    {
+      "agent_id": "builder",
+      "model_or_runtime": {"alias": "sonnet", "observed": "claude-sonnet-5"},
+      "private_context_scope": "public source plus condition-specific contract",
+      "tools": [],
+      "authority": {"may_propose_patch": true, "may_self_accept": false},
+      "acceptance_role": "implementation proposer only"
+    }
+  ],
+  "original_objective": {
+    "value": "Independent source-owned lifecycle and historical compatibility",
+    "acceptance": "both owners sign and target evaluator adopts"
+  },
+  "objective_revisions": [
+    {
+      "round": 3,
+      "change": "historical global wildcard narrowed to null-source-only",
+      "accepted_by_all": false
+    }
+  ],
+  "baselines": [
+    {"id": "static", "result": "main defect found; patch not adoptable"},
+    {"id": "least_privilege_central", "result": "owner conflict exposed; builder transport failed"},
+    {"id": "hidden_implementation", "result": "44 native tests pass; null-source counterfactual fails"}
+  ],
+  "commands_or_actions": [
+    {"type": "model", "condition": "static", "calls": 1},
+    {"type": "model", "condition": "central", "calls": 3},
+    {"type": "model", "condition": "direct_a2a", "calls": 6},
+    {"type": "pytest", "condition": "paired counterfactual", "executions": 4}
+  ],
+  "interaction_summary": {
+    "actions": ["PROPOSE", "COUNTER", "PROPOSE", "COUNTER", "PROPOSE", "COUNTER"],
+    "terminal": "call cap with no signature"
+  },
+  "formation_episode_ref": "formation_episode.json",
+  "ablation_or_counterfactuals": [
+    {"id": "static-no-interaction", "result": "composite identity independently found"},
+    {"id": "central-fixed-queries", "result": "same legacy conflict independently exposed"},
+    {"id": "null-source-vs-wildcard", "result": "each implementation fails the other's acceptance family"}
+  ],
+  "adoption": {"target_domain": false},
+  "acceptance": {"owner_a": false, "owner_b": false, "final": false},
+  "results": {
+    "formation": "unclosed actionable condition candidate",
+    "accepted_solution": false,
+    "net_new_capability": false
+  },
+  "costs": {
+    "static_usd": 0.5401733,
+    "central_run001_usd": 0.40694895,
+    "direct_a2a_usd": 1.3439834
+  },
+  "evidence_refs": [
+    "preregistration.json",
+    "formation_episode.md",
+    "acceptance.json",
+    "validation/blind_mechanism_review.md",
+    "validation/oracle_aware_engineering_review.md"
+  ],
+  "counterevidence_refs": [
+    "traces/static/builder/parsed.json",
+    "traces/central/owner_b_report/parsed.json",
+    "validation/candidate_against_oracle_core.xml"
+  ],
+  "independence": {
+    "blind_review": true,
+    "oracle_aware_review": true,
+    "limitations": ["shared model family", "trusted root", "synthetic authority"]
+  },
+  "interpretation": {
+    "supported": [
+      "A2A can refine owner conflict and recovery conditions",
+      "functional tool-less context separation worked benignly"
+    ],
+    "weakened_or_refuted": [
+      "A2A uniquely formed an accepted solution in this task"
+    ],
+    "not_distinguished": [
+      "healthy shorter central synthesis versus direct A2A",
+      "mixed legacy corpus policy"
+    ],
+    "design_consequence": "Use static engineering and least-privilege owner queries first when authority is collapsible; require adoption and acceptance before promoting generative claims.",
+    "next_discriminating_action": "Measure the legacy corpus and test a non-collapsible authority task."
+  }
+}

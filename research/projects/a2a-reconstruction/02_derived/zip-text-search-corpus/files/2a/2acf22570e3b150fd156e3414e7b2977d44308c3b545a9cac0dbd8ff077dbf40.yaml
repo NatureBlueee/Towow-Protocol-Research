@@ -1,0 +1,18 @@
+project:
+  id: summon
+  canonical_name: 召集台
+  spec_version: 0.8-reference-0.2-pack
+  status: researching
+  purpose: OPC 协作空间中的机会编排与可验证协作系统。
+  source_documents:
+  - 召集台 v0.8 产品本体、闭环与体验架构总规格
+  - Agent 协调基础设施深度研究
+  - PRSE AI 原生规格运行包 v0.2
+entrypoints:
+  constitution: constitution/spec_nodes.yaml
+  ontology: ontology/core_objects.yaml
+  loops: loops/core_loops.yaml
+  ui: views/ui_principles.yaml
+  change_process: workflows/product_change.yaml
+  negative: negative/forbidden_interpretations.yaml
+required_conformance: prse-ai-native-base:C5_portable

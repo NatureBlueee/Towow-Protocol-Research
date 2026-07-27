@@ -1,0 +1,23 @@
+{
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "PYTHONPATH=/private/tmp/harness-towow-a2a-r5-2/harness/src:/private/tmp/harness-towow-a2a-r5-2",
+    "TOWOW_LIVE_SPAWN=",
+    "/Users/nature/个人项目/Harness/harness/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated",
+    "-q",
+    "--basetemp=/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-poller-baseline.4bIGP0"
+  ],
+  "cwd": "/private/tmp/harness-towow-a2a-r5-2/harness",
+  "started_at_utc": "2026-07-24T16:28:11.682690+00:00",
+  "ended_at_utc": "2026-07-24T16:28:14.135574+00:00",
+  "wall_seconds": 2.4529221057891846,
+  "exit_code": 1,
+  "stdout": "F                                                                        [100%]\n=================================== FAILURES ===================================\n____________ test_t_fix_poll4_stale_base_emits_obligation_violated _____________\n\ntmp_path = PosixPath('/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-poller-baseline.4bIGP0/test_t_fix_poll4_stale_base_em0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109d51010>\n\n    def test_t_fix_poll4_stale_base_emits_obligation_violated(\n        tmp_path: Path, monkeypatch,\n    ) -> None:\n        \"\"\"Daemon worktree HEAD differs → raw bytes and canonical readback both retain the audit.\"\"\"\n        monkeypatch.setattr(\"pathlib.Path.home\", lambda: tmp_path)\n        jobs_root = tmp_path / \".claude\" / \"jobs\"\n        main_wt = tmp_path / \"main\"\n        daemon_wt = tmp_path / \"daemon_iso\"\n    \n        # init main + bootstrap .towow + events.log\n        main_head_v1 = _init_git_repo(main_wt, file_content=\"v1\")\n        (main_wt / \".towow\").mkdir()\n        (main_wt / \".towow\" / \"events.log\").write_text(\"\")\n    \n        # init daemon worktree with DIFFERENT commit (stale base)\n        daemon_head = _init_git_repo(daemon_wt, file_content=\"daemon_old_base\")\n        assert main_head_v1 != daemon_head  # confirm different HEAD\n    \n        # state.json with daemon worktree set\n        _make_state_json(jobs_root, \"abc1de2f\", state=\"working\", worktreePath=str(daemon_wt))\n    \n        outcome = poll_loop(\"abc1de2f\", main_wt, timeout_s=2.0, poll_interval_s=0.1)\n        assert outcome == \"symlinked\"\n    \n        # Verify ObligationViolated event appended to main events.log\n        events = (main_wt / \".towow\" / \"events.log\").read_text(encoding=\"utf-8\").strip().splitlines()\n        violated = [\n            json.loads(line) for line in events\n            if json.loads(line).get(\"payload\", {}).get(\"stub_original_payload\", {}).get(\"kind\")\n            == \"ObligationViolated\"\n        ]\n        assert len(violated) >= 1\n        v = violated[-1]\n        desc = v[\"payload\"][\"stub_original_payload\"][\"violation_description\"]\n        assert daemon_head[:12] in desc\n        assert main_head_v1[:12] in desc\n    \n        # A raw JSON line is only a filesystem effect. The audit trail is accepted only\n        # when a fresh canonical reader can validate and return the writer-stamped record.\n        canonical = EventLog(main_wt / \".towow\" / \"events.log\")\n        visible = [\n            record\n            for record in canonical.get_events_by_type(EventType.NODE_TOUCHED)\n            if record.payload.get(\"stub_original_payload\", {}).get(\"kind\")\n            == \"ObligationViolated\"\n        ]\n>       assert len(visible) == 1\nE       assert 0 == 1\nE        +  where 0 = len([])\n\ntests/unit/test_bg_worktree_poller.py:181: AssertionError\n=========================== short test summary info ============================\nFAILED tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated\n1 failed in 1.60s\n",
+  "stderr": ""
+}

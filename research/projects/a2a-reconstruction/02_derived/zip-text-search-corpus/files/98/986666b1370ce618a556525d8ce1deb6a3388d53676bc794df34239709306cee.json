@@ -1,0 +1,240 @@
+{
+  "run_id": "r5-2-run-001-effect-reality",
+  "research_question": "Do explicit ActionAttempt, Effect, Verification, and Acceptance distinctions outperform naive terminal evidence and add error-prevention value beyond existing Harness events plus authoritative readback?",
+  "objective": {
+    "original": "Preserve truthful reality state and choose correct recovery on real Harness retries, partial effects, rollbacks, timeouts, and stale readbacks.",
+    "version_id": "objective-r5-2-effect-reality-v1",
+    "critical_value_dimensions": [
+      "false_accept",
+      "false_reject",
+      "unsafe_retry",
+      "missed_retry",
+      "recovery_safety",
+      "provenance",
+      "state_burden",
+      "human_attention",
+      "wall_time"
+    ],
+    "revisions": []
+  },
+  "reality_level": "E3",
+  "started_at": "2026-07-24T14:20:46Z",
+  "ended_at": "2026-07-24T16:35:23Z",
+  "status": "completed",
+  "workspace": {
+    "repo_root": "/private/tmp/harness-towow-a2a-r5-2",
+    "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+    "final_commit": "7690db92a",
+    "branch_or_worktree": "codex/towow-a2a-r5-2-research"
+  },
+  "subjects": [
+    {
+      "id": "primary-codex-researcher",
+      "authority": "read-only history plus isolated local tests",
+      "model": "GPT-5 family; exact deployment unavailable"
+    }
+  ],
+  "sovereignty": {
+    "level": "B1 research isolation only",
+    "claim": "No sovereign A2A claim is made in this run."
+  },
+  "strategies": [
+    {
+      "name": "B0_terminal",
+      "role": "naive exit/text/last-event baseline",
+      "budget": null
+    },
+    {
+      "name": "B1_harness",
+      "role": "existing domain events, invariants, and authoritative readback",
+      "budget": null
+    },
+    {
+      "name": "T1_explicit_aeva",
+      "role": "normalized attempt/effect/verification/acceptance reconstruction",
+      "budget": null
+    }
+  ],
+  "interventions": [
+    {
+      "kind": "signal_ablation",
+      "description": "Remove or corrupt one decisive attempt, effect, verification, or acceptance signal at a time."
+    },
+    {
+      "kind": "mutation",
+      "description": "Exercise timeout, partial stdout, stale index, and concurrent-write branches using existing deterministic tests/fixtures."
+    }
+  ],
+  "holdout_design": {
+    "development_families": [
+      "verification fork timeout/retry",
+      "escalation answer delivery/reflow"
+    ],
+    "held_out_families": [
+      "rollback and conditional-index freshness",
+      "semantic readback drift"
+    ],
+    "seed_trace_not_scored_as_holdout": "worktree creation guard contradiction",
+    "transfer_requirement": "score one additional unplanned real trace"
+  },
+  "models_agents_tools": [
+    {
+      "name": "Codex",
+      "version": "codex-cli 0.145.0",
+      "model": "GPT-5 family"
+    },
+    {
+      "name": "Python",
+      "version": "3.12.12"
+    },
+    {
+      "name": "pytest",
+      "version": "9.0.3"
+    }
+  ],
+  "costs": {
+    "status": "complete",
+    "started_at": "2026-07-24T14:20:46Z",
+    "captured_command_wall_seconds": 51.83540201187134,
+    "detail_path": "costs.json"
+  },
+  "human_interventions": [],
+  "results": {
+    "scenarios_scored": 17,
+    "task_families": 5,
+    "B0_wrong_classification_or_recovery": 10,
+    "B1_T1_agreement": "17/17",
+    "new_top_level_objects_required": false,
+    "transfer_case": "raw JSON was present but unreadable by EventLog before the repair; canonical writer readback passed after the repair",
+    "tests": {
+      "poller_file": "5 passed",
+      "eventlog_regression": "37 passed",
+      "ruff": "passed",
+      "mypy": "passed"
+    }
+  },
+  "failures": [
+    {
+      "kind": "command_entry",
+      "evidence": "traces/poller-eventlog-readback-baseline.json",
+      "result": "pytest path was invalid; no test executed; excluded from experiment scoring"
+    },
+    {
+      "kind": "effect_readback_gap",
+      "evidence": "traces/poller-eventlog-readback-baseline-attempt2.json",
+      "result": "raw bytes existed while a fresh EventLog returned zero matching records"
+    },
+    {
+      "kind": "acceptance_semantics",
+      "evidence": "analysis.md",
+      "result": "EscalationAnswerApplied can precede fresh-session consumption in the redispatch branch"
+    }
+  ],
+  "claim_updates": [
+    {
+      "claim_id": "C-AEVA-001-A",
+      "status": "supported",
+      "reason": "B0 selected a wrong classification or recovery in 10/17 scenarios and at least three preregistered families"
+    },
+    {
+      "claim_id": "C-AEVA-001-B",
+      "status": "supported_in_local_scope",
+      "reason": "B1 and T1 agreed 17/17 with the same authoritative readback; no four-object parallel truth source was needed"
+    },
+    {
+      "claim_id": "C-AEVA-001-C",
+      "status": "supported",
+      "reason": "timeout, delivery, and raw-event cases changed retry or closure decisions"
+    }
+  ],
+  "evidence_paths": [
+    "hypothesis.md",
+    "inputs/transfer_case_preregistration.json",
+    "analysis.md",
+    "outputs/scenario_matrix.csv",
+    "costs.json",
+    "human_interventions.jsonl",
+    "boundary_and_disclosure.json",
+    "traces/poller-eventlog-readback-baseline.json",
+    "traces/poller-eventlog-readback-baseline-attempt2.json",
+    "traces/poller-eventlog-readback-fixed-target.json",
+    "traces/poller-suite-final.json",
+    "traces/eventlog-regression-suite.json",
+    "traces/ruff-final.json",
+    "traces/mypy-final.json"
+  ],
+  "commands": [
+    {
+      "command": "pytest tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated",
+      "exit_code": 1
+    },
+    {
+      "command": "pytest tests/unit/test_bg_worktree_poller.py",
+      "exit_code": 0
+    },
+    {
+      "command": "pytest tests/unit/l0/test_event_log.py tests/unit/l0/test_event_log_segments.py tests/unit/l0/test_segment_raw_accessor_migration.py",
+      "exit_code": 0
+    },
+    {
+      "command": "ruff check src/towow/l2/bg_worktree_poller.py tests/unit/test_bg_worktree_poller.py",
+      "exit_code": 0
+    },
+    {
+      "command": "mypy src/towow/l2/bg_worktree_poller.py",
+      "exit_code": 0
+    }
+  ],
+  "external_effects": [],
+  "preregistered_claims": [
+    {
+      "claim_id": "C-AEVA-001-A",
+      "prediction": "The naive baseline will make a false-success or false-failure classification in at least three of four task families.",
+      "abstention_allowed": false,
+      "scope": "selected real historical traces and deterministic replays",
+      "stop_rule": "Two development families, two task-family holdouts, one mutation round, and independent review."
+    },
+    {
+      "claim_id": "C-AEVA-001-B",
+      "prediction": "Existing Harness evidence plus readback will match explicit AEVA on at least 80 percent of held-out classifications; new top-level objects are redundant unless AEVA prevents an additional error with the same evidence.",
+      "abstention_allowed": false,
+      "scope": "rollback/index and semantic-TOCTOU holdouts",
+      "stop_rule": "Same as C-AEVA-001-A."
+    },
+    {
+      "claim_id": "C-AEVA-001-C",
+      "prediction": "At least one recovery decision changes when attempt outcome is separated from effect and verification.",
+      "abstention_allowed": false,
+      "scope": "all selected traces",
+      "stop_rule": "Recovery decisions stabilize across a repeat run or a theory-changing counterexample appears."
+    }
+  ],
+  "acceptance_contract": {
+    "oracle": "original assertions plus authoritative filesystem/Git/state readback",
+    "minimum_scenarios": 12,
+    "minimum_task_families": 4,
+    "metrics": [
+      "false_accept",
+      "false_reject",
+      "unsafe_retry",
+      "missed_retry",
+      "unknown_rate",
+      "state_burden",
+      "recovery_decision_accuracy"
+    ]
+  },
+  "value_dimensions": [
+    {
+      "name": "truthful_closure",
+      "minimum": "no known false accept"
+    },
+    {
+      "name": "recovery_safety",
+      "minimum": "no retry that duplicates an already-observed effect"
+    }
+  ],
+  "action_attempts": [],
+  "artifact_ids": [
+    "run-r5-2-001-preregistration"
+  ]
+}

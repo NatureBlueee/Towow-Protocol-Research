@@ -1,0 +1,2530 @@
+diff --git a/.claude/skills/engineering-consensus/SKILL.md b/.claude/skills/engineering-consensus/SKILL.md
+index 7103fa2a5..5dceb2aee 100644
+--- a/.claude/skills/engineering-consensus/SKILL.md
++++ b/.claude/skills/engineering-consensus/SKILL.md
+@@ -113,6 +113,14 @@ fork 不直接写 event——返回 structured result 给我，我合并、判
+ 3. 从概念种子和 brief.engineering_design_focus 推导本计划需要定义的概念。
+ 4. 为每个概念调适当工具：`concept-definition` / `state-machine-define` / `consumer-scan` / `invariant-extract`，把它们的 structured result 合并到本计划概念图 draft。**每定义一个概念，必跟一次 `consumer-scan` 并 publish 它的消费方清单**——真没有消费方也显式 publish 空清单留痕，不能跳（这是 freeze 的硬门禁，漏了不让冻；堵的是"消费方漏报 → 下游静默崩"）。
+ 5. 跑 `engineering-consistency-verify` 检查共识内部一致性 + @ 引用图无悬空。
++   若本批要 supersede 已有概念，先对每条 `explicit_decision_required` 的 active 引用做真迁移，
++   不能只在报告里写“已通知”：重指用
++   `./tw consensus ref-repoint --source-concept-id <source> --old-reference <old-ref> --new-reference <new-ref> --reason <why> --novelty-type <type> --session-id <sid>`；
++   确认不再需要则用
++   `./tw consensus ref-remove --source-concept-id <source> --reference <old-ref> --reason <why> --novelty-type <type> --session-id <sid>`。
++   两条命令都经 commit gate 产 `AtReferenceAdded/AtReferenceRemoved`；先有这些 canonical
++   迁移证据，`consensus supersede` 的 concept-retire 门才允许退役旧定义。`ref-repoint` 可安全重跑：
++   新引用已落账时跳过 add，再完成旧引用 remove。
+ 6. 一组强耦合概念 ready → 用 `batch-freeze-assemble` 组装 batch envelope → 触发 SkillArtifactSelfCheck → 冻结本批（`freeze` 命令见工具知识包）。freeze 还会自动沿概念关系图把本批概念的批外传递性下游连路径扫进 envelope——它自己算、不用我手填，只记录不阻断。
+ 7. 继续下一批，直到 `--final-batch`（is_final_batch=true）整个计划共识完成。
+ 
+diff --git a/harness/src/towow/cli/main.py b/harness/src/towow/cli/main.py
+index 44fc8f492..6b0f71512 100644
+--- a/harness/src/towow/cli/main.py
++++ b/harness/src/towow/cli/main.py
+@@ -52,7 +52,6 @@ from towow.l0.envelope.builder import (
+     derive_write_set,
+ )
+ from towow.l0.event_log import EventLog, iter_raw_event_lines
+-from towow.l0.fs_guard import resolve_canonical_ledger_root
+ from towow.l0.obligations import (
+     BOOTSTRAP_OBLIGATIONS_COUNT,
+     bootstrap_protocol_invariants,
+@@ -118,21 +117,16 @@ from towow.schemas.envelope import TransactionEnvelope
+ from towow.schemas.event_intent import EventIntent, ProvenanceHint, Subject, Supersede
+ from towow.schemas.event_record import EventRecord
+ from towow.shell.distribution import (
+-    ClaudeUnresolvableError,
+     ClientsRegistryError,
+-    DaemonShellParams,
+     clients_registry_path,
+-    deploy_daemon_shell,
+     deploy_glue,
+     register_client,
+-    resolve_claude_binary,
+     seed_client_agents_md,
+     seed_client_claude_md,
+     sync_all_clients,
+     sync_client_agents_md,
+     sync_client_claude_md,
+     sync_shared_layer,
+-    write_client_engine_maintenance_config,
+     write_default_maintenance_config,
+ )
+ from towow.shell.layout import create_skeleton, deploy_skills
+@@ -160,29 +154,11 @@ def _towow_dir(project_dir: Path) -> Path:
+ 
+ 
+ def _require_init(project_dir: Path) -> Path:
+-    """Resolve PROJECT_DIR to its canonical ledger root — the single identity→location entry.
+-
+-    ledger-identity-resolution-safety-model@v1: 账本身份解析【收敛到单一模块】—— 走
+-    fs_guard.resolve_canonical_ledger_root(向上走到最近的【真 canonical】: .towow whose
+-    .ledger-root 自指), 不再裸 project_dir/.towow + .exists()。相较旧的 .exists() 判据:
+-      · 幽灵 (harness/harness/.towow, 无自指哨兵) → 向上走到真 harness/.towow, 不各按深度分叉;
+-      · 游离 / 拷贝哨兵 (canonical 指别处, git worktree checkout 基线) → 跳过, 继续向上;
+-      · 顶端仍无自指 canonical → 【fail-closed 拒 + 提示 tw install】, 永不静默 auto-init、
+-        永不写非 canonical 账本 (防 INCIDENT-TOWOW-WIPE 删库 + harness/harness 多账本分叉)。
+-    收敛后所有命令的 EventLog 只在【真 canonical】上构造, 于是 fs_guard write_ledger_sentinel
+-    的每-open 幂等种哨兵只会落在真 canonical, 不再把 ghost/floating/client 目录锁成独立 canonical
+-    (shard-ready: 客户端不被 CLI 解析自锁)。不在此另开旁路解析路径 (con-a1 单模块收敛)。
+-    """
+-    canonical = resolve_canonical_ledger_root(project_dir)
+-    if canonical is None:
+-        click.echo(
+-            f"error: 认不出 canonical 账本 —— {project_dir.resolve()} 及其祖先均无自指 "
+-            ".ledger-root 哨兵。先跑 `tw install <project_dir>` 建立账本; 拒绝静默 auto-init / "
+-            "写入非 canonical 账本 (防删库事故 INCIDENT-TOWOW-WIPE + harness/harness 账本分叉)。",
+-            err=True,
+-        )
++    towow = _towow_dir(project_dir)
++    if not towow.exists():
++        click.echo("error: .towow/ not initialized (run `towow init` first)", err=True)
+         sys.exit(1)
+-    return canonical
++    return towow
+ 
+ 
+ @contextlib.contextmanager
+@@ -858,32 +834,13 @@ def _build_project_initialized_intent(project_dir: Path) -> EventIntent:
+     default=None,
+     help="客户端清单文件路径（默认 ~/.towow/clients.json；隔离自测/CI 用）。",
+ )
+-@click.option(
+-    "--full-engine",
+-    "full_engine",
+-    is_flag=True,
+-    default=False,
+-    help=(
+-        "装「全开发动机」客户端形态（client-daemon-distribution@v1 第三分发面）: "
+-        "maintenance config 全部检测单元 enabled=true + orchestrator real-spawn 常驻服务壳 "
+-        "（参数化渲染 .claude/daemon/run-engine.sh）。默认 off 保持既有 mostly-OFF install 形态。"
+-    ),
+-)
+-def install(
+-    project_dir: Path,
+-    *,
+-    name: str | None,
+-    force: bool,
+-    registry: Path | None,
+-    full_engine: bool,
+-) -> None:
++def install(project_dir: Path, *, name: str | None, force: bool, registry: Path | None) -> None:
+     """装"完整形态"harness 内核到 PROJECT_DIR（一条命令开箱即用）。
+ 
+     ① 私有层 bootstrap（复用 init §3.3 7 步：.towow events/graph + 协议义务）——已存在则保留，
+        绝不重 bootstrap（否则洗事件链）。
+     ② 共享层：三块胶水（commands/work + hooks/guard + settings.json hook 注册）+ skills。
+-    ③ 默认 daemon config（只读巡检开 / 会写关，手动可开）；`--full-engine` 时改写「全开」config
+-       + 渲染 real-spawn 常驻服务壳（client-daemon-distribution@v1）。
++    ③ 默认 daemon config（只读巡检开 / 会写关，手动可开）。
+     ④ 种入 Claude / ChatGPT 共用工作规约入口（保留项目自有定制）。
+     ⑤ 登记进客户端清单（sync --all 用）。
+     """
+@@ -899,18 +856,8 @@ def install(
+     # ② 共享层（idempotent 覆盖 — install/re-install 都铺到最新）
+     deploy_skills(project_dir)
+     glue_written = deploy_glue(project_dir)
+-    # ③ daemon config —— 默认 mostly-OFF（既有形态，不覆盖已存在旋钮）；--full-engine 写「全开」。
+-    if full_engine:
+-        config_path = write_client_engine_maintenance_config(towow, overwrite=force)
+-        config_note = "全部检测单元 enabled=true（全开发动机）"
+-    else:
+-        config_path = write_default_maintenance_config(towow, overwrite=force)
+-        config_note = "只读巡检开 / 会写关"
+-    # ③b --full-engine: 渲染 + 部署 real-spawn 常驻服务壳（client-parameterized-plist-deployment@v1）。
+-    shell_note = ""
+-    if full_engine:
+-        shell_path = _deploy_client_engine_shell(project_dir, towow)
+-        shell_note = f"\n  · 发动机壳: {shell_path} (orchestrator real-spawn 常驻; 状态落 .towow 私有层)"
++    # ③ 默认 daemon config（默认不覆盖已存在的 → 保留 owner 在客户端调过的旋钮）
++    config_path = write_default_maintenance_config(towow, overwrite=force)
+     # ④ 灵魂层 CLAUDE.md 种子（项目根；不存在才写 → 保留 owner 给本项目手写的那份）
+     claude_md = seed_client_claude_md(project_dir)
+     agents_md = seed_client_agents_md(project_dir)
+@@ -926,49 +873,11 @@ def install(
+         f"hooks/guard, settings.json hook 注册)\n"
+         f"  · 共用规约: {'CLAUDE.md 种入项目根' if claude_md else 'CLAUDE.md 已存在 (保留客户端定制)'}; "
+         f"{'AGENTS.md 种入项目根' if agents_md else 'AGENTS.md 已存在 (保留客户端定制)'}\n"
+-        f"  · daemon config: {config_path} ({config_note})"
+-        f"{shell_note}\n"
++        f"  · daemon config: {config_path} (只读巡检开 / 会写关)\n"
+         f"  · 客户端清单: {registry_path} ({'新增' if newly else '已在册'})"
+     )
+ 
+ 
+-def _kernel_cli_bin() -> str:
+-    """harness 内核 towow 可执行入口（客户端壳/命令内嵌用；裸 towow 撞 towow_mcp 生产 CLI）。
+-
+-    与 distribution._default_kernel_bin 同策略：install 由 harness 内核跑，`sys.executable` = 内核
+-    venv python，同目录 `towow` console script 即入口；缺则兜底 `<python> -m towow.cli.main`。
+-    """
+-    bin_dir = Path(sys.executable).parent
+-    candidate = bin_dir / "towow"
+-    if candidate.exists():
+-        return str(candidate)
+-    return f"{sys.executable} -m towow.cli.main"
+-
+-
+-def _deploy_client_engine_shell(project_dir: Path, towow: Path) -> Path:
+-    """--full-engine: 解析 claude 三层路径 → 组装壳参数 → 渲染+校验+部署 real-spawn 常驻壳。
+-
+-    claude 三层定位全失败 → fail-loud（ClaudeUnresolvableError 逐层原因 + ClickException 中止），
+-    绝不裸调 'claude' 或猜路径（claude-unresolvable-fail-loud@v1）。日志目录落客户端 .towow 私有层。
+-    """
+-    claude_path, reasons = resolve_claude_binary()
+-    if claude_path is None:
+-        layer_lines = "; ".join(f"[{r['layer']}] {r['reason']}" for r in reasons)
+-        raise ClaudeUnresolvableError(
+-            f"claude 二进制三层定位全失败 —— 无法渲染发动机壳的 claude 绝对路径槽位。逐层: {layer_lines}"
+-        )
+-    params = DaemonShellParams(
+-        project_path=str(project_dir),
+-        claude_binary_path=claude_path,
+-        python_bin_dir=str(Path(sys.executable).parent),
+-        towow_cli=_kernel_cli_bin(),
+-        # 运行时日志归客户端 .towow 私有层（inv-runtime-state-in-private-layer）——壳运行期建，
+-        # 部署函数只把此字符串烘进壳、绝不在部署期构造/写入该 .towow 路径。
+-        log_dir=str(towow / "logs"),
+-    )
+-    return deploy_daemon_shell(project_dir, params)
+-
+-
+ @cli.command()
+ @click.argument("project_dir", type=click.Path(file_okay=False, path_type=Path), required=False)
+ @click.option("--all", "all_clients", is_flag=True, help="同步清单里所有已装客户端。")
+@@ -1592,15 +1501,10 @@ def submit(envelope_path: Path, project_dir: Path, worktree: Path | None, audit_
+ 
+     repo_dir = worktree if worktree is not None else towow.parent
+ 
+-    # B-1 (最小止血, owner paused.flag 2026-07-14): EventLog()/CommitGate() 构造(含 CommitGate.__init__
+-    # 里 committed_index() 的锁外强制物化, 见 gate.py 的 B-1 注释)挪到 acquire commit lock 之前——这是
+-    # submit() 之前唯一一处把它们建在锁里的调用方(其余 CLI 命令本就在锁外构造)。锁内只剩
+-    # attempt_commit 自己那次 committed_index() 调用, 现在只是 O(active-segment) 的增量 catch-up。
+-    event_log = EventLog(towow / "events.log")
+-    gate = CommitGate(event_log)
+-
+     # M-3.1 §4.2.3 step 2-6: serialized under global_commit_mutex
+     with _global_commit_mutex(towow):
++        event_log = EventLog(towow / "events.log")
++        gate = CommitGate(event_log)
+         if audit_mode == "off":
+             # Single-phase (pre-RUN-051): audit triggers留痕 but do not block.
+             records = gate.attempt_commit(envelope_intent, domain_intents)
+@@ -2212,25 +2116,18 @@ def goal_spawn(
+         sys.exit(1)
+ 
+     method_enum = SpawnMethod(method)
+-    # f-goal-session-identity-blind-shared-lock-misterminate-20260718 ①: 与 orchestrator_auto 路径
+-    # (try_spawn_for_decision 的 nonexec 派发循环) 同一套修法 —— spawn 前预生成领域身份, 注入子
+-    # 会话 env TOWOW_SELF_GID, 让 `goal terminate` 收尾读自己进程的 env 就知道自己是谁, 不
+-    # 用猜共享的 goal_session.lock (finding 明确点名"影响面: 所有 orchestrator_auto/cli_goal_spawn
+-    # 会话", 本命令是后者)。
+-    _goal_session_id = f"gs-{uuid.uuid4().hex[:12]}"
+     result = spawn_bg_session(
+         prompt=prompt_text,
+         worktree=worktree,
+         parent_session_id=parent_session_id,
+         method=method_enum,
+         permission_mode=permission_mode,
+-        goal_session_id=_goal_session_id,
+     )
+ 
+     # Build GoalSessionStarted EventIntent
+     subject = Subject(
+         entity_type=SubjectEntityType.TASK,
+-        entity_id=result.goal_session_id,
++        entity_id=result.bg_session_id,
+         role=SubjectRole.PRIMARY,
+     )
+     domain_intent = EventIntent(
+@@ -2241,8 +2138,7 @@ def goal_spawn(
+             "target_entity_type": TargetEntityType.TASK.value,
+             "transition_type": TransitionType.CREATED.value,
+             "after_state": {
+-                "goal_session_id": result.goal_session_id,
+-                "bg_session_id": result.bg_session_id,
++                "goal_session_id": result.bg_session_id,
+                 "brief_event_id": brief_event_id,
+                 "capsule_compiled_event_id": capsule_event_id,
+                 "command_text": result.command_text,
+@@ -2269,15 +2165,13 @@ def goal_spawn(
+     # T-E5: write goal_session.lock to target worktree so the bg session knows it's
+     # in GO mode (used by nested-spawn refusal + escalation pause-resume context).
+     # If target worktree's .towow doesn't exist (new worktree pre-init), skip with warning.
+-    # f-goal-session-identity-blind-shared-lock-misterminate-20260718: 锁内容落领域身份 (与
+-    # GoalSessionStarted/Terminated 概念对齐), 不再是 `goal terminate` 的权威身份源 (权威源是 env)。
+     lock_warning = ""
+     target_towow = worktree.resolve() / ".towow"
+     if target_towow.exists():
+         try:
+             acquire_goal_lock(
+                 target_towow,
+-                goal_session_id=result.goal_session_id,
++                goal_session_id=result.bg_session_id,
+                 worktree_path=str(worktree.resolve()),
+                 started_at=result.started_at,
+             )
+@@ -2291,8 +2185,7 @@ def goal_spawn(
+ 
+     launched_marker = "launched=True" if result.launched else "launched=False (mock/dry-run)"
+     click.echo(
+-        f"✓ GoalSessionStarted: {result.goal_session_id} (bg={result.bg_session_id}) "
+-        f"method={result.method.value} {launched_marker}\n"
++        f"✓ GoalSessionStarted: {result.bg_session_id} method={result.method.value} {launched_marker}\n"
+         f"  event_id={event_id}{lock_warning}",
+     )
+ 
+@@ -2317,10 +2210,9 @@ def goal_spawn(
+ @click.option(
+     "--goal-session-id",
+     default=None,
+-    help="调用者自己的 goal_session_id, 仅作交叉校验用 (权威身份源是账本按 CC 原生 "
+-    "CLAUDE_CODE_SESSION_ID 反查, spawn 时无需手传)。给了但与账本反查到的本会话身份不一致 → "
+-    "fail-closed 拒绝执行 (拒绝把 flag 值当成更权威去覆盖到别的会话); 账本反查不可用 (存量/mock "
+-    "会话) 时可单独用它当过渡期兜底。",
++    help="调用者自己的 goal_session_id (autopilot 并发推荐显式传, 对齐 escalation-raise / "
++    "wait-resume): 用它定位被终止会话 + 守卫锁释放, 不读可能被邻居覆盖的单指针 "
++    "goal_session.lock。缺省 → 回退读锁定位 gid (单会话向后兼容)。",
+ )
+ def goal_terminate(
+     project_dir: Path,
+@@ -2331,97 +2223,23 @@ def goal_terminate(
+ ) -> None:
+     """Emit GoalSessionTerminated + release goal_session.lock (T-E5).
+ 
+-    f-goal-session-identity-blind-shared-lock-misterminate-20260718 (2026-07-17 事故
+-    esc-057ef69e4722) + f-orchestrator-spawn-injects-wrong-self-gid-concurrent-crosswire-20260718
+-    (2026-07-18 env 污染) 联合根治: 身份来源 = 账本按 CC 原生 id 反查, 不猜、也不无条件信 env。
+-
+-    权威链 (由强到弱):
+-    - 【权威】账本按 `CLAUDE_CODE_SESSION_ID` (CC 每会话新生成、不被 spare-pool 污染) 反查
+-      GoalSessionStarted.bg_session_id (前缀匹配) → 本会话真实 goal_session_id
+-      (resolve_self_goal_session_id)。免疫 env spare-pool 污染 —— 这是 2026-07-18 新增, 修
+-      "env TOWOW_SELF_GID 被 CC daemon 复用的 spare 残留的邻居 gid 污染 → 旧版无条件采信 env 会
+-      去终止邻居 / 拒绝终止自己"。
+-    - 账本反查成功后, env `TOWOW_SELF_GID` 与 `--goal-session-id` 只作 corroboration: env 与账本
+-      不一致 → 判为污染, 警告并采信账本 (不碰 env 指向的邻居); flag 与账本不一致 → fail-closed
+-      拒绝 (绝不允许手传值覆盖账本确认的"我是谁")。
+-    - 【兜底】账本反查不可用 (无 CLAUDE_CODE_SESSION_ID / 未记 bg_session_id / mock / 存量会话):
+-      退回既有 env→flag 顺序 (env 与 flag 不一致 fail-closed; env 缺失且给 flag 则过渡期采信 flag)。
+-    - 全缺 → fail-closed 拒绝, 不读 `.towow/locks/goal_session.lock` 猜身份 (那把共享单指针锁被最后
+-      spawn 的邻居覆盖, 是 2026-07-17 事故根因; 旧版"缺省回退读锁"早已移除)。
++    finding-goal-terminate-no-explicit-gid-neighbor-kill-1: 显式 --goal-session-id 时用
++    调用者自己的 gid 定位 (不读单指针锁), 并仅释放 owner==该 gid 的锁。autopilot 多 goal
++    session 并发共享同一 `.towow` 时, 晚到邻居 spawn 会覆盖单指针锁 — naive 收尾 (读锁定 gid +
++    无条件 unlink) 会给邻居 emit 假 GoalSessionTerminated + 删邻居锁。显式 gid 路径下每条会话
++    只终止自己 / 只释放自己的锁。缺省回退读锁 (单会话向后兼容)。
+     """
+-    import os
+-
+-    from towow.l1.goal.session_lock import release_goal_lock
++    from towow.l1.goal.session_lock import is_in_goal_session, release_goal_lock
+ 
+     towow = _require_init(project_dir)
+-    env_gid = os.environ.get("TOWOW_SELF_GID") or None
+-    # f-orchestrator-spawn-injects-wrong-self-gid-concurrent-crosswire-20260718: 权威身份源改为
+-    # 【账本按 CC 原生 CLAUDE_CODE_SESSION_ID 反查】, 不再无条件采信可被 CC daemon spare-pool 复用
+-    # 污染的 env TOWOW_SELF_GID。根因: `claude --bg` 会话跑在常驻 CC daemon 复用的 spare 进程里,
+-    # 我们 spawn 时注进 env 的 TOWOW_SELF_GID 不可靠到达 (spare 残留上一个 job 的邻居 gid), 而 CC
+-    # 每会话重置它自己的 CLAUDE_CODE_SESSION_ID → 后者是唯一没被污染的自我锚。实证 (2026-07-18):
+-    # 本 fix 会话 bg=ecce2481 (账本 gid=gs-d74381025a17), 进程 env TOWOW_SELF_GID 却=gs-a4753b1a4b05
+-    # (bg=52ef851d 的 review 会话 gid) → 旧版无条件采信 env 会去终止邻居 / 拒绝终止自己。
+-    my_session = os.environ.get("CLAUDE_CODE_SESSION_ID") or None
+-    ledger_gid: str | None = None
+-    if my_session is not None:
+-        from towow.l0.event_log import EventLog
+-        from towow.l2.orchestrator import resolve_self_goal_session_id
+-
+-        ledger_gid = resolve_self_goal_session_id(
+-            EventLog(towow / "events.log"), my_session,
+-        )
+-
+-    if ledger_gid is not None:
+-        # 账本反查成功 = 权威身份 (免疫 env spare-pool 污染)。env/flag 仅作 corroboration。
+-        gid = ledger_gid
+-        if env_gid is not None and env_gid != ledger_gid:
+-            # ← 本 finding 的失败模式实检出: env 记的是邻居 gid, 账本据 CC 会话 id 纠正为本会话真实
+-            #   身份。采信账本 → 既不误终止邻居 (env_gid) 也能正常终止自己 (ledger_gid)。
+-            click.echo(
+-                f"warning: 进程 env TOWOW_SELF_GID={env_gid!r} 与账本按 CC 会话 id 反查到的本会话"
+-                f"身份 {ledger_gid!r} 不一致 — env 疑被 CC daemon spare-pool 复用污染 "
+-                f"(f-orchestrator-spawn-injects-wrong-self-gid-concurrent-crosswire-20260718); "
+-                f"采信账本身份收尾, 不碰 env_gid 指向的邻居会话。",
+-                err=True,
+-            )
+-        if goal_session_id is not None and goal_session_id != ledger_gid:
+-            # flag 与账本权威身份不符 → fail-closed 拒绝 (不允许手传值覆盖账本确认的"我是谁";
+-            # 这正是 2026-07-17 事故复现路径: agent 误信邻居 gid 再显式传 flag)。
+-            click.echo(
+-                f"error: --goal-session-id={goal_session_id!r} 与账本按 CC 会话 id 反查到的本会话"
+-                f"身份 {ledger_gid!r} 不一致 — fail-closed 拒绝执行。\n"
+-                f"  一个会话只能终止它自己 (账本记的那个); 别用 flag 覆盖成另一个会话。",
+-                err=True,
+-            )
+-            sys.exit(1)
+-    elif env_gid is not None and goal_session_id is not None and env_gid != goal_session_id:
+-        # 账本反查不可用 (无 CLAUDE_CODE_SESSION_ID / 无匹配 Started — mock/test/存量会话/未记 bg)
+-        # → 退回既有 env/flag fail-closed 逻辑 (零回归)。
+-        click.echo(
+-            f"error: --goal-session-id={goal_session_id!r} 与本进程绑定身份 "
+-            f"TOWOW_SELF_GID={env_gid!r} 不一致 — fail-closed 拒绝执行。\n"
+-            f"  一个会话只能终止它自己 (env 记的那个); 若你确信 env 有误, 先排查 spawn 现场,"
+-            f" 别用 flag 覆盖成另一个会话。",
+-            err=True,
+-        )
+-        sys.exit(1)
+-    elif env_gid is not None:
+-        gid = env_gid
+-    elif goal_session_id is not None:
+-        # 过渡期兜底: 本 fix 之前 spawn、进程 env 没有 TOWOW_SELF_GID 的存量会话。
++    if goal_session_id is not None:
+         gid = goal_session_id
+     else:
+-        click.echo(
+-            "error: 无法确定本会话身份 — 账本按 CC 会话 id 反查不到, 本进程 env 也没有 "
+-            "TOWOW_SELF_GID, 且未显式传 --goal-session-id。fail-closed 拒绝收尾, 不猜共享的 "
+-            "goal_session.lock (f-goal-session-identity-blind-shared-lock-misterminate-20260718: "
+-            "那把锁会被并发起的邻居会话覆盖, 猜它=误终止邻居的根因)。\n"
+-            "  若你确实是这次 spawn 出来的会话且以上锚点都缺失属已知过渡期缺口, 显式传 "
+-            "--goal-session-id <你在 GoalSessionStarted 里看到的 goal_session_id>。",
+-            err=True,
+-        )
+-        sys.exit(1)
++        in_goal, info = is_in_goal_session(towow)
++        if not in_goal or info is None:
++            click.echo("error: no active goal_session.lock in this worktree", err=True)
++            sys.exit(1)
++        gid = info.goal_session_id
+ 
+     terminated_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+     subject = Subject(
+@@ -2966,27 +2784,12 @@ def plan_reap_stale_session(project_dir: Path, session_id: str | None) -> None:
+         )
+         sys.exit(1)
+ 
+-    # ── 3.5 GP-01 (f-sub-graph-protocol-readside-dormant): investigate 跨域图读 —— provenance
+-    #        留痕 + 读失败 fail-closed。vitality(上一步)只看 plan-registry 的 plan-only 信号;
+-    #        investigate (统一图协议读侧) 在【统一图】上一跳查 target 的跨域 holds_locks + lineage,
+-    #        把结果写进 canonical PlanSessionLockReaped —— 这是读侧从 dormant 接进收割决策的证据
+-    #        (read-side live-invoked)。这才是本步真正、且生产可达的交付。
+-    #
+-    #        诚实边界 (f-gp01-reap-guard-vacuous-failopen-prod): 下面的 `if holds_locks` 分支在
+-    #        **当前** lock+spawn 模型下对 plan reap target **结构性不可达**, 因此它不是承重的 fail-closed
+-    #        保护门, 只是前向防御 (forward-defense)。理由: 生产唯一 LockAcquired 源
+-    #        (_try_register_execution_lock) 把 held-by 键到 **execution goal-session id**
+-    #        (lock_id=execution:<gsid>), 与 plan reap target 的 plan-session id 不相交; 且 orchestrator
+-    #        是唯一 spawner (plan 会话不 spawn 持锁子) → plan target 既无 held-by 入边、lineage.children
+-    #        也为空 → holds_locks 对 plan target 恒空。将来锁模型若真物化出 plan 会话的跨域 hold, 此分支
+-    #        才会触发 —— 届时须先补 node_reducers 的 LockReleased 失活 (现 payload 无 lock_id → held-by
+-    #        边永不失活, 否则会翻成永久过度拒收)。故此处不以"生产已在护航"的 fail-closed 措辞宣称它。
+-    #
+-    #        真·生产可达的 fail-closed 是下面这道 load-success 断言: facade._read 会静默吞
+-    #        JSONDecodeError/OSError 返回 {}, 于是 lock_graph.json 损坏/写中途/IO 错时 holds_locks 假空
+-    #        → 会把"读不出图"误当"确认无跨域锁"放行 reap = 与 fail-closed 语义矛盾的静默 fail-open。
+-    #        这里显式断言 lock_graph 可读: 文件在但解析失败 → 保守拒 reap (读不出就不能确认它没在别处
+-    #        持锁)。文件合法不存在 (从未物化过锁) → 视作无锁、放行 (不误伤 fresh 项目的正常 reap)。
++    # ── 3.5 GP-01 (f-sub-graph-protocol-readside-dormant): investigate 跨域守卫 ──────────
++    # vitality(上一步)只看 plan-registry 的 plan-only 信号。investigate (统一图协议读侧, 此前
++    # 零 live 调用方=dormant) 在【统一图】上一跳查 target 的跨域 holds_locks + lineage —— lock_graph
++    # 现已物化 execution/goal 锁 (GP-02 GRAPHLOCK)。若图显示它仍持非 plan 域的活锁, 说明它还在别处
++    # 认领着工作, 此刻 reap 它的 plan 锁 = 对持锁会话误判收割 (finding: investigate 先于锁源上岗会
++    # 误判收割持锁会话)。fail-closed: 图上有未决跨域 hold → 拒 reap, 锁原封不动。读侧本身只读不动作。
+     from towow.awareness.contracts.per_form_adapter import AgentState, Vitality
+     from towow.awareness.graph.facade import GraphFacade
+     from towow.awareness.investigate import DefaultInvestigate
+@@ -2995,34 +2798,17 @@ def plan_reap_stale_session(project_dir: Path, session_id: str | None) -> None:
+     pstore_inv.catchup(event_log)  # 读最新 lock_graph/session_graph (含本会话所有已提交 LockAcquired)
+     _dead_reason = v.reason
+ 
+-    # load-success 断言 (fail-closed): lock_graph.json 在但解析失败 → 拒 reap。facade._read 会把这个
+-    # 异常吞成 {} 造成静默 fail-open, 所以这里在 facade 读之前独立复核同一文件, 读不出就不收割。
+-    _lock_graph_json = towow / "graph" / "lock_graph.json"
+-    if _lock_graph_json.exists():
+-        try:
+-            json.loads(_lock_graph_json.read_text(encoding="utf-8"))
+-        except (OSError, json.JSONDecodeError) as _lg_exc:
+-            click.echo(
+-                f"✗ 拒绝 reap {target}: lock_graph 读不出 ({type(_lg_exc).__name__}) — 无法确认它在别处"
+-                f"没持跨域锁, 保守 fail-closed 不收割 (锁原封不动, 未 emit 任何事件)。",
+-                err=True,
+-            )
+-            sys.exit(1)
+-
+     def _reap_state_fn(_agent_id: str) -> AgentState:
+         # 到这里 vitality 已判 DEAD (上一步非 DEAD 已 exit); investigate 的 holds_locks/lineage 从图读,
+-        # state_fn 只供 recommended_action —— 用 vitality 的 DEAD 裁决, 不重判活。recommended_action 因此
+-        # 恒为 "redispatch" (DEAD→redispatch), 它是 investigate 对注入态的机械输出、作为 provenance 记入
+-        # 证据, 不是"系统建议重派这个刚被收割的会话"; 审计按此读, 别当行动指令。
++        # state_fn 只供 recommended_action —— 用 vitality 的 DEAD 裁决, 不重判活。
+         return AgentState(verdict=Vitality.DEAD, reason=_dead_reason, revivable=False)
+ 
+     investigation = DefaultInvestigate(GraphFacade(towow / "graph"), _reap_state_fn).investigate(target)
+     if investigation.holds_locks:
+-        # 前向防御 (当前 lock 模型下 plan target 不可达此分支, 见上): 图上真出现跨域活锁 → 拒 reap。
+         click.echo(
+             f"✗ 拒绝 reap {target}: investigate 图读显示它仍持 {len(investigation.holds_locks)} 个跨域活锁 "
+-            f"({', '.join(investigation.holds_locks)}) — 统一图上它还在别处认领工作, 前向防御拒收割 "
+-            f"(锁原封不动, 未 emit 任何事件)。",
++            f"({', '.join(investigation.holds_locks)}) — vitality(plan-only)判 dead 但统一图上它还在别处"
++            f"认领工作 → fail-closed 拒收割 (锁原封不动, 未 emit 任何事件)。",
+             err=True,
+         )
+         sys.exit(1)
+@@ -4820,15 +4606,11 @@ def plan_freeze(
+     # T-LRF-12: ALSO surface planning.migration_old_path_removal — completeness.py REQUIRES it on
+     # PlanFreezed too (迁移类 task old-path-removal 判据门), so the same 'must be in the envelope or
+     # every freeze rejected' constraint applies. all_passed is True here ⇒ this check is passed.
+-    # 修2 (第10门): ALSO surface planning.new_capability_livefire_machine_check — completeness.py
+-    # REQUIRES it on PlanFreezed 了 (新增能力 task live-fire 形态判据门), 同 migration_old_path_removal
+-    # 一样 'must be in the envelope or every freeze rejected'。all_passed is True here ⇒ this check is passed.
+-    # C-5: surface 这 7 道进信封 (完整性门 REQUIRED 的 plan 集) —— 缺则总闸 require 找不到→合法冻结被拒。
++    # C-5: surface 这 6 道进信封 (完整性门 REQUIRED 的 plan 集) —— 缺则总闸 require 找不到→合法冻结被拒。
+     _gate_required_checks = {
+         "planning.coverage_complete",
+         "planning.cia_dependency_scan",
+         "planning.migration_old_path_removal",
+-        "planning.new_capability_livefire_machine_check",
+         "planning.no_circular_dependency",
+         "planning.no_cross_plan_resource_conflict",
+         "planning.no_unresolved_red_line_uncertainty",
+@@ -6090,18 +5872,6 @@ def work_complete(
+                     f"outcome={outcome}: abort 是合法终态，不走 success 5 项门",
+                 ),
+             ),
+-            # T-RMD-S4-BYTE-IDENTITY: abort 不落地改动 → 无 src↔live 部署漂移 → vacuous passed (镜像
+-            # 下方 sis/livefire 对 abort 的 vacuous present)。abort closure 的 execution.aborted 命中
+-            # completeness 的 execution.* 条件式, 该条件式现在也 require execution.deploy_byte_identity
+-            # present+passed, 故 abort 须带它 (success 路径经 run_all_execution_blocking_checks 恒带真核版)。
+-            ExecutionBlockingCheck(
+-                check_id="execution.deploy_byte_identity",
+-                status="passed",
+-                evidence=execution_evidence(
+-                    "execution.deploy_byte_identity",
+-                    f"outcome={outcome}: abort 不落地改动, 无 src↔live 部署漂移 (vacuous present)",
+-                ),
+-            ),
+         ]
+         # T-RMD-FIX3 (修3): abort 不落地改动 → 无 live-fire 复算 → vacuous passed (镜像 sis abort)。
+         # abort closure 的 execution.aborted check 仍命中 completeness 的 execution.* 条件式, 故须带它。
+@@ -7493,7 +7263,7 @@ def resolve_session(towow: Path, kind: str, explicit_session_id: str | None) ->
+     if info is None:  # 0 个 live 且未给 explicit
+         group = _SESSION_KIND_SID_PREFIXES.get(kind, kind)
+         click.echo(
+-            f"error: no active {kind} session — run `tw {group} start ...` first",
++            f"error: no active {kind} session — run `towow {group} start ...` first",
+             err=True,
+         )
+         sys.exit(1)
+@@ -9633,35 +9403,25 @@ def _emit_review_dimension_exercised(
+     session_id: str,
+     review_plan_id: str,
+     dimension: str,
+-    fork_spawned: bool,
+-    fork_completed: bool,
+-    fork_model: str,
++    verdict: Any,
+     finding_count: int,
+     fork_mode: str,
+-    provenance_actor_id: str = "m15.review.author-time-driver",
+ ) -> str:
+-    """T-RMD-S2-REVFIX (finding f-glob-review-fix-no-proof-of-work / M15-F1 + f-rp-autopilot-review-
+-    dimension-exercised-never-emits-live-path) — emit one canonical ReviewDimensionExercised proof-of-
+-    work for a review dimension fork that was really exercised.
++    """T-RMD-S2-REVFIX (finding f-glob-review-fix-no-proof-of-work / M15-F1) — emit one canonical
++    ReviewDimensionExercised proof-of-work for a review dimension fork the author-time driver ran.
+ 
+     M15-F1 病灶: 维度方法论 fork 跑完 0 finding 时, verdict 门把空 findings 折叠成 passed 却在账本里零
+     痕 ("patch 在该维度下干净" 与 "该维度根本没被验过" 不可区分, 抓假的最后一道独立复核证明不了真跑过)。
+     本事件为每个真跑的维度 (含 0-finding) 落 canonical 痕: dimension + fork_spawned (真起独立子进程?
+-    replay/inline=False) + fork_completed (fork 完成分析) + finding_count。经 commit gate (path A)。
+-
+-    f-rp-autopilot 病灶 (裁定): RDE 此前唯一 emit 点在 `run-author-time` CLI (provenance actor
+-    "author-time-driver"), 而 canonical 生产 review 驱动路径是 review/SKILL.md §7.2 主 session 直派
+-    method-* fork + finding-create (actor "m15-review-session"), 从不调 run-author-time → 真账本
+-    canonical RDE=0 (built≠enforced)。修法: 抽出本 emit 让 §7.2 直派路径也能落 RDE (经
+-    `review dimension-exercised` CLI, provenance_actor_id="m15-review-session" 对齐真实生产 actor)。
+-    run-author-time 沿用默认 author-time-driver actor 不变 (非 canonical 一键便捷通道)。
++    replay/inline=False) + fork_completed (fork 完成分析) + finding_count。经 commit gate (path A), 由
++    author-time driver 自动产出 (provenance: agent_session / M-1.5 driver, 非人手 CLI 单条 emit)。
+     """
+     payload: dict[str, Any] = {
+         "review_plan_id": review_plan_id,
+         "dimension": dimension,
+-        "fork_spawned": bool(fork_spawned),
+-        "fork_completed": bool(fork_completed),
+-        "fork_model": str(fork_model or "unknown"),
++        "fork_spawned": bool(getattr(verdict, "spawned", False)),
++        "fork_completed": bool(getattr(verdict, "passed", False)),
++        "fork_model": str(getattr(verdict, "model", "") or "unknown"),
+         "fork_mode": fork_mode,
+         "finding_count": int(finding_count),
+     }
+@@ -9677,7 +9437,7 @@ def _emit_review_dimension_exercised(
+         payload=payload,
+         provenance_hint=ProvenanceHint(
+             actor_type=ActorType.AGENT_SESSION.value,
+-            actor_id=provenance_actor_id,
++            actor_id="m15.review.author-time-driver",
+             session_id=session_id,
+             skill_id="M-1.5",
+         ),
+@@ -9695,8 +9455,8 @@ def _emit_review_dimension_exercised(
+                 "status": "passed",
+                 "evidence": {
+                     "dimension": dimension,
+-                    "fork_spawned": str(bool(fork_spawned)),
+-                    "fork_completed": str(bool(fork_completed)),
++                    "fork_spawned": str(bool(getattr(verdict, "spawned", False))),
++                    "fork_completed": str(bool(getattr(verdict, "passed", False))),
+                     "finding_count": str(finding_count),
+                 },
+             },
+@@ -9928,10 +9688,7 @@ def review_run_author_time(
+         # ("patch 在该维度下干净") 也留下账本痕, 与 "维度根本没跑" 区分开 (修 M15-F1 病灶)。
+         rde_eid = _emit_review_dimension_exercised(
+             towow, session_id=sid, review_plan_id=review_plan_id, dimension=dim,
+-            fork_spawned=bool(getattr(verdict, "spawned", False)),
+-            fork_completed=bool(getattr(verdict, "passed", False)),
+-            fork_model=str(getattr(verdict, "model", "") or "unknown"),
+-            finding_count=len(findings), fork_mode=fork_mode,
++            verdict=verdict, finding_count=len(findings), fork_mode=fork_mode,
+         )
+         click.echo(f"    ↳ ReviewDimensionExercised (维度 proof-of-work): {rde_eid}")
+ 
+@@ -9988,116 +9745,6 @@ def review_run_author_time(
+     )
+ 
+ 
+-@review.command("dimension-exercised")
+-@click.option(
+-    "--review-plan-id", required=True,
+-    help="本次 review 遵循的 ReviewPlanCreated (锚定 proof-of-work; 必须真存在).",
+-)
+-@click.option(
+-    "--dimension",
+-    required=True,
+-    type=click.Choice(["method-execution-path", "method-consistency", "method-red-team"]),
+-    help="真跑过的方法论维度 (须是 review_plan.dimensions 之一).",
+-)
+-@click.option(
+-    "--finding-count", required=True, type=int,
+-    help="该维度 fork 产出的 finding proposal 数 (0 = 该维度下 patch 干净).",
+-)
+-@click.option(
+-    "--fork-spawned/--no-fork-spawned",
+-    default=True,
+-    show_default=True,
+-    help="是否真起了独立子进程 fork (replay/inline 降级则 --no-fork-spawned).",
+-)
+-@click.option(
+-    "--fork-completed/--no-fork-completed",
+-    default=True,
+-    show_default=True,
+-    help="fork 是否完成了分析 (fail-closed: 起不来/未完成应 --no-fork-completed).",
+-)
+-@click.option("--fork-model", default="unknown", show_default=True, help="fork 用的模型 (可选, 溯源).")
+-@click.option(
+-    "--fork-mode",
+-    type=click.Choice(["fork", "inline"]),
+-    default="fork",
+-    show_default=True,
+-    help="fork (真起独立子进程) / inline (显式降级, 主 session 内联跑维度 lens).",
+-)
+-@click.option(
+-    "--session-id",
+-    "session_id",
+-    default=None,
+-    help="T-SL-A4: 显式绑定本 review 会话(经 resolve_session 三态)。",
+-)
+-@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+-def review_dimension_exercised(
+-    review_plan_id: str,
+-    dimension: str,
+-    finding_count: int,
+-    fork_spawned: bool,
+-    fork_completed: bool,
+-    fork_model: str,
+-    fork_mode: str,
+-    session_id: str | None,
+-    project_dir: Path,
+-) -> None:
+-    """Emit 一条 canonical ReviewDimensionExercised proof-of-work (finding f-rp-autopilot-review-
+-    dimension-exercised-never-emits-live-path 的裁定修法).
+-
+-    病灶 (裁定): RDE proof-of-work 此前唯一 emit 点在 `run-author-time` CLI (RUN-059 件B 一键编排
+-    driver), 而 canonical 生产 review 驱动路径是 review/SKILL.md §7.2 —— 主 review session 直派
+-    method-* fork + `finding-create` (RUN-093 件C auto-spawn 独立 verify)。真账本 `author-time-driver`
+-    actor=0 → run-author-time 从不在生产跑, RDE canonical 计数=0 (built≠enforced)。
+-
+-    裁定: **§7.2 直派 + finding-create 是 canonical 驱动路径** (它是生产实际所用, 且自带独立 verify;
+-    run-author-time 反而跳过独立 verify, 是劣化, 降为非 canonical 一键便捷通道)。本命令让 §7.2 主
+-    session 在真派完每个维度 method-* fork 后, 落一条 canonical RDE proof-of-work (含 0-finding 维度,
+-    与 "该维度根本没跑" 区分), provenance actor="m15-review-session" 对齐真实生产 review actor。
+-
+-    review_plan_id 必须真有对应 ReviewPlanCreated (proof-of-work 锚定真实 plan, 非凭空串);
+-    dimension 应是该 plan.dimensions 之一。经 commit gate, 红线干净 (无 reducer 消费, 只供独立复算)。
+-    """
+-    towow = _require_init(project_dir)
+-    sid = resolve_session(towow, "review", session_id).session_id
+-
+-    # review_plan_id 溯源真验: 必须真有对应 ReviewPlanCreated (proof-of-work 锚定真 plan, 非裸串)。
+-    plan_ev = _find_review_plan_created(EventLog(towow / "events.log"), review_plan_id)
+-    if plan_ev is None:
+-        click.echo(
+-            f"error: --review-plan-id {review_plan_id!r} 无对应 ReviewPlanCreated — "
+-            "RDE proof-of-work 须锚定真实 review_plan (先 towow review plan-create)",
+-            err=True,
+-        )
+-        sys.exit(1)
+-    # dimension 应落在该 plan 的 dimensions 里 (proof-of-work 证的是 plan 声明过的维度真跑了)。
+-    pp = plan_ev.payload if isinstance(plan_ev.payload, dict) else {}
+-    pafter = pp.get("after_state") if isinstance(pp.get("after_state"), dict) else pp
+-    raw_dims = pafter.get("dimensions") if isinstance(pafter, dict) else None
+-    plan_dims = [
+-        str(d.get("dimension_id"))
+-        for d in (raw_dims or [])
+-        if isinstance(d, dict) and d.get("dimension_id")
+-    ]
+-    if plan_dims and dimension not in plan_dims:
+-        click.echo(
+-            f"error: dimension {dimension!r} 不在 review_plan {review_plan_id} 的 dimensions "
+-            f"{plan_dims} 里 — proof-of-work 只证 plan 声明过的维度 (§7.2)",
+-            err=True,
+-        )
+-        sys.exit(1)
+-
+-    rde_eid = _emit_review_dimension_exercised(
+-        towow, session_id=sid, review_plan_id=review_plan_id, dimension=dimension,
+-        fork_spawned=fork_spawned, fork_completed=fork_completed, fork_model=fork_model,
+-        finding_count=finding_count, fork_mode=fork_mode,
+-        provenance_actor_id="m15-review-session",
+-    )
+-    click.echo(
+-        f"✓ ReviewDimensionExercised: {dimension} (plan={review_plan_id}, findings={finding_count}, "
+-        f"fork_spawned={fork_spawned}, event: {rde_eid})",
+-    )
+-
+-
+ @review.command("detection-rule-propose")
+ @click.option("--rule-id", required=True, help="提案规则的稳定 id.")
+ @click.option("--rule-definition", required=True, help="规则定义 (检测什么模式; 非空).")
+@@ -11581,26 +11228,10 @@ def whoami(project_dir: Path) -> None:
+     from towow.shell.distribution import resolve_project_root
+ 
+     root = resolve_project_root(project_dir)
+-    env_gid = _os.environ.get("TOWOW_SELF_GID")
+-    # f-orchestrator-spawn-injects-wrong-self-gid-concurrent-crosswire-20260718: env TOWOW_SELF_GID
+-    # 可被 CC daemon spare-pool 复用污染 (残留邻居 gid)。self_gid 优先报账本按 CC 原生
+-    # CLAUDE_CODE_SESSION_ID 反查到的真实身份 (免疫污染), 反查不到才回退 env —— 否则 whoami 会把
+-    # 污染值喂给 agent, agent 再拿它去 goal terminate 就误终止邻居 (whoami→terminate 失败链)。
+-    self_gid = env_gid
+-    my_session = _os.environ.get("CLAUDE_CODE_SESSION_ID")
+-    if my_session and root is not None:
+-        from towow.l0.event_log import EventLog
+-        from towow.l2.orchestrator import resolve_self_goal_session_id
+-
+-        ledger_gid = resolve_self_goal_session_id(
+-            EventLog(root / ".towow" / "events.log"), my_session,
+-        )
+-        if ledger_gid is not None:
+-            self_gid = ledger_gid
+     out = {
+         "project_root": str(root) if root is not None else None,
+         "towow_dir": str(root / ".towow") if root is not None else None,
+-        "self_gid": self_gid,
++        "self_gid": _os.environ.get("TOWOW_SELF_GID"),
+         "bound_task": _os.environ.get("TOWOW_TASK_ID"),  # R06 复查: concept 要 whoami 报"绑的 task"
+         "worktree": str(Path.cwd()),
+     }
+@@ -12885,36 +12516,6 @@ def _parse_live_target_observables(raws: tuple[str, ...]) -> list:
+     return parsed
+ 
+ 
+-def _parse_seed_semantic_annotation(spec: dict[str, Any]) -> Any:
+-    """--concept-seed JSON 里的可选关联声明 → SemanticAnnotation | None (fail-closed).
+-
+-    f-interview-seed-relatedness-emitter-gap 修: 成熟概念图上出生门 concept_isolated_no_relatedness
+-    要求新概念声明相关性。采访种子路径此前无声明入口 → 逼零种子发布断 F2 (brief→共识 context 链)。
+-    姊妹命令 consensus concept-create 的 --affected-concept-id / --relationship-type /
+-    --relatedness-explanation 三键在此以 JSON 字段 (affected_concept_ids / relationship_type /
+-    explanation) 对齐。任一字段给了才建 annotation; 全缺 → None (回退 semantic/coupling 信号或早期豁免)。
+-    affected_concept_ids 非 list → fail-closed 拒 (与 --concept-seed 同风格)。
+-    """
+-    from towow.schemas.payloads.state_transition import SemanticAnnotation
+-
+-    affected = spec.get("affected_concept_ids")
+-    relationship_type = spec.get("relationship_type")
+-    explanation = spec.get("explanation")
+-    if affected is None and relationship_type is None and explanation is None:
+-        return None
+-    if affected is not None and not isinstance(affected, list):
+-        click.echo(
+-            f"error: --concept-seed affected_concept_ids must be a JSON array: {spec!r}",
+-            err=True,
+-        )
+-        sys.exit(1)
+-    return SemanticAnnotation(
+-        affected_concept_ids=[str(c) for c in affected] if affected else None,
+-        relationship_type=str(relationship_type) if relationship_type is not None else None,
+-        explanation=str(explanation) if explanation is not None else None,
+-    )
+-
+-
+ @interview.command("publish")
+ @click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+ @click.option(
+@@ -12947,11 +12548,7 @@ def _parse_seed_semantic_annotation(spec: dict[str, Any]) -> Any:
+     multiple=True,
+     help='种子概念 JSON (可重复, INF-004 atomic). 形如 '
+     '\'{"concept_id":"concept-x","concept_name":"X","definition":"..."}\'. '
+-    "每个产 1 个 ConceptCreated event, 同 envelope atomic commit. "
+-    "成熟概念图 (>= maturity_threshold) 上出生门要求关联声明: 可选加 "
+-    '"affected_concept_ids":["concept-y",...] (指向相关既有/同批概念, 同批自动建 ConceptEdgeAdded 真边), '
+-    '或 "relationship_type":"genuinely_new" (主动断言真全新, 孤立放行逃生阀), '
+-    '"explanation":"..." (关联/全新理由). 缺则回退 semantic/coupling 信号或早期图豁免.',
++    "每个产 1 个 ConceptCreated event, 同 envelope atomic commit.",
+ )
+ @click.option(
+     "--live-target-observable",
+@@ -13052,17 +12649,12 @@ def interview_publish(
+         if not isinstance(spec, dict):
+             click.echo(f"error: --concept-seed must be a JSON object: {raw!r}", err=True)
+             sys.exit(1)
+-        # f-interview-seed-relatedness-emitter-gap: 成熟概念图上出生门要求关联声明。解析可选
+-        # affected_concept_ids / relationship_type / explanation → semantic_annotation, 让采访种子
+-        # 跟姊妹命令 consensus concept-create 一样能带关联发布 (否则成熟图上被 isolated 拒, 逼零种子断 F2)。
+-        raw_annotation = _parse_seed_semantic_annotation(spec)
+         try:
+             seed = ConceptSeedCreatedPayload(
+                 concept_id=str(spec.get("concept_id", "")),
+                 concept_name=str(spec.get("concept_name", "")),
+                 definition=str(spec.get("definition", "")),
+                 source_brief_id=brief_id,  # 语义 id 互链 (Patch Q)
+-                semantic_annotation=raw_annotation,
+             )
+         except (ValidationError, ValueError, TypeError) as exc:
+             # surface schema validation error to CLI user (fail-closed, no emit)
+@@ -13753,12 +13345,6 @@ def _run_interview_fork_or_degrade(
+         f"\n# ✓ 独立 {fork_id} fork 产 proposal (spawned={verdict.spawned}), "
+         f"{result_model.__name__} 校验通过:",
+     )
+-    # debt-0529dd0a268c: 父上下文继承若被降级 (parent 非 Claude UUID / resume spawn 失败退零继承),
+-    # 如实告知 —— fork 仍是独立真 spawn + schema-valid proposal, 只是没继承采访对话历史 (靠 capsule
+-    # 自足)。降级不静默 (owner 原话: 降级要记账, 不是悄悄绕过), 主 session 据此知道 proposal 的
+-    # 语境边界 (没看到采访逐句上下文, 只看到投喂的 capsule)。
+-    if verdict.expand_degraded is not None:
+-        click.echo(f"# ⚠ 父上下文继承已降级(零继承): {verdict.expand_degraded}")
+     _persist_interview_fork_result(towow=towow, fork_id=fork_id, parsed=parsed)
+     return parsed
+ 
+@@ -14905,54 +14491,55 @@ def _reverify_owner_confirmation_against_ledger(
+     check 标 passed 就能骗过前置 (publish 门已升 provenance 校验, 但 consensus 复验那侧仍盲信)。
+     本函数把那一侧也接上同款 provenance 校验:
+ 
+-      确认事件 id: 只认 owner_check.evidence.nature_judgment_event_id —— 真 brief 落账时 publish 门
+-      写进 check evidence 的那一条权威背书事件 (单值)。走 verify_owner_confirmation_provenance
+-      (non-strict): existence + NatureJudgmentCaptured 类型 + session 归属仍强制, 缺 summary-hash
+-      不拒 (容忍升级前 interview-answer 捕获的旧式确认, 不退役历史已确认 brief); 带 hash 则仍须匹配。
+-      过 → 真有背书 → 放过; 不过 → flag 无背书 → 拒。
+-
+-    f-glob-brief-birthgate-nodetouched-smuggle-bypass 放大环收口: 旧实现在权威单值缺失时退回扫
+-    brief 自报的 audit_trace_refs.nature_judgment_event_ids 全 session NJ grab-bag —— 该 fallback 把
+-    『session 里发生过某 judgment』当成『owner 确认了这份 brief』, 配 session 内任意 routine
+-    NatureJudgmentCaptured 就能锚定一份 (out-of-band 伪造的) brief, non-strict 不验 hash 时连攻击者
+-    自己的合法确认 NJ 都能锚定不相干的伪造 brief (confirm-summary-A/smuggle-brief-B 变体)。现只认
+-    publish 门 designated 的权威单值确认载体, 不把『某 judgment 发生过』等同『这份 brief 被确认』。
+-    (write-boundary ban 已让伪造 brief 无法被 finder 选中; 此处堵住即便被选中时的复验放大面。)
++      候选确认事件 id: owner_check.evidence.nature_judgment_event_id (真 brief 落账时门写进
++      check evidence 的背书事件, 权威单值) 优先; 缺则扫 audit_trace_refs.nature_judgment_event_ids。
++      逐个走 verify_owner_confirmation_provenance(non-strict): existence + NatureJudgmentCaptured
++      类型 + session 归属仍强制, 缺 summary-hash 不拒 (容忍升级前 interview-answer 捕获的旧式确认,
++      不退役历史已确认 brief)。任一过 → 真有背书 → 放过; 全不过 → flag 无背书 → 拒。
+     """
+     from towow.l1.interview.brief_publish import verify_owner_confirmation_provenance
+ 
+     expected_session_id = brief_payload.get("session_id")
+     summary_hash = brief_payload.get("owner_facing_summary_hash") or ""
++    candidates: list[str] = []
+     evidence = owner_check.get("evidence")
+-    confirming_event_id: str | None = None
+     if isinstance(evidence, dict):
+         nj = evidence.get("nature_judgment_event_id")
+         if isinstance(nj, str) and nj:
+-            confirming_event_id = nj
+-    if not confirming_event_id:
++            candidates.append(nj)
++    refs = brief_payload.get("audit_trace_refs")
++    if isinstance(refs, dict):
++        ids = refs.get("nature_judgment_event_ids")
++        if isinstance(ids, list):
++            candidates.extend(
++                i for i in ids if isinstance(i, str) and i and i not in candidates
++            )
++    if not candidates:
+         return False, (
+-            "owner_brief_confirmed check carries no authoritative nature_judgment_event_id in its "
+-            "evidence — flag not trusted (audit_trace_refs全-session-NJ grab-bag fallback removed: "
+-            "a routine session judgment must not be able to back a brief confirmation)"
++            "owner_brief_confirmed flag has no backing NatureJudgmentCaptured event id "
++            "(no nature_judgment in check evidence / audit_trace_refs) — flag not trusted"
+         )
+     if not isinstance(expected_session_id, str) or not expected_session_id:
+         return False, (
+             "brief payload missing session_id — cannot re-verify owner confirmation provenance"
+         )
+-    verdict = verify_owner_confirmation_provenance(
+-        log=log,
+-        expected_session_id=expected_session_id,
+-        confirming_event_id=confirming_event_id,
+-        expected_owner_facing_summary_hash=summary_hash,
+-        require_summary_hash=False,
+-    )
+-    if verdict.ok:
+-        return True, (
+-            f"owner brief confirmed (re-verified against canonical ledger: {verdict.reason})"
++    last_reason = ""
++    for cand in candidates:
++        verdict = verify_owner_confirmation_provenance(
++            log=log,
++            expected_session_id=expected_session_id,
++            confirming_event_id=cand,
++            expected_owner_facing_summary_hash=summary_hash,
++            require_summary_hash=False,
+         )
++        if verdict.ok:
++            return True, (
++                f"owner brief confirmed (re-verified against canonical ledger: {verdict.reason})"
++            )
++        last_reason = verdict.reason
+     return False, (
+         "owner_brief_confirmed flag has no backing NatureJudgmentCaptured event in ledger "
+-        f"({verdict.reason}) — flag not trusted"
++        f"(last verdict: {last_reason}) — flag not trusted"
+     )
+ 
+ 
+@@ -15044,7 +14631,7 @@ def consensus_start(
+         if selected_brief is None:
+             click.echo(
+                 "error: no InterviewBriefPublished event found — "
+-                "run `tw interview start --raw-prompt \"...\"` first",
++                "run `towow interview start --raw-prompt \"...\"` first",
+                 err=True,
+             )
+             sys.exit(1)
+@@ -16075,6 +15662,291 @@ def consensus_supersede(
+         click.echo(f"  +{aux_type.value}: {aux_after['reference_id']} (event: {aux_event_id})")
+ 
+ 
++def _active_consensus_reference(
++    towow: Path,
++    source_concept_id: str,
++    reference_id: str,
++) -> dict[str, object] | None:
++    """Return one active typed reference owned by ``source_concept_id``.
++
++    Reference migration must be based on the canonical projection rather than a caller's
++    assertion.  This also makes ref-repoint/ref-remove idempotent after an interrupted two-step
++    repoint: a committed add can be reused and an already removed old ref is observable.
++    """
++    event_log = EventLog(towow / "events.log")
++    store = ProjectionStore(towow / "graph")
++    store.catchup(event_log)
++    graph = store.read("at_reference_graph") or {}
++    references = graph.get("references", []) if isinstance(graph, dict) else []
++    for ref in references if isinstance(references, list) else []:
++        if not isinstance(ref, dict):
++            continue
++        if (
++            ref.get("reference_id") == reference_id
++            and ref.get("source_concept_id") == source_concept_id
++            and ref.get("is_active") is True
++        ):
++            return ref
++    return None
++
++
++def _concept_id_from_parsed_reference(parsed_ref: Any) -> str:
++    """Resolve the graph concept id represented by the §4.5 locator parser.
++
++    The parser treats ``@vN`` as a version anchor.  For concept references that anchor is part
++    of the target concept id, while a real event lock is not.
++    """
++    concept_name = str(parsed_ref.concept_name)
++    lock_event_id = parsed_ref.lock_event_id
++    from towow.l1.at_reference_lock import is_version_anchor
++
++    if isinstance(lock_event_id, str) and is_version_anchor(lock_event_id):
++        return f"{concept_name}@{lock_event_id}"
++    return concept_name
++
++
++def _validate_reference_for_repoint(towow: Path, at_reference: str) -> Any:
++    """Parse and validate a new reference against the live event log and concept graph."""
++    from towow.l1.at_reference_lock import lock_validation_errors
++    from towow.schemas.payloads.at_reference_locator import parse as parse_at_ref
++    from towow.schemas.payloads.at_reference_locator import validate as validate_at_ref
++
++    valid, errors = validate_at_ref(at_reference)
++    if not valid:
++        raise click.ClickException(
++            f"@ reference {at_reference!r} 违反 M-1.2 §4.5 typed-id 语法: "
++            + "; ".join(errors)
++        )
++    parsed_ref = parse_at_ref(at_reference)[0]
++    event_log = EventLog(towow / "events.log")
++    store = ProjectionStore(towow / "graph")
++    store.catchup(event_log)
++    concept_graph = store.read("concept_graph") or {}
++    lock_errors = lock_validation_errors(
++        [parsed_ref], event_log=event_log, concept_graph=concept_graph,
++    )
++    if lock_errors:
++        raise click.ClickException(
++            f"@ reference {at_reference!r} 违反 M-1.2 §4.5 lock 事件锁校验: "
++            + "; ".join(lock_errors)
++        )
++    target_id = _concept_id_from_parsed_reference(parsed_ref)
++    nodes_value = concept_graph.get("nodes", []) if isinstance(concept_graph, dict) else []
++    nodes = nodes_value if isinstance(nodes_value, list) else []
++    if not any(
++        isinstance(node, dict) and node.get("concept_id") == target_id
++        for node in nodes
++    ):
++        raise click.ClickException(
++            f"@ reference target concept {target_id!r} 不在 canonical concept_graph 中"
++        )
++    return parsed_ref
++
++
++def _emit_consensus_reference_add(
++    towow: Path,
++    sid: str,
++    source_concept_id: str,
++    at_reference: str,
++    parsed_ref: Any,
++    ref_policy: str,
++) -> str:
++    from towow.l1.at_reference_lock import is_version_anchor, lock_state_hash
++
++    lock_event_id = parsed_ref.lock_event_id
++    event_log = EventLog(towow / "events.log")
++    locked_state_hash = (
++        lock_state_hash(event_log, lock_event_id)
++        if isinstance(lock_event_id, str) and not is_version_anchor(lock_event_id)
++        else None
++    )
++    subject = Subject(
++        entity_type=SubjectEntityType.AT_REFERENCE,
++        entity_id=at_reference,
++        role=SubjectRole.PRIMARY,
++    )
++    intent = EventIntent(
++        local_intent_id=f"at-ref-repoint-add-{uuid.uuid4().hex[:12]}",
++        event_type=EventType.AT_REFERENCE_ADDED,
++        event_category=EventCategory.STATE_TRANSITION,
++        payload={
++            "target_entity_type": TargetEntityType.AT_REFERENCE.value,
++            "transition_type": TransitionType.CREATED.value,
++            "after_state": {
++                "source_concept_id": source_concept_id,
++                "at_reference": at_reference,
++                "locator_type": parsed_ref.type,
++                "target_concept_name": parsed_ref.concept_name,
++                "field_path": parsed_ref.field_path,
++                "state_anchor": parsed_ref.state,
++                "lock_event_id": lock_event_id,
++                "locked_at_state_hash": locked_state_hash,
++                "added_by_stage": "engineering_consensus",
++                "on_target_supersede_policy": ref_policy,
++            },
++        },
++        provenance_hint=ProvenanceHint(
++            actor_type=ActorType.AGENT_SESSION.value,
++            actor_id="m12-consensus-session",
++            session_id=sid,
++            skill_id="M-1.2",
++        ),
++        base_classification=BaseClassification.IMMUTABLE_TRUTH,
++        supersede=Supersede(is_supersede=False),
++        subjects=[subject],
++        schema_version="1.0.0",
++    )
++    return _attempt_consensus_commit(towow, sid, intent, subject)
++
++
++def _emit_consensus_reference_remove(
++    towow: Path,
++    sid: str,
++    source_concept_id: str,
++    reference_id: str,
++    active_ref: dict[str, object],
++    reason: str,
++    novelty_type: str,
++) -> str:
++    from towow.schemas.payloads.at_reference_locator import parse as parse_at_ref
++
++    parsed_ref = parse_at_ref(reference_id)[0]
++    target_concept_id = _concept_id_from_parsed_reference(parsed_ref)
++    created_event_id = active_ref.get("created_at_event_id")
++    if not isinstance(created_event_id, str) or not created_event_id:
++        raise click.ClickException(
++            f"active reference {reference_id!r} 缺 created_at_event_id，无法留 supersede provenance"
++        )
++    subject = Subject(
++        entity_type=SubjectEntityType.AT_REFERENCE,
++        entity_id=reference_id,
++        role=SubjectRole.PRIMARY,
++    )
++    intent = EventIntent(
++        local_intent_id=f"at-ref-remove-{uuid.uuid4().hex[:12]}",
++        event_type=EventType.AT_REFERENCE_REMOVED,
++        event_category=EventCategory.STATE_TRANSITION,
++        payload={
++            "target_entity_type": TargetEntityType.AT_REFERENCE.value,
++            "transition_type": TransitionType.REMOVED.value,
++            "before_state": {
++                "reference_id": reference_id,
++                "source_entity": {"type": "concept", "id": source_concept_id},
++                "target_entity": {"type": "concept", "id": target_concept_id},
++            },
++        },
++        provenance_hint=ProvenanceHint(
++            actor_type=ActorType.AGENT_SESSION.value,
++            actor_id="m12-consensus-session",
++            session_id=sid,
++            skill_id="M-1.2",
++        ),
++        base_classification=BaseClassification.IMMUTABLE_TRUTH,
++        supersede=Supersede(
++            is_supersede=True,
++            superseded_event_id=created_event_id,
++            novelty=reason,
++            novelty_type=SupersedeNoveltyType(novelty_type),
++        ),
++        subjects=[subject],
++        schema_version="1.0.0",
++    )
++    return _attempt_consensus_commit(towow, sid, intent, subject)
++
++
++@consensus.command("ref-repoint")
++@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
++@click.option("--source-concept-id", required=True)
++@click.option("--old-reference", required=True, help="待退役的 active typed @ reference.")
++@click.option("--new-reference", required=True, help="同一 source 要重指的 typed @ reference.")
++@click.option(
++    "--ref-policy",
++    type=click.Choice([p.value for p in LockingPolicy]),
++    default=LockingPolicy.EXPLICIT_DECISION_REQUIRED.value,
++    show_default=True,
++)
++@click.option("--reason", required=True, help="重指原因，写入旧引用移除的 supersede provenance.")
++@click.option(
++    "--novelty-type",
++    type=click.Choice([t.value for t in SupersedeNoveltyType]),
++    required=True,
++)
++@click.option("--session-id", "session_id", default=None)
++def consensus_ref_repoint(
++    project_dir: Path,
++    source_concept_id: str,
++    old_reference: str,
++    new_reference: str,
++    ref_policy: str,
++    reason: str,
++    novelty_type: str,
++    session_id: str | None,
++) -> None:
++    """Repoint one existing source concept from an old typed ref to a new target.
++
++    The operation is crash-recoverable rather than pretending two sequential commit-gate
++    envelopes are atomic: rerun skips an already committed add and then removes the old ref.
++    """
++    towow = _require_init(project_dir)
++    sid = resolve_session(towow, "consensus", session_id).session_id
++    if old_reference == new_reference:
++        raise click.ClickException("old and new references must differ")
++    old_ref = _active_consensus_reference(towow, source_concept_id, old_reference)
++    if old_ref is None:
++        raise click.ClickException(
++            f"active old reference {old_reference!r} owned by {source_concept_id!r} not found"
++        )
++    parsed_new = _validate_reference_for_repoint(towow, new_reference)
++    new_ref = _active_consensus_reference(towow, source_concept_id, new_reference)
++    if new_ref is None:
++        add_event_id = _emit_consensus_reference_add(
++            towow, sid, source_concept_id, new_reference, parsed_new, ref_policy,
++        )
++        click.echo(f"  +AtReferenceAdded: {new_reference} (event: {add_event_id})")
++    else:
++        click.echo(f"  ~AtReferenceAdded skipped (already active): {new_reference}")
++    remove_event_id = _emit_consensus_reference_remove(
++        towow, sid, source_concept_id, old_reference, old_ref, reason, novelty_type,
++    )
++    click.echo(
++        f"✓ reference repointed: {source_concept_id} {old_reference} → {new_reference} "
++        f"(remove event: {remove_event_id})"
++    )
++
++
++@consensus.command("ref-remove")
++@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
++@click.option("--source-concept-id", required=True)
++@click.option("--reference", "reference_id", required=True, help="待移除的 active typed @ reference.")
++@click.option("--reason", required=True, help="移除原因，写入 supersede provenance.")
++@click.option(
++    "--novelty-type",
++    type=click.Choice([t.value for t in SupersedeNoveltyType]),
++    required=True,
++)
++@click.option("--session-id", "session_id", default=None)
++def consensus_ref_remove(
++    project_dir: Path,
++    source_concept_id: str,
++    reference_id: str,
++    reason: str,
++    novelty_type: str,
++    session_id: str | None,
++) -> None:
++    """Remove one active typed reference through the canonical commit gate."""
++    towow = _require_init(project_dir)
++    sid = resolve_session(towow, "consensus", session_id).session_id
++    active_ref = _active_consensus_reference(towow, source_concept_id, reference_id)
++    if active_ref is None:
++        raise click.ClickException(
++            f"active reference {reference_id!r} owned by {source_concept_id!r} not found"
++        )
++    event_id = _emit_consensus_reference_remove(
++        towow, sid, source_concept_id, reference_id, active_ref, reason, novelty_type,
++    )
++    click.echo(f"✓ AtReferenceRemoved: {reference_id} (event: {event_id})")
++
++
+ @consensus.command("edge-add")
+ @click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+ @click.option("--source", "source_concept_id", required=True)
+@@ -17305,89 +17177,6 @@ def conformance_view(project_dir: Path, cards_file: Path) -> None:
+     )
+ 
+ 
+-@conformance.command("sla-status")
+-@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+-@click.option(
+-    "--cards-file",
+-    type=click.Path(dir_okay=False, path_type=Path),
+-    default="01-reconciliation/conformance/cards.json",
+-    help="模块对账卡数据",
+-)
+-@click.option(
+-    "--state-file",
+-    type=click.Path(dir_okay=False, path_type=Path),
+-    default=None,
+-    help="巡检产物文件路径 (跨轮记账 red_since); 默认 <project-dir>/.towow/orchestrator/health_wiring_state.json",
+-)
+-@click.option("--sla-days", type=int, default=7, help="连续红点超过这个天数判定 SLA breach")
+-@click.option("--as-of", default=None, help="覆盖'今天'的日期(YYYY-MM-DD)，仅供测试/重放用")
+-@click.option("--json", "as_json", is_flag=True, help="机器可读输出 (供 alert-bridge 等巡检链消费方 parse)")
+-def conformance_sla_status(
+-    project_dir: Path,
+-    cards_file: Path,
+-    state_file: Path | None,
+-    sla_days: int,
+-    as_of: str | None,
+-    as_json: bool,
+-) -> None:
+-    """SPIRAL-BREAK V4 巡检链: 第一批已触碰模块红点 SLA (跨轮记账 red_since, 超阈值判 breach)。
+-
+-    对第一批模块 (M-3.1/M-2.2/M-0.5/M-0.2/AWARENESS，见 health_wiring_sentinel) 做一轮
+-    conformance 红点核对；持续红超过 --sla-days 天 → 判 breach。状态(含 red_since)落盘到
+-    --state-file，即"巡检产物文件"——这是本命令自己的 SLA 计时记账，不是又一份会烂掉的快照。
+-    """
+-    import json as json_mod
+-    import time as time_mod
+-
+-    from towow.health_wiring_sentinel import first_batch_sla_status
+-
+-    resolved = _resolve_cards_file(cards_file, project_dir)
+-    if resolved is None:
+-        click.echo(f"对账卡数据不存在: {cards_file} (先跑审计产卡)")
+-        raise SystemExit(1)
+-    repo = _conformance_repo(project_dir)
+-    towow = _require_init(project_dir)
+-    if state_file is None:
+-        state_file = towow / "orchestrator" / "health_wiring_state.json"
+-
+-    try:
+-        prior_state = json_mod.loads(state_file.read_text(encoding="utf-8")) if state_file.exists() else {}
+-    except (OSError, json_mod.JSONDecodeError):
+-        prior_state = {}
+-    if not isinstance(prior_state, dict):
+-        prior_state = {}
+-
+-    today = as_of or time_mod.strftime("%Y-%m-%d", time_mod.gmtime())
+-    result = first_batch_sla_status(
+-        repo=repo,
+-        towow_dir=towow,
+-        cards_file=resolved,
+-        state=prior_state,
+-        today=today,
+-        sla_days=sla_days,
+-    )
+-
+-    state_file.parent.mkdir(parents=True, exist_ok=True)
+-    state_file.write_text(
+-        json_mod.dumps({**result["state"], "last_checked": today}, ensure_ascii=False, indent=2) + "\n",
+-        encoding="utf-8",
+-    )
+-
+-    if as_json:
+-        click.echo(json_mod.dumps(result, ensure_ascii=False))
+-        return
+-
+-    click.echo(f"第一批巡检 ({len(result['checked'])} 张卡, SLA={sla_days} 天) — {today}:")
+-    for mid in result["checked"]:
+-        mark = "🔴" if mid in result["red_ids"] else "🟢"
+-        breach_note = f" ⚠SLA breach({result['breaches'][mid]}天)" if mid in result["breaches"] else ""
+-        click.echo(f"  {mark} {mid}{breach_note}")
+-    if result["breaches"]:
+-        click.echo(f"\n{len(result['breaches'])} 个模块超 SLA 仍处红点: {result['breaches']}")
+-    else:
+-        click.echo("\n无 SLA breach")
+-
+-
+ # ════════════════════════════════════════════════════════════════════════════════
+ #  4.4 Maintenance commands (M-0.7) + RUN-052 run wrapper (M-3.1 §10)
+ # ════════════════════════════════════════════════════════════════════════════════
+@@ -18351,7 +18140,7 @@ def audit_consolidation(project_dir: Path) -> None:
+     event_log = EventLog(towow / "events.log")
+     results = audit_recent_consolidations(event_log=event_log, limit=5)
+     if not results:
+-        click.echo("(no consolidation runs to audit — run `tw consolidate` first)")
++        click.echo("(no consolidation runs to audit — run `towow consolidate` first)")
+         return
+     failed = [r for r in results if not r.passed]
+     for r in results:
+@@ -18709,12 +18498,10 @@ def plan_import(file: Path, project_dir: Path) -> None:
+     # into the envelope — completeness.py requires all present, so a re-published (supersede) PlanFreezed
+     # missing any is rejected. Keep in sync with the `plan freeze` CLI's filter set (C-5 把 3 道确定性
+     # 硬约束 no_circular/no_cross_plan/no_red_line 提进总闸, 此重发布路径同步, 否则合法 supersede 被拒)。
+-    # 修2 (第10门) planning.new_capability_livefire_machine_check 亦 completeness.py REQUIRED, 同步 surface。
+     _gate_required_checks = {
+         "planning.coverage_complete",
+         "planning.cia_dependency_scan",
+         "planning.migration_old_path_removal",
+-        "planning.new_capability_livefire_machine_check",
+         "planning.no_circular_dependency",
+         "planning.no_cross_plan_resource_conflict",
+         "planning.no_unresolved_red_line_uncertainty",
+@@ -19574,50 +19361,36 @@ def escalation_respond(
+         f"  judgment_id={judgment_id} event_id={event_id}",
+     )
+ 
+-    # R08 硬闭环 (T-R08-INT-1, C-2/escalation-answer-reflow@v3 修正): owner 答复落账 (上面的 NJ)
+-    # ≠ 闭环 —— 必须把答复真送回那个等它的会话、核实被消费, 才算硬闭环。旧版这里"waiting task
+-    # 存在就无条件断言 resumed=True"(v1 escalation_reflow.reflow_answer 的空壳缺陷) —— 且一旦在
+-    # 这里落了 EscalationAnswerApplied, 编排器巡检 (drive_escalation_answer_reflow) 的去重就把它
+-    # 当"已终态"永远跳过、真送达从没被核实过 (2026-07 owner 实战: 飞书回复丢失/跨重启根因)。
+-    #
+-    # v3 改法: 用 escalation_reflow 的 vitality 判活分流真尝试投递 (parked_resumable→push /
+-    # dead→park+死信), 只有拿到【确定】结局才在此直发 EscalationAnswerApplied /
+-    # EscalationAnswerParkedStranded —— 直发 (event_type=ESCALATION_ANSWER_APPLIED, 非走
+-    # orchestrator._build_orch_nodetouched 的 NodeTouched 包裹) 是刻意的: 只有这条路径能把真实
+-    # responder session_id 接进 provenance, 供 reconcile_ledger_exemption 的『审批 actor≠豁免
+-    # 作者』自批检查用 (f-b1-approval-evidence-escalation-self-approval-vacuous 修的正是这条;
+-    # orchestrator 巡检的 NodeTouched 包裹本就不是合法审批锚类型, 挪去那边等于让自批检查对本
+-    # 通道又退化成空判成立)。查不清 (UNRESOLVED) 就什么都不 emit, 留给 orchestrator 下一轮巡检
+-    # 按同一套 escalation_reflow 逻辑重试 (同一份实现, 不重复写一遍造成语义漂移)。
++    # R08 硬闭环 (T-R08-INT-1): owner 答复落账 (上面的 NJ) ≠ 闭环 —— 必须把答复真送回那个等它的
++    # 等待会话并留痕被消费。这里把 escalation_reflow 接进来: 查到该 GoalEscalationRaised 的 goal
++    # session (它正 paused 等这条答复), 跑 reflow, emit EscalationAnswerApplied 硬闭环留痕。
++    # 这正是历史 0 次真闭环的修复 —— 之前答复只落账、从没投递回等待会话。
+     from towow.l0.event_log.event_log import EventLog as _EL
+-    from towow.l2 import dead_letter_inbox as _dead_letter_inbox
+-    from towow.l2 import escalation_reflow as _escalation_reflow
+-    from towow.l2 import orchestrator as _orchestrator
++    from towow.l2.escalation_reflow import OwnerAnswer, ReflowOutcome, WaitingTask, reflow_answer
+ 
+     _esc_ev = _EL(towow / "events.log").get_event(escalation_event_id)
+     _esc_after = (_esc_ev.payload or {}).get("after_state", {}) if _esc_ev else {}
+     _esc_after = _esc_after if isinstance(_esc_after, dict) else {}
+     _goal_sid = _esc_after.get("goal_session_id")
++    _esc_id = _esc_after.get("escalation_id") or escalation_event_id
+     if isinstance(_goal_sid, str) and _goal_sid:
+-        _target = _escalation_reflow.resolve_goal_session_target(_EL(towow / "events.log"), _goal_sid)
+-        _outcome = _escalation_reflow.deliver_goal_answer(
+-            _target,
+-            escalation_event_id=escalation_event_id,
+-            nj_event_id=event_id,
+-            answer_text=quote,
+-        )
+-        if _outcome is _escalation_reflow.GoalReflowOutcome.APPLIED:
++        _outcome, _app = reflow_answer(
++            OwnerAnswer(nj_event_id=event_id, escalation_event_id=escalation_event_id, answer_text=quote),
++            [WaitingTask(task_id=str(_esc_id), session_id=_goal_sid,
++                         waiting_on_escalation_event_id=escalation_event_id)],
++        )
++        if _outcome is ReflowOutcome.APPLIED and _app is not None:
+             applied_event_id = _write_stub_event(
+                 towow,
+                 event_type=EventType.ESCALATION_ANSWER_APPLIED,
+                 event_category=EventCategory.STATE_TRANSITION,
+                 payload={
+-                    "escalation_event_id": escalation_event_id,
+-                    "nj_event_id": event_id,
+-                    "applied_to_task_id": _goal_sid,
+-                    "applied_to_session_id": _goal_sid,
+-                    "answer_text": quote,
+-                    "resumed": True,
++                    "escalation_event_id": _app.escalation_event_id,
++                    "nj_event_id": _app.nj_event_id,
++                    "applied_to_task_id": _app.applied_to_task_id,
++                    "applied_to_session_id": _app.applied_to_session_id,
++                    "answer_text": _app.answer_text,
++                    "resumed": _app.resumed,
+                 },
+                 actor_type=ActorType.NATURE,
+                 actor_id="r08-answer-reflow",
+@@ -19628,42 +19401,8 @@ def escalation_respond(
+                 provenance_extras={"session_id": session_id} if session_id else None,
+             )
+             click.echo(
+-                f"✓ 硬闭环: 答复真 push 进等待会话 {_goal_sid} 并核实被消费 "
+-                f"(EscalationAnswerApplied {applied_event_id})。",
+-            )
+-        elif _outcome is _escalation_reflow.GoalReflowOutcome.ANSWER_PARKED_STRANDED:
+-            _orchestrator._park_stranded_goal_answer(
+-                towow,
+-                goal_session_id=_goal_sid,
+-                escalation_event_id=escalation_event_id,
+-                nj_event_id=event_id,
+-                answer_text=quote,
+-            )
+-            stranded_event_id = _orchestrator.emit_escalation_answer_parked_stranded(
+-                _EL(towow / "events.log"),
+-                escalation_event_id=escalation_event_id,
+-                nj_event_id=event_id,
+-                goal_session_id=_goal_sid,
+-                answer_text=quote,
+-                vitality_reason=_target.vitality.reason,
+-            )
+-            with contextlib.suppress(Exception):
+-                _dead_letter_inbox.enqueue(
+-                    towow, _EL(towow / "events.log"),
+-                    source_object_type="escalation_answer",
+-                    source_object_ref=escalation_event_id,
+-                    entry_reason=_dead_letter_inbox.DeadLetterEntryReason.STRUCTURAL_FAILURE,
+-                    original_trigger_event_id=event_id,
+-                )
+-            click.echo(
+-                f"  ⚠ 会话 {_goal_sid} 已确认死亡 — 答复无法自动送达, 已持久 park 正文 + 浮出死信"
+-                f"搁浅单 (EscalationAnswerParkedStranded {stranded_event_id})。",
+-            )
+-        else:
+-            click.echo(
+-                f"  → 答复暂无法确定投递结果 (会话 {_goal_sid} 当前判活: {_target.vitality.verdict.value}"
+-                f" — {_target.vitality.reason}) — 交编排器下一轮巡检重试 (还在泊车就 push 续跑, "
+-                "真死就搁浅+死信告警; towow orchestrator status 或死信视图可查后续进度)。",
++                f"✓ 硬闭环: 答复送回等待会话 {_goal_sid} 并被消费 (EscalationAnswerApplied "
++                f"{applied_event_id}); 该会话下次 wait-resume 即续跑。",
+             )
+     else:
+         click.echo(
+@@ -19963,43 +19702,6 @@ def orchestrator_resume(project_dir: Path) -> None:
+         click.echo("(orchestrator 本就未暂停 — 无操作)")
+ 
+ 
+-@orchestrator.command("catchup-watermark")
+-@click.option(
+-    "--project-dir",
+-    type=click.Path(file_okay=False, path_type=Path),
+-    default=".",
+-)
+-def orchestrator_catchup_watermark(project_dir: Path) -> None:
+-    """debt-d9436af6b342 首次点火守卫: 点火 orchestrator 前把陈旧水位线推齐、跳过历史积压。
+-
+-    老客户端 (.towow 已有历史账本) 升级安装后首启 orchestrator, 若不先推齐, 它会从旧水位线
+-    range-inclusive 重扫账本把几周前完工任务当『刚完工』重放误派接力 (实锤 ~/towow 一夜误派 59
+-    会话)。此步仅当账本已有历史积压 + 水位线陈旧才推齐; 全新空账本 / 已追平 / 近期崩溃重启无操作。
+-    run-engine.sh 在 `exec orchestrator start` 之前无条件调用 (模板每次 install/sync 重渲染带此步)。
+-    """
+-    from towow.l0.event_log import EventLog as _EventLog
+-    from towow.l2.orchestrator import catchup_watermark_on_ignition
+-
+-    towow = _require_init(project_dir)
+-    event_log = _EventLog(towow / "events.log")
+-    result = catchup_watermark_on_ignition(towow, event_log)
+-    if result.triggered:
+-        age = result.oldest_unprocessed_age_s or 0.0
+-        click.echo(
+-            f"✓ 首次点火水位线推齐 — 账本陈旧 (最老待处理事件 {age:.0f}s 前), 水位线 "
+-            f"{result.old_watermark}→{result.new_watermark}, 跳过 {result.skipped} 条历史积压 "
+-            "(防重放误派; debt-d9436af6b342)。",
+-        )
+-    elif result.reason == "no_backlog":
+-        click.echo("• 水位线已追平 (无历史积压 / 全新空账本) — 无需推齐。")
+-    else:  # watermark_fresh
+-        age = result.oldest_unprocessed_age_s
+-        age_note = f"{age:.0f}s 前" if age is not None else "n/a"
+-        click.echo(
+-            f"• 水位线新鲜 (最老待处理事件 {age_note}, 未超陈旧阈值) — 正常处理积压, 不推齐。",
+-        )
+-
+-
+ @orchestrator.command("dispatch")
+ @click.argument("task_id")
+ @click.option(
+@@ -20951,108 +20653,6 @@ def judgment_retrieve(project_dir: Path, query: str, limit: int | None) -> None:
+     click.echo(json.dumps([h.model_dump(mode="json") for h in hits], ensure_ascii=False, indent=2))
+ 
+ 
+-# ────────────────────────────────────────────────────────────────────────────────
+-
+-
+-@cli.group()
+-def account() -> None:
+-    """四账号轮换登记簿 (owner 2026-07-18 额度双层调度) — 只读查看 + owner 手动登记,
+-    把手编 account_status.json 的操作正规化成命令。"""
+-
+-
+-def _account_status_path(project_dir: Path) -> Path:
+-    towow = _require_init(project_dir)
+-    return towow / "orchestrator" / "account_status.json"
+-
+-
+-@account.command("status")
+-@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+-@click.option("--format", "output_format", type=click.Choice(["table", "json"]), default="table")
+-def account_status(project_dir: Path, output_format: str) -> None:
+-    """只读展示登记簿 —— 各账号 available / session 层 / weekly 层 / preferred_account。
+-
+-    session 层撞限额报错含钟点 (如 "resets 6:30pm"), weekly 层撞限额报错含星期几
+-    (如 "resets Mon 6:30pm") —— 两层各自独立记录、独立到期复位, 见 account_registry.py
+-    / account_limit_signals.py 的双层调度设计。"""
+-    status_path = _account_status_path(project_dir)
+-    if not status_path.is_file():
+-        click.echo("account_status.json 不存在 — 轮换机制尚未产生任何记录。")
+-        return
+-    data = json.loads(status_path.read_text(encoding="utf-8"))
+-    accounts_data = data.get("accounts", {})
+-    if output_format == "json":
+-        click.echo(json.dumps(data, ensure_ascii=False, indent=2))
+-        return
+-    preferred = data.get("preferred_account")
+-    click.echo(f"preferred_account: {preferred or '(未设 — 按错峰/尾清仓自动排序)'}")
+-    for name in sorted(accounts_data):
+-        e = accounts_data[name]
+-        session_state = e.get("reset_hint") or e.get("reset_epoch") or "-"
+-        weekly_state = e.get("reset_hint_weekly") or e.get("reset_epoch_weekly") or "-"
+-        click.echo(
+-            f"  {name:10} available={e.get('available')!s:5} "
+-            f"session[active={e.get('session_active')!s:5} reset={session_state}] "
+-            f"weekly[active={e.get('weekly_active')!s:5} reset={weekly_state}] "
+-            f"spawn_count={e.get('spawn_count', 0)}",
+-        )
+-
+-
+-@account.command("set-weekly-reset")
+-@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+-@click.option("--account", "account_name", required=True, help="如 account1。")
+-@click.option("--epoch", type=float, default=None, help="unix epoch 秒戳。")
+-@click.option("--iso", default=None, help="本地时间 ISO8601, 如 2026-07-21T18:30:00。")
+-@click.option("--hint", default=None, help="可读备注, 如 'resets Mon 6:30pm (Australia/Melbourne)'。")
+-def account_set_weekly_reset(
+-    project_dir: Path,
+-    account_name: str,
+-    epoch: float | None,
+-    iso: str | None,
+-    hint: str | None,
+-) -> None:
+-    """owner 手动登记某账号的 weekly reset 预测时刻 (报错解析不出/还没撞过 weekly 时的
+-    兜底口) —— 纯 forecast bookkeeping, 不改账号当前 available 状态, 供 select_account
+-    的尾清仓自动排序读取 (owner 原文举例窗口: reset 时刻落在 <6h 内自动顶替 preferred)。
+-    """
+-    if epoch is None and iso is None:
+-        raise click.UsageError("必须给 --epoch 或 --iso 之一")
+-    if epoch is None:
+-        import datetime
+-
+-        epoch = datetime.datetime.fromisoformat(iso).timestamp()  # type: ignore[arg-type]
+-    status_path = _account_status_path(project_dir)
+-    from towow.l2.account_registry import register_weekly_reset
+-
+-    register_weekly_reset(account_name, epoch, reset_hint=hint, status_path=status_path)
+-    click.echo(
+-        f"✓ {account_name} weekly reset 登记为 "
+-        f"{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(epoch))}",
+-    )
+-
+-
+-@account.command("set-preferred")
+-@click.option("--project-dir", type=click.Path(file_okay=False, path_type=Path), default=".")
+-@click.option("--account", "account_name", default=None, help="如 account1。")
+-@click.option("--clear", is_flag=True, default=False, help="清除显式 preferred, 交还给自动排序。")
+-def account_set_preferred(project_dir: Path, account_name: str | None, clear: bool) -> None:
+-    """owner 手动钉 preferred_account (或 --clear 交还给错峰/尾清仓自动排序) —— 把手编
+-    account_status.json 的操作正规化成命令。显式 preferred 优先级高于自动尾清仓。"""
+-    if not clear and not account_name:
+-        raise click.UsageError("必须给 --account 或 --clear 之一")
+-    status_path = _account_status_path(project_dir)
+-    from towow.l2.account_limit_signals import locked_update
+-
+-    def _mutate(data: dict[str, object]) -> None:
+-        if clear:
+-            data.pop("preferred_account", None)
+-        else:
+-            data["preferred_account"] = account_name
+-        return None
+-
+-    locked_update(status_path, _mutate)
+-    click.echo("✓ preferred_account 已清除" if clear else f"✓ preferred_account 设为 {account_name}")
+-
+-
+ if __name__ == "__main__":
+     # `python -m towow.cli.main` 把本文件作为 `__main__` 模块加载 —— 这是与
+     # `towow.cli.main` 不同的模块实例。side-effect 式命令注册 (如
+diff --git a/harness/src/towow/l0/commit_gate/concept_retire_gate.py b/harness/src/towow/l0/commit_gate/concept_retire_gate.py
+index c069d517c..761b1ee96 100644
+--- a/harness/src/towow/l0/commit_gate/concept_retire_gate.py
++++ b/harness/src/towow/l0/commit_gate/concept_retire_gate.py
+@@ -200,6 +200,17 @@ def _ref_field(ref: Mapping[str, Any], *names: str) -> str:
+     return ""
+ 
+ 
++def _reference_source(ref: Mapping[str, Any]) -> str:
++    """Read the source owner from canonical typed or legacy endpoint reference state."""
++    direct = _ref_field(ref, "source_concept_id")
++    if direct:
++        return direct
++    endpoint = ref.get("source_entity")
++    if isinstance(endpoint, Mapping):
++        return _ref_field(endpoint, "id", "entity_id")
++    return ""
++
++
+ # ── 退役/升级动作提取 ───────────────────────────────────────────────────────────
+ def _extract_retiring(
+     domain_intents: Iterable[Any],
+@@ -265,7 +276,9 @@ def _extract_retiring(
+ # ── 本批迁移动作收集 (这一 stage 把哪些依赖迁完了) ─────────────────────────────────
+ @dataclass(frozen=True)
+ class _BatchMigrations:
+-    removed_reference_ids: frozenset[str]  # 本批 AtReferenceRemoved 删掉的引用 id
++    # Canonical identity is (source, locator).  source=None is a historical source-less removal
++    # whose original semantics were global.
++    removed_reference_instances: frozenset[tuple[str | None, str]]
+     repointed_sources: frozenset[str]  # 本批把引用重指到某新版本的源概念
+     batch_concept_ids: frozenset[str]  # 本批 (co-)创建/supersede 的概念 (源自身迁了)
+ 
+@@ -274,7 +287,7 @@ def _collect_batch_migrations(
+     domain_intents: Iterable[Any],
+     new_version_ids: frozenset[str],
+ ) -> _BatchMigrations:
+-    removed: set[str] = set()
++    removed: set[tuple[str | None, str]] = set()
+     repointed: set[str] = set()
+     batch_concepts: set[str] = set()
+     for intent in domain_intents:
+@@ -290,10 +303,15 @@ def _collect_batch_migrations(
+                 if eid:
+                     batch_concepts.add(str(eid))
+         elif et == _AT_REFERENCE_REMOVED:
++            before = _payload_of(intent).get("before_state")
++            before = before if isinstance(before, dict) else {}
+             after = _after_state(intent)
+-            ref_id = _ref_field(after, "at_reference", "reference_id")
++            ref_id = _ref_field(before, "at_reference", "reference_id") or _ref_field(
++                after, "at_reference", "reference_id",
++            )
++            source = _reference_source(before) or _reference_source(after)
+             if ref_id:
+-                removed.add(ref_id)
++                removed.add((source or None, ref_id))
+         elif et == _AT_REFERENCE_ADDED:
+             after = _after_state(intent)
+             target = _ref_field(after, "target_concept_name")
+@@ -302,7 +320,7 @@ def _collect_batch_migrations(
+             if source and target and any(_resolves_to(target, nv) for nv in new_version_ids):
+                 repointed.add(source)
+     return _BatchMigrations(
+-        removed_reference_ids=frozenset(removed),
++        removed_reference_instances=frozenset(removed),
+         repointed_sources=frozenset(repointed),
+         batch_concept_ids=frozenset(batch_concepts),
+     )
+@@ -443,7 +461,8 @@ def check_concept_retire_migration(
+                     "依赖的 @ 引用重指到新版本 (AtReferenceAdded), 或删除 (AtReferenceRemoved)。前几个 stage "
+                     "已重指到新版本的依赖会被 committed 历史证据自动认作迁完。退役 intent 的 "
+                     "semantic_annotation.migrated_concept_ids 自报已不能单独放行 (finding-r016: 自报无证据可绕过); "
+-                    "标了自报但无证据的依赖会显示 via=declared_but_unverified 并仍被拦。全部迁完前退役被硬拦 (fail-closed)。"
++                    "标了自报但无证据的依赖会显示 via=declared_but_unverified 并仍被拦。"
++                    "全部迁完前退役被硬拦 (fail-closed)。"
+                 ),
+             },
+             notices=notices,
+@@ -466,7 +485,10 @@ def _migration_status(
+     committed 历史已重指新版本。`migrated_concept_ids` 自报**不再单独放行** —— 一条仍 active 的
+     explicit-decision 引用必须由真证据清掉; 自报只在拒批留痕里标"declared_but_unverified", 不放行。
+     """
+-    if reference_id and reference_id in batch.removed_reference_ids:
++    if reference_id and (
++        (source or None, reference_id) in batch.removed_reference_instances
++        or (None, reference_id) in batch.removed_reference_instances
++    ):
+         return True, "at_reference_removed_in_batch"
+     if source and source in batch.repointed_sources:
+         return True, "at_reference_repointed_to_new_in_batch"
+diff --git a/harness/src/towow/l0/projection/projection.py b/harness/src/towow/l0/projection/projection.py
+index af02607cb..7b5f22e1a 100644
+--- a/harness/src/towow/l0/projection/projection.py
++++ b/harness/src/towow/l0/projection/projection.py
+@@ -2372,7 +2372,11 @@ class ProjectionStore:
+           AtReferenceAutoUpdated      → locked_event_id := new_lock (脱 stale, 跟随最新);
+           AtReferenceTargetSuperseded → target_superseded_at := new_target_event +
+                                          pending_status (pinned_to_old / awaiting_decision).
+-        Dedup by reference_id (or at_reference key) keeps re-replay idempotent (§6).
++        A locator is not globally unique: two source concepts may hold the same typed @ locator.
++        The materialized identity is therefore (source_concept_id, reference_id).  Source-less
++        legacy remove/aux events retain their historical global-match behaviour, but every
++        canonical event is source-scoped.  This keeps replay idempotent without collapsing two
++        owners into one projection row.
+         """
+         existing = self.read("at_reference_graph") or {}
+         refs = _as_list(existing.get("references"))
+@@ -2384,55 +2388,63 @@ class ProjectionStore:
+             ref_id = after.get("reference_id")
+             if isinstance(ref_id, str):
+                 # T-L0-08 source_entity/target_entity shape.
+-                if not any(r.get("reference_id") == ref_id for r in refs):
+-                    refs.append(
+-                        {
+-                            "reference_id": ref_id,
+-                            "source": _endpoint(after.get("source_entity")),
+-                            "target": _endpoint(after.get("target_entity")),
+-                            "reference_type": after.get("reference_type", ""),
+-                            "is_active": True,
+-                            "created_at_event_id": ev.event_id,
+-                        },
+-                    )
++                source = _endpoint(after.get("source_entity"))
++                source_id = _reference_source_id({"source": source})
++                new_ref = {
++                    "reference_id": ref_id,
++                    "source": source,
++                    "target": _endpoint(after.get("target_entity")),
++                    "reference_type": after.get("reference_type", ""),
++                    "is_active": True,
++                    "created_at_event_id": ev.event_id,
++                }
++                _upsert_reference(refs, source_id, ref_id, new_ref)
+             else:
+                 # T-L1-14: M-1.2 typed @ locator CLI shape (no reference_id; keyed by at_reference).
+                 at_ref = after.get("at_reference")
+-                if isinstance(at_ref, str) and not any(r.get("reference_id") == at_ref for r in refs):
+-                    refs.append(
+-                        {
+-                            "reference_id": at_ref,
+-                            "source_concept_id": after.get("source_concept_id", ""),
+-                            "target_concept_name": after.get("target_concept_name", ""),
+-                            "locator_type": after.get("locator_type", ""),
+-                            "field_path": after.get("field_path"),
+-                            "state_anchor": after.get("state_anchor"),
+-                            # locked_event_id is the @-suffix lock if present, else the add event.
+-                            "locked_event_id": after.get("lock_event_id") or ev.event_id,
+-                            "on_target_supersede_policy": after.get("on_target_supersede_policy"),
+-                            "is_active": True,
+-                            "is_stale": False,
+-                            "created_at_event_id": ev.event_id,
+-                        },
+-                    )
++                source_id = _reference_source_id(after)
++                if isinstance(at_ref, str):
++                    new_ref = {
++                        "reference_id": at_ref,
++                        "source_concept_id": source_id or "",
++                        "target_concept_name": after.get("target_concept_name", ""),
++                        "locator_type": after.get("locator_type", ""),
++                        "field_path": after.get("field_path"),
++                        "state_anchor": after.get("state_anchor"),
++                        # locked_event_id is the @-suffix lock if present, else the add event.
++                        "locked_event_id": after.get("lock_event_id") or ev.event_id,
++                        "on_target_supersede_policy": after.get("on_target_supersede_policy"),
++                        "is_active": True,
++                        "is_stale": False,
++                        "created_at_event_id": ev.event_id,
++                    }
++                    _upsert_reference(refs, source_id, at_ref, new_ref)
+         elif ev.event_type is EventType.AT_REFERENCE_REMOVED:
+             before = payload.get("before_state")
+             before = before if isinstance(before, dict) else {}
+-            ref_id = after.get("reference_id") or before.get("reference_id")
++            ref_id = (
++                after.get("reference_id")
++                or after.get("at_reference")
++                or before.get("reference_id")
++                or before.get("at_reference")
++            )
++            source_id = _reference_source_id(before) or _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     r["is_active"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_AUTO_UPDATED:
+             ref_id = after.get("reference_id")
++            source_id = _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     # auto_accept_latest: 跟随到 supersede 后新 lock → 不再 stale。
+                     r["locked_event_id"] = after.get("new_lock_event_id") or r.get("locked_event_id")
+                     r["is_stale"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_TARGET_SUPERSEDED:
+             ref_id = after.get("reference_id")
++            source_id = _reference_source_id(after)
+             for r in refs:
+-                if r.get("reference_id") == ref_id:
++                if _reference_instance_matches(r, source_id, ref_id):
+                     # pin_to_snapshot / explicit_decision_required: target 已 supersede, ref 未跟随。
+                     r["is_stale"] = True
+                     r["target_superseded_at_event_id"] = after.get("new_target_event_id")
+@@ -3030,6 +3042,50 @@ def _endpoint(raw: object) -> dict[str, object]:
+     }
+ 
+ 
++def _reference_source_id(value: object) -> str | None:
++    """Extract the canonical source owner from typed or endpoint-shaped reference data."""
++    if not isinstance(value, dict):
++        return None
++    direct = value.get("source_concept_id")
++    if isinstance(direct, str) and direct:
++        return direct
++    for key in ("source_entity", "source"):
++        endpoint = value.get(key)
++        if not isinstance(endpoint, dict):
++            continue
++        entity_id = endpoint.get("id", endpoint.get("entity_id"))
++        if isinstance(entity_id, str) and entity_id:
++            return entity_id
++    return None
++
++
++def _reference_instance_matches(
++    reference: dict[str, object],
++    source_id: str | None,
++    reference_id: object,
++) -> bool:
++    """Match a canonical source-scoped instance; source-less legacy events match globally."""
++    if reference.get("reference_id") != reference_id:
++        return False
++    return source_id is None or _reference_source_id(reference) == source_id
++
++
++def _upsert_reference(
++    references: list[dict[str, object]],
++    source_id: str | None,
++    reference_id: str,
++    value: dict[str, object],
++) -> None:
++    """Replay-safe upsert keyed by (source owner, locator), not locator alone."""
++    for existing in references:
++        if _reference_instance_matches(existing, source_id, reference_id) and (
++            source_id is not None or _reference_source_id(existing) is None
++        ):
++            existing.update(value)
++            return
++    references.append(value)
++
++
+ def _as_list(value: object) -> list[dict[str, object]]:
+     """Coerce a loaded JSON value into list[dict] for reducer manipulation."""
+     if not isinstance(value, list):
+@@ -3232,5 +3288,3 @@ def derive_coupling_backfill(
+         isolated_before=iso_before,
+         isolated_after=iso_after,
+     )
+-
+-
+diff --git a/harness/src/towow/l1/consensus_invalidation.py b/harness/src/towow/l1/consensus_invalidation.py
+index 77958dc80..f4d14605d 100644
+--- a/harness/src/towow/l1/consensus_invalidation.py
++++ b/harness/src/towow/l1/consensus_invalidation.py
+@@ -19,10 +19,9 @@
+ 
+ from __future__ import annotations
+ 
+-import json
+ from typing import TYPE_CHECKING
+ 
+-from towow.l0.event_log.segments import iter_raw_event_lines
++from towow.l0.event_log.event_log import EventLog
+ from towow.schemas.enums import EventType, LockingPolicy
+ 
+ if TYPE_CHECKING:
+@@ -40,6 +39,32 @@ def _after(e: dict[str, object]) -> dict[str, object]:
+     return {}
+ 
+ 
++def _before(e: dict[str, object]) -> dict[str, object]:
++    p = e.get("payload")
++    if isinstance(p, dict):
++        b = p.get("before_state")
++        if isinstance(b, dict):
++            return b
++    return {}
++
++
++def _reference_id(state: dict[str, object]) -> str | None:
++    value = state.get("at_reference") or state.get("reference_id")
++    return value if isinstance(value, str) and value else None
++
++
++def _source_id(state: dict[str, object]) -> str | None:
++    direct = state.get("source_concept_id")
++    if isinstance(direct, str) and direct:
++        return direct
++    endpoint = state.get("source_entity")
++    if isinstance(endpoint, dict):
++        value = endpoint.get("id", endpoint.get("entity_id"))
++        if isinstance(value, str) and value:
++            return value
++    return None
++
++
+ def _resolves_to(stored_target_name: object, superseded_concept_id: str) -> bool:
+     """Does a stored @ ref target_concept_name resolve to the just-superseded concept_id?
+ 
+@@ -61,30 +86,39 @@ def _resolves_to(stored_target_name: object, superseded_concept_id: str) -> bool
+ def active_references_to(towow_dir: Path, superseded_concept_id: str) -> list[dict[str, object]]:
+     """All AtReferenceAdded whose parsed target resolves to ``superseded_concept_id`` (not later removed).
+ 
+-    Reads the canonical log across all physical segments. A reference is dropped if a matching
+-    AtReferenceRemoved (by at_reference string) appears later (向后兼容 removal, though the
+-    consensus CLI does not currently remove refs).
++    Reads only the two relevant event-type postings (O(K), never the whole ledger). A reference is
++    dropped if a matching AtReferenceRemoved appears later. Canonical removals carry
++    ``before_state.reference_id``; legacy producers used ``after_state.at_reference``, so both
++    shapes remain readable.
+     """
+-    added: list[dict[str, object]] = []
+-    removed_refs: set[str] = set()
+-    for line in iter_raw_event_lines(towow_dir):
+-        try:
+-            rec = json.loads(line)
+-        except json.JSONDecodeError:
+-            continue
+-        if not isinstance(rec, dict):
+-            continue
+-        et = rec.get("event_type")
+-        if et == "AtReferenceAdded":
+-            a = _after(rec)
+-            if _resolves_to(a.get("target_concept_name"), superseded_concept_id):
+-                added.append({**a, "_event_id": rec.get("event_id")})
+-        elif et == "AtReferenceRemoved":
++    active: dict[tuple[str | None, str], dict[str, object]] = {}
++    event_log = EventLog(towow_dir / "events.log")
++    relevant = [
++        *event_log.get_events_by_type(EventType.AT_REFERENCE_ADDED),
++        *event_log.get_events_by_type(EventType.AT_REFERENCE_REMOVED),
++    ]
++    for record in sorted(relevant, key=lambda item: (item.sequence_number, item.event_id)):
++        rec = record.model_dump(mode="json")
++        if record.event_type is EventType.AT_REFERENCE_ADDED:
+             a = _after(rec)
+-            ref = a.get("at_reference")
+-            if isinstance(ref, str):
+-                removed_refs.add(ref)
+-    return [r for r in added if r.get("at_reference") not in removed_refs]
++            ref_id = _reference_id(a)
++            if ref_id is not None and _resolves_to(a.get("target_concept_name"), superseded_concept_id):
++                active[(_source_id(a), ref_id)] = {**a, "_event_id": record.event_id}
++        else:
++            before = _before(rec)
++            after = _after(rec)
++            ref_id = _reference_id(before) or _reference_id(after)
++            source_id = _source_id(before) or _source_id(after)
++            if ref_id is None:
++                continue
++            if source_id is not None:
++                active.pop((source_id, ref_id), None)
++            else:
++                # Historical source-less removals had global semantics.  Keep them readable,
++                # while every canonical removal produced today is source-scoped.
++                for key in [key for key in active if key[1] == ref_id]:
++                    active.pop(key, None)
++    return list(active.values())
+ 
+ 
+ def _record_hash_of(towow_dir: Path, event_id: str) -> str | None:
+@@ -129,6 +163,7 @@ def plan_aux_events(
+     out: list[tuple[EventType, dict[str, object]]] = []
+     for ref in active_references_to(towow_dir, superseded_concept_id):
+         ref_id = str(ref.get("at_reference", ""))
++        source_id = ref.get("source_concept_id")
+         old_lock = str(ref.get("lock_event_id") or ref.get("_event_id") or "")
+         old_state_hash = ref.get("locked_at_state_hash")
+         policy = _policy_of(ref)
+@@ -138,6 +173,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_AUTO_UPDATED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_lock_event_id": supersede_event_id,
+                         "old_locked_at_state_hash": old_state_hash,
+@@ -153,6 +189,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         # pin 不跟随: 锁状态 hash 保持旧 snapshot; 仅记录新 target 指纹供漂移可见
+@@ -170,6 +207,7 @@ def plan_aux_events(
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": source_id,
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         "locked_at_state_hash": old_state_hash,
+diff --git a/harness/src/towow/skills/engineering-consensus/SKILL.md b/harness/src/towow/skills/engineering-consensus/SKILL.md
+index 7103fa2a5..5dceb2aee 100644
+--- a/harness/src/towow/skills/engineering-consensus/SKILL.md
++++ b/harness/src/towow/skills/engineering-consensus/SKILL.md
+@@ -113,6 +113,14 @@ fork 不直接写 event——返回 structured result 给我，我合并、判
+ 3. 从概念种子和 brief.engineering_design_focus 推导本计划需要定义的概念。
+ 4. 为每个概念调适当工具：`concept-definition` / `state-machine-define` / `consumer-scan` / `invariant-extract`，把它们的 structured result 合并到本计划概念图 draft。**每定义一个概念，必跟一次 `consumer-scan` 并 publish 它的消费方清单**——真没有消费方也显式 publish 空清单留痕，不能跳（这是 freeze 的硬门禁，漏了不让冻；堵的是"消费方漏报 → 下游静默崩"）。
+ 5. 跑 `engineering-consistency-verify` 检查共识内部一致性 + @ 引用图无悬空。
++   若本批要 supersede 已有概念，先对每条 `explicit_decision_required` 的 active 引用做真迁移，
++   不能只在报告里写“已通知”：重指用
++   `./tw consensus ref-repoint --source-concept-id <source> --old-reference <old-ref> --new-reference <new-ref> --reason <why> --novelty-type <type> --session-id <sid>`；
++   确认不再需要则用
++   `./tw consensus ref-remove --source-concept-id <source> --reference <old-ref> --reason <why> --novelty-type <type> --session-id <sid>`。
++   两条命令都经 commit gate 产 `AtReferenceAdded/AtReferenceRemoved`；先有这些 canonical
++   迁移证据，`consensus supersede` 的 concept-retire 门才允许退役旧定义。`ref-repoint` 可安全重跑：
++   新引用已落账时跳过 add，再完成旧引用 remove。
+ 6. 一组强耦合概念 ready → 用 `batch-freeze-assemble` 组装 batch envelope → 触发 SkillArtifactSelfCheck → 冻结本批（`freeze` 命令见工具知识包）。freeze 还会自动沿概念关系图把本批概念的批外传递性下游连路径扫进 envelope——它自己算、不用我手填，只记录不阻断。
+ 7. 继续下一批，直到 `--final-batch`（is_final_batch=true）整个计划共识完成。
+ 
+diff --git a/harness/tests/cia/test_t_r01_6.py b/harness/tests/cia/test_t_r01_6.py
+index 27d05584a..fba7acd5f 100644
+--- a/harness/tests/cia/test_t_r01_6.py
++++ b/harness/tests/cia/test_t_r01_6.py
+@@ -83,8 +83,19 @@ def _concept_created_supersede(
+     )
+ 
+ 
+-def _at_ref_removed(at_reference: str) -> SimpleNamespace:
+-    return SimpleNamespace(event_type="AtReferenceRemoved", payload={"after_state": {"at_reference": at_reference}})
++def _at_ref_removed(at_reference: str, source: str | None = None) -> SimpleNamespace:
++    if source is None:
++        return SimpleNamespace(
++            event_type="AtReferenceRemoved",
++            payload={"after_state": {"at_reference": at_reference}},
++        )
++    return SimpleNamespace(
++        event_type="AtReferenceRemoved",
++        payload={"before_state": {
++            "reference_id": at_reference,
++            "source_entity": {"type": "concept", "id": source},
++        }},
++    )
+ 
+ 
+ def _at_ref_added(source: str, target_concept_name: str) -> SimpleNamespace:
+@@ -239,6 +250,27 @@ def test_migrated_via_at_reference_removed_in_batch_passes() -> None:
+     assert any(f.via == "at_reference_removed_in_batch" for f in result.findings)
+ 
+ 
++def test_source_scoped_removal_cannot_migrate_another_owner() -> None:
++    """Removing A's shared locator is not evidence that B migrated away from the target."""
++    retire = _proposal_supersede("c-old@v1")
++    locator = "@concept:c-old"
++    removal = _at_ref_removed(locator, source="c-dep-a@v1")
++    result = check_concept_retire_migration(
++        [retire, removal],
++        superseded_concept_resolver=_no_resolver,
++        active_references_for=_refs_for({
++            "c-old@v1": [
++                _ref("c-dep-a@v1", "c-old", at_reference=locator),
++                _ref("c-dep-b@v1", "c-old", at_reference=locator),
++            ],
++        }),
++    )
++    assert result.passed is False
++    by_source = {finding.source_concept_id: finding for finding in result.findings}
++    assert by_source["c-dep-a@v1"].via == "at_reference_removed_in_batch"
++    assert by_source["c-dep-b@v1"].via == "unmigrated"
++
++
+ def test_migrated_via_repoint_to_new_version_passes() -> None:
+     """本批把依赖重指到新版本 (AtReferenceAdded → 新 id) → 放行。"""
+     retire = _proposal_supersede("c-old@v1", replacement="c-new@v1")
+diff --git a/harness/tests/integration/test_consensus_reference_migration_cli.py b/harness/tests/integration/test_consensus_reference_migration_cli.py
+new file mode 100644
+index 000000000..e011b4a6b
+--- /dev/null
++++ b/harness/tests/integration/test_consensus_reference_migration_cli.py
+@@ -0,0 +1,247 @@
++"""Reference migration CLI closes the concept-retire gate's required evidence path."""
++
++from __future__ import annotations
++
++import json
++from typing import TYPE_CHECKING, Any
++
++import pytest
++from click.testing import CliRunner
++
++from tests.integration.test_run092_at_reference_lock_cli import (
++    _consensus_project,
++    _create_concept,
++)
++from towow.cli.main import cli
++from towow.l0.event_log.event_log import EventLog
++from towow.l0.event_log.segments import iter_raw_event_lines
++from towow.l0.projection.projection import ProjectionStore
++
++if TYPE_CHECKING:
++    from pathlib import Path
++
++
++@pytest.fixture
++def runner() -> CliRunner:
++    return CliRunner()
++
++
++def _events(tmp_path: Path, event_type: str) -> list[dict[str, Any]]:
++    out: list[dict[str, Any]] = []
++    for line in iter_raw_event_lines(tmp_path / ".towow"):
++        rec = json.loads(line)
++        if isinstance(rec, dict) and rec.get("event_type") == event_type:
++            out.append(rec)
++    return out
++
++
++def _create_reference(
++    runner: CliRunner,
++    project: str,
++    source_id: str,
++    target_reference: str,
++) -> None:
++    result = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "concept-create",
++            "--project-dir",
++            project,
++            "--concept-id",
++            source_id,
++            "--name",
++            source_id,
++            "--definition",
++            "reference source fixture",
++            "--at-reference",
++            target_reference,
++        ],
++    )
++    assert result.exit_code == 0, result.output
++
++
++def test_ref_repoint_emits_add_then_remove_and_unblocks_supersede(
++    tmp_path: Path,
++    runner: CliRunner,
++) -> None:
++    project = _consensus_project(tmp_path, runner)
++    _create_concept(runner, project, "contract-old@v1", "old")
++    _create_concept(runner, project, "contract-new@v2", "new")
++    _create_reference(
++        runner,
++        project,
++        "consumer@v1",
++        "@concept:contract-old@v1",
++    )
++
++    repoint = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "ref-repoint",
++            "--project-dir",
++            project,
++            "--source-concept-id",
++            "consumer@v1",
++            "--old-reference",
++            "@concept:contract-old@v1",
++            "--new-reference",
++            "@concept:contract-new@v2",
++            "--reason",
++            "new contract replaces old contract",
++            "--novelty-type",
++            "new_evidence",
++        ],
++    )
++    assert repoint.exit_code == 0, repoint.output
++    added = _events(tmp_path, "AtReferenceAdded")
++    removed = _events(tmp_path, "AtReferenceRemoved")
++    assert any(
++        event["payload"]["after_state"]["source_concept_id"] == "consumer@v1"
++        and event["payload"]["after_state"]["at_reference"] == "@concept:contract-new@v2"
++        for event in added
++    )
++    assert any(
++        event["payload"]["before_state"]["reference_id"] == "@concept:contract-old@v1"
++        for event in removed
++    )
++
++    supersede = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "supersede",
++            "--project-dir",
++            project,
++            "--concept-id",
++            "contract-old@v1",
++            "--novelty",
++            "new evidence invalidates the old contract",
++            "--novelty-type",
++            "new_evidence",
++            "--replacement-concept-id",
++            "contract-new@v2",
++        ],
++    )
++    assert supersede.exit_code == 0, supersede.output
++    assert "ConceptGraphProposal" in supersede.output
++    invalidations = _events(tmp_path, "AtReferenceTargetSuperseded")
++    assert not any(
++        event.get("payload", {}).get("after_state", {}).get("reference_id")
++        == "@concept:contract-old@v1"
++        for event in invalidations
++    ), "supersede must not emit a false blocking event for the canonically removed reference"
++
++
++def test_ref_remove_rejects_wrong_source_and_removes_owned_reference(
++    tmp_path: Path,
++    runner: CliRunner,
++) -> None:
++    project = _consensus_project(tmp_path, runner)
++    _create_concept(runner, project, "target@v1", "target")
++    _create_reference(runner, project, "consumer@v1", "@concept:target@v1")
++
++    wrong = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "ref-remove",
++            "--project-dir",
++            project,
++            "--source-concept-id",
++            "other@v1",
++            "--reference",
++            "@concept:target@v1",
++            "--reason",
++            "wrong owner probe",
++            "--novelty-type",
++            "corrected_error",
++        ],
++    )
++    assert wrong.exit_code != 0
++    assert "not found" in wrong.output
++
++    remove = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "ref-remove",
++            "--project-dir",
++            project,
++            "--source-concept-id",
++            "consumer@v1",
++            "--reference",
++            "@concept:target@v1",
++            "--reason",
++            "consumer no longer depends on target",
++            "--novelty-type",
++            "scope_change",
++        ],
++    )
++    assert remove.exit_code == 0, remove.output
++    assert "AtReferenceRemoved" in remove.output
++
++
++def test_shared_locator_remove_preserves_other_owner_and_retire_gate_blocks(
++    tmp_path: Path,
++    runner: CliRunner,
++) -> None:
++    """Real CLI path: A and B share a locator; removing A leaves B live and blocks retirement."""
++    project = _consensus_project(tmp_path, runner)
++    locator = "@concept:shared-target@v1"
++    _create_concept(runner, project, "shared-target@v1", "target")
++    _create_reference(runner, project, "consumer-a@v1", locator)
++    _create_reference(runner, project, "consumer-b@v1", locator)
++
++    remove_a = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "ref-remove",
++            "--project-dir",
++            project,
++            "--source-concept-id",
++            "consumer-a@v1",
++            "--reference",
++            locator,
++            "--reason",
++            "consumer A no longer depends on target",
++            "--novelty-type",
++            "scope_change",
++        ],
++    )
++    assert remove_a.exit_code == 0, remove_a.output
++
++    towow = tmp_path / ".towow"
++    event_log = EventLog(towow / "events.log")
++    store = ProjectionStore(towow / "graph")
++    store.catchup(event_log)
++    graph = store.read("at_reference_graph") or {}
++    matching = [
++        ref
++        for ref in graph.get("references", [])
++        if isinstance(ref, dict) and ref.get("reference_id") == locator
++    ]
++    assert {
++        (ref.get("source_concept_id"), ref.get("is_active")) for ref in matching
++    } == {("consumer-a@v1", False), ("consumer-b@v1", True)}
++
++    retire = runner.invoke(
++        cli,
++        [
++            "consensus",
++            "supersede",
++            "--project-dir",
++            project,
++            "--concept-id",
++            "shared-target@v1",
++            "--novelty",
++            "retire shared target",
++            "--novelty-type",
++            "scope_change",
++        ],
++    )
++    assert retire.exit_code != 0
++    assert "concept_retire_unmigrated_dependents" in retire.output
++    assert "consumer-b@v1" in retire.output
+diff --git a/harness/tests/unit/l0/test_reducers_batch0b.py b/harness/tests/unit/l0/test_reducers_batch0b.py
+index 816e0d515..9130e1fce 100644
+--- a/harness/tests/unit/l0/test_reducers_batch0b.py
++++ b/harness/tests/unit/l0/test_reducers_batch0b.py
+@@ -217,6 +217,45 @@ def test_at_reference_graph_materializes_and_deactivates(tmp_path: Path) -> None
+     assert ref2["is_active"] is False, "AtReferenceRemoved marks is_active=false, not delete"
+ 
+ 
++def test_at_reference_graph_scopes_locator_identity_by_source(tmp_path: Path) -> None:
++    store = ProjectionStore(tmp_path / "graph")
++    locator = "@concept:shared-target@v1"
++    for sequence, source in enumerate(("consumer-a@v1", "consumer-b@v1"), start=1):
++        store._apply(
++            _record(
++                EventType.AT_REFERENCE_ADDED,
++                {"after_state": {
++                    "source_concept_id": source,
++                    "at_reference": locator,
++                    "target_concept_name": "shared-target",
++                }},
++                sequence,
++            ),
++        )
++
++    store._apply(
++        _record(
++            EventType.AT_REFERENCE_REMOVED,
++            {"before_state": {
++                "reference_id": locator,
++                "source_entity": {"type": "concept", "id": "consumer-a@v1"},
++            }},
++            3,
++        ),
++    )
++
++    graph = store.read("at_reference_graph")
++    assert graph is not None
++    states = {
++        (ref["source_concept_id"], ref["reference_id"]): ref["is_active"]
++        for ref in graph["references"]
++    }
++    assert states == {
++        ("consumer-a@v1", locator): False,
++        ("consumer-b@v1", locator): True,
++    }
++
++
+ # ═══ T-L0-07 ownership reducer ════════════════════════════════════════════════
+ 
+ 
+diff --git a/harness/tests/unit/l1/test_consensus_invalidation.py b/harness/tests/unit/l1/test_consensus_invalidation.py
+new file mode 100644
+index 000000000..5277692c7
+--- /dev/null
++++ b/harness/tests/unit/l1/test_consensus_invalidation.py
+@@ -0,0 +1,159 @@
++"""Schema-compatibility tests for the consensus supersede invalidation consumer."""
++
++from __future__ import annotations
++
++from datetime import UTC, datetime
++from typing import TYPE_CHECKING
++
++from towow.l0.event_log.index import EventIndex, LazyEventIndex
++from towow.l1.consensus_invalidation import active_references_to
++from towow.schemas.enums import (
++    ActorType,
++    BaseClassification,
++    EventCategory,
++    EventType,
++    SubjectEntityType,
++    SubjectRole,
++)
++from towow.schemas.event_intent import Subject, Supersede
++from towow.schemas.event_record import EventRecord, Provenance
++
++if TYPE_CHECKING:
++    from pathlib import Path
++
++    import pytest
++
++
++def _record(seq: int, event_id: str, event_type: EventType, payload: dict[str, object]) -> EventRecord:
++    return EventRecord(
++        event_id=event_id,
++        sequence_number=seq,
++        timestamp=datetime(2026, 7, 13, tzinfo=UTC),
++        record_hash=f"hash-{seq}",
++        local_intent_id=f"intent-{seq}",
++        event_type=event_type,
++        event_category=EventCategory.STATE_TRANSITION,
++        payload=payload,
++        provenance=Provenance(
++            actor_type=ActorType.AGENT_SESSION.value,
++            actor_id="test",
++            session_id="sess-test",
++            skill_id="M-1.2",
++        ),
++        base_classification=BaseClassification.IMMUTABLE_TRUTH,
++        supersede=Supersede(is_supersede=False),
++        subjects=[
++            Subject(
++                entity_type=SubjectEntityType.AT_REFERENCE,
++                entity_id=f"ref-{seq}",
++                role=SubjectRole.PRIMARY,
++            )
++        ],
++        schema_version="1.0.0",
++    )
++
++
++def test_active_references_fold_canonical_and_legacy_removals(
++    tmp_path: Path,
++    monkeypatch: pytest.MonkeyPatch,
++) -> None:
++    towow = tmp_path / ".towow"
++    towow.mkdir()
++    target = "contract-old@v1"
++    canonical_ref = "@concept:contract-old@v1"
++    legacy_ref = "@concept:contract-old@v1#legacy"
++    records = [
++        _record(
++            0,
++            "evt-add-canonical",
++            EventType.AT_REFERENCE_ADDED,
++            {"after_state": {"at_reference": canonical_ref, "target_concept_name": "contract-old"}},
++        ),
++        _record(
++            1,
++            "evt-add-legacy",
++            EventType.AT_REFERENCE_ADDED,
++            {"after_state": {"at_reference": legacy_ref, "target_concept_name": "contract-old"}},
++        ),
++        _record(
++            2,
++            "evt-remove-canonical",
++            EventType.AT_REFERENCE_REMOVED,
++            {"before_state": {"reference_id": canonical_ref}},
++        ),
++        _record(
++            3,
++            "evt-remove-legacy",
++            EventType.AT_REFERENCE_REMOVED,
++            {"after_state": {"at_reference": legacy_ref}},
++        ),
++    ]
++    (towow / "events.log").write_text(
++        "\n".join(record.model_dump_json() for record in records) + "\n",
++        encoding="utf-8",
++    )
++
++    def _forbidden_records(*_args: object, **_kwargs: object) -> list[EventRecord]:
++        raise AssertionError("active reference planning must use type postings, not materialize all records")
++
++    monkeypatch.setattr(EventIndex, "records", _forbidden_records)
++    monkeypatch.setattr(LazyEventIndex, "records", _forbidden_records)
++
++    assert active_references_to(towow, target) == []
++
++
++def test_canonical_removal_is_scoped_to_source_owner(
++    tmp_path: Path,
++    monkeypatch: pytest.MonkeyPatch,
++) -> None:
++    """The same locator held by A and B is two references; removing A must leave B active."""
++    towow = tmp_path / ".towow"
++    towow.mkdir()
++    target = "contract-old@v1"
++    locator = "@concept:contract-old@v1"
++    records = [
++        _record(
++            0,
++            "evt-add-a",
++            EventType.AT_REFERENCE_ADDED,
++            {"after_state": {
++                "source_concept_id": "consumer-a@v1",
++                "at_reference": locator,
++                "target_concept_name": "contract-old",
++            }},
++        ),
++        _record(
++            1,
++            "evt-add-b",
++            EventType.AT_REFERENCE_ADDED,
++            {"after_state": {
++                "source_concept_id": "consumer-b@v1",
++                "at_reference": locator,
++                "target_concept_name": "contract-old",
++            }},
++        ),
++        _record(
++            2,
++            "evt-remove-a",
++            EventType.AT_REFERENCE_REMOVED,
++            {"before_state": {
++                "reference_id": locator,
++                "source_entity": {"type": "concept", "id": "consumer-a@v1"},
++            }},
++        ),
++    ]
++    (towow / "events.log").write_text(
++        "\n".join(record.model_dump_json() for record in records) + "\n",
++        encoding="utf-8",
++    )
++
++    def _forbidden_records(*_args: object, **_kwargs: object) -> list[EventRecord]:
++        raise AssertionError("active reference planning must use type postings")
++
++    monkeypatch.setattr(EventIndex, "records", _forbidden_records)
++    monkeypatch.setattr(LazyEventIndex, "records", _forbidden_records)
++
++    active = active_references_to(towow, target)
++    assert [(ref["source_concept_id"], ref["at_reference"]) for ref in active] == [
++        ("consumer-b@v1", locator),
++    ]

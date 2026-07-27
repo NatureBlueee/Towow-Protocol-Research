@@ -1,0 +1,176 @@
+{
+  "case_count": 30000,
+  "examples": [
+    {
+      "case": 0,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "unreachable_role"
+    },
+    {
+      "case": 1,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "acceptance"
+    },
+    {
+      "case": 2,
+      "instance_only_change": true,
+      "material_truth": false,
+      "mutation": "parameter"
+    },
+    {
+      "case": 3,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "unreachable_role"
+    },
+    {
+      "case": 4,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_witness"
+    },
+    {
+      "case": 5,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_witness"
+    },
+    {
+      "case": 6,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "metadata"
+    },
+    {
+      "case": 7,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "unreachable_action"
+    },
+    {
+      "case": 8,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "metadata"
+    },
+    {
+      "case": 9,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_authority"
+    },
+    {
+      "case": 10,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_witness"
+    },
+    {
+      "case": 11,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "metadata"
+    },
+    {
+      "case": 12,
+      "instance_only_change": true,
+      "material_truth": false,
+      "mutation": "parameter"
+    },
+    {
+      "case": 13,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "data_right"
+    },
+    {
+      "case": 14,
+      "instance_only_change": false,
+      "material_truth": false,
+      "mutation": "unreachable_action"
+    },
+    {
+      "case": 15,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_authority"
+    },
+    {
+      "case": 16,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "data_right"
+    },
+    {
+      "case": 17,
+      "instance_only_change": false,
+      "material_truth": true,
+      "mutation": "reachable_authority"
+    },
+    {
+      "case": 18,
+      "instance_only_change": true,
+      "material_truth": false,
+      "mutation": "parameter"
+    },
+    {
+      "case": 19,
+      "instance_only_change": true,
+      "material_truth": false,
+      "mutation": "parameter"
+    }
+  ],
+  "experiment": "relation_schema_materiality_classifier",
+  "generator_distribution": {
+    "acceptance": 2445,
+    "active_role": 1515,
+    "data_right": 3092,
+    "metadata": 2980,
+    "parameter": 5395,
+    "reachable_authority": 2952,
+    "reachable_transition": 3592,
+    "reachable_witness": 2981,
+    "unreachable_action": 3510,
+    "unreachable_role": 1538
+  },
+  "ground_truth": "Exact difference in bounded reachable transition, role-integrity, authority, witness, acceptance, and active-data semantics from FORMING; metadata and instance-parameter changes are excluded.",
+  "interpretation_limit": "This is a constructive implementation stress test over a finite generated model. Perfect classification, if observed, means the operational definition and checker agree on this model—not that real organizations have unambiguous schemas or that materiality can always be automatically decided.",
+  "policies": {
+    "always_reopen": {
+      "decision_error_rate": 0.44743333333333335,
+      "false_positive": 13423,
+      "illustrative_loss": 76577,
+      "material_recall": 1.0,
+      "nonmaterial_specificity": 0.0,
+      "true_positive": 16577
+    },
+    "any_schema_diff": {
+      "decision_error_rate": 0.2676,
+      "false_positive": 8028,
+      "illustrative_loss": 65787,
+      "material_recall": 1.0,
+      "nonmaterial_specificity": 0.4019220740520003,
+      "true_negative": 5395,
+      "true_positive": 16577
+    },
+    "never_reopen": {
+      "decision_error_rate": 0.5525666666666667,
+      "false_negative": 16577,
+      "illustrative_loss": 331540,
+      "material_recall": 0.0,
+      "nonmaterial_specificity": 1.0,
+      "true_negative": 13423
+    },
+    "typed_materiality": {
+      "decision_error_rate": 0.0,
+      "illustrative_loss": 49731,
+      "material_recall": 1.0,
+      "nonmaterial_specificity": 1.0,
+      "true_negative": 13423,
+      "true_positive": 16577
+    }
+  },
+  "seed": 20260727
+}

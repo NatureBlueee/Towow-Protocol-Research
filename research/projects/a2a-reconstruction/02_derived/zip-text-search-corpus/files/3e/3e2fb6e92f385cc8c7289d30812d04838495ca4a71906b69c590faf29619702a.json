@@ -1,0 +1,3115 @@
+{
+  "fixture_count": 24,
+  "fixture_status": "constructed design benchmark, not empirical OPC evidence",
+  "summary": {
+    "fixed_platform": {
+      "cases": 24,
+      "mode_match_rate": 0.3333333333333333,
+      "mean_invariant_coverage": 0.3194444444444445,
+      "structurally_valid_cases": 6,
+      "mean_overhead_units": 1.0,
+      "missing_invariants": {
+        "resource_reservation": 13,
+        "schema_fidelity": 16,
+        "local_authority": 16,
+        "minimal_disclosure": 13,
+        "reversibility_guard": 13,
+        "local_reopen": 11,
+        "effect_acceptance_separation": 13,
+        "affected_party_standing": 8,
+        "recourse": 9
+      }
+    },
+    "single_global_agent": {
+      "cases": 24,
+      "mode_match_rate": 0.125,
+      "mean_invariant_coverage": 0.1064814814814815,
+      "structurally_valid_cases": 0,
+      "mean_overhead_units": 2.0,
+      "missing_invariants": {
+        "effect_acceptance_separation": 15,
+        "resource_reservation": 13,
+        "schema_fidelity": 16,
+        "local_authority": 16,
+        "minimal_disclosure": 13,
+        "reversibility_guard": 8,
+        "local_reopen": 14,
+        "affected_party_standing": 8,
+        "recourse": 9
+      }
+    },
+    "portfolio_router": {
+      "cases": 24,
+      "mode_match_rate": 1.0,
+      "mean_invariant_coverage": 1.0,
+      "structurally_valid_cases": 24,
+      "mean_overhead_units": 2.473333333333333,
+      "missing_invariants": {}
+    }
+  },
+  "rows": [
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc01_standard_software_subscription",
+      "title": "标准 SaaS 订阅续费",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE",
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc01_standard_software_subscription",
+      "title": "标准 SaaS 订阅续费",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE",
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.3599999999999999,
+      "decision": {
+        "steps": [
+          {
+            "mode": "DETERMINISTIC_SERVICE",
+            "purpose": "run a stable relation through a scoped API or workflow",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc01_standard_software_subscription",
+      "title": "标准 SaaS 订阅续费",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE",
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "resource_reservation"
+      ],
+      "invariant_coverage": 0.5,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc02_calendar_scheduling",
+      "title": "跨方日程排期",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc02_calendar_scheduling",
+      "title": "跨方日程排期",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "resource reservation",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.48,
+      "decision": {
+        "steps": [
+          {
+            "mode": "CENTRAL_OPTIMIZER",
+            "purpose": "solve an already specified allocation or scheduling problem",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger",
+              "resource reservation"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc02_calendar_scheduling",
+      "title": "跨方日程排期",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc03_refund_inside_policy",
+      "title": "政策内退款",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc03_refund_inside_policy",
+      "title": "政策内退款",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.3599999999999999,
+      "decision": {
+        "steps": [
+          {
+            "mode": "DETERMINISTIC_SERVICE",
+            "purpose": "run a stable relation through a scoped API or workflow",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc03_refund_inside_policy",
+      "title": "政策内退款",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc04_creator_sponsorship",
+      "title": "创作者品牌赞助",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "scoped mandate",
+        "countercondition and refusal",
+        "resource reservation",
+        "target-world effect witness",
+        "acceptance gate",
+        "local reopen",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc04_creator_sponsorship",
+      "title": "创作者品牌赞助",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "scoped mandate",
+        "countercondition and refusal",
+        "resource reservation",
+        "target-world effect witness",
+        "acceptance gate",
+        "local reopen",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.44,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc04_creator_sponsorship",
+      "title": "创作者品牌赞助",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "scoped mandate",
+        "countercondition and refusal",
+        "resource reservation",
+        "target-world effect witness",
+        "acceptance gate",
+        "local reopen",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc05_custom_ai_data_audit",
+      "title": "客户私有数据 AI 审计",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "staged probe before irreversible effect",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "local_reopen",
+        "resource_reservation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.2222222222222222,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc05_custom_ai_data_audit",
+      "title": "客户私有数据 AI 审计",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.56,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc05_custom_ai_data_audit",
+      "title": "客户私有数据 AI 审计",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc06_co_created_course",
+      "title": "两位超级个体共创课程",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc06_co_created_course",
+      "title": "两位超级个体共创课程",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "resource reservation",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 2.2,
+      "decision": {
+        "steps": [
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc06_co_created_course",
+      "title": "两位超级个体共创课程",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc07_three_freelancer_bid",
+      "title": "三位独立专家联合投标",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc07_three_freelancer_bid",
+      "title": "三位独立专家联合投标",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.44,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc07_three_freelancer_bid",
+      "title": "三位独立专家联合投标",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "resource reservation",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc08_white_label_delivery",
+      "title": "白标交付合作",
+      "expected_modes": [
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "affected-party standing and recourse",
+        "target-world effect witness",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "resource_reservation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.125,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc08_white_label_delivery",
+      "title": "白标交付合作",
+      "expected_modes": [
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "affected-party standing and recourse",
+        "target-world effect witness",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "resource reservation",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 2.2,
+      "decision": {
+        "steps": [
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc08_white_label_delivery",
+      "title": "白标交付合作",
+      "expected_modes": [
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "affected-party standing and recourse",
+        "target-world effect witness",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc09_micro_saas_integration",
+      "title": "两个 Micro-SaaS 的稳定 API 集成",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "target-world effect witness",
+        "local reopen",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc09_micro_saas_integration",
+      "title": "两个 Micro-SaaS 的稳定 API 集成",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "target-world effect witness",
+        "local reopen",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "defeater-triggered local reopen",
+        "local reopen",
+        "minimum privilege",
+        "resource reservation",
+        "scoped mandate",
+        "target-world effect witness",
+        "version pinning",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.2,
+      "decision": {
+        "steps": [
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen"
+            ]
+          },
+          {
+            "mode": "DETERMINISTIC_SERVICE",
+            "purpose": "compile the stable subgraph for repeated operation",
+            "mandatory_controls": [
+              "minimum privilege",
+              "version pinning",
+              "defeater-triggered local reopen"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state",
+          "repeated stable work should not pay open-formation cost on every run"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc09_micro_saas_integration",
+      "title": "两个 Micro-SaaS 的稳定 API 集成",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "target-world effect witness",
+        "local reopen",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc10_content_license_catalog",
+      "title": "既有内容目录授权",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc10_content_license_catalog",
+      "title": "既有内容目录授权",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.3599999999999999,
+      "decision": {
+        "steps": [
+          {
+            "mode": "PLATFORM_MARKET",
+            "purpose": "use an existing market frame for discovery, contracting, and settlement",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc10_content_license_catalog",
+      "title": "既有内容目录授权",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc11_agent_subcontracting_client_data",
+      "title": "Agent 委托分包商处理客户数据",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.11111111111111116,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc11_agent_subcontracting_client_data",
+      "title": "Agent 委托分包商处理客户数据",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.56,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc11_agent_subcontracting_client_data",
+      "title": "Agent 委托分包商处理客户数据",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "recourse"
+      ],
+      "invariant_coverage": 0.16666666666666663,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc12_acceptance_dispute",
+      "title": "交付验收争议",
+      "expected_modes": [
+        "HUMAN_ADJUDICATION"
+      ],
+      "required_controls": [
+        "preserve prior versions",
+        "freeze irreversible operations",
+        "record standing and remedy scope"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "staged probe before irreversible effect",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "recourse"
+      ],
+      "invariant_coverage": 0.33333333333333337,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc12_acceptance_dispute",
+      "title": "交付验收争议",
+      "expected_modes": [
+        "HUMAN_ADJUDICATION"
+      ],
+      "required_controls": [
+        "preserve prior versions",
+        "freeze irreversible operations",
+        "record standing and remedy scope"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_ADJUDICATION"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "freeze irreversible operations",
+        "minimal disclosure / local oracle",
+        "preserve prior versions",
+        "provisional remedy / staged evidence review",
+        "record standing and remedy scope",
+        "scoped mandate",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.96,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_ADJUDICATION",
+            "purpose": "resolve a contested authority, evidence, acceptance, or recourse question",
+            "mandatory_controls": [
+              "preserve prior versions",
+              "versioned relation schema",
+              "scoped mandate",
+              "minimal disclosure / local oracle",
+              "freeze irreversible operations",
+              "provisional remedy / staged evidence review",
+              "effect/acceptance separation",
+              "record standing and remedy scope"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "an active dispute cannot be settled by model confidence"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc12_acceptance_dispute",
+      "title": "交付验收争议",
+      "expected_modes": [
+        "HUMAN_ADJUDICATION"
+      ],
+      "required_controls": [
+        "preserve prior versions",
+        "freeze irreversible operations",
+        "record standing and remedy scope"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc13_ad_budget_execution",
+      "title": "预算内广告投放",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "local_reopen",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc13_ad_budget_execution",
+      "title": "预算内广告投放",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.3599999999999999,
+      "decision": {
+        "steps": [
+          {
+            "mode": "CENTRAL_OPTIMIZER",
+            "purpose": "solve an already specified allocation or scheduling problem",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc13_ad_budget_execution",
+      "title": "预算内广告投放",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc14_private_brand_partnership",
+      "title": "个人品牌长期联名",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "staged probe before irreversible effect",
+        "acceptance gate",
+        "local reopen",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "staged probe before irreversible effect"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.11111111111111116,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc14_private_brand_partnership",
+      "title": "个人品牌长期联名",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "staged probe before irreversible effect",
+        "acceptance gate",
+        "local reopen",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.56,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc14_private_brand_partnership",
+      "title": "个人品牌长期联名",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "staged probe before irreversible effect",
+        "acceptance gate",
+        "local reopen",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc15_internal_agent_execution",
+      "title": "OPC 内部生成月度经营报告",
+      "expected_modes": [
+        "SELF_EXECUTION"
+      ],
+      "required_controls": [
+        "mandate scope",
+        "resource reservation",
+        "effect witness"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc15_internal_agent_execution",
+      "title": "OPC 内部生成月度经营报告",
+      "expected_modes": [
+        "SELF_EXECUTION"
+      ],
+      "required_controls": [
+        "mandate scope",
+        "resource reservation",
+        "effect witness"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "SELF_EXECUTION"
+      ],
+      "controls": [
+        "effect witness",
+        "mandate scope",
+        "resource reservation",
+        "versioned operation specification"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.48,
+      "decision": {
+        "steps": [
+          {
+            "mode": "SELF_EXECUTION",
+            "purpose": "execute inside the OPC mandate without creating a cross-entity relation",
+            "mandatory_controls": [
+              "versioned operation specification",
+              "mandate scope",
+              "resource reservation",
+              "effect witness"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the action remains inside one accountability and authority boundary"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc15_internal_agent_execution",
+      "title": "OPC 内部生成月度经营报告",
+      "expected_modes": [
+        "SELF_EXECUTION"
+      ],
+      "required_controls": [
+        "mandate scope",
+        "resource reservation",
+        "effect witness"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc16_dynamic_resource_swap",
+      "title": "多个超级个体的动态资源互换",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc16_dynamic_resource_swap",
+      "title": "多个超级个体的动态资源互换",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.44,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc16_dynamic_resource_swap",
+      "title": "多个超级个体的动态资源互换",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc17_tax_filing",
+      "title": "标准税务申报",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc17_tax_filing",
+      "title": "标准税务申报",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "pre-effect validation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.48,
+      "decision": {
+        "steps": [
+          {
+            "mode": "DETERMINISTIC_SERVICE",
+            "purpose": "run a stable relation through a scoped API or workflow",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger",
+              "pre-effect validation"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc17_tax_filing",
+      "title": "标准税务申报",
+      "expected_modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc18_new_market_entry",
+      "title": "陌生市场的合作进入",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "countercondition and refusal",
+        "staged probe before irreversible effect",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.11111111111111116,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc18_new_market_entry",
+      "title": "陌生市场的合作进入",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "countercondition and refusal",
+        "staged probe before irreversible effect",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.56,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc18_new_market_entry",
+      "title": "陌生市场的合作进入",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "countercondition and refusal",
+        "staged probe before irreversible effect",
+        "affected-party standing and recourse"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc19_standard_freelance_marketplace",
+      "title": "标准化小额自由职业任务",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc19_standard_freelance_marketplace",
+      "title": "标准化小额自由职业任务",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.3599999999999999,
+      "decision": {
+        "steps": [
+          {
+            "mode": "PLATFORM_MARKET",
+            "purpose": "use an existing market frame for discovery, contracting, and settlement",
+            "mandatory_controls": [
+              "scoped credentials",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": true,
+        "open_formation_required": false,
+        "reasons": [
+          "the institutional frame and task schema are sufficient for lossless collapse"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc19_standard_freelance_marketplace",
+      "title": "标准化小额自由职业任务",
+      "expected_modes": [
+        "PLATFORM_MARKET"
+      ],
+      "required_controls": [
+        "scoped credentials",
+        "effect/acceptance separation",
+        "reopen trigger"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc20_repeated_bookkeeping",
+      "title": "重复记账流程",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "local_reopen",
+        "resource_reservation"
+      ],
+      "invariant_coverage": 0.16666666666666663,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc20_repeated_bookkeeping",
+      "title": "重复记账流程",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "defeater-triggered local reopen",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "minimum privilege",
+        "resource reservation",
+        "scoped mandate",
+        "target-world effect witness",
+        "version pinning",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.32,
+      "decision": {
+        "steps": [
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "minimal disclosure / local oracle"
+            ]
+          },
+          {
+            "mode": "DETERMINISTIC_SERVICE",
+            "purpose": "compile the stable subgraph for repeated operation",
+            "mandatory_controls": [
+              "minimum privilege",
+              "version pinning",
+              "defeater-triggered local reopen"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state",
+          "repeated stable work should not pay open-formation cost on every run"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc20_repeated_bookkeeping",
+      "title": "重复记账流程",
+      "expected_modes": [
+        "BILATERAL_FORMATION",
+        "DETERMINISTIC_SERVICE"
+      ],
+      "required_controls": [
+        "versioned relation schema",
+        "minimum privilege",
+        "version pinning",
+        "defeater-triggered local reopen"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "local_reopen",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc21_public_claim_with_reputation",
+      "title": "Agent 代表本人公开发布观点",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "staged probe before irreversible effect"
+      ],
+      "mode_match": false,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "local_reopen",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.125,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc21_public_claim_with_reputation",
+      "title": "Agent 代表本人公开发布观点",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "resource reservation",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 2.2,
+      "decision": {
+        "steps": [
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc21_public_claim_with_reputation",
+      "title": "Agent 代表本人公开发布观点",
+      "expected_modes": [
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "scoped mandate",
+        "acceptance gate",
+        "staged probe before irreversible effect"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "reversibility_guard",
+        "resource_reservation"
+      ],
+      "invariant_coverage": 0.33333333333333337,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc22_emergency_delivery_replan",
+      "title": "临近截止期的紧急重排",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "acceptance gate",
+        "local reopen"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "reversibility_guard",
+        "local_reopen",
+        "resource_reservation",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc22_emergency_delivery_replan",
+      "title": "临近截止期的紧急重排",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "acceptance gate",
+        "local reopen"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "countercondition and refusal",
+        "local reopen",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.32,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "BILATERAL_FORMATION",
+            "purpose": "form a versioned relation while preserving each party's mandate and private world",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc22_emergency_delivery_replan",
+      "title": "临近截止期的紧急重排",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "BILATERAL_FORMATION"
+      ],
+      "required_controls": [
+        "resource reservation",
+        "acceptance gate",
+        "local reopen"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "effect/acceptance separation",
+        "reopen trigger"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "local_authority"
+      ],
+      "invariant_coverage": 0.6666666666666667,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc23_customer_support_triage",
+      "title": "客户支持工单分流",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "do not mutate local authority",
+        "return ranked candidates with evidence"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [
+        "local_authority",
+        "local_reopen",
+        "effect_acceptance_separation"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc23_customer_support_triage",
+      "title": "客户支持工单分流",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "do not mutate local authority",
+        "return ranked candidates with evidence"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "do not mutate local authority",
+        "effect/acceptance separation",
+        "reopen trigger",
+        "return ranked candidates with evidence",
+        "scoped credentials"
+      ],
+      "mode_match": true,
+      "mode_policy": "ANY",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 1.6,
+      "decision": {
+        "steps": [
+          {
+            "mode": "CENTRAL_OPTIMIZER",
+            "purpose": "compute candidates over a specified shared problem while keeping commitment authority local",
+            "mandatory_controls": [
+              "scoped credentials",
+              "do not mutate local authority",
+              "return ranked candidates with evidence",
+              "effect/acceptance separation",
+              "reopen trigger"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": false,
+        "reasons": [
+          "candidate computation is centralizable even though authority remains distributed"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc23_customer_support_triage",
+      "title": "客户支持工单分流",
+      "expected_modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "required_controls": [
+        "do not mutate local authority",
+        "return ranked candidates with evidence"
+      ]
+    },
+    {
+      "system": "fixed_platform",
+      "modes": [
+        "PLATFORM_MARKET"
+      ],
+      "controls": [],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "reversibility_guard",
+        "resource_reservation",
+        "effect_acceptance_separation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.0,
+      "structurally_valid": false,
+      "overhead_units": 1.0,
+      "decision": null,
+      "case_id": "opc24_training_data_license",
+      "title": "将客户资料用于模型训练",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "single_global_agent",
+      "modes": [
+        "CENTRAL_OPTIMIZER"
+      ],
+      "controls": [
+        "return ranked candidates with evidence",
+        "staged probe before irreversible effect",
+        "target-world effect witness"
+      ],
+      "mode_match": false,
+      "mode_policy": "ALL",
+      "missing_invariants": [
+        "schema_fidelity",
+        "local_authority",
+        "minimal_disclosure",
+        "affected_party_standing",
+        "resource_reservation",
+        "recourse"
+      ],
+      "invariant_coverage": 0.25,
+      "structurally_valid": false,
+      "overhead_units": 2.0,
+      "decision": null,
+      "case_id": "opc24_training_data_license",
+      "title": "将客户资料用于模型训练",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    },
+    {
+      "system": "portfolio_router",
+      "modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "controls": [
+        "acceptance gate",
+        "affected-party standing and recourse",
+        "countercondition and refusal",
+        "local reopen",
+        "minimal disclosure / local oracle",
+        "no silent authority transfer",
+        "record rejected candidates",
+        "resource reservation",
+        "scoped mandate",
+        "source attribution",
+        "staged probe before irreversible effect",
+        "target-world effect witness",
+        "versioned relation schema"
+      ],
+      "mode_match": true,
+      "mode_policy": "ALL",
+      "missing_invariants": [],
+      "invariant_coverage": 1.0,
+      "structurally_valid": true,
+      "overhead_units": 3.56,
+      "decision": {
+        "steps": [
+          {
+            "mode": "HUMAN_BROKER",
+            "purpose": "surface candidates, translate worlds, and reduce attention cost",
+            "mandatory_controls": [
+              "no silent authority transfer",
+              "source attribution",
+              "record rejected candidates"
+            ]
+          },
+          {
+            "mode": "TEMPORARY_COALITION",
+            "purpose": "form a temporary multi-party operating constitution and resource commitments",
+            "mandatory_controls": [
+              "versioned relation schema",
+              "scoped mandate",
+              "countercondition and refusal",
+              "resource reservation",
+              "target-world effect witness",
+              "acceptance gate",
+              "local reopen",
+              "affected-party standing and recourse",
+              "minimal disclosure / local oracle",
+              "staged probe before irreversible effect"
+            ]
+          }
+        ],
+        "collapse_safe": false,
+        "open_formation_required": true,
+        "reasons": [
+          "a boundary-spanning intermediary can reduce OPC attention load",
+          "at least one material part of the relation cannot be safely collapsed into a fixed platform or global state"
+        ],
+        "unresolved": []
+      },
+      "case_id": "opc24_training_data_license",
+      "title": "将客户资料用于模型训练",
+      "expected_modes": [
+        "HUMAN_BROKER",
+        "TEMPORARY_COALITION"
+      ],
+      "required_controls": [
+        "minimal disclosure / local oracle",
+        "affected-party standing and recourse",
+        "scoped mandate",
+        "staged probe before irreversible effect",
+        "acceptance gate"
+      ]
+    }
+  ],
+  "limitations": [
+    "Fixtures and expected controls were authored from the same theory that produced the router; results test consistency and reveal omissions, not external validity.",
+    "The platform and central-agent baselines are deliberately minimal structural implementations, not best commercial products or expert human brokers.",
+    "No simulated score is interpreted as a real transaction, revenue, acceptance, or safety rate."
+  ]
+}

@@ -1,0 +1,17 @@
+workflow:
+  id: spec_audit
+  stages:
+    - inventory:
+        outputs: [ArtifactInventory, VersionMap]
+    - contradiction_scan:
+        outputs: [TermConflicts, DecisionConflicts, LifecycleConflicts]
+    - orphan_scan:
+        outputs: [OrphanRequirements, UntracedClaims, UnprojectedObjects]
+    - closure_scan:
+        outputs: [BrokenLoops, MissingFailures, MissingRecovery]
+    - experience_scan:
+        outputs: [UIModelDrift, MissingStates, RoleProjectionConflicts]
+    - assurance_scan:
+        outputs: [MissingRiskGates, MissingEscalations]
+    - repair_plan:
+        outputs: [PrioritizedRepairPlan, MigrationMap, DeprecationList]

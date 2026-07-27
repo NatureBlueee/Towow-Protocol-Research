@@ -1,0 +1,17 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.4, ranksep=0.45, fontname="Noto Sans CJK SC"];
+  node [shape=diamond, style="filled", fillcolor="#F9FAFB", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=10, margin="0.1,0.08"];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=9];
+  start [shape=box,style="rounded,filled",label="给定任务 T",fillcolor="#EEF6FF"];
+  q1 [label="任务所需信息能否\n以最小权限安全汇总？"];
+  q2 [label="权威、责任、拒绝/退出权\n能否被合法委托且不失真？"];
+  q3 [label="集中是否保留竞争、激励、\n独立故障域与时效？"];
+  q4 [label="中心方案总成本与风险\n是否不高于主权协调？"];
+  c [shape=box,style="rounded,filled",label="least-privilege central 足够\n使用中心协调 + 本地工具/数据接口",fillcolor="#ECFDF5"];
+  s [shape=box,style="rounded,filled",label="需要主权 A2A\n中心只持有共享介质与有限投影",fillcolor="#FFF7ED"];
+  start -> q1;
+  q1 -> q2 [label="是"]; q1 -> s [label="否"];
+  q2 -> q3 [label="是"]; q2 -> s [label="否"];
+  q3 -> q4 [label="是"]; q3 -> s [label="否"];
+  q4 -> c [label="是"]; q4 -> s [label="否"];
+}

@@ -1,0 +1,33 @@
+{
+  "recordCount": 1,
+  "reference": "car_7221efaf-560b-ddda-f768-a3b715c1b76a",
+  "operationId": "3a3bd68e-b76d-4bb5-8ce8-b1baf2662610",
+  "phase": "decided",
+  "artifactReadAt": "2026-07-25T05:56:36.411Z",
+  "history": [
+    {
+      "state": "adopted",
+      "revision": 1,
+      "observedAt": "2026-07-25T05:56:36.499Z"
+    },
+    {
+      "state": "revoked",
+      "revision": 2,
+      "observedAt": "2026-07-25T05:56:45.739Z"
+    }
+  ],
+  "outbox": [
+    {
+      "eventId": "evt_d429b7f820bd0029ba6e31d045a14f6e",
+      "revision": 1,
+      "acked": true
+    },
+    {
+      "eventId": "evt_91c442ea8c487260bbd8abe8de46c411",
+      "revision": 2,
+      "acked": false
+    }
+  ],
+  "worldReaderHandlePersisted": true,
+  "artifactPersisted": true
+}

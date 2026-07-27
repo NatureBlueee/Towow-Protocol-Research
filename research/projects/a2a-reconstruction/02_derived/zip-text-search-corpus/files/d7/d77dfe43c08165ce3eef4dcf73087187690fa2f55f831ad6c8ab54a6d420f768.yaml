@@ -1,0 +1,60 @@
+capabilities:
+  - id: cap.domain_ontology
+    concerns:
+      - concept_definition
+      - domain_object_model
+      - relation_semantics
+      - lifecycle_consistency
+    required_knowledge_packs:
+      - core.method
+      - project.domain
+      - standards.terminology
+    required_skills:
+      - ontology_modeling
+      - terminology_control
+      - contradiction_scan
+    tools:
+      - document_search
+      - graph_editor
+      - schema_validator
+    outputs:
+      - ConceptRegistry
+      - ObjectModel
+      - LifecycleModel
+    authority:
+      may_produce: true
+      may_review: true
+      may_decide: false
+    known_blind_spots:
+      - cannot_decide_business_priority
+      - cannot_replace_legal_interpretation
+    qualification:
+      minimum_gate_pass_rate: 0.85
+      evidence_window_runs: 10
+
+  - id: cap.experience_legibility
+    concerns:
+      - information_hierarchy
+      - object_workspace
+      - decision_room
+      - state_visibility
+      - accessibility
+    required_knowledge_packs:
+      - core.method
+      - project.domain
+      - standards.hci
+    required_skills:
+      - interface_projection
+      - state_matrix
+      - legibility_review
+    tools:
+      - prototype_reader
+      - accessibility_checker
+    outputs:
+      - ViewCard
+      - PageSpecification
+      - LegibilityReport
+    authority:
+      may_produce: true
+      may_review: true
+      may_decide: false

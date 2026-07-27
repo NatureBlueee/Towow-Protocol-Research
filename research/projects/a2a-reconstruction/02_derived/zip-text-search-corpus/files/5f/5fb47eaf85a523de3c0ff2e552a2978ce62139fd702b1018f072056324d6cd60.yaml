@@ -1,0 +1,55 @@
+runtime_contract:
+  id: prse-runtime-contract
+  version: 0.3.0-dev
+  required_hooks:
+  - semantic_name: read_package
+    input:
+    - package_uri
+    output:
+    - PackageIndex
+    - DependencyGraph
+  - semantic_name: resolve_context
+    input:
+    - concern
+    - scope
+    - permissions
+    output:
+    - ContextLoadPlan
+    - ContextConflictList
+  - semantic_name: route_capability
+    input:
+    - work_item
+    - quality_requirement
+    output:
+    - CapabilityPlan
+  - semantic_name: execute_method
+    input:
+    - skill_id
+    - inputs
+    - context
+    output:
+    - Artifact
+    - ExecutionRecord
+  - semantic_name: validate_artifact
+    input:
+    - artifact
+    - profile
+    output:
+    - ValidationReport
+  - semantic_name: emit_method_event
+    input:
+    - MethodEvent
+    output:
+    - EventReceipt
+  - semantic_name: escalate
+    input:
+    - EscalationCase
+    output:
+    - ResolutionOrPending
+  optional_hooks:
+  - parallel_explore
+  - adversarial_review
+  - back_translate
+  - impact_analyze
+  - render_view
+  - benchmark_replay

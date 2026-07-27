@@ -1,0 +1,30 @@
+
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.28, ranksep=0.45, fontname="Noto Sans CJK SC"];
+ node [shape=box, style="rounded", fontname="Noto Sans CJK SC", fontsize=9];
+ edge [fontname="Noto Sans CJK SC", fontsize=8];
+ subgraph cluster_local { label="本地世界平面"; fontname="Noto Sans CJK SC"; style=rounded;
+  id [label="Identity & Authority"];
+  mandate [label="Mandate Compiler"];
+  world [label="Local World Compiler"];
+  opp [label="Opportunity Index"];
+ }
+ subgraph cluster_relation { label="关系平面"; fontname="Noto Sans CJK SC"; style=rounded;
+  route [label="Coordination Router"];
+  relation [label="Relation Workspace"];
+  cap [label="Capability & Probe"];
+  commit [label="Commitment & Resource Ledger"];
+ }
+ subgraph cluster_effect { label="执行与效力平面"; fontname="Noto Sans CJK SC"; style=rounded;
+  op [label="Operation & Effect Gateway"];
+  acc [label="Adoption / Acceptance / Settlement"];
+ }
+ subgraph cluster_gov { label="治理与证据平面"; fontname="Noto Sans CJK SC"; style=rounded;
+  prov [label="Provenance & Learning Control"];
+  reopen [label="Defeater & Reopen Engine"];
+ }
+ id->mandate->world->opp->route->relation->cap->commit->op->acc;
+ prov->relation [dir=both]; prov->op [dir=both];
+ reopen->relation [dir=both]; reopen->op [dir=both];
+ acc->reopen [style=dashed];
+}

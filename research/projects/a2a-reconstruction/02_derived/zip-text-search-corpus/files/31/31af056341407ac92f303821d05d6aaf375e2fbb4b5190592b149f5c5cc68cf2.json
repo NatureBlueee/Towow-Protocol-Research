@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Towow formation episode v1.4",
+  "type": "object",
+  "required": [
+    "episode_id",
+    "run_id",
+    "pre_state",
+    "interaction_events",
+    "formed_conditions",
+    "post_state",
+    "causal_evidence",
+    "goal_value",
+    "costs",
+    "conclusion"
+  ],
+  "properties": {
+    "episode_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "objective_version": {"type": ["string", "null"]},
+    "principals": {"type": "array", "items": {"type": "string"}},
+    "agent_executions": {"type": "array", "items": {"type": "string"}},
+    "pre_state": {
+      "type": "object",
+      "required": ["objective", "reachable_actions", "unreachable_actions", "initial_capability_descriptions"]
+    },
+    "interaction_events": {"type": "array", "items": {"type": "object"}},
+    "formed_conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["condition_id", "description", "proposed_by", "authorized_by", "state_change_evidence"]
+      }
+    },
+    "post_state": {
+      "type": "object",
+      "required": ["new_reachable_actions", "result", "target_domain_adoption", "acceptance"]
+    },
+    "causal_evidence": {
+      "type": "object",
+      "required": ["ablation_or_counterfactuals", "remaining_alternative_explanations", "grade"]
+    },
+    "goal_value": {"type": "object"},
+    "costs": {"type": "object"},
+    "conclusion": {
+      "type": "object",
+      "required": ["interaction_type", "claim_strength", "scope", "next_discriminating_action"]
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "towow-r5-run-costs-v1",
+  "provider_reported": {
+    "static": {
+      "calls": 1,
+      "errors": 0,
+      "wall_clock_seconds": 297.31182666600216,
+      "total_cost_usd": 0.5401733000000001,
+      "input_tokens": 15697,
+      "output_tokens": 27481
+    },
+    "least_privilege_central_run001": {
+      "calls": 3,
+      "errors": 1,
+      "wall_clock_seconds": 456.25419708318077,
+      "total_cost_usd": 0.40694895,
+      "input_tokens": 24226,
+      "output_tokens": 10235
+    },
+    "direct_a2a": {
+      "calls": 6,
+      "errors": 0,
+      "wall_clock_seconds": 623.4278555429773,
+      "total_cost_usd": 1.3439834,
+      "input_tokens": 60681,
+      "output_tokens": 44611
+    },
+    "boundary_conformance": {
+      "calls": 6,
+      "errors": 4,
+      "wall_clock_seconds": 398.5628071669489,
+      "total_cost_usd": 0.0332821,
+      "input_tokens": 1145,
+      "output_tokens": 997
+    }
+  },
+  "derived_comparison": {
+    "a2a_cost_over_static": 2.488074,
+    "a2a_calls_over_static": 6,
+    "a2a_produced_accepted_contract": false,
+    "a2a_produced_patch": false,
+    "static_produced_patch": true,
+    "static_patch_adoptable": false
+  },
+  "additional_costs": {
+    "disclosed_fields": [
+      "two synthetic source identities",
+      "shared locator",
+      "owner acceptance and veto conditions"
+    ],
+    "human_interventions": 5,
+    "verification": "four paired pytest executions plus two independent reviews",
+    "rework": [
+      "static path normalization",
+      "static recount apply check",
+      "root-built null-source counterfactual implementation"
+    ],
+    "recovery": [
+      "Python timezone runner compatibility",
+      "JSON schema compatibility",
+      "network approval",
+      "separate central replication run"
+    ]
+  },
+  "source": "../../../state/MODEL_COSTS.json",
+  "warning": "Token counts include Claude CLI internal routing/cache accounting. Wall-clock values are summed model-call durations, not end-to-end critical-path time."
+}

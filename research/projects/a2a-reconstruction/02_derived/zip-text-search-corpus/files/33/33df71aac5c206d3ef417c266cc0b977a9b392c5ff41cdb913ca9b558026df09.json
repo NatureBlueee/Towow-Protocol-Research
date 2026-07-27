@@ -1,0 +1,233 @@
+{
+  "content_hash": "6927ba7f9870855d655765bfedf0b178ede6c5ed1847cadb446deabca9db24bc",
+  "created_at": "2026-07-26T06:42:14.659730+00:00",
+  "dependencies": {
+    "raw_export": [
+      "authorize_raw_export",
+      "run_probe",
+      "accept"
+    ],
+    "training_permission": [
+      "run_probe",
+      "accept"
+    ]
+  },
+  "instance": {
+    "active_resources": [
+      "source_data",
+      "pilot_output"
+    ],
+    "active_roles": [
+      "buyer_business",
+      "buyer_data",
+      "provider_business",
+      "provider_tech"
+    ],
+    "obtained_stances": [],
+    "parameters": {
+      "duration_days": 14,
+      "price_cny": 9800
+    },
+    "reopen_rules_defined": true,
+    "required_mandates": [
+      "mandate-buyer_business-v1",
+      "mandate-buyer_data-v1",
+      "mandate-provider_business-v1",
+      "mandate-provider_tech-v1"
+    ],
+    "required_stances": [],
+    "risk_class": "MEDIUM",
+    "rollback_or_compensation_defined": false,
+    "state": "FORMING",
+    "task_family": "enterprise-ai-pilot",
+    "time_horizon_days": 14,
+    "unresolved_material_counterexamples": [
+      "buyer_data_refuses_raw_export"
+    ],
+    "valid_mandates": [
+      "mandate-buyer_business-v1",
+      "mandate-buyer_data-v1",
+      "mandate-provider_business-v1",
+      "mandate-provider_tech-v1"
+    ]
+  },
+  "relation_id": "case-readonly-pilot-demo",
+  "schema": {
+    "acceptance_rules": {
+      "accept": {
+        "required_roles": [
+          "buyer_business"
+        ],
+        "requires_effect": true
+      }
+    },
+    "actions": {
+      "accept": {
+        "actor_roles": [
+          "buyer_business"
+        ],
+        "material": true
+      },
+      "authorize_raw_export": {
+        "actor_roles": [
+          "buyer_data"
+        ],
+        "material": true
+      },
+      "commit_budget": {
+        "actor_roles": [
+          "buyer_business"
+        ],
+        "material": true
+      },
+      "propose_pilot": {
+        "actor_roles": [
+          "provider_business"
+        ],
+        "material": true
+      },
+      "run_probe": {
+        "actor_roles": [
+          "provider_tech"
+        ],
+        "material": true,
+        "produces_effect": true
+      },
+      "withdraw": {
+        "actor_roles": [
+          "buyer_business",
+          "buyer_data",
+          "provider_business"
+        ],
+        "material": true
+      }
+    },
+    "authority_rules": {
+      "accept": [
+        "buyer_business"
+      ],
+      "authorize_raw_export": [
+        "buyer_data"
+      ],
+      "commit_budget": [
+        "buyer_business"
+      ],
+      "propose_pilot": [
+        "provider_business"
+      ],
+      "run_probe": [
+        "provider_tech"
+      ],
+      "withdraw": [
+        "buyer_business",
+        "buyer_data",
+        "provider_business"
+      ]
+    },
+    "data_rules": {
+      "pilot_output": {
+        "ownership": [
+          "provider_business"
+        ],
+        "retention_days": 365
+      },
+      "source_data": {
+        "derivatives_may_leave_buyer_domain": true,
+        "mode": "raw_export",
+        "purposes": [
+          "pilot",
+          "model_improvement"
+        ],
+        "retention_days": 90,
+        "training": true
+      }
+    },
+    "metadata": {
+      "label": "Provider default proposal"
+    },
+    "object_types": {
+      "pilot_output": {
+        "sensitivity": "INTERNAL"
+      },
+      "source_data": {
+        "sensitivity": "CONFIDENTIAL"
+      }
+    },
+    "reopen_rules": [
+      {
+        "affected": [
+          "authorize_raw_export",
+          "run_probe",
+          "accept"
+        ],
+        "trigger": "data_incident"
+      }
+    ],
+    "roles": {
+      "buyer_business": {
+        "label": "业务与采用权威"
+      },
+      "buyer_data": {
+        "label": "数据与安全权威"
+      },
+      "provider_business": {
+        "label": "服务商务权威"
+      },
+      "provider_tech": {
+        "label": "技术执行权威"
+      }
+    },
+    "schema_id": "enterprise-ai-readonly-pilot",
+    "transitions": [
+      {
+        "action": "propose_pilot",
+        "from": "FORMING",
+        "to": "PROPOSED"
+      },
+      {
+        "action": "authorize_raw_export",
+        "from": "PROPOSED",
+        "to": "DATA_AUTHORIZED"
+      },
+      {
+        "action": "commit_budget",
+        "from": "DATA_AUTHORIZED",
+        "to": "COMMITTED"
+      },
+      {
+        "action": "run_probe",
+        "from": "COMMITTED",
+        "to": "EFFECT_PENDING"
+      },
+      {
+        "action": "accept",
+        "from": "EFFECT_PENDING",
+        "to": "ACCEPTED"
+      },
+      {
+        "action": "withdraw",
+        "from": "PROPOSED",
+        "to": "WITHDRAWN"
+      },
+      {
+        "action": "withdraw",
+        "from": "DATA_AUTHORIZED",
+        "to": "WITHDRAWN"
+      },
+      {
+        "action": "withdraw",
+        "from": "COMMITTED",
+        "to": "WITHDRAWN"
+      }
+    ],
+    "version": "1",
+    "witness_rules": {
+      "run_probe": {
+        "evidence": "provider-run-log",
+        "source_role": "provider_tech"
+      }
+    }
+  },
+  "status": "FORMING",
+  "version": 1
+}

@@ -1,0 +1,100 @@
+{
+  "run_id": "r5-run-001-evidence-reachability",
+  "research_question": "Can the v1.1 baseline claim matrix be followed to raw local artifacts that permit independent inspection or reproduction?",
+  "objective": {
+    "original": "Determine the evidential status of imported Round 5 claims before using them as facts.",
+    "version_id": "objective-r5-local-v1",
+    "critical_value_dimensions": [
+      "claim-level traceability",
+      "no promotion from checksum to empirical proof",
+      "preserve source-statement provenance"
+    ],
+    "revisions": []
+  },
+  "reality_level": "E4",
+  "started_at": "2026-07-24T12:34:27Z",
+  "ended_at": "2026-07-24T12:36:00Z",
+  "status": "completed",
+  "workspace": {
+    "repo_root": "/Users/nature/通爻协议研究",
+    "baseline_commit": "UNBORN:null",
+    "final_commit": null,
+    "branch_or_worktree": "research/towow-r5-20260724-local"
+  },
+  "subjects": [],
+  "sovereignty": {
+    "classification": "not_applicable",
+    "reason": "This run audits local artifact reachability and makes no A2A sovereignty claim."
+  },
+  "strategies": [
+    {
+      "name": "structured CSV path resolution",
+      "role": "primary audit",
+      "budget": {
+        "external_calls": 0
+      }
+    },
+    {
+      "name": "packet checksum",
+      "role": "transport-integrity baseline",
+      "budget": null
+    }
+  ],
+  "interventions": [],
+  "holdout_design": null,
+  "models_agents_tools": [
+    {
+      "agent": "/root",
+      "model": "gpt-5.6-sol",
+      "tool": "python3 csv/json/pathlib/hashlib",
+      "versions": {
+        "python": "3.9.6"
+      }
+    }
+  ],
+  "costs": {
+    "model_tokens": "not exposed",
+    "api_cost": 0,
+    "external_calls": 0,
+    "wall_clock_seconds_approx": 93,
+    "human_interventions": 0
+  },
+  "human_interventions": [],
+  "results": {
+    "claim_count": 18,
+    "artifact_paths_reachable": 2,
+    "artifact_paths_missing": 16,
+    "reachability_rate": 0.1111111111111111,
+    "reachable_claim_ids": [
+      "R5-C15",
+      "R5-C16"
+    ],
+    "interpretation": "The packet is a seed/summary package, not a locally closed reproduction package."
+  },
+  "failures": [
+    {
+      "classification": "evidence_closure_gap",
+      "detail": "Sixteen claim artifact paths do not resolve under either the packet root or repository root."
+    }
+  ],
+  "claim_updates": [
+    {
+      "claim_id": "R5-LOCAL-C01",
+      "status": "supported",
+      "claim": "The v1.1 packet checksum proves included-file integrity but does not locally close the evidence chain for 16 of 18 imported baseline claims."
+    }
+  ],
+  "evidence_paths": [
+    "hypothesis.md",
+    "outputs/reachability.json",
+    "outputs/reachability.csv",
+    "analysis.md"
+  ],
+  "commands": [
+    {
+      "command": "python3 .ai-research/towow-a2a-r5/tools/evidence_reachability.py --packet towow_a2a_round5_codex_local_research_packet_v1.1 --repo . --output .ai-research/towow-a2a-r5/runs/r5-run-001-evidence-reachability/outputs",
+      "exit_code": 0
+    }
+  ],
+  "external_effects": []
+}

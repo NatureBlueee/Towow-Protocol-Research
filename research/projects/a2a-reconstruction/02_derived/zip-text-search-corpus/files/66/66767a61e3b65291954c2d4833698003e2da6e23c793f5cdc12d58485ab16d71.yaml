@@ -1,0 +1,41 @@
+cases:
+- id: S001
+  given: 生成 Summon Object Workspace
+  must_show:
+  - 主对象
+  - 对象生命周期
+  - 参与与责任
+  - 证据
+  - 决定
+  - 恢复路径
+- id: S002
+  given: 生成 DisclosureGrant UI
+  must_show:
+  - 授权者
+  - 被授权者
+  - 用途
+  - 范围
+  - 期限
+  - 访问方式
+  - 状态
+  - 撤销后果
+- id: S003
+  given: 交付通过自动检查
+  must_result:
+  - VerificationResult
+  - 等待 AcceptanceDecision
+- id: S004
+  given: 生成领导驾驶舱
+  must_show:
+  - 口径
+  - 范围
+  - 来源
+  - 下钻对象
+- id: S005
+  given: Agent 执行动作
+  must_show:
+  - 执行身份
+  - 委托主体
+  - 权限
+  - 动作类型
+  - 是否待确认

@@ -1,0 +1,54 @@
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\definecolor{TowowBlue}{HTML}{1F4E79}
+\definecolor{TowowGray}{HTML}{4B5563}
+\definecolor{TowowLight}{HTML}{F4F6F8}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\sffamily\color{TowowBlue}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{TowowGray}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\sffamily}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.2ex plus .6ex minus .2ex}{1.0ex}
+\titlespacing*{\subsection}{0pt}{1.7ex plus .4ex minus .2ex}{0.7ex}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily 从主权世界到共同现实}
+\fancyhead[R]{\small\sffamily 通爻 Agent-to-Agent 统一论文}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\usepackage{setspace}
+\setstretch{1.25}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,justification=centering}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=2em}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}
+\AtBeginEnvironment{quote}{\itshape\color{TowowGray}}
+\usepackage{mdframed}
+\surroundwithmdframed[
+  backgroundcolor=TowowLight,
+  linecolor=TowowLight,
+  linewidth=0pt,
+  skipabove=10pt,
+  skipbelow=10pt,
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt
+]{quote}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=TowowBlue,citecolor=TowowBlue,urlcolor=TowowBlue}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}

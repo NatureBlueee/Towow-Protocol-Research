@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "towow://schemas/return_packet_manifest.schema.json",
+  "title": "Towow Local Research Return Packet Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "packet_id",
+    "created_at_utc",
+    "baseline_commit",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "packet_id": {
+      "type": "string"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "workspace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "baseline_commit": {
+      "type": "string"
+    },
+    "final_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "branch_or_worktree": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "git_dirty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "research_period": {
+      "type": "object"
+    },
+    "model_and_agent_calls": {
+      "type": "array"
+    },
+    "experiment_run_ids": {
+      "type": "array"
+    },
+    "major_claim_updates": {
+      "type": "array"
+    },
+    "external_effects": {
+      "type": "array"
+    },
+    "contains_secrets": {
+      "const": false
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

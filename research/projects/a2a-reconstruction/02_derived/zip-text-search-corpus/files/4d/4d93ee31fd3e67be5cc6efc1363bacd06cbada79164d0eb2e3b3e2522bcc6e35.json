@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextPack",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "scope",
+    "provenance",
+    "content_summary",
+    "usage_policy"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "sources",
+        "owner"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "owner": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "effective_at": {
+          "type": "string"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "properties": {
+        "review_by": {
+          "type": "string"
+        },
+        "volatile": {
+          "type": "boolean"
+        },
+        "stale_behavior": {
+          "enum": [
+            "warn",
+            "block",
+            "allow_with_qualification"
+          ]
+        }
+      }
+    },
+    "trust_level": {
+      "enum": [
+        "authoritative",
+        "reviewed",
+        "working",
+        "unverified"
+      ]
+    },
+    "content_summary": {
+      "type": "string"
+    },
+    "glossary": {
+      "type": "object"
+    },
+    "conflicts_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_uses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "usage_policy": {
+      "type": "object",
+      "required": [
+        "allowed_concerns"
+      ],
+      "properties": {
+        "allowed_concerns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requires_citation": {
+          "type": "boolean"
+        },
+        "may_leave_project": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+package:
+  id: prse-ai-native-speckit
+  name: PRSE AI 原生规格运行包
+  version: 0.2.0
+  status: exploratory-reference
+  language: zh-CN
+  runtime_neutral: true
+  created_at: '2026-07-11'
+  purpose: 让任意人类、单 Agent、多 Agent、工作流引擎或本地 Harness 依据同一套规范生产、校验、迭代和表达产品规格。
+entrypoints:
+  agent: AGENT_START_HERE.md
+  human: README.md
+  adapter: 03_harness_adapter/ADAPTER_GUIDE.md
+  summon_reference: 06_projects/summon/project.manifest.yaml
+  conformance: 05_conformance/conformance.profile.yaml
+layers:
+- 00_constitution
+- 01_ai_native_spec_protocol
+- 02_method_runtime
+- 03_harness_adapter
+- 04_observability
+- 05_conformance
+- 06_projects
+normative_language: BCP14-inspired MUST/SHOULD/MAY; only uppercase keywords are normative.
+compatibility:
+  previous: PRSE-OS v0.1
+  breaking_changes:
+  - 将方法论与具体 Harness 分离
+  - 引入 AI 原生规格包协议
+  - 将质量目标与 Agent 数量/拓扑解耦
+  - 引入消费方契约和一致性测试
+  - 增加召集台 reference project pack

@@ -1,0 +1,27 @@
+channel_health:
+- required_context_pack_availability
+- stale_context_pack_rate
+- context_conflict_rate
+- unresolved_dependency_rate
+semantic_health:
+- undefined_term_count
+- contradiction_density
+- superseded_node_leakage
+- orphan_requirement_rate
+production_health:
+- first_pass_gate_rate
+- mean_revision_cycles
+- validator_disagreement_rate
+- human_escalation_rate
+- unresolved_critical_findings
+consumer_health:
+- blind_reconstruction_score
+- handoff_question_count
+- cross_runtime_output_variance
+- external_claim_backtranslation_fidelity
+summon_specific:
+- object_to_view_traceability
+- closed_loop_exception_coverage
+- verification_acceptance_separation_rate
+- agent_action_authority_visibility
+- disclosure_policy_projection_coverage

@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "towow://schemas/return_packet_manifest.r5.2.schema.json",
+  "title": "Towow Reality Transfer Return Packet Manifest v1.2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "packet_id",
+    "created_at_utc",
+    "baseline_commit",
+    "contains_secrets",
+    "files",
+    "replay_entrypoints",
+    "relocation_test"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "packet_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "workspace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "workspace_kind": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "baseline_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "final_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "branch_or_worktree": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "git_dirty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "research_period": {
+      "type": "object"
+    },
+    "model_and_agent_calls": {
+      "type": "array"
+    },
+    "experiment_run_ids": {
+      "type": "array"
+    },
+    "major_claim_updates": {
+      "type": "array"
+    },
+    "external_effects": {
+      "type": "array"
+    },
+    "contains_secrets": {
+      "const": false
+    },
+    "contains_restricted_data": {
+      "type": "boolean"
+    },
+    "independence": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "replay_entrypoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "command"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "relocation_test": {
+      "type": "object",
+      "required": [
+        "performed",
+        "passed"
+      ],
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "result_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path",
+          "sha256",
+          "bytes",
+          "role"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "role": {
+            "type": "string"
+          },
+          "mime": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "disclosure": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

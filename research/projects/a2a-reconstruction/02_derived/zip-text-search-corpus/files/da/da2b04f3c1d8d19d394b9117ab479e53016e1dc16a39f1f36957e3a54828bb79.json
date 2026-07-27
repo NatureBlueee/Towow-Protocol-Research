@@ -1,0 +1,344 @@
+{
+  "reports": [
+    {
+      "classification": "MATERIAL_SCHEMA_CHANGE",
+      "findings": [
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.bilateral",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.remedy",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.adjudicate_competition",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.close_bilateral",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.order_divestiture",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.submit_third_party_evidence",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.adjudicate_competition",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.close_bilateral",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.order_divestiture",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.submit_third_party_evidence",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.post_close_review.remedy",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.post_close_review.status",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.giphy_data.derived_signal_risk",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.giphy_data.holder",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "jurisdiction_rules",
+          "kind": "jurisdiction_rule_change",
+          "material": true,
+          "path": "jurisdiction_rules.UK_competition.disposition",
+          "reason": "The jurisdiction_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.bilateral",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.transaction",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "transitions",
+          "kind": "transition_change",
+          "material": true,
+          "path": "transitions",
+          "reason": "The change alters a transition whose source is reachable from the current state."
+        },
+        {
+          "component": "version",
+          "kind": "metadata_or_extension",
+          "material": false,
+          "path": "version",
+          "reason": "The change is outside the operational relation schema."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": true,
+          "path": "witness_rules.close_bilateral",
+          "reason": "The witness_rules change applies to a reachable action or disposition."
+        }
+      ],
+      "from_version": 1,
+      "material": true,
+      "notes": [
+        "The set of actions reachable from the current state changed.",
+        "Re-form only the affected dependency subgraph; do not reopen unrelated settled nodes."
+      ],
+      "reachable_actions": [
+        "close_bilateral"
+      ],
+      "to_version": 2
+    },
+    {
+      "classification": "MATERIAL_SCHEMA_CHANGE",
+      "findings": [
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.remedy",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.remedy_completion",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.adjudicate_competition",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.close_case",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.order_divestiture",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.sell_giphy",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": true,
+          "path": "actions.submit_third_party_evidence",
+          "reason": "The action is reachable from the current relation state."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.adjudicate_competition",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.close_case",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.order_divestiture",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.sell_giphy",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": true,
+          "path": "authority_rules.submit_third_party_evidence",
+          "reason": "The authority_rules change applies to a reachable action or disposition."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.post_close_review.remedy",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.post_close_review.reopen",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.post_close_review.status",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.giphy_data.derived_signal_risk",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.giphy_data.holder",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.giphy_data.scope",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "roles",
+          "kind": "role_change",
+          "material": false,
+          "path": "roles.purchaser",
+          "reason": "The role is not used by any currently reachable action or active assignment."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.remedy",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.transaction",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "transitions",
+          "kind": "transition_change",
+          "material": true,
+          "path": "transitions",
+          "reason": "The change alters a transition whose source is reachable from the current state."
+        },
+        {
+          "component": "version",
+          "kind": "metadata_or_extension",
+          "material": false,
+          "path": "version",
+          "reason": "The change is outside the operational relation schema."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": false,
+          "path": "witness_rules.sell_giphy",
+          "reason": "The witness_rules change applies only outside the reachable subgraph."
+        }
+      ],
+      "from_version": 2,
+      "material": true,
+      "notes": [
+        "The set of actions reachable from the current state changed.",
+        "Re-form only the affected dependency subgraph; do not reopen unrelated settled nodes."
+      ],
+      "reachable_actions": [
+        "adjudicate_competition",
+        "order_divestiture",
+        "submit_third_party_evidence"
+      ],
+      "to_version": 3
+    }
+  ]
+}

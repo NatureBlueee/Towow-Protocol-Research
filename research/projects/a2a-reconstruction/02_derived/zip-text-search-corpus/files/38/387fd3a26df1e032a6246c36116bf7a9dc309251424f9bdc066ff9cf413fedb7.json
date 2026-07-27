@@ -1,0 +1,31 @@
+{
+  "schema_version": "towow-r5-relocation-v1",
+  "performed": true,
+  "passed": true,
+  "performed_at_utc": "2026-07-24T16:48:00Z",
+  "candidate_archive": {
+    "name": "return-packet-candidate-v2.zip",
+    "sha256": "d702a987987d6f966b47fa8225d7c73406d5e8086e6ad5559dc106888a0a0269"
+  },
+  "fresh_extract_root": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-relocation-candidate.pXbSV2/return-packet",
+  "checks": {
+    "portable_verifier_exit_code": 0,
+    "portable_verifier_status": "passed_with_warnings",
+    "portable_verifier_errors": [],
+    "portable_verifier_warnings": [
+      "manifest says relocation test not performed"
+    ],
+    "warning_expected_for_pre_attestation_candidate": true,
+    "domain_replay_exit_code": 0,
+    "domain_replay_status": "passed",
+    "scenario_rows_recomputed": 17,
+    "capability_executable_rows_recomputed": 6,
+    "claim_refs_checked": 15,
+    "secret_hits": []
+  },
+  "evidence_outside_packet": [
+    ".ai-research/towow-a2a-r5-2/relocation/candidate-portable-verifier.json",
+    ".ai-research/towow-a2a-r5-2/relocation/candidate-domain-replay.json"
+  ],
+  "interpretation": "The only candidate verifier warning was the intentionally false relocation flag before this attestation existed. Hashes, schemas, JSON/YAML parsing, experiment records, claim references, disclosure scan, and domain replay passed in a fresh location. Manifest and checksums must now be rebuilt and final bytes verified in a second fresh extraction."
+}

@@ -1,0 +1,158 @@
+{
+  "boundary_oracle": [
+    {
+      "method": "adaptive_1",
+      "feasibility_rate": 1.0,
+      "mean_objective_ratio": 1.0,
+      "median_disclosed_constraints": 22.0,
+      "mean_rounds": 5.403333333333333,
+      "mean_max_violation": 3.774758283725532e-16
+    },
+    {
+      "method": "adaptive_2",
+      "feasibility_rate": 1.0,
+      "mean_objective_ratio": 0.9999999999999998,
+      "median_disclosed_constraints": 25.0,
+      "mean_rounds": 5.04,
+      "mean_max_violation": 3.9968028886505636e-16
+    },
+    {
+      "method": "adaptive_4",
+      "feasibility_rate": 1.0,
+      "mean_objective_ratio": 0.9999999999999998,
+      "median_disclosed_constraints": 31.0,
+      "mean_rounds": 4.256666666666667,
+      "mean_max_violation": 4.0523140398818213e-16
+    },
+    {
+      "method": "adaptive_8",
+      "feasibility_rate": 1.0,
+      "mean_objective_ratio": 1.0,
+      "median_disclosed_constraints": 46.0,
+      "mean_rounds": 3.3033333333333332,
+      "mean_max_violation": 4.951594689828198e-16
+    },
+    {
+      "method": "full_disclosure",
+      "feasibility_rate": 1.0,
+      "mean_objective_ratio": 1.0,
+      "median_disclosed_constraints": 90.0,
+      "mean_rounds": 1.0,
+      "mean_max_violation": 8.169391089533444e-16
+    },
+    {
+      "method": "static_1",
+      "feasibility_rate": 0.0,
+      "mean_objective_ratio": null,
+      "median_disclosed_constraints": 5.0,
+      "mean_rounds": 1.0,
+      "mean_max_violation": 0.6499613381489773
+    },
+    {
+      "method": "static_2",
+      "feasibility_rate": 0.0,
+      "mean_objective_ratio": null,
+      "median_disclosed_constraints": 10.0,
+      "mean_rounds": 1.0,
+      "mean_max_violation": 0.4662162598734896
+    },
+    {
+      "method": "static_4",
+      "feasibility_rate": 0.0,
+      "mean_objective_ratio": null,
+      "median_disclosed_constraints": 20.0,
+      "mean_rounds": 1.0,
+      "mean_max_violation": 0.2742248587474477
+    },
+    {
+      "method": "static_8",
+      "feasibility_rate": 0.0,
+      "mean_objective_ratio": null,
+      "median_disclosed_constraints": 40.0,
+      "mean_rounds": 1.0,
+      "mean_max_violation": 0.14301260906207222
+    }
+  ],
+  "team_constitution": [
+    {
+      "method": "full_private_disclosure",
+      "feasibility_rate": 1.0,
+      "mean_cost_ratio": 1.0,
+      "median_disclosed_modes": 75.0,
+      "mean_rounds": 1.0
+    },
+    {
+      "method": "price_guided_oracle",
+      "feasibility_rate": 1.0,
+      "mean_cost_ratio": 1.0003543754391633,
+      "median_disclosed_modes": 53.0,
+      "mean_rounds": 3.6966666666666668
+    },
+    {
+      "method": "public_profile_search",
+      "feasibility_rate": 0.02,
+      "mean_cost_ratio": 2.6377948468959778,
+      "median_disclosed_modes": 24.0,
+      "mean_rounds": 1.0
+    },
+    {
+      "method": "random_20pct_disclosure",
+      "feasibility_rate": 0.9133333333333333,
+      "mean_cost_ratio": 1.815546121801695,
+      "median_disclosed_modes": 34.0,
+      "mean_rounds": 1.0
+    }
+  ],
+  "probabilistic_oracle": [
+    {
+      "method": "calibrated_fixed_gate",
+      "coverage": 0.03,
+      "executed": 480,
+      "error_rate": 0.04791666666666667,
+      "threshold": 0.9545454545454546,
+      "split": "in_distribution"
+    },
+    {
+      "method": "unguarded",
+      "coverage": 1.0,
+      "executed": 16000,
+      "error_rate": 0.56025,
+      "threshold": 0.0,
+      "split": "in_distribution"
+    },
+    {
+      "method": "calibrated_fixed_gate",
+      "coverage": 0.0235,
+      "executed": 376,
+      "error_rate": 0.061170212765957445,
+      "threshold": 0.9545454545454546,
+      "split": "distribution_shift"
+    },
+    {
+      "method": "unguarded",
+      "coverage": 1.0,
+      "executed": 16000,
+      "error_rate": 0.6683125,
+      "threshold": 0.0,
+      "split": "distribution_shift"
+    },
+    {
+      "method": "audited_adaptive_gate",
+      "coverage": 0.0,
+      "executed": 0,
+      "error_rate": null,
+      "threshold": 1.0100000000000002,
+      "split": "distribution_shift"
+    }
+  ],
+  "trust_concurrency": [
+    {
+      "method": "eventual_check_then_write",
+      "overspend_rate": 0.60461
+    },
+    {
+      "method": "serializable_reservation",
+      "overspend_rate": 0.0
+    }
+  ]
+}

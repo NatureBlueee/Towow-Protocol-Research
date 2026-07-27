@@ -1,0 +1,2512 @@
+diff --git a/docs/orchestration/execplans/R5C-EXTERNAL-ADOPTION.md b/docs/orchestration/execplans/R5C-EXTERNAL-ADOPTION.md
+new file mode 100644
+index 0000000..ea92e17
+--- /dev/null
++++ b/docs/orchestration/execplans/R5C-EXTERNAL-ADOPTION.md
+@@ -0,0 +1,535 @@
++# R5C External Consumer-Adoption Source and Projection
++
++This ExecPlan is a living document. The sections `Progress`, `Surprises &
++Discoveries`, `Decision Log`, and `Outcomes & Retrospective` must be kept
++current while implementation proceeds.
++
++The repository rules in `.agent/PLANS.md` govern this document.
++
++## Purpose / Big Picture
++
++Agent World currently accepts commandless EventRecords into C2 but has no
++honest path that lets a separate product consumer report its own adoption
++state, lets an independent World preserve that source-scoped authority, and produces a
++source-mapped WorldProjection without inventing a World Command.
++
++This change adds one narrow local-equivalent-real adapter for Allbuddy's
++consumer-adoption source. It does not decide whether the Artifact is correct
++or valuable. It confirms only that the authenticated Allbuddy consumer source
++currently reports `adopted`, `not_adopted`, or `revoked` at a monotonic
++revision.
++
++The only allowed positive conclusion is:
++
++> A synthetic local Allbuddy source reported state X at revision N, and an
++> independent World transport/materialization preserved that scoped report.
++
++The experiment does not establish real customer or human adoption, Artifact
++correctness, execution success, mutual acceptance, business value, actual
++external deployment, actual Harness closure, or production fitness.
++
++A successful demonstration must be visible in three places:
++
++1. the World process has durably persisted the claimed delivery before ack;
++2. C2 contains a commandless, source-authoritative EventRecord with only the
++   coarse readback;
++3. C4 contains one stable projection whose current modifier and Source Map
++   follow the latest accepted revision.
++
++Invalid, unavailable, stale, conflicting, unauthorized or private-content
++responses never advance the adoption business state. After a prior accepted
++state, stale/offline/gap responses explicitly downgrade the last-known claim
++projection to stale/unknown/partial; divergent valid evidence marks it
++disputed. They must not leave an old adopted projection looking current.
++
++## Canonical Basis
++
++This plan is constrained by, and must add closure tests for:
++
++- Semantic Foundation sf-02.7/02.8: Unknown and traceability;
++- sf-13.3: EventRecord observation and source authority;
++- sf-04 and sf-06: claim entities, Unknown and Disputed;
++- sf-13 and sf-24: provenance and correction lineage;
++- sf-31 and sf-32: projection/source-map honesty and non-orphan binding;
++- Product Implementation Blueprint pib-12.2 and 12.16–18: adapter reality,
++  health, partial/offline behavior;
++- pib-13.10: freshness and stale state;
++- pib-16.7: reconciliation;
++- pib-22.9 and 22.11: Semantic ID plus Event/SourceRef closure;
++- pib-23.5: reliability and explicit degraded state;
++- ADR-0002: `local_equivalent_real` never upgrades to actual external reality.
++
++MUST invariants:
++
++- source authority means authority over the source's own report only;
++- every core projection binds both a stable semantic claim entity and the
++  accepted EventRecord/SourceRef;
++- provenance is immutable and exact across AdapterSnapshot, EventRecord and
++  SourceRef;
++- no ack occurs before a restart-recoverable semantic postcondition exists;
++- no retry regenerates identity-bearing envelope bytes or counters.
++- every R5C-owned ID is `deterministic_derived` from a durable unversioned key;
++  R5C never calls `mintLedgerId` or `nextLedgerSequence`.
++
++## Progress
++
++- [x] (2026-07-25) Read canonical foundation/blueprint sections, project
++  coordination state, package contracts and `.agent/PLANS.md`.
++- [x] (2026-07-25) Confirm generic `receiveEventRecord` already accepts a
++  commandless EventRecord; the H1 poller is the narrower current consumer.
++- [x] (2026-07-25) Source precondition formed by a model-driven Allbuddy ↔
++  Agent World episode and three independently defeated source implementations.
++- [x] (2026-07-25) Fifth open review froze the source only as a single-host,
++  24-hour-session, automatic-adoption synthetic interface.
++- [x] (2026-07-25) Resolve semantic/systems COUNTER reviews and obtain
++  independent semantic, systems and feasibility PASS on the revised plan.
++- [x] (2026-07-25) Implement external-adoption adapter snapshot, durable inbox, claim/read/
++  ack client and semantic reducer.
++- [x] (2026-07-25) Add failure, replay, correction/revocation, wrong-authority and privacy
++  tests.
++- [x] (2026-07-25) Run package, AWIR contract and repository verification.
++- [x] (2026-07-25) Run one real local cross-repository episode and save redacted evidence.
++- [x] (2026-07-25) Update this plan's outcomes without modifying canonical specification.
++
++## Surprises & Discoveries
++
++- Allbuddy's first file ledger passed sequential unit tests but lost records
++  and consumed one-shot capabilities more than once under cross-process
++  concurrency.
++- A durable record still did not create a recoverable joint path: mutation
++  response loss orphaned the control/reader capability, and the browser test
++  was impersonating World by reading sessionStorage.
++- A third source implementation still failed an open review: the first run
++  response carried the first session authority, explicit abort could become
++  adoption on reload, orphaned process locks did not recover, and revision
++  operation replay returned the latest state rather than its original result.
++- The source interface therefore uses a pre-established session, exact
++  operation replay, revision-specific readback and a durable at-least-once
++  outbox. Authority delivery is part of the capability, not incidental
++  transport.
++- A fourth open review found an adoption-response race: ProductShell could
++  report abort while World still claimed adopted revision 1. The formed source
++  now represents cancel as monotonic `not_adopted@rev1` or `revoked@rev2`,
++  supersedes only unclaimed delivery, and retains ordered revision/event
++  lineage for historical backfill.
++- C4-min permits `commandIds: []` and a binding through EventRecord/source refs.
++  It does not require a World Command for an exogenous observation, but the
++  canonical NoOrphanProjection gate still requires a semantic object.
++- The current semantic store is in memory. Persisting a claim envelope is not
++  sufficient: after ack and restart, C2/C4 and all counters would disappear.
++  The World boundary therefore needs a replayable semantic journal, not merely
++  an inbox file.
++- A first open implementation review defeated a 50/50-green World adapter:
++  delta-missing still returned ack-ready, HTTP 200 with a negative ack body was
++  misconfirmed, private-invalid evidence left old success current, and Viewer
++  replay was redirectable. Two further review rounds moved authorization before
++  replay, made malformed claim/readback durable epistemic downgrades, required
++  explicit ack confirmation, repaired cut points and bound both divergence
++  candidates. These were false-closure defects, not background polish.
++- A real TCP refusal exposed a gap that fake non-2xx responses did not:
++  network rejection originally crashed the driver. The corrected real-process
++  rerun retained the source value only as offline/unknown.
++
++## Decision Log
++
++- Decision: use `local_equivalent_real`, not `external_harness` or `reference`,
++  for the external-adoption AdapterSnapshot.
++  Rationale: the episode uses a separate real local process/API and durable
++  product store, but not an independently deployed external Harness.
++
++- Decision: producer `completed`, missing first adoption readback, mismatched
++  revision/reference, wrong issuer/policy or unauthorized claim never creates
++  an adoption projection. After a previously accepted state, source
++  unavailability or gap does not advance adoption state/revision but must
++  update the existing claim projection's epistemic/sync status.
++  Rationale: those states do not establish new consumer authority, but leaving
++  an old adopted projection looking current would also be false.
++
++- Decision: one stable WorldProjection per opaque consumer reference; later
++  revisions replace its current record and emit an update delta.
++  Rationale: keeping an adopted projection beside a revoked projection would
++  leave stale success visible.
++
++- Decision: materialize one stable `claim` semantic entity per opaque source
++  reference.
++  Rationale: the entity means only “this source has a consumer-adoption
++  report”; it does not invent a Consumer, Artifact, Outcome or Effect. It
++  satisfies the semantic plus occurrence/source binding acceptance gate.
++
++- Decision: journal the complete validated lineage batch and the exact first
++  C2 envelope bytes before semantic apply or ack, then reconcile the in-memory
++  semantic store from that journal on every restart.
++  Rationale: source ack removes redelivery; durable input must be sufficient to
++  recreate the same C2/C4 current state and counters without credentials.
++
++- Decision: projection language says “consumer reports X”, never “execution
++  succeeded” or “business value realized”.
++  Rationale: Allbuddy owns adoption; neither source nor World owns correctness
++  or value Recognition.
++
++- Decision: do not alter canonical foundation, blueprint, OQ-004 or OQ-009 in
++  this experiment branch.
++  Rationale: one local episode is evidence for those decisions, not unilateral
++  resolution of them.
++
++## Context and Orientation
++
++The target package is `packages/semantic-kernel`.
++
++- `src/ingest.mjs` validates and append-only ingests C2 EventRecords.
++- `src/reference-adapter.mjs` shows how a bootstrap AdapterSnapshot is created,
++  but its `reference` provenance must not be reused for this adapter.
++- `src/outbox.mjs` shows C4 projection and SceneDelta validation.
++- `src/store.mjs` is an in-memory semantic store; the adapter's durable inbox
++  is a separate local journal boundary. Startup must replay/reconcile that
++  journal before health/read traffic or new claims so acked source facts
++  survive a World process restart.
++- `src/pipeline.mjs` remains the World-command pipeline and must not be
++  weakened. External adoption gets a separate explicit entry point.
++
++The Allbuddy source exposes:
++
++- `POST /api/external/adoption-outbox/claim` with a World bearer, `worldId` and
++  bounded lease;
++- `POST /api/external/adoption-readback` with the claimed reader handle;
++- `POST /api/external/adoption-outbox/ack` only after World persistence and
++  semantic processing.
++
++The claim response contains stable `eventId`, opaque `reference`, source
++`revision`, ordered coarse event/revision lineage, a lease-specific ack token
++and a viewer-scoped reader handle. The read request binds a lineage revision.
++The readback contains only
++`reference`, `issuer`, `policy`, `state`, `revision`, and `observedAt`.
++
++## Plan of Work
++
++### Milestone 1 — External adapter source identity
++
++Add `src/external-adoption.mjs` and a focused test file.
++
++Create an immutable per-observation `local_equivalent_real` AdapterSnapshot
++with a stable adapterId, explicit health/asOf, coverage `unknown`, capabilities
++limited to the exact external consumer-adoption claim/readback operations, and
++an honest partial reason. Do not mutate the existing reference snapshot. A
++later health observation creates a new snapshot; the adapterId's provenance
++never upgrades.
++
++Build a commandless EventRecord:
++
++- record type `REC::external.consumer_adoption`;
++- source system `allbuddy-consumer-adoption`;
++- source externalRecordId equal to stable World outbox `eventId`;
++- authority `source`, visibility `restricted`;
++- payload exactly the coarse readback;
++- sourceSequence equal to the decimal source revision;
++- no actor, task, plan, session or command correlation; `targetIds` contains
++  only the stable opaque claim entity required for the C2→C4 Source Map join;
++- later source revisions explicitly correct the previous EventRecord.
++
++Use the existing C2 ingest path and validators. Duplicate delivery is a no-op;
++conflicting content under the same source identity is rejected.
++
++AdapterSnapshot, EventRecord source executionProvenance and projection
++SourceRef executionProvenance must match exactly. A mismatch or retroactive
++reality upgrade is rejected.
++
++### Milestone 2 — Stable current projection
++
++Materialize one stable `kind: "claim"` semantic entity per opaque reference.
++Its semantics are limited to “the Allbuddy consumer-adoption source reports on
++this opaque reference.” Do not materialize a Consumer, Artifact, Outcome or
++Effect.
++
++Compile one C4 projection per claim entity. The projection has no command
++binding. Its Source Map binds the claim entity ID, current EventRecord and
++external-adoption AdapterSnapshot/SourceRef, declares the compiler rule and
++content version, and records AWIR/projection versions. The narrative and state
++modifiers say only that the Allbuddy consumer source reports the coarse state
++and revision.
++
++On revision `n+1`, require or backfill accepted revision `n` from the claimed
++lineage, ingest a correction EventRecord, replace the existing projection with
++the same projection ID and emit an `updated` SceneDelta. A stale, skipped,
++unbackfillable or conflicting revision produces no authoritative adoption
++state/revision advance; an existing claim projection still receives the
++required stale/unknown/disputed epistemic update.
++
++Projection identity derives only from the stable claim entity ID plus a fixed,
++unversioned identity rule. Compiler content versions never change projection
++ID. Replacement filters the prior same-ID row, inserts exactly one replacement
++and validates the complete C4 current store before commit; it never appends
++divergent rows under one ID. `SceneDelta.updated` carries the projection ref
++only; consumers read replacement content from the current projection store.
++History remains in C2.
++
++Failure presentation is explicit:
++
++- unauthorized/malformed/private responses fail closed and create no business
++  projection or existence leak;
++- first unavailable observation creates no adoption projection, only adapter
++  health/freshness evidence;
++- after a last-known state, offline/stale/unbackfillable gaps preserve that
++  state as last-known but downgrade sync/epistemic modifiers to
++  stale/unknown/partial/offline;
++- same-revision divergence or incompatible valid lineage preserves dispute
++  evidence and marks the current claim projection disputed. Because the
++  conflicting source candidate cannot enter ordinary C2 under the same
++  externalRecordId, World emits a deterministic
++  `REC::reconciliation.external_consumer_adoption_conflict` EventRecord with
++  `authority: "reconciliation"` containing only source refs, revision/event
++  identities and a canonical ordered digest pair, never candidate private
++  bodies. This is a World reconciliation output, not an Allbuddy-authored
++  report. It uses the same per-observation `local_equivalent_real` adoption
++  AdapterSnapshot, a deterministic conflict externalRecordId derived from
++  reference + revision + ordered digest pair, and an explicit World
++  reconciliation sourceSystem. The disputed projection Source Map binds this
++  reconciliation record;
++- source-confirmed/in-sync returns only after complete contiguous lineage and
++  readbacks revalidate.
++
++### Milestone 3 — Recoverable World journal and claim/persist/ack
++
++Add a file journal that is sufficient to recreate the accepted C2/C4 state
++after source ack and World restart. For each claimed reference it persists:
++
++- canonical immutable claim core: eventId, reference, revision and ordered
++  eventId/revision lineage;
++- every strict coarse readback in the contiguous lineage prefix;
++- the exact immutable external AdapterSnapshot envelope bytes used by those
++  EventRecords, including stable adapterId, snapshot ID, asOf, health,
++  capabilities, coverage, partial reason and provenance;
++- the first complete C2 envelope bytes, including fixed first-seen timestamps;
++- stable claim entity/projection identity allocation;
++- processing phase:
++  `staged | semantically_applied | ack_pending | ack_confirmed`;
++- the semantic ack-ready postcondition and counters needed for deterministic
++  replay.
++
++The same journal also persists non-claim state transitions that have no source
++ack:
++
++- immutable AdapterSnapshot/health observation envelope bytes;
++- affected reference and ordered epistemic/sync transition;
++- deterministic reconciliation/dispute EventRecord envelope;
++- the resulting projection/delta postcondition and counters.
++
++Startup replays accepted lineage batches and later health/reconciliation
++observations in their durable order. An offline or disputed projection must
++remain offline/disputed after restart until a newer complete source validation
++is journaled; replaying an older accepted batch must never upgrade it.
++
++The current memory store has no ledger-counter restore API. Therefore adapter,
++per-observation AdapterSnapshot, claim entity, projection, reconciliation
++EventRecord and SceneDelta IDs all derive deterministically from journaled
++unversioned keys and never use the ledger sequence namespace. Replay rebuilds
++AWIR revision and per-viewer scene revision in journal order: it verifies each
++journaled pre/post counter and calls `nextAwirRevision` or
++`nextSceneRevision` exactly once only when the corresponding full postcondition
++is absent. Exact replay performs no counter advance.
++
++Journal publishing uses constrained eventId filenames, canonical
++serialization, 0600 temporary files, file fsync, exclusive publish/atomic
++rename, directory fsync and orphan/truncation recovery.
++
++Transport authority is deliberately ephemeral. World bearer, lease token and
++reader readCapability never enter durable journal, EventRecord, projection,
++logs or evidence. Re-lease may change token/handle. eventId dedupe compares
++only canonical immutable core; a changed reference/revision/lineage is
++divergent, while token rotation is normal.
++
++On startup, before health/read traffic or a new claim, replay journal entries
++in stable reference/revision order and reconcile the fresh in-memory semantic
++store to their complete postconditions.
++
++Add an injectable-fetch poll-cycle function:
++
++1. claim with the ephemeral World credential;
++2. canonicalize and fsync the immutable claim core;
++3. validate a unique eventId per revision and contiguous ordered lineage;
++4. read every missing lineage revision in ascending order;
++5. validate and durably stage the complete batch before any C2/C4 exposure;
++6. reconcile/apply the full semantic postcondition;
++7. verify ack-ready: all exact EventRecords exist, the stable claim entity and
++   projection point to the claimed current revision, and required deltas are
++   committed;
++8. ack with the current lease token.
++
++If rev2 arrives first, rev1 and rev2 are both read and staged before either is
++visible. A read failure yields zero business-state mutation and no ack.
++Duplicate C2 alone never means the full semantic operation succeeded:
++reconciliation repairs C2-only, C4-only or delta-missing cut points before ack.
++
++A crash before durable stage does not ack. A crash after stage replays the
++batch. A crash after ack rebuilds C2/C4 from the journal without source
++redelivery. If ack response is lost, a new claim supplies a new ephemeral token
++whose immutable core must match the journal.
++
++### Milestone 4 — Tests and real episode
++
++Tests must cover:
++
++- adopted revision 1 creates one claim semantic entity, one commandless
++  EventRecord and one semantically bound projection;
++- producer-only or missing readback creates neither;
++- wrong issuer/policy/reference/revision/state shape creates neither;
++- private sentinel/additional fields are rejected rather than copied;
++- exact claim replay is idempotent;
++- an active lease cannot be concurrently reclaimed by another process using
++  the same `worldId`, and an expired lease gets a new ack token;
++- lease-token/reader-capability rotation leaves canonical durable bytes equal;
++- same eventId divergent delivery is rejected;
++- response/read/ack failure leaves delivery unacked;
++- World crash before and after local persistence converges to one inbox record;
++- revision 2 revocation corrects revision 1, updates the same projection ID and
++  removes stale adopted presentation;
++- a delivery whose unclaimed revision 1 was superseded by revision 2 backfills
++  both historical readbacks in one cycle, exposes only revoked as current, and
++  retains the adopted → revoked source lineage;
++- skipped/stale revision and duplicate update operation do not advance World;
++- wrong viewer/bearer cannot expose existence through the adapter result.
++- same-revision divergence produces disputed evidence and no state advance;
++- post-confirmation source offline/gap downgrades the current projection to
++  last-known stale/unknown rather than leaving adopted looking current;
++- AdapterSnapshot/EventRecord/SourceRef provenance mismatch or retroactive
++  reality upgrade is rejected;
++- C2 retry reuses the exact persisted envelope even when wall clock changes;
++- ack-then-restart with no source redelivery reconstructs the same claim entity,
++  EventRecord IDs, projection ID/current state and semantic counters;
++- a cut-point matrix at persist, final read, C2 commit, projection replacement,
++  delta commit, ack send and lost ack response converges without duplicate
++  revision/counter advance;
++- two references replayed in reverse order retain their own stable IDs and
++  revisions.
++- ack/restart followed by a new source revision creates collision-free
++  deterministic IDs and exactly one required AWIR/scene counter advance;
++- after a journaled offline or disputed update, kill/restart without source
++  recovery preserves the same projection ID and stale/offline or disputed
++  state; accepted lineage replay cannot restore in-sync/source-confirmed.
++
++Test ownership is explicit:
++
++- semantic-kernel unit tests use injected fake fetch only for World parsing,
++  journal, reducer, reconciliation and ack-order behavior;
++- active lease exclusion, token rotation, wrong bearer/viewer
++  non-enumeration, source cancellation and privacy are source-owned
++  integration claims and must be tested against the actual local Allbuddy HTTP
++  process in the cross-repository episode;
++- the final evidence matrix never treats a fake-fetch World test as proof of
++  Allbuddy authorization or process isolation.
++
++Then run a real local Allbuddy server and an independent World process using
++explicit synthetic credentials and stable temporary stores. Save only redacted
++readback, World inbox metadata, EventRecord IDs, projection IDs/states and test
++outputs.
++
++## Validation and Acceptance
++
++Use Node 24 for all World commands:
++
++    PATH=/opt/homebrew/opt/node@24/bin:$PATH node --version
++    PATH=/opt/homebrew/opt/node@24/bin:$PATH pnpm --filter @agent-world/semantic-kernel test
++    PATH=/opt/homebrew/opt/node@24/bin:$PATH pnpm --filter @agent-world/awir-schema test:contracts
++    PATH=/opt/homebrew/opt/node@24/bin:$PATH bash scripts/verify-package.sh
++
++Acceptance requires:
++
++- independent semantic, systems and feasibility reviewers approve the revised
++  plan;
++- no existing command pipeline or canonical schema is weakened;
++- real claim/persist/read/process/ack occurs across separate Allbuddy and World
++  processes;
++- the World projection survives replay and follows revocation;
++- producer-only, unauthorized and first-unavailable ablations emit no adoption
++  projection; unavailability after a prior accepted state emits only the
++  required stale/unknown epistemic update and never advances adoption
++  state/revision;
++- no source bearer, private Artifact content, query, raw tenant or sentinel is
++  present in World semantic records or evidence.
++- source ack occurs only after the durable journal can recreate the exact
++  semantic postcondition on a fresh memory store;
++- no evidence text exceeds the scoped synthetic-source conclusion or implies
++  human/customer adoption, execution success or business value.
++
++## Idempotence and Recovery
++
++All operations are safe to rerun against fresh temporary stores. The journal
++is at-least-once: a canonically identical immutable event core is accepted,
++divergent identity/lineage is quarantined, and ephemeral token changes are
++ignored. C2 ingest dedupes only the exact persisted EventRecord envelope.
++Reconciliation treats the same accepted source revision as no counter advance
++but verifies and repairs its full C2/C4/delta postcondition before ack.
++
++If implementation fails, delete only files introduced by this plan in the
++isolated worktree. Do not reset, stash, clean, rewrite history or touch the
++user's source checkout.
++
++## Artifacts and Notes
++
++Expected implementation files:
++
++- `packages/semantic-kernel/src/external-adoption.mjs`
++- `packages/semantic-kernel/test/external-adoption.test.mjs`
++- `packages/semantic-kernel/scripts/run-external-adoption.mjs`, an independent
++  process entrypoint that imports only the package export, receives base URL,
++  journal path, worldId and credentials through explicit local arguments/env,
++  replays the journal before polling, and emits redacted JSON evidence
++- package export updates if the real process driver needs them
++
++Expected research evidence lives outside this repository in the isolated
++Harness research worktree. No bearer or private Artifact body is copied there.
++
++## Interfaces and Dependencies
++
++The module should export narrowly named functions equivalent to:
++
++    createExternalAdoptionAdapterSnapshot(store, { now })
++    stageExternalAdoptionBatch(journalDirectory, claimCore, readbacks, options)
++    reconcileExternalAdoptionJournal(store, journalDirectory, options)
++    applyExternalAdoptionReadbacks(store, stagedBatch, options)
++    runExternalAdoptionPollCycle(options)
++
++The poller must read exactly the revision named by the claimed delivery and
++every missing predecessor named by lineage, then ack with that delivery's
++ephemeral lease token. All network access is injected through `fetchImpl`. All
++semantic writes go through existing store ports and C2/C4 validators.
++File-system writes are confined to the explicit World journal directory.
++Because the current C4 validator does not cross-check SourceRef provenance
++against AdapterSnapshot, the module must implement and test the full custom
++join before commit: EventRecord adapterSnapshotId resolves; EventRecord
++adapterId equals snapshot.adapterId.canonical; EventRecord provenance equals
++snapshot provenance; and projection SourceRef snapshot, provenance,
++sourceSystem and any externalRecordId/checksum equal the bound current
++EventRecord.
++
++## Outcomes & Retrospective
++
++The scoped local implementation is complete. It adds a public package seam,
++0600 fsynced immutable journals, exact C2/C4/delta replay, one stable opaque
++claim entity and projection, explicit offline/stale/disputed observations,
++source-to-target Viewer authorization, and a separate process driver.
++
++Verification at the final implementation cutoff:
++
++- semantic-kernel: 58/58;
++- AWIR contracts: 191/191;
++- `scripts/verify-package.sh`: PASS;
++- Allbuddy: typecheck PASS, 8 files / 49 tests PASS, targeted lint PASS;
++- prior real ProductShell browser race/recovery suite: 1/1 PASS.
++
++The real cross-repository episode used separate Allbuddy and World processes.
++One projection followed `adopted@rev1 → revoked@rev2 → offline/unknown →
++adopted@rev3`, survived source ack and fresh World replay, and contained no
++Artifact/query/tenant/capability bytes. Producer-only and wrong-bearer
++ablations yielded no projection. A pre-frozen separate `drawing-retrieval`
++holdout predicted and obtained `not_adopted@rev1` with stable restart IDs.
++
++This establishes only that an independent local World
++transport/materialization preserved a synthetic local Allbuddy source report.
++It does not establish human/customer adoption, Artifact correctness, execution
++success, business value, production identity, multi-host durability, or
++persistence for the rest of Agent World.
++
++Five unseeded implementation re-review rounds were required after the first
++green implementation. The final reviewer reproduced the full-journal revision
++identity preflight, observed zero mutation on a conflicting durable set, found
++no new scoped load-bearing Defeater, and returned PASS for this local claim.
+diff --git a/packages/semantic-kernel/package.json b/packages/semantic-kernel/package.json
+index dfc421d..ae8b086 100644
+--- a/packages/semantic-kernel/package.json
++++ b/packages/semantic-kernel/package.json
+@@ -17,12 +17,14 @@
+     "./ids": "./src/ids.mjs",
+     "./runtimes": "./src/runtimes.mjs",
+     "./bootstrap": "./src/bootstrap.mjs",
+-    "./reference-adapter": "./src/reference-adapter.mjs"
++    "./reference-adapter": "./src/reference-adapter.mjs",
++    "./external-adoption": "./src/external-adoption.mjs"
+   },
+   "dependencies": {
+     "@agent-world/awir-schema": "workspace:*"
+   },
+   "scripts": {
+-    "test": "node --test test/*.test.mjs"
++    "test": "node --test test/*.test.mjs",
++    "external-adoption:run": "node scripts/run-external-adoption.mjs"
+   }
+ }
+diff --git a/packages/semantic-kernel/scripts/run-external-adoption.mjs b/packages/semantic-kernel/scripts/run-external-adoption.mjs
+new file mode 100644
+index 0000000..ca452eb
+--- /dev/null
++++ b/packages/semantic-kernel/scripts/run-external-adoption.mjs
+@@ -0,0 +1,60 @@
++import {
++  EXTERNAL_ADOPTION_VIEWER,
++  reconcileExternalAdoptionJournal,
++  runExternalAdoptionPollCycle,
++} from "@agent-world/semantic-kernel/external-adoption";
++import { createMemoryStore } from "@agent-world/semantic-kernel/store";
++
++function requiredEnvironment(name) {
++  const value = process.env[name];
++  if (typeof value !== "string" || value.length === 0) {
++    throw new Error(`missing required environment variable: ${name}`);
++  }
++  return value;
++}
++
++const journalDirectory = requiredEnvironment("AGENT_WORLD_ADOPTION_JOURNAL_PATH");
++const baseUrl = requiredEnvironment("ALLBUDDY_BASE_URL");
++const worldClaimCapability = requiredEnvironment("ALLBUDDY_WORLD_CLAIM_CAPABILITY");
++const worldId = process.env.AGENT_WORLD_ID ?? "agent-world:r5c-local";
++const store = createMemoryStore();
++
++reconcileExternalAdoptionJournal(store, journalDirectory, {
++  viewerRef: EXTERNAL_ADOPTION_VIEWER,
++});
++const poll = await runExternalAdoptionPollCycle({
++  store,
++  journalDirectory,
++  baseUrl,
++  worldClaimCapability,
++  worldId,
++  viewerRef: EXTERNAL_ADOPTION_VIEWER,
++});
++
++const projections = store.list("worldProjections").map((projection) => ({
++  id: projection.id.canonical,
++  awirRevision: projection.awirRevision,
++  humanNarrative: projection.humanNarrative,
++  states: Object.fromEntries(
++    projection.stateModifiers.map((modifier) => [modifier.channel, modifier.value]),
++  ),
++  eventRecordIds: projection.binding.eventRecordIds,
++  sourceRefs: projection.binding.sourceRefs.map((source) => ({
++    sourceSystem: source.sourceSystem,
++    externalRecordId: source.externalRecordId,
++    executionProvenance: source.executionProvenance,
++  })),
++}));
++
++process.stdout.write(`${JSON.stringify({
++  outcome: poll.outcome,
++  processed: poll.processed.length,
++  projections,
++  counts: {
++    adapterSnapshots: store.list("adapterSnapshots").length,
++    eventRecords: store.list("eventRecords").length,
++    entities: store.list("entities").length,
++    worldProjections: projections.length,
++    sceneDeltas: store.list("sceneDeltas").length,
++  },
++}, null, 2)}\n`);
+diff --git a/packages/semantic-kernel/src/external-adoption.mjs b/packages/semantic-kernel/src/external-adoption.mjs
+new file mode 100644
+index 0000000..429dec9
+--- /dev/null
++++ b/packages/semantic-kernel/src/external-adoption.mjs
+@@ -0,0 +1,1229 @@
++import {
++  closeSync,
++  existsSync,
++  fsyncSync,
++  linkSync,
++  mkdirSync,
++  openSync,
++  readFileSync,
++  readdirSync,
++  renameSync,
++  unlinkSync,
++  writeFileSync,
++} from "node:fs";
++import { createHash, randomUUID } from "node:crypto";
++import { join } from "node:path";
++
++import { ingestEventRecord } from "./ingest.mjs";
++import { mintEventRecordId } from "./ids.mjs";
++import { c1a, c2, c4, canonicalJson } from "./runtimes.mjs";
++
++export const EXTERNAL_ADOPTION_VIEWER = "VIEWER::r5c-external-adoption";
++export const EXTERNAL_ADOPTION_SOURCE_VIEWER = "agent-world:local-external-acceptance";
++const SOURCE_SYSTEM = "allbuddy-consumer-adoption";
++const PROVENANCE = "local_equivalent_real";
++const POLICY = "local-recoverable-outbox-v3";
++const COMPILER_RULE = "RULE::r5c-external-adoption-projection";
++const COMPILER_VERSION = "1.0.0";
++const JOURNAL_VERSION = 1;
++const EVENT_PATTERN = /^evt_[0-9a-f]{32}$/;
++const REFERENCE_PATTERN = /^car_[0-9a-f-]{36}$/;
++const ALLOWED_STATES = new Set(["adopted", "not_adopted", "revoked"]);
++const ALLOWED_OBSERVATION_STATES = new Set(["offline", "stale", "disputed"]);
++const READBACK_KEYS = [
++  "issuer",
++  "observedAt",
++  "policy",
++  "reference",
++  "revision",
++  "state",
++];
++
++function derivedId(namespace, kind, rule, keys) {
++  return c1a.derivedId(namespace, kind, rule, [...keys].map(String));
++}
++
++function canonicalEqual(left, right) {
++  return canonicalJson(left) === canonicalJson(right);
++}
++
++function sha256(value) {
++  return createHash("sha256").update(value).digest("hex");
++}
++
++function assert(condition, message) {
++  if (!condition) throw new Error(message);
++}
++
++class ExternalAdoptionDivergenceError extends Error {
++  constructor(evidenceDigests) {
++    super("divergent source identity for reference revision");
++    this.name = "ExternalAdoptionDivergenceError";
++    this.evidenceDigests = [...new Set(evidenceDigests)].sort();
++  }
++}
++
++function safeJournalFiles(directory) {
++  mkdirSync(directory, { recursive: true });
++  return readdirSync(directory)
++    .filter((name) => /^evt_[0-9a-f]{32}\.json$/.test(name))
++    .sort();
++}
++
++function journalPath(directory, eventId) {
++  assert(EVENT_PATTERN.test(eventId), "invalid external adoption eventId");
++  return join(directory, `${eventId}.json`);
++}
++
++function fsyncDirectory(directory) {
++  const descriptor = openSync(directory, "r");
++  try {
++    fsyncSync(descriptor);
++  } finally {
++    closeSync(descriptor);
++  }
++}
++
++function writeAtomicJson(path, value, { exclusive = false } = {}) {
++  const directory = path.slice(0, path.lastIndexOf("/"));
++  const temporary = `${path}.${process.pid}.${randomUUID()}.tmp`;
++  const descriptor = openSync(temporary, "wx", 0o600);
++  try {
++    writeFileSync(descriptor, `${canonicalJson(value)}\n`, { encoding: "utf8" });
++    fsyncSync(descriptor);
++  } finally {
++    closeSync(descriptor);
++  }
++  try {
++    if (exclusive) {
++      // Publishing a hard link is atomic and refuses to replace an existing
++      // immutable event journal. The linked inode was already fsynced above.
++      linkSync(temporary, path);
++      unlinkSync(temporary);
++    } else {
++      renameSync(temporary, path);
++    }
++    fsyncDirectory(directory);
++  } catch (error) {
++    try {
++      unlinkSync(temporary);
++    } catch {
++      // Preserve the original publication failure.
++    }
++    throw error;
++  }
++}
++
++function readJournal(path) {
++  const journal = JSON.parse(readFileSync(path, "utf8"));
++  assert(journal.version === JOURNAL_VERSION, "unsupported external adoption journal");
++  return journal;
++}
++
++function validateReadback(readback, reference, revision) {
++  assert(readback !== null && typeof readback === "object" && !Array.isArray(readback), "invalid readback");
++  assert(
++    canonicalEqual(Object.keys(readback).sort(), READBACK_KEYS),
++    "external adoption readback contains non-public fields",
++  );
++  assert(readback.reference === reference, "readback reference mismatch");
++  assert(readback.issuer === "allbuddy:consumer-adoption", "readback issuer mismatch");
++  assert(readback.policy === POLICY, "readback policy mismatch");
++  assert(readback.revision === revision, "readback revision mismatch");
++  assert(ALLOWED_STATES.has(readback.state), "readback state invalid");
++  assert(!Number.isNaN(Date.parse(readback.observedAt)), "readback observedAt invalid");
++}
++
++function validateDelivery(delivery) {
++  assert(delivery !== null && typeof delivery === "object", "delivery missing");
++  assert(EVENT_PATTERN.test(delivery.eventId), "delivery eventId invalid");
++  assert(REFERENCE_PATTERN.test(delivery.reference), "delivery reference invalid");
++  assert(Number.isInteger(delivery.revision) && delivery.revision > 0, "delivery revision invalid");
++  assert(typeof delivery.leaseToken === "string" && delivery.leaseToken.length >= 16, "lease token missing");
++  assert(delivery.readerHandle?.reference === delivery.reference, "reader reference mismatch");
++  assert(typeof delivery.readerHandle?.viewerId === "string", "reader viewer missing");
++  assert(typeof delivery.readerHandle?.readCapability === "string", "reader capability missing");
++  assert(Array.isArray(delivery.lineage) && delivery.lineage.length > 0, "lineage missing");
++  const seenEvents = new Set();
++  for (let index = 0; index < delivery.lineage.length; index += 1) {
++    const item = delivery.lineage[index];
++    assert(item.revision === index + 1, "lineage must be a contiguous prefix");
++    assert(EVENT_PATTERN.test(item.eventId), "lineage eventId invalid");
++    assert(!seenEvents.has(item.eventId), "lineage eventId reused");
++    seenEvents.add(item.eventId);
++  }
++  const last = delivery.lineage.at(-1);
++  assert(last.revision === delivery.revision && last.eventId === delivery.eventId, "claim is not lineage tail");
++}
++
++function adapterId() {
++  return derivedId("adapter", "adapter", "R5C_ADAPTER::allbuddy_external_adoption", [SOURCE_SYSTEM]);
++}
++
++function adapterSnapshotFor(reference, lineageItem, observedAt) {
++  return {
++    id: derivedId(
++      "adapter-snapshot",
++      "adapter_snapshot",
++      "R5C_ADAPTER_SNAPSHOT::source_observation",
++      [reference, lineageItem.eventId, String(lineageItem.revision), observedAt],
++    ),
++    adapterId: adapterId(),
++    executionProvenance: PROVENANCE,
++    capabilities: [
++      "external.consumer-adoption.claim",
++      "external.consumer-adoption.readback",
++    ],
++    health: "healthy",
++    coverage: "unknown",
++    partialReason: "Single-host synthetic Allbuddy source; no production tenant, deployment, or business-value coverage.",
++    asOf: observedAt,
++    lastEventAt: observedAt,
++    lagMs: 0,
++    schemaVersion: "1.0.0",
++  };
++}
++
++function statusAdapterSnapshot(reference, status, observedAt, observationId) {
++  return {
++    id: derivedId(
++      "adapter-snapshot",
++      "adapter_snapshot",
++      "R5C_ADAPTER_SNAPSHOT::source_status",
++      [reference, status, observedAt, observationId],
++    ),
++    adapterId: adapterId(),
++    executionProvenance: PROVENANCE,
++    capabilities: [
++      "external.consumer-adoption.claim",
++      "external.consumer-adoption.readback",
++    ],
++    health: status === "offline" ? "offline" : "degraded",
++    coverage: status === "stale" ? "stale" : "unknown",
++    partialReason: status === "disputed"
++      ? "Conflicting source evidence requires reconciliation; no source value is selected by the adapter."
++      : `External adoption source observed ${status}; the last accepted value is retained only as stale evidence.`,
++    asOf: observedAt,
++    lastEventAt: observedAt,
++    lagMs: 0,
++    schemaVersion: "1.0.0",
++  };
++}
++
++function claimEntity(reference) {
++  return {
++    id: derivedId("entity", "claim", "R5C_ENTITY::external_adoption_claim", [reference]),
++    stableKey: `allbuddy-consumer-adoption:${reference}`,
++    onticType: "TYPE::InformationObject",
++    kind: "claim",
++    contextRoleBindingRefs: [],
++    facetRefs: [],
++    schemaVersion: "1.0.0",
++    identity: {
++      name: `Allbuddy consumer-adoption report ${reference}`,
++      aliases: [],
++      externalRefs: [{ sourceSystem: SOURCE_SYSTEM, externalId: reference }],
++    },
++    capabilityRefs: [],
++    interfaceRefs: [],
++    resourceRefs: [],
++    policyRefs: [],
++    tags: ["synthetic-local", "consumer-adoption-report"],
++    sourceRefs: [`${SOURCE_SYSTEM}:${reference}`],
++    evidenceRefs: [],
++  };
++}
++
++function eventInput(reference, lineageItem, readback, snapshot, previousRecordId) {
++  return {
++    recordType: "REC::external.consumer_adoption",
++    schemaVersion: "1.0.0",
++    source: {
++      system: SOURCE_SYSTEM,
++      adapterId: snapshot.adapterId.canonical,
++      adapterSnapshotId: snapshot.id.canonical,
++      executionProvenance: PROVENANCE,
++      externalRecordId: lineageItem.eventId,
++      sourceSequence: String(lineageItem.revision),
++    },
++    time: {
++      occurredAt: readback.observedAt,
++      recordedAt: readback.observedAt,
++      ingestedAt: readback.observedAt,
++    },
++    targetIds: [claimEntity(reference).id.canonical],
++    correlation: {},
++    authority: "source",
++    visibilityClass: "restricted",
++    payload: structuredClone(readback),
++    ...(previousRecordId === undefined ? {} : {
++      correction: {
++        correctsRecordId: previousRecordId,
++        reason: `Source revision ${lineageItem.revision} supersedes revision ${lineageItem.revision - 1}.`,
++      },
++    }),
++  };
++}
++
++function completeEventEnvelope(input) {
++  const checksum = c2.eventRecordChecksum(input.payload);
++  return {
++    id: mintEventRecordId(input.source, checksum, input.time.occurredAt),
++    ...input,
++    checksum,
++  };
++}
++
++function immutableCore(delivery) {
++  return {
++    eventId: delivery.eventId,
++    reference: delivery.reference,
++    revision: delivery.revision,
++    lineage: delivery.lineage.map(({ eventId, revision }) => ({ eventId, revision })),
++  };
++}
++
++function nextJournalSequence(directory) {
++  const journals = safeJournalFiles(directory).map((name) => readJournal(join(directory, name)));
++  return journals.reduce((maximum, journal) => Math.max(maximum, journal.journalSequence ?? 0), 0) + 1;
++}
++
++export function stageExternalAdoptionBatch(
++  journalDirectory,
++  delivery,
++  readbacks,
++) {
++  validateDelivery(delivery);
++  assert(Array.isArray(readbacks) && readbacks.length === delivery.lineage.length, "lineage readbacks incomplete");
++  for (let index = 0; index < delivery.lineage.length; index += 1) {
++    validateReadback(
++      readbacks[index],
++      delivery.reference,
++      delivery.lineage[index].revision,
++    );
++  }
++
++  const acceptedJournals = safeJournalFiles(journalDirectory)
++    .map((name) => readJournal(join(journalDirectory, name)))
++    .filter((journal) => journal.kind === "accepted_lineage"
++      && journal.core.reference === delivery.reference);
++  for (let index = 0; index < delivery.lineage.length; index += 1) {
++    const lineageItem = delivery.lineage[index];
++    const incomingEvidence = {
++      eventId: lineageItem.eventId,
++      readback: readbacks[index],
++    };
++    const incomingDigest = sha256(canonicalJson(incomingEvidence));
++    for (const journal of acceptedJournals) {
++      const existingIndex = journal.core.lineage.findIndex(
++        (item) => item.revision === lineageItem.revision,
++      );
++      if (existingIndex === -1) continue;
++      const existingEvidence = {
++        eventId: journal.core.lineage[existingIndex].eventId,
++        readback: journal.readbacks[existingIndex],
++      };
++      if (!canonicalEqual(existingEvidence, incomingEvidence)) {
++        throw new ExternalAdoptionDivergenceError([
++          sha256(canonicalJson(existingEvidence)),
++          incomingDigest,
++        ]);
++      }
++    }
++  }
++  const core = immutableCore(delivery);
++  const target = journalPath(journalDirectory, delivery.eventId);
++
++  const snapshots = [];
++  const eventInputs = [];
++  const eventEnvelopes = [];
++  let previousRecordId;
++  for (let index = 0; index < delivery.lineage.length; index += 1) {
++    const lineageItem = delivery.lineage[index];
++    const readback = readbacks[index];
++    const snapshot = adapterSnapshotFor(delivery.reference, lineageItem, readback.observedAt);
++    const input = eventInput(delivery.reference, lineageItem, readback, snapshot, previousRecordId);
++    const envelope = completeEventEnvelope(input);
++    snapshots.push(snapshot);
++    eventInputs.push(input);
++    eventEnvelopes.push(envelope);
++    previousRecordId = envelope.id.canonical;
++  }
++
++  const staged = {
++    version: JOURNAL_VERSION,
++    kind: "accepted_lineage",
++    journalSequence: nextJournalSequence(journalDirectory),
++    core,
++    readbacks: structuredClone(readbacks),
++    adapterSnapshots: snapshots,
++    claimEntity: claimEntity(delivery.reference),
++    eventInputs,
++    eventEnvelopes,
++    semantic: null,
++    transport: { phase: "staged", ackConfirmed: false },
++  };
++
++  if (existsSync(target)) {
++    const existing = readJournal(target);
++    const comparableExisting = {
++      core: existing.core,
++      readbacks: existing.readbacks,
++      adapterSnapshots: existing.adapterSnapshots,
++      claimEntity: existing.claimEntity,
++      eventInputs: existing.eventInputs,
++      eventEnvelopes: existing.eventEnvelopes,
++    };
++    const comparableStaged = {
++      core: staged.core,
++      readbacks: staged.readbacks,
++      adapterSnapshots: staged.adapterSnapshots,
++      claimEntity: staged.claimEntity,
++      eventInputs: staged.eventInputs,
++      eventEnvelopes: staged.eventEnvelopes,
++    };
++    assert(canonicalEqual(comparableExisting, comparableStaged), "divergent content for staged eventId");
++    return existing;
++  }
++
++  writeAtomicJson(target, staged, { exclusive: true });
++  return staged;
++}
++
++export function stageExternalAdoptionStatusObservation(
++  journalDirectory,
++  {
++    reference,
++    status,
++    observedAt,
++    evidenceDigests = [],
++  },
++) {
++  assert(REFERENCE_PATTERN.test(reference), "status observation reference invalid");
++  assert(ALLOWED_OBSERVATION_STATES.has(status), "status observation state invalid");
++  assert(!Number.isNaN(Date.parse(observedAt)), "status observation observedAt invalid");
++  assert(Array.isArray(evidenceDigests), "status observation evidenceDigests invalid");
++  for (const digest of evidenceDigests) {
++    assert(/^[0-9a-f]{64}$/.test(digest), "status observation evidence digest invalid");
++  }
++  const observationId = `evt_${sha256(canonicalJson({
++    reference,
++    status,
++    observedAt,
++    evidenceDigests,
++  })).slice(0, 32)}`;
++  const target = journalPath(journalDirectory, observationId);
++  const snapshot = statusAdapterSnapshot(reference, status, observedAt, observationId);
++  const core = {
++    eventId: observationId,
++    reference,
++    status,
++    observedAt,
++    evidenceDigests: [...evidenceDigests],
++  };
++  const staged = {
++    version: JOURNAL_VERSION,
++    kind: "status_observation",
++    journalSequence: nextJournalSequence(journalDirectory),
++    core,
++    adapterSnapshots: [snapshot],
++    semantic: null,
++    transport: { phase: "staged", ackConfirmed: false },
++  };
++  if (status === "disputed") {
++    const input = {
++      recordType: "REC::external.consumer_adoption.reconciliation",
++      schemaVersion: "1.0.0",
++      source: {
++        system: `${SOURCE_SYSTEM}:reconciliation`,
++        adapterId: snapshot.adapterId.canonical,
++        adapterSnapshotId: snapshot.id.canonical,
++        executionProvenance: PROVENANCE,
++        externalRecordId: observationId,
++        sourceSequence: observedAt,
++      },
++      time: {
++        occurredAt: observedAt,
++        recordedAt: observedAt,
++        ingestedAt: observedAt,
++      },
++      targetIds: [claimEntity(reference).id.canonical],
++      correlation: {},
++      authority: "reconciliation",
++      visibilityClass: "restricted",
++      payload: {
++        reference,
++        status,
++        evidenceDigests: [...evidenceDigests],
++      },
++    };
++    staged.reconciliationInput = input;
++    staged.reconciliationEnvelope = completeEventEnvelope(input);
++  }
++  if (existsSync(target)) {
++    const existing = readJournal(target);
++    assert(canonicalEqual(
++      {
++        core: existing.core,
++        adapterSnapshots: existing.adapterSnapshots,
++        reconciliationInput: existing.reconciliationInput,
++        reconciliationEnvelope: existing.reconciliationEnvelope,
++      },
++      {
++        core: staged.core,
++        adapterSnapshots: staged.adapterSnapshots,
++        reconciliationInput: staged.reconciliationInput,
++        reconciliationEnvelope: staged.reconciliationEnvelope,
++      },
++    ), "divergent status observation");
++    return existing;
++  }
++  writeAtomicJson(target, staged, { exclusive: true });
++  return staged;
++}
++
++function commitAdapterSnapshot(store, snapshot) {
++  const existing = store.list("adapterSnapshots").find((item) => item.id.canonical === snapshot.id.canonical);
++  if (existing !== undefined) {
++    assert(canonicalEqual(existing, snapshot), "adapter snapshot replay diverged");
++    return;
++  }
++  const next = [...store.list("adapterSnapshots"), snapshot];
++  assert(c2.validateAdapterSnapshotStore({ ...store.snapshot(), adapterSnapshots: next }), "adapter snapshot store invalid");
++  store.commitCollection("adapterSnapshots", next);
++}
++
++function commitClaimEntity(store, entity) {
++  const existing = store.list("entities").find((item) => item.id.canonical === entity.id.canonical);
++  if (existing !== undefined) {
++    assert(canonicalEqual(existing, entity), "claim entity replay diverged");
++    return;
++  }
++  const next = [...store.list("entities"), entity];
++  assert(c1a.validateAgencyStore({ ...store.snapshot(), entities: next }), "claim entity store invalid");
++  store.commitCollection("entities", next);
++}
++
++function ingestExactEnvelope(store, input, expectedEnvelope) {
++  const result = ingestEventRecord(store, input);
++  assert(result.outcome === "ingested" || result.outcome === "duplicate", `EventRecord ingest failed: ${result.reason ?? "unknown"}`);
++  assert(canonicalEqual(result.record, expectedEnvelope), "EventRecord replay bytes diverged");
++  return result.record;
++}
++
++function projectionId(reference) {
++  return derivedId("world-projection", "claim_projection", "R5C_PROJECTION::claim_current", [reference]);
++}
++
++function sceneDeltaId(reference, eventId) {
++  return derivedId("scene-delta", "scene_delta", "R5C_DELTA::claim_revision", [reference, eventId]);
++}
++
++function sourceRef(eventRecord) {
++  return {
++    adapterSnapshotId: eventRecord.source.adapterSnapshotId,
++    executionProvenance: eventRecord.source.executionProvenance,
++    sourceSystem: eventRecord.source.system,
++    externalRecordId: eventRecord.source.externalRecordId,
++    checksum: eventRecord.checksum,
++    capturedAt: eventRecord.time.recordedAt,
++  };
++}
++
++function assertProvenanceJoin(snapshot, eventRecord, ref) {
++  assert(eventRecord.source.adapterSnapshotId === snapshot.id.canonical, "event snapshot join mismatch");
++  assert(eventRecord.source.adapterId === snapshot.adapterId.canonical, "event adapter join mismatch");
++  assert(eventRecord.source.executionProvenance === snapshot.executionProvenance, "event provenance mismatch");
++  assert(ref.adapterSnapshotId === snapshot.id.canonical, "SourceRef snapshot mismatch");
++  assert(ref.executionProvenance === eventRecord.source.executionProvenance, "SourceRef provenance mismatch");
++  assert(ref.sourceSystem === eventRecord.source.system, "SourceRef sourceSystem mismatch");
++  assert(ref.externalRecordId === eventRecord.source.externalRecordId, "SourceRef externalRecordId mismatch");
++  assert(ref.checksum === eventRecord.checksum, "SourceRef checksum mismatch");
++}
++
++function buildProjection(journal, eventRecord, awirRevision) {
++  const current = journal.readbacks.at(-1);
++  const ref = sourceRef(eventRecord);
++  const snapshot = journal.adapterSnapshots.at(-1);
++  assertProvenanceJoin(snapshot, eventRecord, ref);
++  return {
++    id: projectionId(journal.core.reference),
++    archetypeRef: "ARCHETYPE::external-consumer-adoption-claim",
++    semanticAuthority: "authoritative",
++    binding: {
++      semanticEntityIds: [journal.claimEntity.id.canonical],
++      semanticRelationIds: [],
++      occurrenceIds: [],
++      eventRecordIds: [eventRecord.id.canonical],
++      commandIds: [],
++      compilerRuleIds: [`${COMPILER_RULE}@${COMPILER_VERSION}`],
++      compilerVersion: COMPILER_VERSION,
++      sourceRefs: [ref],
++      assetPackVersion: "1.0.0",
++      projectionVersion: "1.0.0",
++      knownSemanticLoss: [
++        "Synthetic automatic-adoption policy; not human/customer adoption.",
++        "Recovery authority is bounded to the local 24-hour consumer session.",
++      ],
++      awirRevision,
++    },
++    humanNarrative: `Synthetic local Allbuddy source reports ${current.state} for an opaque consumer-adoption claim at revision ${current.revision}.`,
++    stateModifiers: [
++      { channel: "consumer_adoption_state", value: current.state, sourceRef: eventRecord.id.canonical },
++      { channel: "source_revision", value: current.revision, sourceRef: eventRecord.id.canonical },
++      { channel: "epistemic", value: "source_reported", sourceRef: eventRecord.id.canonical },
++      { channel: "sync", value: "in_sync", sourceRef: eventRecord.id.canonical },
++    ],
++    compilerRuleVersion: COMPILER_VERSION,
++    awirRevision,
++  };
++}
++
++function buildStatusProjection(journal, existingProjection, reconciliationRecord, awirRevision) {
++  const status = journal.core.status;
++  const snapshot = journal.adapterSnapshots[0];
++  const statusRef = reconciliationRecord === undefined
++    ? {
++      adapterSnapshotId: snapshot.id.canonical,
++      executionProvenance: snapshot.executionProvenance,
++      sourceSystem: SOURCE_SYSTEM,
++      externalRecordId: journal.core.eventId,
++      checksum: sha256(canonicalJson(journal.core)),
++      capturedAt: journal.core.observedAt,
++    }
++    : sourceRef(reconciliationRecord);
++  if (reconciliationRecord !== undefined) {
++    assertProvenanceJoin(snapshot, reconciliationRecord, statusRef);
++  }
++  const epistemic = status === "disputed" ? "disputed" : "unknown";
++  const sync = status === "disputed" ? "reconciliation_required" : status;
++  const statusSourceRef = reconciliationRecord?.id.canonical ?? snapshot.id.canonical;
++  const currentState = existingProjection.stateModifiers.find(
++    (item) => item.channel === "consumer_adoption_state",
++  )?.value;
++  const currentRevision = existingProjection.stateModifiers.find(
++    (item) => item.channel === "source_revision",
++  )?.value;
++  assert(currentState !== undefined && Number.isInteger(currentRevision), "status projection lacks prior source state");
++  return {
++    ...structuredClone(existingProjection),
++    binding: {
++      ...structuredClone(existingProjection.binding),
++      eventRecordIds: [
++        ...new Set([
++          ...existingProjection.binding.eventRecordIds,
++          ...(reconciliationRecord === undefined ? [] : [reconciliationRecord.id.canonical]),
++        ]),
++      ],
++      sourceRefs: [
++        ...existingProjection.binding.sourceRefs,
++        statusRef,
++      ],
++      knownSemanticLoss: [
++        ...existingProjection.binding.knownSemanticLoss,
++        `Source status ${status} observed at ${journal.core.observedAt}; the prior source value is not treated as current.`,
++      ],
++      awirRevision,
++    },
++    humanNarrative: status === "disputed"
++      ? `Conflicting evidence disputes the synthetic local Allbuddy adoption report at source revision ${currentRevision}; reconciliation is required.`
++      : `The synthetic local Allbuddy adoption source is ${status}; its last report (${currentState}, revision ${currentRevision}) is retained only as non-current evidence.`,
++    stateModifiers: [
++      ...existingProjection.stateModifiers.filter(
++        (item) => item.channel !== "epistemic" && item.channel !== "sync",
++      ),
++      { channel: "epistemic", value: epistemic, sourceRef: statusSourceRef },
++      { channel: "sync", value: sync, sourceRef: statusSourceRef },
++    ],
++    awirRevision,
++  };
++}
++
++function advanceCounterTo(store, kind, viewerRef, expectedPre, expectedPost) {
++  const current = kind === "awir"
++    ? store.currentAwirRevision()
++    : store.currentSceneRevision(viewerRef);
++  if (current === expectedPost) return;
++  assert(current === expectedPre, `${kind} counter replay mismatch`);
++  const advanced = kind === "awir"
++    ? store.nextAwirRevision()
++    : store.nextSceneRevision(viewerRef).nextRevision;
++  assert(advanced === expectedPost, `${kind} counter advance mismatch`);
++}
++
++function reconcileAcceptedJournal(store, journal, path, viewerRef) {
++  for (const snapshot of journal.adapterSnapshots) commitAdapterSnapshot(store, snapshot);
++  commitClaimEntity(store, journal.claimEntity);
++  for (let index = 0; index < journal.eventInputs.length; index += 1) {
++    ingestExactEnvelope(store, journal.eventInputs[index], journal.eventEnvelopes[index]);
++  }
++  const currentEvent = store.list("eventRecords").find(
++    (record) => record.id.canonical === journal.eventEnvelopes.at(-1).id.canonical,
++  );
++  assert(currentEvent !== undefined, "current EventRecord missing after ingest");
++
++  const existingProjection = store.list("worldProjections").find(
++    (projection) => projection.id.canonical === projectionId(journal.core.reference).canonical,
++  );
++  const existingSourceRevision = existingProjection?.stateModifiers?.find(
++    (item) => item.channel === "source_revision",
++  )?.value;
++  const desiredEventId = currentEvent.id.canonical;
++  const alreadyCurrent = existingProjection?.binding.eventRecordIds[0] === desiredEventId
++    && existingProjection.stateModifiers?.some(
++      (item) => item.channel === "sync" && item.value === "in_sync",
++    );
++  const supersededByLaterJournal = (
++    Number.isInteger(existingSourceRevision)
++    && existingSourceRevision > journal.core.revision
++  ) || (
++    journal.semantic !== null
++    && existingProjection?.awirRevision > journal.semantic.awirPost
++  );
++
++  if (supersededByLaterJournal) {
++    assert(journal.semantic !== null, "superseded journal semantic postcondition missing");
++    const historicalProjection = buildProjection(
++      journal,
++      currentEvent,
++      journal.semantic.awirPost,
++    );
++    const historicalDelta = {
++      id: sceneDeltaId(journal.core.reference, journal.core.eventId),
++      viewerRef,
++      baseRevision: journal.semantic.scenePre,
++      nextRevision: journal.semantic.scenePost,
++      created: journal.semantic.deltaKind === "created" ? [historicalProjection] : [],
++      updated: journal.semantic.deltaKind === "updated"
++        ? [historicalProjection.id.canonical]
++        : [],
++      removed: [],
++      emittedAt: currentEvent.time.recordedAt,
++    };
++    const existingHistoricalDelta = store.list("sceneDeltas").find(
++      (item) => item.id.canonical === historicalDelta.id.canonical,
++    );
++    if (existingHistoricalDelta === undefined) {
++      assert(c4.validateSceneDelta(historicalDelta), "historical SceneDelta invalid");
++      const nextDeltas = [...store.list("sceneDeltas"), historicalDelta];
++      assert(
++        c4.validateSceneDeltaStore({ ...store.snapshot(), sceneDeltas: nextDeltas }),
++        "historical SceneDelta store invalid",
++      );
++      store.commitCollection("sceneDeltas", nextDeltas);
++    } else {
++      assert(canonicalEqual(existingHistoricalDelta, historicalDelta), "historical SceneDelta replay diverged");
++    }
++    journal.transport.phase = journal.transport.ackConfirmed
++      ? "ack_confirmed"
++      : "ack_pending";
++    writeAtomicJson(path, journal);
++    return {
++      eventId: journal.core.eventId,
++      reference: journal.core.reference,
++      revision: journal.core.revision,
++      projectionId: existingProjection.id.canonical,
++      ackReady: true,
++      superseded: true,
++    };
++  }
++
++  if (journal.semantic === null) {
++    const awirPre = store.currentAwirRevision();
++    const scenePre = store.currentSceneRevision(viewerRef);
++    journal.semantic = {
++      awirPre,
++      awirPost: awirPre + 1,
++      scenePre,
++      scenePost: scenePre + 1,
++      deltaKind: existingProjection === undefined ? "created" : "updated",
++      projectionId: projectionId(journal.core.reference).canonical,
++      deltaId: sceneDeltaId(journal.core.reference, journal.core.eventId).canonical,
++    };
++    writeAtomicJson(path, journal);
++  }
++
++  advanceCounterTo(store, "awir", viewerRef, journal.semantic.awirPre, journal.semantic.awirPost);
++  const projection = buildProjection(journal, currentEvent, journal.semantic.awirPost);
++  if (!alreadyCurrent) {
++    assert(c4.validateWorldProjection(projection), "external adoption projection invalid");
++    const nextProjections = [
++      ...store.list("worldProjections").filter(
++        (item) => item.id.canonical !== projection.id.canonical,
++      ),
++      projection,
++    ];
++    assert(
++      c4.validateWorldProjectionStore({ ...store.snapshot(), worldProjections: nextProjections }),
++      "external adoption projection store invalid",
++    );
++    store.commitCollection("worldProjections", nextProjections);
++  } else {
++    assert(canonicalEqual(existingProjection, projection), "current projection replay diverged");
++  }
++
++  advanceCounterTo(store, "scene", viewerRef, journal.semantic.scenePre, journal.semantic.scenePost);
++  const delta = {
++    id: sceneDeltaId(journal.core.reference, journal.core.eventId),
++    viewerRef,
++    baseRevision: journal.semantic.scenePre,
++    nextRevision: journal.semantic.scenePost,
++    created: journal.semantic.deltaKind === "created" ? [projection] : [],
++    updated: journal.semantic.deltaKind === "updated" ? [projection.id.canonical] : [],
++    removed: [],
++    emittedAt: currentEvent.time.recordedAt,
++  };
++  const existingDelta = store.list("sceneDeltas").find(
++    (item) => item.id.canonical === delta.id.canonical,
++  );
++  if (existingDelta === undefined) {
++    assert(c4.validateSceneDelta(delta), "external adoption SceneDelta invalid");
++    const nextDeltas = [...store.list("sceneDeltas"), delta];
++    assert(
++      c4.validateSceneDeltaStore({ ...store.snapshot(), sceneDeltas: nextDeltas }),
++      "external adoption SceneDelta store invalid",
++    );
++    store.commitCollection("sceneDeltas", nextDeltas);
++  } else {
++    assert(canonicalEqual(existingDelta, delta), "SceneDelta replay diverged");
++  }
++
++  assert(store.currentAwirRevision() === journal.semantic.awirPost, "ack-ready AWIR counter missing");
++  assert(store.currentSceneRevision(viewerRef) === journal.semantic.scenePost, "ack-ready scene counter missing");
++  assert(store.list("sceneDeltas").some(
++    (item) => item.id.canonical === journal.semantic.deltaId,
++  ), "ack-ready SceneDelta missing");
++  journal.transport.phase = journal.transport.ackConfirmed
++    ? "ack_confirmed"
++    : "ack_pending";
++  writeAtomicJson(path, journal);
++  return {
++    eventId: journal.core.eventId,
++    reference: journal.core.reference,
++    revision: journal.core.revision,
++    projectionId: journal.semantic.projectionId,
++    ackReady: true,
++  };
++}
++
++function reconcileStatusJournal(store, journal, path, viewerRef) {
++  const snapshot = journal.adapterSnapshots[0];
++  commitAdapterSnapshot(store, snapshot);
++  const existingProjection = store.list("worldProjections").find(
++    (projection) => projection.id.canonical === projectionId(journal.core.reference).canonical,
++  );
++  if (existingProjection === undefined) {
++    journal.transport.phase = "observed_no_projection";
++    writeAtomicJson(path, journal);
++    return {
++      eventId: journal.core.eventId,
++      reference: journal.core.reference,
++      status: journal.core.status,
++      projectionId: null,
++      ackReady: false,
++      noProjection: true,
++    };
++  }
++
++  let reconciliationRecord;
++  if (journal.core.status === "disputed") {
++    reconciliationRecord = ingestExactEnvelope(
++      store,
++      journal.reconciliationInput,
++      journal.reconciliationEnvelope,
++    );
++  }
++  const statusSourceRef = reconciliationRecord?.id.canonical ?? snapshot.id.canonical;
++  const alreadyCurrent = existingProjection.stateModifiers.some(
++    (item) => item.channel === "epistemic"
++      && item.sourceRef === statusSourceRef,
++  );
++  const supersededByLaterJournal = journal.semantic !== null
++    && existingProjection.awirRevision > journal.semantic.awirPost;
++  if (supersededByLaterJournal) {
++    journal.transport.phase = "observed";
++    writeAtomicJson(path, journal);
++    return {
++      eventId: journal.core.eventId,
++      reference: journal.core.reference,
++      status: journal.core.status,
++      projectionId: existingProjection.id.canonical,
++      ackReady: false,
++      superseded: true,
++    };
++  }
++
++  if (journal.semantic === null) {
++    const awirPre = store.currentAwirRevision();
++    const scenePre = store.currentSceneRevision(viewerRef);
++    journal.semantic = {
++      awirPre,
++      awirPost: awirPre + 1,
++      scenePre,
++      scenePost: scenePre + 1,
++      deltaKind: "updated",
++      projectionId: existingProjection.id.canonical,
++      deltaId: sceneDeltaId(journal.core.reference, journal.core.eventId).canonical,
++    };
++    writeAtomicJson(path, journal);
++  }
++
++  if (!alreadyCurrent) {
++    advanceCounterTo(store, "awir", viewerRef, journal.semantic.awirPre, journal.semantic.awirPost);
++    const projection = buildStatusProjection(
++      journal,
++      existingProjection,
++      reconciliationRecord,
++      journal.semantic.awirPost,
++    );
++    assert(c4.validateWorldProjection(projection), "external adoption status projection invalid");
++    const nextProjections = [
++      ...store.list("worldProjections").filter(
++        (item) => item.id.canonical !== projection.id.canonical,
++      ),
++      projection,
++    ];
++    assert(
++      c4.validateWorldProjectionStore({ ...store.snapshot(), worldProjections: nextProjections }),
++      "external adoption status projection store invalid",
++    );
++    store.commitCollection("worldProjections", nextProjections);
++
++    advanceCounterTo(store, "scene", viewerRef, journal.semantic.scenePre, journal.semantic.scenePost);
++    const delta = {
++      id: sceneDeltaId(journal.core.reference, journal.core.eventId),
++      viewerRef,
++      baseRevision: journal.semantic.scenePre,
++      nextRevision: journal.semantic.scenePost,
++      created: [],
++      updated: [projection.id.canonical],
++      removed: [],
++      emittedAt: journal.core.observedAt,
++    };
++    const existingDelta = store.list("sceneDeltas").find(
++      (item) => item.id.canonical === delta.id.canonical,
++    );
++    if (existingDelta === undefined) {
++      assert(c4.validateSceneDelta(delta), "external adoption status SceneDelta invalid");
++      const nextDeltas = [...store.list("sceneDeltas"), delta];
++      assert(
++        c4.validateSceneDeltaStore({ ...store.snapshot(), sceneDeltas: nextDeltas }),
++        "external adoption status SceneDelta store invalid",
++      );
++      store.commitCollection("sceneDeltas", nextDeltas);
++    } else {
++      assert(canonicalEqual(existingDelta, delta), "status SceneDelta replay diverged");
++    }
++  }
++
++  journal.transport.phase = "observed";
++  writeAtomicJson(path, journal);
++  return {
++    eventId: journal.core.eventId,
++    reference: journal.core.reference,
++    status: journal.core.status,
++    projectionId: journal.semantic.projectionId,
++    ackReady: false,
++  };
++}
++
++function assertJournalRevisionIdentity(journals) {
++  const acceptedByRevision = new Map();
++  for (const { journal } of journals) {
++    if (journal.kind !== "accepted_lineage") continue;
++    assert(
++      Array.isArray(journal.core?.lineage)
++        && Array.isArray(journal.readbacks)
++        && journal.core.lineage.length === journal.readbacks.length,
++      "accepted journal lineage is incomplete",
++    );
++    for (let index = 0; index < journal.core.lineage.length; index += 1) {
++      const item = journal.core.lineage[index];
++      const key = `${journal.core.reference}\0${item.revision}`;
++      const evidence = {
++        eventId: item.eventId,
++        readback: journal.readbacks[index],
++      };
++      const existing = acceptedByRevision.get(key);
++      if (existing !== undefined && !canonicalEqual(existing, evidence)) {
++        throw new ExternalAdoptionDivergenceError([
++          sha256(canonicalJson(existing)),
++          sha256(canonicalJson(evidence)),
++        ]);
++      }
++      acceptedByRevision.set(key, evidence);
++    }
++  }
++}
++
++export function reconcileExternalAdoptionJournal(
++  store,
++  journalDirectory,
++  { viewerRef = EXTERNAL_ADOPTION_VIEWER } = {},
++) {
++  assert(
++    viewerRef === EXTERNAL_ADOPTION_VIEWER,
++    "viewerRef is outside the durable R5C source-viewer authorization mapping",
++  );
++  const journals = safeJournalFiles(journalDirectory)
++    .map((name) => ({ path: join(journalDirectory, name), journal: readJournal(join(journalDirectory, name)) }))
++    .sort((left, right) => (
++      left.journal.journalSequence - right.journal.journalSequence
++      || left.journal.core.eventId.localeCompare(right.journal.core.eventId)
++    ));
++  assertJournalRevisionIdentity(journals);
++  return journals.map(({ journal, path }) => {
++    if (journal.kind === "accepted_lineage") {
++      return reconcileAcceptedJournal(store, journal, path, viewerRef);
++    }
++    if (journal.kind === "status_observation") {
++      return reconcileStatusJournal(store, journal, path, viewerRef);
++    }
++    throw new Error("unsupported journal observation");
++  });
++}
++
++function externalUrl(baseUrl, path) {
++  return new URL(path, baseUrl).toString();
++}
++
++async function postJson(fetchImpl, url, { body, bearer }) {
++  const response = await fetchImpl(url, {
++    method: "POST",
++    headers: {
++      "content-type": "application/json",
++      ...(bearer === undefined ? {} : { authorization: `Bearer ${bearer}` }),
++    },
++    body: JSON.stringify(body),
++  });
++  return response;
++}
++
++function externalAdoptionReferences(store) {
++  return store.list("worldProjections")
++    .filter((projection) => projection.archetypeRef === "ARCHETYPE::external-consumer-adoption-claim")
++    .map((projection) => store.list("entities").find(
++      (entity) => entity.id.canonical === projection.binding.semanticEntityIds[0],
++    )?.identity.externalRefs.find(
++      (ref) => ref.sourceSystem === SOURCE_SYSTEM,
++    )?.externalId)
++    .filter((reference) => REFERENCE_PATTERN.test(reference));
++}
++
++function observeSourceStatus(store, journalDirectory, viewerRef, observedAt, status) {
++  const references = [...new Set(externalAdoptionReferences(store))];
++  for (const reference of references) {
++    stageExternalAdoptionStatusObservation(journalDirectory, {
++      reference,
++      status,
++      observedAt,
++    });
++  }
++  if (references.length > 0) {
++    reconcileExternalAdoptionJournal(store, journalDirectory, { viewerRef });
++  }
++  return references.length;
++}
++
++function observeDeliveryStatusIfKnown(
++  store,
++  journalDirectory,
++  viewerRef,
++  delivery,
++  observedAt,
++  status,
++  evidenceDigests = [],
++) {
++  if (!externalAdoptionReferences(store).includes(delivery.reference)) {
++    return false;
++  }
++  stageExternalAdoptionStatusObservation(journalDirectory, {
++    reference: delivery.reference,
++    status,
++    observedAt,
++    evidenceDigests,
++  });
++  reconcileExternalAdoptionJournal(store, journalDirectory, { viewerRef });
++  return true;
++}
++
++export async function runExternalAdoptionPollCycle({
++  store,
++  journalDirectory,
++  baseUrl,
++  worldClaimCapability,
++  worldId,
++  leaseMs = 10_000,
++  fetchImpl = fetch,
++  viewerRef = EXTERNAL_ADOPTION_VIEWER,
++  now = () => new Date().toISOString(),
++}) {
++  assert(
++    viewerRef === EXTERNAL_ADOPTION_VIEWER,
++    "viewerRef is outside the durable R5C source-viewer authorization mapping",
++  );
++  reconcileExternalAdoptionJournal(store, journalDirectory, { viewerRef });
++  let claimResponse;
++  try {
++    claimResponse = await postJson(
++      fetchImpl,
++      externalUrl(baseUrl, "/api/external/adoption-outbox/claim"),
++      {
++        bearer: worldClaimCapability,
++        body: { worldId, leaseMs },
++      },
++    );
++  } catch {
++    return {
++      outcome: "source_unavailable",
++      status: null,
++      processed: [],
++      observations: observeSourceStatus(
++        store,
++        journalDirectory,
++        viewerRef,
++        now(),
++        "offline",
++      ),
++    };
++  }
++  if (!claimResponse.ok) {
++    return {
++      outcome: "source_unavailable",
++      status: claimResponse.status,
++      processed: [],
++      observations: observeSourceStatus(
++        store,
++        journalDirectory,
++        viewerRef,
++        now(),
++        "offline",
++      ),
++    };
++  }
++  let claimBody;
++  try {
++    claimBody = await claimResponse.json();
++    assert(Array.isArray(claimBody.deliveries), "claim response deliveries missing");
++  } catch {
++    return {
++      outcome: "invalid_source_response",
++      status: claimResponse.status,
++      processed: [],
++      observations: observeSourceStatus(
++        store,
++        journalDirectory,
++        viewerRef,
++        now(),
++        "stale",
++      ),
++    };
++  }
++  const processed = [];
++
++  for (const delivery of claimBody.deliveries) {
++    try {
++      validateDelivery(delivery);
++      assert(
++        delivery.readerHandle.viewerId === EXTERNAL_ADOPTION_SOURCE_VIEWER,
++        "delivery source viewer is not authorized for the R5C projection",
++      );
++      assert(
++        viewerRef === EXTERNAL_ADOPTION_VIEWER,
++        "target viewer is outside the R5C source-viewer authorization mapping",
++      );
++    } catch {
++      observeSourceStatus(store, journalDirectory, viewerRef, now(), "stale");
++      continue;
++    }
++    const readbacks = [];
++    let readable = true;
++    let malformed = false;
++    for (const lineageItem of delivery.lineage) {
++      let readResponse;
++      try {
++        readResponse = await postJson(
++          fetchImpl,
++          externalUrl(baseUrl, "/api/external/adoption-readback"),
++          {
++            body: {
++              ...delivery.readerHandle,
++              revision: lineageItem.revision,
++            },
++          },
++        );
++      } catch {
++        readable = false;
++        break;
++      }
++      if (!readResponse.ok) {
++        readable = false;
++        break;
++      }
++      try {
++        readbacks.push(await readResponse.json());
++      } catch {
++        malformed = true;
++        break;
++      }
++    }
++    if (!readable || malformed) {
++      observeDeliveryStatusIfKnown(
++        store,
++        journalDirectory,
++        viewerRef,
++        delivery,
++        now(),
++        malformed ? "stale" : "offline",
++      );
++      continue;
++    }
++
++    try {
++      stageExternalAdoptionBatch(journalDirectory, delivery, readbacks);
++    } catch (error) {
++      const disputed = error instanceof ExternalAdoptionDivergenceError;
++      const evidenceDigests = disputed ? error.evidenceDigests : [];
++      observeDeliveryStatusIfKnown(
++        store,
++        journalDirectory,
++        viewerRef,
++        delivery,
++        now(),
++        disputed ? "disputed" : "stale",
++        evidenceDigests,
++      );
++      continue;
++    }
++    const reconciled = reconcileExternalAdoptionJournal(store, journalDirectory, { viewerRef })
++      .find((item) => item.eventId === delivery.eventId);
++    assert(reconciled?.ackReady === true, "semantic postcondition not ack-ready");
++    const ackResponse = await postJson(
++      fetchImpl,
++      externalUrl(baseUrl, "/api/external/adoption-outbox/ack"),
++      {
++        bearer: worldClaimCapability,
++        body: {
++          worldId,
++          reference: delivery.reference,
++          eventId: delivery.eventId,
++          leaseToken: delivery.leaseToken,
++        },
++      },
++    );
++    if (!ackResponse.ok) continue;
++    let ackBody;
++    try {
++      ackBody = await ackResponse.json();
++    } catch {
++      continue;
++    }
++    if (ackBody?.acknowledged !== true) continue;
++    const path = journalPath(journalDirectory, delivery.eventId);
++    const journal = readJournal(path);
++    journal.transport = { phase: "ack_confirmed", ackConfirmed: true };
++    writeAtomicJson(path, journal);
++    processed.push(reconciled);
++  }
++  return { outcome: "processed", processed };
++}
+diff --git a/packages/semantic-kernel/test/external-adoption.test.mjs b/packages/semantic-kernel/test/external-adoption.test.mjs
+new file mode 100644
+index 0000000..f786351
+--- /dev/null
++++ b/packages/semantic-kernel/test/external-adoption.test.mjs
+@@ -0,0 +1,643 @@
++import assert from "node:assert/strict";
++import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
++import { tmpdir } from "node:os";
++import { join } from "node:path";
++import test from "node:test";
++
++import {
++  EXTERNAL_ADOPTION_SOURCE_VIEWER,
++  reconcileExternalAdoptionJournal,
++  runExternalAdoptionPollCycle,
++  stageExternalAdoptionBatch,
++  stageExternalAdoptionStatusObservation,
++} from "../src/external-adoption.mjs";
++import { createMemoryStore } from "../src/store.mjs";
++
++const REFERENCE = "car_11111111-1111-1111-1111-111111111111";
++const READER = {
++  reference: REFERENCE,
++  viewerId: EXTERNAL_ADOPTION_SOURCE_VIEWER,
++  readCapability: "reader-capability-private-test-only",
++};
++
++function readback(revision, state, observedAt) {
++  return {
++    reference: REFERENCE,
++    issuer: "allbuddy:consumer-adoption",
++    policy: "local-recoverable-outbox-v3",
++    state,
++    revision,
++    observedAt,
++  };
++}
++
++function delivery(revision, lineage) {
++  return {
++    eventId: lineage.at(-1).eventId,
++    reference: REFERENCE,
++    revision,
++    leaseToken: `lease-token-private-${revision}-000000`,
++    lineage,
++    readerHandle: READER,
++  };
++}
++
++const REV1 = { eventId: "evt_11111111111111111111111111111111", revision: 1 };
++const REV1_ALT = { eventId: "evt_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", revision: 1 };
++const REV2 = { eventId: "evt_22222222222222222222222222222222", revision: 2 };
++const RB1 = readback(1, "adopted", "2026-07-25T07:00:00.000Z");
++const RB2 = readback(2, "revoked", "2026-07-25T07:01:00.000Z");
++
++test("stages exact lineage and rebuilds the same claim projection after restart", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-journal-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++
++  const firstStore = createMemoryStore();
++  const [first] = reconcileExternalAdoptionJournal(firstStore, journal);
++  assert.equal(first.ackReady, true);
++  assert.equal(firstStore.list("eventRecords").length, 1);
++  assert.equal(firstStore.list("entities").length, 1);
++  assert.equal(firstStore.list("worldProjections").length, 1);
++  assert.equal(firstStore.list("sceneDeltas").length, 1);
++  assert.equal(
++    firstStore.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "consumer_adoption_state",
++    ).value,
++    "adopted",
++  );
++
++  const restartedStore = createMemoryStore();
++  const [replayed] = reconcileExternalAdoptionJournal(restartedStore, journal);
++  assert.equal(replayed.projectionId, first.projectionId);
++  assert.deepEqual(restartedStore.snapshot(), firstStore.snapshot());
++  assert.equal(restartedStore.currentAwirRevision(), 1);
++  assert.equal(restartedStore.currentSceneRevision("VIEWER::r5c-external-adoption"), 1);
++});
++
++test("backfills rev1 before rev2 and replaces one stable projection", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-revision-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++
++  stageExternalAdoptionBatch(journal, delivery(2, [REV1, REV2]), [RB1, RB2]);
++  reconcileExternalAdoptionJournal(store, journal);
++  assert.equal(store.list("eventRecords").length, 2);
++  assert.equal(store.list("worldProjections").length, 1);
++  assert.equal(store.list("sceneDeltas").length, 2);
++  assert.equal(store.list("worldProjections")[0].binding.eventRecordIds.length, 1);
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "consumer_adoption_state",
++    ).value,
++    "revoked",
++  );
++
++  const restarted = createMemoryStore();
++  reconcileExternalAdoptionJournal(restarted, journal);
++  assert.equal(restarted.list("eventRecords").length, 2);
++  assert.equal(restarted.list("worldProjections").length, 1);
++  assert.equal(restarted.list("sceneDeltas").length, 2);
++  assert.equal(restarted.currentAwirRevision(), 2);
++  assert.equal(restarted.currentSceneRevision("VIEWER::r5c-external-adoption"), 2);
++
++  const exactReplay = reconcileExternalAdoptionJournal(store, journal);
++  assert.equal(exactReplay[0].superseded, true);
++  assert.equal(store.currentAwirRevision(), 2);
++  assert.equal(store.currentSceneRevision("VIEWER::r5c-external-adoption"), 2);
++  assert.equal(store.list("sceneDeltas").length, 2);
++
++  store.commitCollection("sceneDeltas", []);
++  const repairedCutPoint = reconcileExternalAdoptionJournal(store, journal);
++  assert.equal(repairedCutPoint.at(-1).ackReady, true);
++  assert.equal(store.list("sceneDeltas").length, 2);
++  assert.equal(store.currentAwirRevision(), 2);
++  assert.equal(store.currentSceneRevision("VIEWER::r5c-external-adoption"), 2);
++});
++
++test("rejects divergent immutable evidence under the same source event id", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-divergence-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  assert.throws(
++    () => stageExternalAdoptionBatch(
++      journal,
++      delivery(1, [REV1]),
++      [readback(1, "revoked", RB1.observedAt)],
++    ),
++    /divergent source identity/,
++  );
++});
++
++test("accepts lease rotation without changing durable semantic bytes", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-lease-rotation-"));
++  const first = stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  const rotated = {
++    ...delivery(1, [REV1]),
++    leaseToken: "lease-token-private-rotated-000000",
++  };
++  const replay = stageExternalAdoptionBatch(journal, rotated, [RB1]);
++  assert.deepEqual(replay, first);
++});
++
++test("offline observation preserves the last value only as non-current evidence across restart", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-offline-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  const store = createMemoryStore();
++  reconcileExternalAdoptionJournal(store, journal);
++  stageExternalAdoptionStatusObservation(journal, {
++    reference: REFERENCE,
++    status: "offline",
++    observedAt: "2026-07-25T07:00:30.000Z",
++  });
++  reconcileExternalAdoptionJournal(store, journal);
++  const projection = store.list("worldProjections")[0];
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "consumer_adoption_state").value,
++    "adopted",
++  );
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "epistemic").value,
++    "unknown",
++  );
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "sync").value,
++    "offline",
++  );
++
++  const restarted = createMemoryStore();
++  reconcileExternalAdoptionJournal(restarted, journal);
++  assert.deepEqual(restarted.snapshot(), store.snapshot());
++  assert.equal(restarted.currentAwirRevision(), 2);
++  assert.equal(restarted.currentSceneRevision("VIEWER::r5c-external-adoption"), 2);
++});
++
++test("disputed observation adds an independent reconciliation record and no selected value", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-disputed-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  const digestA = "a".repeat(64);
++  const digestB = "b".repeat(64);
++  stageExternalAdoptionStatusObservation(journal, {
++    reference: REFERENCE,
++    status: "disputed",
++    observedAt: "2026-07-25T07:00:45.000Z",
++    evidenceDigests: [digestA, digestB],
++  });
++  const store = createMemoryStore();
++  reconcileExternalAdoptionJournal(store, journal);
++  assert.equal(store.list("eventRecords").length, 2);
++  assert.equal(store.list("eventRecords")[1].authority, "reconciliation");
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "epistemic",
++    ).value,
++    "disputed",
++  );
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "sync",
++    ).value,
++    "reconciliation_required",
++  );
++});
++
++test("a later accepted source revision supersedes an offline observation", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-recovery-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  stageExternalAdoptionStatusObservation(journal, {
++    reference: REFERENCE,
++    status: "offline",
++    observedAt: "2026-07-25T07:00:30.000Z",
++  });
++  stageExternalAdoptionBatch(journal, delivery(2, [REV1, REV2]), [RB1, RB2]);
++  const store = createMemoryStore();
++  reconcileExternalAdoptionJournal(store, journal);
++  const projection = store.list("worldProjections")[0];
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "consumer_adoption_state").value,
++    "revoked",
++  );
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "epistemic").value,
++    "source_reported",
++  );
++  assert.equal(
++    projection.stateModifiers.find((item) => item.channel === "sync").value,
++    "in_sync",
++  );
++  assert.equal(store.currentAwirRevision(), 3);
++  assert.equal(store.list("sceneDeltas").length, 3);
++});
++
++test("rotated lease credentials never enter the durable semantic journal", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-private-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  const raw = readFileSync(join(journal, `${REV1.eventId}.json`), "utf8");
++  assert.equal(raw.includes("lease-token-private"), false);
++  assert.equal(raw.includes("reader-capability-private"), false);
++});
++
++test("poll cycle stages, applies and only then acknowledges", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-poll-"));
++  const store = createMemoryStore();
++  const calls = [];
++  const claimed = delivery(1, [REV1]);
++  const fetchImpl = async (url, options) => {
++    const path = new URL(url).pathname;
++    calls.push(path);
++    if (path.endsWith("/claim")) {
++      return new Response(JSON.stringify({ deliveries: [claimed] }), {
++        status: 200,
++        headers: { "content-type": "application/json" },
++      });
++    }
++    if (path.endsWith("/adoption-readback")) {
++      return new Response(JSON.stringify(RB1), {
++        status: 200,
++        headers: { "content-type": "application/json" },
++      });
++    }
++    if (path.endsWith("/ack")) {
++      assert.equal(store.list("eventRecords").length, 1);
++      assert.equal(store.list("worldProjections").length, 1);
++      assert.equal(readdirSync(journal).some((name) => name.endsWith(".json")), true);
++      return new Response(JSON.stringify({ acknowledged: true }), {
++        status: 200,
++        headers: { "content-type": "application/json" },
++      });
++    }
++    return new Response("not found", { status: 404 });
++  };
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++  });
++  assert.equal(result.processed.length, 1);
++  assert.deepEqual(calls, [
++    "/api/external/adoption-outbox/claim",
++    "/api/external/adoption-readback",
++    "/api/external/adoption-outbox/ack",
++  ]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const durable = JSON.parse(readFileSync(join(journal, `${REV1.eventId}.json`), "utf8"));
++  assert.deepEqual(durable.transport, {
++    phase: "ack_confirmed",
++    ackConfirmed: true,
++  });
++});
++
++test("HTTP 200 with acknowledged false never becomes durable ack confirmation", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-ack-false-"));
++  const store = createMemoryStore();
++  const claimed = delivery(1, [REV1]);
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) {
++      return Response.json({ deliveries: [claimed] });
++    }
++    if (path.endsWith("/adoption-readback")) {
++      return Response.json(RB1);
++    }
++    if (path.endsWith("/ack")) {
++      return Response.json({ acknowledged: false });
++    }
++    return new Response("not found", { status: 404 });
++  };
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++  });
++  assert.equal(result.processed.length, 0);
++  const durable = JSON.parse(readFileSync(join(journal, `${REV1.eventId}.json`), "utf8"));
++  assert.deepEqual(durable.transport, {
++    phase: "ack_pending",
++    ackConfirmed: false,
++  });
++});
++
++test("private or malformed readback downgrades an existing projection and is never journaled", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-private-readback-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const claimed = delivery(1, [REV1]);
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) return Response.json({ deliveries: [claimed] });
++    if (path.endsWith("/adoption-readback")) {
++      return Response.json({ ...RB1, privateSentinel: "DO_NOT_PERSIST_R5C" });
++    }
++    throw new Error("ack must not be called");
++  };
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++    now: () => "2026-07-25T07:04:00.000Z",
++  });
++  assert.equal(result.processed.length, 0);
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "epistemic",
++    ).value,
++    "unknown",
++  );
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "sync",
++    ).value,
++    "stale",
++  );
++  const durable = readdirSync(journal)
++    .map((name) => readFileSync(join(journal, name), "utf8"))
++    .join("\n");
++  assert.equal(durable.includes("DO_NOT_PERSIST_R5C"), false);
++});
++
++test("source viewer cannot project into an unrelated target viewer", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-viewer-boundary-"));
++  const store = createMemoryStore();
++  const claimed = delivery(1, [REV1]);
++  let readCalled = false;
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) return Response.json({ deliveries: [claimed] });
++    readCalled = true;
++    return Response.json(RB1);
++  };
++  await assert.rejects(
++    () => runExternalAdoptionPollCycle({
++      store,
++      journalDirectory: journal,
++      baseUrl: "http://127.0.0.1:3999",
++      worldClaimCapability: "world-private-test",
++      worldId: "world-test",
++      fetchImpl,
++      viewerRef: "VIEWER::unrelated-destination",
++      now: () => "2026-07-25T07:05:00.000Z",
++    }),
++    /durable R5C source-viewer authorization mapping/,
++  );
++  assert.equal(readCalled, false);
++  assert.equal(store.list("worldProjections").length, 0);
++
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  const replayStore = createMemoryStore();
++  assert.throws(
++    () => reconcileExternalAdoptionJournal(replayStore, journal, {
++      viewerRef: "VIEWER::unrelated-destination",
++    }),
++    /durable R5C source-viewer authorization mapping/,
++  );
++  assert.equal(replayStore.list("worldProjections").length, 0);
++});
++
++test("malformed claim response downgrades prior success instead of leaving it current", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-malformed-claim-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl: async () => new Response("not valid JSON", {
++      status: 200,
++      headers: { "content-type": "application/json" },
++    }),
++    now: () => "2026-07-25T07:06:00.000Z",
++  });
++  assert.equal(result.outcome, "invalid_source_response");
++  assert.equal(result.observations, 1);
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "epistemic",
++    ).value,
++    "unknown",
++  );
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "sync",
++    ).value,
++    "stale",
++  );
++});
++
++test("first malformed private readback creates no reference-bearing journal", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-first-private-"));
++  const store = createMemoryStore();
++  const claimed = delivery(1, [REV1]);
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) return Response.json({ deliveries: [claimed] });
++    if (path.endsWith("/adoption-readback")) {
++      return Response.json({ ...RB1, privateSentinel: "FIRST_PRIVATE_R5C" });
++    }
++    throw new Error("ack must not be called");
++  };
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++    now: () => "2026-07-25T07:07:00.000Z",
++  });
++  assert.equal(result.processed.length, 0);
++  assert.equal(store.list("worldProjections").length, 0);
++  assert.deepEqual(readdirSync(journal), []);
++});
++
++test("same-event divergence journals ordered digests for both candidates", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-poll-divergence-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const claimed = delivery(1, [REV1]);
++  const divergent = readback(1, "revoked", RB1.observedAt);
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) return Response.json({ deliveries: [claimed] });
++    if (path.endsWith("/adoption-readback")) return Response.json(divergent);
++    throw new Error("ack must not be called");
++  };
++  await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++    now: () => "2026-07-25T07:08:00.000Z",
++  });
++  const disputed = readdirSync(journal)
++    .map((name) => JSON.parse(readFileSync(join(journal, name), "utf8")))
++    .find((item) => item.kind === "status_observation");
++  assert.equal(disputed.core.status, "disputed");
++  assert.equal(disputed.core.evidenceDigests.length, 2);
++  assert.deepEqual(
++    disputed.core.evidenceDigests,
++    [...disputed.core.evidenceDigests].sort(),
++  );
++});
++
++test("different event id cannot rewrite an accepted reference revision through poll", async () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-revision-identity-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const conflictingDelivery = delivery(1, [REV1_ALT]);
++  const conflictingReadback = readback(1, "revoked", RB1.observedAt);
++  let ackCalled = false;
++  const fetchImpl = async (url) => {
++    const path = new URL(url).pathname;
++    if (path.endsWith("/claim")) {
++      return Response.json({ deliveries: [conflictingDelivery] });
++    }
++    if (path.endsWith("/adoption-readback")) {
++      return Response.json(conflictingReadback);
++    }
++    if (path.endsWith("/ack")) {
++      ackCalled = true;
++      return Response.json({ acknowledged: true });
++    }
++    return new Response("not found", { status: 404 });
++  };
++  const result = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl,
++    now: () => "2026-07-25T07:09:00.000Z",
++  });
++  assert.equal(result.processed.length, 0);
++  assert.equal(ackCalled, false);
++  const sourceRecords = store.list("eventRecords").filter(
++    (record) => record.authority === "source",
++  );
++  assert.equal(sourceRecords.length, 1);
++  assert.equal(sourceRecords[0].source.externalRecordId, REV1.eventId);
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "consumer_adoption_state",
++    ).value,
++    "adopted",
++  );
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "epistemic",
++    ).value,
++    "disputed",
++  );
++  const disputed = readdirSync(journal)
++    .map((name) => JSON.parse(readFileSync(join(journal, name), "utf8")))
++    .find((item) => item.kind === "status_observation");
++  assert.equal(disputed.core.evidenceDigests.length, 2);
++});
++
++test("fresh replay fails before mutation when durable journals conflict on source revision identity", () => {
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-preflight-conflict-"));
++  const conflictingSource = mkdtempSync(join(tmpdir(), "world-r5c-preflight-source-"));
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  stageExternalAdoptionBatch(
++    conflictingSource,
++    delivery(1, [REV1_ALT]),
++    [readback(1, "revoked", RB1.observedAt)],
++  );
++  writeFileSync(
++    join(journal, `${REV1_ALT.eventId}.json`),
++    readFileSync(join(conflictingSource, `${REV1_ALT.eventId}.json`)),
++    { mode: 0o600 },
++  );
++
++  const store = createMemoryStore();
++  assert.throws(
++    () => reconcileExternalAdoptionJournal(store, journal),
++    /divergent source identity/,
++  );
++  assert.equal(store.list("adapterSnapshots").length, 0);
++  assert.equal(store.list("eventRecords").length, 0);
++  assert.equal(store.list("entities").length, 0);
++  assert.equal(store.list("worldProjections").length, 0);
++  assert.equal(store.list("sceneDeltas").length, 0);
++  assert.equal(store.currentAwirRevision(), 0);
++  assert.equal(store.currentSceneRevision("VIEWER::r5c-external-adoption"), 0);
++});
++
++test("poll source failure creates no projection before evidence and downgrades an existing one", async () => {
++  const emptyJournal = mkdtempSync(join(tmpdir(), "world-r5c-empty-offline-"));
++  const emptyStore = createMemoryStore();
++  const unavailableFetch = async () => new Response("unavailable", { status: 503 });
++  const first = await runExternalAdoptionPollCycle({
++    store: emptyStore,
++    journalDirectory: emptyJournal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl: unavailableFetch,
++    now: () => "2026-07-25T07:02:00.000Z",
++  });
++  assert.equal(first.outcome, "source_unavailable");
++  assert.equal(first.observations, 0);
++  assert.equal(emptyStore.list("worldProjections").length, 0);
++
++  const journal = mkdtempSync(join(tmpdir(), "world-r5c-existing-offline-"));
++  const store = createMemoryStore();
++  stageExternalAdoptionBatch(journal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(store, journal);
++  const later = await runExternalAdoptionPollCycle({
++    store,
++    journalDirectory: journal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl: unavailableFetch,
++    now: () => "2026-07-25T07:02:00.000Z",
++  });
++  assert.equal(later.observations, 1);
++  assert.equal(
++    store.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "sync",
++    ).value,
++    "offline",
++  );
++
++  const rejectedJournal = mkdtempSync(join(tmpdir(), "world-r5c-network-offline-"));
++  const rejectedStore = createMemoryStore();
++  stageExternalAdoptionBatch(rejectedJournal, delivery(1, [REV1]), [RB1]);
++  reconcileExternalAdoptionJournal(rejectedStore, rejectedJournal);
++  const rejected = await runExternalAdoptionPollCycle({
++    store: rejectedStore,
++    journalDirectory: rejectedJournal,
++    baseUrl: "http://127.0.0.1:3999",
++    worldClaimCapability: "world-private-test",
++    worldId: "world-test",
++    fetchImpl: async () => {
++      throw new TypeError("synthetic connection refused");
++    },
++    now: () => "2026-07-25T07:03:00.000Z",
++  });
++  assert.equal(rejected.status, null);
++  assert.equal(rejected.observations, 1);
++  assert.equal(
++    rejectedStore.list("worldProjections")[0].stateModifiers.find(
++      (item) => item.channel === "sync",
++    ).value,
++    "offline",
++  );
++});

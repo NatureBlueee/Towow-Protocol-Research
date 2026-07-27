@@ -1,0 +1,23 @@
+{
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "PYTHONPATH=/private/tmp/harness-towow-a2a-r5-2/harness/src:/private/tmp/harness-towow-a2a-r5-2",
+    "TOWOW_LIVE_SPAWN=",
+    "/Users/nature/个人项目/Harness/harness/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "harness/tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated",
+    "-q",
+    "--basetemp=/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/towow-r5-poller-baseline.4bIGP0"
+  ],
+  "cwd": "/private/tmp/harness-towow-a2a-r5-2/harness",
+  "started_at_utc": "2026-07-24T16:27:40.701645+00:00",
+  "ended_at_utc": "2026-07-24T16:27:41.455576+00:00",
+  "wall_seconds": 0.7539730072021484,
+  "exit_code": 4,
+  "stdout": "\nno tests ran in 0.23s\n",
+  "stderr": "ERROR: file or directory not found: harness/tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated\n\n"
+}

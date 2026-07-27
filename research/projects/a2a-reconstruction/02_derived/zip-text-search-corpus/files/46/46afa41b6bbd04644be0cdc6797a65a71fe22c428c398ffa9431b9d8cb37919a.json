@@ -1,0 +1,141 @@
+{
+  "content_hash": "3204b7eb8dc873c0f781f2ed00a2586204dee6e787434b405a03a093e9858b84",
+  "created_at": "2026-07-26T07:29:45.940268+00:00",
+  "instance": {
+    "archival_case_id": "PEA-05",
+    "no_causal_claim": true,
+    "qualified_revision": "PROTECTIVE_CONTRACTION",
+    "source_basis": "public formal archive",
+    "state": "PROHIBITED"
+  },
+  "relation_id": "SHADOW-ACTIVISION",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "external jurisdiction",
+      "rights-holder role change",
+      "version-specific challenge",
+      "scoped settlement",
+      "undertakings as commitments"
+    ],
+    "unobservable": [
+      "private option generation",
+      "coordination cost",
+      "whether an Agent would propose the structure earlier"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "original_deal": {
+        "required_roles": [
+          "microsoft",
+          "activision",
+          "cma"
+        ]
+      }
+    },
+    "actions": {
+      "close_original": {
+        "actor_roles": [
+          "microsoft",
+          "activision"
+        ],
+        "material": true,
+        "produces_effect": true
+      },
+      "propose_original": {
+        "actor_roles": [
+          "microsoft",
+          "activision"
+        ],
+        "material": true
+      },
+      "review_original": {
+        "actor_roles": [
+          "cma"
+        ],
+        "material": true
+      }
+    },
+    "authority_rules": {
+      "close_original": [
+        "microsoft",
+        "activision"
+      ],
+      "propose_original": [
+        "microsoft",
+        "activision"
+      ],
+      "review_original": [
+        "cma"
+      ]
+    },
+    "challenge_rules": {
+      "original_transaction": {
+        "reopen": "new_transaction_only",
+        "status": "PROHIBITED"
+      }
+    },
+    "data_rules": {
+      "cloud_streaming_rights": {
+        "holder": "microsoft_after_close",
+        "scope": "full"
+      }
+    },
+    "jurisdiction_rules": {
+      "UK_competition": {
+        "authority": "cma",
+        "required": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "cloud_streaming_rights": {},
+      "full_acquisition": {}
+    },
+    "roles": {
+      "activision": {},
+      "cma": {
+        "external_jurisdiction": true
+      },
+      "microsoft": {}
+    },
+    "schema_id": "shadow-activision",
+    "settlement_rules": {
+      "original_transaction": {
+        "requires": [
+          "UK_competition_clearance"
+        ]
+      }
+    },
+    "standing_rules": {
+      "competition_challenge": [
+        "cma"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "review_original",
+        "from": "PROPOSED",
+        "to": "PROHIBITED"
+      },
+      {
+        "action": "close_original",
+        "from": "PROPOSED",
+        "to": "EFFECT_PENDING"
+      }
+    ],
+    "version": "1",
+    "witness_rules": {
+      "close_original": {
+        "source": "closing_authorities"
+      }
+    }
+  },
+  "status": "PROHIBITED",
+  "version": 1
+}

@@ -1,0 +1,12 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.45, ranksep=0.5, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=10.5, margin="0.14,0.10"];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=8.5];
+  f [label="主权、自适应形成阶段\n本地上下文 · REFUSE/COUNTER/UNKNOWN\n现实探针 · 条件创造 · 共同修订", fillcolor="#FFF7ED"];
+  freeze [label="冻结边界合同\nObjective / Authority / Schema / Witness\nRecovery / Validity / Reopen triggers", fillcolor="#FEF3C7"];
+  r [label="最小权限确定性运行\n路由 · 调用 · journal · retry/dedupe\n固定验证 · 目标域采纳", fillcolor="#ECFDF5"];
+  m [label="监测\nDefeater · 漂移 · 新 Unknown\nrevocation · dispute · cost", fillcolor="#EEF6FF"];
+  f -> freeze -> r -> m;
+  m -> f [label="物质变化时重开", style=dashed];
+  m -> r [label="范围内稳定", style=dashed];
+}

@@ -1,0 +1,22 @@
+{
+  "target": "shared-target@v1",
+  "locator": "@concept:shared-target@v1",
+  "events": [
+    {"sequence": 1, "type": "add", "source": null},
+    {"sequence": 2, "type": "add", "source": "consumer-a@v1"},
+    {"sequence": 3, "type": "add", "source": "consumer-b@v1"},
+    {"sequence": 4, "type": "remove", "source": null}
+  ],
+  "expected": {
+    "null_source_class": {
+      "legacy_active": false,
+      "consumer_a_active": true,
+      "consumer_b_active": true
+    },
+    "legacy_wildcard": {
+      "legacy_active": false,
+      "consumer_a_active": false,
+      "consumer_b_active": false
+    }
+  }
+}

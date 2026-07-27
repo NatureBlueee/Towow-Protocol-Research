@@ -1,0 +1,72 @@
+schema_version: design-ir/v0.1
+design_id: design-cognitive-compilation-corridor
+problem_refs: [problem-design-engineering-gap]
+status: selected
+
+objectives:
+  - id: obj-01
+    description: 将需求、设计、工程与共识明确分层
+  - id: obj-02
+    description: 让执行 Agent 不再临场重做产品和架构设计
+
+anti_goals:
+  - id: anti-01
+    description: 本版本不重写 EventLog、ConceptGraph 或 Orchestrator
+  - id: anti-02
+    description: 不要求所有任务走完整管线
+
+actors:
+  - id: actor-owner
+    role: value_authority
+    permissions: [confirm_requirement, approve_irreversible_change]
+  - id: actor-designer
+    role: design_synthesis
+    permissions: [propose_design, compare_alternatives]
+  - id: actor-engineer
+    role: engineering_architecture
+    permissions: [propose_engineering, run_experiment]
+  - id: actor-reviewer
+    role: independent_validation
+    permissions: [challenge, block_transition]
+
+entities:
+  - id: DesignAlternative
+    identity: stable_id
+    lifecycle: [draft, compared, rejected, selected, superseded]
+  - id: DesignDecision
+    identity: stable_id
+    lifecycle: [proposed, attacked, accepted, challenged, superseded]
+  - id: EngineeringDecision
+    identity: stable_id
+    lifecycle: [researching, prototyped, accepted, deprecated]
+
+mechanisms:
+  - id: mech-design-space
+    description: 承重问题至少比较多个机制不同的方案
+  - id: mech-stage-gates
+    description: 每次转换通过独立验证器
+  - id: mech-typed-traceability
+    description: Requirement→Design→Engineering→Consensus→Task 类型化追溯
+
+quality_scenarios:
+  - id: qs-01
+    stimulus: 执行者发现工程方案不成立
+    environment: 执行中
+    expected_response: 创建 Finding 并路由 Re-engineer，而非私自改设计
+    measure: 100% 承重方案变更有回流记录
+
+alternatives:
+  - id: alternative-a
+    mechanism: 在 Engineering Consensus Skill 中增加更多章节
+    strengths: [改动小]
+    weaknesses: [认知动作仍混合, 无独立生命周期]
+    decision: rejected
+  - id: alternative-b
+    mechanism: 新增 Design IR 与 Engineering IR，复用现有共识和计划
+    strengths: [边界清晰, 可渐进接入]
+    weaknesses: [新增对象和流程成本]
+    decision: selected
+
+falsification_conditions:
+  - 新流程在多个任务中没有提前发现任何问题
+  - 流程成本显著高于减少的返工

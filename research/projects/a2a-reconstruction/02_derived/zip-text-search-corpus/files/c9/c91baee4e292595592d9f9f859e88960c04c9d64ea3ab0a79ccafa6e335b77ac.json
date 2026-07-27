@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Validator",
+  "type": "object",
+  "required": [
+    "id",
+    "concern",
+    "inputs",
+    "checks",
+    "result_schema",
+    "severity_policy"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "concern": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "result_schema": {
+      "type": "string"
+    },
+    "severity_policy": {
+      "type": "object"
+    },
+    "independence_requirement": {
+      "type": "string"
+    },
+    "known_blind_spots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Towow R5 generative A2A experiment record v1.4",
+  "type": "object",
+  "required": [
+    "run_id",
+    "research_question",
+    "claim_ids",
+    "result_classifications",
+    "environment",
+    "agents",
+    "original_objective",
+    "baselines",
+    "commands_or_actions",
+    "results",
+    "costs",
+    "evidence_refs",
+    "interpretation"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "research_question": {"type": "string"},
+    "claim_ids": {"type": "array", "items": {"type": "string"}},
+    "result_classifications": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "repo_specific_defect",
+          "transferable_design_principle",
+          "mechanism_evidence",
+          "core_theory_change"
+        ]
+      }
+    },
+    "preregistered": {"type": "boolean"},
+    "environment": {"type": "object"},
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agent_id", "model_or_runtime", "private_context_scope", "tools", "authority", "acceptance_role"],
+        "properties": {
+          "agent_id": {"type": "string"},
+          "principal_id": {"type": ["string", "null"]},
+          "model_or_runtime": {"type": "object"},
+          "private_context_scope": {"type": "string"},
+          "tools": {"type": "array"},
+          "authority": {"type": "object"},
+          "acceptance_role": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "original_objective": {"type": "object"},
+    "objective_revisions": {"type": "array", "items": {"type": "object"}},
+    "baselines": {"type": "array", "items": {"type": "object"}},
+    "commands_or_actions": {"type": "array", "items": {"type": "object"}},
+    "interaction_summary": {"type": "object"},
+    "formation_episode_ref": {"type": ["string", "null"]},
+    "ablation_or_counterfactuals": {"type": "array", "items": {"type": "object"}},
+    "adoption": {"type": "object"},
+    "acceptance": {"type": "object"},
+    "results": {"type": "object"},
+    "costs": {"type": "object"},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "counterevidence_refs": {"type": "array", "items": {"type": "string"}},
+    "independence": {"type": "object"},
+    "interpretation": {
+      "type": "object",
+      "required": ["supported", "not_distinguished", "design_consequence", "next_discriminating_action"],
+      "properties": {
+        "supported": {"type": "array"},
+        "weakened_or_refuted": {"type": "array"},
+        "not_distinguished": {"type": "array"},
+        "design_consequence": {"type": "string"},
+        "next_discriminating_action": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

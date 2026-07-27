@@ -1,0 +1,138 @@
+**Title**
+Ascertaining Intergovernmental Coordination Mechanisms
+
+**Suggested Citation**
+Please cite any data used from this data project as follows: 
+
+Milman, Anita. 2023. "Ascertaining Intergovernmental Coordination Mechanisms". Qualitative Data Repository. https://doi.org/10.5064/F6QHVGUI. QDR Main Collection. 
+
+**Description**
+Project Overview
+Jurisdictional boundaries of governmental agencies often do not align with the geographic or social boundaries of the policy issues they are tasked with addressing. This spatial mismatch is especially common in relation to natural resources and the environment. Where it occurs, achievement of policy goals may require coordination across jurisdictions, which can lead to mutual benefits. Yet, governmental agencies may view coordination as costly or as leading to a loss of autonomy. This project examined coordination decisions made by local level governmental agencies in California, as they formed Groundwater Sustainability Agencies (GSAs) and subsequently coordinated development of their first groundwater sustainability plans (GSPs) under California's Sustainable Groundwater Management Act (SGMA).
+
+The project addresses the question of how agencies make decisions and manage interactions when under a coordination mandate that allots agencies the discretion to decide how to coordinate.  More specifically, it investigates:
+
+1. What factors influence decisions regarding the geographic extent of and parties involved in development of new formal agencies for groundwater management,
+
+2. How do concerns about the potential risks of coordination affect the choice of coordination mechanisms,
+
+3. How does the structure of agency interactions affect their achievement of the objectives of the coordination mandate, and
+
+4. How do agencies make sense of a coordination mandate and how does that sense-making process influence the decisions agencies make when deciding how to respond to the mandate?
+
+Data Overview
+The research involved a mixed-methods approach that combines information on agencies; the physical, social, and institutional characteristics of groundwater basins and the agencies located within them; formal filings; agreements; and plans developed by agencies; meeting minutes; interview data; and data from participant observation.
+
+Data Collection Overview
+Data was collected between January 2018 and May 2020. The methods for data collection varied by data type.
+
+Secondary data on the physical, social, and institutional characteristics of groundwater basins was collected from California Department of Water Resources datasets, the American Community Survey, and the National Land Use Database.
+
+Data on GSA formation and copies of GSPs and Coordination Agreements were obtained from the California’s SGMA Portal Website (https://sgma.water.ca.gov/portal/)
+
+Meeting minutes and other documentation were obtained from the respective websites of local-level agencies that formed GSAs.
+
+Interviews were conducted with representatives from 67 groundwater sustainability agencies. Interviewees spanned 17 of the 19 basins and 38 of the 44 groundwater sustainability plans produced. Interviewees were identified based on formal GSA contact information and selected based on formal notices to produce a GSP. Recruitment sought to interview representatives from least one GSA from each GSP group.
+
+Participant observation was undertaken of more than 58 public meetings (in person, virtually, or reviewing recordings).
+
+Shared Data Organization
+The shared data is organized into three folders. A GIS folder contains 16 relevant data files. An interview transcripts folder contains 52 de-identified transcripts from the interviews that were recorded and transcribed. Some interviewees did not agree to recording and transcription of the interviews, thus data from those interviews are not available. A tabular data folder contains 3 spreadsheet workbooks. These include a spreadsheet documenting  coordination concerns at the basin-level; a spreadsheet documenting organizational forms and institutions adopted at the basin-level; and a spreadsheet documenting coordination outcomes at the basin-level. Each spreadsheet includes a copy of the codebook used in analyzing the data. This data project also includes 6 documentation files: a GIS metadata workbook, an interview catalog, an interview consent form, a redaction protocol, this data narrative, and an administrative README file.
+
+**File Access**
+Documentation freely accessible under the Creative Commons Attribution-Share Alike 4.0 license: https://creativecommons.org/licenses/by-sa/4.0/
+
+Data files accessible without restrictions for all registered QDR users under our Standard Download Agreement: https://qdr.syr.edu/discover/standarddownload
+
+
+**Included Files**
+This collection contains the following files and folders:
+
+README_Milman.txt
+Milman_DataNarrative.pdf
+Milman_GIS_MetaData.xlsx
+Milman_InterviewCatalog.pdf
+Milman_InterviewConsentForm.pdf
+Milman_RedactionProtocol.pdf
+GIS/
+    Milman_GIS_BasinCharacteristics_202006.CPG
+    Milman_GIS_BasinCharacteristics_202006.dbf
+    Milman_GIS_BasinCharacteristics_202006.prj
+    Milman_GIS_BasinCharacteristics_202006.sbn
+    Milman_GIS_BasinCharacteristics_202006.sbx
+    Milman_GIS_BasinCharacteristics_202006.shp
+    Milman_GIS_BasinCharacteristics_202006.shp.xml
+    Milman_GIS_BasinCharacteristics_202006.shx
+    Milman_GIS_GSACharacteristics_202006.CPG
+    Milman_GIS_GSACharacteristics_202006.dbf
+    Milman_GIS_GSACharacteristics_202006.prj
+    Milman_GIS_GSACharacteristics_202006.sbn
+    Milman_GIS_GSACharacteristics_202006.sbx
+    Milman_GIS_GSACharacteristics_202006.shp
+    Milman_GIS_GSACharacteristics_202006.shp.xml
+    Milman_GIS_GSACharacteristics_202006.shx
+InterviewTranscripts/
+    Milman_Interview_01_20190108.pdf
+    Milman_Interview_02_20190109.pdf
+    Milman_Interview_03_20190110.pdf
+    Milman_Interview_04_20190111.pdf
+    Milman_Interview_05_20190111.pdf
+    Milman_Interview_06_20190111.pdf
+    Milman_Interview_07_20190113.pdf
+    Milman_Interview_08_20190115.pdf
+    Milman_Interview_09_20190118.pdf
+    Milman_Interview_10_20190122.pdf
+    Milman_Interview_11_20190125.pdf
+    Milman_Interview_12_20190128.pdf
+    Milman_Interview_13_20190129.pdf
+    Milman_Interview_14_20190130.pdf
+    Milman_Interview_15_20190131.pdf
+    Milman_Interview_16_20190204.pdf
+    Milman_Interview_17_20190205.pdf
+    Milman_Interview_18_20190207.pdf
+    Milman_Interview_19_20190311.pdf
+    Milman_Interview_20_20190311.pdf
+    Milman_Interview_21_20190311.pdf
+    Milman_Interview_22_20190311.pdf
+    Milman_Interview_23_20190314.pdf
+    Milman_Interview_24_20190315.pdf
+    Milman_Interview_25_20191015.pdf
+    Milman_Interview_26_20191023.pdf
+    Milman_Interview_27_20191023.pdf
+    Milman_Interview_28_20191024.pdf
+    Milman_Interview_29_20191030.pdf
+    Milman_Interview_30_20191030.pdf
+    Milman_Interview_31_20191030.pdf
+    Milman_Interview_32_20191104.pdf
+    Milman_Interview_33_20191105.pdf
+    Milman_Interview_34_20191105.pdf
+    Milman_Interview_35_20191105.pdf
+    Milman_Interview_36_20191107.pdf
+    Milman_Interview_37_20191111.pdf
+    Milman_Interview_38_20191112.pdf
+    Milman_Interview_39_20191115.pdf
+    Milman_Interview_40_20191115.pdf
+    Milman_Interview_41_20191118.pdf
+    Milman_Interview_42_20191118.pdf
+    Milman_Interview_43_20191118.pdf
+    Milman_Interview_44_20191119.pdf
+    Milman_Interview_45_20191119.pdf
+    Milman_Interview_46_20191119.pdf
+    Milman_Interview_47_20191120.pdf
+    Milman_Interview_48_20191120.pdf
+    Milman_Interview_49_20200203.pdf
+    Milman_Interview_50_20200312.pdf
+    Milman_Interview_51_20200910.pdf
+    Milman_Interview_52_20200920.pdf
+TabularData/
+    Milman_BasinCoordinationConcernsAnalysis.xlsx
+    Milman_BasinCoordinationInstitutionsAnalysis.xlsx
+    Milman_BasinGroundwaterSustainabilityPlanningCoordinationAnalysis.xlsx
+
+**Data Processing Note**
+
+The data were processed according to the Qualitative Data Repository's curation policy. All files were checked for integrity. Files were checked to make sure they match documentation and consistent file names were applied. PDF files were converted to PDF/A using Adobe Acrobat Pro DC Versions 2022.003.20310 and 2023.003.20269, XMP tags edited using pikepdf, and enhanced for WCAG accessibility compliance.
+
+*****
+
+These data were obtained from the Qualitative Data Repository (QDR - http://qdr.syr.edu), a dedicated archive for storing and sharing digital data (and accompanying documentation) generated or collected through qualitative and multi-method research in the social sciences. QDR is supported by the National Science Foundation. Please consult QDR's General Terms and Conditions of Use (https://qdr.syr.edu/termsandconditions). 

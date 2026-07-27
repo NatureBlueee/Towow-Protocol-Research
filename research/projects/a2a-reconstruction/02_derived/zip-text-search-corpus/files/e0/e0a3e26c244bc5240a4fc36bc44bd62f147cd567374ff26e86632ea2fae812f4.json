@@ -1,0 +1,79 @@
+{
+  "reports": [
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [
+        {
+          "code": "UNRESOLVED_MATERIAL_COUNTEREXAMPLE",
+          "subject": "1"
+        },
+        {
+          "code": "MISSING_REQUIRED_JURISDICTION_REVIEW",
+          "subject": "UK_competition"
+        },
+        {
+          "code": "OPEN_MATERIAL_CHALLENGE_WITHOUT_CONTINGENCY",
+          "subject": "CMA_prohibition"
+        }
+      ],
+      "reachable_actions": [],
+      "readiness": "NOT_READY",
+      "ready": false,
+      "relation_version": 1,
+      "settlement_scope": {
+        "challenge_horizon": "original_transaction_prohibited",
+        "covered_jurisdictions": [],
+        "open_material_challenges": [
+          "CMA_prohibition"
+        ],
+        "required_external_standing": [
+          "cma"
+        ],
+        "required_jurisdictions": [
+          "UK_competition"
+        ],
+        "reviewed_external_standing": [
+          "cma"
+        ]
+      },
+      "state": "PROHIBITED",
+      "warnings": [
+        {
+          "code": "NO_ROLLBACK_OR_COMPENSATION",
+          "subject": "PROHIBITED"
+        }
+      ]
+    },
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [],
+      "reachable_actions": [
+        "accept_undertakings",
+        "close_restructured",
+        "review_restructured",
+        "transfer_streaming_rights"
+      ],
+      "readiness": "READY",
+      "ready": true,
+      "relation_version": 2,
+      "settlement_scope": {
+        "challenge_horizon": "through_clearance_and_observed_closing",
+        "covered_jurisdictions": [
+          "UK_competition"
+        ],
+        "open_material_challenges": [],
+        "required_external_standing": [
+          "cma"
+        ],
+        "required_jurisdictions": [
+          "UK_competition"
+        ],
+        "reviewed_external_standing": [
+          "cma"
+        ]
+      },
+      "state": "RESTRUCTURED",
+      "warnings": []
+    }
+  ]
+}

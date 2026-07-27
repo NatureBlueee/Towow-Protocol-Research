@@ -1,0 +1,16 @@
+fact_key,canonical_owner,prohibited_duplicate_owners,capability_ids,source_ids,notes
+ENTITY_CONTINUITY,Entity,Local World|AgentExecution|Context Compiler,CAP-AUTH-001,SRC-V04-ONTOLOGY|SRC-V07-OPC,执行实例和上下文只能引用实体身份
+MANDATE_STATUS,Mandate,OAuth token|Capability Claim|Operation,CAP-AUTH-002,SRC-V04-ONTOLOGY|SRC-V07-OPC,token 是实施凭据不是授权事实
+RELATION_CURRENT_VERSION,RelationVersion,JAA view|Compiled World|Coordination Router,CAP-REL-002|CAP-AUTH-003,SRC-V04-ONTOLOGY|SRC-V07-OPC,视图和 Router 只能引用当前版本
+ASSERTION_PROVENANCE,Assertion,Assurance Case|Capability Envelope|Model memory,CAP-CAP-003,SRC-V04-ONTOLOGY,派生视图不得维护第二份主张真值
+COMMITMENT_STATUS,Commitment,Candidate|Recognition|Coordination Plan,CAP-REL-005|CAP-AUTH-004,SRC-TYPED-LEDGER|SRC-V04-ONTOLOGY,候选和计划不能自动创建义务
+OPERATION_IDENTITY,Operation,Agent log|Workflow task|Effect receipt,CAP-EFF-001|CAP-EFF-005,SRC-R52-EFFECT|SRC-V04-ONTOLOGY,重试和恢复引用同一 Operation identity
+RESOURCE_RESERVATION,Reservation Ledger,Commitment text|Capability Graph|Agent memory,CAP-AUTH-004|CAP-CAP-005,SRC-R5-DECISION|SRC-V11-MONOGRAPH,资源事实只能由资源权威维护
+TARGET_EFFECT,Effect Gateway / target Event Ledger,Producer log|Operation status|Acceptance Console,CAP-EFF-001|CAP-EFF-002,SRC-R52-EFFECT,Effect 只由目标域权威来源建立
+TARGET_ADOPTION,Target-domain adoption view,Producer log|Effect Gateway|Acceptance Console,CAP-EFF-003|CAP-EFF-004,SRC-R52-EFFECT|SRC-R5C-SUMMARY,采用可由 Effect 派生但不能由 producer 自证
+SUBJECT_ACCEPTANCE,Exact-version Stance,Effect Gateway|Adoption view|Settlement view,CAP-EFF-003|CAP-AUTH-003,SRC-R5C-HUMAN|SRC-V04-ONTOLOGY,Acceptance 由相称权威针对精确版本作出
+DEPENDENCY_RELATION,Dependency Graph,Compiled World|Defeater Engine cache,CAP-RUN-004,SRC-R5C-PATCH|SRC-V11-MONOGRAPH,Defeater 和编译视图引用同一依赖图
+PROBLEM_REQUIREMENT,Harness Problem IR,RelationVersion|Engineering task|Paper synthesis,CAP-RUN-001,SRC-HARNESS,关系和实现目标不得倒写原始需求
+DESIGN_DECISION,Harness Design IR,Implementation code|Paper conclusion|Coordination Plan,CAP-RUN-001,SRC-HARNESS,设计决定保留来源与替代方案
+IMPLEMENTATION_STATE,Harness Engineering IR,Research claim|Acceptance Stance|Design IR,CAP-RUN-001|CAP-RUN-005,SRC-HARNESS,实现状态不能自动闭合研究或现实接受
+

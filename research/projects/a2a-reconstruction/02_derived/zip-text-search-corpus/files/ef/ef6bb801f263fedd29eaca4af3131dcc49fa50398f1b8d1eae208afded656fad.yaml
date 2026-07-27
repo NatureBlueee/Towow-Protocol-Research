@@ -1,0 +1,44 @@
+metrics:
+  run_health:
+    - route_match_rate
+    - context_pack_conflict_rate
+    - skill_execution_success_rate
+    - tool_failure_rate
+    - mean_validation_cycles
+    - human_escalation_rate
+
+  spec_health:
+    - undefined_concept_count
+    - contradiction_density
+    - orphan_requirement_rate
+    - untraced_external_claim_rate
+    - closed_loop_exception_coverage
+    - edge_state_coverage
+    - decision_traceability_rate
+
+  transfer_health:
+    - blind_agent_reconstruction_score
+    - new_team_time_to_correct_model
+    - handoff_question_count
+    - cross_model_output_variance
+
+  language_health:
+    - terminology_drift_rate
+    - claim_overstatement_rate
+    - back_translation_fidelity
+    - UI_to_domain_mapping_coverage
+
+  method_learning:
+    - method_card_pass_rate
+    - recurring_failure_pattern_count
+    - stale_context_pack_rate
+    - reviewer_disagreement_rate
+    - human_override_reason_distribution
+
+dashboard_questions:
+  - 哪类任务最常因上下文不足失败？
+  - 哪个能力包的输出最常被 Reviewer 推翻？
+  - 哪些质量门造成最多返工？
+  - 哪些外部主张最容易发生语义扩大？
+  - 哪些方法卡在不同产品中稳定有效？
+  - 人类专家真正被需要在哪些 concern，而不是哪些职位？

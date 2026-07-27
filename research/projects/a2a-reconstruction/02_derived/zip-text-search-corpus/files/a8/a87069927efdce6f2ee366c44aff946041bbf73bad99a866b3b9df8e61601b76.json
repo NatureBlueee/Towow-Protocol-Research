@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "towow://schemas/experiment_record.r5.2.schema.json",
+  "title": "Towow Reality Transfer Experiment Record v1.2",
+  "type": "object",
+  "required": [
+    "run_id",
+    "research_question",
+    "objective",
+    "reality_level",
+    "started_at",
+    "status",
+    "workspace",
+    "strategies",
+    "evidence_paths"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "research_question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective": {
+      "type": "object",
+      "required": [
+        "original"
+      ],
+      "properties": {
+        "original": {
+          "type": "string"
+        },
+        "version_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "critical_value_dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revisions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "reality_level": {
+      "enum": [
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ]
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "running",
+        "completed",
+        "failed",
+        "blocked",
+        "aborted"
+      ]
+    },
+    "workspace": {
+      "type": "object",
+      "required": [
+        "repo_root",
+        "baseline_commit"
+      ],
+      "properties": {
+        "repo_root": {
+          "type": "string"
+        },
+        "baseline_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "final_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "branch_or_worktree": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sovereignty": {
+      "type": "object"
+    },
+    "strategies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "budget": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "interventions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "holdout_design": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "models_agents_tools": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "costs": {
+      "type": "object"
+    },
+    "human_interventions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "results": {
+      "type": "object"
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "claim_updates": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "command",
+          "exit_code"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "exit_code": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "external_effects": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "preregistered_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "prediction"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "prediction": {},
+          "abstention_allowed": {
+            "type": "boolean"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stop_rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "acceptance_contract": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "value_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "action_attempts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "artifact_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

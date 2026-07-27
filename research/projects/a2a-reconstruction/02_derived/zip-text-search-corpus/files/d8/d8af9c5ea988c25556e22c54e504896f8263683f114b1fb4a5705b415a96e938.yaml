@@ -1,0 +1,41 @@
+version: 0.3.0-dev
+epistemic:
+- ResearchQuestion
+- EvidenceItem
+- Claim
+- Assumption
+- Hypothesis
+- Unknown
+normative:
+- Principle
+- Decision
+- Requirement
+- Constraint
+- Policy
+semantic:
+- Concept
+- DomainObject
+- ValueObject
+- Relation
+- Lifecycle
+- DomainEvent
+experience:
+- ClosedLoop
+- View
+- InteractionState
+- ExternalClaim
+runtime:
+- RunManifest
+- Concern
+- CapabilityProfile
+- Skill
+- ContextPack
+- WorkItem
+- Artifact
+- Validator
+- ValidationReport
+- EscalationCase
+- MethodEvent
+- ChangeSet
+- ConsumerSession
+core_chain: ResearchQuestion → EvidenceItem → Claim → Decision → Requirement → Model/Loop/View → Validation → Release

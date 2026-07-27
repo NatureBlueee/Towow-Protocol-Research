@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.35, ranksep=0.5, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", fillcolor="#F9FAFB", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=10.5, margin="0.14,0.10"];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=8.5];
+  u [label="不可达 / Unknown\n缺信息、工具、伙伴、授权、验收或恢复", fillcolor="#FEE2E2"];
+  d [label="诊断\n区分认识缺口、构造缺口、价值冲突"];
+  a [label="选择下一步\n询问 / 本地探针 / 工具 / 训练 / 伙伴\n授权 / 任务重构 / 风险与恢复"];
+  x [label="本地域执行\n保留主权边界", fillcolor="#EEF6FF"];
+  w [label="Witness / Defeater / Countercondition\n或 Refuse / Unknown", fillcolor="#FEF3C7"];
+  j [label="更新联合行动安排\n边界、角色、条件、证据和目标版本", fillcolor="#FFF7ED"];
+  g [label="形成 scoped path\n或诚实停止 / 升级", fillcolor="#ECFDF5"];
+  u -> d -> a -> x -> w -> j -> g;
+  j -> d [label="尚未闭合", style=dashed];
+  g -> d [label="留出/漂移反例后重开", style=dashed];
+}

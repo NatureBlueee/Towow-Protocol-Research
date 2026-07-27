@@ -1,0 +1,32 @@
+artifacts:
+  RunManifest:
+    purpose: 定义一次运行的任务、范围、风险、资源、产物和完成条件。
+    required_fields: [run_id, mode, mission, non_goals, concerns, risk, outputs, success_criteria]
+
+  DecisionRecord:
+    purpose: 记录选择、依据、替代方案、后果和影响范围。
+    required_fields: [decision_id, status, concern, decision, rationale, evidence, alternatives, consequences, impacted_artifacts]
+
+  ObjectCard:
+    purpose: 定义领域对象，而不是 UI 容器。
+    required_fields: [object_id, definition, identity, properties, relations, lifecycle, invariants, examples, counterexamples]
+
+  ClosedLoopCard:
+    purpose: 定义从动机到结果、失败、恢复和沉淀的完整链条。
+    required_fields: [loop_id, actor, motivation, entry, objects, transitions, evidence, decisions, failure_paths, recovery, terminal_value, system_learning]
+
+  ViewCard:
+    purpose: 定义一个角色/任务视角下的可见对象、动作、风险与可读性要求。
+    required_fields: [view_id, audience, primary_object, user_question, visible_facts, actions, permissions, states, legibility_contract]
+
+  ValidationReport:
+    purpose: 记录某产物对规则的通过、警告或失败。
+    required_fields: [report_id, artifact, validator, result, findings, evidence, severity, repair, confidence]
+
+  ClaimRecord:
+    purpose: 约束对外价值和能力表述。
+    required_fields: [claim_id, audience, wording, internal_sources, evidence, status, scope, qualifiers, forbidden_extensions]
+
+  RunReport:
+    purpose: 汇总路由、上下文、技能、产物、验证、升级和方法表现。
+    required_fields: [run_id, route_trace, context_trace, artifacts, gates, escalations, unresolved, metrics, method_feedback]

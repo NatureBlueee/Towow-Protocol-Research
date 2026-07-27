@@ -1,0 +1,16 @@
+decision_id,decision_topic,source_ids,decision_before_experiment,observed_result,decision_after_experiment,delta_kind,timestamp_confidence,affected_capabilities,notes
+DD-001,从 HDC/FHRR 转向 NAC,SRC-PROTOCOL-DESIGN|SRC-NAC-SPEC,尝试以共享组合向量承担跨模型发现,角色绑定可用但跨模型等价与解绑定损失暴露,NAC 只统一外部锚点并把 HDC 降为可替换 provider,EVIDENCE_DRIVEN_LIMITATION,MEDIUM,CAP-DISC-002|CAP-DISC-003,早期设计材料的内部修正
+DD-002,从静态边界到交互式充分性,SRC-ROUND2-PAPER-I|SRC-ROUND2-PAPER-II,主体以静态信号和字段表达能力,开放问题中角色约束和充分信息本身未给定,引入 BIC 与类型化 Boundary Oracle,OBSERVED_DESIGN_FLIP,MEDIUM,CAP-DISC-006|CAP-DISC-007|CAP-REL-001,主要由第二轮反例推动
+DD-003,候选与承诺分离,SRC-TYPED-LEDGER|SRC-R52-PATCH,候选生成与现实动作边界不充分,模型输出不能承担 Authority 和资源责任,候选必须经精确版本 Stance Commitment Reservation Gate,EVIDENCE_DRIVEN_LIMITATION,HIGH,CAP-REL-005|CAP-AUTH-003|CAP-AUTH-004,规范区分由多轮工程证据加强
+DD-004,R5 默认路由转向最小权限中心,SRC-R5-SUMMARY|SRC-R5-DECISION,倾向把 A2A 作为默认形成机制,R5 本地任务显示 A2A 成本和事实源复杂度显著而中心可完成,简单任务优先中心与确定性机制,OBSERVED_DESIGN_FLIP,HIGH,CAP-FORM-005|CAP-RUN-007,真正改变架构资源分配
+DD-005,R5 Event writer 与权威来源修复,SRC-R5-SUMMARY|SRC-R5-DECISION,原始写入和日志可作为事件事实,实际运行出现不可读 raw bytes 和来源冲突,修复 writer 并定义 canonical readback 顺序,IMPLEMENTATION_REPAIR,HIGH,CAP-EFF-002|CAP-RUN-005,实现缺陷产生明确语义补丁
+DD-006,R5.2 建立 Effect Gateway,SRC-R52-EFFECT|SRC-R52-PATCH,终态标签可能足够表达完成,17 场景 naive 标签错 10 次而 readback 17/17,强制 Attempt Effect Adoption Acceptance 可重建分离,OBSERVED_DESIGN_FLIP,HIGH,CAP-EFF-001|CAP-EFF-002|CAP-EFF-003,最强判别性 Design Delta
+DD-007,R5.2 扩展 Capability Claim,SRC-R52-CAPABILITY|SRC-R52-PATCH,静态 installed 与简单能力声明可承担预测,环境索引 4/6仍未过门槛且静态 3/6,增加环境权限资源版本恢复与 prospective holdout,EVIDENCE_DRIVEN_LIMITATION,HIGH,CAP-CAP-001|CAP-CAP-002|CAP-CAP-004,结果既支持扩展也限制强度
+DD-008,R5.4 降级语言形成主张,SRC-R54-CORE|SRC-R54-CAUSALITY,多轮 A2A 可能直接形成新能力,规范条件增加但无签署补丁采用且关键冲突预先存在,把语言增量降为条件细化并要求现实状态变化,OBSERVED_DESIGN_FLIP,HIGH,CAP-FORM-002|CAP-FORM-003,保留 transport failure 与中心基线缺席
+DD-009,R5C 增加目标域 Authority 与恢复,SRC-R5C-SUMMARY|SRC-R5C-ABLATION|SRC-R5C-PATCH,producer 成功和一次 adoption 可能足够,producer-only/wrong-authority 消融失败且 revoke/offline 需恢复,引入目标 witness 负状态 recovery identity 与 target adoption Gate,OBSERVED_DESIGN_FLIP,HIGH,CAP-CAP-003|CAP-EFF-004|CAP-EFF-005,局部技术域设计翻转
+DD-010,R5C 形成后局部编译,SRC-R5C-METHOD|SRC-R5C-SUMMARY,持续协商与一次性固化之间缺少统一运行方式,运行显示开放阶段需要 probe而稳定路径可确定性执行,采用局部形成局部编译并由 Defeater 重开,EVIDENCE_DRIVEN_LIMITATION,MEDIUM,CAP-FORM-005|CAP-RUN-003|CAP-RUN-004,现实复用净值仍开放
+DD-011,v0.4 收敛为六 roots,SRC-V04-ONTOLOGY,历史概念分别拥有对象或阶段表达,作者判断多数差异可映射为 root event stance policy 或 view,保留六个 canonical roots并降级 PFE CRA JAA 等,PREDECIDED_CONFIRMATION,HIGH,CAP-REL-002|CAP-REL-003|CAP-RUN-001,本体实验验证作者定义而非外部判别
+DD-012,v0.7 聚焦 OPC 与全流程,SRC-CORRECTION-LEDGER|SRC-RAW-CHAT|SRC-V07-OPC,理论以一般 A2A 与制度案例为中心,用户要求回到 Agent 成为世界行动主体并先聚焦超级个体 OPC,加入责任根 Authority Locus 十二阶段和多机制 Router,USER_SCOPE_CHANGE,HIGH,CAP-AUTH-001|CAP-RUN-006|CAP-RUN-007,用户范围变化不是实验结果
+DD-013,v0.7 论文压缩被纠正,SRC-CORRECTION-LEDGER|SRC-RAW-CHAT,用 27 页统一论文承载当前最简结论,用户指出历史理论实验和设计推导大量丢失,重写 v1.0 长文并增加内容损失账本,USER_SCOPE_CHANGE,HIGH,CAP-RUN-001|CAP-RUN-002,后续长文化没有自动恢复原生能力
+DD-014,v1.1 把大量合成实验降为 CI,SRC-REVIEW-V1V2|SRC-REVIEW-RESET|SRC-V12-DECISIONS,继续以构造实验和形式完整度推进统一体系,审稿指出结果不会改变设计且中心基线真人 Mandate和真实 formation 缺证据,停止新增低信息合成实验并按 Q1-Q5 排序,USER_SCOPE_CHANGE,HIGH,CAP-RUN-006|CAP-RUN-007,审稿是问题输入而非历史答案
+DD-015,当前恢复异构内核,SRC-CORRECTION-LEDGER|SRC-RAW-CHAT,用六 roots 与统一长文反推全部历史设计,用户指出过早统一削弱独立设计的锋利能力,冻结新理论并执行能力保真审计,USER_SCOPE_CHANGE,HIGH,CAP-DISC-007|CAP-REL-004|CAP-RUN-001|CAP-RUN-002,本次审计的直接触发

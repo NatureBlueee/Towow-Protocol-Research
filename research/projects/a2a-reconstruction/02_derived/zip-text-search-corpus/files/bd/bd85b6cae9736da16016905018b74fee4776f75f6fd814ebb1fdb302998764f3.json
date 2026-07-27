@@ -1,0 +1,72 @@
+{
+  "schema_version": "towow-r5-boundary-disclosure-v1",
+  "boundary_type": "functional model-context separation",
+  "not_claimed": [
+    "OS-level isolation",
+    "adversarial sandbox security",
+    "organizational sovereignty",
+    "privacy from the root coordinator"
+  ],
+  "runner": {
+    "name": "Claude Code CLI",
+    "version": "2.1.219",
+    "flags": [
+      "--safe-mode",
+      "--tools empty",
+      "--permission-mode dontAsk",
+      "--no-chrome",
+      "--no-session-persistence",
+      "--output-format json",
+      "--json-schema"
+    ],
+    "prompt_transport": "stdin",
+    "model_tools": []
+  },
+  "benign_conformance": {
+    "owner_a_visible_canary": "R54-A-CANARY-71c20b",
+    "owner_b_visible_canary": "R54-B-CANARY-9f84d1",
+    "owner_a_peer_answer": "UNKNOWN",
+    "owner_b_peer_answer": "UNKNOWN",
+    "cross_canary_leak_observed": false,
+    "evidence": [
+      "traces/conformance/a-network-approved/parsed.json",
+      "traces/conformance/b-network-approved/parsed.json"
+    ]
+  },
+  "private_contexts": [
+    "inputs/agent_a_private.md",
+    "inputs/agent_b_private.md"
+  ],
+  "direct_a2a_disclosure": {
+    "disclosed": [
+      "source identity values consumer-a@v1 and consumer-b@v1",
+      "shared typed locator and target",
+      "owner-specific acceptance and veto conditions",
+      "selected lifecycle Unknowns"
+    ],
+    "not_disclosed_to_models": [
+      "hidden oracle implementation",
+      "other owner's raw private dossier",
+      "repository filesystem",
+      "credentials"
+    ]
+  },
+  "authority_enforcement": {
+    "mechanism": "separate role-bound prompts plus tool-less structured action validation",
+    "owner_agents_could": [
+      "PROPOSE",
+      "COUNTER",
+      "ACCEPT",
+      "REJECT",
+      "UNKNOWN",
+      "disclose role-scoped facts"
+    ],
+    "owner_agents_could_not": [
+      "apply patches",
+      "read files",
+      "accept for the peer",
+      "change product state"
+    ],
+    "limitation": "The trusted root assembled prompts and could read both dossiers; this is functional experiment separation, not a non-collapsible authority proof."
+  }
+}

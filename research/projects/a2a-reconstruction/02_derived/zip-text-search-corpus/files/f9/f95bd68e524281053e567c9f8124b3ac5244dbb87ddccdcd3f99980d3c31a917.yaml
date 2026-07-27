@@ -1,0 +1,38 @@
+schema_version: finding-reflow/v0.1
+finding_id: finding-contract-capacity-invalid
+status: confirmed
+severity: major
+
+observed_behavior:
+  description: 当前队列方案在 100 并发下超过延迟目标
+  environment: benchmark-v2
+
+evidence:
+  - type: benchmark
+    ref: exp-queue-019
+  - type: trace
+    ref: trace-run-882
+
+affected_objects:
+  - engineering:queue-strategy
+  - quality_scenario:qs-throughput
+
+candidate_causes:
+  - queue partition insufficient
+  - backpressure policy incorrect
+
+competing_explanations:
+  - benchmark environment noise
+  - downstream mock latency
+
+recommended_reflow:
+  primary: re-engineer
+  reason: 设计目标和任务拆分仍成立，技术容量假设失效
+  not_repair_because: 局部参数调整无法满足目标
+  not_redesign_because: 上层机制不需要变化
+
+completion_condition:
+  - 新 Engineering Decision accepted
+  - benchmark repeated at least 10 times
+  - p95 latency meets target
+  - rollback path verified

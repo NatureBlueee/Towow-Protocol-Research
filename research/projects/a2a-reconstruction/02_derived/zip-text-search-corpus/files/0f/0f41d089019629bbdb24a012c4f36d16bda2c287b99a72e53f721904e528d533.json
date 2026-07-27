@@ -1,0 +1,130 @@
+{
+  "content_hash": "de6d6d9766cf6f4a8094e0767c33aae2073e94d2eb59370db3c50c454504da06",
+  "created_at": "2026-07-26T07:29:45.951954+00:00",
+  "instance": {
+    "archival_case_id": "PEA-08",
+    "no_causal_claim": true,
+    "qualified_revision": "PROTECTIVE_CONTRACTION",
+    "source_basis": "public formal archive",
+    "state": "AWARDED"
+  },
+  "relation_id": "SHADOW-DELOITTE",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "capability assertion dependencies",
+      "source contemporaneity",
+      "post-hoc explanation flag",
+      "challenge and reevaluation",
+      "no silent capability inheritance"
+    ],
+    "unobservable": [
+      "full private capability",
+      "ultimate performance",
+      "Agent contribution"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "continued_awardability": {
+        "required_roles": [
+          "agency"
+        ]
+      }
+    },
+    "actions": {
+      "adjudicate_protest": {
+        "actor_roles": [
+          "gao"
+        ],
+        "material": true
+      },
+      "notify_team_change": {
+        "actor_roles": [
+          "deloitte"
+        ],
+        "material": true
+      },
+      "reevaluate_capability": {
+        "actor_roles": [
+          "agency"
+        ],
+        "material": true
+      }
+    },
+    "authority_rules": {
+      "adjudicate_protest": [
+        "gao"
+      ],
+      "notify_team_change": [
+        "deloitte"
+      ],
+      "reevaluate_capability": [
+        "agency"
+      ]
+    },
+    "challenge_rules": {
+      "award": {
+        "required_action": "reevaluation",
+        "status": "SUSTAINED"
+      }
+    },
+    "data_rules": {},
+    "jurisdiction_rules": {
+      "GAO_protest": {
+        "authority": "gao",
+        "required": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "award": {},
+      "proposal": {},
+      "team_capability": {}
+    },
+    "roles": {
+      "agency": {},
+      "deloitte": {},
+      "gao": {
+        "adjudicator": true
+      }
+    },
+    "schema_id": "shadow-deloitte",
+    "settlement_rules": {
+      "award": {
+        "status": "NOT_SETTLED_UNTIL_REEVALUATION"
+      }
+    },
+    "standing_rules": {
+      "bid_protest": [
+        "eligible_protester",
+        "gao"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "notify_team_change",
+        "from": "AWARDED",
+        "to": "CAPABILITY_CHANGED"
+      },
+      {
+        "action": "reevaluate_capability",
+        "from": "CAPABILITY_CHANGED",
+        "to": "REEVALUATED"
+      },
+      {
+        "action": "adjudicate_protest",
+        "from": "CAPABILITY_CHANGED",
+        "to": "CHALLENGED"
+      }
+    ],
+    "version": "2",
+    "witness_rules": {}
+  },
+  "status": "AWARDED",
+  "version": 2
+}

@@ -1,0 +1,20 @@
+
+digraph G {
+ graph [rankdir=LR, bgcolor="white", pad=0.25, nodesep=0.3, ranksep=0.6, fontname="Noto Sans CJK SC"];
+ node [shape=box, style="rounded", fontname="Noto Sans CJK SC", fontsize=10];
+ edge [fontname="Noto Sans CJK SC", fontsize=9];
+ ctx [label="Coordination Context\nSchema · 权威 · 隐私 · 风险 · 容量 · 漂移", shape=folder];
+ router [label="机制组合器\n输出计划而非单一标签", shape=diamond];
+ p1 [label="SELF_EXECUTION"];
+ p2 [label="DETERMINISTIC_SERVICE"];
+ p3 [label="PLATFORM_MARKET"];
+ p4 [label="CENTRAL_OPTIMIZER"];
+ p5 [label="HUMAN_BROKER"];
+ p6 [label="BILATERAL_FORMATION"];
+ p7 [label="TEMPORARY_COALITION"];
+ p8 [label="HUMAN_ADJUDICATION"];
+ plan [label="阶段化 Coordination Plan\n发现 → 形成 → 本地 Gate → 编译运行 → 裁决 / 重开", shape=box3d];
+ ctx->router;
+ router->{p1 p2 p3 p4 p5 p6 p7 p8};
+ {p1 p2 p3 p4 p5 p6 p7 p8}->plan;
+}

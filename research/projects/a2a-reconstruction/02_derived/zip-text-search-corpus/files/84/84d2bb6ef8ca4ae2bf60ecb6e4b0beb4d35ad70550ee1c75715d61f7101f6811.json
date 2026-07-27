@@ -1,0 +1,49 @@
+{
+  "schema_version": "towow-r5-action-space-probe-v1",
+  "captured_at_utc": "2026-07-24T12:43:30.074369+00:00",
+  "registered_at_utc": "2026-07-24T12:41:00Z",
+  "holdout": {
+    "static_profile": {
+      "total_cases": 3,
+      "asserted_cases": 3,
+      "coverage": 1.0,
+      "asserted_accuracy": 0.0,
+      "false_assertions": 3,
+      "false_assertion_rate_all_cases": 1.0
+    },
+    "scoped_claim": {
+      "total_cases": 3,
+      "asserted_cases": 0,
+      "coverage": 0.0,
+      "asserted_accuracy": null,
+      "false_assertions": 0,
+      "false_assertion_rate_all_cases": 0.0
+    }
+  },
+  "all_cases_including_retrospective_calibration": {
+    "static_profile": {
+      "total_cases": 6,
+      "asserted_cases": 6,
+      "coverage": 1.0,
+      "asserted_accuracy": 0.16666666666666666,
+      "false_assertions": 5,
+      "false_assertion_rate_all_cases": 0.8333333333333334
+    },
+    "scoped_claim": {
+      "total_cases": 6,
+      "asserted_cases": 3,
+      "coverage": 0.5,
+      "asserted_accuracy": 1.0,
+      "false_assertions": 0,
+      "false_assertion_rate_all_cases": 0.0
+    }
+  },
+  "holdout_actuals": {
+    "docker_daemon_query": false,
+    "sandbox_exec_allow_true": false,
+    "sandbox_exec_deny_canary": false
+  },
+  "boundary_mechanism_available": false,
+  "docker_daemon_available": false,
+  "scope_limit": "Three functional holdouts and three retrospective calibration cases do not establish population-level predictive accuracy."
+}

@@ -1,0 +1,164 @@
+{
+  "run_id": "r5-run-002-effect-granularity",
+  "research_question": "Which observable contract distinguishes attempted effect, realized effect, and accepted task completion when text, composite exit status, and state disagree?",
+  "objective": {
+    "original": "Prevent the local research executor from turning mixed or shallow success signals into false state transitions.",
+    "version_id": "objective-r5-local-v1",
+    "critical_value_dimensions": [
+      "no false acceptance",
+      "partial effects remain visible",
+      "refusal remains distinct from failure",
+      "low local overhead"
+    ],
+    "revisions": []
+  },
+  "reality_level": "E3",
+  "started_at": "2026-07-24T12:37:00Z",
+  "ended_at": "2026-07-24T12:39:46Z",
+  "status": "completed",
+  "workspace": {
+    "repo_root": "/Users/nature/通爻协议研究",
+    "baseline_commit": "UNBORN:null",
+    "final_commit": null,
+    "branch_or_worktree": "research/towow-r5-20260724-local"
+  },
+  "subjects": [
+    {
+      "id": "local-zsh-executor",
+      "kind": "independent subprocess per case",
+      "authority": "temporary case directory only"
+    }
+  ],
+  "sovereignty": {
+    "classification": "not_sovereign_a2a",
+    "reason": "Independent subprocesses share one OS user and no private principal worlds are claimed."
+  },
+  "strategies": [
+    {
+      "name": "success-looking text",
+      "role": "language heuristic baseline",
+      "budget": null
+    },
+    {
+      "name": "outer tool exit code",
+      "role": "common executor baseline",
+      "budget": null
+    },
+    {
+      "name": "postcondition only",
+      "role": "ablation",
+      "budget": null
+    },
+    {
+      "name": "atomic exit plus postcondition plus acceptance",
+      "role": "minimal contract",
+      "budget": null
+    },
+    {
+      "name": "eager full object projection",
+      "role": "semantic overhead comparison",
+      "budget": null
+    }
+  ],
+  "interventions": [
+    {
+      "name": "failure masking",
+      "cases": [
+        "masked_first_failure",
+        "actual_git_switch_sandbox_lock"
+      ]
+    },
+    {
+      "name": "effect/command-status separation",
+      "cases": [
+        "effect_then_failure",
+        "effect_then_rollback",
+        "partial_bundle_masked"
+      ]
+    },
+    {
+      "name": "explicit refusal",
+      "cases": [
+        "explicit_refusal"
+      ]
+    }
+  ],
+  "holdout_design": {
+    "executed_cases_declared_before_run": 8,
+    "actual_workspace_cases": 1,
+    "task_source": "Actual observed Git anomaly plus predeclared local executor counterexamples."
+  },
+  "models_agents_tools": [
+    {
+      "agent": "/root",
+      "model": "gpt-5.6-sol",
+      "executor": "/bin/zsh -f -c",
+      "python": "3.9.6"
+    }
+  ],
+  "costs": {
+    "api_cost": 0,
+    "external_calls": 0,
+    "experimental_wall_clock_ms": 70.056,
+    "human_interventions": 0,
+    "minimal_projection_bytes": 2327,
+    "eager_full_projection_bytes": 8476
+  },
+  "human_interventions": [],
+  "results": {
+    "cases": 9,
+    "stdout_acceptance_accuracy": 0.4444444444444444,
+    "outer_exit_acceptance_accuracy": 0.4444444444444444,
+    "postcondition_only_acceptance_accuracy": 0.8888888888888888,
+    "minimal_contract_acceptance_accuracy": 1.0,
+    "eager_full_projection_acceptance_accuracy": 1.0,
+    "eager_to_minimal_byte_ratio": 3.642458100558659,
+    "actual_trace_witness": "The composite Git tool call had outer exit 0 and success text while the branch postcondition was false."
+  },
+  "failures": [
+    {
+      "classification": "false_acceptance",
+      "strategy": "success-looking text",
+      "count": 5
+    },
+    {
+      "classification": "false_acceptance",
+      "strategy": "outer tool exit code",
+      "count": 5
+    },
+    {
+      "classification": "false_acceptance",
+      "strategy": "postcondition only",
+      "count": 1,
+      "detail": "A declared effect existed, but the command ended in failure and was not accepted."
+    }
+  ],
+  "claim_updates": [
+    {
+      "claim_id": "R5-LOCAL-C02",
+      "status": "supported",
+      "claim": "Effect realization and task acceptance require an action-aligned status plus an authoritative postcondition; success text and composite exit are insufficient."
+    },
+    {
+      "claim_id": "R5-LOCAL-C03",
+      "status": "qualified",
+      "claim": "For this L1 local task class, eagerly materializing the full current object chain adds no acceptance discrimination over the minimal contract and increases serialized evidence size 3.64x."
+    }
+  ],
+  "evidence_paths": [
+    "input/actual_workspace_events.json",
+    "outputs/events.json",
+    "outputs/summary.json",
+    "outputs/minimal_projection.json",
+    "outputs/eager_full_projection.json",
+    "logs/",
+    "analysis.md"
+  ],
+  "commands": [
+    {
+      "command": "python3 .ai-research/towow-a2a-r5/tools/effect_trace_lab.py --output .ai-research/towow-a2a-r5/runs/r5-run-002-effect-granularity --actual-events .ai-research/towow-a2a-r5/runs/r5-run-002-effect-granularity/input/actual_workspace_events.json",
+      "exit_code": 0
+    }
+  ],
+  "external_effects": []
+}

@@ -1,0 +1,46 @@
+objects:
+- id: Space
+  definition: 拥有规则、成员、可见范围和运营目标的协作边界。
+  must_not_be_confused_with:
+  - 普通 SaaS 租户
+  - 群聊
+- id: Subject
+  definition: 能够持有能力、意图、授权、责任或决策的主体。
+  must_not_be_confused_with:
+  - 固定用户角色
+- id: CapabilityClaim
+  definition: 主体对可解决问题、可承担角色或可交付结果的结构化声明。
+  must_not_be_confused_with:
+  - 简历
+  - 视觉卡片
+- id: Intent
+  definition: 尚未被充分结构化的问题、需求、供给或行动方向。
+- id: Opportunity
+  definition: 已经具有边界、可发现、可响应并可进入召集的协作机会。
+  must_not_be_confused_with:
+  - 普通需求帖子
+- id: Summon
+  definition: 将机会、参与主体、角色、承诺、交付和决定组织到同一协作上下文的核心对象。
+  must_not_be_confused_with:
+  - 项目页面
+  - 聊天线程
+- id: DisclosureRequest
+  definition: 对特定用途、范围和期限的信息访问请求。
+- id: DisclosureGrant
+  definition: 主体对信息访问作出的条件化授权凭据。
+  must_not_be_confused_with:
+  - 分享链接
+  - 所有权转移
+- id: Evidence
+  definition: 支持能力、交付、验证或决定的材料与事实。
+- id: VerificationResult
+  definition: 按照已声明方法对证据进行检查得到的结果。
+- id: AcceptanceDecision
+  definition: 有权主体使某个结果在业务上作数或不作数的决定。
+- id: DomainEvent
+  definition: 已经发生并改变领域理解或对象状态的事实。
+  must_not_be_confused_with:
+  - 评论
+  - UI 动态
+- id: ReportSnapshot
+  definition: 在特定时间、范围和口径下，由可追溯事实生成的汇报视图。

@@ -1,0 +1,26 @@
+{
+  "release": "v0.7",
+  "root": "/mnt/data/Towow_A2A_Independent_Research_v0.7_release",
+  "result": "PASS",
+  "checks": {
+    "json_files": 103,
+    "jsonl_files": 9,
+    "jsonl_rows": 216,
+    "local_links_checked": 13,
+    "qdr_restricted_material_absent": true,
+    "qdr_public_summary": "PASS",
+    "blind_checkpoint": "PASS",
+    "archival_replay": "PASS",
+    "opc_construct_replay": "PASS",
+    "fieldkit_tests": 31,
+    "pdf_pages": 27,
+    "pdf_fonts_reported": 8,
+    "pdf_visual_inspection": "27/27 pages manually inspected; no clipping, overlap, or missing glyphs observed",
+    "full_regression": "PASS"
+  },
+  "errors": [],
+  "warnings": [
+    "qpdf is not installed in this runtime; PDF structure was checked with pdfinfo/pdffonts and visual rendering instead"
+  ],
+  "evidence_note": "QA establishes package integrity and reproducibility of included artifacts. It does not upgrade single-coder, constructed-fixture, archival, or synthetic evidence into live OPC causal evidence."
+}

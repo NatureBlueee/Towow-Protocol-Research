@@ -1,0 +1,22 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.25, nodesep=0.45, ranksep=0.6, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=10.5, margin="0.16,0.10"];
+  edge [color="#6B7280", fontname="Noto Sans CJK SC", fontsize=8.5];
+  subgraph cluster1 { label="主体与权威平面"; color="#BFDBFE"; style="rounded"; fillcolor="#EFF6FF"; style="rounded,filled";
+    Principal [fillcolor="#DBEAFE"]; Domain [label="SovereignDomain",fillcolor="#DBEAFE"]; Exec [label="AgentExecution",fillcolor="#DBEAFE"]; Auth [label="AuthorityGrant",fillcolor="#DBEAFE"]; Rec [label="RecognitionAction",fillcolor="#DBEAFE"];
+    Principal -> Auth -> Exec; Principal -> Domain; Principal -> Rec;
+  }
+  subgraph cluster2 { label="认识与证据平面"; color="#FDE68A"; style="rounded,filled"; fillcolor="#FFFBEB";
+    Claim [fillcolor="#FEF3C7"]; Evidence [fillcolor="#FEF3C7"]; WP [label="WitnessPolicy",fillcolor="#FEF3C7"]; Def [label="Assumption / Defeater",fillcolor="#FEF3C7"];
+    Evidence -> Claim; WP -> Claim; Def -> Claim;
+  }
+  subgraph cluster3 { label="协调与规范平面"; color="#FED7AA"; style="rounded,filled"; fillcolor="#FFF7ED";
+    Obj [label="ObjectiveVersion",fillcolor="#FFEDD5"]; Case [label="CoordinationCase",fillcolor="#FFEDD5"]; Art [label="SharedArtifactVersion / JAA",fillcolor="#FFEDD5"]; Com [label="Commitment",fillcolor="#FFEDD5"]; Res [label="ResourceReservation",fillcolor="#FFEDD5"];
+    Obj -> Case -> Art -> Com -> Res;
+  }
+  subgraph cluster4 { label="操作与效力平面"; color="#A7F3D0"; style="rounded,filled"; fillcolor="#ECFDF5";
+    Key [label="LogicalActionKey",fillcolor="#D1FAE5"]; Att [label="ActionAttempt",fillcolor="#D1FAE5"]; Eff [label="Effect",fillcolor="#D1FAE5"]; Adopt [label="DomainAdoptionReceipt",fillcolor="#D1FAE5"]; Ver [label="Verification",fillcolor="#D1FAE5"]; Acc [label="Acceptance",fillcolor="#D1FAE5"]; Set [label="Settlement / Dispute",fillcolor="#D1FAE5"];
+    Key -> Att -> Eff -> Adopt -> Ver -> Acc -> Set;
+  }
+  Auth -> Com [style=dashed]; Rec -> Com [style=dashed]; Art -> Claim [style=dashed]; Claim -> Rec [style=dashed]; Com -> Att [style=dashed]; Evidence -> Ver [style=dashed]; Acc -> Principal [style=dashed];
+}

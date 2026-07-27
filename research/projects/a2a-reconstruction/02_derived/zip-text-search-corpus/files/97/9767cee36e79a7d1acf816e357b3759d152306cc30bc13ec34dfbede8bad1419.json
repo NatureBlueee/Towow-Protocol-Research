@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextPack",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "type",
+    "scope",
+    "provenance",
+    "content_summary",
+    "usage_policy"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "core_method",
+        "project_core",
+        "current_state",
+        "concern",
+        "evidence",
+        "task",
+        "language",
+        "negative"
+      ]
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "freshness": {
+      "type": "object"
+    },
+    "trust_level": {
+      "enum": [
+        "authoritative",
+        "reviewed",
+        "working",
+        "unverified"
+      ]
+    },
+    "content_summary": {
+      "type": "string"
+    },
+    "conflicts_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_uses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "usage_policy": {
+      "type": "object"
+    }
+  }
+}

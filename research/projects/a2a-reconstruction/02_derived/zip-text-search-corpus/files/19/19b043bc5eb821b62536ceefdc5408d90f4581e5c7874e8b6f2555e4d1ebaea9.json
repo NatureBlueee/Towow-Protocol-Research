@@ -1,0 +1,277 @@
+{
+  "case_id": "uk_open_banking",
+  "title": "UK Open Banking",
+  "domain": "regulated market infrastructure and data sharing",
+  "period": "2016–2024",
+  "outcome": "TECHNICALLY_ADOPTED_GOVERNANCE_REOPENED",
+  "research_role": "institutional compilation with technical success and governance failure",
+  "coding_status": "single_coder_provisional",
+  "case_selection_rationale": "The case contains a technical standard, operational rules, large-scale adoption, a governance failure, formal review and transition to a new long-term authority structure.",
+  "source_ids": [
+    "OB-01",
+    "OB-02",
+    "OB-03",
+    "OB-04",
+    "OB-05"
+  ],
+  "evidence_coverage": {
+    "source_proximity": 2,
+    "process_granularity": 2,
+    "authority_visibility": 2,
+    "effect_observability": 2,
+    "participant_voice_coverage": 1,
+    "counterfactual_support": 0,
+    "triangulation": 2,
+    "selection_bias_risk": "medium"
+  },
+  "initial_relation_frame": {
+    "frame_scope": "institutional_market_frame",
+    "R": "CMA, CMA9 banks, OBIE, third-party providers, consumers/SMEs, FCA, PSR, Treasury and future standards body.",
+    "V": "API standards, participants, directory, read/write data, service levels, disputes, breaches, suspension/exclusion.",
+    "T": "Market remedy → standards/governance implementation → participant registration/runtime → monitoring/review → roadmap completion → transition.",
+    "A": "CMA Order and oversight, OBIE implementation authority, bank/provider obligations, later regulatory allocation to FCA/PSR/Treasury.",
+    "E": "Conformance, directory status, service monitoring, investigation, governance review and roadmap decisions.",
+    "D": "Consumer/SME-authorized financial data sharing and payment/data-service rules.",
+    "O": "Operational participation, roadmap completion, breach/dispute handling, transition to sustainable framework."
+  },
+  "authority_topology": [
+    {
+      "locus": "CMA",
+      "powers": [
+        "impose remedy/order",
+        "oversee compliance",
+        "decide roadmap completion"
+      ]
+    },
+    {
+      "locus": "OBIE governance",
+      "powers": [
+        "develop/operate standards and ecosystem under Order"
+      ]
+    },
+    {
+      "locus": "CMA9 and participants",
+      "powers": [
+        "implement interfaces and comply with rules"
+      ]
+    },
+    {
+      "locus": "FCA/PSR/Treasury",
+      "powers": [
+        "future regulatory supervision and smart-data framework"
+      ]
+    },
+    {
+      "locus": "consumers/SMEs",
+      "powers": [
+        "authorize data access/use within the regulated frame; not ecosystem governance principals"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "event_id": "OB-E01",
+      "date": "2016-08/2017-01",
+      "label": "CMA remedy mandates an open banking ecosystem",
+      "event_type": "mandate",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "V",
+        "T",
+        "A",
+        "D",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "actor_enrollment",
+        "standardization",
+        "authority_reallocation"
+      ],
+      "description": "The market remedy creates new participant roles, data-sharing obligations, standards work and an implementation entity under regulatory authority.",
+      "source_ids": [
+        "OB-03"
+      ],
+      "authority_effect": "Constitutes institutional authority for a new market relation.",
+      "outcome_effect": "Creates a mandated formation and implementation path.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "OB-E02",
+      "date": "2017-03",
+      "label": "Operational governance rules compile roles and runtime procedures",
+      "event_type": "compilation",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "standardization",
+        "compilation",
+        "staged_approval"
+      ],
+      "description": "Rules specify registration, roles, standards, service levels, complaints, dispute, breach, suspension, exclusion and amendment.",
+      "source_ids": [
+        "OB-01"
+      ],
+      "authority_effect": "Distributes operational and adjudicative powers.",
+      "outcome_effect": "Transforms negotiated/mandated design into repeatable participant runtime.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "OB-E03",
+      "date": "2018–2022",
+      "label": "Technical adoption scales",
+      "event_type": "operation_and_effect",
+      "materiality": "INSTANCE_EXECUTION",
+      "changed_components": [
+        "V",
+        "D",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "compilation"
+      ],
+      "description": "Read/write data-sharing infrastructure is implemented and reaches millions of users and hundreds of providers by the 2022 review.",
+      "source_ids": [
+        "OB-03"
+      ],
+      "authority_effect": "Runtime authorization remains grounded in the institutional frame.",
+      "outcome_effect": "Shows technical Effect and ecosystem Adoption.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "OB-E04",
+      "date": "2021",
+      "label": "Independent investigation finds governance failures",
+      "event_type": "governance_failure",
+      "materiality": "REOPEN_REQUIRED",
+      "changed_components": [
+        "A",
+        "T",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "independent_challenge",
+        "reopen"
+      ],
+      "description": "The investigation identifies failures in corporate governance, conflicts, procurement/value, accounts and HR, with insufficient checks and oversight.",
+      "source_ids": [
+        "OB-02",
+        "OB-03"
+      ],
+      "authority_effect": "Challenges the legitimacy/effectiveness of the implementation authority without negating all technical effects.",
+      "outcome_effect": "Forces governance remediation while services continue.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "OB-E05",
+      "date": "2022",
+      "label": "Lessons review adds control gates and lifecycle governance",
+      "event_type": "schema_revision",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "T",
+        "A",
+        "E",
+        "O"
+      ],
+      "formation_operators": [
+        "independent_challenge",
+        "staged_approval",
+        "reopen"
+      ],
+      "description": "The review concludes the scale/complexity was underestimated and recommends formal review gates, effective governance, stakeholder engagement and clearer monitoring.",
+      "source_ids": [
+        "OB-03"
+      ],
+      "authority_effect": "Strengthens sponsor oversight and escalation.",
+      "outcome_effect": "Revises institutional compile/readiness semantics.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    },
+    {
+      "event_id": "OB-E06",
+      "date": "2023–2024",
+      "label": "Roadmap completion and long-term regulatory transition",
+      "event_type": "institutionalization",
+      "materiality": "MATERIAL_SCHEMA_CHANGE",
+      "changed_components": [
+        "R",
+        "T",
+        "A",
+        "D",
+        "O"
+      ],
+      "formation_operators": [
+        "authority_reallocation",
+        "institutionalization",
+        "compilation"
+      ],
+      "description": "The technical roadmap is judged substantially complete while the framework transitions from a temporary Order/OBIE model toward long-term FCA/PSR/Treasury authority.",
+      "source_ids": [
+        "OB-04",
+        "OB-05"
+      ],
+      "authority_effect": "Reassigns durable authority after initial implementation.",
+      "outcome_effect": "Separates implementation completion from final governance settlement.",
+      "confidence": "high",
+      "epistemic_status": "observed"
+    }
+  ],
+  "operation_effect_adoption_acceptance": {
+    "operation": "Banks/providers implemented and operated standardized APIs and directory/governance processes.",
+    "effect": "Data-sharing/payment capabilities became available at scale.",
+    "adoption": "Millions of users and hundreds of providers used the ecosystem by the 2022 review.",
+    "acceptance": "Market adoption was substantial, while governance legitimacy and long-term institutional acceptance remained subject to review and transition."
+  },
+  "supports": [
+    "Technical Effect and Adoption can coexist with institutional governance failure.",
+    "Compilation includes standards, registration, dispute, suspension, monitoring and amendment—not only API generation.",
+    "A temporary formation authority may need to be replaced by durable regulators after the relation stabilizes.",
+    "Governance/authority defects are legitimate reopen triggers even when technical interfaces continue to work."
+  ],
+  "does_not_support": [
+    "The case does not test decentralized Agent-to-Agent interaction.",
+    "It does not show that a Towow formation process would have prevented governance failures.",
+    "User counts do not prove every participant accepted the governance model."
+  ],
+  "competing_explanations": [
+    "Open Banking is a state-imposed market remedy; its formation dynamics may not transfer to voluntary non-standard relations.",
+    "Reported adoption may be explained by mandate and bank scale rather than governance design.",
+    "The lessons reviews are retrospective and institutionally authored."
+  ],
+  "design_delta": [
+    "Represent stability as a vector: technical/operational stability cannot average away authority/governance instability.",
+    "Define governance debt as a diagnostic when technical runtime is compiled before oversight, dispute and end-state authority are settled; do not create a new aggregate root.",
+    "Compile outputs must include amendment, suspension, complaint, dispute, monitoring and institutional succession.",
+    "Reopen may target governance subgraphs while leaving safe operational subgraphs running."
+  ],
+  "unknowns": [
+    "Long-run distribution of benefits and harms",
+    "User-level informed acceptance",
+    "Counterfactual governance model",
+    "Complete internal oversight communications"
+  ],
+  "chronology_preserving_diagnostic": {
+    "pre_outcome_material_gaps": [
+      "scale/complexity estimation",
+      "durable oversight",
+      "checks on implementation authority",
+      "formal review/escalation gates"
+    ],
+    "subsequent_observed_change": "The 2021–2023 reviews and transition addressed those governance/end-state dimensions.",
+    "gate_interpretation": "Technical compile readiness alone would have produced a false sense of closure; authority/governance stability needed an independent gate."
+  }
+}

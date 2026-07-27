@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SpecNode",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "status",
+    "scope",
+    "statement"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9._-]+$"
+    },
+    "type": {
+      "enum": [
+        "FACT",
+        "INFERENCE",
+        "ASSUMPTION",
+        "HYPOTHESIS",
+        "DECISION",
+        "PRINCIPLE",
+        "REQUIREMENT",
+        "EXAMPLE",
+        "EXTERNAL_CLAIM",
+        "UNKNOWN",
+        "CONCEPT",
+        "OBJECT",
+        "LOOP",
+        "POLICY",
+        "VIEW"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "proposed",
+        "accepted",
+        "deprecated",
+        "superseded",
+        "rejected"
+      ]
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "normative_level": {
+      "enum": [
+        "MUST",
+        "MUST_NOT",
+        "SHOULD",
+        "SHOULD_NOT",
+        "MAY",
+        "INFORMATIVE"
+      ]
+    },
+    "statement": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflicts_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affected_views": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_condition": {
+      "type": "string"
+    },
+    "reconsider_when": {
+      "type": "string"
+    }
+  }
+}

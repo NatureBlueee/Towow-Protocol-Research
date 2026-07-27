@@ -1,0 +1,29 @@
+profile:
+  id: prse-ai-native-base
+  version: 0.2.0
+  levels:
+    C0_readable:
+    - manifest_exists
+    - stable_ids_exist
+    - consumer_entrypoint_exists
+    C1_semantic:
+    - canonical_terms_defined
+    - status_and_scope_present
+    - superseded_content_not_active
+    C2_traceable:
+    - decisions_link_to_evidence
+    - requirements_link_to_objects_or_loops
+    - views_link_to_normative_nodes
+    C3_closed_loop:
+    - success_failure_recovery_present
+    - responsibility_and_evidence_distinct
+    - unknowns_explicit
+    C4_ai_safe:
+    - context_permissions_present
+    - agent_authority_bounded
+    - external_claims_do_not_exceed_capability
+    C5_portable:
+    - blind_consumer_can_reconstruct
+    - runtime_specific_assumptions_isolated_in_adapter
+    - conformance_tests_pass
+  minimum_release_level: C5_portable

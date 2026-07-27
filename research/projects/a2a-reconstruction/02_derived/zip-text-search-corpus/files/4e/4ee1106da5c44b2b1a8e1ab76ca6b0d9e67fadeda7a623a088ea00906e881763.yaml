@@ -1,0 +1,48 @@
+workflow:
+  id: new_product
+  entry_artifact: RunManifest
+  stages:
+    - id: frame
+      required_capabilities: [product_strategy, service_research]
+      outputs: [ProblemFrame, StakeholderMap, NonGoals, ResearchQuestions]
+      gate: G0_mission_ready
+
+    - id: evidence
+      required_capabilities: [research_synthesis, domain_expertise]
+      skills: [historical_solution_scan]
+      outputs: [EvidenceMap, PatternInventory, AssumptionRegister]
+      gate: G1_evidence_ready
+
+    - id: semantics
+      required_capabilities: [domain_ontology, requirements_engineering]
+      skills: [ontology_modeling]
+      outputs: [ConceptRegistry, ObjectModel, LifecycleModel, DecisionLog]
+      gate: G2_semantic_ready
+
+    - id: loops
+      required_capabilities: [service_closed_loop_design]
+      skills: [closed_loop_design]
+      outputs: [ClosedLoopCards, ExceptionMap, ResponsibilityMap]
+      gate: G3_closed_loop_ready
+
+    - id: experience
+      required_capabilities: [information_architecture, experience_legibility]
+      skills: [interface_projection]
+      outputs: [ViewMap, PageSpecifications, StateMatrices]
+      gate: G4_experience_ready
+
+    - id: assurance
+      required_capabilities: [safety_privacy, human_ai_interaction, accessibility]
+      outputs: [RiskRegister, AssuranceRequirements, EscalationMap]
+      gate: G5_assurance_ready
+
+    - id: language
+      required_capabilities: [terminology, external_claims]
+      skills: [language_compilation]
+      outputs: [TerminologyMap, ClaimRegistry, AudienceMessages]
+      gate: G6_language_ready
+
+    - id: handoff
+      required_capabilities: [spec_architecture, adversarial_qa]
+      outputs: [SpecificationBundle, ValidationReports, RunReport]
+      gate: G7_handoff_ready

@@ -1,0 +1,95 @@
+{
+  "episode_id": "R5C-EP-001",
+  "objective": {
+    "original": "Form a privacy-preserving path from Allbuddy consumer adoption authority to an independently accepted Agent World projection.",
+    "value_dimensions": [
+      {
+        "name": "tenant_privacy",
+        "preserved": true
+      },
+      {
+        "name": "independent_authority",
+        "preserved": true
+      },
+      {
+        "name": "honest_unknown",
+        "preserved": true
+      },
+      {
+        "name": "human_business_value",
+        "preserved": null
+      }
+    ]
+  },
+  "pre_state": {
+    "accepted_path_exists": false,
+    "unreachability_evidence_refs": [
+      "PRESTATE.md",
+      "FORMATION_ORACLE.md"
+    ]
+  },
+  "participants": [
+    {
+      "principal_id": "Allbuddy_data_product",
+      "execution_id": "model_principal_allbuddy",
+      "private_world_ref": "PRESTATE.md#allbuddy-principal",
+      "authority_ref": "consumer_adoption"
+    },
+    {
+      "principal_id": "AgentWorld_provenance_projection",
+      "execution_id": "model_principal_world",
+      "private_world_ref": "PRESTATE.md#agent-world-principal",
+      "authority_ref": "external_observation_projection"
+    }
+  ],
+  "interaction_trace_refs": [
+    "ROUND_01_ALLBUDDY.md",
+    "ROUND_01_WORLD.md",
+    "ROUND_02_ALLBUDDY.md",
+    "ROUND_02_WORLD.md",
+    "ROUND_03_ALIGNMENT.md",
+    "ROUND_05_RECOVERY_ALIGNMENT.md"
+  ],
+  "formation_claim": {
+    "new_condition": "A recoverable monotonic source authority can be independently claimed, read, journaled, projected and acknowledged without disclosing the private Artifact.",
+    "state_delta_refs": [
+      "LIVE_CROSS_REPO_EPISODE.md",
+      "allbuddy_v5_cancel_race_redacted.json"
+    ],
+    "classification": "constructive_formation"
+  },
+  "result": {
+    "target_adopted": true,
+    "accepted": true,
+    "original_value_preserved": true,
+    "evidence_refs": [
+      "LIVE_CROSS_REPO_EPISODE.md",
+      "WORLD_OPEN_REREVIEW_07_FINAL.md"
+    ],
+    "acceptance_boundary": "synthetic local technical acceptance only"
+  },
+  "causal_checks": {
+    "critical_condition_removed": true,
+    "baseline_refs": [
+      "BASELINE_STATIC_RESULT.md",
+      "BASELINE_CENTRAL_RESULT.md",
+      "COMPARISON_AND_ABLATION_PLAN.md"
+    ],
+    "ablation_ref": "LIVE_CROSS_REPO_EPISODE.md#counterfactual-removals-actually-run"
+  },
+  "costs": {
+    "ref": "../../../ECONOMIC_AND_ATTENTION_ACCOUNTING.md",
+    "exact_model_tokens": null,
+    "commercial_value": "UNKNOWN"
+  },
+  "holdout": {
+    "claim_frozen_before_execution": true,
+    "claim_ref": "CAPABILITY_CLAIM_FROZEN_BEFORE_HOLDOUT.md",
+    "result_ref": "HOLDOUT_RESULT.md",
+    "status": "supported_local_holdout"
+  },
+  "design_delta": {
+    "decision_changed": true,
+    "change": "Authority delivery, negative decisions, recovery, canonical readback and target postcondition became one operation; adaptive A2A is limited to formation and deterministic coordination follows interface freeze."
+  }
+}

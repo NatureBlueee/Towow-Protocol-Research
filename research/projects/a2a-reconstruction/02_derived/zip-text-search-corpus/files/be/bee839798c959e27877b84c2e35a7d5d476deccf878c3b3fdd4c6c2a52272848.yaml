@@ -1,0 +1,21 @@
+run_id: summon-v08-audit-001
+assignments:
+  - concern: product_identity
+    producer: cap.product_strategy
+    reviewer: cap.adversarial_qa
+  - concern: domain_ontology
+    producer: cap.domain_ontology
+    reviewer: cap.requirements_engineering
+  - concern: closed_loops
+    producer: cap.service_closed_loop
+    reviewer: cap.domain_ontology
+  - concern: experience_legibility
+    producer: cap.experience_legibility
+    reviewer: cap.service_closed_loop
+  - concern: language_fidelity
+    producer: cap.terminology
+    reviewer: cap.external_claims
+human_escalation:
+  required_if:
+    - 核心产品定位出现不可消解的战略取舍
+    - 披露与责任边界涉及正式法律判断

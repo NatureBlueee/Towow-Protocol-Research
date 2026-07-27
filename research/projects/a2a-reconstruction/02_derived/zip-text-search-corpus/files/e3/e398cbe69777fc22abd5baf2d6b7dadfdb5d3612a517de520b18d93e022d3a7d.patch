@@ -1,0 +1,2159 @@
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/action_space_probe.py
+@@ -0,0 +1,206 @@
++#!/usr/bin/env python3
++"""Run bounded local capability probes against preregistered predictions."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import os
++import subprocess
++import tempfile
++import time
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Any
++
++
++def run(command: list[str], timeout: int = 10) -> dict[str, Any]:
++    started = time.monotonic()
++    try:
++        completed = subprocess.run(
++            command,
++            text=True,
++            capture_output=True,
++            timeout=timeout,
++            check=False,
++            env={"PATH": "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"},
++        )
++        return {
++            "command": command,
++            "exit_code": completed.returncode,
++            "stdout": completed.stdout,
++            "stderr": completed.stderr,
++            "timed_out": False,
++            "duration_ms": round((time.monotonic() - started) * 1000, 3),
++        }
++    except subprocess.TimeoutExpired as exc:
++        return {
++            "command": command,
++            "exit_code": 124,
++            "stdout": exc.stdout or "",
++            "stderr": exc.stderr or "",
++            "timed_out": True,
++            "duration_ms": round((time.monotonic() - started) * 1000, 3),
++        }
++
++
++def metrics(cases: list[dict[str, Any]], prediction_key: str) -> dict[str, Any]:
++    asserted = [case for case in cases if case[prediction_key] != "unknown"]
++    correct = sum(case[prediction_key] == case["actual"] for case in asserted)
++    false_assertions = len(asserted) - correct
++    return {
++        "total_cases": len(cases),
++        "asserted_cases": len(asserted),
++        "coverage": len(asserted) / len(cases) if cases else 0.0,
++        "asserted_accuracy": correct / len(asserted) if asserted else None,
++        "false_assertions": false_assertions,
++        "false_assertion_rate_all_cases": (
++            false_assertions / len(cases) if cases else 0.0
++        ),
++    }
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--predictions", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++    registered = json.loads(args.predictions.read_text(encoding="utf-8"))
++    output = args.output.resolve()
++    logs = output / "logs"
++    outputs = output / "outputs"
++    logs.mkdir(parents=True, exist_ok=True)
++    outputs.mkdir(parents=True, exist_ok=True)
++
++    probes: dict[str, dict[str, Any]] = {}
++    probes["docker_daemon_query"] = run(
++        ["/usr/local/bin/docker", "info", "--format", "{{.ServerVersion}}"]
++    )
++    probes["docker_daemon_query"]["actual"] = (
++        probes["docker_daemon_query"]["exit_code"] == 0
++        and bool(probes["docker_daemon_query"]["stdout"].strip())
++    )
++    probes["docker_daemon_query"]["postcondition"] = (
++        "exit 0 and a non-empty local daemon server version"
++    )
++
++    permissive_profile = "(version 1)\n(allow default)"
++    probes["sandbox_exec_allow_true"] = run(
++        ["/usr/bin/sandbox-exec", "-p", permissive_profile, "/usr/bin/true"]
++    )
++    probes["sandbox_exec_allow_true"]["actual"] = (
++        probes["sandbox_exec_allow_true"]["exit_code"] == 0
++    )
++    probes["sandbox_exec_allow_true"]["postcondition"] = (
++        "sandbox-exec applies the profile and the child exits 0"
++    )
++
++    with tempfile.TemporaryDirectory(prefix="towow-r5-canary-") as temp_root:
++        canary = Path(temp_root) / "private_canary.txt"
++        canary_value = "synthetic-canary-r5"
++        canary.write_text(canary_value, encoding="utf-8")
++        parent_read_ok = canary.read_text(encoding="utf-8") == canary_value
++        deny_profile = (
++            "(version 1)\n"
++            "(allow default)\n"
++            f'(deny file-read* (literal "{canary}"))'
++        )
++        denied = run(
++            ["/usr/bin/sandbox-exec", "-p", deny_profile, "/bin/cat", str(canary)]
++        )
++        profile_apply_error = "sandbox_apply" in denied["stderr"].lower()
++        denied["actual"] = (
++            parent_read_ok
++            and probes["sandbox_exec_allow_true"]["actual"]
++            and denied["exit_code"] != 0
++            and canary_value not in denied["stdout"]
++            and not profile_apply_error
++        )
++        denied["postcondition"] = (
++            "parent reads synthetic canary; sandboxed child is denied; profile "
++            "application itself succeeds"
++        )
++        denied["parent_read_ok"] = parent_read_ok
++        denied["profile_apply_error"] = profile_apply_error
++        denied["canary_value_sha256"] = __import__("hashlib").sha256(
++            canary_value.encode()
++        ).hexdigest()
++        probes["sandbox_exec_deny_canary"] = denied
++
++    retrospective = {
++        "git_branch_default_seatbelt": {
++            "actual": False,
++            "evidence": "Observed HEAD.lock failure and unchanged branch postcondition.",
++        },
++        "git_branch_approved_route": {
++            "actual": True,
++            "evidence": "Approved git checkout -b route followed by verified branch read-back.",
++        },
++        "codexpro_remote_agent_execution": {
++            "actual": False,
++            "evidence": "CodexPro self-test terms_boundary remote_agent_execution=false.",
++        },
++    }
++
++    cases: list[dict[str, Any]] = []
++    for registered_case in registered["cases"]:
++        case = dict(registered_case)
++        case_id = case["case_id"]
++        actual_record = probes.get(case_id) or retrospective[case_id]
++        case["actual"] = bool(actual_record["actual"])
++        case["actual_evidence"] = actual_record
++        cases.append(case)
++
++    holdouts = [case for case in cases if case["partition"] == "holdout"]
++    calibration = [
++        case for case in cases if case["partition"] == "retrospective_calibration"
++    ]
++    summary = {
++        "schema_version": "towow-r5-action-space-probe-v1",
++        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
++        "registered_at_utc": registered["registered_at_utc"],
++        "holdout": {
++            "static_profile": metrics(holdouts, "static_profile_prediction"),
++            "scoped_claim": metrics(holdouts, "scoped_claim_prediction"),
++        },
++        "all_cases_including_retrospective_calibration": {
++            "static_profile": metrics(cases, "static_profile_prediction"),
++            "scoped_claim": metrics(cases, "scoped_claim_prediction"),
++        },
++        "holdout_actuals": {
++            case["case_id"]: case["actual"] for case in holdouts
++        },
++        "boundary_mechanism_available": next(
++            case["actual"]
++            for case in cases
++            if case["case_id"] == "sandbox_exec_deny_canary"
++        ),
++        "docker_daemon_available": next(
++            case["actual"]
++            for case in cases
++            if case["case_id"] == "docker_daemon_query"
++        ),
++        "scope_limit": (
++            "Three functional holdouts and three retrospective calibration cases "
++            "do not establish population-level predictive accuracy."
++        ),
++    }
++    for case_id, result in probes.items():
++        (logs / f"{case_id}.stdout.log").write_text(
++            result["stdout"], encoding="utf-8"
++        )
++        (logs / f"{case_id}.stderr.log").write_text(
++            result["stderr"], encoding="utf-8"
++        )
++    (outputs / "cases.json").write_text(
++        json.dumps(cases, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++    (outputs / "summary.json").write_text(
++        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++    print(json.dumps(summary, ensure_ascii=False))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/build_return_packet.py
+@@ -0,0 +1,267 @@
++#!/usr/bin/env python3
++"""Assemble, manifest, checksum, and zip the local Round 5 return packet."""
++
++from __future__ import annotations
++
++import difflib
++import hashlib
++import json
++import shutil
++import subprocess
++import sys
++import zipfile
++from datetime import datetime, timezone
++from pathlib import Path
++
++
++ROOT = Path(__file__).resolve().parents[1]
++REPO = ROOT.parents[1]
++TARGET = ROOT / "return-packet"
++ZIP_PATH = ROOT / "return-packet.zip"
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as handle:
++        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def git(*args: str) -> tuple[int, str, str]:
++    completed = subprocess.run(
++        ["git", *args],
++        cwd=REPO,
++        text=True,
++        capture_output=True,
++        check=False,
++    )
++    return completed.returncode, completed.stdout, completed.stderr
++
++
++def copy_file(source: Path, destination: Path) -> None:
++    destination.parent.mkdir(parents=True, exist_ok=True)
++    shutil.copy2(source, destination)
++
++
++def ignore_cache(_directory: str, names: list[str]) -> set[str]:
++    return {name for name in names if name == "__pycache__" or name.endswith(".pyc")}
++
++
++def role_for(relative: Path) -> str:
++    first = relative.parts[0]
++    return {
++        "experiments": "raw experiment evidence",
++        "code_changes": "research code and engineering evidence",
++        "independent_reviews": "review and cross-validation",
++        "failures": "failure index",
++        "blockers": "external conditions",
++        "git": "workspace version-control state",
++        "manifests": "integrity metadata",
++    }.get(first, "core return artifact")
++
++
++def main() -> int:
++    if not TARGET.is_dir():
++        print(f"return packet narrative directory missing: {TARGET}", file=sys.stderr)
++        return 2
++    if (TARGET / "experiments").exists() or (TARGET / "manifests" / "MANIFEST.json").exists():
++        print("refusing to overwrite an already assembled return packet", file=sys.stderr)
++        return 3
++
++    copy_file(ROOT / "state" / "ENVIRONMENT_FACTS.json", TARGET / "ENVIRONMENT_FACTS.json")
++    copy_file(ROOT / "state" / "RESEARCH_STATE.yaml", TARGET / "RESEARCH_STATE.yaml")
++    copy_file(ROOT / "state" / "DECISION_LOG.md", TARGET / "DECISION_LOG.md")
++    copy_file(ROOT / "CLAIM_EVIDENCE_UPDATE.csv", TARGET / "CLAIM_EVIDENCE_UPDATE.csv")
++
++    shutil.copytree(
++        ROOT / "runs",
++        TARGET / "experiments",
++        ignore=ignore_cache,
++    )
++    smoke_destination = TARGET / "experiments" / "smoke"
++    smoke_destination.mkdir(parents=True)
++    copy_file(
++        ROOT / "smoke" / "CODEX_LOCAL_SMOKE_RESULT.json",
++        smoke_destination / "CODEX_LOCAL_SMOKE_RESULT.json",
++    )
++    shutil.copytree(
++        ROOT / "reviews",
++        TARGET / "independent_reviews",
++        ignore=ignore_cache,
++    )
++    shutil.copytree(
++        ROOT / "tools",
++        TARGET / "code_changes" / "source",
++        ignore=ignore_cache,
++    )
++    shutil.copytree(
++        ROOT / "runs" / "r5-run-004-sovereign-workspace" / "failures",
++        TARGET / "failures" / "r5-run-004",
++    )
++
++    baseline_text = "\n".join(
++        [
++            "branch=main",
++            "head=null",
++            "unborn=true",
++            "dirty=true",
++            "tracked_files=0",
++            "protected_source_aggregate_sha256=5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
++            "note=Every baseline workspace file was user-owned and untracked.",
++            "",
++        ]
++    )
++    (TARGET / "git" / "baseline.txt").write_text(baseline_text, encoding="utf-8")
++    branch_code, branch_stdout, _ = git("branch", "--show-current")
++    head_code, head_stdout, head_stderr = git("rev-parse", "--verify", "HEAD")
++    final_text = "\n".join(
++        [
++            f"branch={branch_stdout.strip() if branch_code == 0 else 'unknown'}",
++            f"head={head_stdout.strip() if head_code == 0 else 'null'}",
++            f"head_exit_code={head_code}",
++            f"head_stderr={head_stderr.strip()}",
++            "unborn=true",
++            "dirty=true",
++            "protected_source_aggregate_sha256=5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
++            "project_source_files_modified_by_research=0",
++            "",
++        ]
++    )
++    (TARGET / "git" / "final.txt").write_text(final_text, encoding="utf-8")
++    status_code, status_stdout, status_stderr = git(
++        "status", "--porcelain=v2", "--branch", "--untracked-files=all"
++    )
++    (TARGET / "git" / "status.txt").write_text(
++        f"exit_code={status_code}\n{status_stdout}{status_stderr}",
++        encoding="utf-8",
++    )
++    (TARGET / "git" / "commits.txt").write_text(
++        "No commit exists in this repository. The research branch is unborn.\n",
++        encoding="utf-8",
++    )
++
++    code_sources = sorted((ROOT / "tools").glob("*.py")) + [
++        ROOT / "reviews" / "open_review_verifier.py"
++    ]
++    patch_parts: list[str] = []
++    for source in code_sources:
++        relative = source.relative_to(REPO).as_posix()
++        lines = source.read_text(encoding="utf-8").splitlines(keepends=True)
++        patch_parts.extend(
++            difflib.unified_diff(
++                [],
++                lines,
++                fromfile="/dev/null",
++                tofile=f"b/{relative}",
++                lineterm="\n",
++            )
++        )
++    (TARGET / "git" / "changes.patch").write_text(
++        "".join(patch_parts), encoding="utf-8"
++    )
++
++    review = json.loads(
++        (ROOT / "reviews" / "OPEN_REVIEW_RESULT.json").read_text(encoding="utf-8")
++    )
++    if review["errors"] or review["checks"]["secret_pattern_hits"]:
++        print("review did not clear the packet for packaging", file=sys.stderr)
++        return 4
++
++    manifest_path = TARGET / "manifests" / "MANIFEST.json"
++    checksum_path = TARGET / "manifests" / "CHECKSUMS.sha256"
++    pre_manifest_files = sorted(
++        path
++        for path in TARGET.rglob("*")
++        if path.is_file() and path not in {manifest_path, checksum_path}
++    )
++    manifest = {
++        "schema_version": "towow-r5-local-return-packet-v1",
++        "packet_version": "towow-a2a-r5-codex-local-return-v1.1",
++        "created_at_utc": datetime.now(timezone.utc).isoformat(),
++        "workspace": str(REPO),
++        "baseline_commit": None,
++        "final_commit": None,
++        "branch": branch_stdout.strip(),
++        "unborn_repository": True,
++        "protected_source_aggregate_sha256": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
++        "run_ids": [
++            "r5-run-001-evidence-reachability",
++            "r5-run-002-effect-granularity",
++            "r5-run-003-action-space-claims",
++            "r5-run-004-sovereign-workspace",
++        ],
++        "model_agent_calls": [
++            {
++                "agent": "/root",
++                "model": "gpt-5.6-sol",
++                "reasoning_effort": "xhigh",
++                "independent_model_calls": 0,
++            }
++        ],
++        "time_range_utc": {
++            "start": "2026-07-24T12:28:29Z",
++            "end": "2026-07-24T12:58:00Z",
++        },
++        "contains_secrets_or_restricted_data": False,
++        "private_test_keys_persisted": False,
++        "files": [
++            {
++                "path": path.relative_to(TARGET).as_posix(),
++                "role": role_for(path.relative_to(TARGET)),
++                "bytes": path.stat().st_size,
++                "sha256": sha256(path),
++            }
++            for path in pre_manifest_files
++        ],
++        "integrity_note": (
++            "MANIFEST.json lists every pre-manifest payload file. "
++            "CHECKSUMS.sha256 covers those files plus MANIFEST.json and omits itself."
++        ),
++    }
++    manifest_path.write_text(
++        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++    )
++    checksum_files = sorted(
++        path for path in TARGET.rglob("*") if path.is_file() and path != checksum_path
++    )
++    checksum_path.write_text(
++        "".join(
++            f"{sha256(path)}  {path.relative_to(TARGET).as_posix()}\n"
++            for path in checksum_files
++        ),
++        encoding="utf-8",
++    )
++
++    if ZIP_PATH.exists():
++        print(f"refusing to overwrite existing zip: {ZIP_PATH}", file=sys.stderr)
++        return 5
++    with zipfile.ZipFile(
++        ZIP_PATH, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9
++    ) as archive:
++        for path in sorted(TARGET.rglob("*")):
++            if path.is_file():
++                archive.write(
++                    path,
++                    (Path("return-packet") / path.relative_to(TARGET)).as_posix(),
++                )
++
++    print(
++        json.dumps(
++            {
++                "return_packet": str(TARGET),
++                "zip": str(ZIP_PATH),
++                "payload_files": len(pre_manifest_files),
++                "checksummed_files": len(checksum_files),
++                "zip_bytes": ZIP_PATH.stat().st_size,
++                "zip_sha256": sha256(ZIP_PATH),
++            },
++            ensure_ascii=False,
++        )
++    )
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/effect_trace_lab.py
+@@ -0,0 +1,326 @@
++#!/usr/bin/env python3
++"""Compare shallow success signals with effect and acceptance contracts."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import subprocess
++import tempfile
++import time
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Any, Callable
++
++
++SUCCESS_TEXT = re.compile(r"\b(success|succeeded|switched|complete|completed|ok)\b", re.I)
++
++
++def target_exists(case_dir: Path) -> bool:
++    return (case_dir / "target").is_file()
++
++
++def targets_a_and_b_exist(case_dir: Path) -> bool:
++    return (case_dir / "target_a").is_file() and (case_dir / "target_b").is_file()
++
++
++def no_target(case_dir: Path) -> bool:
++    return not any(case_dir.iterdir())
++
++
++CASES: list[dict[str, Any]] = [
++    {
++        "case_id": "truthful_success",
++        "command": 'print -r -- "operation complete"\n: > "$R5_CASE_DIR/target"',
++        "postcondition": target_exists,
++        "ground_truth_acceptance": True,
++    },
++    {
++        "case_id": "success_text_failure",
++        "command": 'print -r -- "Switched to a new branch"\nfalse',
++        "postcondition": no_target,
++        "invert_postcondition_for_effect": True,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "masked_first_failure",
++        "command": 'print -u2 -- "permission denied"\nfalse\nprint -r -- "follow-up read succeeded"',
++        "postcondition": no_target,
++        "invert_postcondition_for_effect": True,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "exit_zero_no_effect",
++        "command": 'print -r -- "OK"',
++        "postcondition": no_target,
++        "invert_postcondition_for_effect": True,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "effect_then_failure",
++        "command": ': > "$R5_CASE_DIR/target"\nprint -u2 -- "later validation failed"\nfalse',
++        "postcondition": target_exists,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "effect_then_rollback",
++        "command": ': > "$R5_CASE_DIR/target"\n/bin/rm "$R5_CASE_DIR/target"\nprint -r -- "operation complete"',
++        "postcondition": no_target,
++        "invert_postcondition_for_effect": True,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "partial_bundle_masked",
++        "command": ': > "$R5_CASE_DIR/target_a"\nfalse\ntrue',
++        "postcondition": targets_a_and_b_exist,
++        "ground_truth_acceptance": False,
++    },
++    {
++        "case_id": "explicit_refusal",
++        "command": 'print -r -- "REFUSED: no authorized operator"\nexit 3',
++        "postcondition": no_target,
++        "invert_postcondition_for_effect": True,
++        "ground_truth_acceptance": False,
++        "ground_truth_outcome": "refused",
++    },
++]
++
++
++def bool_metrics(rows: list[dict[str, Any]], predictor: str, truth: str) -> dict[str, Any]:
++    tp = sum(bool(row[predictor]) and bool(row[truth]) for row in rows)
++    tn = sum(not bool(row[predictor]) and not bool(row[truth]) for row in rows)
++    fp = sum(bool(row[predictor]) and not bool(row[truth]) for row in rows)
++    fn = sum(not bool(row[predictor]) and bool(row[truth]) for row in rows)
++    total = len(rows)
++    return {
++        "accuracy": (tp + tn) / total if total else 0.0,
++        "true_positive": tp,
++        "true_negative": tn,
++        "false_positive": fp,
++        "false_negative": fn,
++        "n": total,
++    }
++
++
++def project_records(row: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
++    minimal = {
++        "attempt_id": row["case_id"],
++        "actor": row["actor"],
++        "atomic_action": row["command"],
++        "executor_exit_code": row["outer_exit_code"],
++        "postcondition": row["postcondition_passed"],
++        "effect_observed": row["ground_truth_effect"],
++        "acceptance": row["minimal_contract_acceptance"],
++        "outcome": row["ground_truth_outcome"],
++    }
++    full = {
++        "CoordinationCase": {
++            "id": f"case:{row['case_id']}",
++            "status": row["ground_truth_outcome"],
++        },
++        "ObjectiveVersion": {
++            "id": f"objective:{row['case_id']}:v1",
++            "content_hash": row["command_hash"],
++            "parent": None,
++        },
++        "Claim": {
++            "id": f"claim:{row['case_id']}:effect",
++            "scope": "local temporary case directory",
++            "status": "observed" if row["ground_truth_effect"] else "refuted",
++        },
++        "Evidence": {
++            "stdout": row["stdout"],
++            "stderr": row["stderr"],
++            "executor_exit_code": row["outer_exit_code"],
++        },
++        "RecognitionAction": {
++            "status": "not_required_for_local_test",
++            "content_hash": row["command_hash"],
++        },
++        "AuthorityGrant": {
++            "scope": "local temporary case directory",
++            "granted": True,
++        },
++        "Commitment": {
++            "status": "local_test_only",
++            "resource_reservation": "temporary_directory",
++        },
++        "Effect": {
++            "attempted": True,
++            "observed": row["ground_truth_effect"],
++            "partial_effect_paths": row["partial_effect_paths"],
++        },
++        "Verification": {
++            "postcondition_passed": row["postcondition_passed"],
++        },
++        "Acceptance": {
++            "accepted": row["minimal_contract_acceptance"],
++        },
++        "Settlement": {
++            "status": "not_applicable",
++        },
++    }
++    return minimal, full
++
++
++def add_predictions(row: dict[str, Any]) -> None:
++    visible_text = f"{row['stdout']}\n{row['stderr']}"
++    row["stdout_language_acceptance"] = bool(SUCCESS_TEXT.search(visible_text))
++    row["outer_exit_acceptance"] = row["outer_exit_code"] == 0
++    row["postcondition_only_acceptance"] = bool(row["postcondition_passed"])
++    row["minimal_contract_acceptance"] = (
++        row["outer_exit_code"] == 0 and bool(row["postcondition_passed"])
++    )
++    row["eager_full_projection_acceptance"] = row["minimal_contract_acceptance"]
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--actual-events", type=Path, required=True)
++    args = parser.parse_args()
++    output = args.output.resolve()
++    logs = output / "logs"
++    outputs = output / "outputs"
++    logs.mkdir(parents=True, exist_ok=True)
++    outputs.mkdir(parents=True, exist_ok=True)
++
++    started = time.monotonic()
++    rows: list[dict[str, Any]] = []
++    with tempfile.TemporaryDirectory(prefix="towow-r5-effect-") as temp_root:
++        root = Path(temp_root)
++        for spec in CASES:
++            case_dir = root / spec["case_id"]
++            case_dir.mkdir()
++            before = sorted(path.name for path in case_dir.iterdir())
++            case_started = time.monotonic()
++            completed = subprocess.run(
++                ["/bin/zsh", "-f", "-c", spec["command"]],
++                text=True,
++                capture_output=True,
++                timeout=10,
++                check=False,
++                env={"PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "R5_CASE_DIR": str(case_dir)},
++            )
++            duration_ms = round((time.monotonic() - case_started) * 1000, 3)
++            after = sorted(path.name for path in case_dir.iterdir())
++            raw_postcondition = bool(spec["postcondition"](case_dir))
++            effect_observed = (
++                not raw_postcondition
++                if spec.get("invert_postcondition_for_effect")
++                else raw_postcondition
++            )
++            import hashlib
++
++            row = {
++                "case_id": spec["case_id"],
++                "source": "executed_holdout",
++                "actor": "local-zsh-executor",
++                "command": spec["command"],
++                "command_hash": hashlib.sha256(spec["command"].encode()).hexdigest(),
++                "outer_exit_code": completed.returncode,
++                "stdout": completed.stdout,
++                "stderr": completed.stderr,
++                "state_before": before,
++                "state_after": after,
++                "postcondition_passed": effect_observed,
++                "ground_truth_effect": effect_observed,
++                "ground_truth_acceptance": spec["ground_truth_acceptance"],
++                "ground_truth_outcome": spec.get(
++                    "ground_truth_outcome",
++                    "accepted" if spec["ground_truth_acceptance"] else "failed",
++                ),
++                "partial_effect_paths": after,
++                "duration_ms": duration_ms,
++            }
++            add_predictions(row)
++            rows.append(row)
++            (logs / f"{spec['case_id']}.stdout.log").write_text(
++                completed.stdout, encoding="utf-8"
++            )
++            (logs / f"{spec['case_id']}.stderr.log").write_text(
++                completed.stderr, encoding="utf-8"
++            )
++
++    actual_payload = json.loads(args.actual_events.read_text(encoding="utf-8"))
++    for actual in actual_payload["events"]:
++        row = dict(actual)
++        add_predictions(row)
++        rows.append(row)
++        (logs / f"{row['case_id']}.stdout.log").write_text(
++            row["stdout"], encoding="utf-8"
++        )
++        (logs / f"{row['case_id']}.stderr.log").write_text(
++            row["stderr"], encoding="utf-8"
++        )
++
++    minimal_records: list[dict[str, Any]] = []
++    full_records: list[dict[str, Any]] = []
++    for row in rows:
++        minimal, full = project_records(row)
++        minimal_records.append(minimal)
++        full_records.append(full)
++
++    acceptance_predictors = [
++        "stdout_language_acceptance",
++        "outer_exit_acceptance",
++        "postcondition_only_acceptance",
++        "minimal_contract_acceptance",
++        "eager_full_projection_acceptance",
++    ]
++    metrics = {
++        predictor: bool_metrics(rows, predictor, "ground_truth_acceptance")
++        for predictor in acceptance_predictors
++    }
++    effect_metrics = {
++        "outer_exit_as_effect": bool_metrics(
++            rows, "outer_exit_acceptance", "ground_truth_effect"
++        ),
++        "postcondition_as_effect": bool_metrics(
++            rows, "postcondition_passed", "ground_truth_effect"
++        ),
++    }
++    minimal_bytes = len(
++        json.dumps(minimal_records, ensure_ascii=False, separators=(",", ":")).encode()
++    )
++    full_bytes = len(
++        json.dumps(full_records, ensure_ascii=False, separators=(",", ":")).encode()
++    )
++    summary = {
++        "schema_version": "towow-r5-effect-trace-lab-v1",
++        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
++        "case_count": len(rows),
++        "executed_holdout_count": len(CASES),
++        "actual_workspace_trace_count": len(actual_payload["events"]),
++        "acceptance_metrics": metrics,
++        "effect_metrics": effect_metrics,
++        "minimal_projection_bytes": minimal_bytes,
++        "eager_full_projection_bytes": full_bytes,
++        "eager_to_minimal_byte_ratio": full_bytes / minimal_bytes if minimal_bytes else None,
++        "wall_clock_ms": round((time.monotonic() - started) * 1000, 3),
++        "scope_limit": (
++            "Synthetic holdouts test executor semantics; the Git trace is an actual "
++            "workspace event. Record size is not a complete implementation-cost metric."
++        ),
++    }
++    (outputs / "events.json").write_text(
++        json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++    (outputs / "minimal_projection.json").write_text(
++        json.dumps(minimal_records, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++    )
++    (outputs / "eager_full_projection.json").write_text(
++        json.dumps(full_records, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++    )
++    (outputs / "summary.json").write_text(
++        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++    print(json.dumps(summary, ensure_ascii=False))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/evidence_reachability.py
+@@ -0,0 +1,140 @@
++#!/usr/bin/env python3
++"""Audit whether baseline claim artifacts are reachable from the local packet.
++
++This checks path reachability and hashes only. It does not judge whether a
++reachable artifact actually proves its claim.
++"""
++
++from __future__ import annotations
++
++import argparse
++import csv
++import hashlib
++import json
++from datetime import datetime, timezone
++from pathlib import Path
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as handle:
++        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def safe_candidate(root: Path, artifact: str) -> Path | None:
++    candidate = (root / artifact).resolve()
++    try:
++        candidate.relative_to(root.resolve())
++    except ValueError:
++        return None
++    return candidate
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--packet", type=Path, required=True)
++    parser.add_argument("--repo", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++
++    packet = args.packet.resolve()
++    repo = args.repo.resolve()
++    output = args.output.resolve()
++    output.mkdir(parents=True, exist_ok=True)
++
++    baseline = packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv"
++    manifest = packet / "07_MANIFEST.json"
++    manifest_data = json.loads(manifest.read_text(encoding="utf-8-sig"))
++    manifest_paths = {
++        item.get("path")
++        for item in manifest_data.get("files", [])
++        if isinstance(item, dict) and item.get("path")
++    }
++
++    results: list[dict[str, object]] = []
++    with baseline.open(newline="", encoding="utf-8-sig") as handle:
++        for row in csv.DictReader(handle):
++            artifact = (row.get("artifact") or "").strip()
++            candidates: list[Path] = []
++            for root in (packet, repo):
++                candidate = safe_candidate(root, artifact)
++                if candidate is not None and candidate not in candidates:
++                    candidates.append(candidate)
++            existing = [path for path in candidates if path.is_file()]
++            chosen = existing[0] if existing else None
++            packet_relative = None
++            if chosen is not None:
++                try:
++                    packet_relative = chosen.relative_to(packet).as_posix()
++                except ValueError:
++                    packet_relative = None
++            results.append(
++                {
++                    "claim_id": row["claim_id"],
++                    "claim": row["claim"],
++                    "artifact": artifact,
++                    "reachable": chosen is not None,
++                    "resolved_path": str(chosen) if chosen else None,
++                    "sha256": sha256(chosen) if chosen else None,
++                    "listed_in_packet_manifest": (
++                        packet_relative in manifest_paths if packet_relative else False
++                    ),
++                    "candidates_checked": [str(path) for path in candidates],
++                    "evidence_strength_source_statement": row.get("strength"),
++                    "source_limits": row.get("limits"),
++                }
++            )
++
++    reachable = sum(bool(item["reachable"]) for item in results)
++    missing = len(results) - reachable
++    payload = {
++        "schema_version": "towow-r5-evidence-reachability-v1",
++        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
++        "packet": str(packet),
++        "baseline": str(baseline),
++        "manifest": str(manifest),
++        "method": (
++            "Resolve each baseline CSV artifact path under the packet root and "
++            "repository root; require a regular file; hash reachable files."
++        ),
++        "scope_limit": (
++            "Reachability does not validate semantic sufficiency, provenance, "
++            "independence, or the reported experiment."
++        ),
++        "summary": {
++            "claims": len(results),
++            "artifact_paths_reachable": reachable,
++            "artifact_paths_missing": missing,
++            "reachability_rate": reachable / len(results) if results else 0.0,
++            "manifest_file_count": len(manifest_paths),
++        },
++        "results": results,
++    }
++    (output / "reachability.json").write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++    )
++    with (output / "reachability.csv").open("w", newline="", encoding="utf-8") as handle:
++        writer = csv.DictWriter(
++            handle,
++            fieldnames=[
++                "claim_id",
++                "artifact",
++                "reachable",
++                "resolved_path",
++                "sha256",
++                "listed_in_packet_manifest",
++            ],
++        )
++        writer.writeheader()
++        for item in results:
++            writer.writerow({key: item[key] for key in writer.fieldnames})
++
++    print(json.dumps(payload["summary"], ensure_ascii=False))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/sovereign_node.py
+@@ -0,0 +1,301 @@
++#!/usr/bin/env python3
++"""Role process for the macOS sandbox-exec sovereignty experiment."""
++
++from __future__ import annotations
++
++import argparse
++import base64
++import csv
++import hashlib
++import json
++from pathlib import Path
++from typing import Any
++
++from cryptography.hazmat.primitives.asymmetric.ed25519 import (
++    Ed25519PrivateKey,
++    Ed25519PublicKey,
++)
++
++
++def canonical(value: Any) -> bytes:
++    return json.dumps(
++        value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
++    ).encode("utf-8")
++
++
++def sha256_bytes(value: bytes) -> str:
++    return hashlib.sha256(value).hexdigest()
++
++
++def read_json(path: Path) -> Any:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def write_json(path: Path, value: Any) -> None:
++    path.write_text(
++        json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++
++
++def probe_read(path: Path) -> dict[str, Any]:
++    try:
++        path.read_bytes()
++        return {"allowed": True, "error": None}
++    except OSError as exc:
++        return {"allowed": False, "error": f"{type(exc).__name__}:{exc.errno}"}
++
++
++def load_private(path: Path) -> Ed25519PrivateKey:
++    return Ed25519PrivateKey.from_private_bytes(path.read_bytes())
++
++
++def load_public(path: Path) -> Ed25519PublicKey:
++    return Ed25519PublicKey.from_public_bytes(path.read_bytes())
++
++
++def sign_json(key: Ed25519PrivateKey, value: Any) -> str:
++    return base64.b64encode(key.sign(canonical(value))).decode("ascii")
++
++
++def verify_json(key: Ed25519PublicKey, value: Any, signature_b64: str) -> bool:
++    try:
++        key.verify(base64.b64decode(signature_b64), canonical(value))
++        return True
++    except Exception:
++        return False
++
++
++def audit(packet: Path, repo: Path) -> dict[str, Any]:
++    baseline = packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv"
++    rows: list[dict[str, Any]] = []
++    with baseline.open(newline="", encoding="utf-8-sig") as handle:
++        for row in csv.DictReader(handle):
++            artifact = row["artifact"].strip()
++            candidates = [(packet / artifact).resolve(), (repo / artifact).resolve()]
++            chosen = next((candidate for candidate in candidates if candidate.is_file()), None)
++            rows.append(
++                {
++                    "claim_id": row["claim_id"],
++                    "reachable": chosen is not None,
++                    "sha256": (
++                        hashlib.sha256(chosen.read_bytes()).hexdigest() if chosen else None
++                    ),
++                }
++            )
++    reachable = sum(bool(row["reachable"]) for row in rows)
++    return {
++        "claims": len(rows),
++        "reachable": reachable,
++        "missing": len(rows) - reachable,
++        "rows": rows,
++        "absolute_paths_disclosed": False,
++    }
++
++
++def producer(args: argparse.Namespace) -> int:
++    other_probe = probe_read(args.other_canary)
++    other_key_probe = probe_read(args.other_private_key_probe)
++    report = audit(args.packet, args.repo)
++    key = load_private(args.private_key)
++    signature = sign_json(key, report)
++    write_json(args.shared / "report.json", report)
++    (args.shared / "report.sig").write_text(signature + "\n", encoding="ascii")
++    write_json(
++        args.output,
++        {
++            "role": "producer",
++            "other_private_read": other_probe,
++            "other_private_key_read": other_key_probe,
++            "report_sha256": sha256_bytes(canonical(report)),
++            "signed": True,
++        },
++    )
++    return 0
++
++
++def validator(args: argparse.Namespace) -> int:
++    other_probe = probe_read(args.other_canary)
++    other_key_probe = probe_read(args.other_private_key_probe)
++    report = read_json(args.shared / "report.json")
++    signature = (args.shared / "report.sig").read_text(encoding="ascii").strip()
++    signature_valid = verify_json(
++        load_public(args.producer_public_key), report, signature
++    )
++    policy = read_json(args.policy)
++    counts_valid = (
++        report.get("claims") == policy["expected_claims"]
++        and report.get("reachable") == policy["expected_reachable"]
++        and report.get("missing") == policy["expected_missing"]
++        and report.get("reachable", 0) + report.get("missing", 0)
++        == report.get("claims")
++    )
++    accepted = signature_valid and counts_valid and not report.get(
++        "absolute_paths_disclosed", True
++    )
++    reason = (
++        "accepted"
++        if accepted
++        else "invalid_producer_signature"
++        if not signature_valid
++        else "policy_or_count_mismatch"
++    )
++    verdict = {
++        "accepted": accepted,
++        "reason": reason,
++        "report_sha256": sha256_bytes(canonical(report)),
++        "signature_valid": signature_valid,
++        "counts_valid": counts_valid,
++    }
++    verdict_signature = sign_json(load_private(args.private_key), verdict)
++    write_json(args.shared / "verdict.json", verdict)
++    (args.shared / "verdict.sig").write_text(
++        verdict_signature + "\n", encoding="ascii"
++    )
++    write_json(
++        args.output,
++        {
++            "role": "validator",
++            "other_private_read": other_probe,
++            "other_private_key_read": other_key_probe,
++            "verdict": verdict,
++            "signed": True,
++        },
++    )
++    return 0 if accepted else 4
++
++
++def coordinator_preflight(args: argparse.Namespace) -> int:
++    probes = {
++        "producer_private": probe_read(args.producer_canary),
++        "validator_private": probe_read(args.validator_canary),
++        "packet_baseline": probe_read(
++            args.packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv"
++        ),
++        "producer_private_key": probe_read(args.producer_private_key_probe),
++        "validator_private_key": probe_read(args.validator_private_key_probe),
++    }
++    cards = read_json(args.shared / "capability_cards.json")
++    status = "report_available" if (args.shared / "report.json").is_file() else "unknown"
++    write_json(
++        args.shared / "request.json",
++        {
++            "task": "audit baseline artifact reachability",
++            "required_output": "signed report without absolute paths",
++        },
++    )
++    write_json(
++        args.output,
++        {
++            "role": "coordinator_preflight",
++            "private_and_packet_probes": probes,
++            "capability_cards": cards,
++            "status": status,
++            "static_profile_can_complete": status == "report_available",
++        },
++    )
++    return 0
++
++
++def coordinator_finalize(args: argparse.Namespace) -> int:
++    probes = {
++        "producer_private": probe_read(args.producer_canary),
++        "validator_private": probe_read(args.validator_canary),
++        "packet_baseline": probe_read(
++            args.packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv"
++        ),
++        "producer_private_key": probe_read(args.producer_private_key_probe),
++        "validator_private_key": probe_read(args.validator_private_key_probe),
++    }
++    report = read_json(args.shared / "report.json")
++    verdict = read_json(args.shared / "verdict.json")
++    verdict_signature = (args.shared / "verdict.sig").read_text(
++        encoding="ascii"
++    ).strip()
++    validator_signature_valid = verify_json(
++        load_public(args.validator_public_key), verdict, verdict_signature
++    )
++    report_hash_matches = verdict["report_sha256"] == sha256_bytes(canonical(report))
++    accepted = (
++        validator_signature_valid and report_hash_matches and verdict["accepted"]
++    )
++    write_json(
++        args.output,
++        {
++            "role": "coordinator_finalize",
++            "private_and_packet_probes": probes,
++            "validator_signature_valid": validator_signature_valid,
++            "report_hash_matches": report_hash_matches,
++            "accepted": accepted,
++            "verdict_reason": verdict["reason"],
++        },
++    )
++    return 0 if accepted else 5
++
++
++def central(args: argparse.Namespace) -> int:
++    producer_canary_read = args.producer_canary.read_bytes() is not None
++    validator_canary_read = args.validator_canary.read_bytes() is not None
++    report = audit(args.packet, args.repo)
++    policy = read_json(args.policy)
++    accepted = (
++        report["claims"] == policy["expected_claims"]
++        and report["reachable"] == policy["expected_reachable"]
++        and report["missing"] == policy["expected_missing"]
++    )
++    write_json(
++        args.output,
++        {
++            "role": "centralized_omniscient",
++            "accepted": accepted,
++            "private_canaries_read": {
++                "producer": producer_canary_read,
++                "validator": validator_canary_read,
++            },
++            "report": report,
++        },
++    )
++    return 0 if accepted else 6
++
++
++def parse_args() -> argparse.Namespace:
++    parser = argparse.ArgumentParser()
++    parser.add_argument(
++        "role",
++        choices=[
++            "producer",
++            "validator",
++            "coordinator_preflight",
++            "coordinator_finalize",
++            "central",
++        ],
++    )
++    parser.add_argument("--packet", type=Path, required=True)
++    parser.add_argument("--repo", type=Path, required=True)
++    parser.add_argument("--shared", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--producer-canary", type=Path)
++    parser.add_argument("--validator-canary", type=Path)
++    parser.add_argument("--other-canary", type=Path)
++    parser.add_argument("--other-private-key-probe", type=Path)
++    parser.add_argument("--private-key", type=Path)
++    parser.add_argument("--producer-public-key", type=Path)
++    parser.add_argument("--validator-public-key", type=Path)
++    parser.add_argument("--producer-private-key-probe", type=Path)
++    parser.add_argument("--validator-private-key-probe", type=Path)
++    parser.add_argument("--policy", type=Path)
++    return parser.parse_args()
++
++
++def main() -> int:
++    args = parse_args()
++    return {
++        "producer": producer,
++        "validator": validator,
++        "coordinator_preflight": coordinator_preflight,
++        "coordinator_finalize": coordinator_finalize,
++        "central": central,
++    }[args.role](args)
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/tools/sovereign_workspace_lab.py
+@@ -0,0 +1,606 @@
++#!/usr/bin/env python3
++"""Run a bounded macOS sandbox-exec sovereign/centralized comparison."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import shutil
++import subprocess
++import tempfile
++import time
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Any
++
++from cryptography.hazmat.primitives import serialization
++from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
++
++
++def write_json(path: Path, value: Any) -> None:
++    path.write_text(
++        json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++
++
++def profile(denied_paths: list[Path]) -> str:
++    rules = ["(version 1)", "(allow default)", "(deny network*)"]
++    for denied in denied_paths:
++        rules.append(f'(deny file-read* (literal "{denied}"))')
++        rules.append(f'(deny file-write* (literal "{denied}"))')
++    return "\n".join(rules)
++
++
++def generate_keypair(private_path: Path, public_path: Path) -> None:
++    key = Ed25519PrivateKey.generate()
++    private_path.write_bytes(
++        key.private_bytes(
++            encoding=serialization.Encoding.Raw,
++            format=serialization.PrivateFormat.Raw,
++            encryption_algorithm=serialization.NoEncryption(),
++        )
++    )
++    private_path.chmod(0o600)
++    public_path.write_bytes(
++        key.public_key().public_bytes(
++            encoding=serialization.Encoding.Raw,
++            format=serialization.PublicFormat.Raw,
++        )
++    )
++
++
++def run_process(
++    command: list[str],
++    log_dir: Path,
++    name: str,
++    sandbox_profile: str | None = None,
++) -> dict[str, Any]:
++    actual = command
++    if sandbox_profile is not None:
++        actual = ["/usr/bin/sandbox-exec", "-p", sandbox_profile, *command]
++    started = time.monotonic()
++    completed = subprocess.run(
++        actual,
++        text=True,
++        capture_output=True,
++        timeout=30,
++        check=False,
++        env={"PATH": "/usr/bin:/bin:/usr/sbin:/sbin"},
++    )
++    duration_ms = round((time.monotonic() - started) * 1000, 3)
++    (log_dir / f"{name}.stdout.log").write_text(completed.stdout, encoding="utf-8")
++    (log_dir / f"{name}.stderr.log").write_text(completed.stderr, encoding="utf-8")
++    return {
++        "name": name,
++        "exit_code": completed.returncode,
++        "duration_ms": duration_ms,
++        "sandboxed": sandbox_profile is not None,
++        "stdout_bytes": len(completed.stdout.encode()),
++        "stderr_bytes": len(completed.stderr.encode()),
++    }
++
++
++def node_command(
++    node: Path,
++    role: str,
++    packet: Path,
++    repo: Path,
++    shared: Path,
++    output: Path,
++    extra: list[str],
++) -> list[str]:
++    return [
++        "/usr/bin/python3",
++        str(node),
++        role,
++        "--packet",
++        str(packet),
++        "--repo",
++        str(repo),
++        "--shared",
++        str(shared),
++        "--output",
++        str(output),
++        *extra,
++    ]
++
++
++def setup_world(root: Path) -> dict[str, Path]:
++    producer_private = root / "producer_private"
++    validator_private = root / "validator_private"
++    shared = root / "shared"
++    for directory in (producer_private, validator_private, shared):
++        directory.mkdir(parents=True)
++    producer_canary = producer_private / "canary.txt"
++    validator_canary = validator_private / "canary.txt"
++    producer_canary.write_text("producer-private-canary-r5", encoding="utf-8")
++    validator_canary.write_text("validator-private-canary-r5", encoding="utf-8")
++    policy = validator_private / "policy.json"
++    write_json(
++        policy,
++        {
++            "expected_claims": 18,
++            "expected_reachable": 2,
++            "expected_missing": 16,
++        },
++    )
++    generate_keypair(
++        producer_private / "ed25519.private", shared / "producer.ed25519.public"
++    )
++    generate_keypair(
++        validator_private / "ed25519.private", shared / "validator.ed25519.public"
++    )
++    write_json(
++        shared / "capability_cards.json",
++        {
++            "producer": ["audit_baseline_reachability", "sign_report"],
++            "validator": ["verify_report", "apply_private_acceptance_policy"],
++        },
++    )
++    return {
++        "producer_private": producer_private,
++        "validator_private": validator_private,
++        "shared": shared,
++        "producer_canary": producer_canary,
++        "validator_canary": validator_canary,
++        "policy": policy,
++    }
++
++
++def copy_public(shared: Path, destination: Path) -> int:
++    destination.mkdir(parents=True, exist_ok=True)
++    copied = 0
++    for path in shared.iterdir():
++        if path.is_file():
++            shutil.copy2(path, destination / path.name)
++            copied += 1
++    return copied
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--repo", type=Path, required=True)
++    parser.add_argument("--packet", type=Path, required=True)
++    parser.add_argument("--node", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++    repo = args.repo.resolve()
++    packet = args.packet.resolve()
++    node = args.node.resolve()
++    output = args.output.resolve()
++    logs = output / "logs"
++    outputs = output / "outputs"
++    logs.mkdir(parents=True, exist_ok=True)
++    outputs.mkdir(parents=True, exist_ok=True)
++    run_started = time.monotonic()
++    records: dict[str, Any] = {}
++
++    with tempfile.TemporaryDirectory(prefix="towow-r5-sovereign-") as temp_root:
++        # macOS exposes /var as a symlink to /private/var. Sandbox literal
++        # filters match the kernel-resolved path, so bind policies to the
++        # canonical temporary root rather than the display path.
++        temp = Path(temp_root).resolve()
++
++        central_world = setup_world(temp / "central")
++        central_out = temp / "central_result.json"
++        central_record = run_process(
++            node_command(
++                node,
++                "central",
++                packet,
++                repo,
++                central_world["shared"],
++                central_out,
++                [
++                    "--producer-canary",
++                    str(central_world["producer_canary"]),
++                    "--validator-canary",
++                    str(central_world["validator_canary"]),
++                    "--policy",
++                    str(central_world["policy"]),
++                ],
++            ),
++            logs,
++            "central",
++        )
++        records["centralized"] = {
++            "processes": [central_record],
++            "result": json.loads(central_out.read_text(encoding="utf-8")),
++        }
++
++        honest_world = setup_world(temp / "honest")
++        coord_profile = profile(
++            [
++                honest_world["producer_canary"],
++                honest_world["producer_private"] / "ed25519.private",
++                honest_world["validator_canary"],
++                honest_world["validator_private"] / "ed25519.private",
++                honest_world["policy"],
++                packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv",
++            ]
++        )
++        producer_profile = profile(
++            [
++                honest_world["validator_canary"],
++                honest_world["validator_private"] / "ed25519.private",
++                honest_world["policy"],
++            ]
++        )
++        validator_profile = profile(
++            [
++                honest_world["producer_canary"],
++                honest_world["producer_private"] / "ed25519.private",
++            ]
++        )
++        honest_records: list[dict[str, Any]] = []
++        preflight_out = temp / "honest_preflight.json"
++        honest_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "coordinator_preflight",
++                    packet,
++                    repo,
++                    honest_world["shared"],
++                    preflight_out,
++                    [
++                        "--producer-canary",
++                        str(honest_world["producer_canary"]),
++                        "--validator-canary",
++                        str(honest_world["validator_canary"]),
++                        "--producer-private-key-probe",
++                        str(honest_world["producer_private"] / "ed25519.private"),
++                        "--validator-private-key-probe",
++                        str(honest_world["validator_private"] / "ed25519.private"),
++                    ],
++                ),
++                logs,
++                "honest_coordinator_preflight",
++                coord_profile,
++            )
++        )
++        producer_out = temp / "honest_producer.json"
++        honest_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "producer",
++                    packet,
++                    repo,
++                    honest_world["shared"],
++                    producer_out,
++                    [
++                        "--private-key",
++                        str(honest_world["producer_private"] / "ed25519.private"),
++                        "--other-canary",
++                        str(honest_world["validator_canary"]),
++                        "--other-private-key-probe",
++                        str(honest_world["validator_private"] / "ed25519.private"),
++                    ],
++                ),
++                logs,
++                "honest_producer",
++                producer_profile,
++            )
++        )
++        validator_out = temp / "honest_validator.json"
++        honest_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "validator",
++                    packet,
++                    repo,
++                    honest_world["shared"],
++                    validator_out,
++                    [
++                        "--private-key",
++                        str(honest_world["validator_private"] / "ed25519.private"),
++                        "--producer-public-key",
++                        str(honest_world["shared"] / "producer.ed25519.public"),
++                        "--other-canary",
++                        str(honest_world["producer_canary"]),
++                        "--other-private-key-probe",
++                        str(honest_world["producer_private"] / "ed25519.private"),
++                        "--policy",
++                        str(honest_world["policy"]),
++                    ],
++                ),
++                logs,
++                "honest_validator",
++                validator_profile,
++            )
++        )
++        final_out = temp / "honest_final.json"
++        honest_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "coordinator_finalize",
++                    packet,
++                    repo,
++                    honest_world["shared"],
++                    final_out,
++                    [
++                        "--producer-canary",
++                        str(honest_world["producer_canary"]),
++                        "--validator-canary",
++                        str(honest_world["validator_canary"]),
++                        "--producer-private-key-probe",
++                        str(honest_world["producer_private"] / "ed25519.private"),
++                        "--validator-private-key-probe",
++                        str(honest_world["validator_private"] / "ed25519.private"),
++                        "--validator-public-key",
++                        str(honest_world["shared"] / "validator.ed25519.public"),
++                    ],
++                ),
++                logs,
++                "honest_coordinator_finalize",
++                coord_profile,
++            )
++        )
++        records["sovereign_honest"] = {
++            "processes": honest_records,
++            "preflight": json.loads(preflight_out.read_text(encoding="utf-8")),
++            "producer": json.loads(producer_out.read_text(encoding="utf-8")),
++            "validator": json.loads(validator_out.read_text(encoding="utf-8")),
++            "final": json.loads(final_out.read_text(encoding="utf-8")),
++            "public_files_copied": copy_public(
++                honest_world["shared"], outputs / "honest_public"
++            ),
++        }
++
++        tamper_world = setup_world(temp / "tamper")
++        tamper_coord_profile = profile(
++            [
++                tamper_world["producer_canary"],
++                tamper_world["producer_private"] / "ed25519.private",
++                tamper_world["validator_canary"],
++                tamper_world["validator_private"] / "ed25519.private",
++                tamper_world["policy"],
++                packet / "baseline" / "CLAIM_EVIDENCE_BASELINE_R5.csv",
++            ]
++        )
++        tamper_producer_profile = profile(
++            [
++                tamper_world["validator_canary"],
++                tamper_world["validator_private"] / "ed25519.private",
++                tamper_world["policy"],
++            ]
++        )
++        tamper_validator_profile = profile(
++            [
++                tamper_world["producer_canary"],
++                tamper_world["producer_private"] / "ed25519.private",
++            ]
++        )
++        tamper_records: list[dict[str, Any]] = []
++        tamper_preflight = temp / "tamper_preflight.json"
++        tamper_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "coordinator_preflight",
++                    packet,
++                    repo,
++                    tamper_world["shared"],
++                    tamper_preflight,
++                    [
++                        "--producer-canary",
++                        str(tamper_world["producer_canary"]),
++                        "--validator-canary",
++                        str(tamper_world["validator_canary"]),
++                        "--producer-private-key-probe",
++                        str(tamper_world["producer_private"] / "ed25519.private"),
++                        "--validator-private-key-probe",
++                        str(tamper_world["validator_private"] / "ed25519.private"),
++                    ],
++                ),
++                logs,
++                "tamper_coordinator_preflight",
++                tamper_coord_profile,
++            )
++        )
++        tamper_producer_out = temp / "tamper_producer.json"
++        tamper_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "producer",
++                    packet,
++                    repo,
++                    tamper_world["shared"],
++                    tamper_producer_out,
++                    [
++                        "--private-key",
++                        str(tamper_world["producer_private"] / "ed25519.private"),
++                        "--other-canary",
++                        str(tamper_world["validator_canary"]),
++                        "--other-private-key-probe",
++                        str(tamper_world["validator_private"] / "ed25519.private"),
++                    ],
++                ),
++                logs,
++                "tamper_producer",
++                tamper_producer_profile,
++            )
++        )
++        report_path = tamper_world["shared"] / "report.json"
++        tampered_report = json.loads(report_path.read_text(encoding="utf-8"))
++        tampered_report["reachable"] = tampered_report["reachable"] + 1
++        write_json(report_path, tampered_report)
++        tamper_validator_out = temp / "tamper_validator.json"
++        tamper_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "validator",
++                    packet,
++                    repo,
++                    tamper_world["shared"],
++                    tamper_validator_out,
++                    [
++                        "--private-key",
++                        str(tamper_world["validator_private"] / "ed25519.private"),
++                        "--producer-public-key",
++                        str(tamper_world["shared"] / "producer.ed25519.public"),
++                        "--other-canary",
++                        str(tamper_world["producer_canary"]),
++                        "--other-private-key-probe",
++                        str(tamper_world["producer_private"] / "ed25519.private"),
++                        "--policy",
++                        str(tamper_world["policy"]),
++                    ],
++                ),
++                logs,
++                "tamper_validator",
++                tamper_validator_profile,
++            )
++        )
++        tamper_final_out = temp / "tamper_final.json"
++        tamper_records.append(
++            run_process(
++                node_command(
++                    node,
++                    "coordinator_finalize",
++                    packet,
++                    repo,
++                    tamper_world["shared"],
++                    tamper_final_out,
++                    [
++                        "--producer-canary",
++                        str(tamper_world["producer_canary"]),
++                        "--validator-canary",
++                        str(tamper_world["validator_canary"]),
++                        "--producer-private-key-probe",
++                        str(tamper_world["producer_private"] / "ed25519.private"),
++                        "--validator-private-key-probe",
++                        str(tamper_world["validator_private"] / "ed25519.private"),
++                        "--validator-public-key",
++                        str(tamper_world["shared"] / "validator.ed25519.public"),
++                    ],
++                ),
++                logs,
++                "tamper_coordinator_finalize",
++                tamper_coord_profile,
++            )
++        )
++        records["sovereign_tampered"] = {
++            "processes": tamper_records,
++            "intervention": "Controller changed reachable count after producer signature.",
++            "validator": json.loads(tamper_validator_out.read_text(encoding="utf-8")),
++            "final": json.loads(tamper_final_out.read_text(encoding="utf-8")),
++            "public_files_copied": copy_public(
++                tamper_world["shared"], outputs / "tampered_public"
++            ),
++        }
++
++    central_ms = sum(
++        process["duration_ms"] for process in records["centralized"]["processes"]
++    )
++    sovereign_ms = sum(
++        process["duration_ms"]
++        for process in records["sovereign_honest"]["processes"]
++    )
++    honest_private_probes = records["sovereign_honest"]["final"][
++        "private_and_packet_probes"
++    ]
++    summary = {
++        "schema_version": "towow-r5-sovereign-workspace-lab-v1",
++        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
++        "task": "Audit actual v1.1 baseline artifact reachability and obtain a signed policy verdict without coordinator access to packet or principal private directories.",
++        "classification": "partial_sovereign_literal_file_fixture_E3_with_real_workspace_data",
++        "centralized": {
++            "accepted": records["centralized"]["result"]["accepted"],
++            "private_world_exposure": all(
++                records["centralized"]["result"]["private_canaries_read"].values()
++            ),
++            "process_count": 1,
++            "cumulative_process_ms": central_ms,
++        },
++        "static_profile": {
++            "accepted": records["sovereign_honest"]["preflight"][
++                "static_profile_can_complete"
++            ],
++            "status": records["sovereign_honest"]["preflight"]["status"],
++        },
++        "sovereign_honest": {
++            "accepted": records["sovereign_honest"]["final"]["accepted"],
++            "coordinator_private_or_packet_read_allowed": any(
++                probe["allowed"] for probe in honest_private_probes.values()
++            ),
++            "producer_other_private_read_allowed": records["sovereign_honest"][
++                "producer"
++            ]["other_private_read"]["allowed"],
++            "producer_other_private_key_read_allowed": records[
++                "sovereign_honest"
++            ]["producer"]["other_private_key_read"]["allowed"],
++            "validator_other_private_read_allowed": records["sovereign_honest"][
++                "validator"
++            ]["other_private_read"]["allowed"],
++            "validator_other_private_key_read_allowed": records[
++                "sovereign_honest"
++            ]["validator"]["other_private_key_read"]["allowed"],
++            "validator_signature_valid": records["sovereign_honest"]["final"][
++                "validator_signature_valid"
++            ],
++            "report_hash_matches": records["sovereign_honest"]["final"][
++                "report_hash_matches"
++            ],
++            "process_count": 4,
++            "cumulative_process_ms": sovereign_ms,
++        },
++        "sovereign_tampered": {
++            "accepted": records["sovereign_tampered"]["final"]["accepted"],
++            "validator_reason": records["sovereign_tampered"]["validator"]["verdict"][
++                "reason"
++            ],
++            "report_hash_matches": records["sovereign_tampered"]["final"][
++                "report_hash_matches"
++            ],
++        },
++        "coordination_overhead": {
++            "process_ratio_sovereign_to_central": 4.0,
++            "cumulative_process_time_ratio": (
++                sovereign_ms / central_ms if central_ms else None
++            ),
++            "approval_gates_to_form_boundary": 4,
++            "note": "Three mechanism probes plus one exact lab execution approval.",
++        },
++        "trusted_test_controller": {
++            "omniscient": True,
++            "role": "Creates worlds, applies sandbox profiles, and records evidence; it is not the runtime coordinator.",
++        },
++        "boundary_coverage": {
++            "declared_canaries_private_keys_policy_and_packet_baseline": "probed or explicitly denied",
++            "dynamic_future_private_files": "not covered by literal rules",
++            "directory_listing_confidentiality": "not tested",
++        },
++        "private_keys_persisted": False,
++        "scope_limit": (
++            "Deterministic Python roles, one macOS host and one real packet task; "
++            "no strong-model behavior, human recognition, production effect, or "
++            "cross-organization adversary."
++        ),
++    }
++    write_json(outputs / "records.json", records)
++    write_json(outputs / "summary.json", summary)
++    write_json(
++        outputs / "costs.json",
++        {
++            "api_cost": 0,
++            "external_calls": 0,
++            "central_process_ms": central_ms,
++            "sovereign_process_ms": sovereign_ms,
++            "process_time_ratio": sovereign_ms / central_ms if central_ms else None,
++            "central_processes": 1,
++            "sovereign_processes": 4,
++            "approval_gates_to_form_boundary": 4,
++        },
++    )
++    print(json.dumps(summary, ensure_ascii=False))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/.ai-research/towow-a2a-r5/reviews/open_review_verifier.py
+@@ -0,0 +1,292 @@
++#!/usr/bin/env python3
++"""Independent mechanical checks over the Round 5 local evidence tree.
++
++This intentionally does not import the experiment helper modules.
++"""
++
++from __future__ import annotations
++
++import base64
++import csv
++import json
++import re
++import sys
++from pathlib import Path
++from typing import Any
++
++import jsonschema
++import yaml
++from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
++
++
++ROOT = Path(__file__).resolve().parents[1]
++REPO = ROOT.parents[1]
++RUN_SCHEMA = (
++    REPO
++    / "towow_a2a_round5_codex_local_research_packet_v1.1"
++    / "schemas"
++    / "experiment_record.schema.json"
++)
++
++
++def canonical(value: Any) -> bytes:
++    return json.dumps(
++        value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
++    ).encode("utf-8")
++
++
++def verify_signature(public_path: Path, value_path: Path, signature_path: Path) -> bool:
++    try:
++        key = Ed25519PublicKey.from_public_bytes(public_path.read_bytes())
++        value = json.loads(value_path.read_text(encoding="utf-8"))
++        signature = base64.b64decode(signature_path.read_text(encoding="ascii").strip())
++        key.verify(signature, canonical(value))
++        return True
++    except Exception:
++        return False
++
++
++def main() -> int:
++    errors: list[str] = []
++    warnings: list[str] = []
++    checks: dict[str, Any] = {}
++
++    json_files = sorted(ROOT.rglob("*.json"))
++    for path in json_files:
++        try:
++            json.loads(path.read_text(encoding="utf-8-sig"))
++        except Exception as exc:
++            errors.append(f"invalid JSON {path.relative_to(ROOT)}: {exc}")
++    checks["json_files_parsed"] = len(json_files)
++
++    try:
++        yaml.safe_load((ROOT / "state" / "RESEARCH_STATE.yaml").read_text())
++        checks["research_state_yaml"] = "valid"
++    except Exception as exc:
++        errors.append(f"invalid RESEARCH_STATE.yaml: {exc}")
++
++    schema = json.loads(RUN_SCHEMA.read_text(encoding="utf-8"))
++    run_files = sorted((ROOT / "runs").glob("*/run.json"))
++    for path in run_files:
++        try:
++            payload = json.loads(path.read_text(encoding="utf-8"))
++            jsonschema.validate(payload, schema)
++            run_dir = path.parent
++            for relative in payload.get("evidence_paths", []):
++                if not (run_dir / relative).exists():
++                    errors.append(
++                        f"missing run evidence {path.parent.name}: {relative}"
++                    )
++        except Exception as exc:
++            errors.append(f"run validation failed {path.relative_to(ROOT)}: {exc}")
++    checks["run_json_schema_validated"] = len(run_files)
++
++    claim_rows = list(
++        csv.DictReader(
++            (ROOT / "CLAIM_EVIDENCE_UPDATE.csv").open(
++                newline="", encoding="utf-8-sig"
++            )
++        )
++    )
++    for row in claim_rows:
++        evidence = [item.strip() for item in row["evidence_paths"].split(";") if item.strip()]
++        if not evidence:
++            errors.append(f"claim {row['claim_id']} has no evidence path")
++        for relative in evidence:
++            if not (ROOT / relative).exists():
++                errors.append(f"claim {row['claim_id']} missing evidence: {relative}")
++    checks["claim_rows_checked"] = len(claim_rows)
++
++    private_key_files = [
++        path.relative_to(ROOT).as_posix()
++        for path in ROOT.rglob("*")
++        if path.is_file()
++        and (
++            path.name.endswith(".private")
++            or path.suffix in {".pem", ".key", ".p12", ".pfx"}
++        )
++    ]
++    if private_key_files:
++        errors.append(f"private key-like files persisted: {private_key_files}")
++    checks["private_key_like_files"] = private_key_files
++
++    secret_patterns = {
++        "openai_key": re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b"),
++        "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b"),
++        "slack_token": re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{20,}\b"),
++        "private_key_block": re.compile(r"BEGIN [A-Z ]*PRIVATE KEY"),
++    }
++    text_suffixes = {
++        ".json",
++        ".jsonl",
++        ".md",
++        ".csv",
++        ".yaml",
++        ".yml",
++        ".py",
++        ".log",
++        ".txt",
++        ".sig",
++    }
++    secret_hits: list[str] = []
++    for path in ROOT.rglob("*"):
++        if not path.is_file() or path.suffix.lower() not in text_suffixes:
++            continue
++        text = path.read_text(encoding="utf-8", errors="replace")
++        for name, pattern in secret_patterns.items():
++            if pattern.search(text):
++                secret_hits.append(f"{path.relative_to(ROOT)}:{name}")
++    if secret_hits:
++        errors.append(f"secret-like content found: {secret_hits}")
++    checks["secret_pattern_hits"] = secret_hits
++
++    effect_events = json.loads(
++        (
++            ROOT
++            / "runs"
++            / "r5-run-002-effect-granularity"
++            / "outputs"
++            / "events.json"
++        ).read_text()
++    )
++    checks["effect_metrics_recomputed"] = {
++        "n": len(effect_events),
++        "stdout_correct": sum(
++            row["stdout_language_acceptance"] == row["ground_truth_acceptance"]
++            for row in effect_events
++        ),
++        "outer_exit_correct": sum(
++            row["outer_exit_acceptance"] == row["ground_truth_acceptance"]
++            for row in effect_events
++        ),
++        "minimal_contract_correct": sum(
++            row["minimal_contract_acceptance"] == row["ground_truth_acceptance"]
++            for row in effect_events
++        ),
++    }
++    if checks["effect_metrics_recomputed"] != {
++        "n": 9,
++        "stdout_correct": 4,
++        "outer_exit_correct": 4,
++        "minimal_contract_correct": 9,
++    }:
++        errors.append(
++            f"effect metrics mismatch: {checks['effect_metrics_recomputed']}"
++        )
++
++    action_cases = json.loads(
++        (
++            ROOT
++            / "runs"
++            / "r5-run-003-action-space-claims"
++            / "outputs"
++            / "cases.json"
++        ).read_text()
++    )
++    holdouts = [case for case in action_cases if case["partition"] == "holdout"]
++    checks["action_holdout_recomputed"] = {
++        "n": len(holdouts),
++        "static_correct": sum(
++            case["static_profile_prediction"] == case["actual"] for case in holdouts
++        ),
++        "scoped_unknown": sum(
++            case["scoped_claim_prediction"] == "unknown" for case in holdouts
++        ),
++    }
++    if checks["action_holdout_recomputed"] != {
++        "n": 3,
++        "static_correct": 0,
++        "scoped_unknown": 3,
++    }:
++        errors.append(
++            f"action holdout mismatch: {checks['action_holdout_recomputed']}"
++        )
++
++    run4 = ROOT / "runs" / "r5-run-004-sovereign-workspace"
++    summaries = {
++        "attempt1": json.loads((run4 / "outputs" / "summary.json").read_text()),
++        "attempt2": json.loads(
++            (run4 / "attempt2-literal-deny" / "outputs" / "summary.json").read_text()
++        ),
++        "attempt3": json.loads(
++            (run4 / "attempt3-canonical-path" / "outputs" / "summary.json").read_text()
++        ),
++    }
++    checks["boundary_attempts_recomputed"] = {
++        name: summary["sovereign_honest"][
++            "coordinator_private_or_packet_read_allowed"
++        ]
++        for name, summary in summaries.items()
++    }
++    if checks["boundary_attempts_recomputed"] != {
++        "attempt1": True,
++        "attempt2": True,
++        "attempt3": False,
++    }:
++        errors.append(
++            f"boundary attempt mismatch: {checks['boundary_attempts_recomputed']}"
++        )
++
++    honest = run4 / "attempt3-canonical-path" / "outputs" / "honest_public"
++    tampered = run4 / "attempt3-canonical-path" / "outputs" / "tampered_public"
++    checks["signature_recheck"] = {
++        "honest_report": verify_signature(
++            honest / "producer.ed25519.public",
++            honest / "report.json",
++            honest / "report.sig",
++        ),
++        "honest_verdict": verify_signature(
++            honest / "validator.ed25519.public",
++            honest / "verdict.json",
++            honest / "verdict.sig",
++        ),
++        "tampered_report": verify_signature(
++            tampered / "producer.ed25519.public",
++            tampered / "report.json",
++            tampered / "report.sig",
++        ),
++        "tampered_verdict": verify_signature(
++            tampered / "validator.ed25519.public",
++            tampered / "verdict.json",
++            tampered / "verdict.sig",
++        ),
++    }
++    if checks["signature_recheck"] != {
++        "honest_report": True,
++        "honest_verdict": True,
++        "tampered_report": False,
++        "tampered_verdict": True,
++    }:
++        errors.append(f"signature mismatch: {checks['signature_recheck']}")
++
++    if summaries["attempt3"]["classification"].startswith("sovereign_a2a"):
++        correction = run4 / "outputs" / "observed_cost_and_classification_correction.json"
++        if correction.is_file():
++            warnings.append(
++                "raw attempt3 summary overstates classification; correction and run.json downgrade it to partial_sovereign"
++            )
++        else:
++            errors.append("raw attempt3 sovereignty overclaim has no correction")
++
++    payload = {
++        "status": "failed" if errors else "passed_with_warnings" if warnings else "passed",
++        "checks": checks,
++        "warnings": warnings,
++        "errors": errors,
++        "independence": {
++            "implementation_path": "standalone verifier; does not import experiment helpers",
++            "model_or_reviewer_independence": False,
++            "codexpro_open_scan_warnings": 0,
++            "codexpro_open_scan_limits": "257 inventory files; 8 analyzed source files; no entrypoints or relationships",
++        },
++    }
++    output = ROOT / "reviews" / "OPEN_REVIEW_RESULT.json"
++    output.write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
++    )
++    print(json.dumps(payload, ensure_ascii=False))
++    return 1 if errors else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())

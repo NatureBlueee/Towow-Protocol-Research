@@ -1,0 +1,32 @@
+run_id: summon-v08-audit-001
+mode: spec_audit
+mission: >
+  检查召集台现有规格是否存在产品定义、对象本体、闭环、
+  UI 投影和对外语言之间的冲突，并形成可迁移修复计划。
+non_goals:
+  - 不选择具体前端框架
+  - 不设计数据库
+  - 不决定自动化实现
+concerns:
+  - product_identity
+  - domain_ontology
+  - closed_loops
+  - experience_legibility
+  - language_fidelity
+risk:
+  level: high
+  reasons:
+    - 文档将用于多个智能体和团队
+    - 定义冲突会向后传播到 UI 与实现
+required_outputs:
+  - ArtifactInventory
+  - ConceptRegistry
+  - ClosedLoopCards
+  - ViewMap
+  - ContradictionReport
+  - MigrationPlan
+success_criteria:
+  - 陌生智能体能复述唯一的产品定义
+  - 核心对象与 UI 容器不混淆
+  - 每个核心闭环含失败与恢复
+  - 对外主张可回指内部依据

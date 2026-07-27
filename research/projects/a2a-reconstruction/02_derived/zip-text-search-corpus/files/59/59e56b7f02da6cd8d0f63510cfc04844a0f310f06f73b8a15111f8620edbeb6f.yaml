@@ -1,0 +1,42 @@
+loops:
+- id: capability_formation
+  path:
+  - source_context
+  - CapabilityClaim
+  - Offer
+  - Evidence
+  - Case
+  - updated_capability
+- id: opportunity_formation
+  path:
+  - Intent
+  - scope
+  - outcome
+  - acceptance_basis
+  - Opportunity
+- id: summon_collaboration
+  path:
+  - Opportunity
+  - participants
+  - roles
+  - commitments
+  - deliverables
+  - Evidence
+  - VerificationResult
+  - AcceptanceDecision
+- id: controlled_disclosure
+  path:
+  - DisclosureRequest
+  - DisclosureTerms
+  - DisclosureGrant
+  - access
+  - expire_or_revoke
+  - AuditRecord
+- id: organizational_reporting
+  path:
+  - DomainEvent
+  - object_facts
+  - metric_definition
+  - ReportSnapshot
+  - drill_down
+  - decision_or_action

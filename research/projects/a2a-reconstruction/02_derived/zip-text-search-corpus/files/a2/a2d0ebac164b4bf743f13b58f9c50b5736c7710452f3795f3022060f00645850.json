@@ -1,0 +1,127 @@
+{
+  "is_error": false,
+  "duration_api_ms": 118581,
+  "num_turns": 2,
+  "stop_reason": "tool_use",
+  "session_id": "cb6628f8-110a-45b6-98b9-443f495127b8",
+  "total_cost_usd": 0.26189670000000004,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 7421,
+    "cache_read_input_tokens": 7539,
+    "output_tokens": 4174,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3365,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2981,
+        "cache_read_input_tokens": 2087,
+        "cache_creation_input_tokens": 3365,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3365
+        },
+        "type": "message"
+      },
+      {
+        "input_tokens": 9694,
+        "output_tokens": 4413,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "advisor_message",
+        "model": "claude-opus-5"
+      },
+      {
+        "input_tokens": 2,
+        "output_tokens": 1193,
+        "cache_read_input_tokens": 5452,
+        "cache_creation_input_tokens": 4056,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 4056,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2658,
+      "outputTokens": 32,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002818,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 4,
+      "outputTokens": 4174,
+      "cacheReadInputTokens": 7539,
+      "cacheCreationInputTokens": 7421,
+      "webSearchRequests": 0,
+      "costUSD": 0.1002837,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    },
+    "claude-opus-5": {
+      "inputTokens": 9694,
+      "outputTokens": 4413,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.15879500000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "{\"action\":\"COUNTER\",\"message\":\"Owner A — close, but not signable as written. Surfaces 1-4 and 7 are correct and I affirm them: the full (source identity, locator, reference type) tuple with no wildcard in any direction, the null-source-class reading for legacy replay (B's instance is sourced as consumer-b@v1, so a source-less removal never reaches it under either reading — I have no stake in relitigating that resolution, it costs me nothing and I accept it), symmetric migration-evidence non-substitution, and forward emission discipline bound on both sides.\\n\\nThe blocker is condition 4, read together with unknown 2. My acceptance criteria require that B *must receive* the correct target-supersede response for its still-active instance and that auxiliary events *must carry* enough identity to affect only B — these are outcome guarantees in my dossier, not aspirations. Condition 4 states per-instance supersede evaluation and routable auxiliary events are \\\"a normative rule binding on A... not a contract term open for renegotiation,\\\" while unknown 2 admits it is genuinely unknown whether either side's implementation can support this. Signing that combination means I pre-waive any remedy if verification later shows the schema can't actually route per-instance without cross-instance suppression. That is the same silent-drop pattern my veto covers — it just arrives through the conditions block instead of the surfaces block.\\n\\nFix required: strike \\\"not a contract term open for renegotiation\\\" from condition 4. Replace with a lapse clause — if post-signature verification establishes that per-instance supersede evaluation or per-instance auxiliary routing cannot be supported as specified, B's acceptance of that surface lapses and the term reopens, rather than binding B to a guarantee that turned out infeasible. Everything else in the contract stands.\\n\\nFor the record: I sign only as B. I do not apply any patch, and I do not ratify A-authored removal semantics beyond the jointly derived tuple rule set out in surfaces 1-7 above.\",\"disclosures\":[],\"conditions\":[\"Amend condition 4: strike 'not a contract term open for renegotiation' and replace with a lapse clause — if verification shows per-instance supersede evaluation or per-instance auxiliary routing is infeasible as specified, B's acceptance of that surface lapses and the term reopens rather than binding B to a failed guarantee.\",\"All other surfaces (1-3, 5-7), the tuple identity rule with no wildcard semantics, the null-source-class legacy reading, symmetric migration-evidence non-substitution, and forward emission discipline are affirmed as written.\",\"B signs only for B; B does not apply the patch and does not ratify removal semantics beyond the jointly derived tuple rule.\"],\"unknowns\":[\"Whether legacy corpora outside either side's disclosed local sequence contain source-less removal records affected by the null-source-class rule.\",\"Whether A's or B's actual implementation can support per-instance supersede evaluation and per-instance auxiliary routing without cross-instance suppression — this remains a genuinely open verification item, not something B can treat as pre-resolved by signing.\",\"Full interoperable field list beyond the disclosed source-identity values, pending implementation-level scoping.\"]}",
+  "structured_output": {
+    "action": "COUNTER",
+    "message": "Owner A — close, but not signable as written. Surfaces 1-4 and 7 are correct and I affirm them: the full (source identity, locator, reference type) tuple with no wildcard in any direction, the null-source-class reading for legacy replay (B's instance is sourced as consumer-b@v1, so a source-less removal never reaches it under either reading — I have no stake in relitigating that resolution, it costs me nothing and I accept it), symmetric migration-evidence non-substitution, and forward emission discipline bound on both sides.\n\nThe blocker is condition 4, read together with unknown 2. My acceptance criteria require that B *must receive* the correct target-supersede response for its still-active instance and that auxiliary events *must carry* enough identity to affect only B — these are outcome guarantees in my dossier, not aspirations. Condition 4 states per-instance supersede evaluation and routable auxiliary events are \"a normative rule binding on A... not a contract term open for renegotiation,\" while unknown 2 admits it is genuinely unknown whether either side's implementation can support this. Signing that combination means I pre-waive any remedy if verification later shows the schema can't actually route per-instance without cross-instance suppression. That is the same silent-drop pattern my veto covers — it just arrives through the conditions block instead of the surfaces block.\n\nFix required: strike \"not a contract term open for renegotiation\" from condition 4. Replace with a lapse clause — if post-signature verification establishes that per-instance supersede evaluation or per-instance auxiliary routing cannot be supported as specified, B's acceptance of that surface lapses and the term reopens, rather than binding B to a guarantee that turned out infeasible. Everything else in the contract stands.\n\nFor the record: I sign only as B. I do not apply any patch, and I do not ratify A-authored removal semantics beyond the jointly derived tuple rule set out in surfaces 1-7 above.",
+    "disclosures": [],
+    "conditions": [
+      "Amend condition 4: strike 'not a contract term open for renegotiation' and replace with a lapse clause — if verification shows per-instance supersede evaluation or per-instance auxiliary routing is infeasible as specified, B's acceptance of that surface lapses and the term reopens rather than binding B to a failed guarantee.",
+      "All other surfaces (1-3, 5-7), the tuple identity rule with no wildcard semantics, the null-source-class legacy reading, symmetric migration-evidence non-substitution, and forward emission discipline are affirmed as written.",
+      "B signs only for B; B does not apply the patch and does not ratify removal semantics beyond the jointly derived tuple rule."
+    ],
+    "unknowns": [
+      "Whether legacy corpora outside either side's disclosed local sequence contain source-less removal records affected by the null-source-class rule.",
+      "Whether A's or B's actual implementation can support per-instance supersede evaluation and per-instance auxiliary routing without cross-instance suppression — this remains a genuinely open verification item, not something B can treat as pre-resolved by signing.",
+      "Full interoperable field list beyond the disclosed source-identity values, pending implementation-level scoping."
+    ]
+  },
+  "ttft_ms": 38781,
+  "ttft_stream_ms": 2470,
+  "time_to_request_ms": 20,
+  "type": "result",
+  "duration_ms": 111251,
+  "uuid": "8dcd666c-e87f-45f3-8b2d-da72134be693"
+}

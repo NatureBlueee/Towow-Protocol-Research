@@ -1,0 +1,72 @@
+schema_version: engineering-ir/v0.1
+engineering_id: eng-cognitive-compilation-v1
+design_ref: design-cognitive-compilation-corridor
+status: reviewed
+
+system_boundary:
+  owned:
+    - IR schemas
+    - stage transition events
+    - validators
+    - capsule adapters
+  external_reused:
+    - existing EventLog
+    - existing ConceptGraph
+    - existing Orchestrator
+    - existing Planning and Execution
+
+components:
+  - id: problem_projection
+    responsibility: materialize accepted Problem objects
+    storage: existing projection system
+  - id: design_registry
+    responsibility: store alternatives, decisions and design objects
+  - id: engineering_registry
+    responsibility: store components, contracts and ADR evidence
+  - id: transition_validator
+    responsibility: enforce stage completion contracts
+  - id: capsule_adapter
+    responsibility: expose accepted IR slices to downstream sessions
+
+contracts:
+  - id: contract-design-to-engineering
+    producer: design_registry
+    consumer: engineering_registry
+    input_required:
+      - accepted design decision
+      - unresolved risk list
+      - quality scenarios
+    compatibility: additive-first
+
+consistency:
+  source_of_truth: EventLog
+  projection_mode: fresh_required_for_transition
+  concurrency: optimistic_version_check
+  idempotency_key: transition_id
+
+observability:
+  trace_fields:
+    - commission_id
+    - problem_id
+    - design_id
+    - engineering_id
+    - consensus_id
+    - task_id
+    - validator_version
+
+verification:
+  required:
+    - schema_validation
+    - design_coverage
+    - engineering_mapping
+    - traceability
+    - replay_test
+
+migration:
+  strategy: opt_in_per_project
+  legacy_projects: unchanged
+  rollback: disable new routing and continue existing consensus path
+
+reopen_triggers:
+  - validator false-positive rate exceeds threshold
+  - accepted Engineering IR cannot compile into existing consensus

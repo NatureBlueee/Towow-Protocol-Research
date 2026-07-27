@@ -1,0 +1,46 @@
+workflow:
+  id: product-spec-production
+  version: 0.2.0
+  stages:
+  - id: frame
+    outputs:
+    - ProblemFrame
+    - NonGoals
+    - ConcernMap
+    gate: mission_ready
+  - id: research
+    outputs:
+    - EvidenceMap
+    - HistoricalPatternMap
+    - AssumptionRegister
+    gate: evidence_ready
+  - id: semantic_model
+    outputs:
+    - ConceptRegistry
+    - ObjectModel
+    - DecisionRegistry
+    gate: semantic_ready
+  - id: closed_loops
+    outputs:
+    - ClosedLoopCards
+    - FailureRecoveryMap
+    - ResponsibilityMap
+    gate: closed_loop_ready
+  - id: views
+    outputs:
+    - ViewMap
+    - UIProjectionSpecs
+    - LanguageViews
+    gate: view_ready
+  - id: assurance
+    outputs:
+    - RiskRegister
+    - EscalationMap
+    - ConformanceReport
+    gate: assurance_ready
+  - id: handoff
+    outputs:
+    - ReleaseBundle
+    - BlindConsumerReport
+    - RunReport
+    gate: handoff_ready

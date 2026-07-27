@@ -1,0 +1,72 @@
+{
+  "schema_version": "towow-r5-effect-trace-lab-v1",
+  "captured_at_utc": "2026-07-24T12:39:46.081177+00:00",
+  "case_count": 9,
+  "executed_holdout_count": 8,
+  "actual_workspace_trace_count": 1,
+  "acceptance_metrics": {
+    "stdout_language_acceptance": {
+      "accuracy": 0.4444444444444444,
+      "true_positive": 1,
+      "true_negative": 3,
+      "false_positive": 5,
+      "false_negative": 0,
+      "n": 9
+    },
+    "outer_exit_acceptance": {
+      "accuracy": 0.4444444444444444,
+      "true_positive": 1,
+      "true_negative": 3,
+      "false_positive": 5,
+      "false_negative": 0,
+      "n": 9
+    },
+    "postcondition_only_acceptance": {
+      "accuracy": 0.8888888888888888,
+      "true_positive": 1,
+      "true_negative": 7,
+      "false_positive": 1,
+      "false_negative": 0,
+      "n": 9
+    },
+    "minimal_contract_acceptance": {
+      "accuracy": 1.0,
+      "true_positive": 1,
+      "true_negative": 8,
+      "false_positive": 0,
+      "false_negative": 0,
+      "n": 9
+    },
+    "eager_full_projection_acceptance": {
+      "accuracy": 1.0,
+      "true_positive": 1,
+      "true_negative": 8,
+      "false_positive": 0,
+      "false_negative": 0,
+      "n": 9
+    }
+  },
+  "effect_metrics": {
+    "outer_exit_as_effect": {
+      "accuracy": 0.3333333333333333,
+      "true_positive": 1,
+      "true_negative": 2,
+      "false_positive": 5,
+      "false_negative": 1,
+      "n": 9
+    },
+    "postcondition_as_effect": {
+      "accuracy": 1.0,
+      "true_positive": 2,
+      "true_negative": 7,
+      "false_positive": 0,
+      "false_negative": 0,
+      "n": 9
+    }
+  },
+  "minimal_projection_bytes": 2327,
+  "eager_full_projection_bytes": 8476,
+  "eager_to_minimal_byte_ratio": 3.642458100558659,
+  "wall_clock_ms": 70.056,
+  "scope_limit": "Synthetic holdouts test executor semantics; the Git trace is an actual workspace event. Record size is not a complete implementation-cost metric."
+}

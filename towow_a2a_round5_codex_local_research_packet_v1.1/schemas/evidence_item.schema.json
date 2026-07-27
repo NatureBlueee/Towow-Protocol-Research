@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "towow://schemas/evidence_item.schema.json",
+  "title": "Towow Evidence Item",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "kind",
+    "source",
+    "created_at",
+    "content_hash",
+    "scope",
+    "grade"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "environment_fact",
+        "code",
+        "test",
+        "event_trace",
+        "model_call",
+        "human_action",
+        "artifact",
+        "counterexample",
+        "cost",
+        "review",
+        "external_effect"
+      ]
+    },
+    "source": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "grade": {
+      "enum": [
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ]
+    },
+    "claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "redacted": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

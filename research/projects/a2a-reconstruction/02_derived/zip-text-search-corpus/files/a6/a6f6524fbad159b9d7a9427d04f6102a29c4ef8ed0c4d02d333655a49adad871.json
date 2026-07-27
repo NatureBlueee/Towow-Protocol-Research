@@ -1,0 +1,302 @@
+{
+  "schema_version": "towow-a2a-r5-environment-facts-v1",
+  "captured_at_utc": "2026-07-24T12:28:29Z",
+  "workspace": {
+    "cwd": "/Users/nature/通爻协议研究",
+    "repo_root": "/Users/nature/通爻协议研究",
+    "workspace_kind": "project",
+    "os": {
+      "product": "macOS",
+      "version": "26.6",
+      "build": "25G5065a",
+      "kernel": "Darwin 25.6.0",
+      "architecture": "arm64"
+    }
+  },
+  "git": {
+    "baseline": {
+      "branch": "main",
+      "head": null,
+      "unborn": true,
+      "dirty": true,
+      "porcelain_v2_branch_oid": "(initial)",
+      "remotes": []
+    },
+    "final": {
+      "branch": "research/towow-r5-20260724-local",
+      "head": null,
+      "unborn": true,
+      "dirty": true,
+      "remotes": [],
+      "protected_source_aggregate_sha256": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
+      "protected_source_matches_smoke_baseline": true,
+      "project_source_files_modified_by_research": [],
+      "research_artifacts_ignored_by_git": true
+    },
+    "tracked_files_at_baseline": 0,
+    "untracked_files_at_baseline": [
+      ".editorconfig",
+      ".gitignore",
+      "AGENTS.md",
+      "Makefile",
+      "README.md",
+      "docs/RESEARCH_PLAYBOOK.md",
+      "research/DECISIONS.md",
+      "research/NOW.md",
+      "research/README.md",
+      "research/archive/.gitkeep",
+      "research/artifacts/.gitkeep",
+      "research/experiments/.gitkeep",
+      "research/library/.gitkeep",
+      "research/projects/.gitkeep",
+      "research/questions/.gitkeep",
+      "research/syntheses/.gitkeep",
+      "research/templates/EXPERIMENT_NOTE.md",
+      "research/templates/REVIEW_NOTE.md",
+      "research/templates/STUDY_NOTE.md",
+      "tools/environment_snapshot.py",
+      "tools/new_study.py",
+      "tools/workspace_check.py",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/00_README_START_HERE.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/01_CURRENT_SYSTEM.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/02_LOCAL_RESEARCH_MISSION.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/03_EXECUTION_AND_SAFETY_CHARTER.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/04_EVIDENCE_CONTRACT.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/05_CODEX_BOOTSTRAP_PROMPT.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/06_RETURN_PACKET_TEMPLATE.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/07_MANIFEST.json",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/CHECKSUMS.sha256",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/baseline/CLAIM_EVIDENCE_BASELINE_R5.csv",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/baseline/FIRST_REALITY_CLOSURE.json",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/schemas/evidence_item.schema.json",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/schemas/experiment_record.schema.json",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/schemas/return_packet_manifest.schema.json",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/templates/DECISION_LOG.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/templates/EXPERIMENT_CARD.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/templates/LOCAL_WORKSPACE_SMOKE_TASK.md",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/templates/RESEARCH_STATE.yaml",
+      "towow_a2a_round5_codex_local_research_packet_v1.1/templates/RETURN_PACKET_MANIFEST.json"
+    ],
+    "protection_decision": "All baseline files are user-owned and untracked. They will not be reset, stashed, overwritten, cleaned, or swept into a research commit.",
+    "research_isolation": {
+      "status": "active",
+      "branch": "research/towow-r5-20260724-local",
+      "head": null,
+      "unborn": true,
+      "worktree": "/Users/nature/通爻协议研究",
+      "constraint": "A normal worktree cannot be created because the repository has no commit. The isolated research branch remains unborn and no baseline file has been staged or committed."
+    }
+  },
+  "instructions": {
+    "applicable_files": [
+      "/Users/nature/通爻协议研究/AGENTS.md"
+    ],
+    "active_state_entry": "/Users/nature/通爻协议研究/research/NOW.md",
+    "active_packet": "/Users/nature/通爻协议研究/towow_a2a_round5_codex_local_research_packet_v1.1",
+    "superseded_excluded_packet": "towow_a2a_round5_codexpro_local_research_packet_v1.0",
+    "summary": [
+      "Default language is Simplified Chinese.",
+      "Preserve existing and unrelated work; use evidence-first read-only inspection.",
+      "Research may reject, merge, or rewrite current theory, but claims must match evidence.",
+      "Production writes, external publication, payment, signing, secret rotation, permission expansion, and non-public data egress require explicit authorization.",
+      "Sovereign A2A claims require OS, container, process, service, file-permission, or equivalent enforced boundaries."
+    ]
+  },
+  "project_configuration": {
+    "readme": "README.md",
+    "build_and_task_entry": "Makefile",
+    "build_target": null,
+    "test_and_check_entries": [
+      "make check",
+      "python3 tools/workspace_check.py",
+      "make env",
+      "python3 tools/environment_snapshot.py",
+      "cd towow_a2a_round5_codex_local_research_packet_v1.1 && shasum -a 256 -c CHECKSUMS.sha256"
+    ],
+    "package_manager": null,
+    "lockfiles": [],
+    "project_sdk_configuration": [],
+    "observed_check_result": "make check passed: one active AGENTS.md, 18 packet checksums verified, JSON artifacts parse"
+  },
+  "codex_environment": {
+    "agent": "/root",
+    "active_agent_count": 1,
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "metadata_source": "node_repl.requestMeta",
+    "thread_id": "019f9416-6227-7051-ae64-9afe6d1d14ee",
+    "sandbox": "seatbelt",
+    "network_disabled_for_shell": true,
+    "codex_cli": {
+      "path": "/opt/homebrew/bin/codex",
+      "version": "codex-cli 0.145.0",
+      "version_warning": "CLI could not create PATH aliases under the sandbox; version query still exited successfully."
+    },
+    "codex_desktop_app_version": {
+      "value": null,
+      "reason": "No Codex.app bundle was found in /Applications or the user Applications directory, and the expected Info.plist keys were unavailable from that path."
+    },
+    "available_codex_thread_models_reported_by_host_tool_schema": [
+      "gpt-5.6-sol",
+      "gpt-5.6-terra",
+      "gpt-5.6-luna",
+      "gpt-5.5",
+      "gpt-5.4",
+      "gpt-5.4-mini",
+      "gpt-5.3-codex-spark"
+    ],
+    "additional_threads_or_subagents_created": 0
+  },
+  "local_clis_and_sdks": {
+    "git": "2.50.1 (Apple Git-155)",
+    "ripgrep": "15.2.0",
+    "python": "3.9.6",
+    "make": "GNU Make 3.81",
+    "jq": "1.7.1-apple",
+    "zip": "3.0",
+    "shasum": "6.02",
+    "claude_code": "2.1.218",
+    "node": "26.5.0",
+    "npm": "11.17.0",
+    "docker": "29.1.3",
+    "uv": "0.10.0",
+    "opencode": null,
+    "podman": null,
+    "pytest_executable": null,
+    "python_packages": {
+      "openai": "2.14.0",
+      "anthropic": "0.76.0",
+      "pydantic": "2.12.5",
+      "langchain": "0.3.27",
+      "google-adk": null,
+      "a2a-sdk": null,
+      "langgraph": null
+    }
+  },
+  "tool_surface": {
+    "enabled_tool_count_observed_via_ALL_TOOLS": 194,
+    "key_local_tools": [
+      "exec_command",
+      "apply_patch",
+      "node_repl",
+      "view_image",
+      "codex_app thread and automation controls",
+      "CodexPro local workspace bridge",
+      "GitHub connector",
+      "Gmail connector",
+      "Google Contacts connector",
+      "Sites connector",
+      "web access",
+      "image generation"
+    ],
+    "codexpro": {
+      "workspace_id": "ws_874fb57235763105f3dc670f",
+      "status": "warn_with_zero_failures",
+      "self_test": {
+        "passed": 9,
+        "warned": 3,
+        "failed": 0,
+        "files_touched": []
+      },
+      "registered_tool_count": 19,
+      "bash_mode": "safe",
+      "write_mode": "workspace",
+      "tool_mode": "standard",
+      "provides_models": false,
+      "proxies_model_access": false,
+      "remote_agent_execution": false
+    },
+    "availability_scope_note": "Installed or schema-visible does not imply authenticated, authorized, or exercised. External connectors were not called during environment discovery."
+  },
+  "permissions_and_boundaries": {
+    "allowed_write_roots": [
+      "/Users/nature/通爻协议研究",
+      "/private/tmp",
+      "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T",
+      "/Users/nature/.codex/visualizations/2026/07/24/019f9416-6227-7051-ae64-9afe6d1d14ee"
+    ],
+    "current_research_write_scope": [
+      "/Users/nature/通爻协议研究/.ai-research/towow-a2a-r5"
+    ],
+    "protected_user_material": "Every baseline untracked file listed under git.untracked_files_at_baseline.",
+    "forbidden_without_new_authorization": [
+      "production or shared-environment writes",
+      "push, merge, rebase, force-push, release, or publication",
+      "payment, settlement, blockchain transaction, electronic signature, or customer notification",
+      "deleting data or changing permissions or secrets",
+      "sending non-public workspace data to external services or models"
+    ],
+    "secret_and_private_data_patterns_not_read": [
+      ".env",
+      ".env.*",
+      "*.pem",
+      "*.key",
+      "*.p12",
+      "*.pfx",
+      ".ssh/**",
+      "cookies and access tokens"
+    ],
+    "codexpro_blocked_paths": [
+      ".git/**",
+      "node_modules/**",
+      ".env*",
+      "**/*.pem",
+      "**/*.key",
+      "**/.ssh/**",
+      "dist/**",
+      "build/**",
+      ".next/**",
+      "coverage/**",
+      ".cache/**"
+    ]
+  },
+  "external_side_effect_surfaces": {
+    "shell_network": "disabled by sandbox",
+    "git_remote": "none configured",
+    "docker": "installed but not exercised",
+    "external_connectors": [
+      "GitHub mutations",
+      "Gmail send/archive/delete/label mutations",
+      "Sites production deployment",
+      "web browsing",
+      "image generation"
+    ],
+    "status": "No external side effect was exercised. Six command-bounded local approvals were used for read-only Docker discovery and sandbox-exec mechanism experiments; no container, service, remote resource, or production effect was created."
+  },
+  "observed_failures": [
+    {
+      "id": "env-probe-zsh-path-special-variable",
+      "classification": "investigation_script_error",
+      "command_context": "Initial CLI inventory loop used the zsh special variable name path.",
+      "actual_effect": "PATH was changed only inside that command process, causing subsequent tools in the same probe to be falsely reported as unavailable.",
+      "recovery": "Reran with task-specific variable names tool_name_r5 and tool_location_r5; no persistent workspace or environment change occurred.",
+      "research_implication": "Shell harnesses must avoid shell-special variable names; command-level evidence needs exit and context, not only printed availability."
+    },
+    {
+      "id": "git-head-unborn",
+      "classification": "environment_constraint",
+      "actual_effect": "git rev-parse HEAD exited nonzero because the repository has no commit.",
+      "recovery": "Represent baseline HEAD as null and branch as unborn instead of inventing a commit."
+    },
+    {
+      "id": "codex-app-version-unavailable",
+      "classification": "observability_gap",
+      "actual_effect": "Desktop app bundle/version could not be resolved from expected Applications paths.",
+      "recovery": "Record CLI version and runtime model metadata separately; leave app version unknown."
+    },
+    {
+      "id": "research-branch-first-attempt-sandbox-lock",
+      "classification": "sandbox_constraint",
+      "actual_effect": "git switch -c could not create .git/HEAD.lock under the default read-only .git sandbox. Its own stdout misleadingly also printed a success line, while the subsequent branch query proved HEAD stayed on main.",
+      "recovery": "Used the already authorized git checkout -b path, then independently verified the active branch. The repository remains unborn and all baseline files remain untracked.",
+      "research_implication": "A tool's mixed stdout/stderr cannot establish state transition success; read-after-write verification is required."
+    }
+  ],
+  "smoke": {
+    "status": "success",
+    "result_file": "/Users/nature/通爻协议研究/.ai-research/towow-a2a-r5/smoke/CODEX_LOCAL_SMOKE_RESULT.json",
+    "source_aggregate_before": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
+    "source_aggregate_after": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
+    "source_files_modified": []
+  }
+}

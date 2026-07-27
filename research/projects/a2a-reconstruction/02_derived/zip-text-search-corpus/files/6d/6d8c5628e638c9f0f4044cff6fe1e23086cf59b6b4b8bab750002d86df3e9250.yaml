@@ -1,0 +1,53 @@
+schema_version: problem-ir/v0.1
+problem_id: problem-design-engineering-gap
+commission_id: commission-harness-upgrade-2026-07
+status: investigated
+owner: Nature
+
+observed_symptoms:
+  - id: symptom-01
+    description: 新项目启动时，Interview 之后直接进入 Engineering Consensus
+    evidence_refs:
+      - repo:.claude/commands/work.md
+      - repo:.claude/skills/engineering-consensus/SKILL.md
+  - id: symptom-02
+    description: 执行者需要临场补产品设计和技术架构
+    evidence_refs:
+      - conversation:2026-07-23
+
+verified_facts:
+  - id: fact-01
+    claim: 当前正式建造管线没有独立 Design 与 Engineering 阶段
+    confidence: high
+  - id: fact-02
+    claim: Flowness 已有 EventLog、ConceptGraph、Capsule、Planning、Review/Fix 等地基
+    confidence: high
+
+inferences:
+  - id: inference-01
+    claim: Engineering Consensus 当前承担了设计、工程方案和冻结三种职责
+    based_on: [fact-01]
+    confidence: high
+
+hypotheses:
+  - id: hypothesis-01
+    claim: 增加独立中间表示可显著减少执行阶段返工
+    validation_plan: 用一个真实项目与旧流程对照
+
+competing_explanations:
+  - id: alt-01
+    explanation: 缺陷主要来自 Skill 不够好，而不是阶段缺位
+    disconfirming_evidence: 即使 Skill 更强，设计发散与共识冻结仍是不同认知动作
+
+unknowns:
+  - id: unknown-01
+    question: 新层级增加的流程成本是否超过返工收益
+    next_probe: dogfood 对照实验
+
+impact:
+  affected_stages: [interview, consensus, planning, execution, review]
+  severity: major
+  urgency: high
+
+success_condition:
+  description: 新项目可从问题到设计、工程、共识、执行闭合，且关键错误更早暴露

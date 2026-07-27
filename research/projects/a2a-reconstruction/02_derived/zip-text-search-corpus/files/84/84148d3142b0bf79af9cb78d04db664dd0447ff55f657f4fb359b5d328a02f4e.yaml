@@ -1,0 +1,41 @@
+workflow:
+  id: summon_product_change
+  trigger: 任何新功能、删除、概念改名、闭环变化、UI 重构或对外定位变化
+  steps:
+  - id: change_request
+    must_output:
+    - ChangeSet
+    - Reason
+    - AffectedConcerns
+  - id: impact_scan
+    must_check:
+    - concepts
+    - objects
+    - loops
+    - policies
+    - ui_views
+    - metrics
+    - external_claims
+    - negative_interpretations
+  - id: research_delta
+    condition: 改变建立在新事实、外部变化或未知问题上
+    must_output:
+    - EvidenceDelta
+    - CompetingSolutions
+  - id: normative_update
+    must_output:
+    - UpdatedSpecNodes
+    - SupersededNodes
+    - DecisionRecord
+  - id: view_recompile
+    must_output:
+    - AffectedUIViews
+    - UpdatedLanguageViews
+  - id: conformance
+    must_output:
+    - RegressionReport
+    - BlindConsumerDelta
+  - id: release
+    must_output:
+    - MigrationNote
+    - SpecVersion

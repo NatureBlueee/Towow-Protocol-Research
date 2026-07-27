@@ -1,0 +1,33 @@
+{
+  "acceptable_outcomes": [
+    "buyer-controlled read-only query",
+    "auditable receipt"
+  ],
+  "hard_constraints": [
+    "raw data stays in buyer domain",
+    "no persistent provider memory"
+  ],
+  "participant_id": "buyer_data",
+  "prestate_frozen": true,
+  "private_facts_not_shareable": [
+    "exact security architecture"
+  ],
+  "resources_actually_available": [
+    "read-only sandbox",
+    "security reviewer for 60 minutes"
+  ],
+  "shareable_projections": [
+    "data categories",
+    "allowed query class"
+  ],
+  "soft_preferences": [],
+  "unacceptable_outcomes": [
+    "raw export",
+    "training",
+    "unbounded retention"
+  ],
+  "unknowns_that_matter": [
+    "whether provider code can run in isolated sandbox"
+  ],
+  "walk_away_conditions": []
+}

@@ -1,0 +1,212 @@
+---
+derived_view: true
+source_path: research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/31/31403fde5285ce077dc0601738d48bf56872406b14145684d8a6bf0395cda536.md
+source_sha256: 31403fde5285ce077dc0601738d48bf56872406b14145684d8a6bf0395cda536
+source_line_start: 2070
+source_line_end: 2270
+source_heading: "10 · Flowness 现状映射与升级路线"
+---
+
+> 本文件是导航用派生视图。原始文本未改动；引用研究证据时应回到上列源文件与行号。
+
+# 10 · Flowness 现状映射与升级路线
+
+## 1. 已验证的现有骨架
+
+基于仓库代码和规范，Flowness 已经不是空白框架。已经存在：
+
+- append-only 事件事实源；
+- provenance 和事件分类；
+- commit gate；
+- 投影和快照；
+- concept graph；
+- obligation；
+- Capsule Assembly Pipeline；
+- Interview、Engineering Consensus、Planning、Execution、Review、Fix 等 Skill；
+- Task DAG、read/write set、任务包和冻结；
+- Finding、审查、修复和闭合；
+- worktree 隔离；
+- orchestrator、会话生命力和收割；
+- invalidation cascade 的库层；
+- R07 transcript 观测、越界检测和 verify-observer；
+- Investigation 与 Cognitive Resolution 方法。
+
+## 2. 当前最关键的结构缺口
+
+正式建造管线仍大致是：
+
+```text
+Interview
+→ Engineering Consensus
+→ Planning
+→ Execution
+→ Review / Fix
+```
+
+Engineering Consensus 被迫同时承担：
+
+- 设计系统应当长什么样；
+- 决定技术如何实现；
+- 冻结执行者共同前提。
+
+这导致设计、工程方案和共识三类判断混合。
+
+另一个缺口是 Investigation 虽已形成高质量方法，但仍主要作为调查型任务入口，没有正式成为“问题不清晰的新项目”进入建造管线前的 Problem IR 阶段。
+
+## 3. 这次升级的目标
+
+只补齐一条最小但真实的中间走廊：
+
+```text
+Investigation / Interview
+→ Problem IR
+→ Design IR
+→ Engineering IR
+→ Engineering Consensus
+→ Planning
+```
+
+不重写现有 EventLog、ConceptGraph、Capsule、Planning、Execution、Review、Fix 和 Orchestrator。
+
+## 4. 新增对象
+
+第一版只新增必要对象：
+
+### 4.1 Problem
+
+现象、事实、假设、竞争解释、范围和证据。
+
+### 4.2 Requirement
+
+目标、约束、质量场景、反目标、授权和确认。
+
+### 4.3 Design Alternative
+
+候选机制及其适用条件、代价和失败模式。
+
+### 4.4 Design Decision
+
+选择、理由、权衡、假设、证伪条件。
+
+### 4.5 Design Object
+
+主体、对象、关系、状态、行为、权限和机制。
+
+### 4.6 Engineering Decision
+
+技术候选、证据、选择、迁移和重开条件。
+
+### 4.7 Engineering Component / Contract
+
+工程组件、接口、数据、SLO、测试和运维。
+
+## 5. 与现有对象的关系
+
+- Problem / Requirement 来源于 InterviewBrief 和 Investigation Workspace；
+- Design Object 可以落入或引用 ConceptGraph，但不能把所有设计草案直接冻结为共识；
+- Engineering Component 映射到代码、接口、数据和运行组件；
+- Engineering Consensus 只从 accepted Engineering IR 中提取稳定共同前提；
+- Planning 继续从 frozen consensus 编译 Task DAG；
+- Capsule 增加 Design/Engineering trace；
+- Finding 增加建议回流层。
+
+## 6. 新阶段状态
+
+### 6.1 Problem
+
+```text
+draft → investigated → accepted → changed / superseded
+```
+
+### 6.2 Design
+
+```text
+exploring → compared → selected → attacked → accepted → challenged / superseded
+```
+
+### 6.3 Engineering
+
+```text
+researching → prototyped → reviewed → accepted → migrating → active → deprecated
+```
+
+状态语义应通过正式 Schema 和事件定义，不只存在于文档。
+
+## 7. 最小验证器
+
+第一版不追求一百个验证器，只做承重门：
+
+1. Problem Evidence Gate：重要问题有证据与竞争解释；
+2. Requirement Coverage Gate：目标、约束、反目标和成功场景完整；
+3. Design Coverage Gate：高优需求有设计响应；
+4. Alternative Gate：承重机制不允许无候选直接拍板；
+5. Design Consistency Gate：对象、状态、权限和场景无明显冲突；
+6. Engineering Mapping Gate：设计对象有工程映射；
+7. Decision Evidence Gate：承重技术决定有证据和重开条件；
+8. Consensus Extraction Gate：只有 accepted Engineering IR 可冻结为共识；
+9. Traceability Gate：从 Requirement 到 Task 可追溯。
+
+## 8. 实施方式
+
+### 阶段 A：文档和 Schema
+
+先定义对象、事件和状态，不修改生产自动路由。
+
+### 阶段 B：手动流程 dogfood
+
+由主会话手动走 Problem、Design、Engineering，再调用现有 Consensus 和 Planning。
+
+### 阶段 C：只读投影与 Capsule 接线
+
+让后续 Agent 看见新对象，但不自动触发状态变化。
+
+### 阶段 D：验证器和阶段门
+
+先 warning，再 fail-closed。
+
+### 阶段 E：Orchestrator 自动接棒
+
+仅在真实项目证明稳定后启用自动路由。
+
+## 9. Dogfood 项目选择
+
+不要用 Flowness 全盘自重构作为第一案。选择：
+
+- 有真实用户价值；
+- 足够复杂，需要设计和工程方案；
+- 影响边界可控；
+- 可以构建和测试；
+- 一到两周可形成结果；
+- 能与旧管线做对照。
+
+例如为现有 Harness 增加一个独立可观察的新模块，而不是重写 EventLog 或 Orchestrator。
+
+## 10. 成功判据
+
+- 旧管线中会在执行阶段暴露的问题，新管线更早发现；
+- 执行 Agent 不再重新决定产品结构和公共接口；
+- Design 到 Engineering 到 Consensus 的转换没有静默丢失；
+- Finding 能准确回到不同层级；
+- 文档和对象的新增成本没有压垮任务；
+- 总返工、人工介入或假完成下降；
+- 新管线可被冻结并用于下一项目。
+
+## 11. 明确不做
+
+本轮不做：
+
+- 通用企业改革平台；
+- 所有行业本体；
+- 完整实时语义编译器；
+- 自动训练 Agent；
+- 全自动治理和自修复；
+- 百万行陌生代码库自主重构；
+- 重做现有 L0/L2 地基；
+- 新的大型可视化控制台。
+
+这些进入 Evolution Backlog，不得阻塞当前闭环。
+
+---
+
+<!-- SOURCE: 11-实施边界版本治理与生产演进双轨.md -->
+

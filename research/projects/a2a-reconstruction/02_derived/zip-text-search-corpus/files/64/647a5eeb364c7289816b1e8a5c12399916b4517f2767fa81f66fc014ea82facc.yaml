@@ -1,0 +1,32 @@
+package:
+  id: prse-os-development-pack
+  name: PRSE-OS 完整开发包
+  version: 0.3.0-dev
+  status: exploratory-development-handoff
+  created_at: '2026-07-23'
+  runtime_neutral: true
+  language: zh-CN
+  purpose: 将 PRSE-OS 的方法论、AI 原生规格协议、运行契约、召集台参考实现与设计演进交给本地团队继续发展。
+  not_a_claim_of_finality: true
+entrypoints:
+  human: 00_START_HERE/README.md
+  agent: 00_START_HERE/AGENT_START_HERE.md
+  team_handoff: 00_START_HERE/LOCAL_TEAM_HANDOFF.md
+  canonical_method: 01_METHOD_CORE/method_architecture.md
+  design_history: 02_DESIGN_PROCESS/00_process_overview.md
+  harness_adapter: 03_HARNESS_ADAPTER/ADAPTER_GUIDE.md
+  summon_reference: 11_SUMMON_REFERENCE/project.manifest.yaml
+  roadmap: 12_ROADMAP/roadmap_v0.3_to_v1.0.md
+  validator: 15_TOOLING/validate_package.py
+included_versions:
+- PRSE-OS v0.1
+- PRSE AI Native SpecKit v0.2
+- v0.3-dev consolidation
+normative_keywords:
+- MUST
+- MUST_NOT
+- SHOULD
+- SHOULD_NOT
+- MAY
+- INFORMATIVE
+license_status: UNDECIDED — see 00_START_HERE/LICENSE_AND_IP.md

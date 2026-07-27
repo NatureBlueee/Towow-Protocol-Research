@@ -1,0 +1,43 @@
+{
+  "status": "passed_with_warnings",
+  "checks": {
+    "json_files_parsed": 59,
+    "research_state_yaml": "valid",
+    "run_json_schema_validated": 4,
+    "claim_rows_checked": 12,
+    "private_key_like_files": [],
+    "secret_pattern_hits": [],
+    "effect_metrics_recomputed": {
+      "n": 9,
+      "stdout_correct": 4,
+      "outer_exit_correct": 4,
+      "minimal_contract_correct": 9
+    },
+    "action_holdout_recomputed": {
+      "n": 3,
+      "static_correct": 0,
+      "scoped_unknown": 3
+    },
+    "boundary_attempts_recomputed": {
+      "attempt1": true,
+      "attempt2": true,
+      "attempt3": false
+    },
+    "signature_recheck": {
+      "honest_report": true,
+      "honest_verdict": true,
+      "tampered_report": false,
+      "tampered_verdict": true
+    }
+  },
+  "warnings": [
+    "raw attempt3 summary overstates classification; correction and run.json downgrade it to partial_sovereign"
+  ],
+  "errors": [],
+  "independence": {
+    "implementation_path": "standalone verifier; does not import experiment helpers",
+    "model_or_reviewer_independence": false,
+    "codexpro_open_scan_warnings": 0,
+    "codexpro_open_scan_limits": "257 inventory files; 8 analyzed source files; no entrypoints or relationships"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "towow-r5-acceptance-v1",
+  "original_goal": "Preserve independent source-owned reference lifecycles across add, remove, replay, supersede response, and retire migration without reducing historical compatibility.",
+  "conditions": {
+    "static": {
+      "subject_acceptance": "not_applicable",
+      "target_domain_adoption": false,
+      "reasons": [
+        "exact and path-normalized patches were malformed",
+        "recount still did not apply",
+        "canonical removal shape and migration tuple semantics were wrong"
+      ]
+    },
+    "least_privilege_central_run001": {
+      "subject_input_obtained": true,
+      "builder_output_obtained": false,
+      "target_domain_adoption": false,
+      "reason": "connection closed mid-response"
+    },
+    "direct_a2a": {
+      "owner_a_acceptance": false,
+      "owner_b_acceptance": false,
+      "last_action": "COUNTER",
+      "target_domain_adoption": false,
+      "final_acceptance": false
+    },
+    "a2a_null_source_counterfactual": {
+      "experiment_evaluator": "3 passed",
+      "existing_core_expectations": "2 failed, 39 passed",
+      "target_domain_adoption": false,
+      "reason": "The candidate protects sourced owners but changes two existing source-less compatibility expectations."
+    },
+    "hidden_implementation": {
+      "native_tests": "44 passed",
+      "target_domain_adoption": "branch-local implementation only",
+      "subject_acceptance": "Unknown",
+      "reason": "The implementation preserves wildcard compatibility but fails the three null-source safety counterfactuals."
+    }
+  },
+  "final_result": "not_accepted",
+  "requires_owner_value_decision": true,
+  "decision_needed": "Whether historical source-less removals are allowed to affect explicitly sourced instances in a mixed stream."
+}

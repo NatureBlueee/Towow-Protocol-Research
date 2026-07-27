@@ -1,0 +1,71 @@
+{
+  "status": "success",
+  "timestamp_utc": "2026-07-24T12:28:29Z",
+  "cwd": "/Users/nature/通爻协议研究",
+  "repo_root": "/Users/nature/通爻协议研究",
+  "git_head": null,
+  "git_branch": "main",
+  "git_unborn": true,
+  "git_dirty": true,
+  "codex_environment": {
+    "agent": "/root",
+    "model": "gpt-5.6-sol",
+    "cli_or_app_version": "codex-cli 0.145.0; desktop app version unknown",
+    "version_source": "command and runtime metadata"
+  },
+  "agents_files": [
+    "/Users/nature/通爻协议研究/AGENTS.md"
+  ],
+  "discovered_test_commands": [
+    "make check",
+    "python3 tools/workspace_check.py",
+    "make env",
+    "python3 tools/environment_snapshot.py",
+    "cd towow_a2a_round5_codex_local_research_packet_v1.1 && shasum -a 256 -c CHECKSUMS.sha256"
+  ],
+  "commands_run": [
+    {
+      "command": "pwd",
+      "exit_code": 0
+    },
+    {
+      "command": "git rev-parse --show-toplevel",
+      "exit_code": 0
+    },
+    {
+      "command": "git rev-parse --verify HEAD",
+      "exit_code": 128,
+      "notes": "Expected environment result: the repository has an unborn branch and no commit."
+    },
+    {
+      "command": "git branch --show-current",
+      "exit_code": 0
+    },
+    {
+      "command": "git status --porcelain=v2 --branch --untracked-files=all",
+      "exit_code": 0
+    },
+    {
+      "command": "find protected source files and compute a sorted aggregate SHA-256",
+      "exit_code": 0,
+      "result": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040"
+    },
+    {
+      "command": "make check",
+      "exit_code": 0
+    },
+    {
+      "command": "codex --version",
+      "exit_code": 0
+    }
+  ],
+  "source_integrity": {
+    "method": "Aggregate SHA-256 over all non-.git, non-.ai-research, non-.ai-bridge, active-workspace files excluding the superseded v1.0 packet and .DS_Store.",
+    "before": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
+    "after": "5f2eac0be138a3927ca6e22ed66ec7d23f86b64e0353c48789fdf75a2813a040",
+    "matched": true
+  },
+  "source_files_modified": [],
+  "result_file_created": "/Users/nature/通爻协议研究/.ai-research/towow-a2a-r5/smoke/CODEX_LOCAL_SMOKE_RESULT.json",
+  "notes": "This smoke proves only direct local read/execute/write access. It does not establish any A2A theory, capability, sovereignty, product value, deployment, or production result."
+}

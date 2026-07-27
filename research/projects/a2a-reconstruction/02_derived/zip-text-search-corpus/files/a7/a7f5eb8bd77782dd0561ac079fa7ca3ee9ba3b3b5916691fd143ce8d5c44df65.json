@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QualityRequirement",
+  "type": "object",
+  "required": [
+    "id",
+    "outcome",
+    "evidence",
+    "acceptance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "process_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resource_plan": {
+      "type": "object",
+      "properties": {
+        "normative": {
+          "type": "boolean"
+        },
+        "agents": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "human_reviewers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "acceptance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stop_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "escalation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

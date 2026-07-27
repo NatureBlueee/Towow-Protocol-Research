@@ -1,0 +1,45 @@
+{
+  "schema_version": "towow-r5-sovereign-workspace-lab-v1",
+  "captured_at_utc": "2026-07-24T12:54:09.716784+00:00",
+  "task": "Audit actual v1.1 baseline artifact reachability and obtain a signed policy verdict without coordinator access to packet or principal private directories.",
+  "classification": "sovereign_a2a_mechanism_E3_with_real_workspace_data",
+  "centralized": {
+    "accepted": true,
+    "private_world_exposure": true,
+    "process_count": 1,
+    "cumulative_process_ms": 247.222
+  },
+  "static_profile": {
+    "accepted": false,
+    "status": "unknown"
+  },
+  "sovereign_honest": {
+    "accepted": true,
+    "coordinator_private_or_packet_read_allowed": false,
+    "producer_other_private_read_allowed": false,
+    "producer_other_private_key_read_allowed": false,
+    "validator_other_private_read_allowed": false,
+    "validator_other_private_key_read_allowed": false,
+    "validator_signature_valid": true,
+    "report_hash_matches": true,
+    "process_count": 4,
+    "cumulative_process_ms": 1123.066
+  },
+  "sovereign_tampered": {
+    "accepted": false,
+    "validator_reason": "invalid_producer_signature",
+    "report_hash_matches": true
+  },
+  "coordination_overhead": {
+    "process_ratio_sovereign_to_central": 4.0,
+    "cumulative_process_time_ratio": 4.542742959768953,
+    "approval_gates_to_form_boundary": 4,
+    "note": "Three mechanism probes plus one exact lab execution approval."
+  },
+  "trusted_test_controller": {
+    "omniscient": true,
+    "role": "Creates worlds, applies sandbox profiles, and records evidence; it is not the runtime coordinator."
+  },
+  "private_keys_persisted": false,
+  "scope_limit": "Deterministic Python roles, one macOS host and one real packet task; no strong-model behavior, human recognition, production effect, or cross-organization adversary."
+}

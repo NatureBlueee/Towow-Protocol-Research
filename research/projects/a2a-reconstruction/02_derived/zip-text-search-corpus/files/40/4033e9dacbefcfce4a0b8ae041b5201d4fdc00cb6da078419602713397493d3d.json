@@ -1,0 +1,445 @@
+{
+  "entries": [
+    {
+      "causal_identification": "weak",
+      "design_delta": "NAC/四动词/类型账本降级为 Discovery/SDK/IR；不作为统一本体",
+      "empirical_object": "协议概念、NAC/四动词/类型账本/生成机制的设计与部分合成规格",
+      "evidence_level": "E0-E2 mixed",
+      "family": "historical_design_and_synthetic",
+      "id": "EXP-PROTOCOL-V15",
+      "main_information": "保留早期问题、发现算法和生成式协调动机；不能以形式完整度证明现实 A2A",
+      "name": "早期协议 v1.5 与实验规格",
+      "not_proven": [
+        "现实频率",
+        "人类认领",
+        "商业价值"
+      ],
+      "principal_realism": "none",
+      "reality_witness": "none",
+      "reproducibility": "partial; current archive contains specs but not every reported run as an independently runnable package",
+      "source_refs": [
+        "full_archive/extracted_sources/通爻协议 设计语料库 v1.5 终包/...",
+        "handoff/03_RESEARCH_LINEAGE_AND_CONCEPT_GENEALOGY.md"
+      ],
+      "status": "historical_source"
+    },
+    {
+      "causal_identification": "good within generator; adaptive vs static/full-disclosure baselines",
+      "design_delta": "边界应允许任务相关交互式 cut/witness，不用静态画像承担资格化",
+      "empirical_object": "私有线性约束世界中的适应性边界披露",
+      "evidence_level": "E2",
+      "family": "synthetic_mechanism",
+      "id": "EXP-R2-BOUNDARY",
+      "main_information": "adaptive_1/2/4/8 feasibility均1.0，披露中位数22/25/31/46；full disclosure 90；static 1/2/4/8 feasibility均0",
+      "name": "第二轮 Boundary Oracle",
+      "not_proven": [
+        "真实组织披露意愿",
+        "通用最优边界策略",
+        "现实商业收益"
+      ],
+      "principal_realism": "synthetic oracle domains",
+      "reality_witness": "synthetic feasibility oracle",
+      "reproducibility": "reproduced; reference engine 3/3 tests passed",
+      "source_refs": [
+        "towow_round2_release/results/manifest.json",
+        "towow_round2_release/reference_engine/"
+      ],
+      "status": "scoped_support"
+    },
+    {
+      "causal_identification": "good within generator",
+      "design_delta": "公开能力画像只做提名；组合能力需要本地贡献/反条件列",
+      "empirical_object": "私有模式组合与团队构成",
+      "evidence_level": "E2",
+      "family": "synthetic_mechanism",
+      "id": "EXP-R2-TEAM",
+      "main_information": "price-guided oracle feasibility 1.0、成本比1.000354、披露中位53；full private披露75；public profile feasibility 0.02；random 20%为0.9133且成本比1.8155",
+      "name": "第二轮 Team Constitution",
+      "not_proven": [
+        "真实能力形成",
+        "真实多方策略行为"
+      ],
+      "principal_realism": "synthetic capability modes",
+      "reality_witness": "synthetic feasibility/cost oracle",
+      "reproducibility": "reproduced as part of round2 test suite",
+      "source_refs": [
+        "towow_round2_release/results/manifest.json"
+      ],
+      "status": "scoped_support"
+    },
+    {
+      "causal_identification": "clear fixed/audited/unguarded comparison",
+      "design_delta": "概率输出必须允许 abstain/Unknown，不以低熵或高置信替代权威与证据",
+      "empirical_object": "概率边界在分布漂移下的覆盖—错误权衡",
+      "evidence_level": "E2",
+      "family": "synthetic_mechanism",
+      "id": "EXP-R2-PROB",
+      "main_information": "unguarded错误0.5603/0.6683；calibrated gate覆盖0.03/0.0235、错误0.0479/0.0612；audited adaptive under shift选择0覆盖",
+      "name": "第二轮 Probabilistic Oracle",
+      "not_proven": [
+        "真实模型校准",
+        "实际最优阈值"
+      ],
+      "principal_realism": "none",
+      "reality_witness": "synthetic labels",
+      "reproducibility": "reproduced as part of round2 test suite",
+      "source_refs": [
+        "towow_round2_release/results/manifest.json"
+      ],
+      "status": "scoped_support"
+    },
+    {
+      "causal_identification": "direct mechanism contrast",
+      "design_delta": "稀缺资源 Commitment 前需要原子 reservation，而非事后检查",
+      "empirical_object": "共享预算的并发检查与保留",
+      "evidence_level": "E2-E3",
+      "family": "synthetic_state_mechanism",
+      "id": "EXP-R2-CONCURRENCY",
+      "main_information": "eventual check-then-write overspend 0.60461；serializable reservation 0",
+      "name": "第二轮 Trust Concurrency",
+      "not_proven": [
+        "分布式生产性能",
+        "跨组织结算"
+      ],
+      "principal_realism": "none",
+      "reality_witness": "simulated ledger",
+      "reproducibility": "reproduced as part of round2 test suite",
+      "source_refs": [
+        "towow_round2_release/results/manifest.json"
+      ],
+      "status": "strong_scoped"
+    },
+    {
+      "causal_identification": "several direct before/after approvals and boundary fixes; limited external controls",
+      "design_delta": "Effect Gateway、canonical resource identity、环境/权限索引能力、普通本地审计默认 central",
+      "empirical_object": "真实 macOS/Git/Docker/sandbox 环境中的证据可达、Effect、能力和边界",
+      "evidence_level": "E4",
+      "family": "real_workspace_engineering",
+      "id": "EXP-R5-LOCAL",
+      "main_information": "baseline证据18条仅2条可达；stdout/outer exit各4/9而最小Effect合同9/9；静态工具profile默认holdout 0/3；审批使3/3操作可达；canonical path修复边界；partial-sovereign runtime 4.54x central",
+      "name": "第五阶段首次本地现实返回",
+      "not_proven": [
+        "真实多Principal",
+        "强模型主权行为",
+        "商业净值"
+      ],
+      "principal_realism": "one human owner; synthetic technical roles",
+      "reality_witness": "real local filesystem/process/Git/OS readback",
+      "reproducibility": "packet verified historically; original machine state not recreated here",
+      "source_refs": [
+        "return-packet/return-packet/RETURN_SUMMARY.md"
+      ],
+      "status": "strong_local_engineering"
+    },
+    {
+      "causal_identification": "explicit reconstruction vs naive terminal baseline",
+      "design_delta": "保留语义分离，但复用现有事件与readback；事件措辞区分 parked-for-redispatch 与 consumed",
+      "empirical_object": "真实 Harness 事件、carrier、sentinel、index 与 fresh readback",
+      "evidence_level": "E4",
+      "family": "real_repository_and_history",
+      "id": "EXP-R5.2-EFFECT",
+      "main_information": "naive terminal baseline在17场景中错10；显式四阶段重建17/17匹配现有权威源；不支持额外维护四套平行对象",
+      "name": "R5.2 Effect Reality Reconstruction",
+      "not_proven": [
+        "跨组织现实",
+        "法律/业务接受"
+      ],
+      "principal_realism": "technical domain only",
+      "reality_witness": "real event log / repository state",
+      "reproducibility": "recomputed and portable verifier passed: 17 scenarios, 73 checksummed files",
+      "source_refs": [
+        "Towow_A2A_R5_2.../RETURN_SUMMARY.md",
+        "qa/historical_reverification.log"
+      ],
+      "status": "strong_local"
+    },
+    {
+      "causal_identification": "limited small holdout; one withdrawn and one authorization negative tracked",
+      "design_delta": "能力主张绑定executor/environment/authority/resources/recovery/freshness，并允许撤回/Unknown",
+      "empirical_object": "环境索引的能力主张在6个可执行案例上的首次预测",
+      "evidence_level": "E4",
+      "family": "real_repository_holdout",
+      "id": "EXP-R5.2-CAP",
+      "main_information": "六轴能力合同首次正确4/6，低于80%预注册阈值；静态installed baseline 3/6；遗漏具体文件系统形成条件",
+      "name": "R5.2 Capability Holdout",
+      "not_proven": [
+        "广泛预测力",
+        "优于人类判断"
+      ],
+      "principal_realism": "technical domain only",
+      "reality_witness": "local execution",
+      "reproducibility": "recomputed; 4/6 vs static 3/6",
+      "source_refs": [
+        "Towow_A2A_R5_2.../RETURN_SUMMARY.md",
+        "qa/historical_reverification.log"
+      ],
+      "status": "failed_threshold_but_informative"
+    },
+    {
+      "causal_identification": "static, direct A2A and attempted central comparisons; central synthesis transport failed, limiting fairness",
+      "design_delta": "语言谈判不等于PFE；可折叠任务优先静态+owner query；保留COUNTER/UNKNOWN/REFUSE",
+      "empirical_object": "两个合成权威上下文中的真实模型多轮协商与源码身份任务",
+      "evidence_level": "E6 limited",
+      "family": "real_model_synthetic_principals",
+      "id": "EXP-R5.4",
+      "main_information": "A2A形成更丰富安全/披露/争议/reopen条款，但无签署、无产品补丁、无目标域采用；AcceptedOriginalValue全部为0；成本约静态builder 2.49x before verification",
+      "name": "R5.4 真实模型协商负对照",
+      "not_proven": [
+        "中心形成能力（transport unknown）",
+        "真实偏好",
+        "任何商业价值"
+      ],
+      "principal_realism": "synthetic owners/authorities; real model calls",
+      "reality_witness": "real code/test traces, no accepted business effect",
+      "reproducibility": "return verifier passed: 161 manifest files, 2 empty-stdout warnings",
+      "source_refs": [
+        "towow-a2a-r5-4-return-packet/return-packet/CORE_A2A_EXPERIMENT.md",
+        "FORMATION_CAUSALITY.md",
+        "ARCHITECTURE_AND_NET_VALUE.md",
+        "qa/historical_reverification.log"
+      ],
+      "status": "strong_negative_local"
+    },
+    {
+      "causal_identification": "baselines and condition ablations; matched central formation not run",
+      "design_delta": "formation期可用authority-first probe/refusal/countercondition；冻结后least-privilege deterministic runtime；技术adoption与人Acceptance分离",
+      "empirical_object": "Allbuddy source authority 与 Agent World target authority 的 adoption/revocation/offline/recovery",
+      "evidence_level": "E5",
+      "family": "real_technical_domain_formation",
+      "id": "EXP-R5C",
+      "main_information": "形成 adopted→revoked→offline/unknown→adopted 路径；producer-only/wrong-authority无投影；现实probe与最小countercondition改变API、恢复和readback；人类Recognition/商业价值UNKNOWN",
+      "name": "R5C 跨技术权威域形成闭环",
+      "not_proven": [
+        "独特优于同权限中心",
+        "真实人的认领",
+        "正净商业价值"
+      ],
+      "principal_realism": "two technical authority domains, not real social Principals",
+      "reality_witness": "real local services, journals, readback and replay",
+      "reproducibility": "portable verifier passed: 90 files, 19 claims, 36 links",
+      "source_refs": [
+        "R5C-RETURN-001/RETURN_SUMMARY.md",
+        "BASELINES_AND_ABLATIONS.md",
+        "HUMAN_RECOGNITION_AND_VALUE.md",
+        "qa/historical_reverification.log"
+      ],
+      "status": "strong_scoped_technical"
+    },
+    {
+      "causal_identification": "cannot audit from summary alone",
+      "design_delta": "后续实验继续追求可量化Design Delta，但必须附生成器、原始结果、负控制和可靠性边界",
+      "empirical_object": "边界披露、行为类、自报、低熵、结算、模型检查、因果学习、共同对象",
+      "evidence_level": "reported_only",
+      "family": "reported_synthetic",
+      "id": "EXP-LEGACY-8",
+      "main_information": "作为价值取向和研究问题线索保留，不作为当前精确量化主张",
+      "name": "用户给出的早期八组合成实验摘要",
+      "not_proven": [
+        "所有精确数字的独立复现",
+        "现实频率"
+      ],
+      "principal_realism": "synthetic",
+      "reality_witness": "none",
+      "reproducibility": "not independently runnable from current archive; raw scripts/results not located",
+      "source_refs": [
+        "current user instruction / historical summary"
+      ],
+      "status": "downgraded_reported"
+    },
+    {
+      "causal_identification": "reported as extensive; not independently audited here",
+      "design_delta": "所有引用标注reported；优先重建最承重命题，而非复制全部样本规模",
+      "empirical_object": "真实性、多权威、派生数据、形成/编译、CollapseSafe、能力提升等合成机制",
+      "evidence_level": "reported_only_E2_candidate",
+      "family": "reported_synthetic",
+      "id": "EXP-R6-REPORTED",
+      "main_information": "保留为假说与未来复现实验设计；不再以180,000或210万规模承担强证据",
+      "name": "v0.3 R6 与两百万级交叉验证",
+      "not_proven": [
+        "精确数字",
+        "实现完整性",
+        "现实效果"
+      ],
+      "principal_realism": "synthetic",
+      "reality_witness": "none",
+      "reproducibility": "current v0.3 working tree contains reports but not referenced raw code/results; cannot independently rerun in this release",
+      "source_refs": [
+        "Towow_A2A_Independent_Research_v0.3/experiments/*.md"
+      ],
+      "status": "downgraded_reported"
+    },
+    {
+      "causal_identification": "direct representation comparison under a fixed generator/query set",
+      "design_delta": "UsageGrant/DataUseEvent/DerivationRecord/LearningUpdate默认降为Mandate/event/provenance/effect；Joint rights按独立ratification条件提升",
+      "empirical_object": "五个数据治理概念在不同物化方案下的查询可区分性",
+      "evidence_level": "E2 constructive",
+      "family": "constructive_representation_test",
+      "id": "EXP-V04-ONTOLOGY",
+      "main_information": "50,000场景×5查询；收敛表示0错误；naive flatten 48,926/250,000错误；24.624%联合权利需要提升为独立Commitment",
+      "name": "v0.4 本体收敛构造实验",
+      "not_proven": [
+        "六对象本体唯一性",
+        "现实法律充分性",
+        "未建模查询"
+      ],
+      "principal_realism": "none",
+      "reality_witness": "none",
+      "reproducibility": "code and results included; deterministic seed",
+      "source_refs": [
+        "experiments/ontology_reduction/run.py",
+        "experiments/ontology_reduction/results.json"
+      ],
+      "status": "constructive_support"
+    },
+    {
+      "causal_identification": "typed checker vs always/never/any-diff negative controls",
+      "design_delta": "以可达轨迹+role/A/E/D/O语义判断；输出AMBIGUOUS升级权威；局部reopen而非全局重启",
+      "empirical_object": "parameter、nonmaterial schema 与material schema变化的有界判别",
+      "evidence_level": "E2-E3 constructive",
+      "family": "constructive_definition_test",
+      "id": "EXP-V04-SCHEMA",
+      "main_information": "typed materiality 0错误；any schema diff错误26.76%；always reopen 44.74%；never reopen 55.26%",
+      "name": "v0.4 Relation Schema materiality 分类器",
+      "not_proven": [
+        "现实组织schema可被自动提取",
+        "规范争议可算法解决"
+      ],
+      "principal_realism": "none",
+      "reality_witness": "none",
+      "reproducibility": "code/results included; 30,000 generated changes",
+      "source_refs": [
+        "experiments/schema_change_classifier/run.py",
+        "experiments/schema_change_classifier/results.json"
+      ],
+      "status": "constructive_support"
+    },
+    {
+      "causal_identification": "not an outcome experiment",
+      "design_delta": "现实研究从聊天纪要升级为版本化、可审计案例包；私有与共享材料分离",
+      "empirical_object": "案例前态、Mandate、RelationVersion、hash-chain event、materiality、compile readiness、裁决和redacted export",
+      "evidence_level": "E3",
+      "family": "research_instrument",
+      "id": "EXP-V04-FIELDKIT",
+      "main_information": "证明首个真实实验的前态、Mandate、RelationVersion、事件、Effect/Adoption/Acceptance、follow-up与裁决可以被结构化记录和独立重算；虚构样例不证明机制有效",
+      "name": "v0.4 Towow Fieldkit 单元与样例构造",
+      "not_proven": [
+        "安全/加密/法律合规",
+        "真实用户可用性",
+        "研究效果"
+      ],
+      "principal_realism": "sample only; no real participant yet",
+      "reality_witness": "filesystem artifacts only",
+      "reproducibility": "11 unit tests passed; fictional sample case produced 21 hash-chained events, 2 relation versions, valid structure, material-change and compile-readiness reports",
+      "source_refs": [
+        "instrument/towow_fieldkit/",
+        "instrument/sample_case/",
+        "qa/fieldkit_tests.log"
+      ],
+      "status": "instrument_ready"
+    },
+    {
+      "causal_identification": "descriptive and process-tracing only; no Towow/Agent treatment or matched baseline",
+      "design_delta": "P4 qualified-space revision; scoped Settlement; standing/jurisdiction/challenge and source-provenance fields; public evidence becomes R7-0A",
+      "empirical_object": "SEC交易过程、CMA监管过程与GAO采购争议中的Authority、Relation Schema、Effect、challenge、reopen与处置",
+      "evidence_level": "E4 observational institutional",
+      "family": "real_world_archival_observational",
+      "id": "EXP-V05-PUBLIC-ARCHIVE",
+      "main_information": "10 个有意选择案例；主要编码为 1 Expansion、3 Transformation、5 Protective contraction、1 Clarification；外部 Authority 改变路径 7/10，challenge/reopen 6/10；C18-C20 直接观察均为 0",
+      "name": "PEA-10 公开制度档案最大差异校准",
+      "not_proven": [
+        "population frequencies",
+        "Agent causality",
+        "subjective explain-back",
+        "comparable net surplus",
+        "complete private prestate"
+      ],
+      "principal_realism": "real organizations and institutions; no direct participant interaction",
+      "reality_witness": "formal filings, orders, decisions and completion/termination records",
+      "reproducibility": "15 个正式来源、结构化 cases/codebook、分析脚本、validation 与逐案文档齐备；单编码者首轮",
+      "source_refs": [
+        "public_evidence/archival_contrast/source_manifest.json",
+        "public_evidence/archival_contrast/cases.json",
+        "public_evidence/archival_contrast/analysis/results.json",
+        "public_evidence/archival_contrast/validation.json"
+      ],
+      "status": "scoped_real_world_calibration"
+    },
+    {
+      "causal_identification": "not an outcome experiment",
+      "design_delta": "instrument no longer treats bilateral effect as globally settled",
+      "empirical_object": "standing/jurisdiction/challenge/settlement materiality and compile readiness",
+      "evidence_level": "E3 constructive instrument",
+      "family": "research_instrument",
+      "id": "EXP-V05-FIELDKIT-SCOPE",
+      "main_information": "15 unit tests; missing jurisdiction/standing and unbounded challenge block compile; bounded challenge can produce READY_WITH_CONTINGENCY",
+      "name": "Fieldkit v0.5 external-scope gates",
+      "not_proven": [
+        "real legal sufficiency",
+        "participant usability",
+        "automatic jurisdiction discovery"
+      ],
+      "principal_realism": "none; unit and sample tests",
+      "reality_witness": "filesystem artifacts only",
+      "reproducibility": "code and tests included",
+      "source_refs": [
+        "instrument/towow_fieldkit/towow_fieldkit/schema_change.py",
+        "instrument/towow_fieldkit/tests/test_fieldkit.py"
+      ],
+      "status": "instrument_revision_ready"
+    },
+    {
+      "causal_identification": "within-case process tracing plus document-view ablation; no Towow/Agent treatment",
+      "design_delta": "不新增 schema 维度；加入 evidence admissibility/version incorporation、reserved contingency、source observability 与 retrospective selection risk",
+      "empirical_object": "LinkedIn–Microsoft、Amazon–iRobot、NASA HLS 的正式过程事件、Authority、RelationVersion、materiality 与压缩公告可见性",
+      "evidence_level": "E4 observational process calibration",
+      "family": "real_world_archival_process_tracing",
+      "id": "EXP-V05-R7P-PROCESS",
+      "main_information": "33 个事件全部映射到既有七维，28/33 操作完整；压缩公告严格事件召回 18.2%、部分计权 25.8%、关键转折加权 25.0%；NASA HLS 作为 reserved-contingency 负控制",
+      "name": "R7P-1 三案公开正式过程事件编码与文档消融",
+      "not_proven": [
+        "七维完备或编码者一致性",
+        "Agent causality",
+        "真实 Mandate/Acceptance",
+        "相对经纪人的净价值"
+      ],
+      "principal_realism": "real organizations and institutions; no direct participant interaction",
+      "reality_witness": "SEC/EC/GAO and official effect records",
+      "reproducibility": "coded_events.jsonl、analysis script、results、source manifest 与逐案文档齐备；单编码者首轮",
+      "source_refs": [
+        "experiments/R7P_public_trace_pilot/coded_events.jsonl",
+        "experiments/R7P_public_trace_pilot/analyze.py",
+        "experiments/R7P_public_trace_pilot/results.json",
+        "experiments/R7P_public_trace_pilot/REPORT.md"
+      ],
+      "status": "scoped_real_world_process_calibration"
+    },
+    {
+      "causal_identification": "none; structural expressivity test only",
+      "design_delta": "验证 external jurisdiction、Effect 后 reopen、rights-holder change、capability dependency loss 与 scoped Settlement 可由现有六根内核表达",
+      "empirical_object": "Microsoft–Activision、Meta–Giphy、Deloitte 的 RelationVersion、typed event、materiality 与 compile readiness",
+      "evidence_level": "E3/E4 bridge: constructive instrument on real archival structure",
+      "family": "instrument_expressivity_on_real_archival_structure",
+      "id": "EXP-V05-SHADOW",
+      "main_information": "3 案、7 个 RelationVersion、17 个哈希链事件、4 次版本转换全部判为 material；readiness 序列为 NOT_READY→READY、NOT_READY→NOT_READY→READY、READY→NOT_READY；3 案验证通过",
+      "name": "三项公开历史 Shadow Towow reconstruction",
+      "not_proven": [
+        "Towow 历史反事实优越性",
+        "Agent 因果",
+        "法律充分性",
+        "真实用户可用性或净价值"
+      ],
+      "principal_realism": "real historical institutions, ex-post researcher encoding",
+      "reality_witness": "public formal record encoded into Fieldkit; no live participant",
+      "reproducibility": "builder、source-linked shadow specification、generated case stores、change/readiness reports 与 results included",
+      "source_refs": [
+        "public_evidence/archival_contrast/shadow_reconstructions/build_shadow_cases.py",
+        "public_evidence/archival_contrast/shadow_reconstructions/results.json",
+        "public_evidence/archival_contrast/shadow_reconstructions/generated/",
+        "public_evidence/archival_contrast/shadow_reconstructions/REPORT.md"
+      ],
+      "status": "instrument_expressivity_supported_scoped"
+    }
+  ],
+  "generated_at": "2026-07-26",
+  "version": "0.5"
+}

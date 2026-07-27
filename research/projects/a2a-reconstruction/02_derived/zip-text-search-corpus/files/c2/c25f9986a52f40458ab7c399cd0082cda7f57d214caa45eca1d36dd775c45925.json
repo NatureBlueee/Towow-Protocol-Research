@@ -1,0 +1,124 @@
+{
+  "reports": [
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [
+        {
+          "code": "MISSING_REQUIRED_JURISDICTION_REVIEW",
+          "subject": "UK_competition"
+        },
+        {
+          "code": "UNREVIEWED_EXTERNAL_STANDING",
+          "subject": "cma,third_parties"
+        },
+        {
+          "code": "OPEN_MATERIAL_CHALLENGE_WITHOUT_CONTINGENCY",
+          "subject": "CMA_post_close_review"
+        }
+      ],
+      "reachable_actions": [
+        "close_bilateral"
+      ],
+      "readiness": "NOT_READY",
+      "ready": false,
+      "relation_version": 1,
+      "settlement_scope": {
+        "challenge_horizon": "post_close_review_open",
+        "covered_jurisdictions": [],
+        "open_material_challenges": [
+          "CMA_post_close_review"
+        ],
+        "required_external_standing": [
+          "cma",
+          "third_parties"
+        ],
+        "required_jurisdictions": [
+          "UK_competition"
+        ],
+        "reviewed_external_standing": []
+      },
+      "state": "COMMITTED",
+      "warnings": [
+        {
+          "code": "NO_ROLLBACK_OR_COMPENSATION",
+          "subject": "COMMITTED"
+        }
+      ]
+    },
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [
+        {
+          "code": "UNRESOLVED_MATERIAL_COUNTEREXAMPLE",
+          "subject": "1"
+        }
+      ],
+      "reachable_actions": [
+        "adjudicate_competition",
+        "order_divestiture",
+        "submit_third_party_evidence"
+      ],
+      "readiness": "NOT_READY",
+      "ready": false,
+      "relation_version": 2,
+      "settlement_scope": {
+        "challenge_horizon": "until_divestiture_effect",
+        "covered_jurisdictions": [
+          "UK_competition"
+        ],
+        "open_material_challenges": [
+          "divestiture_not_yet_effected"
+        ],
+        "required_external_standing": [
+          "cma",
+          "third_parties"
+        ],
+        "required_jurisdictions": [
+          "UK_competition"
+        ],
+        "reviewed_external_standing": [
+          "cma",
+          "third_parties"
+        ]
+      },
+      "state": "EFFECT_OCCURRED",
+      "warnings": [
+        {
+          "code": "OPEN_MATERIAL_CHALLENGE_COMPILED_WITH_CONTINGENCY",
+          "subject": "divestiture_not_yet_effected"
+        }
+      ]
+    },
+    {
+      "compiler_rule": "Compilation may only preserve existing authority and semantics; it must not create a new mandate, stance, commitment, effect, jurisdictional clearance, or settlement claim.",
+      "failures": [],
+      "reachable_actions": [
+        "close_case",
+        "sell_giphy"
+      ],
+      "readiness": "READY",
+      "ready": true,
+      "relation_version": 3,
+      "settlement_scope": {
+        "challenge_horizon": "through_observed_divestiture_and_case_closure",
+        "covered_jurisdictions": [
+          "UK_competition"
+        ],
+        "open_material_challenges": [],
+        "required_external_standing": [
+          "cma",
+          "third_parties"
+        ],
+        "required_jurisdictions": [
+          "UK_competition"
+        ],
+        "reviewed_external_standing": [
+          "cma",
+          "third_parties"
+        ]
+      },
+      "state": "DIVEST_REQUIRED",
+      "warnings": []
+    }
+  ]
+}

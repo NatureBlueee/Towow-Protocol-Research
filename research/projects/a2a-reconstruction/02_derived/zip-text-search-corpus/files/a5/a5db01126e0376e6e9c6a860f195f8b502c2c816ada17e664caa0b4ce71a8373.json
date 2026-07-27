@@ -1,0 +1,34 @@
+{
+  "schema_version": "towow-r5-generative-a2a-prereg-v1",
+  "run_id": "r5-4-run-002-central-replication",
+  "frozen_at_utc": "2026-07-24T19:27:49Z",
+  "purpose": "Independent run to recover the missing least-privilege-central comparison after run-001 ended with a transport-level connection closure.",
+  "relationship_to_run_001": {
+    "is_retry_of_run_001": false,
+    "uses_frozen_run_001_prompt": true,
+    "prompt_path": "../r5-4-run-001-source-identity/prompts/central_builder.md",
+    "prompt_sha256": "8e1fbd00fbd592208a3c4eb3b1bf68baa1f1d6b56ba4f750952fd0495dfae6b2",
+    "run_001_failure_is_preserved": true
+  },
+  "condition": "least_privilege_central",
+  "model": {
+    "runner": "claude",
+    "alias": "sonnet",
+    "tools": [],
+    "max_budget_usd": 0.75,
+    "maximum_calls": 1,
+    "retries": 0
+  },
+  "schema": {
+    "path": "../../schemas/patch_proposal.schema.json",
+    "sha256": "5ec046603cbb2df02078cd7848a4478b03c5f1c581d06fcb61c554af87093447"
+  },
+  "evaluation": {
+    "exact_patch_apply": true,
+    "semantic_surface_comparison": true,
+    "legacy_source_less_policy_classification": true,
+    "hidden_oracle_tests": true,
+    "a2a_null_source_tests": true
+  },
+  "stopping_rule": "One model call only. Preserve success, malformed output, refusal, Unknown, budget stop, or transport failure as the terminal result."
+}

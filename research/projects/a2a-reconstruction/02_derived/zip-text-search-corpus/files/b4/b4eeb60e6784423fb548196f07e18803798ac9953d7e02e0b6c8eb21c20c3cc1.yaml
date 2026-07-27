@@ -1,0 +1,53 @@
+cases:
+- id: S001_ui_object_projection
+  given: 生成召集单详情页
+  must_show:
+  - Summon 主对象
+  - 相关生命周期
+  - 参与与责任
+  - 证据
+  - 决定
+  - 恢复路径
+  must_not:
+  - 以 Tabs 代替对象关系
+  - 将活动流作为事实源
+- id: S002_disclosure_grant
+  given: 生成披露授权 UI
+  must_show:
+  - 授权者
+  - 被授权者
+  - 用途
+  - 范围
+  - 期限
+  - 访问方式
+  - 状态
+  - 撤销后果
+  must_not:
+  - 仅显示分享成功
+  - 将历史访问抹除
+- id: S003_verification_acceptance
+  given: 交付物通过自动检查
+  must_result:
+  - 产生 VerificationResult
+  - 仍等待有权主体的 AcceptanceDecision
+  must_not:
+  - 自动显示业务验收完成
+- id: S004_report_traceability
+  given: 生成领导驾驶舱
+  must_show:
+  - 指标口径
+  - 时间范围
+  - 来源
+  - 下钻对象
+  must_not:
+  - 无法解释的网络图或价值数字
+- id: S005_agent_action
+  given: Agent 生成并提交建议
+  must_show:
+  - Agent 执行身份
+  - 委托主体
+  - 使用权限
+  - 建议或动作类型
+  - 是否待人确认
+  must_not:
+  - 让 Agent 成为不可归因的幕后自动化

@@ -1,0 +1,343 @@
+{
+  "change_classification": "MATERIAL_SCHEMA_CHANGE",
+  "content_hash": "c1393b88569793844b3f2090be0a36bd4f820e1f6908b18ce59dfe801d820858",
+  "created_at": "2026-07-26T06:42:14.661958+00:00",
+  "dependencies": {
+    "budget": [
+      "commit_probe_budget",
+      "run_buyer_controlled_probe"
+    ],
+    "data_mode": [
+      "authorize_readonly_probe",
+      "run_buyer_controlled_probe",
+      "review_output",
+      "accept_pilot_result"
+    ],
+    "provider_runtime": [
+      "run_buyer_controlled_probe"
+    ],
+    "success_criteria": [
+      "review_output",
+      "accept_pilot_result"
+    ]
+  },
+  "instance": {
+    "active_resources": [
+      "source_data",
+      "pilot_output",
+      "probe_receipt"
+    ],
+    "active_roles": [
+      "buyer_business",
+      "buyer_data",
+      "provider_business",
+      "provider_tech"
+    ],
+    "obtained_stances": [
+      "buyer_business:COMMIT",
+      "buyer_data:CONDITIONAL",
+      "provider_business:COMMIT",
+      "provider_tech:COMMIT"
+    ],
+    "parameters": {
+      "duration_days": 14,
+      "price_cny": 9800,
+      "query_limit": 500
+    },
+    "reopen_rules_defined": true,
+    "required_mandates": [
+      "mandate-buyer_business-v1",
+      "mandate-buyer_data-v1",
+      "mandate-provider_business-v1",
+      "mandate-provider_tech-v1"
+    ],
+    "required_stances": [
+      "buyer_business:COMMIT",
+      "buyer_data:CONDITIONAL",
+      "provider_business:COMMIT",
+      "provider_tech:COMMIT"
+    ],
+    "risk_class": "MEDIUM",
+    "rollback_or_compensation_defined": true,
+    "state": "FORMING",
+    "task_family": "enterprise-ai-pilot",
+    "time_horizon_days": 14,
+    "unresolved_material_counterexamples": [],
+    "valid_mandates": [
+      "mandate-buyer_business-v1",
+      "mandate-buyer_data-v1",
+      "mandate-provider_business-v1",
+      "mandate-provider_tech-v1"
+    ]
+  },
+  "relation_id": "case-readonly-pilot-demo",
+  "schema": {
+    "acceptance_rules": {
+      "accept_pilot_result": {
+        "required_roles": [
+          "buyer_business"
+        ],
+        "requires_data_gate_pass": true,
+        "requires_effect": true,
+        "success_criteria": [
+          "actionable_findings>=3",
+          "raw_rows_exported=0"
+        ]
+      },
+      "reject_pilot_result": {
+        "required_roles": [
+          "buyer_business"
+        ],
+        "requires_reason": true
+      }
+    },
+    "actions": {
+      "accept_pilot_result": {
+        "actor_roles": [
+          "buyer_business"
+        ],
+        "material": true
+      },
+      "authorize_readonly_probe": {
+        "actor_roles": [
+          "buyer_data"
+        ],
+        "material": true
+      },
+      "commit_probe_budget": {
+        "actor_roles": [
+          "buyer_business"
+        ],
+        "material": true
+      },
+      "propose_pilot": {
+        "actor_roles": [
+          "provider_business"
+        ],
+        "material": true
+      },
+      "reject_pilot_result": {
+        "actor_roles": [
+          "buyer_business",
+          "buyer_data"
+        ],
+        "material": true
+      },
+      "review_output": {
+        "actor_roles": [
+          "buyer_business",
+          "buyer_data"
+        ],
+        "material": true
+      },
+      "run_buyer_controlled_probe": {
+        "actor_roles": [
+          "provider_tech"
+        ],
+        "material": true,
+        "produces_effect": true,
+        "target_roles": [
+          "buyer_data"
+        ]
+      },
+      "withdraw": {
+        "actor_roles": [
+          "buyer_business",
+          "buyer_data",
+          "provider_business"
+        ],
+        "material": true
+      }
+    },
+    "authority_rules": {
+      "accept_pilot_result": [
+        "buyer_business"
+      ],
+      "authorize_readonly_probe": [
+        "buyer_data"
+      ],
+      "commit_probe_budget": [
+        "buyer_business"
+      ],
+      "propose_pilot": [
+        "provider_business"
+      ],
+      "reject_pilot_result": [
+        "buyer_business",
+        "buyer_data"
+      ],
+      "review_output": [
+        "buyer_business",
+        "buyer_data"
+      ],
+      "run_buyer_controlled_probe": [
+        "provider_tech",
+        "buyer_data"
+      ],
+      "withdraw": [
+        "buyer_business",
+        "buyer_data",
+        "provider_business"
+      ]
+    },
+    "data_rules": {
+      "pilot_output": {
+        "contains_raw_rows": false,
+        "ownership": [
+          "buyer_business"
+        ],
+        "provider_license": "evaluation-only",
+        "retention_days": 14
+      },
+      "probe_receipt": {
+        "purpose": "audit",
+        "retention_days": 90
+      },
+      "source_data": {
+        "derivatives_may_leave_buyer_domain": false,
+        "mode": "buyer_controlled_readonly_query",
+        "purposes": [
+          "pilot_evaluation"
+        ],
+        "raw_rows_exported": false,
+        "retention_days": 0,
+        "training": false
+      }
+    },
+    "metadata": {
+      "label": "Buyer-controlled countercondition"
+    },
+    "object_types": {
+      "pilot_output": {
+        "contains_raw_rows": false,
+        "sensitivity": "INTERNAL"
+      },
+      "probe_receipt": {
+        "sensitivity": "INTERNAL"
+      },
+      "source_data": {
+        "residency": "BUYER_DOMAIN",
+        "sensitivity": "CONFIDENTIAL"
+      }
+    },
+    "reopen_rules": [
+      {
+        "affected": [
+          "authorize_readonly_probe",
+          "run_buyer_controlled_probe",
+          "review_output",
+          "accept_pilot_result"
+        ],
+        "trigger": "data_rule_changed"
+      },
+      {
+        "affected": [
+          "review_output",
+          "accept_pilot_result"
+        ],
+        "trigger": "success_criteria_changed"
+      },
+      {
+        "affected": [
+          "all_actions_under_mandate"
+        ],
+        "trigger": "mandate_revoked"
+      },
+      {
+        "affected": [
+          "run_buyer_controlled_probe",
+          "review_output",
+          "accept_pilot_result"
+        ],
+        "trigger": "buyer_audit_receipt_missing"
+      }
+    ],
+    "roles": {
+      "buyer_business": {
+        "label": "业务与采用权威"
+      },
+      "buyer_data": {
+        "label": "数据与安全权威"
+      },
+      "provider_business": {
+        "label": "服务商务权威"
+      },
+      "provider_tech": {
+        "label": "技术执行权威"
+      }
+    },
+    "schema_id": "enterprise-ai-readonly-pilot",
+    "transitions": [
+      {
+        "action": "propose_pilot",
+        "from": "FORMING",
+        "to": "PROPOSED"
+      },
+      {
+        "action": "authorize_readonly_probe",
+        "from": "PROPOSED",
+        "to": "PROBE_AUTHORIZED"
+      },
+      {
+        "action": "commit_probe_budget",
+        "from": "PROBE_AUTHORIZED",
+        "to": "COMMITTED"
+      },
+      {
+        "action": "run_buyer_controlled_probe",
+        "from": "COMMITTED",
+        "to": "EFFECT_PENDING"
+      },
+      {
+        "action": "review_output",
+        "from": "EFFECT_PENDING",
+        "to": "REVIEWED"
+      },
+      {
+        "action": "accept_pilot_result",
+        "from": "REVIEWED",
+        "to": "ACCEPTED"
+      },
+      {
+        "action": "reject_pilot_result",
+        "from": "REVIEWED",
+        "to": "REJECTED"
+      },
+      {
+        "action": "withdraw",
+        "from": "PROPOSED",
+        "to": "WITHDRAWN"
+      },
+      {
+        "action": "withdraw",
+        "from": "PROBE_AUTHORIZED",
+        "to": "WITHDRAWN"
+      },
+      {
+        "action": "withdraw",
+        "from": "COMMITTED",
+        "to": "WITHDRAWN"
+      },
+      {
+        "action": "withdraw",
+        "from": "EFFECT_PENDING",
+        "to": "WITHDRAWN"
+      }
+    ],
+    "version": "2",
+    "witness_rules": {
+      "run_buyer_controlled_probe": {
+        "evidence": [
+          "buyer-audit-receipt",
+          "output-hash",
+          "provider-run-log"
+        ],
+        "producer_self_report_sufficient": false,
+        "source_role": "buyer_data"
+      }
+    }
+  },
+  "status": "QUALIFIED",
+  "supersedes_version": 1,
+  "version": 2
+}

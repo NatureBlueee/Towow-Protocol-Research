@@ -1,0 +1,35 @@
+{
+  "schema_version": "towow-r5-transfer-case-v1",
+  "case_id": "poller-stale-base-eventlog-readback",
+  "registered_at_utc": "2026-07-24T16:26:19Z",
+  "workspace": {
+    "repo_root": "/private/tmp/harness-towow-a2a-r5-2",
+    "branch": "codex/towow-a2a-r5-2-research",
+    "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567"
+  },
+  "source_anchor": {
+    "implementation": "harness/src/towow/l2/bg_worktree_poller.py::_emit_obligation_violated_stale_base",
+    "existing_test": "harness/tests/unit/test_bg_worktree_poller.py::test_t_fix_poll4_stale_base_emits_obligation_violated"
+  },
+  "observation_before_execution": "The poller appends a producer-shaped JSON object through append_raw_event_line. The object lacks writer-stamped EventRecord fields, while iter_committed_records_from_lines silently skips records that fail EventRecord validation. The existing test inspects raw JSON bytes only.",
+  "hypothesis": "The existing test and poll_loop outcome will report success and raw bytes will exist, but a fresh EventLog authoritative readback will not return the stale-base audit record. This is a concrete Effect versus Verification and Acceptance split.",
+  "strategies": {
+    "B0_terminal_or_raw": "Treat poll_loop == symlinked and a matching raw JSON line as success.",
+    "B1_existing_harness_plus_readback": "Require a fresh EventLog reader to return the record; otherwise classify the audit effect as not accepted.",
+    "T1_explicit_four_stage": "Record poll attempt, filesystem effect, EventLog verification, and audit-trail acceptance separately."
+  },
+  "predictions": [
+    {
+      "claim_id": "C-AEVA-001-C",
+      "prediction": "B0 will classify the case as success while B1 and T1 reject or leave the audit-trail outcome pending."
+    },
+    {
+      "claim_id": "C-AEVA-001-B",
+      "prediction": "The existing EventLog API plus authoritative readback is sufficient to expose the error; four new durable top-level objects are not required for this case."
+    }
+  ],
+  "intervention": "Add one regression assertion that opens the emitted events.log through EventLog and requires the ObligationViolated stub payload to be visible, then replace the raw append with the canonical writer if the preregistered failure occurs.",
+  "oracle": "A newly constructed EventLog over the fixture ledger returns exactly one matching NodeTouched record with writer-stamped sequence, timestamp, and record_hash fields.",
+  "stop_rule": "Stop this transfer case after one captured failing baseline, the smallest canonical-writer fix, a passing targeted test file, and one relevant event-log regression set. If the baseline unexpectedly passes, preserve that contradiction and do not implement the predicted fix.",
+  "external_effects": "Temporary test repositories and files only; no canonical ledger, daemon, network, production, or user-data write."
+}

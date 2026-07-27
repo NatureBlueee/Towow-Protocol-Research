@@ -1,0 +1,113 @@
+schema_version: "1.0"
+packet_version: "towow-r5-codex-local-lab-v1.1"
+updated_at: "2026-07-24T12:58:00Z"
+workspace:
+  root: "/Users/nature/通爻协议研究"
+  repo_root: "/Users/nature/通爻协议研究"
+  baseline_commit: null
+  branch_or_worktree: "research/towow-r5-20260724-local (unborn branch; no separate worktree possible without a commit)"
+  dirty_at_start: true
+  dirty_now: true
+current_research_question: >-
+  在这个真实但尚无 commit、材料全部未跟踪且 shell 受 seatbelt/审批路径约束的工作区里，
+  当前统一内核和 Capability Claim 能否比静态工具画像或普通运行日志更准确地预测并约束
+  本地行动；增加的语义成本是否真的带来判别力？
+why_this_question_is_high_value: >-
+  当前环境已经出现两类会推翻浅层成功判定的真实异常：zsh 特殊变量造成虚假工具缺失，
+  以及一个复合工具调用同时打印 Git 写入失败和成功文本、最终外层退出码仍为 0。
+  如果现有理论不能处理动作粒度、执行器政策和读后验证，它的对象完整性无法保证真实效力。
+mission_status: "returning"
+active_hypotheses:
+  - id: "H1"
+    statement: "v1.1 基线 Claim 的原始证据可从当前任务包直接追溯和复现。"
+    status: "rejected_in_current_packet"
+  - id: "H2"
+    statement: "将 Effect 与 Verification 分离并对原子动作做后置条件检查，能排除 stdout/外层退出码产生的虚假成功。"
+    status: "supported_in_local_task_scope"
+  - id: "H3"
+    statement: "对低风险本地任务，完整对象链比最小原子 effect+verification 合同带来额外判别力。"
+    status: "weakened_for_eager_projection"
+  - id: "H4"
+    statement: "静态 CLI/SDK 可见性足以预测当前可执行行动空间。"
+    status: "rejected_for_default_executor_scope"
+  - id: "H5"
+    statement: "当前环境具备可在不请求新外部权限的前提下实施真实主权 A2A 的边界机制。"
+    status: "partial_literal_file_boundary_after_explicit_approval"
+known_facts:
+  - "仓库位于 /Users/nature/通爻协议研究，当前分支为 research/towow-r5-20260724-local。"
+  - "仓库没有任何 commit；所有基线材料是用户未跟踪文件。"
+  - "只读 smoke 成功，受保护源文件聚合哈希前后一致。"
+  - "当前 Agent 为 /root，模型 gpt-5.6-sol，reasoning effort xhigh。"
+  - "CodexPro 本地桥自检 9 pass / 3 warn / 0 fail，但明确不提供模型或远程/本地 Agent 执行。"
+  - "shell 网络被禁用，外部连接器未调用。"
+rejected_explanations:
+  - "git rev-parse HEAD 失败不是仓库损坏，而是 unborn branch 的正常结果。"
+  - "首次 CLI 清单中的大面积 UNAVAILABLE 不是工具真实缺失，而是 zsh 特殊变量 path 覆盖 PATH 的探针错误。"
+core_claim_changes:
+  - claim_id: "R5-LOCAL-C01"
+    change: "supported"
+    detail: "v1.1 包的 checksum 只闭合所含文件完整性；16/18 baseline artifact 路径在本地不可达。"
+  - claim_id: "R5-LOCAL-C02"
+    change: "supported"
+    detail: "动作对齐 exit + 权威 postcondition + 独立 Acceptance 在 9/9 case 正确；stdout 和外层 exit 各产生 5 个假阳性。"
+  - claim_id: "R5-LOCAL-C03"
+    change: "qualified"
+    detail: "低风险本地任务中 eager full projection 与最小合同判别力相同，但序列化字节为 3.64 倍。"
+  - claim_id: "R5-LOCAL-C04"
+    change: "supported"
+    detail: "静态 installed-tool profile 在 3 个 holdout 上 0/3；默认 seatbelt 下 Docker/socket 与 sandbox profile 均不可达。"
+  - claim_id: "R5-LOCAL-C05"
+    change: "supported"
+    detail: "三个窄范围授权在未安装工具、未改任务的情况下，使 Docker 查询、sandbox child 和 canary deny 由不可达变为可达。"
+  - claim_id: "R5-LOCAL-C06"
+    change: "supported"
+    detail: "BoundaryPolicy 只有绑定内核规范资源身份并通过运行时 probe 才成为事实；/var 到 /private/var 的别名使两轮 deny 失效。"
+  - claim_id: "R5-LOCAL-C07"
+    change: "qualified"
+    detail: "声明文件范围内的 partial-sovereign 流程完成真实 packet audit 并拒绝篡改，但运行时间为中心化 4.54 倍，且不覆盖动态私有文件。"
+latest_experiments:
+  - run_id: "r5-run-001-evidence-reachability"
+    status: "completed"
+    result: "18 条 baseline Claim 仅 2 条 artifact 路径可达，且都指向同一摘要 JSON。"
+  - run_id: "r5-run-002-effect-granularity"
+    status: "completed"
+    result: "9 case 中最小 effect/verification/acceptance 合同 9/9；浅层信号仅 4/9。"
+  - run_id: "r5-run-003-action-space-claims"
+    status: "completed"
+    result: "静态 profile 对默认 scope holdout 0/3；明确审批后 3/3 操作变为可达，并形成真实 canary deny。"
+  - run_id: "r5-run-004-sovereign-workspace"
+    status: "completed"
+    result: "两轮边界失败后，canonical literal-file policy 在第三轮阻断所有声明文件读取；中心化仍低成本 4.54 倍。"
+unexpected_findings:
+  - "git switch 的一次工具调用中 stderr 报 HEAD.lock 权限失败，stdout 却出现 Switched 成功文本；后续状态查询证明分支未改变。"
+  - "Docker daemon 与 sandbox-exec 都实际存在；默认 Agent scope 的 permission denied 不能外推为机器能力不存在。"
+  - "单文件 canary deny 成功不能外推到目录世界；macOS /var 与 /private/var 的路径身份差异可使看似正确的 BoundaryPolicy 完全失效。"
+theory_changes:
+  - "新增 Effect Gateway 适配器不变量：一个 effect claim 必须对应一个权威动作边界、该动作自己的执行结果和意图状态的后置条件；复合调用不能借用最后一条命令的退出码。"
+  - "对 L1 本地任务采用风险激活的最小投影；Recognition/Commitment/Settlement 等只有成为真实决策变量时才显式物化。"
+  - "Capability Claim 的最小作用域增加 executor/sandbox、approval path、resource/service state 与 evidence freshness；静态二进制可见性降为 Discovery fact。"
+  - "BoundaryPolicy 证据增加 canonical resource identity、compiled enforcement primitive、runtime principal 与对抗读写 probe；策略文本或 parse success 不是边界事实。"
+code_changes:
+  - ".ai-research/towow-a2a-r5/tools/evidence_reachability.py"
+  - ".ai-research/towow-a2a-r5/tools/effect_trace_lab.py"
+  - ".ai-research/towow-a2a-r5/tools/action_space_probe.py"
+  - ".ai-research/towow-a2a-r5/tools/sovereign_node.py"
+  - ".ai-research/towow-a2a-r5/tools/sovereign_workspace_lab.py"
+independent_reviews:
+  - id: "open-re-review"
+    status: "passed_with_warnings"
+    evidence: "reviews/OPEN_REVIEW_RESULT.json"
+    independence: "standalone implementation path plus CodexPro deterministic scan; not an independent model/reviewer"
+    warning: "raw attempt3 summary overstates sovereignty; final run and correction downgrade to partial_sovereign"
+blockers:
+  - id: "B1"
+    item: "普通 Git worktree"
+    reason: "仓库无 commit，不能创建基于 commit 的 worktree。"
+    workaround: "使用不纳入用户基线文件的 unborn research 分支。"
+next_candidate_questions:
+  - "任务包的 baseline evidence path 有多少可在本地解析到原始制品？"
+  - "stdout、外层退出码、原子退出码、后置条件四种判定在真实/构造反例上分别错多少？"
+  - "Docker 或 sandbox-exec 是否提供可用的强制主体边界？"
+  - "静态工具画像与作用域化 Claim 对未运行能力探针的错误率和弃权率如何？"
+continuation_reason: "继续同质本地运行主要会重复已知 executor、scope 和 literal-file 边界机制；下一增益需要 canonical Harness 或独立 OS/container/Agent 条件。"
+return_condition_if_any: "已获得改变理论/工程判断的证据；开放复核完成；下一步需要更强外部条件才能显著提高证据等级。"

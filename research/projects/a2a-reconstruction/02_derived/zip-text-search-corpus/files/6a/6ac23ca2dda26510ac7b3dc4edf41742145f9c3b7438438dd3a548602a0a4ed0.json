@@ -1,0 +1,261 @@
+{
+  "reports": [
+    {
+      "classification": "MATERIAL_SCHEMA_CHANGE",
+      "findings": [
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.original_deal",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "acceptance_rules",
+          "kind": "acceptance_rule_change",
+          "material": false,
+          "path": "acceptance_rules.restructured_deal",
+          "reason": "The acceptance_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.accept_undertakings",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.close_original",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.close_restructured",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.propose_original",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.review_original",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.review_restructured",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "actions",
+          "kind": "action_alphabet_change",
+          "material": false,
+          "path": "actions.transfer_streaming_rights",
+          "reason": "The action is not reachable in the current task envelope."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.accept_undertakings",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.close_original",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.close_restructured",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.propose_original",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.review_original",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.review_restructured",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "authority_rules",
+          "kind": "authority_rule_change",
+          "material": false,
+          "path": "authority_rules.transfer_streaming_rights",
+          "reason": "The authority_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.original_transaction",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "challenge_rules",
+          "kind": "challenge_rule_change",
+          "material": true,
+          "path": "challenge_rules.restructured_transaction",
+          "reason": "The challenge_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": true,
+          "path": "data_rules.cloud_streaming_rights",
+          "reason": "The changed data rule governs a resource used by the current relation."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": false,
+          "path": "data_rules.licence_back",
+          "reason": "The changed data rule does not govern an active resource."
+        },
+        {
+          "component": "data_rules",
+          "kind": "data_right_change",
+          "material": false,
+          "path": "data_rules.non_EEA_cloud_streaming_rights",
+          "reason": "The changed data rule does not govern an active resource."
+        },
+        {
+          "component": "jurisdiction_rules",
+          "kind": "jurisdiction_rule_change",
+          "material": true,
+          "path": "jurisdiction_rules.UK_competition.clearance",
+          "reason": "The jurisdiction_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "object_types",
+          "kind": "object_type_change",
+          "material": true,
+          "path": "object_types.cloud_streaming_rights",
+          "reason": "The object type is active in the current relation instance."
+        },
+        {
+          "component": "object_types",
+          "kind": "object_type_change",
+          "material": true,
+          "path": "object_types.full_acquisition",
+          "reason": "The object type is active in the current relation instance."
+        },
+        {
+          "component": "object_types",
+          "kind": "object_type_change",
+          "material": false,
+          "path": "object_types.licence_back",
+          "reason": "The object type is not active in the current relation instance."
+        },
+        {
+          "component": "object_types",
+          "kind": "object_type_change",
+          "material": false,
+          "path": "object_types.non_EEA_cloud_streaming_rights",
+          "reason": "The object type is not active in the current relation instance."
+        },
+        {
+          "component": "object_types",
+          "kind": "object_type_change",
+          "material": false,
+          "path": "object_types.restructured_acquisition",
+          "reason": "The object type is not active in the current relation instance."
+        },
+        {
+          "component": "roles",
+          "kind": "role_change",
+          "material": false,
+          "path": "roles.ubisoft",
+          "reason": "The role is not used by any currently reachable action or active assignment."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.original_transaction",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "settlement_rules",
+          "kind": "settlement_rule_change",
+          "material": true,
+          "path": "settlement_rules.restructured_transaction",
+          "reason": "The settlement_rules change can alter who may challenge, which legal or institutional scope applies, or when the disposition may be treated as settled; it is material unless a domain-specific proof shows irrelevance."
+        },
+        {
+          "component": "transitions",
+          "kind": "transition_change",
+          "material": false,
+          "path": "transitions",
+          "reason": "The changed transition remains outside the current reachable subgraph."
+        },
+        {
+          "component": "version",
+          "kind": "metadata_or_extension",
+          "material": false,
+          "path": "version",
+          "reason": "The change is outside the operational relation schema."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": false,
+          "path": "witness_rules.close_original",
+          "reason": "The witness_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": false,
+          "path": "witness_rules.close_restructured",
+          "reason": "The witness_rules change applies only outside the reachable subgraph."
+        },
+        {
+          "component": "witness_rules",
+          "kind": "witness_rule_change",
+          "material": false,
+          "path": "witness_rules.transfer_streaming_rights",
+          "reason": "The witness_rules change applies only outside the reachable subgraph."
+        }
+      ],
+      "from_version": 1,
+      "material": true,
+      "notes": [
+        "Re-form only the affected dependency subgraph; do not reopen unrelated settled nodes."
+      ],
+      "reachable_actions": [],
+      "to_version": 2
+    }
+  ]
+}

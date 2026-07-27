@@ -1,0 +1,41 @@
+{
+  "delegate_entity_ref": "agent:provider_business",
+  "issued_at": "2026-07-26T06:42:14.659081+00:00",
+  "mandate_id": "mandate-provider_business-v1",
+  "must_escalate": [
+    "any term outside scope",
+    "any irreversible action",
+    "any change of objective owner"
+  ],
+  "party_id": "provider_business",
+  "principal_ref": "principal:provider_business",
+  "revocation_conditions": [
+    "participant withdrawal",
+    "material schema change outside current mandate",
+    "security incident"
+  ],
+  "scope": {
+    "financial_limit_cny": 9800,
+    "may_ask": [
+      "business goal",
+      "decision deadline"
+    ],
+    "may_commit": [
+      "14-day pilot at CNY 9800"
+    ],
+    "may_conditionally_accept": [
+      "fixed-scope pilot"
+    ],
+    "may_disclose": [
+      "price",
+      "timeline",
+      "service terms"
+    ],
+    "may_reject": [
+      "unpaid custom production work"
+    ]
+  },
+  "status": "ACTIVE",
+  "valid_from": "2026-07-26T00:00:00Z",
+  "valid_until": "2026-08-31T23:59:59Z"
+}

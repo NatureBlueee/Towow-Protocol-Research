@@ -1,0 +1,18 @@
+{
+  "command": "python3 tools/replay_identity_semantics.py experiments/r5-4-run-001-source-identity/inputs/mixed_legacy_identity_fixture.json",
+  "exit_code": 0,
+  "passed": true,
+  "observed": {
+    "null_source_class": {
+      "legacy_active": false,
+      "consumer_a_active": true,
+      "consumer_b_active": true
+    },
+    "legacy_wildcard": {
+      "legacy_active": false,
+      "consumer_a_active": false,
+      "consumer_b_active": false
+    }
+  },
+  "conclusion": "The two disputed policies are behaviorally incompatible in a mixed stream."
+}

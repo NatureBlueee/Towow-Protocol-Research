@@ -1,0 +1,1409 @@
+{
+  "release": "v0.6",
+  "generated_at": "2026-07-26",
+  "method": "structured_focused_comparison_plus_process_tracing",
+  "coding_status": "single_coder_provisional",
+  "case_count": 5,
+  "cases": [
+    {
+      "case_id": "sidewalk_toronto",
+      "title": "Sidewalk Toronto / Quayside",
+      "domain": "urban development, data governance, public-private partnership",
+      "period": "2018–2020",
+      "outcome": "WITHDRAWN",
+      "research_role": "hard case for standing, public authority and data rights",
+      "coding_status": "single_coder_provisional",
+      "case_selection_rationale": "A bilateral development relation proposed rules with public externalities; it reveals when parties to a contract are not the only entities with legitimate standing.",
+      "source_ids": [
+        "SW-01",
+        "SW-02",
+        "SW-03",
+        "SW-04",
+        "SW-05"
+      ],
+      "evidence_coverage": {
+        "source_proximity": 2,
+        "process_granularity": 2,
+        "authority_visibility": 2,
+        "effect_observability": 1,
+        "participant_voice_coverage": 2,
+        "counterfactual_support": 0,
+        "triangulation": 2,
+        "selection_bias_risk": "medium"
+      },
+      "initial_relation_frame": {
+        "frame_scope": "relation_with_public_institutional_constraints",
+        "R": "Waterfront Toronto, Sidewalk Labs, three levels of government, expert panel, public/affected communities, future development partners.",
+        "V": "Master plan, land development, digital proposals, data governance, public benefit, IP, approvals.",
+        "T": "Proposal → consultation/evaluation → threshold resolution → board/government approvals or refusal → implementation agreements or termination.",
+        "A": "Waterfront Toronto and Sidewalk approvals; public-sector/government authority over privacy, digital governance and land/public-interest decisions.",
+        "E": "Public consultation, technical evaluation, expert review, legal/regulatory compliance and future project readbacks.",
+        "D": "Collection, localization, governance, use and public value of urban data; IP and co-created assets.",
+        "O": "Pursue all/some/none; staged approvals; implementation agreements; withdrawal/termination."
+      },
+      "authority_topology": [
+        {
+          "locus": "Waterfront Toronto Board/management",
+          "powers": [
+            "evaluate public interest",
+            "lead government/privacy discussions",
+            "approve or reject plan"
+          ]
+        },
+        {
+          "locus": "Sidewalk Labs corporate authority",
+          "powers": [
+            "propose plan",
+            "accept threshold terms",
+            "fund/develop subject to agreements",
+            "withdraw under contract"
+          ]
+        },
+        {
+          "locus": "governments and regulators",
+          "powers": [
+            "law, land, planning, privacy and regulatory approvals"
+          ]
+        },
+        {
+          "locus": "public and affected communities",
+          "powers": [
+            "standing to challenge and shape public-interest evaluation; not identical to bilateral signature authority"
+          ]
+        },
+        {
+          "locus": "DSAP",
+          "powers": [
+            "independent expert challenge/advice; no final approval"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "event_id": "SW-E01",
+          "date": "2018-07-31",
+          "label": "Plan Development Agreement creates a staged relation",
+          "event_type": "institutionalization",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "O"
+          ],
+          "formation_operators": [
+            "actor_enrollment",
+            "staged_approval",
+            "commitment_binding"
+          ],
+          "description": "The agreement defines the parties, approvals, development process and multiple termination conditions rather than treating the project as a simple purchase.",
+          "source_ids": [
+            "SW-04"
+          ],
+          "authority_effect": "Creates bilateral approval and exit authority.",
+          "outcome_effect": "Creates a formal formation process, not final implementation.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SW-E02",
+          "date": "2019-06-17",
+          "label": "Draft MIDP expands the proposed relation",
+          "event_type": "proposal",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "V",
+            "T",
+            "A",
+            "D",
+            "O"
+          ],
+          "formation_operators": [
+            "scope_expansion"
+          ],
+          "description": "The draft plan introduces broad land, governance, data, IP and implementation proposals beyond a narrow parameter negotiation.",
+          "source_ids": [
+            "SW-01"
+          ],
+          "authority_effect": "Proposes new governance and implementation roles.",
+          "outcome_effect": "Starts public/technical evaluation rather than producing acceptance.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SW-E03",
+          "date": "2019-06-24/2019-09-19",
+          "label": "Public consultation challenges scope, governance, consent and data proposals",
+          "event_type": "challenge",
+          "materiality": "MATERIAL_SCHEMA_CHANGE_CANDIDATE",
+          "changed_components": [
+            "R",
+            "A",
+            "D",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "refusal_or_objection",
+            "evidence_demand",
+            "affected_stakeholder_claim"
+          ],
+          "description": "Public feedback objects to scope overreach, unclear democratic control, surveillance/consent, IP and missing public-benefit evidence.",
+          "source_ids": [
+            "SW-01"
+          ],
+          "authority_effect": "Demonstrates that affected stakeholders have claims not reducible to the two contracting parties.",
+          "outcome_effect": "Requires material reconsideration before approval.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SW-E04",
+          "date": "2019-10-31",
+          "label": "Threshold resolution reallocates authority and constrains data governance",
+          "event_type": "schema_revision",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "D",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "authority_reallocation",
+            "scope_contraction",
+            "countercondition",
+            "staged_approval"
+          ],
+          "description": "Waterfront Toronto becomes the lead for privacy/digital governance and government discussions; public consultation, Canadian storage and public-sector control replace or constrain parts of the original proposal.",
+          "source_ids": [
+            "SW-02",
+            "SW-03"
+          ],
+          "authority_effect": "Moves key governance authority away from the private proposer and requires broader approval.",
+          "outcome_effect": "Produces a narrower, conditionally viable relation version.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SW-E05",
+          "date": "2020-02",
+          "label": "Expert panel accepts improvement but finds critical details unresolved",
+          "event_type": "independent_review",
+          "materiality": "REOPEN_REQUIRED",
+          "changed_components": [
+            "A",
+            "D",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "independent_challenge",
+            "evidence_demand",
+            "reopen"
+          ],
+          "description": "The expert review reports that the revised appendix is materially improved while a fully realized digital-governance framework and other critical details remain absent.",
+          "source_ids": [
+            "SW-03"
+          ],
+          "authority_effect": "Blocks silent conversion of a partial resolution into public acceptance.",
+          "outcome_effect": "Keeps the relation in conditional/unknown state.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SW-E06",
+          "date": "2020-05-07",
+          "label": "Sidewalk Labs terminates the PDA",
+          "event_type": "withdrawal",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "T",
+            "O",
+            "D"
+          ],
+          "formation_operators": [
+            "termination"
+          ],
+          "description": "The contractual relation is terminated. Official reporting attributes withdrawal to unprecedented economic uncertainty arising from COVID-19; governance disputes cannot be asserted as the cause of termination.",
+          "source_ids": [
+            "SW-04",
+            "SW-05"
+          ],
+          "authority_effect": "Exercises a valid exit path; surviving IP/data/confidentiality provisions remain.",
+          "outcome_effect": "Outcome is WITHDRAWN, not rejected on a proved governance cause.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        }
+      ],
+      "operation_effect_adoption_acceptance": {
+        "operation": "Extensive plan development, consultation and threshold negotiation occurred; no full project implementation.",
+        "effect": "Formal governance/scope terms changed and the development agreement was terminated.",
+        "adoption": "Waterfront Toronto reports retaining planning insights; the Quayside proposal itself was not adopted.",
+        "acceptance": "No final multi-authority acceptance of the project. Public/expert positions remained heterogeneous."
+      },
+      "supports": [
+        "Material relation change can be driven by authority, standing, data rights and effect rules rather than price or scope alone.",
+        "Bilateral recognition is insufficient when third parties bear public externalities or possess public-law authority.",
+        "Independent challenge can produce a real Design Delta without producing a final deal.",
+        "A valid negative disposition and exit path are part of a truthful coordination system."
+      ],
+      "does_not_support": [
+        "It does not show that Towow or Agent mediation would have improved the project.",
+        "It does not show that governance conflict caused termination.",
+        "It does not establish the private preferences or complete internal worlds of either party."
+      ],
+      "competing_explanations": [
+        "The threshold changes could be ordinary public procurement/governance correction rather than evidence for a new A2A-specific mechanism.",
+        "The project may have remained commercially infeasible regardless of governance improvements.",
+        "Published consultation records overrepresent views that entered official channels."
+      ],
+      "design_delta": [
+        "Add affected-party standing and representation to R/A; signature authority and legitimate challenge rights are distinct.",
+        "Compile readiness for public-impact relations must include a legitimacy/standing closure, not only bilateral Mandates.",
+        "Do not infer causal failure from a material unresolved issue when the recorded termination cause is different.",
+        "Exit can preserve selected rights/knowledge; WITHDRAWN is not equivalent to erasing the relation history."
+      ],
+      "unknowns": [
+        "Private bargaining sequence",
+        "What exact terms would have passed final boards/governments",
+        "Distribution of public preferences",
+        "Counterfactual outcome without COVID shock"
+      ],
+      "chronology_preserving_diagnostic": {
+        "pre_outcome_material_gaps": [
+          "public-sector authority",
+          "data governance and localization",
+          "standing/consultation",
+          "IP/public-benefit evidence"
+        ],
+        "subsequent_observed_change": "Threshold resolution changed the same authority/data/scope dimensions; this is chronology-consistent but not a blinded prediction.",
+        "gate_interpretation": "A v0.4-style compile gate should have remained closed before threshold resolution and again where DSAP identified unresolved material details."
+      }
+    },
+    {
+      "case_id": "uk_open_banking",
+      "title": "UK Open Banking",
+      "domain": "regulated market infrastructure and data sharing",
+      "period": "2016–2024",
+      "outcome": "TECHNICALLY_ADOPTED_GOVERNANCE_REOPENED",
+      "research_role": "institutional compilation with technical success and governance failure",
+      "coding_status": "single_coder_provisional",
+      "case_selection_rationale": "The case contains a technical standard, operational rules, large-scale adoption, a governance failure, formal review and transition to a new long-term authority structure.",
+      "source_ids": [
+        "OB-01",
+        "OB-02",
+        "OB-03",
+        "OB-04",
+        "OB-05"
+      ],
+      "evidence_coverage": {
+        "source_proximity": 2,
+        "process_granularity": 2,
+        "authority_visibility": 2,
+        "effect_observability": 2,
+        "participant_voice_coverage": 1,
+        "counterfactual_support": 0,
+        "triangulation": 2,
+        "selection_bias_risk": "medium"
+      },
+      "initial_relation_frame": {
+        "frame_scope": "institutional_market_frame",
+        "R": "CMA, CMA9 banks, OBIE, third-party providers, consumers/SMEs, FCA, PSR, Treasury and future standards body.",
+        "V": "API standards, participants, directory, read/write data, service levels, disputes, breaches, suspension/exclusion.",
+        "T": "Market remedy → standards/governance implementation → participant registration/runtime → monitoring/review → roadmap completion → transition.",
+        "A": "CMA Order and oversight, OBIE implementation authority, bank/provider obligations, later regulatory allocation to FCA/PSR/Treasury.",
+        "E": "Conformance, directory status, service monitoring, investigation, governance review and roadmap decisions.",
+        "D": "Consumer/SME-authorized financial data sharing and payment/data-service rules.",
+        "O": "Operational participation, roadmap completion, breach/dispute handling, transition to sustainable framework."
+      },
+      "authority_topology": [
+        {
+          "locus": "CMA",
+          "powers": [
+            "impose remedy/order",
+            "oversee compliance",
+            "decide roadmap completion"
+          ]
+        },
+        {
+          "locus": "OBIE governance",
+          "powers": [
+            "develop/operate standards and ecosystem under Order"
+          ]
+        },
+        {
+          "locus": "CMA9 and participants",
+          "powers": [
+            "implement interfaces and comply with rules"
+          ]
+        },
+        {
+          "locus": "FCA/PSR/Treasury",
+          "powers": [
+            "future regulatory supervision and smart-data framework"
+          ]
+        },
+        {
+          "locus": "consumers/SMEs",
+          "powers": [
+            "authorize data access/use within the regulated frame; not ecosystem governance principals"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "event_id": "OB-E01",
+          "date": "2016-08/2017-01",
+          "label": "CMA remedy mandates an open banking ecosystem",
+          "event_type": "mandate",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "V",
+            "T",
+            "A",
+            "D",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "actor_enrollment",
+            "standardization",
+            "authority_reallocation"
+          ],
+          "description": "The market remedy creates new participant roles, data-sharing obligations, standards work and an implementation entity under regulatory authority.",
+          "source_ids": [
+            "OB-03"
+          ],
+          "authority_effect": "Constitutes institutional authority for a new market relation.",
+          "outcome_effect": "Creates a mandated formation and implementation path.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "OB-E02",
+          "date": "2017-03",
+          "label": "Operational governance rules compile roles and runtime procedures",
+          "event_type": "compilation",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "standardization",
+            "compilation",
+            "staged_approval"
+          ],
+          "description": "Rules specify registration, roles, standards, service levels, complaints, dispute, breach, suspension, exclusion and amendment.",
+          "source_ids": [
+            "OB-01"
+          ],
+          "authority_effect": "Distributes operational and adjudicative powers.",
+          "outcome_effect": "Transforms negotiated/mandated design into repeatable participant runtime.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "OB-E03",
+          "date": "2018–2022",
+          "label": "Technical adoption scales",
+          "event_type": "operation_and_effect",
+          "materiality": "INSTANCE_EXECUTION",
+          "changed_components": [
+            "V",
+            "D",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "compilation"
+          ],
+          "description": "Read/write data-sharing infrastructure is implemented and reaches millions of users and hundreds of providers by the 2022 review.",
+          "source_ids": [
+            "OB-03"
+          ],
+          "authority_effect": "Runtime authorization remains grounded in the institutional frame.",
+          "outcome_effect": "Shows technical Effect and ecosystem Adoption.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "OB-E04",
+          "date": "2021",
+          "label": "Independent investigation finds governance failures",
+          "event_type": "governance_failure",
+          "materiality": "REOPEN_REQUIRED",
+          "changed_components": [
+            "A",
+            "T",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "independent_challenge",
+            "reopen"
+          ],
+          "description": "The investigation identifies failures in corporate governance, conflicts, procurement/value, accounts and HR, with insufficient checks and oversight.",
+          "source_ids": [
+            "OB-02",
+            "OB-03"
+          ],
+          "authority_effect": "Challenges the legitimacy/effectiveness of the implementation authority without negating all technical effects.",
+          "outcome_effect": "Forces governance remediation while services continue.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "OB-E05",
+          "date": "2022",
+          "label": "Lessons review adds control gates and lifecycle governance",
+          "event_type": "schema_revision",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "independent_challenge",
+            "staged_approval",
+            "reopen"
+          ],
+          "description": "The review concludes the scale/complexity was underestimated and recommends formal review gates, effective governance, stakeholder engagement and clearer monitoring.",
+          "source_ids": [
+            "OB-03"
+          ],
+          "authority_effect": "Strengthens sponsor oversight and escalation.",
+          "outcome_effect": "Revises institutional compile/readiness semantics.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "OB-E06",
+          "date": "2023–2024",
+          "label": "Roadmap completion and long-term regulatory transition",
+          "event_type": "institutionalization",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "D",
+            "O"
+          ],
+          "formation_operators": [
+            "authority_reallocation",
+            "institutionalization",
+            "compilation"
+          ],
+          "description": "The technical roadmap is judged substantially complete while the framework transitions from a temporary Order/OBIE model toward long-term FCA/PSR/Treasury authority.",
+          "source_ids": [
+            "OB-04",
+            "OB-05"
+          ],
+          "authority_effect": "Reassigns durable authority after initial implementation.",
+          "outcome_effect": "Separates implementation completion from final governance settlement.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        }
+      ],
+      "operation_effect_adoption_acceptance": {
+        "operation": "Banks/providers implemented and operated standardized APIs and directory/governance processes.",
+        "effect": "Data-sharing/payment capabilities became available at scale.",
+        "adoption": "Millions of users and hundreds of providers used the ecosystem by the 2022 review.",
+        "acceptance": "Market adoption was substantial, while governance legitimacy and long-term institutional acceptance remained subject to review and transition."
+      },
+      "supports": [
+        "Technical Effect and Adoption can coexist with institutional governance failure.",
+        "Compilation includes standards, registration, dispute, suspension, monitoring and amendment—not only API generation.",
+        "A temporary formation authority may need to be replaced by durable regulators after the relation stabilizes.",
+        "Governance/authority defects are legitimate reopen triggers even when technical interfaces continue to work."
+      ],
+      "does_not_support": [
+        "The case does not test decentralized Agent-to-Agent interaction.",
+        "It does not show that a Towow formation process would have prevented governance failures.",
+        "User counts do not prove every participant accepted the governance model."
+      ],
+      "competing_explanations": [
+        "Open Banking is a state-imposed market remedy; its formation dynamics may not transfer to voluntary non-standard relations.",
+        "Reported adoption may be explained by mandate and bank scale rather than governance design.",
+        "The lessons reviews are retrospective and institutionally authored."
+      ],
+      "design_delta": [
+        "Represent stability as a vector: technical/operational stability cannot average away authority/governance instability.",
+        "Define governance debt as a diagnostic when technical runtime is compiled before oversight, dispute and end-state authority are settled; do not create a new aggregate root.",
+        "Compile outputs must include amendment, suspension, complaint, dispute, monitoring and institutional succession.",
+        "Reopen may target governance subgraphs while leaving safe operational subgraphs running."
+      ],
+      "unknowns": [
+        "Long-run distribution of benefits and harms",
+        "User-level informed acceptance",
+        "Counterfactual governance model",
+        "Complete internal oversight communications"
+      ],
+      "chronology_preserving_diagnostic": {
+        "pre_outcome_material_gaps": [
+          "scale/complexity estimation",
+          "durable oversight",
+          "checks on implementation authority",
+          "formal review/escalation gates"
+        ],
+        "subsequent_observed_change": "The 2021–2023 reviews and transition addressed those governance/end-state dimensions.",
+        "gate_interpretation": "Technical compile readiness alone would have produced a false sense of closure; authority/governance stability needed an independent gate."
+      }
+    },
+    {
+      "case_id": "crossrail",
+      "title": "Crossrail / Elizabeth line",
+      "domain": "major infrastructure and systems integration",
+      "period": "2011–2024",
+      "outcome": "DELIVERED_AFTER_MAJOR_REOPEN",
+      "research_role": "effect-chain and integration-authority stress case",
+      "coding_status": "single_coder_provisional",
+      "case_selection_rationale": "Many locally contracted outputs had to become one operational railway. The case exposes the gap between package completion, system integration, assurance and entry into service.",
+      "source_ids": [
+        "CR-01",
+        "CR-02",
+        "CR-03",
+        "CR-04"
+      ],
+      "evidence_coverage": {
+        "source_proximity": 2,
+        "process_granularity": 2,
+        "authority_visibility": 2,
+        "effect_observability": 2,
+        "participant_voice_coverage": 2,
+        "counterfactual_support": 0,
+        "triangulation": 2,
+        "selection_bias_risk": "medium"
+      },
+      "initial_relation_frame": {
+        "frame_scope": "programme_and_system_integration_frame",
+        "R": "Joint sponsors, Crossrail Ltd board/executive, programme partners, 36 main contractors, regulators, operators and assurance bodies.",
+        "V": "Packages, interfaces, requirements, configuration, testing, commissioning, assurance, operational handover and entry into service.",
+        "T": "Design/build packages → integrate interfaces → verify/validate → assure/approve → hand over → operate; delay/reset/replan paths.",
+        "A": "Sponsors set requirements/funding; Crossrail Ltd acts as integrator; contractors own packages; external bodies approve safety/operation.",
+        "E": "Integrated schedule, interface evidence, verification/validation, independent assurance, operational readiness and regulator approval.",
+        "D": "Programme controls, risk, schedule, design/configuration and assurance information sharing.",
+        "O": "Not package completion, but safe integrated railway entry into service and benefits realization."
+      },
+      "authority_topology": [
+        {
+          "locus": "Joint sponsors (DfT/TfL)",
+          "powers": [
+            "requirements",
+            "funding",
+            "oversight",
+            "intervention"
+          ]
+        },
+        {
+          "locus": "Crossrail Ltd Board/executive",
+          "powers": [
+            "programme integration",
+            "delivery management",
+            "risk reporting"
+          ]
+        },
+        {
+          "locus": "contractors",
+          "powers": [
+            "package delivery; limited interface responsibility under contract design"
+          ]
+        },
+        {
+          "locus": "system integration authority",
+          "powers": [
+            "requirements, interfaces, configuration, verification and integration review"
+          ]
+        },
+        {
+          "locus": "regulators/operational authorities",
+          "powers": [
+            "assurance, safety approval and entry-into-service acceptance"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "event_id": "CR-E01",
+          "date": "2011–2012",
+          "label": "System Integration Management Plan establishes integration authority",
+          "event_type": "compilation",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "V",
+            "T",
+            "A",
+            "E"
+          ],
+          "formation_operators": [
+            "standardization",
+            "authority_reallocation",
+            "compilation"
+          ],
+          "description": "The plan formally defines Crossrail as systems integrator and creates integration, requirements, interface, configuration, verification and assurance processes.",
+          "source_ids": [
+            "CR-01"
+          ],
+          "authority_effect": "Creates explicit integration authority and review structures.",
+          "outcome_effect": "Defines how package outputs should become system Effect.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E02",
+          "date": "2013–2018",
+          "label": "Contract/package design leaves Crossrail holding interface risk",
+          "event_type": "institutional_arrangement",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "commitment_binding"
+          ],
+          "description": "Individual contractors were not required to manage many cross-contract interfaces; the delivery organization retained integration and compensation risk.",
+          "source_ids": [
+            "CR-02"
+          ],
+          "authority_effect": "Centralizes system integration responsibility while distributing package execution.",
+          "outcome_effect": "Creates costly dependency and change-control exposure.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E03",
+          "date": "2015–2018",
+          "label": "Aspirational plan and optimistic assurance obscure integrated risk",
+          "event_type": "evidence_failure",
+          "materiality": "REOPEN_REQUIRED",
+          "changed_components": [
+            "T",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "evidence_demand",
+            "independent_challenge"
+          ],
+          "description": "Programme management relied on a plan that did not adequately represent interdependencies, while assurance did not expose the true scale of integration risk.",
+          "source_ids": [
+            "CR-02",
+            "CR-04"
+          ],
+          "authority_effect": "Weakens sponsors’ ability to exercise timely intervention authority.",
+          "outcome_effect": "Local progress signals fail to prove integrated readiness.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E04",
+          "date": "2018-08",
+          "label": "Opening delay reveals failure of end-to-end effect chain",
+          "event_type": "effect_failure",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "T",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "reopen"
+          ],
+          "description": "The planned December 2018 opening becomes unattainable; the programme requires a new realistic bottom-up plan and reset.",
+          "source_ids": [
+            "CR-02",
+            "CR-03"
+          ],
+          "authority_effect": "Triggers sponsor/governance intervention.",
+          "outcome_effect": "Invalidates prior readiness disposition.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E05",
+          "date": "2018–2019",
+          "label": "Governance and management reset",
+          "event_type": "schema_revision",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "authority_reallocation",
+            "independent_challenge",
+            "reopen"
+          ],
+          "description": "Independent reviews call for clearer decision rights, transparent risk information, independent assurance, integration accountability and lifecycle-appropriate governance.",
+          "source_ids": [
+            "CR-02",
+            "CR-03"
+          ],
+          "authority_effect": "Strengthens oversight and challenge channels.",
+          "outcome_effect": "Rebuilds the route from evidence to decisions and operational outcome.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E06",
+          "date": "2022",
+          "label": "Elizabeth line enters service",
+          "event_type": "operation_and_effect",
+          "materiality": "INSTANCE_EXECUTION",
+          "changed_components": [
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "compilation"
+          ],
+          "description": "The integrated railway reaches operational entry into service after replanning, testing, assurance and staged completion.",
+          "source_ids": [
+            "CR-04"
+          ],
+          "authority_effect": "Operational authorities and sponsors accept sufficient readiness.",
+          "outcome_effect": "Produces the target-world Effect that package progress alone could not prove.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "CR-E07",
+          "date": "2024",
+          "label": "Interview-based lessons institutionalize lifecycle controls",
+          "event_type": "institutionalization",
+          "materiality": "NON_MATERIAL_TO_CLOSED_CASE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "independent_challenge",
+            "institutionalization"
+          ],
+          "description": "A 90+ interview review codifies lessons on autonomy, integration accountability, control gates, evolving governance, realistic ranges and assurance.",
+          "source_ids": [
+            "CR-04"
+          ],
+          "authority_effect": "Feeds future sponsor authority and project governance.",
+          "outcome_effect": "Compiles historical learning into future institutional rules rather than changing the completed railway relation.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        }
+      ],
+      "operation_effect_adoption_acceptance": {
+        "operation": "Hundreds of design, construction, systems, test and handover operations were performed across packages.",
+        "effect": "A safe, integrated railway capable of carrying passengers—not package completion—was the decisive target-world Effect.",
+        "adoption": "Operational organizations took over and the Elizabeth line entered service.",
+        "acceptance": "Entry into service and sponsor/regulator approvals provide operational acceptance; broader benefit realization is a separate long-run question."
+      },
+      "supports": [
+        "ActionAttempt/package output is not equivalent to integrated system Effect.",
+        "A formal integration schema can exist while enacted authority, evidence and incentives fail.",
+        "Compile readiness requires end-to-end outcome witnesses and dependency-realistic evidence, not optimistic local progress.",
+        "Reopen can be triggered by assurance and governance failure, not only technical version change."
+      ],
+      "does_not_support": [
+        "It does not involve autonomous AI Agents or private digital worlds.",
+        "It does not prove that a different information architecture alone would have prevented delay.",
+        "Retrospective lessons do not identify a single cause of a complex programme failure."
+      ],
+      "competing_explanations": [
+        "Fixed-date political/sponsor pressure, commercial incentives, construction uncertainty and organizational culture may independently explain failure.",
+        "The integration plan may have been adequate on paper but under-resourced or weakly enforced.",
+        "Eventual delivery may reflect extraordinary additional resources rather than superior governance alone."
+      ],
+      "design_delta": [
+        "Separate declared schema from enacted schema: authority and witness rules must have observable enforcement, not only documentation.",
+        "Operation/Effect/Adoption/Acceptance must be end-to-end and target-world specific.",
+        "Compile readiness needs dependency realism, integrated assurance and incentive alignment.",
+        "Add assurance failure, reporting opacity and objective drift to Defeater/reopen triggers."
+      ],
+      "unknowns": [
+        "Exact counterfactual cost of alternative contract/interface allocation",
+        "Private board/executive deliberations",
+        "Causal weights among schedule, culture, incentives and technical complexity"
+      ],
+      "chronology_preserving_diagnostic": {
+        "pre_outcome_material_gaps": [
+          "interdependency-realistic plan",
+          "integrated technical/programmatic assurance",
+          "effective sponsor levers",
+          "interface-accountability alignment"
+        ],
+        "subsequent_observed_change": "Delay and reviews led to reset, stronger oversight and revised integration/readiness practices.",
+        "gate_interpretation": "A gate based on package progress would pass incorrectly; an end-to-end Effect gate would remain closed."
+      }
+    },
+    {
+      "case_id": "sgma_coordination",
+      "title": "California SGMA intergovernmental coordination",
+      "domain": "polycentric public governance and shared resource management",
+      "period": "2014–2024",
+      "outcome": "HETEROGENEOUS_COORDINATION_OUTCOMES",
+      "research_role": "authority-topology and mechanism-choice case with interview-rich evidence",
+      "coding_status": "single_coder_provisional",
+      "case_selection_rationale": "A higher-level mandate requires coordination but deliberately leaves local agencies discretion over how to coordinate. It directly tests whether one mechanism fits all sovereign domains.",
+      "source_ids": [
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04",
+        "SG-05"
+      ],
+      "evidence_coverage": {
+        "source_proximity": 2,
+        "process_granularity": 2,
+        "authority_visibility": 2,
+        "effect_observability": 1,
+        "participant_voice_coverage": 2,
+        "counterfactual_support": 1,
+        "triangulation": 2,
+        "selection_bias_risk": "medium"
+      },
+      "initial_relation_frame": {
+        "frame_scope": "institutional_mandate_with_local_relation_frames",
+        "R": "State mandate, groundwater sustainability agencies, local governments, water users, disadvantaged communities, tribes, private pumpers and basin-level collaborations.",
+        "V": "GSA/GSP, basin, sustainability objectives, data/models, JPA, MOU, coordination mechanisms and representation.",
+        "T": "State mandate → local agency formation → mechanism selection → plan coordination → implementation/monitoring and revision.",
+        "A": "State sets outcomes and deadlines; local agencies retain legal/autonomy interests and choose arrangements; participation and decision authority may differ.",
+        "E": "Plans, institutional agreements, basin data/models, interviews/observation and coordinated-outcome measures.",
+        "D": "Local groundwater data/model collection and sharing across agencies and affected users.",
+        "O": "Multiple mandated coordinated outcomes rather than a single universal organizational form."
+      },
+      "authority_topology": [
+        {
+          "locus": "California state",
+          "powers": [
+            "mandate sustainability planning and coordinated outcomes",
+            "deadlines and statutory constraints"
+          ]
+        },
+        {
+          "locus": "local agencies/GSAs",
+          "powers": [
+            "choose organizational and coordination mechanisms",
+            "manage local resources and plans"
+          ]
+        },
+        {
+          "locus": "multi-agency JPAs/MOUs",
+          "powers": [
+            "joint planning/decision rights as delegated by members"
+          ]
+        },
+        {
+          "locus": "affected users and underrepresented communities",
+          "powers": [
+            "stakeholder standing and knowledge; participation may not equal formal decision authority"
+          ]
+        },
+        {
+          "locus": "researchers/facilitators",
+          "powers": [
+            "observe, analyze and support; no substantive water authority"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "event_id": "SG-E01",
+          "date": "2014",
+          "label": "SGMA mandates coordinated outcomes but leaves mechanism discretion",
+          "event_type": "mandate",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "actor_enrollment",
+            "staged_approval"
+          ],
+          "description": "The statute creates a common outcome requirement while preserving local choice about organizational form and coordination process.",
+          "source_ids": [
+            "SG-01",
+            "SG-02"
+          ],
+          "authority_effect": "State authority defines minimum outcomes; local authority is not erased.",
+          "outcome_effect": "Creates a family of permissible relation frames rather than one platform workflow.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SG-E02",
+          "date": "2015–2017",
+          "label": "Local agencies form single and multi-agency GSAs",
+          "event_type": "actor_formation",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "A",
+            "T"
+          ],
+          "formation_operators": [
+            "actor_enrollment",
+            "institutionalization"
+          ],
+          "description": "Basins form different governance structures, including single entities, JPAs, MOUs and multi-level arrangements.",
+          "source_ids": [
+            "SG-01"
+          ],
+          "authority_effect": "Creates local and joint authority loci.",
+          "outcome_effect": "Produces heterogeneous coordination structures.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SG-E03",
+          "date": "2018–2022",
+          "label": "Autonomy concerns shape mechanism choice",
+          "event_type": "mechanism_selection",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "A",
+            "T",
+            "O"
+          ],
+          "formation_operators": [
+            "countercondition",
+            "scope_contraction"
+          ],
+          "description": "Empirical analysis finds agencies select mechanisms according to combinations of concerns, with autonomy considerations taking priority.",
+          "source_ids": [
+            "SG-03",
+            "SG-04"
+          ],
+          "authority_effect": "Limits how much authority agencies are willing to pool.",
+          "outcome_effect": "Mechanism fit depends on concern configuration rather than coordination intensity alone.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SG-E04",
+          "date": "2018–2022",
+          "label": "Data and model sharing become part of coordination",
+          "event_type": "boundary_work",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "V",
+            "D",
+            "E",
+            "T"
+          ],
+          "formation_operators": [
+            "translation",
+            "evidence_demand",
+            "standardization"
+          ],
+          "description": "Agencies must coordinate data, models and planning evidence across basin boundaries while preserving local sources and responsibilities.",
+          "source_ids": [
+            "SG-01",
+            "SG-04"
+          ],
+          "authority_effect": "Local evidence sources remain authoritative within a shared planning process.",
+          "outcome_effect": "Creates shared evidentiary infrastructure without requiring one organization.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SG-E05",
+          "date": "2018–2022",
+          "label": "Collaborative institutional arrangements vary by required outcome",
+          "event_type": "institutional_arrangement",
+          "materiality": "MATERIAL_SCHEMA_CHANGE",
+          "changed_components": [
+            "R",
+            "A",
+            "T",
+            "O"
+          ],
+          "formation_operators": [
+            "institutionalization",
+            "countercondition"
+          ],
+          "description": "Across 18 basins, collaborative arrangements are associated with coordinated outcomes, but the effective configuration differs by outcome type.",
+          "source_ids": [
+            "SG-02"
+          ],
+          "authority_effect": "Authority topology and rules vary with the mandated outcome.",
+          "outcome_effect": "Rejects a universal one-size coordination mechanism.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "SG-E06",
+          "date": "2024",
+          "label": "Peer-reviewed synthesis links configurations to outcomes",
+          "event_type": "verification",
+          "materiality": "NON_MATERIAL_TO_CASE",
+          "changed_components": [
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "independent_challenge"
+          ],
+          "description": "Published configurational analysis verifies patterns across basins and identifies collaborative arrangements as important without claiming a single sufficient form.",
+          "source_ids": [
+            "SG-02",
+            "SG-03"
+          ],
+          "authority_effect": "Provides external analytic scrutiny.",
+          "outcome_effect": "Raises evidence level for mechanism-contingency claims.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        }
+      ],
+      "operation_effect_adoption_acceptance": {
+        "operation": "Agencies formed governance bodies, negotiated coordination mechanisms, shared data/models and developed basin plans.",
+        "effect": "Coordinated planning outputs and institutional arrangements were produced across basins.",
+        "adoption": "Local agencies adopted heterogeneous mechanisms under a common mandate.",
+        "acceptance": "Formal compliance and coordinated outcomes are observable; full stakeholder legitimacy/acceptance, especially for underrepresented groups, remains uneven and not reducible to plan adoption."
+      },
+      "supports": [
+        "Non-collapsible authority does not imply one decentralized mechanism; autonomy concerns help determine which mechanism is viable.",
+        "A common objective can coexist with heterogeneous local relation frames.",
+        "Participation/standing and formal decision authority must be represented separately.",
+        "Collaborative arrangements matter, but their configuration is outcome-contingent."
+      ],
+      "does_not_support": [
+        "It does not test Agent entities, digital Mandates or automated coordination.",
+        "It does not establish that all local autonomy claims are normatively justified.",
+        "Published configurational relationships are not randomized causal effects."
+      ],
+      "competing_explanations": [
+        "Hydrology, prior relationships, basin size and resource conditions may explain both mechanism choice and outcomes.",
+        "Top-down deadlines and legal sanctions may drive coordination more than voluntary formation.",
+        "Interview and ethnographic interpretation may reflect access and respondent selection."
+      ],
+      "design_delta": [
+        "CollapseSafe routing must model autonomy/authority concerns, not only privacy and technical complexity.",
+        "Relation Schema should support an institutional frame plus local relation-specific specializations without duplicating all objects.",
+        "Add standing/representation coverage to compile readiness and evidence ledgers.",
+        "Mechanism choice should be contingent: MOU, JPA, shared standard, central service or local Oracle are alternatives, not maturity levels."
+      ],
+      "unknowns": [
+        "Transcript-level evidence not recoded in this runtime",
+        "How underrepresented groups altered final decisions",
+        "Long-run implementation effects beyond planning",
+        "Causal role of facilitation versus pre-existing social capital"
+      ],
+      "chronology_preserving_diagnostic": {
+        "pre_outcome_material_gaps": [
+          "which authority would be pooled",
+          "which coordination mechanism fits autonomy concerns",
+          "how data/models become comparable",
+          "how non-authority stakeholders are represented"
+        ],
+        "subsequent_observed_change": "Basins adopted varied structures and collaborative configurations rather than converging on one organizational form.",
+        "gate_interpretation": "A single centralized platform should not be assumed; the correct gate asks whether a chosen mechanism preserves required local authority while satisfying coordinated outcomes."
+      }
+    },
+    {
+      "case_id": "microsoft_linkedin",
+      "title": "Microsoft acquisition of LinkedIn",
+      "domain": "public-company merger and acquisition",
+      "period": "2016",
+      "outcome": "COMPLETED",
+      "research_role": "mature institutional frame / CollapseSafe comparator",
+      "coding_status": "single_coder_provisional",
+      "case_selection_rationale": "A high-value, nontrivial relation was coordinated through a mature legal, board, advisor, disclosure and regulatory frame. It is a negative case against assuming that complexity requires Towow-style open formation.",
+      "source_ids": [
+        "ML-01",
+        "ML-02",
+        "ML-03"
+      ],
+      "evidence_coverage": {
+        "source_proximity": 2,
+        "process_granularity": 2,
+        "authority_visibility": 2,
+        "effect_observability": 2,
+        "participant_voice_coverage": 0,
+        "counterfactual_support": 1,
+        "triangulation": 2,
+        "selection_bias_risk": "medium"
+      },
+      "initial_relation_frame": {
+        "frame_scope": "mature_institutional_m_and_a_frame",
+        "R": "Boards, transaction committee, CEOs, controlling shareholder, advisors, competing bidders, shareholders and regulators.",
+        "V": "Strategic alternatives, bid, cash/share consideration, exclusivity, antitrust obligations, termination fee, superior proposal, board recommendation and closing.",
+        "T": "Explore alternatives → bids/diligence → exclusivity/negotiation → board approval → shareholder/regulatory conditions → closing or termination/superior proposal.",
+        "A": "Board fiduciary authority, committee/advisor process, shareholder/regulatory rights and defined CEO/executive roles.",
+        "E": "Formal bids, fairness/financial advice, board records, signed merger agreement, votes/approvals and SEC closing filing.",
+        "D": "Confidential diligence and regulated disclosure; not reconstructed in full from public records.",
+        "O": "Best value reasonably attainable, definitive agreement, conditions, superior-proposal/termination path and completed merger."
+      },
+      "authority_topology": [
+        {
+          "locus": "LinkedIn Board",
+          "powers": [
+            "evaluate alternatives",
+            "approve/recommend transaction",
+            "change recommendation under defined conditions"
+          ]
+        },
+        {
+          "locus": "Transactions Committee/advisors",
+          "powers": [
+            "conduct process, negotiate and advise; not final principal"
+          ]
+        },
+        {
+          "locus": "Microsoft Board/executives",
+          "powers": [
+            "authorize offer and agreement"
+          ]
+        },
+        {
+          "locus": "shareholders/regulators",
+          "powers": [
+            "vote/appraisal and required legal approvals"
+          ]
+        },
+        {
+          "locus": "competing bidders",
+          "powers": [
+            "submit/revise proposals; no authority over LinkedIn acceptance"
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "event_id": "ML-E01",
+          "date": "2016-02/2016-03",
+          "label": "Strategic relationship discussions open multiple alternatives",
+          "event_type": "discovery",
+          "materiality": "INSTANCE_WITHIN_MATURE_FRAME",
+          "changed_components": [
+            "R",
+            "V",
+            "O"
+          ],
+          "formation_operators": [
+            "actor_enrollment"
+          ],
+          "description": "Executives discuss enhanced commercial relations and possible combinations while LinkedIn also considers standalone and other strategic alternatives.",
+          "source_ids": [
+            "ML-01"
+          ],
+          "authority_effect": "Executives can initiate exploration but not bind final acceptance.",
+          "outcome_effect": "Creates candidate paths inside an established corporate frame.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E02",
+          "date": "2016-03/2016-04",
+          "label": "Board and Transactions Committee formalize decision authority",
+          "event_type": "authority_activation",
+          "materiality": "INSTANCE_WITHIN_MATURE_FRAME",
+          "changed_components": [
+            "R",
+            "A",
+            "T",
+            "E"
+          ],
+          "formation_operators": [
+            "staged_approval",
+            "independent_challenge"
+          ],
+          "description": "The board delegates process work to a committee and advisors while retaining fiduciary approval authority.",
+          "source_ids": [
+            "ML-01"
+          ],
+          "authority_effect": "Clarifies locus and separation of recommendation from final approval.",
+          "outcome_effect": "Makes the search/negotiation process reviewable.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E03",
+          "date": "2016-04/2016-06",
+          "label": "Multiple bidders revise price and form of consideration",
+          "event_type": "negotiation",
+          "materiality": "INSTANCE_PARAMETER_CHANGE",
+          "changed_components": [
+            "V",
+            "O"
+          ],
+          "formation_operators": [
+            "countercondition"
+          ],
+          "description": "Bids and price move through multiple rounds; the central economic parameter changes inside a stable transaction grammar.",
+          "source_ids": [
+            "ML-01"
+          ],
+          "authority_effect": "No new authority locus is created by price change.",
+          "outcome_effect": "Improves terms without constituting a new institutional frame.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E04",
+          "date": "2016-05/2016-06",
+          "label": "Exclusivity and superior-proposal conditions shape negotiation path",
+          "event_type": "schema_specialization",
+          "materiality": "MATERIAL_RELATION_TERM_CHANGE",
+          "changed_components": [
+            "T",
+            "A",
+            "O"
+          ],
+          "formation_operators": [
+            "commitment_binding",
+            "scope_contraction"
+          ],
+          "description": "Exclusivity, information rights and later superior-proposal/termination provisions constrain which future negotiation paths remain valid.",
+          "source_ids": [
+            "ML-01"
+          ],
+          "authority_effect": "Board authority remains bounded by fiduciary and contract rules.",
+          "outcome_effect": "Changes the specific relation trace while staying within mature M&A meta-rules.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E05",
+          "date": "2016-06",
+          "label": "Non-price terms define risk, antitrust, termination and support obligations",
+          "event_type": "schema_specialization",
+          "materiality": "MATERIAL_RELATION_TERM_CHANGE",
+          "changed_components": [
+            "T",
+            "A",
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "countercondition",
+            "commitment_binding"
+          ],
+          "description": "The relation includes antitrust obligations, termination fees, board-recommendation changes, support agreements and conditions—not only price.",
+          "source_ids": [
+            "ML-01"
+          ],
+          "authority_effect": "Distributes risk and future decision authority.",
+          "outcome_effect": "Creates a precise executable commitment bundle.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E06",
+          "date": "2016-06-11/2016-06-13",
+          "label": "Boards approve and parties sign definitive agreement",
+          "event_type": "commitment",
+          "materiality": "MATERIAL_RELATION_CHANGE",
+          "changed_components": [
+            "A",
+            "T",
+            "O"
+          ],
+          "formation_operators": [
+            "staged_approval",
+            "commitment_binding"
+          ],
+          "description": "Authorized boards/parties approve and announce a definitive agreement at $196 per share, subject to conditions.",
+          "source_ids": [
+            "ML-01",
+            "ML-03"
+          ],
+          "authority_effect": "Converts negotiation into binding commitments by proper loci.",
+          "outcome_effect": "Moves from candidate to committed relation.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        },
+        {
+          "event_id": "ML-E07",
+          "date": "2016-12-08",
+          "label": "Merger closes",
+          "event_type": "operation_and_effect",
+          "materiality": "INSTANCE_EXECUTION",
+          "changed_components": [
+            "E",
+            "O"
+          ],
+          "formation_operators": [
+            "compilation"
+          ],
+          "description": "The acquisition completes and shares convert under the agreement.",
+          "source_ids": [
+            "ML-02"
+          ],
+          "authority_effect": "Regulatory/company filings witness the legal effect.",
+          "outcome_effect": "Produces the target-world Effect; long-run value remains separate.",
+          "confidence": "high",
+          "epistemic_status": "observed"
+        }
+      ],
+      "operation_effect_adoption_acceptance": {
+        "operation": "Diligence, bids, negotiation, approvals and legal closing operations were performed.",
+        "effect": "LinkedIn became a wholly owned Microsoft subsidiary and shares converted at the agreed consideration.",
+        "adoption": "Boards, shareholders/regulators and corporate systems implemented the transaction.",
+        "acceptance": "Formal legal/corporate acceptance is evidenced; employee/member/social acceptance and long-run strategic value are not proved."
+      },
+      "supports": [
+        "Complexity alone does not justify an open-ended A2A formation layer.",
+        "A mature institutional frame can safely centralize advisors, data rooms and negotiation while preserving board/shareholder/regulatory authority.",
+        "Material relation terms can change without changing the higher-level institutional grammar.",
+        "CollapseSafe depends on institutional sufficiency, not on whether every term is a simple parameter."
+      ],
+      "does_not_support": [
+        "It does not show private worlds were fully represented or that all stakeholders benefited.",
+        "It does not prove an Agent could replace boards, advisors or fiduciary judgment.",
+        "Public filings cannot reconstruct all rejected alternatives or informal influence."
+      ],
+      "competing_explanations": [
+        "The transaction may have succeeded because of concentrated authority and mature law rather than any superior coordination process.",
+        "SEC disclosure is ex post and legally curated.",
+        "Long-run integration outcomes are outside the coded period."
+      ],
+      "design_delta": [
+        "Refine CollapseSafe: a relation can be safely collapsed when a legitimate institutional frame already supplies roles, authority, evidence, dispute, exit and settlement—even if deal terms are complex.",
+        "Support two resolution levels using metadata/reference, not new roots: institutional frame and relation-specific version.",
+        "Do not route mature transactions to Towow formation merely because many clauses change.",
+        "Keep legal Effect distinct from strategic/business Acceptance."
+      ],
+      "unknowns": [
+        "Private diligence facts",
+        "Employee/member preferences",
+        "Counterfactual value of competing bids",
+        "Long-run strategic acceptance"
+      ],
+      "chronology_preserving_diagnostic": {
+        "pre_outcome_material_gaps": [
+          "specific price/risk allocation",
+          "antitrust and termination obligations",
+          "approval conditions"
+        ],
+        "subsequent_observed_change": "These gaps were resolved through standard committee, board, contract and regulatory procedures.",
+        "gate_interpretation": "Once the definitive agreement and required approvals/witnesses were in place, a deterministic closing workflow was appropriate; persistent intelligent negotiation was unnecessary."
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+schema_version: consensus-capsule/v0.1
+capsule_id: capsule-task-edit-api
+compiled_for:
+  session_id: sess-example
+  task_id: task-update-api
+  action: edit
+  target: src/api/contracts.py
+
+scope:
+  allowed_paths: [src/api/contracts.py, tests/contracts/]
+  forbidden_paths: [src/ledger/, deploy/production/]
+  read_set: [concept:PublicContract, api:CreateOrder]
+  write_set: [api:CreateOrder]
+
+applicable_consensus:
+  global:
+    - consensus:event-log-is-source-of-truth@v3
+  domain:
+    - consensus:api-errors-typed@v2
+  interface:
+    - contract:CreateOrder@v4
+  governance_zone:
+    - zone:current-law
+
+design_trace:
+  requirements: [req-backward-compatible]
+  design_decisions: [dd-versioned-api]
+  engineering_decisions: [adr-optimistic-versioning]
+
+known_facts:
+  - CreateOrder has 6 active consumers
+  - v3 clients remain in migration window
+
+must_not_do:
+  - remove existing field without migration
+  - modify unrelated ledger code
+  - deploy to production
+
+validation:
+  mandatory:
+    - contract-tests
+    - consumer-compatibility
+    - schema-diff
+
+compilation_provenance:
+  as_of_projection_seq: 123456
+  compiler_version: context-compiler/v0.1
+  source_hashes:
+    concept_graph: abc
+    consensus: def

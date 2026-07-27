@@ -1,0 +1,42 @@
+ui_contract:
+  core: 界面是同一产品世界针对角色和任务的受控投影。
+  every_surface_must_answer:
+  - 我在哪里
+  - 主对象是什么
+  - 当前事实和状态是什么
+  - 下一步由谁负责
+  - 哪些是证据、AI 建议和正式决定
+  - 动作会产生什么后果
+  - 失败或卡住后如何恢复
+  - 我为什么能看或不能看
+  legibility:
+    3_seconds:
+    - 位置
+    - 对象
+    - 状态
+    - 主动作
+    30_seconds:
+    - 原因
+    - 参与者
+    - 风险
+    - 阻塞
+    3_minutes:
+    - 证据
+    - 关系
+    - 历史
+    - 权限
+    - 后果
+  required_surface_kinds:
+  - CollectionOrQueue
+  - ObjectWorkspace
+  - DecisionRoom
+  - Composer
+  - NetworkOrMap
+  - ReportView
+  forbidden:
+  - 先画 dashboard 再反推产品
+  - 把 AI 助手当作所有页面的主对象
+  - 图表无法下钻到具体事实
+  - 用一个线性状态条覆盖所有对象生命周期
+  - 将验证通过直接显示成业务验收完成
+  - 将披露做成普通附件分享

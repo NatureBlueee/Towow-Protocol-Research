@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Towow Public Trace Event v0.5",
+  "type": "object",
+  "required": [
+    "case_id",
+    "event_id",
+    "event_date",
+    "actor",
+    "authority_locus",
+    "event_type",
+    "relation_version",
+    "schema_dimensions",
+    "source_ids",
+    "observation_status"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "event_date": {
+      "type": "string"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "authority_locus": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "relation_version": {
+      "type": "string"
+    },
+    "schema_dimensions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "R",
+          "V",
+          "T",
+          "A",
+          "E",
+          "D",
+          "O"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "material_schema_change": {
+      "type": "boolean"
+    },
+    "materiality_reason": {
+      "type": "string"
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "observation_status": {
+      "enum": [
+        "OBSERVED",
+        "ASSERTED",
+        "ADJUDICATED",
+        "INFERRED",
+        "UNKNOWN"
+      ]
+    },
+    "observability_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retrospective_selection_risk": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "operationally_complete": {
+      "type": "boolean"
+    },
+    "compressed_stream_visibility": {
+      "enum": [
+        "FULL",
+        "PARTIAL",
+        "NONE"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

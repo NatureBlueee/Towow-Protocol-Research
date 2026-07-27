@@ -1,0 +1,177 @@
+{
+  "captured_at_utc": "2026-07-24T14:16:58Z",
+  "cwd": "/Users/nature/个人项目/Harness/.ai-research",
+  "git_root": "/Users/nature/个人项目/Harness",
+  "workspace_kind": "canonical Harness source repository with real Git history, real local event ledger, historical worktrees, tests, and currently visible agent sessions; local orchestrator is paused and this record does not claim that the local ledger is the current production authority",
+  "canonical_harness_confirmed": true,
+  "canonical_gate_basis": [
+    "git root contains the implemented towow package, 5201 tracked files, extensive history, tests, runtime state, and many real task worktrees",
+    "./tw resolves the editable runtime source to /Users/nature/个人项目/Harness/harness/src/towow",
+    "harness/.venv imports towow from /Users/nature/个人项目/Harness/harness/src/towow/__init__.py",
+    "./tw vitality returned four real sessions",
+    "./tw orchestrator status read a 625174-event ledger and reported a paused REAL orchestrator with an 87006-event backlog"
+  ],
+  "applicable_agents_md": [
+    "/Users/nature/个人项目/Harness/AGENTS.md"
+  ],
+  "applicable_repository_guidance": [
+    "/Users/nature/个人项目/Harness/CLAUDE.md",
+    "/Users/nature/个人项目/Harness/harness/CLAUDE.md",
+    "/Users/nature/个人项目/Harness/README.md",
+    "/Users/nature/个人项目/Harness/harness/README.md",
+    "/Users/nature/个人项目/Harness/RUNNING-SERVICES.md"
+  ],
+  "git": {
+    "head": "d85412c98126ec3d37d887796b8a916b190ca567",
+    "branch": "main",
+    "upstream": "origin/main",
+    "ahead": 4,
+    "behind": 0,
+    "dirty": true,
+    "tracked_dirty": [
+      "01-reconciliation/migration/systemd/install-systemd.sh",
+      "01-reconciliation/migration/systemd/scripts/harness-with-token.sh",
+      "01-reconciliation/migration/systemd/units/harness-account-limitwatch.timer",
+      "harness/docs/obs-facade-prototype/v0-runtime-pipeline.html (deleted)",
+      "harness/src/towow/l2/account_limitwatch.py"
+    ],
+    "untracked_count_at_gate_capture": 360,
+    "untracked_summary": [
+      ".ai-research/ including the user-provided R5 material and this run packet",
+      ".codex-tmp/ parallel-work artifacts",
+      "account/session fleet scripts and tests under 01-reconciliation/migration and harness/",
+      "runtime paths ignored by repository policy"
+    ],
+    "tracked_diff_sha256": "1c9efb0fe4748a5b45772503a7fc91c5b6300c96a6f5a5d0b4af00010bc1b850",
+    "untracked_path_list_sha256": "5d871f58921d97e7a2fbe95e8e5a910753ad010188ab029b1c5bb3fc94377979",
+    "worktree_count_at_gate_capture": 38,
+    "research_branch": "codex/towow-a2a-r5-2-research",
+    "research_worktree": "/private/tmp/harness-towow-a2a-r5-2",
+    "research_worktree_head": "d85412c98126ec3d37d887796b8a916b190ca567",
+    "main_tree_branch_after_worktree_creation": "main",
+    "main_tree_head_after_worktree_creation": "d85412c98126ec3d37d887796b8a916b190ca567"
+  },
+  "agent_runtime": [
+    {
+      "name": "Codex desktop",
+      "version": "codex-cli 0.145.0",
+      "role": "primary local research agent plus three isolated read-only subagents"
+    },
+    {
+      "name": "Claude Code CLI",
+      "version": "2.1.218",
+      "role": "installed but not invoked for research at gate time"
+    },
+    {
+      "name": "towow CLI",
+      "version": "project 0.0.1",
+      "role": "canonical Harness CLI loaded from editable source"
+    }
+  ],
+  "models": [
+    {
+      "runtime": "Codex",
+      "model_family": "GPT-5",
+      "exact_deployment_id": "not exposed",
+      "context_policy": "local workspace access under managed sandbox; no external private-data upload authorized",
+      "token_accounting": "not exposed"
+    }
+  ],
+  "tools_sdks": [
+    "macOS 26.6 arm64",
+    "Python 3.12.12",
+    "uv 0.10.0",
+    "pytest 9.0.3",
+    "ruff 0.15.13",
+    "mypy 2.1.0",
+    "git 2.50.1",
+    "Node.js 26.5.0",
+    "Docker client 29.1.3; daemon reachability not established because the managed sandbox denied the Unix socket"
+  ],
+  "test_entrypoints": [
+    "cd harness && .venv/bin/pytest",
+    "cd harness && .venv/bin/mypy src/towow tests",
+    "cd harness && .venv/bin/ruff check src/towow tests",
+    "targeted tests under harness/tests/unit, harness/tests/property, and harness/tests/integration"
+  ],
+  "run_entrypoints": [
+    "/Users/nature/个人项目/Harness/tw",
+    "/Users/nature/个人项目/Harness/harness/.venv/bin/towow",
+    "towow vitality (read-only)",
+    "towow orchestrator status (read-only)"
+  ],
+  "effect_gateways": [
+    "candidate: towow.l0.commit_gate transaction admission and authoritative event append",
+    "candidate: towow.l2.orchestrator dispatch/reconcile lifecycle",
+    "candidate: towow.shell.worktree WorktreeManager promotion/cleanup path",
+    "candidate: external owner gateway adapters; no external calls authorized"
+  ],
+  "event_log_sources": [
+    {
+      "path": "/Users/nature/个人项目/Harness/harness/.towow/events/hot/events-*.jsonl",
+      "role": "authoritative local event segments",
+      "access": "read-only"
+    },
+    {
+      "path": "/Users/nature/个人项目/Harness/harness/.towow/events/index/*.idx",
+      "role": "derived indexes, not a truth source",
+      "access": "read-only"
+    },
+    {
+      "path": "/Users/nature/个人项目/Harness/harness/.towow/graph and views",
+      "role": "derived projections",
+      "access": "read-only"
+    },
+    {
+      "path": "git history and historical worktrees",
+      "role": "independent code/effect trace and real task provenance",
+      "access": "read-only except the isolated research worktree"
+    }
+  ],
+  "observed_runtime_state": {
+    "local_towow_tree_permissions": "read-only (harness/.towow is dr-xr-xr-x)",
+    "orchestrator_process": "not running",
+    "orchestrator_mode": "REAL",
+    "orchestrator_paused": true,
+    "orchestrator_watermark": 538168,
+    "ledger_latest_sequence": 625174,
+    "orchestrator_backlog": 87006,
+    "visible_sessions": 4,
+    "session_vitality_counts": {
+      "alive_working": 2,
+      "unknown": 2
+    },
+    "pending_orchestrator_records": 6,
+    "relay_sessions_reported": 1
+  },
+  "allowed_paths": [
+    "/Users/nature/个人项目/Harness/.ai-research/towow-a2a-r5-2/",
+    "/private/tmp/harness-towow-a2a-r5-2 for isolated project-code experiments",
+    "/private/tmp and managed temp directories for disposable fixtures and relocation tests"
+  ],
+  "protected_paths": [
+    "/Users/nature/个人项目/Harness main worktree outside .ai-research is read-only for this research",
+    "/Users/nature/个人项目/Harness/harness/.towow is an existing read-only event ledger and must not be mutated",
+    "/Users/nature/个人项目/Harness/.ai-research/towow_r5_chief_reinterpretation is historical evidence and must not be modified",
+    "all existing .claude/.towow worktrees and the user's dirty/untracked files",
+    "main, production branches, remote refs, and deployment state"
+  ],
+  "secrets_and_private_data_boundary": [
+    "do not open, copy, hash into deliverables, or display .env files, provider tokens, account-token stores, credentials, or private keys",
+    "event payloads, owner judgments, transcripts, customer/project material, and gateway logs are private-by-default; extract only minimal redacted facts needed for a claim",
+    "the repository ignore policy marks Luxis Homes as customer-confidential and memory backups as personal/business-private",
+    "documented token and Feishu credential locations are boundary markers only and were not accessed"
+  ],
+  "external_effect_boundary": [
+    "no push, merge, production-branch change, deployment, server write, daemon start/stop, launchd/systemd change, firewall/account change, or external message",
+    "no payment, signature, blockchain, settlement, escrow, customer-data transmission, or third-party model upload",
+    "WoWok or equivalent infrastructure limited to local compile/dry-run unless separately authorized"
+  ],
+  "notes": [
+    "The v1.2 zip SHA-256 is 90ec08edb308661e389f93c658bec04553ef492915778714bae4881c1fec0c52 and matches the user-pointed directory checksum.",
+    "The extracted packet is byte-identical to the user-pointed unpacked v1.2 directory and its validator passed 36 files.",
+    "Running ./tw through uv inside the managed sandbox first failed on ~/.cache/uv permissions; an approved read-only rerun established actual vitality/orchestrator state. Direct harness/.venv imports worked without escalation.",
+    "git worktree add exited zero but emitted an incorrect guard warning that the main tree left main; independent readback proved the main tree remained main at the same HEAD. The guard also created an untracked harness/.towow/git-discipline-violations.log in the new worktree; it was preserved as an observed side effect.",
+    "RUNNING-SERVICES.md says the authoritative production ledger moved to a server as of its 2026-07-19 snapshot. This turn has not verified remote production state and makes no production-current claim."
+  ]
+}

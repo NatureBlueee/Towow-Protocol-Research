@@ -1,0 +1,122 @@
+{
+  "version": "v1.2",
+  "entries": [
+    {
+      "decision_id": "D1",
+      "decision": "Effect chain must be explicit",
+      "current_choice": "Attempt/Effect/Adoption/Acceptance separate semantics in one event system",
+      "blocked_by": "Already decided; implementation quality remains",
+      "supporting_evidence": "R5.2 naive terminal 10/17 wrong; explicit reconstruction 17/17",
+      "counter_result": "A strong naive/derived terminal model reaches comparable accuracy and recovery with materially lower cost",
+      "cheapest_discriminator": "Holdout on new real workflow traces with independent readback",
+      "status": "KEEP",
+      "evidence_role": "DECISIONAL",
+      "delta_timing": "OBSERVED_DESIGN_FLIP",
+      "next_action": "Use as central opening result; add new holdout only when real traces exist"
+    },
+    {
+      "decision_id": "D2",
+      "decision": "Authority semantics before federated topology",
+      "current_choice": "Build Mandate/RelationVersion/Effect/Acceptance in central deployment first unless topology is proven necessary",
+      "blocked_by": "Q1",
+      "supporting_evidence": "Constructed Authority-aware Hub eliminates unauthorized Effect and finds 15 paths; R5C central execution can run frozen interface",
+      "counter_result": "Matched strong central model cannot form or safely execute without violating private/authority constraints",
+      "cheapest_discriminator": "Transport-safe matched central rerun on R5.4 and R5C",
+      "status": "OPEN",
+      "evidence_role": "UNRESOLVED",
+      "delta_timing": "MIXED",
+      "next_action": "Run Q1 before new federated engineering"
+    },
+    {
+      "decision_id": "D3",
+      "decision": "Mandate product surface",
+      "current_choice": "Explicit internal object; user-facing form undecided",
+      "blocked_by": "Q2",
+      "supporting_evidence": "Formal/engineering necessity only; zero real explain-back evidence",
+      "counter_result": "Users fail critical boundary explain-back or refuse maintenance",
+      "cheapest_discriminator": "3-person structured-card vs conversational-summary probe",
+      "status": "OPEN",
+      "evidence_role": "UNRESOLVED",
+      "delta_timing": "UNKNOWN",
+      "next_action": "Run Q2; decide explicit vs inferred UI"
+    },
+    {
+      "decision_id": "D4",
+      "decision": "Formation operator is a core engine",
+      "current_choice": "Keep probe/countercondition/task restructuring as core in uncertain tasks",
+      "blocked_by": "Q3",
+      "supporting_evidence": "R5C technical formation plus constructed ablations; no human Principal formation",
+      "counter_result": "In a frozen real case, removal of formation operator does not change reachable qualified path or only adds overhead",
+      "cheapest_discriminator": "Single Q4 real case with one operator ablation",
+      "status": "OPEN",
+      "evidence_role": "UNRESOLVED",
+      "delta_timing": "MIXED",
+      "next_action": "Run one case, not full five-stage study"
+    },
+    {
+      "decision_id": "D5",
+      "decision": "Router is an automated component",
+      "current_choice": "Use as assisted router; autonomy not established",
+      "blocked_by": "Q4",
+      "supporting_evidence": "Author-coded fixtures and public archival calibration only",
+      "counter_result": "Cold-start fields cannot be reliably inferred from raw material without expert judgment",
+      "cheapest_discriminator": "Blind raw-case field extraction against independent coding",
+      "status": "OPEN",
+      "evidence_role": "UNRESOLVED",
+      "delta_timing": "PREDECIDED_CONFIRMATION",
+      "next_action": "Prepare blind packets and score field-level agreement"
+    },
+    {
+      "decision_id": "D6",
+      "decision": "Formation then compile/reuse",
+      "current_choice": "Keep architecture; product weight unresolved",
+      "blocked_by": "Q5",
+      "supporting_evidence": "Synthetic drift/cost and technical deterministic execution after R5C boundary freeze",
+      "counter_result": "Second real use does not reduce cognitive/disclosure cost or increases stale risk",
+      "cheapest_discriminator": "Repeat one real relationship after Q3",
+      "status": "WAIT_Q3",
+      "evidence_role": "CONFIRMATORY_TO_DATE",
+      "delta_timing": "PREDECIDED_CONFIRMATION",
+      "next_action": "Do not run more synthetic drift simulations"
+    },
+    {
+      "decision_id": "D7",
+      "decision": "Atomic reservations",
+      "current_choice": "Use database/ledger atomic reservation",
+      "blocked_by": "None",
+      "supporting_evidence": "Standard concurrency engineering plus prior test",
+      "counter_result": "N/A at theory level; implementation can regress",
+      "cheapest_discriminator": "Property tests and transactional integration tests",
+      "status": "CI_ONLY",
+      "evidence_role": "CI_REGRESSION",
+      "delta_timing": "PREDECIDED_CONFIRMATION",
+      "next_action": "Remove from research narrative; retain tests"
+    },
+    {
+      "decision_id": "D8",
+      "decision": "Event/typed history instead of flattened booleans",
+      "current_choice": "Typed events plus projections",
+      "blocked_by": "None",
+      "supporting_evidence": "Standard event sourcing and implementation needs",
+      "counter_result": "N/A as broad theory; workload-specific simplification possible",
+      "cheapest_discriminator": "Query regression suite",
+      "status": "CI_ONLY",
+      "evidence_role": "CI_REGRESSION",
+      "delta_timing": "PREDECIDED_CONFIRMATION",
+      "next_action": "Move ontology/materiality large simulations to CI"
+    },
+    {
+      "decision_id": "D9",
+      "decision": "Initial market scope",
+      "current_choice": "Low-adversarial, reputationally constrained, reversible OPC coordination",
+      "blocked_by": "Q6",
+      "supporting_evidence": "Strategic Oracle and incentive compatibility are unmodeled",
+      "counter_result": "Evidence of common manipulation even in trusted/reputational settings",
+      "cheapest_discriminator": "Threat interviews and red-team scenarios after Q1-Q3",
+      "status": "BOUNDED",
+      "evidence_role": "SCOPE_DECISION",
+      "delta_timing": "OBSERVED_LIMITATION",
+      "next_action": "State explicit non-goal; avoid high-adversarial markets"
+    }
+  ]
+}

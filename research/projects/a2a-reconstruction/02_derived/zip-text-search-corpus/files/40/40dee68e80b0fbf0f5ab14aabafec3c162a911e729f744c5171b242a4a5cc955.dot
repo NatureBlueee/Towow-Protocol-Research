@@ -1,0 +1,18 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad=0.3, nodesep=0.35, ranksep=0.35, fontname="Noto Sans CJK SC"];
+  node [shape=box, style="rounded,filled", color="#4B5563", fontname="Noto Sans CJK SC", fontsize=11, margin="0.18,0.11", width=6.2];
+  edge [color="#6B7280"];
+  towow [label="通爻协调语义层\n动态边界 · 可能性形成 · 共同安排 · Recognition · Commitment\nTarget-domain Adoption · Acceptance · Dispute",fillcolor="#FFF7ED"];
+  a2a [label="A2A 互操作层\nAgent Card · Message · Task · Artifact · transport · notification",fillcolor="#EEF6FF"];
+  mcp [label="MCP / 工具与环境层\nTools · Resources · Prompts · Sampling · Roots · Elicitation",fillcolor="#F5F3FF"];
+  trust [label="信任与效力适配层\nWoWok / 企业权限与工作流 / 电子签 / 托管 / 结算 / 仲裁",fillcolor="#ECFDF5"];
+  infra [label="模型、Harness、数据库、文件系统、消息总线与本地运行时",fillcolor="#F3F4F6"];
+  towow -> a2a -> mcp -> trust -> infra [style=invis];
+  {rank=same; a2a; mcp;}
+  towow -> a2a [label="可承载于"];
+  towow -> mcp [label="调用本地能力"];
+  towow -> trust [label="编译已认领承诺"];
+  a2a -> infra [label="传输/任务"];
+  mcp -> infra [label="工具/数据"];
+  trust -> infra [label="现实效力"];
+}

@@ -1,0 +1,1164 @@
+{
+  "method": "time-censored retrospective structural diagnosis over seven public coded event streams",
+  "checkpoints": 11,
+  "models": {
+    "authority_aware": {
+      "n_checkpoints": 11,
+      "mean_precision": 0.6712121212121213,
+      "mean_recall": 0.890909090909091,
+      "mean_f1": 0.7556932966023876,
+      "mean_jaccard": 0.6238095238095238,
+      "exact_dimension_set": 0
+    },
+    "last_event": {
+      "n_checkpoints": 11,
+      "mean_precision": 0.7727272727272727,
+      "mean_recall": 0.6181818181818182,
+      "mean_f1": 0.6768004722550177,
+      "mean_jaccard": 0.5554112554112554,
+      "exact_dimension_set": 1
+    },
+    "no_change": {
+      "n_checkpoints": 11,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "mean_jaccard": 0.0,
+      "exact_dimension_set": 0
+    },
+    "prior_mode": {
+      "n_checkpoints": 11,
+      "mean_precision": 0.8030303030303031,
+      "mean_recall": 0.3909090909090909,
+      "mean_f1": 0.516017316017316,
+      "mean_jaccard": 0.36818181818181817,
+      "exact_dimension_set": 0
+    }
+  },
+  "rows": [
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "LNK_MS-05",
+      "next_material_event_id": "LNK_MS-06",
+      "next_material_event_type": "RELATION_DRAFT",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "LNK_MS-05",
+      "next_material_event_id": "LNK_MS-06",
+      "next_material_event_type": "RELATION_DRAFT",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "O",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571,
+      "jaccard": 0.75,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "LNK_MS-05",
+      "next_material_event_id": "LNK_MS-06",
+      "next_material_event_type": "RELATION_DRAFT",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "jaccard": 0.5,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "LNK_MS-05",
+      "next_material_event_id": "LNK_MS-06",
+      "next_material_event_type": "RELATION_DRAFT",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "jaccard": 0.6666666666666666,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed"
+      ]
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "LNK_MS-07",
+      "next_material_event_id": "LNK_MS-08",
+      "next_material_event_type": "COUNTERCONDITION_AND_REFUSAL",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "LNK_MS-07",
+      "next_material_event_id": "LNK_MS-08",
+      "next_material_event_type": "COUNTERCONDITION_AND_REFUSAL",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.25,
+      "f1": 0.3333333333333333,
+      "jaccard": 0.2,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "LNK_MS-07",
+      "next_material_event_id": "LNK_MS-08",
+      "next_material_event_type": "COUNTERCONDITION_AND_REFUSAL",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.25,
+      "f1": 0.3333333333333333,
+      "jaccard": 0.2,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "LNK_MS-07",
+      "next_material_event_id": "LNK_MS-08",
+      "next_material_event_type": "COUNTERCONDITION_AND_REFUSAL",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "jaccard": 0.6666666666666666,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "external standing or challenge locus active"
+      ]
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "LNK_MS-10",
+      "next_material_event_id": "LNK_MS-11",
+      "next_material_event_type": "NEGOTIATED_REVISION",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "LNK_MS-10",
+      "next_material_event_id": "LNK_MS-11",
+      "next_material_event_type": "NEGOTIATED_REVISION",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.7499999999999999,
+      "jaccard": 0.6,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "LNK_MS-10",
+      "next_material_event_id": "LNK_MS-11",
+      "next_material_event_type": "NEGOTIATED_REVISION",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "O"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.2,
+      "f1": 0.33333333333333337,
+      "jaccard": 0.2,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "LNK_MS",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "LNK_MS-10",
+      "next_material_event_id": "LNK_MS-11",
+      "next_material_event_type": "NEGOTIATED_REVISION",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1": 0.9090909090909091,
+      "jaccard": 0.8333333333333334,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed"
+      ]
+    },
+    {
+      "case_id": "AMZN_IRBT",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "AMZN_IRBT-03",
+      "next_material_event_id": "AMZN_IRBT-04",
+      "next_material_event_type": "AUTHORITY_DECISION",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "AMZN_IRBT",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "AMZN_IRBT-03",
+      "next_material_event_id": "AMZN_IRBT-04",
+      "next_material_event_type": "AUTHORITY_DECISION",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "O",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571,
+      "jaccard": 0.75,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "AMZN_IRBT",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "AMZN_IRBT-03",
+      "next_material_event_id": "AMZN_IRBT-04",
+      "next_material_event_type": "AUTHORITY_DECISION",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "jaccard": 0.5,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "AMZN_IRBT",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "AMZN_IRBT-03",
+      "next_material_event_id": "AMZN_IRBT-04",
+      "next_material_event_type": "AUTHORITY_DECISION",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "O",
+        "T",
+        "V"
+      ],
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "jaccard": 0.6666666666666666,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "standing/legitimacy not closed"
+      ]
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SW-E03",
+      "next_material_event_id": "SW-E04",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SW-E03",
+      "next_material_event_id": "SW-E04",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O",
+        "R"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1": 0.9090909090909091,
+      "jaccard": 0.8333333333333334,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SW-E03",
+      "next_material_event_id": "SW-E04",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "A",
+        "O",
+        "R"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "jaccard": 0.5,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SW-E03",
+      "next_material_event_id": "SW-E04",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1": 0.8333333333333334,
+      "jaccard": 0.7142857142857143,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "standing/legitimacy not closed",
+        "explicit reopen trigger remains",
+        "external standing or challenge locus active",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "SW-E05",
+      "next_material_event_id": "SW-E06",
+      "next_material_event_type": "WITHDRAWAL",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "D",
+        "O",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "SW-E05",
+      "next_material_event_id": "SW-E06",
+      "next_material_event_type": "WITHDRAWAL",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "D",
+        "E",
+        "O"
+      ],
+      "true_dimensions": [
+        "D",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.6666666666666666,
+      "f1": 0.5714285714285715,
+      "jaccard": 0.4,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "SW-E05",
+      "next_material_event_id": "SW-E06",
+      "next_material_event_type": "WITHDRAWAL",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "A",
+        "O"
+      ],
+      "true_dimensions": [
+        "D",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "jaccard": 0.25,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SIDEWALK",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "SW-E05",
+      "next_material_event_id": "SW-E06",
+      "next_material_event_type": "WITHDRAWAL",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "D",
+        "O",
+        "T"
+      ],
+      "precision": 0.3333333333333333,
+      "recall": 0.6666666666666666,
+      "f1": 0.4444444444444444,
+      "jaccard": 0.2857142857142857,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "standing/legitimacy not closed",
+        "explicit reopen trigger remains",
+        "external standing or challenge locus active",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "OB-E03",
+      "next_material_event_id": "OB-E04",
+      "next_material_event_type": "GOVERNANCE_FAILURE",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "OB-E03",
+      "next_material_event_id": "OB-E04",
+      "next_material_event_type": "GOVERNANCE_FAILURE",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "D",
+        "E",
+        "O",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "jaccard": 0.3333333333333333,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "OB-E03",
+      "next_material_event_id": "OB-E04",
+      "next_material_event_type": "GOVERNANCE_FAILURE",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "E",
+        "O"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "jaccard": 0.5,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "OB-E03",
+      "next_material_event_id": "OB-E04",
+      "next_material_event_type": "GOVERNANCE_FAILURE",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "O",
+        "R",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "jaccard": 0.6,
+      "diagnostic_reasons": [
+        "authority/governance stability not closed",
+        "standing/legitimacy not closed",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "OB-E05",
+      "next_material_event_id": "OB-E06",
+      "next_material_event_type": "INSTITUTIONALIZATION",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "D",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "OB-E05",
+      "next_material_event_id": "OB-E06",
+      "next_material_event_type": "INSTITUTIONALIZATION",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.6666666666666665,
+      "jaccard": 0.5,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "OB-E05",
+      "next_material_event_id": "OB-E06",
+      "next_material_event_type": "INSTITUTIONALIZATION",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "E",
+        "O"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1": 0.28571428571428575,
+      "jaccard": 0.16666666666666666,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "UK_OB",
+      "checkpoint_fraction": 0.7,
+      "checkpoint_event_id": "OB-E05",
+      "next_material_event_id": "OB-E06",
+      "next_material_event_type": "INSTITUTIONALIZATION",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "D",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8000000000000002,
+      "jaccard": 0.6666666666666666,
+      "diagnostic_reasons": [
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "standing/legitimacy not closed",
+        "explicit reopen trigger remains",
+        "external standing or challenge locus active",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "CR-E03",
+      "next_material_event_id": "CR-E04",
+      "next_material_event_type": "EFFECT_FAILURE",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "CR-E03",
+      "next_material_event_id": "CR-E04",
+      "next_material_event_type": "EFFECT_FAILURE",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "true_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "jaccard": 1.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "CR-E03",
+      "next_material_event_id": "CR-E04",
+      "next_material_event_type": "EFFECT_FAILURE",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "E",
+        "T"
+      ],
+      "true_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "jaccard": 0.6666666666666666,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "CR-E03",
+      "next_material_event_id": "CR-E04",
+      "next_material_event_type": "EFFECT_FAILURE",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "jaccard": 0.5,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "resource viability open or failed",
+        "declared/enacted gap observed",
+        "explicit reopen trigger remains",
+        "external standing or challenge locus active",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "CR-E04",
+      "next_material_event_id": "CR-E05",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "CR-E04",
+      "next_material_event_id": "CR-E05",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "E",
+        "O",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.7499999999999999,
+      "jaccard": 0.6,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "CR-E04",
+      "next_material_event_id": "CR-E05",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "E",
+        "T"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 1.0,
+      "recall": 0.4,
+      "f1": 0.5714285714285715,
+      "jaccard": 0.4,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "CROSSRAIL",
+      "checkpoint_fraction": 0.5,
+      "checkpoint_event_id": "CR-E04",
+      "next_material_event_id": "CR-E05",
+      "next_material_event_type": "SCHEMA_REVISION",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T"
+      ],
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1": 0.9090909090909091,
+      "jaccard": 0.8333333333333334,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "resource viability open or failed",
+        "declared/enacted gap observed",
+        "explicit reopen trigger remains",
+        "institutional frame is only partially sufficient"
+      ]
+    },
+    {
+      "case_id": "SGMA",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SG-E03",
+      "next_material_event_id": "SG-E04",
+      "next_material_event_type": "BOUNDARY_WORK",
+      "model": "no_change",
+      "predicted_dimensions": [],
+      "true_dimensions": [
+        "D",
+        "E",
+        "T",
+        "V"
+      ],
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "jaccard": 0.0,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SGMA",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SG-E03",
+      "next_material_event_id": "SG-E04",
+      "next_material_event_type": "BOUNDARY_WORK",
+      "model": "last_event",
+      "predicted_dimensions": [
+        "A",
+        "O",
+        "R",
+        "T"
+      ],
+      "true_dimensions": [
+        "D",
+        "E",
+        "T",
+        "V"
+      ],
+      "precision": 0.25,
+      "recall": 0.25,
+      "f1": 0.25,
+      "jaccard": 0.14285714285714285,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SGMA",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SG-E03",
+      "next_material_event_id": "SG-E04",
+      "next_material_event_type": "BOUNDARY_WORK",
+      "model": "prior_mode",
+      "predicted_dimensions": [
+        "A",
+        "R",
+        "T"
+      ],
+      "true_dimensions": [
+        "D",
+        "E",
+        "T",
+        "V"
+      ],
+      "precision": 0.3333333333333333,
+      "recall": 0.25,
+      "f1": 0.28571428571428575,
+      "jaccard": 0.16666666666666666,
+      "diagnostic_reasons": []
+    },
+    {
+      "case_id": "SGMA",
+      "checkpoint_fraction": 0.3,
+      "checkpoint_event_id": "SG-E03",
+      "next_material_event_id": "SG-E04",
+      "next_material_event_type": "BOUNDARY_WORK",
+      "model": "authority_aware",
+      "predicted_dimensions": [
+        "A",
+        "E",
+        "O",
+        "R",
+        "T",
+        "V"
+      ],
+      "true_dimensions": [
+        "D",
+        "E",
+        "T",
+        "V"
+      ],
+      "precision": 0.5,
+      "recall": 0.75,
+      "f1": 0.6,
+      "jaccard": 0.42857142857142855,
+      "diagnostic_reasons": [
+        "technical/operational stability not closed",
+        "authority/governance stability not closed",
+        "assurance not closed",
+        "standing/legitimacy not closed",
+        "explicit reopen trigger remains",
+        "institutional frame is only partially sufficient"
+      ]
+    }
+  ],
+  "limitations": [
+    "Coded histories were reconstructed retrospectively and may contain selection bias.",
+    "The authority-aware rules were designed after the Relation Schema, not learned on an independent corpus.",
+    "The test evaluates structural issue localization, not commercial value, human acceptance, or future event prediction.",
+    "All seven cases concern organizations or institutions; OPC transfer remains a design hypothesis."
+  ]
+}

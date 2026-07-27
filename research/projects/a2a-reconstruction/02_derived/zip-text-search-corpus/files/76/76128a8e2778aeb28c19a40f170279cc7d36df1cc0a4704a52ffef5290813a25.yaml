@@ -1,0 +1,63 @@
+schema_version: validator-catalog/v0.1
+validators:
+  - id: problem-evidence-gate
+    stage: problem
+    checks:
+      - important claims have evidence
+      - competing explanations recorded
+      - coverage declared
+    mode_initial: warning
+
+  - id: requirement-coverage-gate
+    stage: requirement
+    checks:
+      - goals and anti-goals exist
+      - quality scenarios measurable
+      - owner decisions confirmed
+
+  - id: design-alternative-gate
+    stage: design
+    checks:
+      - load-bearing mechanisms have alternatives
+      - tradeoffs and falsification conditions exist
+
+  - id: design-consistency-gate
+    stage: design
+    checks:
+      - actor permissions consistent
+      - states and transitions valid
+      - critical scenarios close
+
+  - id: engineering-mapping-gate
+    stage: engineering
+    checks:
+      - accepted design objects mapped
+      - interface/data/error/operation covered
+      - migration and rollback exist
+
+  - id: decision-evidence-gate
+    stage: engineering
+    checks:
+      - critical decisions cite prototype, benchmark, source or production evidence
+      - assumptions and reopen triggers exist
+
+  - id: consensus-extraction-gate
+    stage: consensus
+    checks:
+      - source engineering decision accepted
+      - scope and consumers declared
+      - validator exists
+
+  - id: task-context-closure-gate
+    stage: planning
+    checks:
+      - task objective and completion contract complete
+      - read/write sets explicit
+      - necessary consensus compiled
+
+  - id: completion-evidence-gate
+    stage: closure
+    checks:
+      - independent verification passed
+      - runtime or consumer evidence present
+      - unverified items disclosed

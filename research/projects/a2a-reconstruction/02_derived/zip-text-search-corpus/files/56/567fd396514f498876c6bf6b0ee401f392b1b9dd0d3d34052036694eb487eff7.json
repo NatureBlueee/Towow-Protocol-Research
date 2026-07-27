@@ -1,0 +1,39 @@
+{
+  "schema_version": "towow-r5-generative-run-v1",
+  "run_id": "r5-4-run-001-source-identity",
+  "status": "complete_nonacceptance",
+  "baseline_commit": "d85412c98126ec3d37d887796b8a916b190ca567",
+  "model_runner": "Claude Code CLI 2.1.219",
+  "observed_builder_model": "claude-sonnet-5",
+  "conditions": {
+    "static": {
+      "model_calls": 1,
+      "result": "semantic proposal with malformed and semantically incomplete patch",
+      "exact_adoption": false
+    },
+    "least_privilege_central": {
+      "model_calls": 3,
+      "result": "both owner reports returned; builder connection closed mid-response",
+      "exact_adoption": false
+    },
+    "direct_a2a": {
+      "model_calls": 6,
+      "result": "PROPOSE/COUNTER sequence ended at B COUNTER under the call cap",
+      "subject_acceptance": false,
+      "target_adoption": false
+    }
+  },
+  "call_cap_reached": true,
+  "retries": 0,
+  "independent_reviews": [
+    "validation/blind_mechanism_review.md",
+    "validation/oracle_aware_engineering_review.md"
+  ],
+  "validation": [
+    "validation/candidate_null_source.xml",
+    "validation/oracle_against_null_source.xml",
+    "validation/candidate_against_oracle_core.xml",
+    "validation/oracle_native_full.xml"
+  ],
+  "terminal_reason": "Paired conditions, executable counterfactual tests, and two independent reviews changed the research judgment; further A2A rounds in this preregistered run were prohibited by the call cap."
+}

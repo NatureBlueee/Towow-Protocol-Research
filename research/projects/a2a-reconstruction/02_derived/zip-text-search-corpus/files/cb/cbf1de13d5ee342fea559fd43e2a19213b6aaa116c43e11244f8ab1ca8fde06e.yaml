@@ -1,0 +1,69 @@
+schema_version: towow-r5-reality-transfer-state-v1.2
+research_id: towow-a2a-r5-2-harness-reality-transfer
+workspace:
+  root: /Users/nature/个人项目/Harness
+  kind: canonical Harness source and real local historical/runtime workspace
+  canonical_harness_confirmed: true
+  baseline_commit: d85412c98126ec3d37d887796b8a916b190ca567
+  branch_or_worktree: codex/towow-a2a-r5-2-research at /private/tmp/harness-towow-a2a-r5-2
+  dirty_at_start: true
+current_question: >-
+  Do explicit ActionAttempt, Effect, Verification, and Acceptance distinctions
+  predict or prevent errors on real Harness retry, partial-effect, rollback,
+  timeout, and stale-readback traces better than existing terminal events plus
+  authoritative state readback; and, if they do, must they be new top-level
+  objects rather than event subtypes or projections?
+current_hypotheses:
+  - id: H-AEVA-1
+    statement: Explicit attempt/effect/verification/acceptance separation will expose contradictions missed by command exit codes and terminal lifecycle events.
+    status: supported_local_E3
+  - id: H-AEVA-2
+    statement: Existing Harness events and state readback already implement much of the distinction, so adding four parallel authoritative objects may be redundant.
+    status: supported_local_E3
+  - id: H-CAP-1
+    statement: A six-axis readiness claim can predict held-out local command/task outcomes better than a static installed/not-installed capability claim.
+    status: better_than_static_but_falsified_at_80_percent_threshold
+current_run_ids:
+  - r5-2-run-001-effect-reality
+  - r5-2-run-002-capability-holdout
+aborted_run_ids:
+  - r5-2-run-003-boundary-adversarial
+active_blockers:
+  - Remote production authority is documented but not live-verified; no server access is required for the initial local historical study.
+  - Docker daemon reachability is unknown because the managed sandbox denied its Unix socket.
+  - Attack/defense-related boundary experimentation is out of scope by explicit user instruction; the previously planned boundary run is unexecuted.
+  - A true sovereign or cross-organization execution was not run, so no superiority claim is available.
+major_findings:
+  - The workspace is canonical Harness code with real history, event ledger, tests, worktrees, and live-visible sessions.
+  - The local REAL orchestrator is paused with an 87006-event backlog and unresolved pending/relay state.
+  - Worktree creation returned success plus a false main-branch warning and produced an extra log effect; independent Git readback contradicted the warning.
+  - The previously planned boundary run was aborted before execution by user scope and is not evidence for any boundary claim.
+  - The poller produced raw JSON bytes that the canonical EventLog could not read; the isolated repair now uses EventLog.write_direct and passes 5 poller plus 37 event-log regression tests.
+  - The four-stage effect distinction changed recovery decisions, but existing Harness evidence plus authoritative readback matched the explicit reconstruction in all 17 scored scenarios.
+  - EscalationAnswerApplied can be emitted when an answer is durably parked for future redispatch, before a fresh session consumes it; current event wording overstates acceptance unless narrowed.
+  - Six-axis capability readiness scored 4/6 on first attempts and failed its 80 percent threshold; exact parent paths and Python system-temp identity were missing formation conditions.
+  - For this local task, least-privilege central execution plus existing Harness truth sources has the strongest evidence; sovereign superiority is not demonstrated.
+claims_changed:
+  - C-AEVA-REAL-001: supported_locally
+  - C-AEVA-OBJ-001: not_supported_merge_into_existing_contracts
+  - C-EVENTLOG-TRANSFER-001: falsified_and_repaired
+  - C-ESC-ACCEPT-001: counterexample_retained
+  - C-CAP-PRED-001: falsified_at_threshold
+  - C-CAP-PROVENANCE-002: falsified
+  - C-COORD-BASELINE-001: sovereign_superiority_not_demonstrated
+concepts_promoted:
+  - authoritative_readback_precedes_terminal_label
+  - concrete_formation_conditions
+concepts_demoted_or_merged:
+  - four_parallel_authoritative_objects: merge_into_existing_event_and_readback_contracts
+  - six_axis_labels_as_prediction: retain_only_as_headings_for_concrete_conditions
+external_authorizations_needed: []
+return_packet:
+  status: completed
+  source_verifier: passed_without_warnings
+  source_domain_replay: passed
+  candidate_relocation: passed
+  final_archive_readback: passed
+  final_archive: Towow_A2A_R5_2_Harness_Reality_Transfer_Return_Packet_v1.1.zip
+last_updated_utc: 2026-07-24T16:52:00Z
+next_action: Optional future work is enumerated in NEXT_RESEARCH_ACTIONS.md; the current research return is complete.

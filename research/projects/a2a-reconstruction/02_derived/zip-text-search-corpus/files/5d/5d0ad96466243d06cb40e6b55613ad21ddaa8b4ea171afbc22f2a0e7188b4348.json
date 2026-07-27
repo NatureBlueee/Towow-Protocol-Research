@@ -1,0 +1,69 @@
+{
+  "version": "0.4",
+  "aggregate_roots": [
+    "Entity",
+    "Mandate",
+    "RelationVersion",
+    "Assertion",
+    "Commitment",
+    "Operation"
+  ],
+  "event_envelope": {
+    "status": "transport_and_audit_wrapper",
+    "not_a_semantic_root": true
+  },
+  "candidate_concepts": {
+    "UsageGrant": {
+      "default": "Mandate scope or policy binding",
+      "promote_when": [
+        "independently issued or revoked",
+        "independent version lifecycle",
+        "cross-relation external reference"
+      ]
+    },
+    "DataUseEvent": {
+      "default": "typed EventEnvelope",
+      "promote_when": []
+    },
+    "DerivationRecord": {
+      "default": "provenance edge or Assertion/Artifact payload",
+      "promote_when": [
+        "lineage itself is independently governed, disputed, or externally referenced"
+      ]
+    },
+    "JointArtifactRights": {
+      "default": "RelationVersion policy",
+      "promote_when": [
+        "independent multilateral ratification",
+        "independent amendment or revocation",
+        "independent enforcement or dispute"
+      ],
+      "promoted_type": "Commitment"
+    },
+    "LearningUpdate": {
+      "default": "Effect event subtype",
+      "promote_when": [
+        "persistent cross-task state",
+        "separate revocation obligation",
+        "regulatory or third-party externality",
+        "independent governance lifecycle"
+      ]
+    }
+  },
+  "derived_views": [
+    "Settlement",
+    "CapabilityEnvelope",
+    "AssuranceCase",
+    "CompiledWorld",
+    "CurrentDisposition"
+  ],
+  "methods_not_roots": [
+    "NAC",
+    "BIC",
+    "SJAC",
+    "JAA",
+    "PFE",
+    "CRA",
+    "Harness"
+  ]
+}

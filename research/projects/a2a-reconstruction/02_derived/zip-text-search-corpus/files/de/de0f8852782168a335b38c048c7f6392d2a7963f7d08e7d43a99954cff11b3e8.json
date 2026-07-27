@@ -1,0 +1,93 @@
+{
+  "episode_id": "r5-4-fe-001-source-identity",
+  "run_id": "r5-4-run-001-source-identity",
+  "objective_version": "original-v1",
+  "principals": ["source-owner-a", "source-owner-b"],
+  "agent_executions": [
+    "round1_a",
+    "round2_b",
+    "round3_a",
+    "round4_b",
+    "round5_a",
+    "round6_b"
+  ],
+  "pre_state": {
+    "objective": "Preserve independent source-owned lifecycles without reducing historical compatibility.",
+    "reachable_actions": [
+      "static composite-key proposal",
+      "fixed owner disclosure",
+      "owner-specific veto"
+    ],
+    "unreachable_actions": [
+      "jointly signed exact legacy policy",
+      "adopted patch satisfying both incompatible policies"
+    ],
+    "initial_capability_descriptions": [
+      "A may remove A's reference",
+      "B may retain B's reference and veto cross-owner effects"
+    ]
+  },
+  "interaction_events": [
+    {"round": 1, "actor": "A", "action": "PROPOSE", "change": "composite identity plus global legacy fallback"},
+    {"round": 2, "actor": "B", "action": "COUNTER", "change": "null-source no-wildcard veto and stronger outcome duties"},
+    {"round": 3, "actor": "A", "action": "PROPOSE", "change": "null-source class and seven lifecycle surfaces"},
+    {"round": 4, "actor": "B", "action": "COUNTER", "change": "verification remedy required"},
+    {"round": 5, "actor": "A", "action": "PROPOSE", "change": "severability and infeasibility lapse"},
+    {"round": 6, "actor": "B", "action": "COUNTER", "change": "entitlement floor, disclosure, dispute, reopen"}
+  ],
+  "formed_conditions": [
+    {
+      "condition_id": "null-source-class",
+      "description": "Absent source is a distinct identity and never a wildcard into sourced state.",
+      "proposed_by": "B, adopted in A round 3",
+      "authorized_by": [],
+      "state_change_evidence": "transcripts/a2a/round2_b/parsed.json; transcripts/a2a/round3_a/parsed.json"
+    },
+    {
+      "condition_id": "failure-remedy",
+      "description": "Mechanism lapse cannot silently erase the underlying entitlement; findings are disclosed and contestable.",
+      "proposed_by": "A and B through rounds 4-6",
+      "authorized_by": [],
+      "state_change_evidence": "transcripts/a2a/round4_b/parsed.json; transcripts/a2a/round5_a/parsed.json; transcripts/a2a/round6_b/parsed.json"
+    }
+  ],
+  "post_state": {
+    "new_reachable_actions": [
+      "implement and test a null-source counterfactual",
+      "ask owner to decide a measured mixed-stream policy"
+    ],
+    "result": "unclosed condition candidate",
+    "target_domain_adoption": false,
+    "acceptance": false
+  },
+  "causal_evidence": {
+    "ablation_or_counterfactuals": [
+      "static builder independently found composite identity",
+      "central B independently supplied null-source rule",
+      "paired executable null-source and wildcard tests"
+    ],
+    "remaining_alternative_explanations": [
+      "discovery of pre-existing capability",
+      "elaboration of pre-authored owner conflict",
+      "central synthesis would succeed with shorter output"
+    ],
+    "grade": "E3 local mechanism-related; not formation success"
+  },
+  "goal_value": {
+    "A_historical_compatibility": "narrowed and not finally accepted",
+    "B_owner_isolation": "protected in candidate but not adopted",
+    "accepted_original_value": false
+  },
+  "costs": {
+    "calls": 6,
+    "usd": 1.3439834,
+    "wall_clock_seconds": 623.4278555429773,
+    "verification": "paired tests and two reviews"
+  },
+  "conclusion": {
+    "interaction_type": "adaptive owner negotiation with veto and counterconditions",
+    "claim_strength": "unclosed candidate formation only",
+    "scope": "one local collapsible Harness engineering task",
+    "next_discriminating_action": "Measure mixed legacy data and obtain authorized acceptance before more negotiation."
+  }
+}

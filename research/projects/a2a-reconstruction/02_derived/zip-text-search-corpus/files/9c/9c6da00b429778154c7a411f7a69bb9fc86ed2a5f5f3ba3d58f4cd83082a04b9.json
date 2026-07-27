@@ -1,0 +1,305 @@
+{
+  "centralized": {
+    "processes": [
+      {
+        "name": "central",
+        "exit_code": 0,
+        "duration_ms": 259.023,
+        "sandboxed": false,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "result": {
+      "role": "centralized_omniscient",
+      "accepted": true,
+      "private_canaries_read": {
+        "producer": true,
+        "validator": true
+      },
+      "report": {
+        "claims": 18,
+        "reachable": 2,
+        "missing": 16,
+        "rows": [
+          {
+            "claim_id": "R5-C01",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C02",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C03",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C04",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C05",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C06",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C07",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C08",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C09",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C10",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C11",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C12",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C13",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C14",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C15",
+            "reachable": true,
+            "sha256": "cb1bcaaa5dc016873777d9c9a5a83059d9baedc1e8f47293b7f79d007160ff01"
+          },
+          {
+            "claim_id": "R5-C16",
+            "reachable": true,
+            "sha256": "cb1bcaaa5dc016873777d9c9a5a83059d9baedc1e8f47293b7f79d007160ff01"
+          },
+          {
+            "claim_id": "R5-C17",
+            "reachable": false,
+            "sha256": null
+          },
+          {
+            "claim_id": "R5-C18",
+            "reachable": false,
+            "sha256": null
+          }
+        ],
+        "absolute_paths_disclosed": false
+      }
+    }
+  },
+  "sovereign_honest": {
+    "processes": [
+      {
+        "name": "honest_coordinator_preflight",
+        "exit_code": 0,
+        "duration_ms": 251.492,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "honest_producer",
+        "exit_code": 0,
+        "duration_ms": 292.37,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "honest_validator",
+        "exit_code": 0,
+        "duration_ms": 290.871,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "honest_coordinator_finalize",
+        "exit_code": 0,
+        "duration_ms": 283.394,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "preflight": {
+      "role": "coordinator_preflight",
+      "private_and_packet_probes": {
+        "producer_private": {
+          "allowed": true,
+          "error": null
+        },
+        "validator_private": {
+          "allowed": true,
+          "error": null
+        },
+        "packet_baseline": {
+          "allowed": false,
+          "error": "PermissionError:1"
+        }
+      },
+      "capability_cards": {
+        "producer": [
+          "audit_baseline_reachability",
+          "sign_report"
+        ],
+        "validator": [
+          "verify_report",
+          "apply_private_acceptance_policy"
+        ]
+      },
+      "status": "unknown",
+      "static_profile_can_complete": false
+    },
+    "producer": {
+      "role": "producer",
+      "other_private_read": {
+        "allowed": true,
+        "error": null
+      },
+      "report_sha256": "23a3af2c457fcaf97f080065ea53fec5c55494f73dd9d28fea7499355203b0e2",
+      "signed": true
+    },
+    "validator": {
+      "role": "validator",
+      "other_private_read": {
+        "allowed": true,
+        "error": null
+      },
+      "verdict": {
+        "accepted": true,
+        "reason": "accepted",
+        "report_sha256": "23a3af2c457fcaf97f080065ea53fec5c55494f73dd9d28fea7499355203b0e2",
+        "signature_valid": true,
+        "counts_valid": true
+      },
+      "signed": true
+    },
+    "final": {
+      "role": "coordinator_finalize",
+      "private_and_packet_probes": {
+        "producer_private": {
+          "allowed": true,
+          "error": null
+        },
+        "validator_private": {
+          "allowed": true,
+          "error": null
+        },
+        "packet_baseline": {
+          "allowed": false,
+          "error": "PermissionError:1"
+        }
+      },
+      "validator_signature_valid": true,
+      "report_hash_matches": true,
+      "accepted": true,
+      "verdict_reason": "accepted"
+    },
+    "public_files_copied": 8
+  },
+  "sovereign_tampered": {
+    "processes": [
+      {
+        "name": "tamper_coordinator_preflight",
+        "exit_code": 0,
+        "duration_ms": 261.463,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "tamper_producer",
+        "exit_code": 0,
+        "duration_ms": 290.159,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "tamper_validator",
+        "exit_code": 4,
+        "duration_ms": 286.038,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "name": "tamper_coordinator_finalize",
+        "exit_code": 5,
+        "duration_ms": 277.609,
+        "sandboxed": true,
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "intervention": "Controller changed reachable count after producer signature.",
+    "validator": {
+      "role": "validator",
+      "other_private_read": {
+        "allowed": true,
+        "error": null
+      },
+      "verdict": {
+        "accepted": false,
+        "reason": "invalid_producer_signature",
+        "report_sha256": "61f171d9d7f1d8aaa3a1dec29910834ea0ef9b78f51d7c427223b5a25de34625",
+        "signature_valid": false,
+        "counts_valid": false
+      },
+      "signed": true
+    },
+    "final": {
+      "role": "coordinator_finalize",
+      "private_and_packet_probes": {
+        "producer_private": {
+          "allowed": true,
+          "error": null
+        },
+        "validator_private": {
+          "allowed": true,
+          "error": null
+        },
+        "packet_baseline": {
+          "allowed": false,
+          "error": "PermissionError:1"
+        }
+      },
+      "validator_signature_valid": true,
+      "report_hash_matches": true,
+      "accepted": false,
+      "verdict_reason": "invalid_producer_signature"
+    },
+    "public_files_copied": 8
+  }
+}

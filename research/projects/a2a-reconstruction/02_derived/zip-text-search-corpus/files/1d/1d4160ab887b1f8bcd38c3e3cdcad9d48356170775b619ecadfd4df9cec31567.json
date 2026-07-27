@@ -1,0 +1,55 @@
+{
+  "delegate_entity_ref": "agent:provider_tech",
+  "issued_at": "2026-07-26T06:42:14.659556+00:00",
+  "mandate_id": "mandate-provider_tech-v1",
+  "must_escalate": [
+    "any term outside scope",
+    "any irreversible action",
+    "any change of objective owner"
+  ],
+  "party_id": "provider_tech",
+  "principal_ref": "principal:provider_tech",
+  "revocation_conditions": [
+    "participant withdrawal",
+    "material schema change outside current mandate",
+    "security incident"
+  ],
+  "scope": {
+    "data_resources": [
+      "source_data"
+    ],
+    "forbidden_purposes": [
+      "training",
+      "copying raw rows"
+    ],
+    "may_ask": [
+      "schema",
+      "query interface",
+      "sandbox limits"
+    ],
+    "may_commit": [
+      "containerized probe execution"
+    ],
+    "may_conditionally_accept": [
+      "documented read-only sandbox"
+    ],
+    "may_disclose": [
+      "technical prerequisites",
+      "runtime envelope"
+    ],
+    "may_execute": [
+      "approved read-only probe only"
+    ],
+    "may_reject": [
+      "unsupported environment"
+    ],
+    "permitted_purposes": [
+      "pilot_evaluation"
+    ],
+    "retention_days": 0,
+    "training_allowed": false
+  },
+  "status": "ACTIVE",
+  "valid_from": "2026-07-26T00:00:00Z",
+  "valid_until": "2026-08-31T23:59:59Z"
+}

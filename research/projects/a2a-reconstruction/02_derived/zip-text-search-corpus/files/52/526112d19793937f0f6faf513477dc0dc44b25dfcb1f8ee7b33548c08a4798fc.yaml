@@ -1,0 +1,151 @@
+version: towow-r5-constructive-v1
+current_meta_question: >-
+  在真实不可折叠主体之间，什么互动方法能够形成被接受、可复用且净值为正的新行动路径？
+workspace_facts:
+  task_packet: towow_a2a_r5_constructive_packet_v1.5
+  task_packet_verification: "verified 25 files"
+  source_repo: /Users/nature/个人项目/Harness
+  research_worktree: /private/tmp/harness-towow-a2a-r5-constructive
+  branch: codex/towow-a2a-r5-constructive
+  baseline_head: d85412c98126ec3d37d887796b8a916b190ca567
+  source_main_dirty: true
+  source_main_ahead_origin: 4
+  platform: "macOS 26.6 arm64"
+  python: "3.9.6"
+  node: "26.5.0"
+  codex_cli: "0.145.0"
+  claude_code: "2.1.220"
+current_flagship_task:
+  id: FT-R5C-001
+  name: Privacy-preserving external Acceptance bridge from Allbuddy to Agent World
+  source_refs:
+    - "Allbuddy@1a70fb51bfbf58a614a47962ad50855b5f7e0a10"
+    - "AgentWorld@393b08ea5ccf9db72bff262b86800b0e883c36cd"
+  status: bounded_local_confirmation_complete
+active_design_decisions:
+  - D01_next_action_selection
+  - D02_boundary_formation
+  - D03_condition_formation
+  - D06_capability_reuse
+active_hypotheses:
+  - id: H-R5C-01
+    statement: >-
+      形成动作只有在先由局部执行产生可验证 Defeater、再把最小必要问题或验证器送过边界时，
+      才可能优于静态描述或持续对话。
+    status: supported_with_static_and_central_limitations
+candidate_coordination_methods:
+  - id: M-R5C-01
+    name: authority_first_countercondition_reduction
+    loop:
+      - principals_refuse_false_authority
+      - local_falsification_exposes_missing_condition
+      - exchange_minimum_observable_properties
+      - remove_overprescribed_fields_and_crypto
+      - freeze_authority_split_before_schema
+      - create_local_canonical_readback
+      - independent_ingest_and_projection
+      - ablate_acceptance_and_authorization
+    status: bounded_candidate_method
+formation_episodes:
+  - id: R5C-EP-001
+    task: FT-R5C-001
+    phase: final_scoped_pass_and_return_packet
+    principals:
+      - Allbuddy_data_product
+      - AgentWorld_provenance_projection
+accepted_design_deltas:
+  - id: DD-R5C-001
+    statement: >-
+      本地 synthetic consumer source 必须把 session 预建立、operation recovery、
+      canonical read-after-write、monotonic cancel/revoke、revision lineage 与
+      claim/persist/ack 作为一个 authority-delivery 能力，而非独立传输细节。
+    evidence:
+      - runs/R5C-EP-001/OPEN_REREVIEW_03.md
+      - runs/R5C-EP-001/OPEN_REREVIEW_04.md
+      - runs/R5C-EP-001/OPEN_REREVIEW_05.md
+  - id: DD-R5C-002
+    statement: >-
+      World 只有在完整 replayable C2/C4/SceneDelta 后置条件存在且 source 明确
+      acknowledged=true 后才可确认 transport；invalid/private evidence 必须把旧成功
+      降为 stale/unknown，source Viewer 必须映射到唯一 target Viewer。
+    evidence:
+      - runs/R5C-EP-001/WORLD_OPEN_REREVIEW_03.md
+      - runs/R5C-EP-001/LIVE_CROSS_REPO_EPISODE.md
+rejected_methods:
+  - method: unbounded_multi_round_negotiation
+    reason: R5.4 未形成目标域采纳、双方 Acceptance 或可复用能力
+background_engineering_queue: []
+resolved_flagship_defeaters:
+  - id: B-R5C-001
+    statement: >-
+      第一版 file ledger 在跨进程并发下丢更新并重复消费 one-shot capability；
+      ProductShell 的 Artifact 仍为 React 内存，因而 ledger adopted 可与真实 consumer
+      持久状态分离；World 没有真实 reader grant 路径。
+    evidence: runs/R5C-EP-001/OPEN_REREVIEW_01.md
+  - id: B-R5C-002
+    statement: >-
+      第二实现虽使 record durable，但 authority delivery 仍依赖一次 HTTP response 与
+      Web Storage；ProductShell 无独立 read-after-write，World 无 durable claim/ack。
+    evidence: runs/R5C-EP-001/OPEN_REREVIEW_02.md
+  - id: B-R5C-003
+    statement: >-
+      第三实现的 session authority 随首次 run 响应下发，response loss 无法恢复；
+      explicit abort 可在 reload 后变成 adoption；orphan lock 无回收；revision operation
+      replay 不验证原输入且返回最新状态。
+    evidence: runs/R5C-EP-001/OPEN_REREVIEW_03.md
+  - id: B-R5C-004
+    statement: >-
+      adoption 已 canonical commit 但响应未到 UI 时，浏览器 abort 会删除 recovery marker
+      并声称没有 Artifact；独立 World 仍可 claim/read/ack adopted@rev1。abort 尚未成为
+      与 adoption 串行化的 authoritative decision。
+    evidence: runs/R5C-EP-001/OPEN_REREVIEW_04.md
+  - id: B-R5C-005
+    statement: >-
+      World 初版在 SceneDelta 缺失、acknowledged=false、非法私域 readback 与
+      source/target Viewer 映射上仍会制造假闭环。
+    evidence: runs/R5C-EP-001/WORLD_OPEN_REREVIEW_03.md
+current_blockers:
+  - id: B-R5C-HUMAN-001
+    statement: >-
+      本地 ProductShell adoption 是 synthetic automatic policy；没有真实人类/客户
+      Recognition，因此商业价值、偏好与责任 Claim 保持 Unknown。
+    evidence: return/R5C-RETURN-001/HUMAN_RECOGNITION_AND_VALUE.md
+  - id: B-R5C-COMPARISON-001
+    statement: >-
+      未从同一 pre-state 实跑 matched central formation；A2A 对架构发明的独有增量
+      保持 Unknown，冻结接口后的 least-privilege central 执行已足够。
+    evidence: runs/R5C-EP-001/BASELINE_CENTRAL_RESULT.md
+capability_claims:
+  - id: CC-R5C-01
+    status: supported_local_holdout
+    freeze: runs/R5C-EP-001/CAPABILITY_CLAIM_FROZEN_BEFORE_HOLDOUT.md
+    holdout: runs/R5C-EP-001/HOLDOUT_RESULT.md
+return_packet: .
+portable_packet:
+  status: self_contained_verified
+  verifier: verify_return_packet.py
+  relocation_passed: true
+  claim_refs_resolved: true
+  source_patches_apply_check_passed: true
+  checksums_passed: true
+  contents:
+    - complete_formation_episode
+    - discovery_and_governing_inputs
+    - claim_state_and_decision_ledgers
+    - source_patches
+    - schema_dependency_and_model_provenance
+    - checksummed_manifest
+final_open_rereview:
+  verdict: PASS
+  scope: synthetic_local_allbuddy_to_world_report
+  evidence: runs/R5C-EP-001/WORLD_OPEN_REREVIEW_07_FINAL.md
+stopping_condition:
+  reached: true
+  reason: >-
+    第五次窄复核复现所有已知 Defeater 闭合且未产生新的 scoped 承重反例；
+    在 contract/schema/authorization/scope 不变时继续运行仅复制证据。
+next_high_value_action: >-
+  在真实历史 owner 或真实人类 consumer 的跨组织 holdout 上，从同一 pre-state
+  配对运行 central designer 与 authority-first countercondition reduction；
+  不再继续打磨当前 synthetic 单机 adapter。
+last_updated_utc: "2026-07-25T12:22:29Z"

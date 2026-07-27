@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/schemas/formation_episode.schema.json",
+  "title": "Towow Constructive Formation Episode",
+  "type": "object",
+  "required": [
+    "episode_id",
+    "objective",
+    "pre_state",
+    "participants",
+    "interaction_trace_refs",
+    "formation_claim",
+    "result",
+    "causal_checks",
+    "design_delta"
+  ],
+  "properties": {
+    "episode_id": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "object",
+      "required": [
+        "original",
+        "value_dimensions"
+      ],
+      "properties": {
+        "original": {
+          "type": "string"
+        },
+        "value_dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "pre_state": {
+      "type": "object",
+      "required": [
+        "accepted_path_exists",
+        "unreachability_evidence_refs"
+      ],
+      "properties": {
+        "accepted_path_exists": {
+          "type": "boolean"
+        },
+        "unreachability_evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "principal_id",
+          "execution_id",
+          "private_world_ref",
+          "authority_ref"
+        ],
+        "properties": {
+          "principal_id": {
+            "type": "string"
+          },
+          "execution_id": {
+            "type": "string"
+          },
+          "private_world_ref": {
+            "type": "string"
+          },
+          "authority_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "interaction_trace_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "formation_claim": {
+      "type": "object",
+      "required": [
+        "new_condition",
+        "state_delta_refs",
+        "classification"
+      ],
+      "properties": {
+        "new_condition": {
+          "type": "string"
+        },
+        "state_delta_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "classification": {
+          "enum": [
+            "epistemic_discovery",
+            "constructive_formation",
+            "configurational_composition",
+            "normative_enablement",
+            "restatement",
+            "goal_substitution",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "target_adopted",
+        "accepted",
+        "original_value_preserved",
+        "evidence_refs"
+      ],
+      "properties": {
+        "target_adopted": {
+          "type": "boolean"
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "original_value_preserved": {
+          "type": "boolean"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "causal_checks": {
+      "type": "object",
+      "required": [
+        "critical_condition_removed",
+        "baseline_refs"
+      ],
+      "properties": {
+        "critical_condition_removed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "baseline_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "costs": {
+      "type": "object"
+    },
+    "holdout": {
+      "type": "object"
+    },
+    "design_delta": {
+      "type": "object",
+      "required": [
+        "decision_changed",
+        "change"
+      ],
+      "properties": {
+        "decision_changed": {
+          "type": "boolean"
+        },
+        "change": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

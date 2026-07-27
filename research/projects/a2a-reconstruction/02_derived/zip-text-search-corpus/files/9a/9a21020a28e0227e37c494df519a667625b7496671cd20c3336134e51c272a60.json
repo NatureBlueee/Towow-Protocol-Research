@@ -1,0 +1,59 @@
+{
+  "delegate_entity_ref": "agent:buyer_data",
+  "issued_at": "2026-07-26T06:42:14.658612+00:00",
+  "mandate_id": "mandate-buyer_data-v1",
+  "must_escalate": [
+    "any term outside scope",
+    "any irreversible action",
+    "any change of objective owner"
+  ],
+  "party_id": "buyer_data",
+  "principal_ref": "principal:buyer_data",
+  "revocation_conditions": [
+    "participant withdrawal",
+    "material schema change outside current mandate",
+    "security incident"
+  ],
+  "scope": {
+    "data_resources": [
+      "source_data"
+    ],
+    "forbidden_purposes": [
+      "training",
+      "general model improvement",
+      "resale"
+    ],
+    "may_ask": [
+      "execution mode",
+      "retention",
+      "training",
+      "audit evidence"
+    ],
+    "may_commit": [
+      "sandbox access for approved probe"
+    ],
+    "may_conditionally_accept": [
+      "buyer-controlled read-only probe"
+    ],
+    "may_disclose": [
+      "data categories",
+      "allowed query interface"
+    ],
+    "may_execute": [
+      "create revocable read-only credential"
+    ],
+    "may_reject": [
+      "raw export",
+      "training",
+      "provider-controlled persistent copy"
+    ],
+    "permitted_purposes": [
+      "pilot_evaluation"
+    ],
+    "retention_days": 0,
+    "training_allowed": false
+  },
+  "status": "ACTIVE",
+  "valid_from": "2026-07-26T00:00:00Z",
+  "valid_until": "2026-08-31T23:59:59Z"
+}

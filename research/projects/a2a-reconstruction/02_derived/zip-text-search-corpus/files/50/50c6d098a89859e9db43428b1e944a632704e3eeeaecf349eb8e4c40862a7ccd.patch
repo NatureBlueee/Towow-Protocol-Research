@@ -1,0 +1,258 @@
+--- a/projection.py
++++ b/projection.py
+@@ -2380,7 +2380,7 @@
+         after = payload.get("after_state")
+         after = after if isinstance(after, dict) else {}
+ 
+         if ev.event_type is EventType.AT_REFERENCE_ADDED:
+             ref_id = after.get("reference_id")
+             if isinstance(ref_id, str):
+                 # T-L0-08 source_entity/target_entity shape.
+                 if not any(r.get("reference_id") == ref_id for r in refs):
+                     refs.append(
+                         {
+                             "reference_id": ref_id,
+                             "source": _endpoint(after.get("source_entity")),
+                             "target": _endpoint(after.get("target_entity")),
+                             "reference_type": after.get("reference_type", ""),
+                             "is_active": True,
+                             "created_at_event_id": ev.event_id,
+                         },
+                     )
+             else:
+                 # T-L1-14: M-1.2 typed @ locator CLI shape (no reference_id; keyed by at_reference).
+                 at_ref = after.get("at_reference")
+-                if isinstance(at_ref, str) and not any(r.get("reference_id") == at_ref for r in refs):
++                # Two independently controlled consumers may add the same locator string against
++                # the same target — dedup must be scoped by (locator, owner), not locator alone,
++                # or the second consumer's reference is silently dropped (never materialized).
++                owner = after.get("source_concept_id")
++                if isinstance(at_ref, str) and not any(
++                    _typed_locator_match(r, at_ref, owner) for r in refs
++                ):
+                     refs.append(
+                         {
+                             "reference_id": at_ref,
+                             "source_concept_id": after.get("source_concept_id", ""),
+                             "target_concept_name": after.get("target_concept_name", ""),
+                             "locator_type": after.get("locator_type", ""),
+                             "field_path": after.get("field_path"),
+                             "state_anchor": after.get("state_anchor"),
+                             # locked_event_id is the @-suffix lock if present, else the add event.
+                             "locked_event_id": after.get("lock_event_id") or ev.event_id,
+                             "on_target_supersede_policy": after.get("on_target_supersede_policy"),
+                             "is_active": True,
+                             "is_stale": False,
+                             "created_at_event_id": ev.event_id,
+                         },
+                     )
+         elif ev.event_type is EventType.AT_REFERENCE_REMOVED:
+             before = payload.get("before_state")
+             before = before if isinstance(before, dict) else {}
+             ref_id = after.get("reference_id") or before.get("reference_id")
+-            for r in refs:
+-                if r.get("reference_id") == ref_id:
+-                    r["is_active"] = False
++            if isinstance(ref_id, str):
++                # T-L0-08 endpoint shape: reference_id is already a producer-unique id.
++                for r in refs:
++                    if r.get("reference_id") == ref_id:
++                        r["is_active"] = False
++            else:
++                # T-L1-14 typed @ locator shape mirrors AtReferenceAdded's fields (no
++                # reference_id on the record; identified by at_reference + owning
++                # source_concept_id). Without this branch a typed reference could never be
++                # deactivated by remove/replay.
++                at_ref = after.get("at_reference") or before.get("at_reference")
++                owner = after.get("source_concept_id")
++                if owner is None:
++                    owner = before.get("source_concept_id")
++                if isinstance(at_ref, str):
++                    for r in refs:
++                        if _typed_locator_match(r, at_ref, owner):
++                            r["is_active"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_AUTO_UPDATED:
+             ref_id = after.get("reference_id")
+-            for r in refs:
+-                if r.get("reference_id") == ref_id:
++            owner = after.get("source_concept_id")  # None ⇒ legacy aux event, locator-only match
++            for r in refs:
++                if _typed_locator_match(r, ref_id, owner):
+                     # auto_accept_latest: 跟随到 supersede 后新 lock → 不再 stale。
+                     r["locked_event_id"] = after.get("new_lock_event_id") or r.get("locked_event_id")
+                     r["is_stale"] = False
+         elif ev.event_type is EventType.AT_REFERENCE_TARGET_SUPERSEDED:
+             ref_id = after.get("reference_id")
+-            for r in refs:
+-                if r.get("reference_id") == ref_id:
++            owner = after.get("source_concept_id")  # None ⇒ legacy aux event, locator-only match
++            for r in refs:
++                if _typed_locator_match(r, ref_id, owner):
+                     # pin_to_snapshot / explicit_decision_required: target 已 supersede, ref 未跟随。
+                     r["is_stale"] = True
+                     r["target_superseded_at_event_id"] = after.get("new_target_event_id")
+                     r["staleness_status"] = after.get("status")
+                     # aux event 携带 supersede 的完整 concept_id (含版本) — 比 add 时版本归一的
+                     # target_concept_name 更精确, 用它覆盖 stale 报告的 target。
+                     superseded_target = after.get("target_concept_name")
+                     if isinstance(superseded_target, str) and superseded_target:
+                         r["target_concept_name"] = superseded_target
+ 
+         self.write_atomic("at_reference_graph", {"references": refs})
+@@ -3019,6 +3019,22 @@
+     if is_legal_canonical_transition(current, target):
+         node["canonical_state"] = target.value
+ 
+ 
++def _typed_locator_match(entry: dict[str, object], ref_id: object, owner: object) -> bool:
++    """Identity match for a typed-locator (T-L1-14) @ reference projection entry.
++
++    Two independently controlled consumers may share the same ``at_reference`` locator string
++    against the same target; each must stay keyed by (locator, owner) so one consumer's
++    remove/auto-update/target-supersede lifecycle event never mutates the other's still-active
++    entry. ``owner is None`` means the incoming event carries no source_concept_id at all (a
++    pre-owner-scoping legacy record) — degrade to the original locator-only match so already
++    -committed history keeps replaying exactly as it did before (§6 idempotent replay).
++    Endpoint-shaped entries never carry "source_concept_id" and are unaffected by this when
++    their unique reference_id is passed in with owner=None.
++    """
++    if entry.get("reference_id") != ref_id:
++        return False
++    if owner is None:
++        return True
++    return entry.get("source_concept_id", "") == owner
++
++
+ def _endpoint(raw: object) -> dict[str, object]:
+     """Map a producer @-reference endpoint {type,id,field_path} → projection {entity_type,...}."""
+     if not isinstance(raw, dict):
+--- a/consensus_invalidation.py
++++ b/consensus_invalidation.py
+@@ -68,7 +68,7 @@
+     added: list[dict[str, object]] = []
+-    removed_refs: set[str] = set()
++    removed_refs: set[tuple[str, object]] = set()
+     for line in iter_raw_event_lines(towow_dir):
+         try:
+             rec = json.loads(line)
+         except json.JSONDecodeError:
+             continue
+         if not isinstance(rec, dict):
+             continue
+         et = rec.get("event_type")
+         if et == "AtReferenceAdded":
+             a = _after(rec)
+             if _resolves_to(a.get("target_concept_name"), superseded_concept_id):
+                 added.append({**a, "_event_id": rec.get("event_id")})
+         elif et == "AtReferenceRemoved":
+             a = _after(rec)
+             ref = a.get("at_reference")
+             if isinstance(ref, str):
+-                removed_refs.add(ref)
+-    return [r for r in added if r.get("at_reference") not in removed_refs]
++                # Scope removal by owner too: two independently controlled consumers can share
++                # the same at_reference locator against the same target, and one consumer
++                # removing theirs must not silently drop the other's still-active reference.
++                # None owner (no source_concept_id on the removal record — pre-owner-scoping
++                # legacy event) keeps the original broad locator-only removal semantics.
++                removed_refs.add((ref, a.get("source_concept_id")))
++
++    def _is_removed(r: dict[str, object]) -> bool:
++        ref = r.get("at_reference")
++        owner = r.get("source_concept_id")
++        return (ref, owner) in removed_refs or (ref, None) in removed_refs
++
++    return [r for r in added if not _is_removed(r)]
+@@ -136,12 +136,13 @@
+         if policy is LockingPolicy.AUTO_ACCEPT_LATEST:
+             out.append(
+                 (
+                     EventType.AT_REFERENCE_AUTO_UPDATED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": ref.get("source_concept_id"),
+                         "old_lock_event_id": old_lock,
+                         "new_lock_event_id": supersede_event_id,
+                         "old_locked_at_state_hash": old_state_hash,
+                         # auto_accept_latest 跟随到新 event → 新锁状态 hash 更新为 supersede 事件指纹
+                         "locked_at_state_hash": new_state_hash,
+                         "target_concept_name": superseded_concept_id,
+                     },
+                 ),
+             )
+         elif policy is LockingPolicy.PIN_TO_SNAPSHOT:
+             out.append(
+                 (
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": ref.get("source_concept_id"),
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         # pin 不跟随: 锁状态 hash 保持旧 snapshot; 仅记录新 target 指纹供漂移可见
+                         "locked_at_state_hash": old_state_hash,
+                         "new_target_state_hash": new_state_hash,
+                         "target_concept_name": superseded_concept_id,
+                         "status": "pinned_to_old",
+                         "blocks_commit_for_referer": False,
+                     },
+                 ),
+             )
+         else:  # explicit_decision_required (默认)
+             out.append(
+                 (
+                     EventType.AT_REFERENCE_TARGET_SUPERSEDED,
+                     {
+                         "reference_id": ref_id,
++                        "source_concept_id": ref.get("source_concept_id"),
+                         "old_lock_event_id": old_lock,
+                         "new_target_event_id": supersede_event_id,
+                         "locked_at_state_hash": old_state_hash,
+                         "new_target_state_hash": new_state_hash,
+                         "target_concept_name": superseded_concept_id,
+                         "status": "awaiting_decision",
+                         "blocks_commit_for_referer": True,
+                     },
+                 ),
+             )
+     return out
+--- a/concept_retire_gate.py
++++ b/concept_retire_gate.py
+@@ -265,7 +265,7 @@
+ @dataclass(frozen=True)
+ class _BatchMigrations:
+-    removed_reference_ids: frozenset[str]  # 本批 AtReferenceRemoved 删掉的引用 id
++    removed_reference_ids: frozenset[Any]  # 本批删掉的引用: (ref_id, owner) 或 legacy 裸 ref_id
+     repointed_sources: frozenset[str]  # 本批把引用重指到某新版本的源概念
+     batch_concept_ids: frozenset[str]  # 本批 (co-)创建/supersede 的概念 (源自身迁了)
+@@ -290,11 +290,17 @@
+         elif et == _AT_REFERENCE_REMOVED:
+             after = _after_state(intent)
+             ref_id = _ref_field(after, "at_reference", "reference_id")
++            owner = after.get("source_concept_id")
+             if ref_id:
+-                removed.add(ref_id)
++                # Owner-scope removal evidence: two independently controlled consumers can share
++                # the same at_reference locator against the same retiring concept, and one
++                # consumer's removal must not count as migration evidence for the other's still
++                # -active blocking reference. owner is None for pre-scoping legacy removal
++                # intents (no source_concept_id on the record) — keep the original locator-only
++                # evidence for those so already-declared migrations in flight still pass.
++                removed.add((ref_id, owner) if owner is not None else ref_id)
+         elif et == _AT_REFERENCE_ADDED:
+             after = _after_state(intent)
+             target = _ref_field(after, "target_concept_name")
+             source = _ref_field(after, "source_concept_id")
+@@ -465,9 +471,12 @@
+     只认可核验的 canonical 证据 (finding-r016): 本批删引用 / 本批重指新版本 / 源本批被 supersede /
+     committed 历史已重指新版本。`migrated_concept_ids` 自报**不再单独放行** —— 一条仍 active 的
+     explicit-decision 引用必须由真证据清掉; 自报只在拒批留痕里标"declared_but_unverified", 不放行。
+     """
+-    if reference_id and reference_id in batch.removed_reference_ids:
++    if reference_id and (
++        reference_id in batch.removed_reference_ids
++        or (source, reference_id) in batch.removed_reference_ids
++    ):
+         return True, "at_reference_removed_in_batch"
+     if source and source in batch.repointed_sources:
+         return True, "at_reference_repointed_to_new_in_batch"

@@ -1,0 +1,17 @@
+id: handoff_portability
+concern: handoff_portability
+inputs:
+- Artifact
+- RelevantSpecNodes
+checks:
+- 盲消费者可重建
+- 无口头历史依赖
+- 运行时假设隔离在 Adapter
+result_schema: ../validation-report.schema.json
+severity_policy:
+  critical: 阻止发布
+  major: 默认阻止，除非有批准豁免
+  minor: 可发布但需登记
+independence_requirement: 高风险产物不得由完全相同执行上下文最终自证
+known_blind_spots:
+- Validator 只能检查已编码规则，不能证明现实价值本身

@@ -1,0 +1,22 @@
+risks:
+- id: K-01
+  risk: 方法过度官僚化，产物成本超过质量收益
+  mitigation: 观察 rule_cost_vs_quality_gain，允许方法卡停用
+- id: K-02
+  risk: 结构化 Schema 制造虚假精确
+  mitigation: 保留解释文本、未知与反例
+- id: K-03
+  risk: 召集台特有逻辑被错误抽象为通用方法
+  mitigation: 第二产品迁移验证
+- id: K-04
+  risk: 多 Agent 共享偏见造成伪独立审查
+  mitigation: 改变上下文/方法/证据而不只增加实例
+- id: K-05
+  risk: Harness Adapter 逐渐反向绑死规范
+  mitigation: 跨 Runtime conformance
+- id: K-06
+  risk: Registry 长期维护成本过高
+  mitigation: 先文件化最小实现，按实际查询需求演进
+- id: K-07
+  risk: 对外开源过早暴露专有项目资料
+  mitigation: 分离规范、参考实现和商业资产的许可

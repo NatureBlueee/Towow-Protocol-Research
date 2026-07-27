@@ -1,0 +1,130 @@
+schema_version: towow-r5-generative-a2a-state-v1.4
+research_id: towow-a2a-r5-4-local-20260724
+workspace:
+  canonical_repo_root: /private/tmp/harness-towow-a2a-r5-4
+  canonical_harness_confirmed: true
+  evidence:
+    - ../../../../README.md
+    - ../../../../harness/README.md
+    - ../../../../harness/pyproject.toml
+    - ../../../../tw
+  baseline_commit: d85412c98126ec3d37d887796b8a916b190ca567
+  source_main_worktree: /Users/nature/个人项目/Harness
+  source_main_dirty_preserved: true
+  research_branch_or_worktree: codex/towow-a2a-r5-4-generative
+  research_worktree: /private/tmp/harness-towow-a2a-r5-4
+  active_models_and_agents:
+    - "Codex root research coordinator (GPT-5 family; exact serving build not exposed)"
+    - "Claude Code CLI 2.1.219; observed claude-sonnet-5 plus internal claude-haiku-4-5 routing"
+    - "Two independent Codex sub-agent reviewers (one oracle-blind, one oracle-aware)"
+    - "Codex CLI 0.145.0 (available; not used as an experimental subject)"
+    - "Gemini CLI (available; not used)"
+central_question: >-
+  Can functionally separated real-model agents form an actionable condition,
+  joint capability, or accepted solution that was unavailable to static
+  capability descriptions, a fair least-privilege central baseline, or the
+  existing Harness plus human workflow, and is the increment worth its cost?
+current_explanation_competition:
+  - epistemic_discovery_of_preexisting_capability
+  - constitutive_condition_formation
+  - configuration_or_task_allocation
+  - normative_authority_and_acceptance_formation
+  - linguistic_restatement_or_goal_reduction
+  - central_baseline_is_sufficient_or_better
+active_claims:
+  - R54-GEN-001
+  - R54-CENTRAL-001
+  - R54-BOUNDARY-001
+active_run_ids:
+  - r5-4-run-001-source-identity
+  - r5-4-run-002-central-replication
+core_a2a_experiment:
+  selected: true
+  run_id: r5-4-run-001-source-identity
+  status: complete_nonacceptance
+  task: source_owned_at_reference_identity
+  model_calls:
+    static: 1
+    least_privilege_central_run001: 3
+    direct_a2a: 6
+    least_privilege_central_replication: 1
+  subject_acceptance: false
+  target_domain_adoption: false
+  current_blocker: >-
+    Source-less historical removal semantics are an authorized owner value
+    decision in mixed streams; the interaction ended in COUNTER rather than
+    joint acceptance.
+major_findings:
+  - id: R54-DEFECT-001
+    summary: >-
+      git worktree creation emitted a false main-branch drift alarm and wrote
+      harness/.towow/git-discipline-violations.log, while readback confirmed
+      the main worktree remained on main at the same commit.
+    class: repo_specific_defect
+  - id: R54-DEFECT-002
+    summary: >-
+      The current @reference lifecycle collapses independent owners at
+      locator-only seams unless source identity is propagated through producer,
+      ordered fold, projection, auxiliary events, and retire evidence.
+    class: repo_specific_defect
+  - id: R54-MECH-001
+    summary: >-
+      Direct A2A exposed and refined a real conflict between historical
+      wildcard compatibility and sourced-owner isolation, and formed recovery
+      governance clauses, but did not produce a signed or adopted condition.
+    class: mechanism_evidence
+  - id: R54-MECH-002
+    summary: >-
+      Static analysis found the main composite-identity defect, and fixed
+      central owner queries exposed the same legacy conflict. The observed A2A
+      increment was specification precision, not a uniquely reachable solution.
+    class: mechanism_evidence
+  - id: R54-PRINCIPLE-001
+    summary: >-
+      Functional no-tool context separation can support a local benign A2A
+      experiment, but does not establish OS isolation, sovereignty, or
+      non-collapsible authority.
+    class: transferable_design_principle
+  - id: R54-RUNTIME-001
+    summary: >-
+      The frozen long structured-output central builder closed mid-response in
+      two separately preregistered runs. Central synthesis remains Unknown;
+      transport failure is not a reasoning failure.
+    class: repo_specific_defect
+results_by_class:
+  repo_specific_defect:
+    - R54-DEFECT-001
+    - R54-DEFECT-002
+    - R54-RUNTIME-001
+  transferable_design_principle:
+    - R54-PRINCIPLE-001
+  mechanism_evidence:
+    - R54-MECH-001
+    - R54-MECH-002
+  core_theory_change: []
+claims_supported:
+  - "R54-BOUNDARY-001, limited to benign functional context separation"
+claims_weakened:
+  - "R54-GEN-001: no accepted/adopted formation in this collapsible engineering task"
+claims_refuted: []
+claims_requalified:
+  - "R54-CENTRAL-001: fixed central queries were sufficient to surface the conflict, but builder sufficiency is Unknown because both long calls failed at transport"
+concepts_promoted:
+  - "Formation Episode as an evidence record for non-success and unresolved value conflict"
+concepts_demoted_merged_or_removed:
+  - "Message exchange count as evidence of formation"
+  - "Oracle implementation as automatic semantic truth"
+  - "Tool-less context isolation as sovereignty"
+active_blockers: []
+next_high_value_action: >-
+  First measure the real mixed legacy corpus and obtain an owner decision on
+  source-less removal semantics. Then run a shorter streaming central synthesis
+  or choose a task with genuinely non-collapsible authority; do not spend more
+  A2A rounds on the same unresolved value choice.
+reason_to_continue_or_return: >-
+  The core run now has real model interaction, static and central baselines,
+  executable bidirectional counterfactuals, a separately preregistered
+  replication, and blind/oracle-aware reviews. These changed the judgment:
+  A2A added precision but no accepted net-new capability. Further same-protocol
+  turns would repeat an owner value conflict rather than reduce uncertainty.
+last_updated_utc: 2026-07-24T19:33:37Z

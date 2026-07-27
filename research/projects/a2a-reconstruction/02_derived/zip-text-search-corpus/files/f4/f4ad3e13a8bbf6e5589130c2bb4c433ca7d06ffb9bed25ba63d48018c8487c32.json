@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HarnessAdapter",
+  "type": "object",
+  "required": [
+    "adapter_id",
+    "runtime",
+    "mappings",
+    "supported_hooks"
+  ],
+  "properties": {
+    "adapter_id": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "root_path": {
+          "type": "string"
+        }
+      }
+    },
+    "mappings": {
+      "type": "object",
+      "properties": {
+        "agent": {
+          "type": "string"
+        },
+        "skill": {
+          "type": "string"
+        },
+        "context_pack": {
+          "type": "string"
+        },
+        "work_item": {
+          "type": "string"
+        },
+        "artifact": {
+          "type": "string"
+        },
+        "validator": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "escalation": {
+          "type": "string"
+        }
+      }
+    },
+    "supported_hooks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_semantics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_export": {
+      "type": "string"
+    },
+    "artifact_store": {
+      "type": "string"
+    },
+    "context_resolution": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

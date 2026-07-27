@@ -1,0 +1,56 @@
+nodes:
+- id: summon.product.definition
+  type: DECISION
+  status: accepted
+  scope:
+  - summon
+  normative_level: MUST
+  statement: 召集台是 OPC 协作空间中的机会编排与可验证协作系统。
+- id: summon.product.not_marketplace
+  type: REQUIREMENT
+  status: accepted
+  scope:
+  - summon
+  - p0
+  normative_level: MUST_NOT
+  statement: 不得主要表达为按职业或价格撮合劳动力的通用接单市场。
+- id: summon.object_before_page
+  type: PRINCIPLE
+  status: accepted
+  scope:
+  - summon
+  - ui
+  normative_level: MUST
+  statement: UI 必须投影领域对象、状态、关系和后果。
+- id: summon.verification_not_acceptance
+  type: PRINCIPLE
+  status: accepted
+  scope:
+  - summon
+  - verification
+  normative_level: MUST
+  statement: VerificationResult 与 AcceptanceDecision 必须分离。
+- id: summon.agent_authority
+  type: PRINCIPLE
+  status: accepted
+  scope:
+  - summon
+  - agent
+  normative_level: MUST
+  statement: Agent 动作必须可归因；正式承诺和高后果决定由有权主体承担。
+- id: summon.disclosure
+  type: PRINCIPLE
+  status: accepted
+  scope:
+  - summon
+  - disclosure
+  normative_level: MUST
+  statement: 披露必须体现最小必要、目的限定、范围、期限、可撤销/过期与可追责。
+- id: summon.implementation_unknown
+  type: UNKNOWN
+  status: accepted
+  scope:
+  - summon
+  - implementation
+  normative_level: INFORMATIVE
+  statement: 具体 Harness、模型、Agent 数量、自动化拓扑和实现技术仍待研究。

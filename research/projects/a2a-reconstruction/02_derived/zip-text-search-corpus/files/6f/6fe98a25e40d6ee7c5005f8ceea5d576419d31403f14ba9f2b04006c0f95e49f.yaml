@@ -1,0 +1,26 @@
+mappings:
+  - canonical: VerificationResult
+    team: 验证结果
+    ui: 查看验证结果
+    market: 交付依据可以被检查
+    public: 基于证据的结果验证
+    forbidden:
+      - AI 保证质量
+      - 自动验收一切
+
+  - canonical: AcceptanceDecision
+    team: 接受决定
+    ui: 接受本次交付
+    market: 由明确责任人作出验收决定
+    public: 责任主体对结果的业务接受
+    forbidden:
+      - 系统自动承担验收责任
+
+  - canonical: DisclosureGrant
+    team: 披露授权
+    ui: 授权对方查看
+    market: 资料按范围、用途和期限受控开放
+    public: 条件化信息访问授权
+    forbidden:
+      - 绝对安全共享
+      - 给钱即可查看高敏资料

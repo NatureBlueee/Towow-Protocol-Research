@@ -1,0 +1,183 @@
+{
+  "content_hash": "b7fc2f661bd89f7d1f33084c10d5ebe85e7d0e4f10a0c97d760003090ad073d7",
+  "created_at": "2026-07-26T07:29:45.941219+00:00",
+  "instance": {
+    "archival_case_id": "PEA-05",
+    "no_causal_claim": true,
+    "qualified_revision": "TRANSFORMATION",
+    "source_basis": "public formal archive",
+    "state": "RESTRUCTURED"
+  },
+  "relation_id": "SHADOW-ACTIVISION",
+  "research_metadata": {
+    "reconstruction": "ex_post_structural_recoding",
+    "required_fieldkit_features": [
+      "external jurisdiction",
+      "rights-holder role change",
+      "version-specific challenge",
+      "scoped settlement",
+      "undertakings as commitments"
+    ],
+    "unobservable": [
+      "private option generation",
+      "coordination cost",
+      "whether an Agent would propose the structure earlier"
+    ]
+  },
+  "schema": {
+    "acceptance_rules": {
+      "restructured_deal": {
+        "required_roles": [
+          "microsoft",
+          "activision",
+          "cma",
+          "ubisoft"
+        ]
+      }
+    },
+    "actions": {
+      "accept_undertakings": {
+        "actor_roles": [
+          "cma",
+          "microsoft",
+          "activision"
+        ],
+        "material": true
+      },
+      "close_restructured": {
+        "actor_roles": [
+          "microsoft",
+          "activision"
+        ],
+        "material": true,
+        "produces_effect": true
+      },
+      "review_restructured": {
+        "actor_roles": [
+          "cma"
+        ],
+        "material": true
+      },
+      "transfer_streaming_rights": {
+        "actor_roles": [
+          "activision",
+          "ubisoft"
+        ],
+        "material": true,
+        "produces_effect": true
+      }
+    },
+    "authority_rules": {
+      "accept_undertakings": [
+        "cma",
+        "microsoft",
+        "activision"
+      ],
+      "close_restructured": [
+        "microsoft",
+        "activision"
+      ],
+      "review_restructured": [
+        "cma"
+      ],
+      "transfer_streaming_rights": [
+        "activision",
+        "ubisoft"
+      ]
+    },
+    "challenge_rules": {
+      "restructured_transaction": {
+        "reopen": "undertaking_breach_or_new_defeater",
+        "status": "CLEARED_WITH_UNDERTAKINGS"
+      }
+    },
+    "data_rules": {
+      "licence_back": {
+        "holder": "ubisoft",
+        "licensee": "microsoft",
+        "limits": "undertakings_and_transaction_terms"
+      },
+      "non_EEA_cloud_streaming_rights": {
+        "duration": "defined_in_transaction",
+        "holder": "ubisoft",
+        "scope": "exclusive_worldwide_outside_EEA"
+      }
+    },
+    "jurisdiction_rules": {
+      "UK_competition": {
+        "authority": "cma",
+        "clearance": "restructured_scope_only",
+        "required": true
+      }
+    },
+    "metadata": {
+      "archival_reconstruction": true,
+      "no_causal_claim": true,
+      "source_observability": "public formal record only"
+    },
+    "object_types": {
+      "licence_back": {},
+      "non_EEA_cloud_streaming_rights": {},
+      "restructured_acquisition": {}
+    },
+    "roles": {
+      "activision": {},
+      "cma": {
+        "external_jurisdiction": true
+      },
+      "microsoft": {},
+      "ubisoft": {
+        "rights_holder": true
+      }
+    },
+    "schema_id": "shadow-activision",
+    "settlement_rules": {
+      "restructured_transaction": {
+        "requires": [
+          "rights_transfer",
+          "UK_competition_clearance",
+          "closing_effect"
+        ],
+        "scope": "restructured_rights_configuration"
+      }
+    },
+    "standing_rules": {
+      "competition_challenge": [
+        "cma"
+      ]
+    },
+    "transitions": [
+      {
+        "action": "transfer_streaming_rights",
+        "from": "RESTRUCTURED",
+        "to": "RIGHTS_TRANSFERRED"
+      },
+      {
+        "action": "review_restructured",
+        "from": "RIGHTS_TRANSFERRED",
+        "to": "REVIEWED"
+      },
+      {
+        "action": "accept_undertakings",
+        "from": "REVIEWED",
+        "to": "CLEARED"
+      },
+      {
+        "action": "close_restructured",
+        "from": "CLEARED",
+        "to": "EFFECT_PENDING"
+      }
+    ],
+    "version": "2",
+    "witness_rules": {
+      "close_restructured": {
+        "source": "closing_authorities"
+      },
+      "transfer_streaming_rights": {
+        "source": "rights_transfer_instruments"
+      }
+    }
+  },
+  "status": "RESTRUCTURED",
+  "version": 2
+}

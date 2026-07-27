@@ -1,0 +1,15 @@
+workflow:
+  id: language_translation
+  entry_artifact: AudienceBrief
+  stages:
+    - select_internal_sources:
+        outputs: [ApprovedConcepts, ApprovedClaims, Qualifiers]
+    - map_audience:
+        outputs: [AudienceConcerns, VocabularyLevel, ForbiddenClaims]
+    - compile:
+        skills: [language_compilation]
+        outputs: [AudienceMessage]
+    - fidelity_review:
+        outputs: [BackTranslation, DriftReport]
+    - approve:
+        outputs: [PublishedClaimRecord]
