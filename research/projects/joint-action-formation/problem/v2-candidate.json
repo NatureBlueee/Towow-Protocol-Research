@@ -1,0 +1,272 @@
+{
+  "schema_version": "2.0",
+  "kind": "ProblemContract",
+  "id": "PRB-JOINT-ACTION-FORMATION",
+  "version": "v2",
+  "status": "CANDIDATE",
+  "title": "开放行动世界中的共同可行动性构成与有界机制生态",
+  "question": "在完全继承 Problem v1 所界定的权威不可代行、信息不可安全汇聚、形成与发现可区分、能力—授权—承诺—执行—现实效力—采用—接受可分别失败等条件下，怎样让内部可能包含多人、多角色、多模型、多工具、多账户、工作流与多个局部权威的 Agent Entity，在不暴露、复制或交出完整本地世界、也不代行他方权威的情况下，与其他不可替代实体形成真实可执行、可验证、可共同承担后果并可持续演化的共同可行动性？这个问题发生在一个更广的开放行动世界：本研究所考察的协调输入在接口处均表示为 Intent，其来源可以是人或其他主体的显式输入，也可以是上游系统从事件、状态或数据中产生的隐式输入；Intent 可以自带可验证的 Principal、Mandate 或其他 authority status，也可以保持 Unknown，单凭到达不能推出任何规范地位；主体网络可能海量、异构、动态且局部私有；预编译的平台、中心、制度、人类流程与开放关系形成同时存在。面对这些环境，怎样由各条独立问题线按具体关系识别、复用、组合、扩展或新建必要的有界机制，而不强迫所有输入经过同一流水线；怎样把形成后的稳定路径编译为适合的中心、联邦、平台或混合结构并在新差异出现时局部重开；又怎样在不牺牲主体权利和原始价值底线的前提下，判断每项机制及其组合是否创造了高于协调、披露、验证、治理、计算、错误与外部性成本的真实价值增量？",
+  "research_object": "Problem v1 的权威不可代行共同可行动性生命周期，以及它在海量异构主体、持续协调输入、预编译制度与开放行动空间并存的关系生态中所需要的有界机制。本研究所考察的协调输入在接口处统一表示为 Intent，但 Intent 不是新的中心研究对象；具体研究单位仍由关系、问题线、机制和现实状态决定。",
+  "target_transition": "保持 Problem v1 的目标转换：对冻结前已经存在但不可见或不可判断的合格路径作发现判定；对通过改变条件才可达的路径记录条件创造；只有在同一 Q 下由可归因 operator 使冻结前不存在的合格路径出现并通过消融时才作 formation 判定。随后使相应关系可理解、可拒绝、可授权、可执行、可验证并可持续重开；同时让每项输入保留其已有 provenance 与 authority status、允许 Unknown、禁止从到达自动推出授权，并让具体关系只调用必要机制而不是套用统一全流程。",
+  "invariants": [
+    "Problem v1 的权威不可代行、有限披露、形成判别、分层效力、负结果与局部重开约束全部继承，V2 不以新增前提覆盖它们",
+    "Intent 进入接口不等于任何 Principal 已经提出、认领、授权或接受该 Intent",
+    "Intent 生成者、所代表 Principal、受益者、受影响者和有权决定者不预设重合；只在具体关系中具有实质意义时分别识别，无法确认时允许保持 Unknown",
+    "Agent Entity 是对外连续、可认证和可追责的实体边界，不等同于单一模型、进程或肉身个人",
+    "一个机制没有解决其声明作用域之外的问题，不构成对该机制或其其他子主张的降级证据",
+    "负结果只能改变实际受检验的 scoped claim；机制替代必须在相同前提下保留原能力、正例和移除失败",
+    "中心、联邦、平台、制度、人类和确定性服务都是可复用或可组合机制，任何拓扑都不是预设胜者",
+    "全量广播、全量私有世界复制和让每个高级模型逐一判断不得被当作海量网络中的默认可行方案",
+    "Capability、Mandate、Commitment、Execution、Effect、Adoption、Acceptance 与 Settlement 必须允许分别失败",
+    "系统级价值不能由单一接受率、成交率、模型调用价格或主体效用的简单求和替代"
+  ],
+  "unit_of_analysis": "Problem v1 的可追溯联合行动 episode，以及该 episode 实际调用的有界机制、已有制度、受影响主体与跨 episode 复用路径；并不要求每个 Intent 或关系都经过同一组阶段。",
+  "scope": [
+    "本研究所考察的协调输入在接口处均表示为 Intent，其来源可以是显式输入或上游系统生成的隐式输入；既有关系事件与现实漂移属于生命周期事件，只有转化为新的协调输入时才表示为 Intent；上游推断保持黑盒，接口保留并验证输入自带状态且禁止无根据的规范推导",
+    "亿级、异构、动态、局部私有网络中的选择性传播、候选缩减、渐进披露与高智能判断分配",
+    "问题、角色、动作、条件、伙伴、能力、证据和接受方式尚未完整存在时的共同可行动性构成",
+    "既有平台、中心、制度、人类流程、标准和 adapter 的能力识别、直接复用、组合、扩展或有证据的替代",
+    "发现与边界、关系构成、可能性形成、能力兑现、权威与规范、现实效力、运行与演化七类问题家族的独立研究",
+    "历史机制与后续新机制在各自前提、问题、能力、非目标和证据边界内独立持续研究",
+    "开放形成路径沉淀为合同、平台规则、确定性服务、中心或混合结构，以及漂移后的局部重开",
+    "主体级价值、系统级增量、第三方损失、外部性、可达价值、资源可行性和全生命周期成本的共同评价"
+  ],
+  "out_of_scope": [
+    "研究上游怎样从传感器、行为数据、对话或模型推断出显式或隐式 Intent",
+    "把咖啡、失眠、超级个体或任何单一案例当作通爻所服务的唯一目标场景",
+    "把 Context Compiler、RAG、联邦学习、Gossip、向量签名、NAC 编码或某个 adapter 预设为全局答案",
+    "证明中心化或去中心化作为抽象阵营必然更优",
+    "要求所有研究问题由同一个机制、对象集合、协议本体或评价公式统一解决",
+    "用一个机制未覆盖授权、Effect 或其他线问题，否定其在原始问题上的能力",
+    "用接受率、成交率、token 成本或字段数量单独代表系统价值",
+    "由 Agent 根据 Intent 的存在替 Principal 宣布目标、授权、承诺、接受或责任"
+  ],
+  "key_unknowns": [
+    "哪些 V2 世界前提会实质改变某条研究线的机制与判据，哪些只需作为背景而不应被强制进入每个流程",
+    "怎样保留输入已有的 provenance 与 authority status、允许 Unknown，并防止从输入到达产生未经支持的规范蕴含",
+    "在海量异构网络中，哪些有界发现或前置判断能显著缩小候选，同时对长尾关系和关键未知保持可测的漏配边界",
+    "哪些问题已经由平台、中心系统、制度、人类流程或现成标准充分解决，哪些只需 adapter，哪些确实存在需要新机制的缺口",
+    "七类问题家族之间需要共享哪些最小引用和状态，才能组合而不熔平各自的证据、失败和责任边界",
+    "预编译平台在哪些分布上具有优势，开放形成在哪些新颖性、异构性、权威分散度和频率区间内增加可达价值",
+    "一次成功关系何时足够稳定而可编译，编译后的中心、联邦或混合结构怎样继承旧承诺并识别新差异",
+    "怎样计算不简单相加的系统级价值增量，同时保留 Principal 拒绝权、第三方损失、外部性和不可接受底线",
+    "多机制组合带来的协调、验证、治理和计算负担是否吞噬新增价值，负担只是被降低、转移还是隐藏为错误"
+  ],
+  "competing_explanations": [
+    {
+      "id": "ALT-PRECOMPILED-COVERAGE",
+      "claim": "绝大多数有价值关系都能由成熟平台、合同、制度和人工例外覆盖，开放构成只增加复杂度。",
+      "distinguishing_observation": "给予现有平台真实规则扩展、人工 amendment 与 adapter 后，它在同等权威和价值约束下持续覆盖目标关系且总成本更低。"
+    },
+    {
+      "id": "ALT-AUTHORITY-AWARE-CENTRAL",
+      "claim": "一个权威感知强中心能够调用局部世界、分配机制并保存所有来源边界，无需独立的联邦关系形成结构。",
+      "distinguishing_observation": "在同等模型、工具、局部查询、隐私、授权和恢复条件下，强中心得到同等可行动性、外部性和长期净价值。"
+    },
+    {
+      "id": "ALT-SHARED-BASIS-REDUNDANT",
+      "claim": "V2 新增世界前提并不改变任何研究判据或设计，只是把 V1 已有内容重复写长。",
+      "distinguishing_observation": "移除 V2 shared_basis 后，各独立研究线仍同等保留海量网络、输入规范地位、制度复用、机制作用域和全局价值边界。"
+    },
+    {
+      "id": "ALT-EXISTING-TECHNICAL-STACK",
+      "claim": "现成标准、自然语言、稳定 Schema、传统索引、规则引擎和 adapter 已经覆盖相关技术缺口，无需新增专门机制。",
+      "distinguishing_observation": "在目标问题的相同前提、能力、正例、移除失败、隐私和资源预算下，现成组合持续无损覆盖候选机制。"
+    },
+    {
+      "id": "ALT-MECHANISM-FRAGMENTATION",
+      "claim": "多个独立机制只是在不同目录重复相同状态和判断，组合成本高于它们保留的现实差异。",
+      "distinguishing_observation": "一个更小组合在保留全部正例、移除失败、权威与证据边界后达到相同结果且维护成本更低。"
+    },
+    {
+      "id": "ALT-NET-VALUE-NEGATIVE",
+      "claim": "开放关系构成增加的可达价值被发现、披露、验证、治理、计算、错误和外部性成本吞噬。",
+      "distinguishing_observation": "在相同生命周期和受影响主体口径下，候选组合的系统级净增量不高于最强可信基线。"
+    }
+  ],
+  "strong_baselines": [
+    {
+      "id": "BASE-PRECOMPILED-PLATFORM",
+      "name": "成熟平台、制度与合同流程",
+      "authority_model": "预先定义对象、角色、动作、信任、Effect、结算和治理，并由人工例外处理长尾。",
+      "comparison_obligation": "保留其规模、确定性、合规、审计和复用优势；给予真实规则扩展、接口集成与人工 amendment，不用弱平台制造优势。"
+    },
+    {
+      "id": "BASE-AUTHORITY-AWARE-CENTRAL",
+      "name": "权威感知强中心 Agent",
+      "authority_model": "中心可组合模型和工具，但局部事实、授权与接受仍返回对应 Principal 或 Authority Locus。",
+      "comparison_obligation": "给予同等上下文、模型、工具、局部查询、隐私、预算、readback、恢复和机制复用能力。"
+    },
+    {
+      "id": "BASE-EXISTING-TECHNICAL-STACK",
+      "name": "现成标准、通用模型、传统算法与 adapter 组合",
+      "authority_model": "按目标子问题承担检索、路由、规则、执行或验证，不从技术输出自动推出 Principal 权威。",
+      "comparison_obligation": "每条机制线都给予作用域内最强现成技术相同输入、权限、正例、失败门、隐私、资源和维护条件。"
+    },
+    {
+      "id": "BASE-HUMAN-COORDINATION",
+      "name": "人类经纪、团队会议与现有组织协调",
+      "authority_model": "人通过隐性知识、社会关系、合同、审批和责任结构发现并形成关系。",
+      "comparison_obligation": "保留其合法性和例外处理优势，并记录高认知人力、日历等待、组织规则建立、错误、机会损失和长期维护。"
+    }
+  ],
+  "observable_outcomes": [
+    "输入已有的 provenance 与 authority status 是否被保留和验证，缺失部分是否保持 Unknown，且没有从到达自动推出规范地位",
+    "相关网络机制在其声明规模、召回、隐私和版本条件下减少了多少传播、无关候选和高级智能调用，以及遗漏了什么",
+    "每项机制结果是否只更新声明的 scoped claim，而没有改变其他机制或作用域外主张",
+    "历史机制、现成方案和 adapter 是否在创建新机制前被公平检查，未覆盖要求是否可定位",
+    "开放形成相对预编译平台是否产生了冻结前不存在且保持原始价值底线的合格路径",
+    "成功路径能否沉淀为更低判断负担的中心、联邦、平台或混合结构，并在差异出现时局部重开",
+    "Capability、Mandate、Commitment、Execution、Effect、Adoption、Acceptance 与 Settlement 是否分别由相称证据建立",
+    "主体价值、系统增量、第三方损失、外部性、可达价值和全生命周期成本是否被同时报告",
+    "中心、联邦、平台、人类或混合路由是否随问题分布改变，而不是由预设立场固定"
+  ],
+  "falsification_conditions": [
+    "V2 把所有输入强制进入同一发现—归属—授权—执行流水线，覆盖了输入已有 authority status 或不需要该阶段的关系",
+    "在声明的全部目标分布和所有可接受机制类别中，满足规模与隐私前提都必然要求全量广播、完整世界复制或全量高级模型判断，因而目标转换整体不可达",
+    "V1 的发现、条件创造与 formation 以及分层生命周期状态在任何可观察场景中都无法被区分，使问题失去可判别性",
+    "在声明的全部目标分布中，任何候选关系只有降低原始价值底线、遗漏必要主体或越过不可代行权威才能成为可执行行动",
+    "现有平台、中心、制度、人类流程和通用技术在相同要求下无损覆盖整个声明目标域，且不存在尚需形成的新关系类别；这将否定新增通爻机制的必要性，但不否定直接复用这些能力",
+    "在具有代表性的全部目标分布、受影响主体和完整生命周期口径下，所有可接受机制及组合的新增可达价值持续不高于协调、披露、验证、治理、计算、错误与外部性成本"
+  ],
+  "reopen_conditions": [
+    "出现 V2 共享世界前提无法表达的新型主体、Intent 来源、权威关系或现实效力",
+    "证据表明 Intent 入口与 Principal 认领之间不需要区分，或现有区分仍不足以阻止越权",
+    "海量网络前提、隐私前提或长尾关系分布发生实质变化，使选择性发现不再承重",
+    "一个现成方案在相同前提下无损吸收当前多个机制，或组合机制出现新的不可表达冲突",
+    "真实运行表明系统级价值评价遗漏了承重外部性、不可接受底线或受影响主体",
+    "Problem v1 的任何继承不变量被新证据推翻，要求显式重开而非由 V2 静默覆盖"
+  ],
+  "evidence_requirements": [
+    "所有研究必须引用精确 Problem、机制 profile、scoped claim、场景、强基线和冻结输入版本",
+    "区分直接观察、历史来源、模型推断、设计提案、合成结果、现实结果和主体认领",
+    "历史机制必须直接读取与本次 scoped claim 有关的原始问题、规格、实验与失败门，不能只依据二次摘要关闭研究",
+    "负结果必须声明实际受检验的前提、子主张和未受影响主张，不得给整个机制一个总等级",
+    "创建新机制前记录可比历史机制、现成标准、平台能力、制度和 adapter 的检查结果与未覆盖要求",
+    "替代或整合主张必须在相同前提下重放原机制正例、移除失败、能力与非目标边界",
+    "网络规模主张需报告召回、漏配、误唤醒、传播体积、隐私披露、高级智能调用和版本迁移",
+    "价值主张需同时报告主体级结果、受影响第三方、系统级增量、全生命周期成本和仍可能成立的替代解释",
+    "合成与档案证据不自动支持真人授权、现实 Effect、长期净价值或跨域普遍性"
+  ],
+  "decision_authority": {
+    "activate": "USER",
+    "reopen": "USER",
+    "supersede": "USER"
+  },
+  "lineage": {
+    "predecessor_ref": "research/projects/joint-action-formation/problem/v1-candidate.json",
+    "predecessor_sha256": "9a59de81ac7c5ca0a42ff012bbade98b4be60978742b3c81d26f9024a3e9b408",
+    "predecessor_companion_ref": "research/projects/joint-action-formation/problem/v1-candidate.md",
+    "predecessor_companion_sha256": "7982aa908ce4e457e655fbe553db228f2ab9a09fdaa1202309df261d1bdc4a56",
+    "predecessor_audit_ref": "research/projects/joint-action-formation/problem/v1-history-alignment.json",
+    "predecessor_audit_sha256": "ed98af1e8ce8d6fd1494e6881ab47bb7c63eea2b1d1cf003f343f869eac39381",
+    "predecessor_audit_companion_ref": "research/projects/joint-action-formation/problem/v1-history-alignment.md",
+    "predecessor_audit_companion_sha256": "11a25e60edbfad0ec53f92c038356150ee3685dff349b1869148abf54acc1784",
+    "relationship": "ADDITIVE_SNAPSHOT"
+  },
+  "shared_basis": {
+    "world_assumptions": [
+      {
+        "id": "WORLD-AGENT-ENTITY",
+        "statement": "Agent Entity 是对外连续、可认证、有限授权且可追责的实体，其内部可以包含人、角色、模型、工具、账户、工作流与局部权威。",
+        "research_implication": "研究不得把 Agent 缩成单一模型调用；同时不得从实体认证推出内部任一执行已经获得 Principal 授权。"
+      },
+      {
+        "id": "WORLD-INTENT-INGRESS",
+        "statement": "本研究所考察的协调输入在接口处均表示为 Intent；其来源可以是显式输入或上游系统生成的隐式输入，可以携带可验证的 Principal、Mandate、provenance 或其他 authority status，也可以保持 Unknown；上游怎样产生 Intent 不属于本研究对象。",
+        "research_implication": "研究不把上游感知、RAG 或意图识别实现变成通爻的中心问题；同时保留并验证输入已有状态，禁止从到达本身推导新的规范地位，也不要求所有机制从同一 Intent 流水线开始。"
+      },
+      {
+        "id": "WORLD-INTENT-NORMATIVE-GAP",
+        "statement": "Intent 生成者、所代表 Principal、受益者、受影响者和有权决定者不保证重合，Intent 本身也不自动具有规范效力。",
+        "research_implication": "只有当后续行动依赖尚未充分建立的规范地位时，才需要保持 Unknown 或补足相应归属、认领与授权判定；接受率不能掩盖错误代表、第三方损失或越权。"
+      },
+      {
+        "id": "WORLD-NETWORK-SCALE",
+        "statement": "目标环境允许亿级、异构、动态、局部私有的主体网络以及持续、低频、长尾且难以预估的 Intent 关系。",
+        "research_implication": "默认方案不能依赖全量广播、完整世界汇聚或让每个高级模型逐一判断；发现成本与漏配必须同时可测。"
+      },
+      {
+        "id": "WORLD-OPEN-ACTION-SPACE",
+        "statement": "问题、角色、动作、伙伴、能力、条件、证据与接受方式可能尚未完整存在，并可在互动中形成或改变。",
+        "research_implication": "研究必须区分在预编译行动空间内选择，与构成新行动语言、创造条件或形成新能力。"
+      },
+      {
+        "id": "WORLD-INSTITUTIONAL-COEXISTENCE",
+        "statement": "平台、中心系统、合同、制度、人类协调和确定性服务已经承担发现、规则、信任、执行、结算与治理等职责。",
+        "research_implication": "它们是强基线、可复用能力和 adapter，不是敌对阵营；新机制只研究相同条件下仍未覆盖的差异。"
+      },
+      {
+        "id": "WORLD-COMPILE-AND-REOPEN",
+        "statement": "开放形成的稳定路径可以沉淀为合同、平台规则、中心服务、联邦结构或混合机制，并在新差异、失效或漂移时重开。",
+        "research_implication": "中心化与去中心化是关系内部可选择、可演化的结构，不是研究开始前必须站队的总答案。"
+      }
+    ],
+    "service_objects": [
+      {
+        "id": "SERVICE-COMMON-ACTIONABILITY",
+        "statement": "服务对象是跨世界关系获得可理解、可拒绝、可授权、可执行和可验证的共同可行动性；既存路径应被发现，条件变化应被记录，只有满足 V1 因果条件的新路径才称 formation。",
+        "research_implication": "咖啡、失眠、供应链或 OPC 只是暴露前提的场景；任一场景成功都不能缩小全局服务对象。"
+      },
+      {
+        "id": "SERVICE-REAL-WORLD-VALUE",
+        "statement": "服务对象还包括让共同可行动性在不越过主体权利和原始价值底线时产生可归因的现实价值，并使稳定路径可复用、失效路径可退出或局部重开。",
+        "research_implication": "机制、协议和拓扑只是实现手段；是否保留取决于它们对现实问题的独立判别力与净价值，不以维护机制生态本身为目标。"
+      }
+    ],
+    "shared_distinctions": [
+      {
+        "id": "DIST-INTENT-AUTHORITY",
+        "statement": "Intent、Principal 偏好、Mandate、Commitment 和 AgentExecution 是不同规范状态。",
+        "research_implication": "入口相关性不得自动穿透到授权、执行、接受或责任。"
+      },
+      {
+        "id": "DIST-PRECOMPILED-GENERATIVE",
+        "statement": "在既有角色与规则中选择行动，与形成新的角色、条件、能力或关系语言不是同一种协调问题。",
+        "research_implication": "平台优势与开放形成优势应在不同分布中比较，并允许形成结果再次编译为平台能力。"
+      },
+      {
+        "id": "DIST-PROBLEM-MECHANISM",
+        "statement": "研究问题、机制承诺能力、技术实现和运行拓扑是不同层，任何一个都不能被另一个名称替代。",
+        "research_implication": "任一机制实现失败只影响实际受检验的 scoped claim；不能因此删除仍未解决的原始问题或其他可迁移能力。"
+      },
+      {
+        "id": "DIST-LOCAL-GLOBAL-VALUE",
+        "statement": "方案接受、单一主体收益、系统级价值增量、第三方损失和外部性不是同一个评价量。",
+        "research_implication": "全局评价不得以接受率或简单求和取代权利边界与受影响主体结果。"
+      },
+      {
+        "id": "DIST-FORMATION-LIFECYCLE",
+        "statement": "发现、条件创造、问题改写、能力、授权、承诺、执行、Effect、Adoption、Acceptance 与 Settlement 可以分别成立或失败。",
+        "research_implication": "任何线的局部成功都不能自动证明完整关系已经形成或产生净正价值。"
+      }
+    ],
+    "evaluation_frame": [
+      "是否增加了在原始价值底线与权威约束下真正可达的联合行动，而不只是增加候选或协商文本",
+      "是否保留主体拒绝、归属、授权、责任、第三方损失与外部性，而不以系统总量覆盖局部权利",
+      "是否相对最强平台、中心、制度、人类和通用技术基线产生有作用域的独立判别力",
+      "是否把高级智能判断用在真正需要的位置，并在海量网络中同时控制漏配、披露、传播与计算",
+      "是否能够复用已有能力、编译稳定路径并限制漂移后的重建范围",
+      "新增价值是否高于发现、协调、披露、等待、验证、治理、计算、错误、恢复和机会成本"
+    ],
+    "research_paradigm": "BOUNDED_MECHANISM_RESEARCH_V1"
+  },
+  "source_refs": [
+    "research/projects/joint-action-formation/problem/v1-candidate.json",
+    "research/projects/joint-action-formation/problem/v1-history-alignment.json",
+    "research/projects/a2a-reconstruction/00_orientation/CURRENT_GLOBAL_VIEW.md",
+    "research/projects/a2a-reconstruction/00_orientation/CONCEPT_AND_SYSTEM_LINEAGE.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/21/2108128d0c98ad1349bb4061284ef48c67ac92601b04a5b51ab46bb05eebbf99.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/25/25350d6d0261daacd72fba43fb05c46a7dce628e990efaeba8852fa6ad0d9253.md"
+  ],
+  "historical_inheritance_ref": "research/projects/joint-action-formation/problem/v1-history-alignment.json",
+  "companion_markdown": "research/projects/joint-action-formation/problem/v2-candidate.md"
+}

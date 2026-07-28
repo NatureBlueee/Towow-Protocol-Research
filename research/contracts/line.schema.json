@@ -26,7 +26,7 @@
     "companion_markdown"
   ],
   "properties": {
-    "schema_version": {"const": "1.0"},
+    "schema_version": {"enum": ["1.0", "2.0"]},
     "kind": {"const": "LineContract"},
     "id": {"type": "string", "pattern": "^LINE-[0-9]{2}-[A-Z0-9-]+$"},
     "version": {"type": "string", "pattern": "^v[0-9]+(?:\\.[0-9]+)?$"},
@@ -94,6 +94,127 @@
       "minItems": 2,
       "items": {"type": "string", "minLength": 8}
     },
+    "research_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "mechanism_ref",
+        "scoped_claim_ids",
+        "applicable_assumptions",
+        "non_claims"
+      ],
+      "properties": {
+        "kind": {
+          "enum": ["EXISTING_MECHANISM", "EXISTING_SOLUTION", "NEW_GAP"]
+        },
+        "mechanism_ref": {
+          "oneOf": [
+            {"type": "string", "pattern": "\\.json$"},
+            {"type": "null"}
+          ]
+        },
+        "scoped_claim_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "hypothesis_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "applicable_assumptions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "non_claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 8}
+        }
+      }
+    },
+    "prior_solution_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checked_historical_refs",
+        "checked_existing_solution_refs",
+        "disposition",
+        "uncovered_requirement"
+      ],
+      "properties": {
+        "checked_historical_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "checked_existing_solution_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "disposition": {
+          "enum": ["REUSE", "COMPOSE", "EXTEND", "GAP_CONFIRMED", "UNRESOLVED"]
+        },
+        "uncovered_requirement": {"type": "string", "minLength": 12},
+        "coverage_findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_ref",
+              "coverage",
+              "uncovered_requirement"
+            ],
+            "properties": {
+              "source_ref": {"type": "string"},
+              "coverage": {
+                "enum": ["FULL", "PARTIAL", "NONE", "UNKNOWN"]
+              },
+              "uncovered_requirement": {"type": "string", "minLength": 8}
+            }
+          }
+        }
+      }
+    },
+    "outcome_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported_effect",
+        "negative_effect",
+        "unaffected_claim_ids",
+        "integration_gate"
+      ],
+      "properties": {
+        "supported_effect": {"type": "string", "minLength": 20},
+        "negative_effect": {"type": "string", "minLength": 20},
+        "unaffected_claim_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "integration_gate": {"type": "string", "minLength": 20}
+      }
+    },
     "companion_markdown": {"type": "string", "pattern": "\\.md$"}
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"schema_version": {"const": "2.0"}},
+        "required": ["schema_version"]
+      },
+      "then": {
+        "required": [
+          "research_target",
+          "prior_solution_review",
+          "outcome_policy"
+        ]
+      }
+    }
+  ]
 }

@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "kind": "MechanismProfile",
+  "id": "MEC-NAC",
+  "version": "v1",
+  "research_status": "ACTIVE_RESEARCH",
+  "title": "Nested Anchor Coordinates 有界机制研究",
+  "native_line": "DISCOVERY_BOUNDARY",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "origin_problem": "在亿级、异构、动态、局部私有且没有全局世界持有者的 Agent 网络中，怎样把方向性的 Intent 或能力转为跨模型可比较、可分级传播、可逐步筛选和可版本演化的外部信号，使大量无关节点不必运行高级智能，少数潜在相关节点才进入深层判断。",
+  "assumptions": [
+    "本地世界远大于可传播信号，投影不可避免且不能被误当作完整世界",
+    "参与节点的模型、内部表示、版本和供应商可以不同，也可以动态变化",
+    "Intent 与能力信号数量足以使全量广播和逐节点高级模型判断不可行",
+    "发现必须保留 SEEK 与 OFFER 等关系方向，主题相似不等于行动互补",
+    "粗筛需要与渐进披露、provenance、版本和可继续询问的路径共同工作"
+  ],
+  "scoped_claims": [
+    {
+      "id": "MC-NAC-ANCHOR",
+      "statement": "公共外部锚点允许不同模型保留内部表示，同时产生可跨模型比较的发现信号。",
+      "identity_criticality": "IDENTITY_CORE",
+      "portability": "SUBSTRATE_BOUND",
+      "capability_ids": [
+        "CAP-DISC-003"
+      ],
+      "evidence_status": "PRE_REGISTERED_UNRUN",
+      "status_evidence": [],
+      "falsifier": "完成 E-H1′ 的锚点数、选择策略、前缀长度和聚合函数扫描后，跨厂商 top-100 召回到饱和仍低于同厂商 80%，或同预算下显著低于 vec2vec。"
+    },
+    {
+      "id": "MC-NAC-PREFIX",
+      "statement": "多尺度前缀允许同一外部信号按正典次序截断，并在不同分辨率下保持可比较；传播剪枝和候选唤醒效果属于 M3 等配套路由机制的独立假说。",
+      "identity_criticality": "IDENTITY_CORE",
+      "portability": "PORTABLE",
+      "capability_ids": [
+        "CAP-DISC-004"
+      ],
+      "evidence_status": "VALIDATION_PLAN_UNRUN",
+      "status_evidence": [],
+      "falsifier": "在固定坐标表示和 H1 同一标注集上，不存在能使前缀截断召回损失保持在声明界限内的正典排序；传播漏检由 M3/H3 另行判定。"
+    },
+    {
+      "id": "MC-NAC-DIRECTION",
+      "statement": "SEEK、OFFER 等方向性 facet 能减少仅靠主题相似度连接两个同向需求或同向供给的错误匹配。",
+      "identity_criticality": "IDENTITY_SUPPORTING",
+      "portability": "PORTABLE",
+      "capability_ids": [
+        "CAP-DISC-005"
+      ],
+      "evidence_status": "HISTORICAL_DESIGN",
+      "status_evidence": [],
+      "falsifier": "在保持其他信息相同的反事实任务中，移除方向性不会增加错误候选、错误淘汰或后续澄清成本。"
+    },
+    {
+      "id": "MC-NAC-SELF-DESCRIPTION",
+      "statement": "携带 schema、anchor version、subject、facet、prefix、grounding、披露阶梯、TTL 和 provenance 的信号能够跨实现解释自身版本、方向、来源和披露边界；继续询问依赖 IF-1 与 M3 等配套机制。",
+      "identity_criticality": "IDENTITY_SUPPORTING",
+      "portability": "PORTABLE",
+      "capability_ids": [],
+      "evidence_status": "HISTORICAL_DESIGN",
+      "status_evidence": [],
+      "falsifier": "在不给消费者额外私有上下文时，当前字段不足以唯一识别信号的 schema、锚点版本、方向、subject、来源、TTL 和披露边界，或更小通用 header 在同一解释任务上无损覆盖。"
+    },
+    {
+      "id": "MC-NAC-MIGRATION",
+      "statement": "provenance_ref、可重投影缓存和版本重叠窗口与 M1、M3、M5 的双写迁移程序组合后，能够让锚点演化而不静默切断旧信号与新索引的关系。",
+      "identity_criticality": "IDENTITY_SUPPORTING",
+      "portability": "CROSS_MECHANISM",
+      "capability_ids": [],
+      "evidence_status": "VALIDATION_PLAN_UNRUN",
+      "status_evidence": [],
+      "falsifier": "在模型、锚点或版本迁移中，双写和重投影仍产生不可接受的信息损失、循环或长期兼容成本。"
+    }
+  ],
+  "hypothesis_map": [
+    {
+      "id": "E-H1-PRIME",
+      "aliases": [
+        "E-H1′",
+        "H1"
+      ],
+      "provenance_status": "PRE_REGISTERED",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "NAC_COORDINATE_SUBSTRATE",
+      "companion_owners": [
+        "M1_SIGNAL_GENERATION"
+      ],
+      "scoped_claim_ids": [
+        "MC-NAC-ANCHOR"
+      ],
+      "result_scope": "这是历史 H1 的唯一明确预注册实验 ID，而不是第二份独立证据；完成扫描后，跨厂商 top-100 召回到饱和仍低于同厂商 80%，或同预算显著低于 vec2vec，可以反驳当前锚点坐标基底。自然语言加稳定 Schema 是 V2 新比较臂，不冒充原预注册内容。"
+    },
+    {
+      "id": "H2",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "NAC_PREFIX_REPRESENTATION",
+      "companion_owners": [
+        "M1_SIGNAL_GENERATION"
+      ],
+      "scoped_claim_ids": [
+        "MC-NAC-PREFIX"
+      ],
+      "result_scope": "只检验正典前缀排序及截断损失；运行时传播、剪枝和唤醒收益需要 M3 的独立结果，不能由前缀存在直接推出。"
+    },
+    {
+      "id": "H3",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "M3_ENVELOPE_ROUTING",
+      "companion_owners": [
+        "NAC_SIGNAL_FORMAT",
+        "M5_TOPOLOGY_LEARNING"
+      ],
+      "scoped_claim_ids": [],
+      "result_scope": "检验逐锚点包络路由的零漏检剪枝与效率，属于 M3 配套机制；结果可约束 NAC 的可组合性，但不直接改变 NAC 坐标或前缀格式主张。"
+    },
+    {
+      "id": "H4",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "NAC_MIGRATION_INTERFACE",
+      "companion_owners": [
+        "M1_SIGNAL_GENERATION",
+        "M3_ROUTING",
+        "M5_EVOLUTION_LOOP"
+      ],
+      "scoped_claim_ids": [
+        "MC-NAC-MIGRATION"
+      ],
+      "result_scope": "检验新旧锚点版本重叠、重投影与参数化沉淀双写，是跨 NAC、M1、M3、M5 的验证计划，不是已经预注册或已证成的 NAC 单体能力。"
+    },
+    {
+      "id": "H5",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "M3_QUEST",
+      "companion_owners": [
+        "BOUNDARY_ORACLE"
+      ],
+      "scoped_claim_ids": [],
+      "result_scope": "检验 quest 的 VOI 选维和轮次预算，属于命中后的渐进询问；不能由 NAC 自描述字段的存在自动推出。"
+    },
+    {
+      "id": "H6",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "M3_DISCLOSURE",
+      "companion_owners": [
+        "POSTERIOR_ACCOUNTING"
+      ],
+      "scoped_claim_ids": [],
+      "result_scope": "检验披露对等与抗抽取成本，属于渐进披露配套机制；它不是 NAC 坐标基底正确性的证据。"
+    },
+    {
+      "id": "H7",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "M3_ROUTING_REFLEX",
+      "companion_owners": [
+        "M5_EVOLUTION_LOOP"
+      ],
+      "scoped_claim_ids": [],
+      "result_scope": "检验中心撮合日志能否训练分布式路由反射，属于 M3 与 M5 的演化问题；失败不直接反驳 NAC 信号格式。"
+    },
+    {
+      "id": "H8",
+      "provenance_status": "HISTORICAL_VALIDATION_PLAN",
+      "execution_status": "UNRUN",
+      "execution_evidence": [],
+      "primary_owner": "M3_M5_ROUTING_WORKPOINT",
+      "companion_owners": [
+        "NAC_COORDINATE_SUBSTRATE"
+      ],
+      "scoped_claim_ids": [],
+      "result_scope": "检验误唤醒可承受且无结构性漏检的联合工作点；它约束整体发现栈的可行域，不能被登记为 NAC 单体承诺。"
+    }
+  ],
+  "capability_ids": [
+    "CAP-DISC-003",
+    "CAP-DISC-004",
+    "CAP-DISC-005"
+  ],
+  "validated_scope": null,
+  "adverse_scope": null,
+  "non_responsibilities": [
+    "不负责上游怎样从行为、传感器、对话或数据推断 Intent",
+    "不把发现相关性升级为 Principal 认领、Mandate、Commitment 或授权执行",
+    "不负责 PFE 的条件创造、CRA 的能力资格化或新能力形成",
+    "不建立现实 Effect、Domain Adoption、Principal Acceptance 或 Settlement",
+    "不作为开放世界的普遍语义本体，也不保证固定表示覆盖未来全部任务",
+    "不预设必须采用中心、联邦、Gossip 或任何固定网络拓扑"
+  ],
+  "evidence_refs": [
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/21/2108128d0c98ad1349bb4061284ef48c67ac92601b04a5b51ab46bb05eebbf99.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/1b/1bee81eadab65cd46822a8c1b049d207c3e4bcfe60aff1523182983f7658dd34.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4a/4a45ede13e689f6ad042541a929bfe00eaf67a021689327151bfe4f6974cb9a1.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4c/4c91d0ed8c8ae7d8600f97e02e8c06847cec4c8050efcdc42ad7919b9ababa8c.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/2b/2b8e039b222ef710247f5db108ba7611ebe77351ae4d7c774af7c2f14fb032ce.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/8d/8dad62bb43eb05a93ced65a056a3c41450a916e30851c779e792be6fac0bed85.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/5a/5a52813b628188b1e75137b8b922935e4d4ddbe0049ecf5421d382d6ee2dc5b8.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/fb/fbb6924750e5768894599ce90720599b98740c2fbac07d386d0396c598076a38.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/54/5458a72c04132efa7cf264fa40f66d6efb0ce75e5fa7d6600e1ffcfafb9d5bcc.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/c3/c3e07718cc6aa528b018e226a8370ff74e784000f2cb4dfe5d4ee8c7255a300f.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md"
+  ],
+  "known_failures": [
+    "NAC 作为开放任务族普遍充分语义本体的过强主张已经被历史研究限定，当前只保留有界发现问题",
+    "历史交接明确记录 H1 至 H8 未运行，纸面规格和预注册不能被描述成现实有效性",
+    "当前统一运行时只部分保留方向性、前缀预算和端到端发现行为，名称映射不能证明机制仍然生效",
+    "R4 的 Line 01 只读取二次摘要，不能据此关闭原始 NAC 规格和预注册实验中的未决问题"
+  ],
+  "open_questions": [
+    "跨厂商锚点相对 vec2vec、自然语言加稳定 Schema 和其他强基线是否有独立判别力",
+    "是否存在对目标任务族可用且可迁移的正典前缀排序",
+    "包络路由在千级、十万级和更大网络中的剪枝、误唤醒与结构性漏检边界是什么",
+    "锚点、模型和版本迁移怎样影响旧索引、双写窗口、重投影和长期兼容成本",
+    "复杂合取、个性化标准和动态角色能否由 NAC 信号表达，何时必须进入交互式 Boundary Oracle",
+    "公开锚点、前缀和 grounding 会产生多大反演、关联和策略泄漏风险",
+    "误唤醒有界与无结构性漏检是否存在共同可行域，还是必须接受明确权衡；该工作点属于 NAC、M3 与 M5 的组合问题",
+    "中心试验阶段沉淀的接口能否在分布式或混合运行阶段保持语义和失败边界"
+  ],
+  "owner_line_ids": [
+    "LINE-01-DISCOVERY-BOUNDARY",
+    "LINE-01-NAC"
+  ],
+  "replacement_requirements": [
+    "替代方案必须在同一海量、异构、局部私有和方向性 Intent 前提下比较，不能通过缩小任务分布取胜",
+    "分别重放跨模型锚点、渐进前缀、SEEK/OFFER、自描述和版本迁移的正例与移除失败",
+    "同时报告召回、漏配、误唤醒、传播体积、披露量、高级智能调用、版本迁移和长期维护",
+    "一个子主张被替代不自动替代其他子主张；整体 supersession 需要全部 scoped claims 的无损证据",
+    "正式标记 SUPERSEDED、删除历史 owner 或停止整条 NAC 研究仍需用户决定"
+  ],
+  "decision_ref": "DEC-2026-07-28-BOUNDED-MECHANISM-PARADIGM-R2",
+  "companion_markdown": "research/projects/joint-action-formation/mechanisms/nac.md",
+  "companion_sha256": "b67ea919905142f7ef9b52d1db37dcd27a84642d9abe87f863101755265b7af6"
+}

@@ -214,3 +214,93 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
 
 持续授权只消除重复询问，不降低 disclosure、哈希冻结、来源白名单、隐私排除、运行隔离和
 结果晋升门槛。超出上述机器可检查范围时，系统必须阻断或另取授权。
+
+## 2026-07-28 — 采用有界机制研究范式并登记 V2 新快照
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-BOUNDED-MECHANISM-PARADIGM",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ADOPT_BOUNDED_MECHANISM_RESEARCH_PARADIGM",
+    "PRESERVE_PROBLEM_V1_SNAPSHOT",
+    "REGISTER_PROBLEM_V2_AS_CANDIDATE",
+    "REGISTER_SCOPED_MECHANISM",
+    "CONTINUE_SCOPED_MECHANISM_RESEARCH",
+    "CONTINUE_NAC_AS_SCOPED_RESEARCH"
+  ],
+  "target": {
+    "kind": "MechanismProfile",
+    "id": "MEC-NAC",
+    "version": "v1",
+    "path": "research/projects/joint-action-formation/mechanisms/nac.json",
+    "content_sha256": "cb641a2865cd637d9101191f656049e2a4402d9b04d8f901922b3eec86ff9c72",
+    "snapshot_sha256": "138b9e0609f0376d6979d9f302abe027d37fc4b00b1d9e5b49ea3064e0eb0e41"
+  },
+  "does_not_authorize": [
+    "ACTIVATE_PROBLEM_V2",
+    "SUPERSEDE_PROBLEM_V1",
+    "DECLARE_NAC_VALIDATED",
+    "VALIDATE_SCOPED_MECHANISM",
+    "REBASE_SCOPED_MECHANISM",
+    "REFUTE_SCOPED_MECHANISM",
+    "SUPERSEDE_SCOPED_MECHANISM",
+    "FORCE_MECHANISM_INTEGRATION",
+    "ACTIVATE_REAL_SCENARIO",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户明确要求把有界机制判断固定为长期研究范式：机制按自己的前提、问题、能力、要求、非目标和证据边界独立推进；作用域外未覆盖不构成否定，负结果只影响受检验主张，已有方案能用则复用，真实缺口才开新机制。V1 保持并存和存档，V2 只作为显化共享世界前提、服务目标、评价与研究范式的新文件；NAC 作为尚未研究到位的显式机制继续推进。"
+}
+```
+<!-- research-decision:end -->
+
+本决定使 `BOUNDED_MECHANISM_RESEARCH_V1` 成为后续研究的共同方法边界，并允许把 NAC
+登记为 `ACTIVE_RESEARCH`。它不说明 NAC 已经有效，不允许 V2 自动激活，也不允许任何
+自动结果把 V1、NAC 或其他机制标记为 superseded。
+
+## 2026-07-28 — 按有界作用域重新登记 NAC v1
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-BOUNDED-MECHANISM-PARADIGM-R2",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "REGISTER_SCOPED_MECHANISM",
+    "CONTINUE_SCOPED_MECHANISM_RESEARCH",
+    "CONTINUE_NAC_AS_SCOPED_RESEARCH"
+  ],
+  "target": {
+    "kind": "MechanismProfile",
+    "id": "MEC-NAC",
+    "version": "v1",
+    "path": "research/projects/joint-action-formation/mechanisms/nac.json",
+    "content_sha256": "7f198127004e516ac882dce7507be840185f77c8f5221db5bb93a9c45d675e53",
+    "snapshot_sha256": "3350482e78e343675b7780ec64462d226b4d839c7859933634a6883d46934f08"
+  },
+  "does_not_authorize": [
+    "DECLARE_NAC_VALIDATED",
+    "VALIDATE_SCOPED_MECHANISM",
+    "REBASE_SCOPED_MECHANISM",
+    "REFUTE_SCOPED_MECHANISM",
+    "SUPERSEDE_SCOPED_MECHANISM",
+    "UPDATE_SCOPED_MECHANISM_EVIDENCE",
+    "FORCE_MECHANISM_INTEGRATION",
+    "ACTIVATE_PROBLEM_V2",
+    "ACTIVATE_REAL_SCENARIO",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户再次明确：V1 保持存档，V2 只是新增共享知识底座；NAC 尚未研究到位，应按自身问题、前提、主张、实验和失败作用域继续作为独立研究线。此次登记吸收能力 ID、配套机制 ownership、已验证闭包与负面作用域的治理修正，不把任何未运行实验写成证成结果。"
+}
+```
+<!-- research-decision:end -->
+
+本决定不覆盖前一份快照，而是登记治理修正后的 NAC v1 精确内容。未来若改变主张、证据状态、
+已验证范围或负面范围，仍需新的精确决定；普通研究结果只能进入候选区。

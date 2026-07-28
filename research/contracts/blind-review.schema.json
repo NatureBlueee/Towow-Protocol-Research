@@ -17,8 +17,11 @@
     "cannot_conclude"
   ],
   "properties": {
-    "schema_version": {"type": "string", "const": "1.0"},
+    "schema_version": {"type": "string", "enum": ["1.0", "2.0"]},
     "kind": {"type": "string", "const": "BlindReview"},
+    "review_scope": {
+      "enum": ["PROBLEM_FRAME", "SCOPED_MECHANISM"]
+    },
     "status": {"enum": ["COMPLETED", "INCONCLUSIVE", "REFUSED"]},
     "strongest_counterarguments": {
       "type": "array",
@@ -31,17 +34,74 @@
     "baseline_challenges": {"type": "array", "items": {"type": "string"}},
     "recommendation": {
       "enum": [
-        "ACTIVATE_CANDIDATE_V1",
+        "ADVANCE_WITHIN_SCOPE",
+        "REVISE_BEFORE_NEXT_RUN",
+        "KEEP_COMPETING_RESULTS",
+        "REJECT_SCOPED_CLAIM",
+        "REOPEN_PROBLEM_CANDIDATE",
         "REWRITE_BEFORE_ACTIVATION",
         "KEEP_MULTIPLE_CANDIDATES",
         "REJECT_CURRENT_FRAME",
         "INSUFFICIENT_EVIDENCE"
       ]
     },
+    "scoped_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "anonymous_return_id",
+          "hypothesis_id",
+          "claim_id",
+          "assessment",
+          "rationale"
+        ],
+        "properties": {
+          "anonymous_return_id": {"type": "string"},
+          "hypothesis_id": {"type": "string"},
+          "claim_id": {"type": ["string", "null"]},
+          "assessment": {
+            "enum": [
+              "SUPPORTED_WITHIN_SCOPE",
+              "NARROW",
+              "REFUTE_CANDIDATE",
+              "REBASE_CANDIDATE",
+              "UNAFFECTED",
+              "INSUFFICIENT_EVIDENCE"
+            ]
+          },
+          "rationale": {"type": "string", "minLength": 12}
+        }
+      }
+    },
     "cannot_conclude": {
       "type": "array",
       "minItems": 1,
       "items": {"type": "string"}
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"schema_version": {"const": "2.0"}},
+        "required": ["schema_version"]
+      },
+      "then": {
+        "required": ["review_scope"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {"const": "2.0"},
+          "review_scope": {"const": "SCOPED_MECHANISM"}
+        },
+        "required": ["schema_version", "review_scope"]
+      },
+      "then": {
+        "required": ["scoped_assessments"]
+      }
+    }
+  ]
 }

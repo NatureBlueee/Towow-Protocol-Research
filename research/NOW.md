@@ -7,24 +7,69 @@
   "updated_at": "2026-07-28",
   "current_project": "research/projects/joint-action-formation",
   "seed_problem": "research/projects/joint-action-formation/problem/v0.json",
-  "candidate_problem": "research/projects/joint-action-formation/problem/v1-candidate.json",
+  "candidate_problem": "research/projects/joint-action-formation/problem/v2-candidate.json",
   "history_alignment": "research/projects/joint-action-formation/problem/v1-history-alignment.json",
   "active_problem": null,
+  "preserved_problem_versions": [
+    {
+      "version": "v1",
+      "path": "research/projects/joint-action-formation/problem/v1-candidate.json",
+      "sha256": "9a59de81ac7c5ca0a42ff012bbade98b4be60978742b3c81d26f9024a3e9b408",
+      "artifacts": [
+        {
+          "role": "problem_contract",
+          "path": "research/projects/joint-action-formation/problem/v1-candidate.json",
+          "sha256": "9a59de81ac7c5ca0a42ff012bbade98b4be60978742b3c81d26f9024a3e9b408"
+        },
+        {
+          "role": "problem_companion",
+          "path": "research/projects/joint-action-formation/problem/v1-candidate.md",
+          "sha256": "7982aa908ce4e457e655fbe553db228f2ab9a09fdaa1202309df261d1bdc4a56"
+        },
+        {
+          "role": "inheritance_audit",
+          "path": "research/projects/joint-action-formation/problem/v1-history-alignment.json",
+          "sha256": "ed98af1e8ce8d6fd1494e6881ab47bb7c63eea2b1d1cf003f343f869eac39381"
+        },
+        {
+          "role": "inheritance_companion",
+          "path": "research/projects/joint-action-formation/problem/v1-history-alignment.md",
+          "sha256": "11a25e60edbfad0ec53f92c038356150ee3685dff349b1869148abf54acc1784"
+        }
+      ]
+    }
+  ],
   "validated_scenario": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
   "active_mechanism_scenario": null,
-  "active_lines": [
-    "LINE-01-DISCOVERY-BOUNDARY",
-    "LINE-02-RELATION-CONSTITUTION",
-    "LINE-03-POSSIBILITY-FORMATION",
-    "LINE-04-CAPABILITY-REALIZATION",
-    "LINE-05-AUTHORITY-NORMS",
-    "LINE-06-REALITY-EFFECT",
-    "LINE-07-RUNTIME-EVOLUTION"
+  "mechanism_profiles": [
+    "research/projects/joint-action-formation/mechanisms/nac.json"
   ],
+  "active_lines": [],
+  "lines_by_problem": {
+    "PRB-JOINT-ACTION-FORMATION@v0": {
+      "status": "PRESERVED_CONTRACTS",
+      "lines": [
+        "LINE-01-DISCOVERY-BOUNDARY",
+        "LINE-02-RELATION-CONSTITUTION",
+        "LINE-03-POSSIBILITY-FORMATION",
+        "LINE-04-CAPABILITY-REALIZATION",
+        "LINE-05-AUTHORITY-NORMS",
+        "LINE-06-REALITY-EFFECT",
+        "LINE-07-RUNTIME-EVOLUTION"
+      ]
+    },
+    "PRB-JOINT-ACTION-FORMATION@v2": {
+      "status": "DRAFT",
+      "lines": [
+        "LINE-01-NAC"
+      ]
+    }
+  },
   "current_batch": null,
   "latest_completed_batch": "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/finalization-manifest.json",
   "pending_user_decisions": [
-    "激活、重写或拒绝 research/projects/joint-action-formation/problem/v1-candidate.json"
+    "审阅、重写或激活 research/projects/joint-action-formation/problem/v2-candidate.json",
+    "V2 激活后决定何时把 LINE-01-NAC 从 DRAFT 迁入首个按需机制批次"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
 }
@@ -35,17 +80,21 @@
 
 ## 当前任务
 
-截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
-研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
-不是统一答案。真实 `v0` 定义批次已经由七条原生研究线在隔离条件下完成；Claude 匿名
-盲审也已完成并建议对 v0 `REWRITE_BEFORE_ACTIVATION`。吸收七线真实分歧与盲审反例的
-`Problem v1 / CANDIDATE` 已形成，但没有 ACTIVE 问题。
+截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。`Problem v0 / SEED`
+的七线隔离定义批次与 Claude 匿名盲审已经完成；吸收其分歧与反例的 `Problem v1 /
+CANDIDATE` 已形成并按精确哈希保存。
 
-用户随后作出关键校正：`Problem v1` 本身是好的；过度拟合发生在 V1 形成以后，我们围绕
-中心成本、Agent 原生环境和人的参与进行的继续讨论。此前一度把“讨论漂移”错误诊断成
-“V1 需要重写”，现已纠正。V1 保持原样，历史审计只约束后续研究不得静默缩窄或替换它。
+本轮新增了 `Problem v2` 加法式候选快照。它不修改、不判错也不 supersede V1，只把 V1
+与历史中已有、但独立研究者容易遗漏的世界前提、服务对象、评价框架和有界机制研究范式显式
+冻结为共同知识底座。其当前是否仍为候选、是否已经激活，以及哪些研究线实际生效，只以本页
+顶部结构化状态块为准；`v2-candidate.*` 始终保留为不可覆写的候选来源。
 
-## 历史继承校正
+用户已经采用有界机制研究范式：每个机制按自己的环境、问题、能力、要求、非目标、证据和
+反例独立推进；作用域外未覆盖不构成否定，负结果只改变受检验主张，已有方案能用就复用，
+确认真实缺口才新增机制。NAC 的权威研究状态以 `mechanisms/nac.json` 为准；任何激活、
+rebase、refute 或 supersede 都必须经过内容绑定的用户决定，不能从本段叙述推断。
+
+## V1 存档与 V2 继承校正
 
 - 当前 v1 文本对 39 项历史设计能力的展开程度为 `EXPLICIT=22`、`PARTIAL=10`、
   `ABSENT=7`；这不是 V1 质量评分，也不要求问题陈述枚举全部机制；
@@ -70,6 +119,37 @@
 `research/projects/joint-action-formation/problem/v1-history-alignment.md`；其机器契约绑定
 历史能力矩阵，任何候选或激活问题缺少该继承引用都将被研究治理检查拒绝。这里检查的是
 研究程序不失忆，不是要求 ProblemContract 逐字包含所有历史机制。
+
+V2 以 `ADDITIVE_SNAPSHOT` 关系继承 V1。V1 的 Problem JSON、Problem Markdown、历史继承
+审计 JSON 与审计 Markdown 四份文件的 SHA-256 都已写入 V2 lineage；任一文件被静默改动
+时，治理检查会失败。当前候选可以复用 V1 的历史能力审计来证明前序没有丢失；若要激活
+V2，仍必须另有与 V2 精确同版本、状态为 `REVIEWED` 且建议为 `READY` 的继承审计，不能
+拿 V1 审计直接穿透激活。V2 新增的显式边界主要是：
+
+- 本研究所考察的协调输入在接口处均表示为 Intent；显式输入和上游系统产生的隐式输入只是
+  来源不同，上游怎样推断不属于本研究对象；已有 authority status 应被保留和验证，未知则
+  保持 Unknown；
+- Intent 生成者、所代表 Principal、受益者、受影响者和有权决定者不预设重合；
+- 目标世界允许亿级、异构、动态、局部私有主体网络与低频长尾关系，默认方案不能依赖全量
+  广播、完整世界汇聚或每个高级模型逐一判断；
+- 平台、中心、制度、人类和确定性服务是既有能力、adapter 或稳定关系的编译结果，不是
+  需要击败的阵营；
+- 七条原生线是问题家族，NAC、PFE、CRA 等机制可以在母线下独立研究，不要求提前统一。
+
+完整共同底座见 `research/projects/joint-action-formation/problem/v2-candidate.md`。
+
+## 有界机制研究现场
+
+`MEC-NAC / v1` 恢复了 NAC 的原始尖锐问题：海量、异构、私有网络中的方向性 Intent
+信号、跨模型锚点、渐进前缀、自描述和版本迁移，目标是在高级智能调用前缩小候选。
+
+历史核验确认 NAC 有独立问题、冻结 IF-2、专利设计、M1/M3 配套、E-H1′ 预注册和失败门；
+同时也明确记录 H1–H8 未运行。故当前状态是“正式持续研究”，不是“已经有效”或“可以因
+不负责授权、Effect 等作用域外问题而整体降级”。
+
+V2 LineContract 现在要求每项机制线绑定 scoped claims、历史与现成方案检查、未覆盖要求和
+结果影响范围。现有七份 v0 LineContract 不被追溯改写；运行器只选择与本批 Problem 精确
+同版本的 `ACTIVE` 线，并允许按需选择一条或多条线，防止 V2 文档与 v0 worker 静默混跑。
 
 ## 本批次改变的候选理解
 
@@ -175,12 +255,14 @@
 - `PRESERVED` 表示档案中的人工行为重建通过，不表示生产或真人验证通过；
 - 审计现状为 `PRESERVED=15`、`TRANSFORMED=5`、`PARTIAL=18`、`LOST=1`。
 
-## 审计后的下一条高价值线索
+## 当前下一条高价值线索
 
-继续以 `problem/v1-candidate.json` 为锚，把最近讨论分别登记为三个从属研究输入：
-AgentExecution 运行环境假说、跨机制 Router 假说、生命周期成本与价值前沿假说。下一轮
-讨论或研究必须逐项说明它正在展开 V1 的哪一部分、没有覆盖什么、什么结果会改变设计；
-不得再把某个最新输入升格成新的总问题。V1 是否激活仍由用户单独决定。
+先由用户审阅或重写 `problem/v2-candidate.md`；只有显式决定后才能激活 V2。V2 激活后，
+首个 `LINE-01-NAC / v1` 只冻结 `E-H1′ → MC-NAC-ANCHOR`：按原门槛比较跨厂商召回与
+vec2vec，并把自然语言加稳定 Schema 明确标成 V2 新增臂。H2–H8、方向性、自描述和迁移
+分别建立后续有界线；传统索引、平台路由、强中心与混合方案在相应 M3/端到端线公平比较，
+不能把它们的效果算作 NAC 坐标已经通过。
 
-任何实验开工前必须说明会改变哪个设计、反向结果是什么以及三类结果怎样修改系统；否则转入
-CI、实现保障或档案校准。
+其他机制按相同范式逐个恢复为 profile 或新版本研究线。任何实验开工前必须说明受检验的
+scoped claim、已有方案、反向结果只会改变什么、哪些主张不受影响，以及三类结果怎样修改
+设计；否则转入 CI、实现保障或档案校准。

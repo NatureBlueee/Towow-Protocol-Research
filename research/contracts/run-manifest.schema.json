@@ -14,8 +14,11 @@
     "status",
     "problem_ref",
     "scenario_ref",
+    "plan_fingerprint",
     "input_hash",
+    "input_payload_sha256",
     "source_allowlist",
+    "research_focus",
     "protected_hashes",
     "runner",
     "attempt",
@@ -23,6 +26,9 @@
     "finished_at",
     "exit_code",
     "result_sha256",
+    "raw_result_sha256",
+    "events_sha256",
+    "completion_seal_sha256",
     "cost"
   ],
   "properties": {
@@ -37,8 +43,43 @@
     },
     "problem_ref": {"type": "string"},
     "scenario_ref": {"type": "string"},
+    "plan_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
     "input_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "input_payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
     "source_allowlist": {"type": "array", "items": {"type": "string"}},
+    "research_focus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_ref",
+        "hypothesis_ids",
+        "tested_claim_ids"
+      ],
+      "properties": {
+        "mechanism_ref": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+        "hypothesis_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "tested_claim_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
     "protected_hashes": {
       "type": "object",
       "additionalProperties": {"type": "string", "pattern": "^(?:[a-f0-9]{64}|MISSING)$"}
@@ -57,6 +98,18 @@
     "finished_at": {"type": ["string", "null"]},
     "exit_code": {"type": ["integer", "null"]},
     "result_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "raw_result_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "events_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "completion_seal_sha256": {
       "type": ["string", "null"],
       "pattern": "^[a-f0-9]{64}$"
     },

@@ -11,7 +11,7 @@ help:
 	@echo "make research-audit-check     Check A2A capability audit and cross-links"
 	@echo "make research-governance-check Validate bounded research contracts and tests"
 	@echo "make research-status          Show the current research truth surface"
-	@echo "make research-batch-plan MODE=mock Plan an isolated seven-line batch"
+	@echo "make research-batch-plan MODE=mock [PROBLEM=v0] [LINE=LINE-...] Plan a version-matched batch"
 
 check:
 	$(PYTHON) tools/workspace_check.py
@@ -40,4 +40,4 @@ research-status:
 	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py status
 
 research-batch-plan:
-	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py batch plan --mode "$(or $(MODE),mock)"
+	PYTHONPYCACHEPREFIX=/tmp/towow-research-pycache $(PYTHON) tools/researchctl.py batch plan --mode "$(or $(MODE),mock)" $(if $(PROBLEM),--problem "$(PROBLEM)",) $(if $(LINE),--line "$(LINE)",)

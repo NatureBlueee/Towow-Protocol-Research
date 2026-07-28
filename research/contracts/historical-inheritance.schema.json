@@ -75,7 +75,6 @@
         "required": [
           "capability_id",
           "archive_status",
-          "v1_coverage",
           "inheritance_disposition",
           "current_assessment",
           "preservation_requirement"
@@ -86,6 +85,7 @@
             "enum": ["PRESERVED", "TRANSFORMED", "PARTIAL", "LOST"]
           },
           "v1_coverage": {"enum": ["EXPLICIT", "PARTIAL", "ABSENT"]},
+          "problem_coverage": {"enum": ["EXPLICIT", "PARTIAL", "ABSENT"]},
           "inheritance_disposition": {
             "enum": [
               "PRESERVE_AS_PROBLEM_DISTINCTION",
@@ -98,7 +98,11 @@
           },
           "current_assessment": {"type": "string", "minLength": 12},
           "preservation_requirement": {"type": "string", "minLength": 12}
-        }
+        },
+        "oneOf": [
+          {"required": ["v1_coverage"]},
+          {"required": ["problem_coverage"]}
+        ]
       }
     },
     "companion_markdown": {"type": "string", "pattern": "\\.md$"}
