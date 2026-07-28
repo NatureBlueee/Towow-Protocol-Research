@@ -323,6 +323,13 @@ class ContractTests(unittest.TestCase):
             "\n".join(researchctl.validate_schema(without_basis, path)),
         )
 
+        without_bundle = copy.deepcopy(problem)
+        without_bundle.pop("activation_bundle_ref")
+        self.assertIn(
+            "'activation_bundle_ref' is a required property",
+            "\n".join(researchctl.validate_schema(without_bundle, path)),
+        )
+
     def test_active_v2_requires_its_own_reviewed_inheritance_audit(self):
         path = (
             ROOT
@@ -334,15 +341,498 @@ class ContractTests(unittest.TestCase):
         )
         problem = researchctl.load_json(path)
         problem["status"] = "ACTIVE"
+        problem["historical_inheritance_ref"] = problem["lineage"][
+            "predecessor_audit_ref"
+        ]
         errors = researchctl.check_problem_historical_inheritance(
             researchctl.DEFAULT_PROJECT,
             path,
             problem,
         )
         self.assertIn(
-            "ACTIVE problem requires a current-version historical inheritance audit",
+            "requires a current-version historical inheritance audit",
             "\n".join(errors),
         )
+        self.assertIn(
+            "current-version audit must have a distinct path",
+            "\n".join(errors),
+        )
+
+    def test_v2_inheritance_audit_is_current_reviewed_and_complete(self):
+        problem_dir = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+        )
+        path = problem_dir / "v2-history-alignment.json"
+        audit = researchctl.load_json(path)
+
+        self.assertEqual("REVIEWED", audit["status"])
+        self.assertEqual("READY", audit["activation_recommendation"])
+        self.assertEqual(
+            {
+                "id": "PRB-JOINT-ACTION-FORMATION",
+                "version": "v2",
+            },
+            audit["problem_ref"],
+        )
+        self.assertEqual(39, len(audit["capabilities"]))
+        self.assertEqual(
+            {"explicit": 22, "partial": 10, "absent": 7},
+            audit["coverage_summary"],
+        )
+        self.assertTrue(
+            all(
+                "problem_coverage" in capability
+                and "v1_coverage" not in capability
+                for capability in audit["capabilities"]
+            )
+        )
+        self.assertEqual(
+            [],
+            researchctl.validate_historical_inheritance(audit, path),
+        )
+
+    def test_relabelled_v1_audit_cannot_satisfy_v2(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v2-candidate.json"
+        )
+        problem = researchctl.load_json(path)
+        predecessor_locator = problem["lineage"]["predecessor_audit_ref"]
+        problem["historical_inheritance_ref"] = predecessor_locator
+        predecessor_path = researchctl.resolve_root_path(predecessor_locator)
+        original_load_json = researchctl.load_json
+
+        def load_relabelled_audit(candidate_path):
+            document = original_load_json(candidate_path)
+            if candidate_path.resolve() == predecessor_path.resolve():
+                document["problem_ref"] = {
+                    "id": problem["id"],
+                    "version": problem["version"],
+                }
+                document["status"] = "REVIEWED"
+                document["activation_recommendation"] = "READY"
+            return document
+
+        with mock.patch.object(
+            researchctl,
+            "load_json",
+            side_effect=load_relabelled_audit,
+        ):
+            errors = researchctl.check_problem_historical_inheritance(
+                researchctl.DEFAULT_PROJECT,
+                path,
+                problem,
+            )
+
+        joined = "\n".join(errors)
+        self.assertIn("distinct path from predecessor audit", joined)
+        self.assertIn("distinct id from predecessor audit", joined)
+        self.assertIn("problem_coverage for every capability", joined)
+
+    def test_v2_activation_bundle_freezes_exact_five_artifacts(self):
+        problem_dir = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+        )
+        path = problem_dir / "v2-candidate.json"
+        problem = researchctl.load_json(path)
+        bundle_path = researchctl.resolve_root_path(
+            problem["activation_bundle_ref"]
+        )
+        bundle = researchctl.load_json(bundle_path)
+
+        self.assertEqual([], researchctl.validate_schema(bundle, bundle_path))
+        self.assertEqual(
+            researchctl.PROBLEM_ACTIVATION_ARTIFACT_ROLES,
+            {artifact["role"] for artifact in bundle["artifacts"]},
+        )
+        self.assertEqual(
+            [],
+            researchctl.verify_problem_activation_bundle(problem, path),
+        )
+        for artifact in bundle["artifacts"]:
+            artifact_path = researchctl.resolve_root_path(artifact["path"])
+            self.assertEqual(
+                artifact["sha256"],
+                researchctl.sha256_file(artifact_path),
+            )
+
+    def test_v2_activation_bundle_detects_any_artifact_drift(self):
+        problem_dir = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+        )
+        path = problem_dir / "v2-candidate.json"
+        problem = researchctl.load_json(path)
+        bundle = researchctl.load_json(
+            researchctl.resolve_root_path(problem["activation_bundle_ref"])
+        )
+        original_sha256_file = researchctl.sha256_file
+
+        for artifact in bundle["artifacts"]:
+            tampered_path = researchctl.resolve_root_path(artifact["path"])
+
+            def drifted_hash(candidate_path, target=tampered_path):
+                if candidate_path.resolve() == target.resolve():
+                    return "0" * 64
+                return original_sha256_file(candidate_path)
+
+            with self.subTest(role=artifact["role"]), mock.patch.object(
+                researchctl,
+                "sha256_file",
+                side_effect=drifted_hash,
+            ):
+                self.assertIn(
+                    "activation artifact SHA-256 differs",
+                    "\n".join(
+                        researchctl.verify_problem_activation_bundle(
+                            problem,
+                            path,
+                        )
+                    ),
+                )
+
+    def test_v2_activation_bundle_roles_require_distinct_files(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v2-candidate.json"
+        )
+        problem = researchctl.load_json(path)
+        bundle_path = researchctl.resolve_root_path(
+            problem["activation_bundle_ref"]
+        )
+        bundle = researchctl.load_json(bundle_path)
+        duplicate = copy.deepcopy(bundle)
+        duplicate["artifacts"][1]["path"] = duplicate["artifacts"][0][
+            "path"
+        ]
+        duplicate["artifacts"][1]["sha256"] = duplicate["artifacts"][0][
+            "sha256"
+        ]
+        original_load_json = researchctl.load_json
+
+        def load_duplicate_bundle(candidate_path):
+            if candidate_path.resolve() == bundle_path.resolve():
+                return copy.deepcopy(duplicate)
+            return original_load_json(candidate_path)
+
+        with mock.patch.object(
+            researchctl,
+            "load_json",
+            side_effect=load_duplicate_bundle,
+        ):
+            self.assertIn(
+                "must resolve to five distinct files",
+                "\n".join(
+                    researchctl.verify_problem_activation_bundle(
+                        problem,
+                        path,
+                    )
+                ),
+            )
+
+    def test_v2_activation_decision_must_bind_bundle_hash(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v2-candidate.json"
+        )
+        problem = researchctl.load_json(path)
+        bundle_path = researchctl.resolve_root_path(
+            problem["activation_bundle_ref"]
+        )
+        decision_id = "DEC-TEST-V2-ACTIVATION"
+        target = {
+            "id": problem["id"],
+            "version": problem["version"],
+            "source_path": researchctl.relative(path),
+            "source_sha256": researchctl.sha256_file(path),
+        }
+
+        def allowed(candidate_target):
+            decision = {
+                "decision_id": decision_id,
+                "status": "APPROVED",
+                "decided_by": "USER",
+                "actions": ["ACTIVATE_PROBLEM"],
+                "target": candidate_target,
+            }
+            with mock.patch.object(
+                researchctl,
+                "read_decisions",
+                return_value={decision_id: decision},
+            ):
+                return researchctl.decision_allows_promotion(
+                    decision_id,
+                    "ACTIVATE_PROBLEM",
+                    problem,
+                    path,
+                )
+
+        self.assertFalse(allowed(target))
+        exact = {
+            **target,
+            "activation_bundle_path": researchctl.relative(bundle_path),
+            "activation_bundle_sha256": researchctl.sha256_file(bundle_path),
+        }
+        self.assertTrue(allowed(exact))
+        stale = {**exact, "activation_bundle_sha256": "0" * 64}
+        self.assertFalse(allowed(stale))
+
+    def test_v2_problem_receipt_must_preserve_bundle_binding(self):
+        researchctl.RUNTIME.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(
+            dir=researchctl.RUNTIME
+        ) as temporary:
+            project = Path(temporary) / "receipt-project"
+            for name in ("problem", "lines", "promotions"):
+                (project / name).mkdir(parents=True, exist_ok=True)
+            source_path = (
+                ROOT
+                / "research"
+                / "projects"
+                / "joint-action-formation"
+                / "problem"
+                / "v2-candidate.json"
+            )
+            candidate = researchctl.load_json(source_path)
+            candidate_path = project / "problem" / "v2-candidate.json"
+            researchctl.write_json(candidate_path, candidate)
+            target_path = project / "problem" / "v2.json"
+            decision_id = "DEC-TEST-V2-RECEIPT"
+            active = researchctl.expected_promoted_document(
+                candidate,
+                "problem",
+                decision_id,
+                target_path,
+            )
+            researchctl.write_json(target_path, active)
+            active_companion = researchctl.resolve_root_path(
+                active["companion_markdown"]
+            )
+            researchctl.atomic_write_text(
+                active_companion,
+                researchctl.render_problem_active_companion(
+                    candidate,
+                    candidate_path,
+                    decision_id,
+                ),
+            )
+            receipt_path = project / "promotions" / "v2.json"
+            receipt = {
+                "promotion_id": "PROM-TEST-V2",
+                "target_kind": "problem",
+                "target_id": candidate["id"],
+                "target_version": candidate["version"],
+                "decision_id": decision_id,
+                "promoted_at": researchctl.utc_now(),
+                "source_candidate": researchctl.relative(candidate_path),
+                "source_sha256": researchctl.sha256_file(candidate_path),
+                "target": researchctl.relative(target_path),
+                "target_sha256": researchctl.sha256_file(target_path),
+                "target_companion": researchctl.relative(
+                    active_companion
+                ),
+                "target_companion_sha256": researchctl.sha256_file(
+                    active_companion
+                ),
+            }
+            researchctl.write_json(receipt_path, receipt)
+
+            with mock.patch.object(
+                researchctl,
+                "decision_allows_promotion",
+                return_value=True,
+            ):
+                self.assertIn(
+                    "does not bind the current activation bundle",
+                    "\n".join(
+                        researchctl.check_exact_promotion_receipt(
+                            target_path,
+                            active,
+                            "problem",
+                        )
+                    ),
+                )
+                bundle_path = researchctl.resolve_root_path(
+                    candidate["activation_bundle_ref"]
+                )
+                receipt.update(
+                    {
+                        "activation_bundle_path": researchctl.relative(
+                            bundle_path
+                        ),
+                        "activation_bundle_sha256": researchctl.sha256_file(
+                            bundle_path
+                        ),
+                    }
+                )
+                researchctl.write_json(receipt_path, receipt)
+                self.assertEqual(
+                    [],
+                    researchctl.check_exact_promotion_receipt(
+                        target_path,
+                        active,
+                        "problem",
+                    ),
+                )
+                original_companion = active_companion.read_text(
+                    encoding="utf-8"
+                )
+                researchctl.atomic_write_text(
+                    active_companion,
+                    original_companion
+                    + "\n静默改写，但保留 ID、version 与 ACTIVE 标记。\n",
+                )
+                receipt["target_companion_sha256"] = (
+                    researchctl.sha256_file(active_companion)
+                )
+                researchctl.write_json(receipt_path, receipt)
+                self.assertIn(
+                    "ACTIVE companion is not the deterministic projection",
+                    "\n".join(
+                        researchctl.check_exact_promotion_receipt(
+                            target_path,
+                            active,
+                            "problem",
+                        )
+                    ),
+                )
+
+    def test_v2_problem_promotion_resumes_before_now_update(self):
+        researchctl.RUNTIME.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(
+            dir=researchctl.RUNTIME
+        ) as temporary:
+            project = Path(temporary) / "problem-promotion-project"
+            for name in ("problem", "lines"):
+                (project / name).mkdir(parents=True, exist_ok=True)
+            source_path = (
+                ROOT
+                / "research"
+                / "projects"
+                / "joint-action-formation"
+                / "problem"
+                / "v2-candidate.json"
+            )
+            candidate = researchctl.load_json(source_path)
+            candidate_path = project / "problem" / "v2-candidate.json"
+            researchctl.write_json(candidate_path, candidate)
+            decision_id = "DEC-TEST-V2-RESUME"
+            args = argparse.Namespace(
+                project=researchctl.relative(project),
+                candidate=researchctl.relative(candidate_path),
+                target="problem",
+                decision_id=decision_id,
+            )
+            initial_state = {
+                "candidate_problem": researchctl.relative(candidate_path),
+                "active_problem": None,
+                "lines_by_problem": {},
+                "active_lines": [],
+                "pending_user_decisions": [
+                    f"审阅、重写或激活 {researchctl.relative(candidate_path)}"
+                ],
+            }
+            write_state = mock.Mock(
+                side_effect=[
+                    researchctl.ResearchError(
+                        "simulated interruption before NOW commit"
+                    ),
+                    None,
+                ]
+            )
+            with (
+                mock.patch.object(
+                    researchctl,
+                    "verify_problem_activation_bundle",
+                    return_value=[],
+                ),
+                mock.patch.object(
+                    researchctl,
+                    "decision_allows_promotion",
+                    return_value=True,
+                ),
+                mock.patch.object(
+                    researchctl,
+                    "check_problem_lineage",
+                    return_value=[],
+                ),
+                mock.patch.object(
+                    researchctl,
+                    "check_problem_historical_inheritance",
+                    return_value=[],
+                ),
+                mock.patch.object(
+                    researchctl,
+                    "read_state",
+                    side_effect=lambda: copy.deepcopy(initial_state),
+                ),
+                mock.patch.object(
+                    researchctl,
+                    "write_state",
+                    write_state,
+                ),
+            ):
+                with self.assertRaisesRegex(
+                    researchctl.ResearchError,
+                    "simulated interruption",
+                ):
+                    researchctl.promote(args)
+                active_path = project / "problem" / "v2.json"
+                active_companion = project / "problem" / "v2.md"
+                receipt_path = (
+                    project
+                    / "promotions"
+                    / f"{candidate['id']}-{decision_id}.json"
+                )
+                self.assertTrue(active_path.is_file())
+                self.assertTrue(active_companion.is_file())
+                self.assertTrue(receipt_path.is_file())
+
+                self.assertEqual(0, researchctl.promote(args))
+                self.assertEqual(2, write_state.call_count)
+                self.assertEqual(
+                    [],
+                    researchctl.check_exact_promotion_receipt(
+                        active_path,
+                        researchctl.load_json(active_path),
+                        "problem",
+                    ),
+                )
+
+    def test_now_history_alignment_tracks_current_problem(self):
+        state = researchctl.read_state()
+        problem_path = researchctl.resolve_root_path(
+            state["candidate_problem"]
+        )
+        problem = researchctl.load_json(problem_path)
+        self.assertEqual(
+            problem["historical_inheritance_ref"],
+            state["history_alignment"],
+        )
+
 
     def test_problem_version_exactly_filters_active_lines(self):
         project = researchctl.DEFAULT_PROJECT

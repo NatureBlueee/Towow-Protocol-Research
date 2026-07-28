@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "kind": "HistoricalInheritanceAudit",
+  "id": "HIA-JOINT-ACTION-FORMATION-V2",
+  "status": "REVIEWED",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "canonical_capability_matrix": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+  "activation_recommendation": "READY",
+  "coverage_interpretation": "EXPLICIT、PARTIAL、ABSENT 只表示某项历史设计能力在 Problem v2 问题契约及其人类说明中的展开程度，不是 V2 质量评分，也不把 NAC profile、研究线或被引用的 V1 审计冒充 V2 正文覆盖。V2 通过精确哈希继承 V1，并用 shared basis 增加跨能力的世界、尺度、人的参与、制度共存和非形成价值约束；具体机制仍由独立 profile、LineContract、场景和实验继承。",
+  "coverage_summary": {
+    "explicit": 22,
+    "partial": 10,
+    "absent": 7
+  },
+  "cross_cutting_findings": [
+    {
+      "id": "HIF-V2-ADDITIVE",
+      "finding": "V2 以四份前序材料的精确 SHA-256 继承 V1，并把新增内容限定为共享世界底座和研究范式，没有把最近讨论改写成替代 V1 的新总问题。",
+      "required_correction": "激活后继续保留 V1 不可覆写快照；任何对 V1 不变量的否定都必须按 reopen 条件形成新证据和用户决定，不能通过 V2 解释静默覆盖。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/v2-candidate.md:5-27",
+        "research/projects/joint-action-formation/problem/v2-candidate.json:165-175"
+      ]
+    },
+    {
+      "id": "HIF-V2-MULTISCALE",
+      "finding": "最终审读发现初稿仍以单个 RelationEpisode 为中心；修订后已显式并列 AgentExecution、RelationEpisode 与 RelationEcology，且禁止跨尺度自动外推。",
+      "required_correction": "每条后续研究线必须声明实际分析尺度；Agent 运行环境不能替代关系问题，episode 成功不能证明生态净值，生态统计不能替一次执行、授权或认领背书。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/v2-candidate.md:94-104",
+        "research/projects/joint-action-formation/problem/v1-history-alignment.md:169-190"
+      ]
+    },
+    {
+      "id": "HIF-V2-HUMAN-PARTICIPATION",
+      "finding": "最终审读发现初稿虽然记录高认知成本，却没有显式阻止后续研究把人的参与压成待最小化变量；修订后已把重新配置人的参与写入共享区别和评价。",
+      "required_correction": "Agent 可以承担信息搬运、候选生成、工具调用和可自动验证判断；偏好形成、价值冲突、不可逆风险、最终责任与例外必须按相应权威回到人或 Principal。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/v2-candidate.md:106-111",
+        "research/projects/joint-action-formation/problem/v1-history-alignment.md:192-201"
+      ]
+    },
+    {
+      "id": "HIF-V2-NONFORMATION-VALUE",
+      "finding": "V1 保存拒绝和 Unknown，但 V2 初稿仍可能让后续研究只奖励关系扩张；修订后已显式保存 Clarification、Protective Contraction、Reject 与 Defer 的独立价值。",
+      "required_correction": "场景和结果契约必须允许更早发现不兼容、避免错误承诺、保护性收缩和诚实保持 Unknown 成为正式结果，不能用成交或形成率删除它们。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/v2-candidate.md:113-127",
+        "research/projects/joint-action-formation/problem/v1-history-alignment.md:141-154"
+      ]
+    },
+    {
+      "id": "HIF-V2-BOUNDED-MECHANISMS",
+      "finding": "V2 将七条原生线保留为问题家族，把 NAC、PFE、CRA 等放回有界机制身份，并要求现成平台、标准、制度和 adapter 在开辟新机制前获得公平检查。",
+      "required_correction": "不得从一个机制的作用域外缺失推翻该机制，也不得用机制目录数量证明研究进展；替代与整合必须在相同前提下重放原能力、正例和移除失败。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/v2-candidate.md:131-155",
+        "AGENTS.md:192-249"
+      ]
+    },
+    {
+      "id": "HIF-V2-UNRESTORED-CAPABILITIES",
+      "finding": "V2 问题文本没有假装恢复全部历史机制；CAP-REL-004 仍是唯一 LOST 能力，DISC-007、CAP-002 与 RUN-002 等能力仍缺少充分展开或正式 owner。",
+      "required_correction": "后续研究线必须恢复本地 column/counterexample owner、typed boundary response、prospective capability holdout 与最小充分 Context Compiler；它们的缺失不是 V2 激活阻塞，也不得被写成已经解决。",
+      "source_refs": [
+        "research/projects/a2a-reconstruction/00_orientation/CURRENT_GLOBAL_VIEW.md:74-91",
+        "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv"
+      ]
+    },
+    {
+      "id": "HIF-V2-ACTIVATION-CLOSURE",
+      "finding": "候选问题、候选说明、V2 继承审计、审计说明与能力矩阵需要作为同一激活 preimage 冻结，单独绑定候选 JSON 会允许审计材料在用户决定后漂移。",
+      "required_correction": "正式激活决定必须绑定 activation bundle 的精确 SHA-256；bundle 同时绑定五份材料，promotion receipt 和 ACTIVE 问题持续复核该闭包。",
+      "source_refs": [
+        "research/projects/joint-action-formation/problem/activation/v2.json",
+        "research/contracts/problem-activation-bundle.schema.json"
+      ]
+    }
+  ],
+  "capabilities": [
+    {"capability_id": "CAP-DISC-001", "archive_status": "TRANSFORMED", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确局部私有世界、选择性传播和披露成本，但没有把随任务、风险与时间重算投影写成问题正文能力。", "preservation_requirement": "恢复任务相关投影、来源回溯与披露遗漏回归。"},
+    {"capability_id": "CAP-DISC-002", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_OPTIONAL_MECHANISM", "current_assessment": "角色绑定与无角色相似的历史差异没有在 V2 问题正文展开。", "preservation_requirement": "保留 HDC/FHRR 为可替换 provider 及角色交换反例。"},
+    {"capability_id": "CAP-DISC-003", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_OPTIONAL_MECHANISM", "current_assessment": "V2 只明确跨模型异构和候选缩减，不把 NAC 外部锚点写成问题答案。", "preservation_requirement": "由 MEC-NAC 独立保留跨模型锚点问题、原门槛和自然语言强基线。"},
+    {"capability_id": "CAP-DISC-004", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 明确渐进披露、传播预算和漏配评价，但前缀预算、接收范围及累计重建风险仍属于机制研究。", "preservation_requirement": "恢复渐进披露预算、provenance 与累计重建风险实验。"},
+    {"capability_id": "CAP-DISC-005", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "Intent 接口没有把 SEEK/OFFER 等发现方向预设成全局字段。", "preservation_requirement": "由 NAC 或其他发现机制保留供需方向与错误互配反例。"},
+    {"capability_id": "CAP-DISC-006", "archive_status": "TRANSFORMED", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 要求局部世界和必要机制，但未完全展开资料不完整与对当前任务已充分的区别。", "preservation_requirement": "恢复任务相关边界充分性，而非字段完整性。"},
+    {"capability_id": "CAP-DISC-007", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 保存 Unknown、Reject 与 Defer，但没有恢复 cut、witness、column、countercondition 的类型化本地响应接口。", "preservation_requirement": "恢复 cut、witness、column、unknown、refuse 与 countercondition 的错误提升测试。"},
+    {"capability_id": "CAP-REL-001", "archive_status": "PARTIAL", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 精确继承 V1 的参数变化、关系变化、条件创造与目标改写区别。", "preservation_requirement": "继续检验未经编码材料中的 materiality 冷启动。"},
+    {"capability_id": "CAP-REL-002", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 通过 V1 lineage、版本与重开条件明确 material change 后旧立场不得静默延续。", "preservation_requirement": "维持 material change 后不静默继承。"},
+    {"capability_id": "CAP-REL-003", "archive_status": "PARTIAL", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 明确保留来源、范围、版本、受影响主体和异议边界。", "preservation_requirement": "补多作者 contribution edge 与按权威回放。"},
+    {"capability_id": "CAP-REL-004", "archive_status": "LOST", "problem_coverage": "ABSENT", "inheritance_disposition": "RESTORE_MISSING_OWNER", "current_assessment": "局部私有网络前提不等于恢复本地私有候选生成和最小贡献证明，当前仍没有正式 owner。", "preservation_requirement": "建立本地 column/counterexample 接口，禁止中心以无全集推导无解。"},
+    {"capability_id": "CAP-REL-005", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 显式保留候选、Intent、授权、承诺与执行的非蕴含。", "preservation_requirement": "维持候选和入口相关性不能越过 Authority Gate。"},
+    {"capability_id": "CAP-FORM-001", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 保存 Unknown 与非形成结果，但未按缺信息、能力、权限、偏好、拒绝或不可能完成类型化路由。", "preservation_requirement": "恢复 typed Unknown 到探问、probe、形成、退出或升级的映射。"},
+    {"capability_id": "CAP-FORM-002", "archive_status": "PARTIAL", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 完整继承 S0、Q、operator 与反事实消融，并把它们限定为具体 formation 主张的验证协议。", "preservation_requirement": "只把它用于因果 formation 主张，不预先替代问题构成。"},
+    {"capability_id": "CAP-FORM-003", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 保存拒绝、Defer 和非形成价值，但本地 countercondition 与策略操纵边界仍未充分展开。", "preservation_requirement": "保留本地拒绝权、最小 countercondition 与策略操纵测试。"},
+    {"capability_id": "CAP-FORM-004", "archive_status": "TRANSFORMED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 继承现实 probe、环境绑定、目标域 readback 和分层效力要求。", "preservation_requirement": "保持语言自报不能建立能力或现实 Effect。"},
+    {"capability_id": "CAP-FORM-005", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确机制路由、稳定编译、停止条件、局部重开及平台化演化。", "preservation_requirement": "避免永久开放形成与过早全局冻结。"},
+    {"capability_id": "CAP-CAP-001", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 继承能力与权限、环境、资源、版本、恢复之间的绑定。", "preservation_requirement": "维持能力不是静态技能标签。"},
+    {"capability_id": "CAP-CAP-002", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 的冻结输入与 formation 前态不等于干预前冻结 Capability Claim 并前瞻验证未见任务。", "preservation_requirement": "恢复 prospective holdout，禁止修复后成功回填旧能力。"},
+    {"capability_id": "CAP-CAP-003", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 明确 producer 结果、目标域 Effect、Adoption、Acceptance 与 Settlement 分别建立。", "preservation_requirement": "维持独立 readback 与 provenance 优先级。"},
+    {"capability_id": "CAP-CAP-004", "archive_status": "TRANSFORMED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确保留过期、Defeater、漂移、退出和局部重开。", "preservation_requirement": "维持一次成功不产生永久能力。"},
+    {"capability_id": "CAP-CAP-005", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 纳入资源可行性和多机制组合负担，但单点能力不推出组合交付仍未完整展开。", "preservation_requirement": "恢复组合依赖、容量和共享资源 Gate。"},
+    {"capability_id": "CAP-AUTH-001", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 显式区分广义 Agent Entity、Principal、Intent 生成者和有权决定者。", "preservation_requirement": "维持认证执行体不能冒充责任主体。"},
+    {"capability_id": "CAP-AUTH-002", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确 Intent、技术能力、Mandate 与 AgentExecution 不互相推出。", "preservation_requirement": "在产生现实后果时按风险启用范围、期限和撤销 Gate。"},
+    {"capability_id": "CAP-AUTH-003", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 继承精确版本 Stance、material change 与旧立场失效。", "preservation_requirement": "维持旧同意不能污染新版本。"},
+    {"capability_id": "CAP-AUTH-004", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 继承 Commitment、Reservation 和执行资源边界的非蕴含。", "preservation_requirement": "维持愿意参与不等于资源已经保留。"},
+    {"capability_id": "CAP-AUTH-005", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 显式加入受影响主体、第三方损失和不可越过底线，但 Standing 的发现、代表与救济链仍不足。", "preservation_requirement": "恢复第三方 Standing 的发现与 recourse 接口。"},
+    {"capability_id": "CAP-EFF-001", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 继承 Attempt、Execution 与 Effect 的明确分离。", "preservation_requirement": "维持目标域 witness，禁止 exit code 冒充世界改变。"},
+    {"capability_id": "CAP-EFF-002", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 继承 producer 输出与 authoritative readback 的来源顺序。", "preservation_requirement": "维持权威来源顺序和格式失败反例。"},
+    {"capability_id": "CAP-EFF-003", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 显式要求 Effect、Adoption、Acceptance 与 Settlement 分别由相称证据建立。", "preservation_requirement": "保持各层权威来源与失败语义。"},
+    {"capability_id": "CAP-EFF-004", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 保存撤销、Unknown、争议、负净值、Reject、Defer 与退出等负状态。", "preservation_requirement": "不得用最终正状态擦除历史失败。"},
+    {"capability_id": "CAP-EFF-005", "archive_status": "PRESERVED", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 明确恢复和重开，但同一 Operation identity 与新动作的区别仍未展开。", "preservation_requirement": "显式保留幂等 identity、原尝试责任链和重复副作用测试。"},
+    {"capability_id": "CAP-RUN-001", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 区分问题、机制、实现和拓扑，并防止目标替换，但没有完整恢复 Problem、Design 与 Engineering IR。", "preservation_requirement": "保留原需求、设计选择和实现状态的独立来源与 Acceptance 链。"},
+    {"capability_id": "CAP-RUN-002", "archive_status": "PARTIAL", "problem_coverage": "ABSENT", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 明确 AgentExecution 是分析尺度，并把 Context Compiler 排除为全局答案，但最小充分上下文行为仍未在问题正文展开。", "preservation_requirement": "恢复可回源的最小充分 Context Compiler 与 source coverage 测试。"},
+    {"capability_id": "CAP-RUN-003", "archive_status": "PARTIAL", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确形成期、稳定编译、中心或平台复用和新差异重开。", "preservation_requirement": "保留局部稳定 Gate，并以真实重复关系检验净值。"},
+    {"capability_id": "CAP-RUN-004", "archive_status": "TRANSFORMED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确 Defeater、真实依赖、漂移和局部重开。", "preservation_requirement": "检验隐藏依赖时的漏开与诚实全局升级。"},
+    {"capability_id": "CAP-RUN-005", "archive_status": "PARTIAL", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_EVIDENCE_BOUNDARY", "current_assessment": "V2 要求研究结果追到冻结输入、来源、目标域证据和主体认领。", "preservation_requirement": "继续区分产物存在、验证闭合与主体接受。"},
+    {"capability_id": "CAP-RUN-006", "archive_status": "PARTIAL", "problem_coverage": "PARTIAL", "inheritance_disposition": "PRESERVE_AS_RESEARCH_CAPABILITY", "current_assessment": "V2 明确机制路由和现成能力检查，但未经编码材料冷启动和 false collapse 风险仍未展开。", "preservation_requirement": "保留 Q4 原始材料盲推；失败时降级为人机 checklist。"},
+    {"capability_id": "CAP-RUN-007", "archive_status": "PRESERVED", "problem_coverage": "EXPLICIT", "inheritance_disposition": "PRESERVE_AS_PROBLEM_DISTINCTION", "current_assessment": "V2 明确网络拓扑、权威拓扑和机制选择不同，中心、联邦与混合结构都是候选结果。", "preservation_requirement": "中心胜出只限定适用域，不得推翻其他历史能力。"}
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/problem/v2-history-alignment.md"
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "ProblemActivationBundle",
+  "id": "PAB-JOINT-ACTION-FORMATION-V2",
+  "status": "READY_FOR_USER_DECISION",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "candidate_path": "research/projects/joint-action-formation/problem/v2-candidate.json",
+  "artifacts": [
+    {
+      "role": "CANDIDATE_PROBLEM",
+      "path": "research/projects/joint-action-formation/problem/v2-candidate.json",
+      "sha256": "c8d60f43508e2f375cedc7f9db7c6949341a80562d9edb9973910c3a33a54da1"
+    },
+    {
+      "role": "CANDIDATE_COMPANION",
+      "path": "research/projects/joint-action-formation/problem/v2-candidate.md",
+      "sha256": "2a1f453694bec92c0ad21ec66e3de408bbc814baa1e163c2e68a8e787769449b"
+    },
+    {
+      "role": "HISTORICAL_INHERITANCE_AUDIT",
+      "path": "research/projects/joint-action-formation/problem/v2-history-alignment.json",
+      "sha256": "8a190a2d60de03f1ab85c386346e69a4cc99d70450f65811a392badd82065860"
+    },
+    {
+      "role": "HISTORICAL_INHERITANCE_COMPANION",
+      "path": "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+      "sha256": "d3fb200ca7de66c66788b6d7cb68a04d23b12b39dd8e08c4b149342685dfc5a8"
+    },
+    {
+      "role": "CANONICAL_CAPABILITY_MATRIX",
+      "path": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "sha256": "f92a2245d7a11a251494cd5b56e6e5ec2aacb3390d17e5e3b8f29dd4ce6e9388"
+    }
+  ],
+  "created_at": "2026-07-28T09:04:53Z",
+  "activation_authority": "USER",
+  "cannot_authorize": [
+    "ACTIVATE_PROBLEM",
+    "SUPERSEDE_PROBLEM_V1",
+    "ACTIVATE_RESEARCH_LINE",
+    "EXECUTE_REAL_EFFECT",
+    "PROMOTE_STABLE_CLAIM"
+  ]
+}

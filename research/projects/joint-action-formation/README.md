@@ -6,7 +6,9 @@
 
 V2 不是重写 V1。它用前序文件 SHA-256 完整继承 V1，并显式冻结后续独立研究者必须共享的
 世界前提、服务对象、核心区别、评价框架和有界机制研究范式。V2 未经用户决定不是
-`ACTIVE`，当前也没有机制或现实场景批次被自动启动。
+`ACTIVE`，当前也没有机制或现实场景批次被自动启动。V2 专属继承审计已经
+`REVIEWED / READY`，五件激活材料由 `problem/activation/v2.json` 统一冻结；这表示
+“可以交给用户决定”，不表示已经激活。
 
 ## 当前版本关系
 
@@ -58,6 +60,8 @@ V2 不是重写 V1。它用前序文件 SHA-256 完整继承 V1，并显式冻�
 ## 当前入口
 
 - V2 人类说明：`problem/v2-candidate.md`
+- V2 历史继承审计：`problem/v2-history-alignment.md`
+- V2 激活材料闭包：`problem/activation/v2.json`
 - V1 保留快照：`problem/v1-candidate.md`
 - NAC 机制档案：`mechanisms/nac.md`
 - NAC 草案研究线：`lines/01-nac.md`

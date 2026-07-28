@@ -54,6 +54,15 @@ SCHEMA_BY_KIND = {
     "BlindReview": CONTRACTS / "blind-review.schema.json",
     "HistoricalInheritanceAudit": CONTRACTS / "historical-inheritance.schema.json",
     "MechanismProfile": CONTRACTS / "mechanism-profile.schema.json",
+    "ProblemActivationBundle": CONTRACTS / "problem-activation-bundle.schema.json",
+}
+
+PROBLEM_ACTIVATION_ARTIFACT_ROLES = {
+    "CANDIDATE_PROBLEM",
+    "CANDIDATE_COMPANION",
+    "HISTORICAL_INHERITANCE_AUDIT",
+    "HISTORICAL_INHERITANCE_COMPANION",
+    "CANONICAL_CAPABILITY_MATRIX",
 }
 
 PROTECTED_PATHS = [
@@ -194,7 +203,7 @@ def atomic_write_text(
                 os.link(temporary, path)
             except FileExistsError as exc:
                 raise ResearchError(
-                    f"controller seal already exists: {relative(path)}"
+                    f"atomic destination already exists: {relative(path)}"
                 ) from exc
             temporary.unlink()
         fsync_directory(path.parent)
@@ -207,6 +216,15 @@ def write_json(path: Path, value: Any) -> None:
     atomic_write_text(
         path,
         json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n",
+    )
+
+
+def write_json_once(path: Path, value: Any) -> None:
+    """Publish an immutable transaction artifact without replacing a prior one."""
+    atomic_write_text(
+        path,
+        json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n",
+        replace_existing=False,
     )
 
 
@@ -325,7 +343,7 @@ def write_state(state: Mapping[str, Any]) -> None:
     updated, count = STATE_RE.subn(replacement, text, count=1)
     if count != 1:
         raise ResearchError("could not replace research-state block")
-    NOW_PATH.write_text(updated, encoding="utf-8")
+    atomic_write_text(NOW_PATH, updated)
 
 
 def read_decisions() -> Dict[str, Dict[str, Any]]:
@@ -470,6 +488,22 @@ def decision_allows_promotion(
         "source_path": relative(candidate_path),
         "source_sha256": sha256_file(candidate_path),
     }
+    if (
+        action == "ACTIVATE_PROBLEM"
+        and candidate.get("schema_version") == "2.0"
+    ):
+        if verify_problem_activation_bundle(candidate, candidate_path):
+            return False
+        bundle_locator = candidate.get("activation_bundle_ref")
+        if not isinstance(bundle_locator, str):
+            return False
+        bundle_path = resolve_root_path(bundle_locator)
+        expected.update(
+            {
+                "activation_bundle_path": relative(bundle_path),
+                "activation_bundle_sha256": sha256_file(bundle_path),
+            }
+        )
     return all(target.get(key) == value for key, value in expected.items())
 
 
@@ -735,39 +769,342 @@ def check_problem_historical_inheritance(
     audit = load_json(audit_path)
     errors.extend(validate_historical_inheritance(audit, audit_path))
     ref = audit.get("problem_ref", {})
-    accepted_refs = {
-        (document.get("id"), document.get("version")),
-    }
     lineage = document.get("lineage", {})
-    predecessor_ref = lineage.get("predecessor_ref") if isinstance(lineage, Mapping) else None
-    if isinstance(predecessor_ref, str):
-        predecessor_path = resolve_root_path(predecessor_ref)
-        if predecessor_path.is_file():
-            predecessor = load_json(predecessor_path)
-            accepted_refs.add((predecessor.get("id"), predecessor.get("version")))
-    if (ref.get("id"), ref.get("version")) not in accepted_refs:
-        errors.append(
-            f"{relative(audit_path)}: problem_ref does not match problem or "
-            f"its exact predecessor"
-        )
-    if document.get("status") == "ACTIVE":
-        if (ref.get("id"), ref.get("version")) != (
-            document.get("id"),
-            document.get("version"),
-        ):
+    current_ref = (document.get("id"), document.get("version"))
+    audit_ref = (ref.get("id"), ref.get("version"))
+    requires_current_audit = (
+        document.get("schema_version") == "2.0"
+        or document.get("status") == "ACTIVE"
+    )
+    if requires_current_audit:
+        if audit_ref != current_ref:
             errors.append(
-                f"{relative(path)}: ACTIVE problem requires a current-version "
-                "historical inheritance audit"
+                f"{relative(path)}: schema 2.0 or ACTIVE problem requires a "
+                "current-version historical inheritance audit"
             )
+    else:
+        accepted_refs = {current_ref}
+        predecessor_ref = (
+            lineage.get("predecessor_ref")
+            if isinstance(lineage, Mapping)
+            else None
+        )
+        if isinstance(predecessor_ref, str):
+            predecessor_path = resolve_root_path(predecessor_ref)
+            if predecessor_path.is_file():
+                predecessor = load_json(predecessor_path)
+                accepted_refs.add(
+                    (predecessor.get("id"), predecessor.get("version"))
+                )
+        if audit_ref not in accepted_refs:
+            errors.append(
+                f"{relative(audit_path)}: problem_ref does not match problem or "
+                f"its exact predecessor"
+            )
+
+    if requires_current_audit:
         if audit.get("status") != "REVIEWED":
             errors.append(
-                f"{relative(path)}: ACTIVE problem requires a REVIEWED "
-                "historical inheritance audit"
+                f"{relative(path)}: schema 2.0 or ACTIVE problem requires a "
+                "REVIEWED historical inheritance audit"
             )
         if audit.get("activation_recommendation") != "READY":
             errors.append(
-                f"{relative(path)}: ACTIVE problem requires historical "
-                "activation_recommendation READY"
+                f"{relative(path)}: schema 2.0 or ACTIVE problem requires "
+                "historical activation_recommendation READY"
+            )
+
+    if document.get("schema_version") == "2.0":
+        if not isinstance(lineage, Mapping):
+            errors.append(
+                f"{relative(path)}: ProblemContract 2.0 requires lineage "
+                "before checking historical inheritance"
+            )
+            return errors
+        predecessor_audit_locator = lineage.get("predecessor_audit_ref")
+        predecessor_companion_locator = lineage.get(
+            "predecessor_audit_companion_ref"
+        )
+        if isinstance(predecessor_audit_locator, str):
+            predecessor_audit_path = resolve_root_path(
+                predecessor_audit_locator
+            )
+            if predecessor_audit_path.resolve() == audit_path.resolve():
+                errors.append(
+                    f"{relative(path)}: current-version audit must have a "
+                    "distinct path from predecessor audit"
+                )
+            if predecessor_audit_path.is_file():
+                predecessor_audit = load_json(predecessor_audit_path)
+                if predecessor_audit.get("id") == audit.get("id"):
+                    errors.append(
+                        f"{relative(path)}: current-version audit must have a "
+                        "distinct id from predecessor audit"
+                    )
+        current_companion_locator = audit.get("companion_markdown")
+        if (
+            isinstance(predecessor_companion_locator, str)
+            and isinstance(current_companion_locator, str)
+            and resolve_root_path(predecessor_companion_locator).resolve()
+            == resolve_root_path(current_companion_locator).resolve()
+        ):
+            errors.append(
+                f"{relative(path)}: current-version audit companion must differ "
+                "from predecessor audit companion"
+            )
+        for entry in audit.get("capabilities", []):
+            if (
+                not isinstance(entry, Mapping)
+                or "problem_coverage" not in entry
+                or "v1_coverage" in entry
+            ):
+                errors.append(
+                    f"{relative(audit_path)}: ProblemContract 2.0 audit must use "
+                    "problem_coverage for every capability"
+                )
+                break
+
+    return errors
+
+
+def verify_problem_activation_bundle(
+    document: Mapping[str, Any],
+    path: Path,
+) -> List[str]:
+    """Verify the immutable five-artifact preimage for ProblemContract 2.0."""
+    if document.get("schema_version") != "2.0":
+        return []
+
+    errors: List[str] = []
+    locator = document.get("activation_bundle_ref")
+    if not isinstance(locator, str):
+        return [
+            f"{relative(path)}: ProblemContract 2.0 requires "
+            "activation_bundle_ref"
+        ]
+    try:
+        bundle_path = resolve_root_path(locator)
+    except ResearchError as exc:
+        return [str(exc)]
+    if not bundle_path.is_file():
+        return [
+            f"{relative(path)}: problem activation bundle missing: {locator}"
+        ]
+    project = containing_project(path)
+    if project is None:
+        return [
+            f"{relative(path)}: cannot locate project for problem activation "
+            "bundle"
+        ]
+    expected_activation_dir = project / "problem" / "activation"
+    if expected_activation_dir not in bundle_path.parents:
+        errors.append(
+            f"{relative(path)}: activation bundle must stay under "
+            f"{relative(expected_activation_dir)}"
+        )
+
+    bundle = load_json(bundle_path)
+    schema_errors = validate_schema(bundle, bundle_path)
+    errors.extend(schema_errors)
+    if schema_errors:
+        return errors
+    expected_ref = {
+        "id": document.get("id"),
+        "version": document.get("version"),
+    }
+    if bundle.get("problem_ref") != expected_ref:
+        errors.append(
+            f"{relative(bundle_path)}: problem_ref does not exactly match "
+            f"{document.get('id')}@{document.get('version')}"
+        )
+
+    artifacts = bundle.get("artifacts", [])
+    by_role: Dict[str, Mapping[str, Any]] = {}
+    duplicate_roles: set[str] = set()
+    for artifact in artifacts:
+        if not isinstance(artifact, Mapping):
+            continue
+        role = str(artifact.get("role", ""))
+        if role in by_role:
+            duplicate_roles.add(role)
+        else:
+            by_role[role] = artifact
+    if duplicate_roles:
+        errors.append(
+            f"{relative(bundle_path)}: duplicate activation artifact roles: "
+            f"{sorted(duplicate_roles)}"
+        )
+    if set(by_role) != PROBLEM_ACTIVATION_ARTIFACT_ROLES:
+        errors.append(
+            f"{relative(bundle_path)}: activation artifact roles differ: "
+            f"expected={sorted(PROBLEM_ACTIVATION_ARTIFACT_ROLES)} "
+            f"actual={sorted(by_role)}"
+        )
+        return errors
+
+    resolved_artifacts: Dict[str, Path] = {}
+    for role, artifact in by_role.items():
+        artifact_locator = artifact.get("path")
+        if not isinstance(artifact_locator, str):
+            errors.append(
+                f"{relative(bundle_path)}: {role} has no artifact path"
+            )
+            continue
+        try:
+            artifact_path = resolve_root_path(artifact_locator)
+        except ResearchError as exc:
+            errors.append(str(exc))
+            continue
+        resolved_artifacts[role] = artifact_path
+        if not artifact_path.is_file():
+            errors.append(
+                f"{relative(bundle_path)}: activation artifact missing: "
+                f"{artifact_locator}"
+            )
+        elif artifact.get("sha256") != sha256_file(artifact_path):
+            errors.append(
+                f"{relative(bundle_path)}: activation artifact SHA-256 differs "
+                f"for {role}: {artifact_locator}"
+            )
+    resolved_path_values = [
+        artifact_path.resolve()
+        for artifact_path in resolved_artifacts.values()
+    ]
+    if len(set(resolved_path_values)) != len(
+        PROBLEM_ACTIVATION_ARTIFACT_ROLES
+    ):
+        errors.append(
+            f"{relative(bundle_path)}: activation artifact roles must resolve "
+            "to five distinct files"
+        )
+
+    candidate_path = resolved_artifacts.get("CANDIDATE_PROBLEM")
+    if candidate_path is None or not candidate_path.is_file():
+        return errors
+    if bundle.get("candidate_path") != by_role["CANDIDATE_PROBLEM"].get(
+        "path"
+    ):
+        errors.append(
+            f"{relative(bundle_path)}: candidate_path must equal the "
+            "CANDIDATE_PROBLEM artifact path"
+        )
+    candidate = load_json(candidate_path)
+    errors.extend(check_companion(candidate, candidate_path))
+    if (
+        candidate.get("kind") != "ProblemContract"
+        or candidate.get("schema_version") != "2.0"
+        or candidate.get("status") != "CANDIDATE"
+        or candidate.get("id") != document.get("id")
+        or candidate.get("version") != document.get("version")
+    ):
+        errors.append(
+            f"{relative(bundle_path)}: CANDIDATE_PROBLEM is not the exact "
+            "schema 2.0 candidate for this problem"
+        )
+    if (
+        document.get("status") == "CANDIDATE"
+        and candidate_path.resolve() != path.resolve()
+    ):
+        errors.append(
+            f"{relative(path)}: candidate problem must be the bundle's "
+            "CANDIDATE_PROBLEM artifact"
+        )
+    if candidate.get("activation_bundle_ref") != locator:
+        errors.append(
+            f"{relative(candidate_path)}: activation_bundle_ref does not point "
+            "back to the verified bundle"
+        )
+
+    expected_paths = {
+        "CANDIDATE_COMPANION": candidate.get("companion_markdown"),
+        "HISTORICAL_INHERITANCE_AUDIT": candidate.get(
+            "historical_inheritance_ref"
+        ),
+    }
+    for role, expected_locator in expected_paths.items():
+        artifact_locator = by_role[role].get("path")
+        if artifact_locator != expected_locator:
+            errors.append(
+                f"{relative(bundle_path)}: {role} path {artifact_locator!r} "
+                f"does not match candidate reference {expected_locator!r}"
+            )
+
+    audit_path = resolved_artifacts.get("HISTORICAL_INHERITANCE_AUDIT")
+    if audit_path is None or not audit_path.is_file():
+        return errors
+    audit = load_json(audit_path)
+    if audit.get("problem_ref") != expected_ref:
+        errors.append(
+            f"{relative(audit_path)}: activation audit problem_ref does not "
+            "match the candidate"
+        )
+    if audit.get("status") != "REVIEWED":
+        errors.append(
+            f"{relative(audit_path)}: activation audit must be REVIEWED"
+        )
+    if audit.get("activation_recommendation") != "READY":
+        errors.append(
+            f"{relative(audit_path)}: activation audit recommendation must be "
+            "READY"
+        )
+    if by_role["HISTORICAL_INHERITANCE_COMPANION"].get(
+        "path"
+    ) != audit.get("companion_markdown"):
+        errors.append(
+            f"{relative(bundle_path)}: audit companion artifact does not match "
+            "the current audit"
+        )
+    if by_role["CANONICAL_CAPABILITY_MATRIX"].get(
+        "path"
+    ) != audit.get("canonical_capability_matrix"):
+        errors.append(
+            f"{relative(bundle_path)}: capability matrix artifact does not "
+            "match the current audit"
+        )
+    for entry in audit.get("capabilities", []):
+        if (
+            not isinstance(entry, Mapping)
+            or "problem_coverage" not in entry
+            or "v1_coverage" in entry
+        ):
+            errors.append(
+                f"{relative(audit_path)}: activation audit must use "
+                "problem_coverage for every capability"
+            )
+            break
+
+    lineage = candidate.get("lineage", {})
+    if isinstance(lineage, Mapping):
+        predecessor_audit_locator = lineage.get("predecessor_audit_ref")
+        predecessor_companion_locator = lineage.get(
+            "predecessor_audit_companion_ref"
+        )
+        if isinstance(predecessor_audit_locator, str):
+            predecessor_audit_path = resolve_root_path(
+                predecessor_audit_locator
+            )
+            if predecessor_audit_path.resolve() == audit_path.resolve():
+                errors.append(
+                    f"{relative(bundle_path)}: current audit path equals "
+                    "predecessor audit path"
+                )
+            if predecessor_audit_path.is_file():
+                predecessor_audit = load_json(predecessor_audit_path)
+                if predecessor_audit.get("id") == audit.get("id"):
+                    errors.append(
+                        f"{relative(bundle_path)}: current audit id equals "
+                        "predecessor audit id"
+                    )
+        current_companion_locator = audit.get("companion_markdown")
+        if (
+            isinstance(predecessor_companion_locator, str)
+            and isinstance(current_companion_locator, str)
+            and resolve_root_path(predecessor_companion_locator).resolve()
+            == resolve_root_path(current_companion_locator).resolve()
+        ):
+            errors.append(
+                f"{relative(bundle_path)}: current audit companion equals "
+                "predecessor audit companion"
             )
     return errors
 
@@ -1776,6 +2113,41 @@ def expected_promoted_document(
     return promoted
 
 
+def render_problem_active_companion(
+    source: Mapping[str, Any],
+    candidate_path: Path,
+    decision_id: str,
+) -> str:
+    """Derive the ACTIVE explanation exactly from the frozen candidate text."""
+    companion_locator = source.get("companion_markdown")
+    if not isinstance(companion_locator, str):
+        raise ResearchError(
+            f"{relative(candidate_path)}: problem candidate has no companion"
+        )
+    source_companion = resolve_root_path(companion_locator)
+    text = source_companion.read_text(encoding="utf-8")
+    problem_id = str(source.get("id", ""))
+    version = str(source.get("version", ""))
+    bundle_locator = source.get("activation_bundle_ref")
+    bundle_line = (
+        f"\n激活材料闭包：`{bundle_locator}`。"
+        if isinstance(bundle_locator, str)
+        else ""
+    )
+    return (
+        f"# Problem {version}：ACTIVE 快照\n\n"
+        f"Contract：`{problem_id} / {version}`\n\n"
+        f"状态：`ACTIVE`。由用户决定 `{decision_id}` 从候选快照 "
+        f"`{relative(candidate_path)}` 激活。{bundle_line}\n\n"
+        "下面保留用户确认时的候选说明原文。原文中的 `CANDIDATE`、"
+        "“待激活”或同类表述只记录激活前状态；当前权威状态以上述 "
+        "`ACTIVE` 记录和 promotion receipt 为准。\n\n"
+        "<!-- activated-candidate-source:start -->\n"
+        f"{text.rstrip()}\n"
+        "<!-- activated-candidate-source:end -->\n"
+    )
+
+
 def check_exact_promotion_receipt(
     path: Path,
     document: Mapping[str, Any],
@@ -1818,6 +2190,68 @@ def check_exact_promotion_receipt(
         ):
             continue
         source = load_json(source_path)
+        if (
+            target_kind == "problem"
+            and source.get("schema_version") == "2.0"
+        ):
+            bundle_locator = source.get("activation_bundle_ref")
+            if not isinstance(bundle_locator, str):
+                failures.append(
+                    f"{relative(receipt_path)}: source candidate has no "
+                    "activation bundle"
+                )
+                continue
+            bundle_path = resolve_root_path(bundle_locator)
+            if (
+                not bundle_path.is_file()
+                or receipt.get("activation_bundle_path")
+                != relative(bundle_path)
+                or receipt.get("activation_bundle_sha256")
+                != sha256_file(bundle_path)
+            ):
+                failures.append(
+                    f"{relative(receipt_path)}: problem receipt does not bind "
+                    "the current activation bundle path and SHA-256"
+                )
+                continue
+        if target_kind == "problem":
+            target_companion_locator = document.get("companion_markdown")
+            if not isinstance(target_companion_locator, str):
+                failures.append(
+                    f"{relative(receipt_path)}: ACTIVE problem has no "
+                    "companion reference"
+                )
+                continue
+            target_companion = resolve_root_path(target_companion_locator)
+            if (
+                not target_companion.is_file()
+                or receipt.get("target_companion")
+                != relative(target_companion)
+                or receipt.get("target_companion_sha256")
+                != sha256_file(target_companion)
+            ):
+                failures.append(
+                    f"{relative(receipt_path)}: problem receipt does not bind "
+                    "the ACTIVE companion path and SHA-256"
+                )
+                continue
+            try:
+                expected_companion = render_problem_active_companion(
+                    source,
+                    source_path,
+                    str(receipt.get("decision_id")),
+                )
+            except ResearchError as exc:
+                failures.append(str(exc))
+                continue
+            if target_companion.read_text(
+                encoding="utf-8"
+            ) != expected_companion:
+                failures.append(
+                    f"{relative(receipt_path)}: ACTIVE companion is not the "
+                    "deterministic projection of its candidate"
+                )
+                continue
         if decision_allows_promotion(
             receipt.get("decision_id"),
             action,
@@ -1909,6 +2343,11 @@ def check_candidate_packets(project: Path) -> List[str]:
 def validate_project(project: Path, strict: bool = False) -> List[str]:
     errors: List[str] = []
     problems = sorted((project / "problem").glob("*.json"))
+    activation_bundles = (
+        sorted((project / "problem" / "activation").glob("*.json"))
+        if (project / "problem" / "activation").exists()
+        else []
+    )
     scenarios = sorted((project / "scenarios").glob("*.json"))
     lines = sorted((project / "lines").glob("*.json"))
     profiles = (
@@ -1941,10 +2380,14 @@ def validate_project(project: Path, strict: bool = False) -> List[str]:
         if doc.get("kind") == "ProblemContract":
             errors.extend(check_problem_lineage(project, path, doc))
             errors.extend(check_problem_historical_inheritance(project, path, doc))
+            errors.extend(verify_problem_activation_bundle(doc, path))
             if doc.get("status") == "ACTIVE":
                 errors.extend(
                     check_exact_promotion_receipt(path, doc, "problem")
                 )
+    for path in activation_bundles:
+        bundle = load_json(path)
+        errors.extend(validate_schema(bundle, path))
 
     errors.extend(check_problem_scenario_line_semantics(project, problems, scenarios, lines))
     errors.extend(check_mechanism_semantics(project, problems, lines, profiles))
@@ -1971,6 +2414,27 @@ def validate_project(project: Path, strict: bool = False) -> List[str]:
                         )
             elif locator and not resolve_root_path(locator).exists():
                 errors.append(f"NOW state {key} points to missing path: {locator}")
+        current_problem_locator = (
+            state.get("candidate_problem") or state.get("active_problem")
+        )
+        if isinstance(current_problem_locator, str):
+            current_problem_path = resolve_root_path(
+                current_problem_locator
+            )
+            if current_problem_path.is_file():
+                current_problem = load_json(current_problem_path)
+                expected_alignment = current_problem.get(
+                    "historical_inheritance_ref"
+                )
+                if (
+                    isinstance(expected_alignment, str)
+                    and state.get("history_alignment") != expected_alignment
+                ):
+                    errors.append(
+                        "NOW history_alignment does not match the current "
+                        f"problem's historical_inheritance_ref: "
+                        f"{expected_alignment}"
+                    )
         for preserved in state.get("preserved_problem_versions", []):
             if not isinstance(preserved, Mapping):
                 errors.append("NOW preserved_problem_versions entry has no path")
@@ -5503,6 +5967,19 @@ def promote(args: argparse.Namespace) -> int:
         "claim": "PROMOTE_STABLE_CLAIM",
     }
     action = action_by_target[args.target]
+    if (
+        args.target == "problem"
+        and candidate.get("schema_version") == "2.0"
+    ):
+        bundle_errors = verify_problem_activation_bundle(
+            candidate,
+            candidate_path,
+        )
+        if bundle_errors:
+            raise ResearchError(
+                "problem activation bundle preflight failed:\n- "
+                + "\n- ".join(bundle_errors)
+            )
     if not decision_allows_promotion(
         args.decision_id,
         action,
@@ -5521,12 +5998,12 @@ def promote(args: argparse.Namespace) -> int:
             raise ResearchError("problem promotion requires a CANDIDATE ProblemContract")
         promoted = copy.deepcopy(candidate)
         promoted["status"] = "ACTIVE"
-        source_companion = resolve_root_path(candidate["companion_markdown"])
         active_companion = (
             project / "problem" / f"{promoted['version']}.md"
         )
         promoted["companion_markdown"] = relative(active_companion)
         promotion_errors = validate_schema(promoted, candidate_path)
+        promotion_errors.extend(check_companion(candidate, candidate_path))
         promotion_errors.extend(
             check_problem_lineage(project, candidate_path, promoted)
         )
@@ -5543,46 +6020,89 @@ def promote(args: argparse.Namespace) -> int:
                 + "\n- ".join(promotion_errors)
             )
         target = project / "problem" / f"{promoted['version']}.json"
-        if target.exists():
-            raise ResearchError(f"active problem target already exists: {relative(target)}")
-        if active_companion.exists():
-            raise ResearchError(
-                f"active problem companion already exists: "
-                f"{relative(active_companion)}"
+        companion_text = render_problem_active_companion(
+            candidate,
+            candidate_path,
+            args.decision_id,
+        )
+        if active_companion.is_file():
+            if active_companion.read_text(
+                encoding="utf-8"
+            ) != companion_text:
+                raise ResearchError(
+                    f"existing ACTIVE problem companion differs from the "
+                    f"deterministic projection: {relative(active_companion)}"
+                )
+        else:
+            atomic_write_text(
+                active_companion,
+                companion_text,
+                replace_existing=False,
             )
-        companion_text = source_companion.read_text(encoding="utf-8")
-        companion_text = companion_text.replace(
-            f"# Problem {promoted['version']} 候选：",
-            f"# Problem {promoted['version']}：",
-            1,
+        if target.is_file():
+            existing_target = load_json(target)
+            if canonical_bytes(existing_target) != canonical_bytes(promoted):
+                raise ResearchError(
+                    f"existing ACTIVE problem differs from the deterministic "
+                    f"projection: {relative(target)}"
+                )
+        else:
+            write_json_once(target, promoted)
+
+        receipt_path = (
+            receipt_dir
+            / f"{candidate.get('id')}-{args.decision_id}.json"
         )
-        companion_text = companion_text.replace(
-            "状态：`CANDIDATE`。",
-            (
-                f"状态：`ACTIVE`。由用户决定 `{args.decision_id}` "
-                "从下列候选快照激活："
-                f"`{relative(candidate_path)}`。"
+        receipt = {
+            "promotion_id": (
+                f"PROM-{candidate.get('id')}-{args.decision_id}"
             ),
-            1,
+            "target_kind": args.target,
+            "target_id": candidate.get("id"),
+            "target_version": candidate.get("version"),
+            "decision_id": args.decision_id,
+            "promoted_at": utc_now(),
+            "source_candidate": relative(candidate_path),
+            "source_sha256": source_sha256,
+            "target": relative(target),
+            "target_sha256": sha256_file(target),
+            "target_companion": relative(active_companion),
+            "target_companion_sha256": sha256_file(active_companion),
+        }
+        if candidate.get("schema_version") == "2.0":
+            bundle_path = resolve_root_path(
+                str(candidate["activation_bundle_ref"])
+            )
+            receipt.update(
+                {
+                    "activation_bundle_path": relative(bundle_path),
+                    "activation_bundle_sha256": sha256_file(bundle_path),
+                }
+            )
+        if receipt_path.is_file():
+            existing_receipt = load_json(receipt_path)
+            for key, expected_value in receipt.items():
+                if key == "promoted_at":
+                    continue
+                if existing_receipt.get(key) != expected_value:
+                    raise ResearchError(
+                        f"existing problem promotion receipt differs at "
+                        f"{key}: {relative(receipt_path)}"
+                    )
+            receipt = existing_receipt
+        else:
+            write_json_once(receipt_path, receipt)
+        postflight_errors = check_exact_promotion_receipt(
+            target,
+            promoted,
+            "problem",
         )
-        companion_text = companion_text.replace(
-            (
-                f"{promoted['version'].upper()} 是否激活，仍需要用户"
-                "单独决定。"
-            ),
-            f"{promoted['version'].upper()} 的激活决定见 `{args.decision_id}`。",
-        )
-        companion_text = re.sub(
-            (
-                rf"{re.escape(promoted['version'].upper())} 是否激活，"
-                r"仍需要用户\s*单独决定。"
-            ),
-            f"{promoted['version'].upper()} 的激活决定见 "
-            f"`{args.decision_id}`。",
-            companion_text,
-        )
-        active_companion.write_text(companion_text, encoding="utf-8")
-        write_json(target, promoted)
+        if postflight_errors:
+            raise ResearchError(
+                "problem promotion postflight failed before NOW update:\n- "
+                + "\n- ".join(postflight_errors)
+            )
+
         state = read_state()
         state["active_problem"] = relative(target)
         if state.get("candidate_problem") == relative(candidate_path):
@@ -5645,19 +6165,25 @@ def promote(args: argparse.Namespace) -> int:
             raise ResearchError(f"stable claim target already exists: {relative(target)}")
         write_json(target, promoted)
 
-    receipt = {
-        "promotion_id": f"PROM-{candidate.get('id')}-{args.decision_id}",
-        "target_kind": args.target,
-        "target_id": candidate.get("id"),
-        "target_version": candidate.get("version"),
-        "decision_id": args.decision_id,
-        "promoted_at": utc_now(),
-        "source_candidate": relative(candidate_path),
-        "source_sha256": source_sha256,
-        "target": relative(target),
-        "target_sha256": sha256_file(target),
-    }
-    write_json(receipt_dir / f"{candidate.get('id')}-{args.decision_id}.json", receipt)
+    if args.target != "problem":
+        receipt = {
+            "promotion_id": (
+                f"PROM-{candidate.get('id')}-{args.decision_id}"
+            ),
+            "target_kind": args.target,
+            "target_id": candidate.get("id"),
+            "target_version": candidate.get("version"),
+            "decision_id": args.decision_id,
+            "promoted_at": utc_now(),
+            "source_candidate": relative(candidate_path),
+            "source_sha256": source_sha256,
+            "target": relative(target),
+            "target_sha256": sha256_file(target),
+        }
+        write_json(
+            receipt_dir / f"{candidate.get('id')}-{args.decision_id}.json",
+            receipt,
+        )
     print(f"[OK] promoted by explicit user decision: {relative(target)}")
     return 0
 
@@ -5671,6 +6197,24 @@ def show_status(args: argparse.Namespace) -> int:
     print(f"- Seed 问题: {state.get('seed_problem')}")
     print(f"- Candidate 问题: {state.get('candidate_problem') or '无'}")
     print(f"- Active 问题: {state.get('active_problem') or '无'}")
+    current_problem_locator = (
+        state.get("candidate_problem") or state.get("active_problem")
+    )
+    if isinstance(current_problem_locator, str):
+        current_problem_path = resolve_root_path(current_problem_locator)
+        current_problem = load_json(current_problem_path)
+        bundle_locator = current_problem.get("activation_bundle_ref")
+        if isinstance(bundle_locator, str):
+            bundle_path = resolve_root_path(bundle_locator)
+            bundle_hash = (
+                sha256_file(bundle_path)
+                if bundle_path.is_file()
+                else "MISSING"
+            )
+            print(
+                f"- 问题激活材料: {bundle_locator} "
+                f"sha256={bundle_hash}"
+            )
     preserved = state.get("preserved_problem_versions", [])
     print(f"- 保留的问题快照: {len(preserved)}")
     for item in preserved:

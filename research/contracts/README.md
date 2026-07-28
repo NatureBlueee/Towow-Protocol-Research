@@ -14,6 +14,9 @@
 - `HistoricalInheritanceAudit` 不要求旧术语继续成为正式对象，但要求每个历史设计能力都有
   明确的保留、降级、缺口或有证据拒绝去向。默认项目中的候选与激活问题不得省略它；
   `ACTIVE` 问题还必须绑定与当前问题同版本、状态为 `REVIEWED` 且建议为 `READY` 的审计。
+- `ProblemActivationBundle` 冻结一次问题激活所依据的五份材料：候选机器契约、候选人类说明、
+  当前版本继承审计、审计说明与正典能力矩阵。它本身不授予激活权；用户决定还必须绑定
+  bundle 的路径与 SHA-256。
 
 `ProblemContract 2.0` 必须提供带 SHA-256 的前序快照和结构化 `shared_basis`；
 `LineContract 2.0` 必须绑定有界研究目标、已有方案检查和只影响 scoped claim 的结果策略。
@@ -25,7 +28,8 @@
 `anonymous_return_id + hypothesis_id + claim_id` 的冻结单元逐项覆盖，允许不同单元对同一
 主张保留冲突，不再按 claim 全局合并，也不把机制批次退化成 V1 问题激活建议。
 `GAP_CONFIRMED` 必须引用真实存在且已进入 allowlist 的历史与现成方案材料，并逐项说明缺口。
-正式机制状态、Problem 激活和稳定主张必须绑定用户决定中的精确 source/content hash。
+正式机制状态、Problem 激活和稳定主张必须绑定用户决定中的精确 source/content hash；
+`ProblemContract 2.0` 的激活还必须绑定可重新验证的 activation bundle hash。
 MechanismProfile 中已支持、反驳或已执行的状态还必须引用 finalize packet 内的结果、证据
 receipt、Plan snapshot 与完成态 RunManifest snapshot，并同时绑定输入、受检验 scope 和
 当时的主张/假说定义哈希；`FAILED`、`REFUSED` 和 `NOT_RUN` 不能转为机制证据。每个正式
@@ -33,6 +37,8 @@ profile 本身也必须由用户决定登记精确内容和状态快照；`VALID
 闭包覆盖的 claim、hypothesis 与 capability。Claude 评审只有在 payload、disclosure、
 原始返回、结构化结果、模型和批准决定都由 execution receipt 绑定后才能附入候选包。
 Scenario 晋升保留候选原像和独立 ACTIVE 快照，运行前持续验证 source/target 双哈希 receipt。
+Problem 晋升还把 ACTIVE 人类说明作为候选说明的确定性投影写入 receipt；ACTIVE 契约、说明
+与 receipt 已闭合后才更新 `NOW.md`，中断重跑只续写完全相同的投影，不覆盖冲突文件。
 1.0 合同继续作为历史快照保留，不被追溯改写。
 
 运行器还为 Plan、完成结果和盲审建立只写一次的本地 controller seal，并在 review、

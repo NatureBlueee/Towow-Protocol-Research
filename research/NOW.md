@@ -8,7 +8,7 @@
   "current_project": "research/projects/joint-action-formation",
   "seed_problem": "research/projects/joint-action-formation/problem/v0.json",
   "candidate_problem": "research/projects/joint-action-formation/problem/v2-candidate.json",
-  "history_alignment": "research/projects/joint-action-formation/problem/v1-history-alignment.json",
+  "history_alignment": "research/projects/joint-action-formation/problem/v2-history-alignment.json",
   "active_problem": null,
   "preserved_problem_versions": [
     {
@@ -68,7 +68,7 @@
   "current_batch": null,
   "latest_completed_batch": "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/finalization-manifest.json",
   "pending_user_decisions": [
-    "审阅、重写或激活 research/projects/joint-action-formation/problem/v2-candidate.json",
+    "审阅、重写或激活 V2 五件材料闭包 research/projects/joint-action-formation/problem/activation/v2.json",
     "V2 激活后决定何时把 LINE-01-NAC 从 DRAFT 迁入首个按需机制批次"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
@@ -86,8 +86,10 @@ CANDIDATE` 已形成并按精确哈希保存。
 
 本轮新增了 `Problem v2` 加法式候选快照。它不修改、不判错也不 supersede V1，只把 V1
 与历史中已有、但独立研究者容易遗漏的世界前提、服务对象、评价框架和有界机制研究范式显式
-冻结为共同知识底座。其当前是否仍为候选、是否已经激活，以及哪些研究线实际生效，只以本页
-顶部结构化状态块为准；`v2-candidate.*` 始终保留为不可覆写的候选来源。
+冻结为共同知识底座。V2 专属继承审计已经完成并给出 `REVIEWED / READY`；候选正文、说明、
+继承审计、审计说明和 39 项能力矩阵也已组成待用户决定的五件材料闭包。其当前是否仍为候选、
+是否已经激活，以及哪些研究线实际生效，只以本页顶部结构化状态块为准；
+`v2-candidate.*` 始终保留为不可覆写的候选来源。
 
 用户已经采用有界机制研究范式：每个机制按自己的环境、问题、能力、要求、非目标、证据和
 反例独立推进；作用域外未覆盖不构成否定，负结果只改变受检验主张，已有方案能用就复用，
@@ -115,16 +117,20 @@ rebase、refute 或 supersede 都必须经过内容绑定的用户决定，不�
 - `CAP-REL-004` 仍是唯一历史审计为 `LOST` 的能力：本地私有 candidate/column generation
   与最小贡献证明目前没有 owner。
 
-完整逐项审计见
-`research/projects/joint-action-formation/problem/v1-history-alignment.md`；其机器契约绑定
-历史能力矩阵，任何候选或激活问题缺少该继承引用都将被研究治理检查拒绝。这里检查的是
-研究程序不失忆，不是要求 ProblemContract 逐字包含所有历史机制。
+V1 的完整逐项审计见
+`research/projects/joint-action-formation/problem/v1-history-alignment.md`；V2 的当前版本审计
+见 `research/projects/joint-action-formation/problem/v2-history-alignment.md`。两份机器契约
+都绑定同一正典能力矩阵，但 V2 审计拥有独立 ID、路径、说明和 `problem_coverage`，不能靠给
+V1 审计改标签穿透。这里检查的是研究程序不失忆，不是要求 ProblemContract 逐字包含所有
+历史机制。
 
 V2 以 `ADDITIVE_SNAPSHOT` 关系继承 V1。V1 的 Problem JSON、Problem Markdown、历史继承
 审计 JSON 与审计 Markdown 四份文件的 SHA-256 都已写入 V2 lineage；任一文件被静默改动
-时，治理检查会失败。当前候选可以复用 V1 的历史能力审计来证明前序没有丢失；若要激活
-V2，仍必须另有与 V2 精确同版本、状态为 `REVIEWED` 且建议为 `READY` 的继承审计，不能
-拿 V1 审计直接穿透激活。V2 新增的显式边界主要是：
+时，治理检查会失败。V2 另有与自身精确同版本、状态为 `REVIEWED` 且建议为 `READY` 的
+继承审计。正式激活决定还必须绑定
+`research/projects/joint-action-formation/problem/activation/v2.json` 的精确 SHA-256；
+该 bundle 同时冻结候选 JSON/Markdown、V2 审计 JSON/Markdown 和能力矩阵。V2 新增的显式
+边界主要是：
 
 - 本研究所考察的协调输入在接口处均表示为 Intent；显式输入和上游系统产生的隐式输入只是
   来源不同，上游怎样推断不属于本研究对象；已有 authority status 应被保留和验证，未知则
@@ -134,6 +140,10 @@ V2，仍必须另有与 V2 精确同版本、状态为 `REVIEWED` 且建议为 `
   广播、完整世界汇聚或每个高级模型逐一判断；
 - 平台、中心、制度、人类和确定性服务是既有能力、adapter 或稳定关系的编译结果，不是
   需要击败的阵营；
+- `AgentExecution`、`RelationEpisode` 与 `RelationEcology` 是不能互相代替的三个分析
+  尺度；人的参与按权威、价值与风险重新配置，而不是被全局最小化；
+- `Clarification`、`Protective Contraction`、`Reject` 与 `Defer` 即使没有形成关系，也
+  可以产生独立的保护性或信息价值；
 - 七条原生线是问题家族，NAC、PFE、CRA 等机制可以在母线下独立研究，不要求提前统一。
 
 完整共同底座见 `research/projects/joint-action-formation/problem/v2-candidate.md`。
