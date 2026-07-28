@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import copy
+import csv
 import hashlib
 import json
 import os
@@ -50,6 +51,7 @@ SCHEMA_BY_KIND = {
     "ResearchResult": CONTRACTS / "research-result.schema.json",
     "ClaimCandidate": CONTRACTS / "claim-candidate.schema.json",
     "BlindReview": CONTRACTS / "blind-review.schema.json",
+    "HistoricalInheritanceAudit": CONTRACTS / "historical-inheritance.schema.json",
 }
 
 PROTECTED_PATHS = [
@@ -302,6 +304,135 @@ def check_companion(document: Mapping[str, Any], path: Path) -> List[str]:
     return errors
 
 
+def validate_historical_inheritance(
+    document: Mapping[str, Any],
+    path: Path,
+) -> List[str]:
+    errors = validate_schema(document, path)
+    errors.extend(check_companion(document, path))
+    if errors:
+        return errors
+
+    matrix_locator = document.get("canonical_capability_matrix")
+    if not isinstance(matrix_locator, str):
+        return [f"{relative(path)}: missing canonical_capability_matrix"]
+    matrix_path = resolve_root_path(matrix_locator)
+    if not matrix_path.is_file():
+        return [f"{relative(path)}: capability matrix missing: {matrix_locator}"]
+
+    try:
+        with matrix_path.open(encoding="utf-8-sig", newline="") as handle:
+            matrix_rows = list(csv.DictReader(handle))
+    except (OSError, UnicodeError, csv.Error) as exc:
+        return [f"{relative(path)}: cannot read capability matrix: {exc}"]
+
+    matrix_by_id: Dict[str, Dict[str, str]] = {}
+    for row in matrix_rows:
+        capability_id = str(row.get("capability_id", ""))
+        if not capability_id:
+            errors.append(f"{matrix_locator}: capability row has no capability_id")
+        elif capability_id in matrix_by_id:
+            errors.append(f"{matrix_locator}: duplicate capability_id {capability_id}")
+        else:
+            matrix_by_id[capability_id] = row
+
+    audit_by_id: Dict[str, Mapping[str, Any]] = {}
+    for entry in document.get("capabilities", []):
+        capability_id = str(entry.get("capability_id", ""))
+        if capability_id in audit_by_id:
+            errors.append(f"{relative(path)}: duplicate capability_id {capability_id}")
+        else:
+            audit_by_id[capability_id] = entry
+
+    missing = sorted(set(matrix_by_id) - set(audit_by_id))
+    extra = sorted(set(audit_by_id) - set(matrix_by_id))
+    if missing:
+        errors.append(
+            f"{relative(path)}: inheritance audit omits canonical capabilities: {missing}"
+        )
+    if extra:
+        errors.append(
+            f"{relative(path)}: inheritance audit names unknown capabilities: {extra}"
+        )
+
+    for capability_id in sorted(set(matrix_by_id) & set(audit_by_id)):
+        expected_status = matrix_by_id[capability_id].get("preservation_status")
+        observed_status = audit_by_id[capability_id].get("archive_status")
+        if observed_status != expected_status:
+            errors.append(
+                f"{relative(path)}: {capability_id} archive_status "
+                f"{observed_status!r} differs from matrix {expected_status!r}"
+            )
+
+    coverage = {"EXPLICIT": 0, "PARTIAL": 0, "ABSENT": 0}
+    for entry in audit_by_id.values():
+        value = str(entry.get("v1_coverage", ""))
+        if value in coverage:
+            coverage[value] += 1
+    declared = document.get("coverage_summary", {})
+    for key, value in (
+        ("explicit", coverage["EXPLICIT"]),
+        ("partial", coverage["PARTIAL"]),
+        ("absent", coverage["ABSENT"]),
+    ):
+        if declared.get(key) != value:
+            errors.append(
+                f"{relative(path)}: coverage_summary.{key}={declared.get(key)!r}, "
+                f"expected {value}"
+            )
+    return errors
+
+
+def check_problem_historical_inheritance(
+    project: Path,
+    path: Path,
+    document: Mapping[str, Any],
+) -> List[str]:
+    errors: List[str] = []
+    locator = document.get("historical_inheritance_ref")
+    if project == DEFAULT_PROJECT and document.get("status") in {"CANDIDATE", "ACTIVE"}:
+        if not isinstance(locator, str):
+            return [
+                f"{relative(path)}: CANDIDATE/ACTIVE problem requires "
+                "historical_inheritance_ref"
+            ]
+    if not isinstance(locator, str):
+        return errors
+
+    audit_path = resolve_root_path(locator)
+    if not audit_path.is_file():
+        return [f"{relative(path)}: historical inheritance audit missing: {locator}"]
+    if project not in audit_path.parents:
+        errors.append(
+            f"{relative(path)}: historical inheritance audit must stay in project: {locator}"
+        )
+        return errors
+
+    audit = load_json(audit_path)
+    errors.extend(validate_historical_inheritance(audit, audit_path))
+    ref = audit.get("problem_ref", {})
+    if (ref.get("id"), ref.get("version")) != (
+        document.get("id"),
+        document.get("version"),
+    ):
+        errors.append(
+            f"{relative(audit_path)}: problem_ref does not match "
+            f"{document.get('id')}@{document.get('version')}"
+        )
+    if document.get("status") == "ACTIVE":
+        if audit.get("status") != "REVIEWED":
+            errors.append(
+                f"{relative(path)}: ACTIVE problem requires a REVIEWED "
+                "historical inheritance audit"
+            )
+        if audit.get("activation_recommendation") != "READY":
+            errors.append(
+                f"{relative(path)}: ACTIVE problem requires historical "
+                "activation_recommendation READY"
+            )
+    return errors
+
+
 def check_problem_scenario_line_semantics(
     project: Path,
     problems: Sequence[Path],
@@ -440,13 +571,22 @@ def validate_project(project: Path, strict: bool = False) -> List[str]:
         errors.extend(check_companion(doc, path))
         if doc.get("kind") == "ClaimCandidate":
             errors.extend(check_claim_semantics(path, doc))
+        if doc.get("kind") == "ProblemContract":
+            errors.extend(check_problem_historical_inheritance(project, path, doc))
 
     errors.extend(check_problem_scenario_line_semantics(project, problems, scenarios, lines))
     errors.extend(check_candidate_packets(project))
 
     try:
         state = read_state()
-        for key in ("current_project", "seed_problem", "validated_scenario", "canonical_source"):
+        for key in (
+            "current_project",
+            "seed_problem",
+            "candidate_problem",
+            "history_alignment",
+            "validated_scenario",
+            "canonical_source",
+        ):
             locator = state.get(key)
             if locator and not resolve_root_path(locator).exists():
                 errors.append(f"NOW state {key} points to missing path: {locator}")

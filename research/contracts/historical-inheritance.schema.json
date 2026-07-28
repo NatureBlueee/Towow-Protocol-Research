@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/historical-inheritance.schema.json",
+  "title": "HistoricalInheritanceAudit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "id",
+    "status",
+    "problem_ref",
+    "canonical_capability_matrix",
+    "activation_recommendation",
+    "coverage_summary",
+    "cross_cutting_findings",
+    "capabilities",
+    "companion_markdown"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "HistoricalInheritanceAudit"},
+    "id": {"type": "string", "pattern": "^HIA-[A-Z0-9-]+$"},
+    "status": {"enum": ["DRAFT", "REVIEWED"]},
+    "problem_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^PRB-[A-Z0-9-]+$"},
+        "version": {"type": "string", "pattern": "^v[0-9]+(?:\\.[0-9]+)?$"}
+      }
+    },
+    "canonical_capability_matrix": {"type": "string", "pattern": "\\.csv$"},
+    "activation_recommendation": {
+      "enum": ["READY", "REWRITE_BEFORE_ACTIVATION", "REJECT"]
+    },
+    "coverage_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explicit", "partial", "absent"],
+      "properties": {
+        "explicit": {"type": "integer", "minimum": 0},
+        "partial": {"type": "integer", "minimum": 0},
+        "absent": {"type": "integer", "minimum": 0}
+      }
+    },
+    "cross_cutting_findings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "finding", "required_correction", "source_refs"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^HIF-[A-Z0-9-]+$"},
+          "finding": {"type": "string", "minLength": 20},
+          "required_correction": {"type": "string", "minLength": 20},
+          "source_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_id",
+          "archive_status",
+          "v1_coverage",
+          "inheritance_disposition",
+          "current_assessment",
+          "preservation_requirement"
+        ],
+        "properties": {
+          "capability_id": {"type": "string", "pattern": "^CAP-[A-Z]+-[0-9]{3}$"},
+          "archive_status": {
+            "enum": ["PRESERVED", "TRANSFORMED", "PARTIAL", "LOST"]
+          },
+          "v1_coverage": {"enum": ["EXPLICIT", "PARTIAL", "ABSENT"]},
+          "inheritance_disposition": {
+            "enum": [
+              "PRESERVE_AS_PROBLEM_DISTINCTION",
+              "PRESERVE_AS_RESEARCH_CAPABILITY",
+              "PRESERVE_AS_OPTIONAL_MECHANISM",
+              "RESTORE_MISSING_OWNER",
+              "PRESERVE_AS_EVIDENCE_BOUNDARY",
+              "REJECTED_BY_EVIDENCE"
+            ]
+          },
+          "current_assessment": {"type": "string", "minLength": 12},
+          "preservation_requirement": {"type": "string", "minLength": 12}
+        }
+      }
+    },
+    "companion_markdown": {"type": "string", "pattern": "\\.md$"}
+  }
+}

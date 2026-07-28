@@ -28,6 +28,75 @@ class ContractTests(unittest.TestCase):
     def test_current_project_validates(self):
         self.assertEqual([], researchctl.validate_project(researchctl.DEFAULT_PROJECT, strict=True))
 
+    def test_candidate_problem_requires_historical_inheritance_ref(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v1-candidate.json"
+        )
+        problem = researchctl.load_json(path)
+        problem.pop("historical_inheritance_ref")
+
+        errors = researchctl.check_problem_historical_inheritance(
+            researchctl.DEFAULT_PROJECT,
+            path,
+            problem,
+        )
+
+        self.assertIn(
+            "CANDIDATE/ACTIVE problem requires historical_inheritance_ref",
+            "\n".join(errors),
+        )
+
+    def test_historical_inheritance_must_cover_canonical_capabilities(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v1-history-alignment.json"
+        )
+        audit = researchctl.load_json(path)
+        self.assertEqual([], researchctl.validate_historical_inheritance(audit, path))
+
+        incomplete = copy.deepcopy(audit)
+        removed = incomplete["capabilities"].pop()
+        coverage_key = removed["v1_coverage"].lower()
+        incomplete["coverage_summary"][coverage_key] -= 1
+
+        errors = researchctl.validate_historical_inheritance(incomplete, path)
+
+        self.assertIn(
+            "inheritance audit omits canonical capabilities",
+            "\n".join(errors),
+        )
+
+    def test_active_problem_requires_reviewed_ready_inheritance(self):
+        path = (
+            ROOT
+            / "research"
+            / "projects"
+            / "joint-action-formation"
+            / "problem"
+            / "v1-candidate.json"
+        )
+        problem = researchctl.load_json(path)
+        problem["status"] = "ACTIVE"
+
+        errors = researchctl.check_problem_historical_inheritance(
+            researchctl.DEFAULT_PROJECT,
+            path,
+            problem,
+        )
+
+        joined = "\n".join(errors)
+        self.assertIn("ACTIVE problem requires a REVIEWED", joined)
+        self.assertIn("activation_recommendation READY", joined)
+
     def test_negative_contract_fixtures(self):
         fixture = json.loads(
             (ROOT / "tests" / "fixtures" / "invalid-contract-mutations.json").read_text(

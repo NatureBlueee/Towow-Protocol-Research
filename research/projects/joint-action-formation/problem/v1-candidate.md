@@ -4,6 +4,11 @@ Contract：`PRB-JOINT-ACTION-FORMATION / v1`
 
 状态：`CANDIDATE`。未经用户决定，不是 `ACTIVE`，也不取代 `Problem v0 / SEED`。
 
+历史继承审计结论：`REWRITE_BEFORE_ACTIVATION`。本文冻结保存 R4 盲审与成本讨论形成的
+候选，不代表当前统一问题，也不能直接用本轮“Agent 原生运行环境”的表述覆盖。逐项缺失、
+必须继承的现实差异与修改条件见
+`research/projects/joint-action-formation/problem/v1-history-alignment.md`。
+
 ## 形式化研究问题
 
 设必要主体集合为 \(P=\{p_1,\ldots,p_n\}\)。每个 \(p_i\) 保有不能被其他主体代行的局部
@@ -84,4 +89,6 @@ RAG 可以降低检索成本，摘要和专用算法可以降低已知关系语�
 
 此候选来自档案七线分析和一次匿名模型盲审。它没有证明通爻机制有效，没有证明联邦优于
 中心，没有证明七线优于直接整合，也没有证明真人授权、现实 Effect、Adoption、Acceptance
-或净正价值。下一步必须由用户决定：激活、重写、拒绝，或保留多个候选继续判别。
+或净正价值。历史继承审计已经发现它把 formation 验证协议和成本比较抬成了整体研究对象，
+并遗漏七项历史能力。因此当前不建议直接激活；应先按审计恢复多尺度分析单位、七条原生
+研究线、Agent 原生运行环境与价值前沿，再由用户审阅重写后的候选。
