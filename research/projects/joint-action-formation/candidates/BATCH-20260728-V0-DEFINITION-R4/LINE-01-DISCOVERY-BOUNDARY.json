@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-01-DISCOVERY-BOUNDARY",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-01-DISCOVERY-BOUNDARY",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "ad4e85d071bade0581e63b1c3961ffb6d536a04fa1232ac9620daf909d0b952d",
+  "direct_observations": [
+    "Problem v0 已将任务相关边界发现与有限披露纳入范围，并明确禁止以完整世界复制或全局语义共识作为成功条件。",
+    "原生研究线把发现能力拆成任务相关投影、角色绑定表示、跨模型锚点、渐进披露、SEEK/OFFER 方向、交互式充分性以及类型化 Boundary Oracle。",
+    "档案明确把 HDC/FHRR、NAC 编码和 query 排序列为可替换 provider 或策略候选，而把任务相关投影、类型化 Oracle 和披露预算列为运行时保留项。",
+    "档案没有提供 NAC 相对自然语言加最强模型的现实判别结果，也没有提供原生 discovery protocol 的端到端重建测试。",
+    "本次输入仅包含问题定义与档案材料，没有真实任务运行、主体交互、Effect、Adoption、Acceptance 或净价值测量。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 要求主体不必复制完整本地世界，也不以全局语义共识作为成功条件。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.invariants[2]"
+    },
+    {
+      "statement": "Problem v0 把“有限披露怎样既避免漏掉必要条件又不复制完整私有世界”列为关键未知。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.key_unknowns[2]"
+    },
+    {
+      "statement": "Problem v0 要求公平比较权威感知的强中心 Agent，并给予其同等模型、工具、查询机会、预算和恢复机制。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.strong_baselines[0]"
+    },
+    {
+      "statement": "原生研究线规定任务相关投影应依据任务、角色和风险生成，原始事实仍由本地域持有，投影不成为新的全局真相。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "CAP-DISC-001：任务相关投影"
+    },
+    {
+      "statement": "NAC 被描述为由稳定 header、facet、provenance 和 version 组成的可扩展外部锚点；统一的是外部锚点而非内部 embedding。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "CAP-DISC-003：NAC 的跨模型锚点"
+    },
+    {
+      "statement": "前缀式渐进披露先提供可路由前缀，再按价值与风险扩展披露；其移除失败包括全量泄漏和固定摘要漏配。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "CAP-DISC-004：前缀式渐进披露"
+    },
+    {
+      "statement": "BIC 将边界充分性定义为对当前约束和候选已经具有充分信息，而不是资料字段已经完整。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "CAP-DISC-006：BIC 的交互式充分性"
+    },
+    {
+      "statement": "类型化 Boundary Oracle 区分 cut、witness、unknown 和 refuse，并规定 UNKNOWN 不等于 REFUSE、局部证据不等于全局决定。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "CAP-DISC-007：类型化 Boundary Oracle"
+    },
+    {
+      "statement": "档案建议保留本地事实及 provenance 作为事实对象，不把 NAC 或 BIC 升为事实根；HDC/FHRR、NAC 编码和 query 排序可作为可替换 provider。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "当前保留建议"
+    },
+    {
+      "statement": "档案明确指出，跨模型 NAC 相对自然语言加最强模型是否具有净价值，尚未被现实判别。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "当前保留建议"
+    },
+    {
+      "statement": "档案指出原生 discovery protocol 尚无端到端保真重建测试。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "source_range": "后续解释与整合结果"
+    },
+    {
+      "statement": "Problem v0 的 ALT-FORMATION 要求通过冻结前态、引入可定位 operator 和消融 operator 来区分真正形成的新路径。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.competing_explanations[3]"
+    }
+  ],
+  "inferences": [
+    "Problem v0 对完整生命周期的表述过宽，尚未把“发现一个原本存在但未知的可行路径”与“通过改变条件创造原本不存在的路径”分开。原生 discovery 机制主要支持前者；仅凭投影、查询或 Oracle 响应不能证明后者。",
+    "NAC 的名称或编码形式不是不可约能力。其潜在独特贡献限于跨模型、跨版本的可索引锚点；若自然语言加稳定 schema、provenance 和版本字段达到相同路由质量，NAC 应降级为 provider。",
+    "HDC/FHRR 同样更像表示 provider。真正不可约的要求是角色—值关系不能在比较中丢失，而不是必须采用某种向量绑定技术。",
+    "任务相关投影不是新的权威事实，而是带任务版本、风险预算和 provenance 的有限派生视图；把投影升级为全局能力声明会混淆局部事实与跨域推断。",
+    "类型化 Oracle 的潜在不可替代部分不是“Oracle”组件名，而是响应语义：UNKNOWN、REFUSE、cut 与 witness 必须保持不同，并且均不得被解释为授权、承诺或完整能力声明。",
+    "SEEK/OFFER 的方向性是最低语义约束，但不要求专门协议；强自然语言基线只要稳定保留方向，也可能满足该约束。",
+    "权威感知中心 Agent 可以调用各主体的本地 Oracle、执行渐进查询并遵守相同披露预算。因此，即使类型化边界机制胜过自由文本，也不能据此推出联邦拓扑胜过强中心。",
+    "发现层的恰当成功标准应是：在限定披露、查询和风险预算下，减少漏配、误配或不可判定状态，同时保持拒绝与局部权威；它不应包括授权、承诺、执行、采用或接受。",
+    "若静态画像在稳定任务族上已经充分，则动态投影和交互式边界机制可能只增加成本；Problem v0 应允许这种负结果，而不是预设动态机制普遍必要。"
+  ],
+  "design_proposals": [
+    "把 Problem v1 的 discovery 子问题改写为：在主体仅保留本地权威、不得复制完整世界的条件下，什么最小交互语义能在给定任务版本、风险和披露预算内，可靠地区分候选可行、可证伪、仍未知与拒绝披露；相较静态画像、最强自然语言查询和权威感知中心方案是否产生可重复净增值？",
+    "将发现层拆成四种身份：本地事实与 provenance 为权威事实；任务相关投影为版本化派生视图；UNKNOWN、REFUSE、cut、witness 为类型化边界响应；HDC、NAC 编码和 query 排序为可替换 provider 或策略。",
+    "为每次投影和 Oracle 响应携带 task_version、role、risk_budget、disclosure_budget、provenance、validity_window 与 responding_authority_locus，避免旧投影在任务漂移后继续充当事实。",
+    "设计四臂公平比较：静态 Agent Card；强模型自由自然语言查询；权威感知中心 Agent 加类型化本地 Oracle；联邦式渐进边界机制。四臂使用相同模型、工具、任务、查询次数、披露预算、恢复机会和验收规则。",
+    "构造隐藏合取约束任务族：每个主体只掌握部分必要条件；静态摘要必然遗漏至少一个随任务变化的约束；完整披露超过隐私预算；只有针对当前候选的 probe 才可能得到 cut、witness、UNKNOWN 或 REFUSE。",
+    "同时构造静态任务族作为反向对照：必要字段稳定且可安全公开。若动态机制在此任务族没有更高判别力，应记录其额外查询、等待和治理成本，而不是要求它获胜。",
+    "对发现与条件创造分别设检验：发现检验冻结本地能力和外部条件，只允许查询；formation 检验允许一个明确 operator 改变工具、权限、伙伴或资源条件，并在消融后确认路径再次消失。",
+    "采用至少六项结果指标：必要条件漏配率、错误可行率、拒绝误读率、隐私暴露量、达到稳定判断的查询与等待成本、任务漂移后的局部重开范围。不得只用最终匹配率。",
+    "设置降级规则：若强自然语言方案持续等效，则 NAC 降为编码 provider；若权威感知中心加相同 Oracle 语义持续等效，则联邦式 discovery 拓扑不构成独立核心机制；若静态卡在目标分布中充分且更便宜，则任务相关动态层仅保留为高不确定任务的条件性机制。"
+  ],
+  "negative_results": [
+    "现有材料不能证明 NAC 比自然语言加最强模型更有效；档案明确把这一点保留为未被现实判别的假说。",
+    "现有材料不能证明 HDC/FHRR 的角色绑定实现具有跨模型净优势；档案只支持其设计与合成机制地位，并记录了对齐和解绑定损失。",
+    "现有材料没有提供原生 discovery protocol 的端到端保真重建测试，因此不能确认统一架构仍执行了响应类型、局部权威和渐进披露语义。",
+    "即使专门边界机制优于静态卡，也不足以区分它是通用交互语义、中心协调器可复用的接口，还是联邦式关系构成的独特机制。",
+    "发现了隐藏的既有路径不等于创造了新路径；如果冻结前态已经存在等价路径，则不能把查询带来的可见性变化计为 formation。",
+    "没有真实任务成本数据，无法排除协调、披露、验证、等待和恢复成本吞噬新增价值。"
+  ],
+  "alternative_explanations": [
+    "强模型自然语言查询可能在不使用 NAC 名称的情况下，自行生成任务相关问题、保留方向性并识别关键未知。",
+    "权威感知中心 Agent 可能在不复制完整本地世界的情况下调用相同的局部 Oracle，因此优势可能来自响应类型和本地权威，而非联邦拓扑。",
+    "成熟平台工作流可用条件表单、审批状态、拒绝代码和审计记录表达大部分稳定边界；动态机制的价值可能仅存在于问题与参与者高度未定的任务。",
+    "人类经纪可能凭隐性知识和社会合法性更快定位应询问的 Authority Locus；仅比较机器查询次数会低估该基线。",
+    "静态 Agent Card 在窄且稳定的任务分布中可能已经充分，动态投影的优势可能来自实验刻意制造的分布漂移。",
+    "NAC 的观察优势可能仅来自其 schema、版本和 provenance 纪律；为自然语言基线补齐相同纪律后差异可能消失。",
+    "类型化响应可能降低误读，但也可能迫使复杂边界进入过窄类别，增加 UNKNOWN 或错误 cut；允许附带可审计自然语言理由可能更好。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md"
+  ],
+  "applicability": "这些结论仅适用于基于所给 Problem v0 与发现边界档案构造候选问题修订和判别实验。它们可用于决定哪些 discovery 差异值得成为运行时契约、哪些应降级为 provider，以及如何公平比较强自然语言与权威感知中心基线；不构成现实有效性或一般优越性的证据。",
+  "cannot_support": [
+    "不能证明任何真实目标域 Effect 已发生。",
+    "不能证明任何结果已被目标域 Adoption。",
+    "不能证明任何真人或组织 Principal 已授权、承诺或 Acceptance。",
+    "不能证明 NAC、BIC、Boundary Oracle、PFE、通爻或联邦式方案在现实中有效。",
+    "不能证明多研究线方法优于单一强研究者。",
+    "不能证明发现机制创造了原本不存在的现实可行条件。",
+    "不能将 Problem v0 或候选修订自动晋升为 ACTIVE。",
+    "不能从档案与合成场景外推现实频率、净价值、安全性或一般有效性。"
+  ],
+  "candidate_claims": [
+    "候选主张 C1：任务相关投影、披露预算和类型化本地响应共同构成一种可检验的有限发现接口，但其价值必须相对公平基线验证。",
+    "候选主张 C2：UNKNOWN、REFUSE、cut 与 witness 的区分应成为跨实现运行时契约；NAC 或 HDC 不应成为该契约的必要实现。",
+    "候选主张 C3：NAC 最多暂定为跨模型、跨版本路由 provider；只有在控制 schema、provenance、版本和查询预算后仍优于强自然语言基线，才应提升其地位。",
+    "候选主张 C4：发现层只能改变共同可行动性的可知状态；除非存在并消融一个改变现实条件的 operator，否则不能声称它改变了实际可达行动空间。",
+    "候选主张 C5：发现机制是否核心，不应按平均匹配率决定，而应按其是否在有限披露下减少漏配、误判、拒绝误读和全局重开，同时产生正净价值决定。"
+  ],
+  "new_discriminators": [
+    "冻结能力与外部条件，仅改变查询机制：若出现的路径冻结前已客观可行，则结果计为发现而非形成。",
+    "保持查询语义不变，仅替换 NAC 为自然语言加稳定 schema：若结果不变，NAC 编码降级。",
+    "保持本地 Oracle 与预算不变，仅替换联邦协调为权威感知中心协调：若结果不变，联邦拓扑降级。",
+    "在响应内容相同的条件下，将 UNKNOWN、REFUSE、cut、witness 压成自由文本；测量授权误读、错误淘汰和错误承诺是否增加。",
+    "任务版本发生局部漂移后，比较静态卡、全局重算和带依赖谱系的局部重开在泄露量、恢复成本及误判率上的差异。",
+    "加入可安全静态公开的任务族；若动态机制只在刻意隐藏约束的任务族获胜，则限定其适用分布。",
+    "为人类经纪、平台和强中心基线记录相同的发现、协调、披露、等待、验证与恢复总成本，而非仅计算模型调用成本。"
+  ],
+  "cost": {
+    "elapsed_seconds": 98.604,
+    "output_bytes": 14299
+  }
+}

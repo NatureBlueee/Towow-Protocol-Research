@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-06-REALITY-EFFECT",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-06-REALITY-EFFECT",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "62718084aa858b29f34c20737ce4df5cc43fb897848c504fb4943615889311fc",
+  "direct_observations": [
+    "Problem v0 已明确规定“执行成功不能替代目标域采用、Principal 接受与责任归属”，并将 Effect、Adoption、Acceptance、撤销和局部重开列入范围、结果与证伪条件。",
+    "Problem v0 尚未明确 ActionAttempt、Effect、Adoption、Acceptance、Settlement 各自的最小成立条件、权威写入者、版本关联、否定状态和状态迁移规则。",
+    "原生现实效力线提出五项不可压缩差异：ActionAttempt/Effect、调用方记录/目标域权威 readback、Effect/Adoption/Acceptance、未知/明确负状态/撤销、重试/同一身份恢复。",
+    "原生材料自身明确承认没有人类 Acceptance 证据，并把真实主体 Acceptance、长期后悔和净价值列为开放问题。",
+    "原生材料的较强主张引用了未嵌入本次输入的底层材料；本线只能把它们作为档案来源陈述，不能独立复核其样本、实现或统计。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 把执行成功与目标域采用、Principal 接受及责任归属明确分开。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "invariants[3]"
+    },
+    {
+      "statement": "Problem v0 要求现实执行具有独立可读回的目标域 Effect，并分别观察目标域采用和 Principal 独立接受。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "observable_outcomes[2]-[3]"
+    },
+    {
+      "statement": "Problem v0 允许 Effect、Adoption 或 Acceptance 被新证据撤销后重开。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "reopen_conditions[3]"
+    },
+    {
+      "statement": "原生材料主张 Operation 产生 ActionAttempt，而 Effect 应由目标世界 witness/readback 建立，执行器日志不能单方面创建 Effect。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "CAP-EFF-001：ActionAttempt 与 Effect 分离"
+    },
+    {
+      "statement": "原生材料主张 readback 的权威来源和顺序由目标域定义，并应保留 provenance。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "CAP-EFF-002：目标域权威 readback"
+    },
+    {
+      "statement": "原生材料主张 Effect、Adoption 和 Acceptance 分别引用来源与版本，任一层都不能从上一层自动推出。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "CAP-EFF-003：Effect、Adoption、Acceptance 分离"
+    },
+    {
+      "statement": "原生材料主张 not_adopted、revoked、offline、disputed 和 Unknown 应保留为带来源、版本和时间的事实，不能压缩成单一 success=false。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "CAP-EFF-004：负状态与撤销是一等事实"
+    },
+    {
+      "statement": "原生材料主张恢复需要幂等 identity、版本、recovery receipt 和目标域 readback，以关联原尝试和责任链。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "CAP-EFF-005：恢复与 replay identity"
+    },
+    {
+      "statement": "原生材料明确称 R5C 没有人类 Acceptance 证据。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "原始证据与反例"
+    },
+    {
+      "statement": "原生材料的当前建议是把 Operation、ActionAttempt event、Effect receipt 作为正式事实，把 Adoption、Acceptance、Settlement 作为引用目标来源和精确版本的 Stance 或派生表示。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "source_range": "当前保留建议"
+    }
+  ],
+  "inferences": [
+    "v0 的主要遗漏不是没有提到现实效力，而是没有把效力链变成可判定契约；因此不同实现仍可用同一个“执行—采用—接受”词序表达互不相容的完成语义。",
+    "现实效力问题可从“关系形成”中抽出为跨形成与运行阶段的独立判定问题：某次尝试何时获得目标域效果、采用、主体接受和结算资格。形成成功并不解决该问题，形成失败也不排除已有制度完成普通效力判定。",
+    "不可替代的不是固定数量的顶层对象，而是可重建的语义分界、权威来源、版本谱系和负状态；成熟事务、回执或验收系统若完整保存这些信息，可以承载该链。",
+    "Adoption 和 Acceptance 是否属于权威事实，取决于声明者：目标系统对 consumption/activation 的记录可作为 Adoption 权威事实；Principal 或其明确授权 locus 的 stance 才可能支持 Acceptance。调用方推断只能是派生判断。",
+    "Settlement 不是 Effect、Adoption 或 Acceptance 的同义词，而是依赖具体结算规则的后继决定；它可能在前三者部分成立时仍被阻止或撤销。",
+    "接受后的 Defeater 不应改写历史为“从未接受”；更合适的是保留旧版本的接受记录，同时创建有来源的新负状态，并只重开受影响范围。",
+    "最强替代解释是：现有事务系统加目标域回执、版本化验收和人类审批已能完整表达上述差异。若公平比较成立，专门的通爻效力链应降级为映射规范、验证器或互操作层，而非新的事实根。"
+  ],
+  "design_proposals": [
+    "为 Problem v1 增加“效力链判定契约”：每一层至少记录 episode_id、operation_id、attempt_id、projection_or_target_id、claim_type、claim_version、authoritative_source、observed_at、evidence_ref、status、supersedes_or_defeats、responsible_authority。",
+    "定义最小非蕴含关系：MessageDelivered 不蕴含 ActionAttempt；ActionAttempt 不蕴含 Effect；Effect 不蕴含 Adoption；Adoption 不蕴含 Acceptance；Acceptance 不蕴含 Settlement。允许领域删除不适用层，但必须说明由哪个等价事实承担其判别职责。",
+    "将 Effect 限定为目标域权威来源可独立 readback 的、与特定尝试和目标版本关联的状态变化；producer 输出、退出码、消息 ACK 和模型判断只能成为候选证据。",
+    "将 Adoption 定义为目标域对 Effect 的消费、激活或纳入运行状态，而不是单纯写入；其权威来源由目标域契约指定。",
+    "将 Acceptance 定义为相称 Principal 或明确授权 locus 对精确结果版本的 stance；默认允许 accepted、rejected、disputed、unknown、revoked，并禁止由模型或前序状态自动生成。",
+    "加入版本化 Defeater 与 scoped reopen：新证据引用被击败的 claim/version，保留历史事实，只使依赖该 claim 的结算或关系片段失效。",
+    "要求专门效力机制与强中心事务系统、成熟平台审批链和人类验收进行表示能力、误报率、漏报率、恢复成本及净价值的公平比较。",
+    "候选问题修订：在研究联合行动关系如何形成之外，明确追问每次行动尝试如何经目标域权威 readback、采用记录、Principal 原生 stance 与可撤销结算获得分层效力；任何层不得由 producer 或上一层自动宣告，且现有制度若能在同等约束下完整承担这些判别，应优先复用。"
+  ],
+  "negative_results": [
+    "仅凭嵌入档案不能证明任何真实 Effect、Adoption、Acceptance、Settlement 或人类授权已经发生。",
+    "无法从本次输入独立复核“17 个场景中 naive 标签错 10 次、readback 规则得到 17/17”的底层数据、代码、运行环境或统计有效性。",
+    "未发现证据表明现实效力链必须实现为四个或更多独立顶层事实对象；原生材料反而支持保真映射到 Operation 事件链和 Stance。",
+    "未发现证据表明专门的通爻效力机制优于成熟事务、审批或人类验收系统。",
+    "Problem v0 虽保留关键语义词，但仅凭其文字不能阻止实现把 producer PASS、消息 ACK 或模型判断误报为 Effect。",
+    "没有材料支持真实主体的长期接受、后悔率或该效力链的净正价值。"
+  ],
+  "alternative_explanations": [
+    "成熟事务系统可能已经通过幂等键、提交日志、目标数据库 readback、状态机和补偿事务覆盖 ActionAttempt、Effect 与恢复，不需要新的事实体系。",
+    "平台审批链可能已经把采用、验收、撤销和结算分开；缺陷只是当前 Agent 适配层错误映射状态。",
+    "人类项目经理或验收者的制度地位、隐性知识和责任关系可能才是 Acceptance 作数的来源，Agent 协议只能传递和审计 stance。",
+    "某些目标域的写入即采用，例如权威账本提交；此时 Effect 与 Adoption 可以由同一事件同时建立，但仍需保留概念上的判别条件，不能普遍合并。",
+    "某些低风险、可逆任务可能不需要独立 Principal Acceptance；此时 Acceptance 应标记为不适用或由预授权规则承担，而不是伪造一个接受事件。",
+    "增加过多状态、回执和人工检查可能使协调与治理成本超过避免误报的价值，从而支持 ALT-NET-NEGATIVE。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json#invariants",
+    "research/projects/joint-action-formation/problem/v0.json#observable_outcomes",
+    "research/projects/joint-action-formation/problem/v0.json#falsification_conditions",
+    "research/projects/joint-action-formation/problem/v0.json#reopen_conditions",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md#CAP-EFF-001",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md#CAP-EFF-002",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md#CAP-EFF-003",
+    "research/projects/a2a-reconstruction/04_a2a-reconstruction/04_audit/native_lines/06_reality_effect.md#CAP-EFF-004",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md#CAP-EFF-005"
+  ],
+  "applicability": "适用于 Problem v0 的候选修订、合成效力链测试设计，以及对强中心事务系统、平台审批链和人类验收基线的公平比较。结论仅来自两个嵌入来源的档案分析；它不验证真人、组织、生产系统或通爻机制的一般有效性。",
+  "cannot_support": [
+    "不能证明 PFE、NAC、通爻或专门效力链在现实中有效。",
+    "不能声称任何真实目标域 Effect、Adoption、Acceptance 或 Settlement 已发生。",
+    "不能代表任何真人 Principal 的理解、授权、承诺、接受或责任承担。",
+    "不能证明多 Agent 研究优于单一强研究者。",
+    "不能把档案中的 R5.2 或 R5C 陈述当作本轮独立复现结果。",
+    "不能证明上述状态必须对应固定数量的顶层对象或独立服务。",
+    "不能证明专门效力链相较事务系统、平台流程或人类验收具有净正价值。",
+    "不能将 Problem v0 或候选修订自动晋升为 ACTIVE。"
+  ],
+  "candidate_claims": [
+    "候选主张 C1：现实效力的不可约核心是跨层非蕴含和权威来源，而不是固定对象模型。",
+    "候选主张 C2：Effect 至少需要目标域权威 readback；producer PASS、消息 ACK、退出码或模型判断不足以单独建立 Effect。",
+    "候选主张 C3：Effect、Adoption、Acceptance 和 Settlement 可以在特定领域共享底层事件，但必须保持各自成立条件和权威声明者可判定。",
+    "候选主张 C4：撤销、争议、离线和 Unknown 应以版本化负状态保存；删除旧正记录会破坏审计和局部重开。",
+    "候选主张 C5：恢复必须关联原 Operation、Projection 和责任链，否则重试可能制造重复副作用或重复结算。",
+    "候选主张 C6：若成熟基线能以同等或更低成本完整保存上述语义并避免误报，专门效力链应缩小为映射与验证能力。"
+  ],
+  "new_discriminators": [
+    "案例 D1—执行成功但未采用：执行器返回成功并产生候选产物；目标域权威 readback 确认写入，但目标系统未消费或激活。预期分类为 Effect=observed、Adoption=not_adopted或pending、Acceptance=unknown、Settlement=blocked。若系统结算成功，则未保留 Effect/Adoption 分界。",
+    "案例 D2—采用但未接受：目标系统已消费并运行精确结果版本；相称 Principal 明确拒绝、争议或尚未验收。预期分类为 Effect=observed、Adoption=adopted、Acceptance=rejected/disputed/unknown、Settlement 按规则阻止或进入争议。若 Adoption 自动生成 Acceptance，则权威越位。",
+    "案例 D3—接受后被 Defeater 重开：Principal 曾接受版本 v1，后续目标域证据证明关键效果被撤销或错误归因。预期保留 v1 的历史 Acceptance，同时创建针对精确 claim/version 的 Defeater，撤销依赖结算并局部重开；不得重写为从未接受或重建无关关系。",
+    "消融 D4—移除目标域 witness：其余日志、消息和 producer 输出保持不变。若仍建立 Effect，则该实现不能区分 Attempt 与目标世界变化。",
+    "基线 D5—成熟事务与验收系统：给予同等模型、工具、查询、预算、恢复和人工合法性，比较六项指标：跨层误报、跨层漏报、重复副作用、错误结算、恢复可追责性、总治理成本。若基线不劣且成本更低，专门链降级。",
+    "压缩 D6—共享事件承载多层状态：让一个目标域提交事件同时满足 Effect 与 Adoption，但要求分别给出成立规则与权威来源。若无信息损失，则证明无需强制平行对象；若撤销或争议无法局部表达，则证明仍需独立版本化 claim。",
+    "授权 D7—预授权低风险任务：Principal 事先授权满足机器可检验条件的结果自动进入结算。比较“预授权规则被满足”与“事后 Principal 接受”；若两者被记录为同一事实，应检查是否掩盖授权范围漂移和事后拒绝权。"
+  ],
+  "cost": {
+    "elapsed_seconds": 87.055,
+    "output_bytes": 14277
+  }
+}

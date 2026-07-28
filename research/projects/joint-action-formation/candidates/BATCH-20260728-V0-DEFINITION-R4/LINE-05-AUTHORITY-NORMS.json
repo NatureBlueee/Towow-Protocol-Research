@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-05-AUTHORITY-NORMS",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-05-AUTHORITY-NORMS",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "25c66e4ece030fe37055400369d85c848c55ffe39935382f68e7867a29a3465b",
+  "direct_observations": [
+    "Problem v0 已明确规定：Entity 认证不等于 Principal 的全面授权，能力提升不自动扩大 Authority Envelope，执行成功不替代采用、接受与责任归属。",
+    "Problem v0 将版本化跨 Principal 关系 episode 设为分析单位，但没有把 Authority Root、Authority Locus、Mandate 内容与版本、Stance 范围、资源预留及 Standing 分别列为可观察的正式边界。",
+    "原生研究线区分 Principal 与 Agent Entity，并限定 AgentExecution 只能在授权范围内行动。",
+    "原生研究线将 Mandate 描述为绑定 Principal、Authority Locus、目标、动作、资源、数据用途、预算、期限和撤销的范围化、版本化、可撤销授权。",
+    "原生研究线要求 Recognition、Reject、Conditional、Accept 等 Stance 引用精确 RelationVersion 与范围，且 material change 不继承旧 Stance。",
+    "原生研究线把 Commitment 与 Reservation 分离；没有 reservation 的承诺不能直接进入执行。",
+    "原生研究线赋予无最终签字权的受影响方 material challenge、representation 和 recourse 范围。",
+    "原生材料明确保留一个负结果：真实主体能否理解、修订和维护显式 Mandate，尚无用户证据。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 的不变量明确区分认证、能力、执行成功、采用、Principal 接受和责任归属。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.invariants"
+    },
+    {
+      "statement": "Problem v0 要求公平比较权威感知强中心 Agent、成熟平台工作流与人类经纪。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.strong_baselines"
+    },
+    {
+      "statement": "Principal 与 Agent Entity 必须分离；认证 Agent 不等于认证其全部观点或目标。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "CAP-AUTH-001"
+    },
+    {
+      "statement": "Mandate 应绑定 Principal、Authority Locus、目标、动作、资源、数据用途、预算、期限和撤销，且能力提升不自动扩大 Authority Envelope。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "CAP-AUTH-002"
+    },
+    {
+      "statement": "Stance 应引用精确 RelationVersion 与范围，material change 不继承旧 Stance。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "CAP-AUTH-003"
+    },
+    {
+      "statement": "Commitment、Mandate 与 Reservation 应分离；没有 reservation 的承诺不能直接进入执行。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "CAP-AUTH-004"
+    },
+    {
+      "statement": "Standing 区分最终签字权与提出 material challenge、获得代表或补救的资格。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "CAP-AUTH-005"
+    },
+    {
+      "statement": "真实主体能否理解、修订和维护显式 Mandate，仍没有用户证据。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "source_range": "后续解释与整合结果"
+    }
+  ],
+  "inferences": [
+    "v0 的原则方向与原生研究线一致，但目前更像禁止性约束，尚不足以规定系统在一次 episode 中必须校验哪些权威事实以及何时使旧授权失效。",
+    "不可约的最小区分至少包括：Entity 身份与 Principal 身份、技术能力与规范授权、Authority Locus 与责任根、Mandate 内容与版本、Stance 与 Commitment、Commitment 与 Reservation、签字权与 Standing、AgentExecution 与 Principal 原生认领。",
+    "仅记录角色和许可不足以证明某次行动已获得有效 Mandate；反之，成熟 RBAC 若能表达目的、范围、版本、撤销、资源冲突、受影响方 challenge 和独立接受，则未必需要新增独立规范对象。",
+    "Authority Locus 更适合作为不可绕过的解析与校验 Gate，而不一定需要成为与 Entity、Mandate、RelationVersion、Commitment 并列的独立生命周期对象。",
+    "Acceptance 可继续作为精确版本和范围上的 Stance；只有当它具有不同的权威来源、撤销规则或后果语义时，才有理由升格为独立正式对象。",
+    "Problem v0 可能把形成、授权、执行、采用和接受串成单一连续叙事；权威线要求它们保持可分别失败的状态转换，不能由前一步成功推导后一步成立。"
+  ],
+  "design_proposals": [
+    "候选修订：将目标转换补充为“每项高后果状态转换都能解析到 Principal、Authority Root、Authority Locus、有效 Mandate 版本、目标 RelationVersion、允许的动作与资源范围，并保留独立 Stance、Commitment、Reservation、Standing 和撤销状态”。",
+    "建立 Authority Gate：在承诺、执行、用途扩大、采用声明和接受声明前，校验主体、权威位置、Mandate 版本、RelationVersion、作用域、期限、撤销、资源预留和必要 challenge；任何缺失返回 Unknown 或阻断，不由模型补全。",
+    "场景 A：同一 Entity 内预算角色和品牌角色拥有相同模型、工具与账户能力；预算 Mandate 只允许费用承诺，测试系统能否阻止其签署品牌合作。",
+    "场景 B：数据方只对 no-training v2 作 Conditional 或 Accept；生成扩大训练用途的 v3，测试旧 Stance 是否被错误继承，随后撤销 v2 Mandate，测试旧 AgentExecution 是否仍可行动。",
+    "场景 C：两个 Agent 在同一预算和档期上分别形成 Commitment，但只有一个 Reservation；测试未预留承诺能否被阻止进入执行以及冲突是否局部重开。",
+    "场景 D：双方签字人同意数据使用，但下游数据主体只有 Standing；测试其 challenge 是否能触发用途重审而不被误记为预算否决或最终签字。",
+    "公平基线：用成熟 RBAC、审批链和审计日志完整实现相同四个场景，给予相同模型、工具、查询机会、预算、恢复机制和预定义流程能力；比较越权阻断、陈旧授权、伪接受、资源冲突、外部性遗漏及治理成本。"
+  ],
+  "negative_results": [
+    "仅凭现有档案不能证明显式 Mandate 对真实主体具有可接受的认知和维护成本。",
+    "现有材料不能证明 Entity、Mandate、RelationVersion、Commitment 之外还必须新增更多一级正式对象；Stance、Authority Locus、Reservation 和 Standing 可能分别适合作为属性、Gate 或关联事实。",
+    "没有证据表明新增规范对象优于成熟 RBAC、审批链、合同或人类制度。",
+    "没有运行判别场景，因此尚未观察到权威旁路被实际阻止，也未观察到基线失败。",
+    "无法判断分布式构成是否产生净正价值；显式授权、版本校验和 challenge 机制可能增加显著认知与治理成本。"
+  ],
+  "alternative_explanations": [
+    "成熟 RBAC 加审批链、审计日志、版本化政策和资源锁定，可能已经无损表达所有承重差异，并以更低成本运行。",
+    "真正产生规范效力的可能是合同、组织角色和人类制度；Agent 层对象只是在复制或自动化这些制度。",
+    "观察到的越权可能主要来自实现缺陷或宽泛权限配置，而非缺少新的关系形成理论。",
+    "显式 Mandate 的复杂度可能诱发选择性认领、过期授权和形式合规，结果反而不如人类经纪基线。",
+    "若既有平台不能表示动态未知角色，差异也可能来自工作流开放性，而不是 Authority-Norms 对象本身。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md"
+  ],
+  "applicability": "适用于 Problem v0 的档案级定义攻击和候选修订，尤其适用于同一 Entity 内存在多个 Authority Locus、Mandate 版本、相同能力但不同授权，以及受影响方无最终签字权的情形。结论仅是设计与判别建议，未经现实主体或生产环境验证。",
+  "cannot_support": [
+    "不能证明 PFE、NAC 或通爻在现实中有效。",
+    "不能证明多 Agent 研究优于单一强研究者。",
+    "不能代表真人 Principal 的授权、承诺、采用或接受。",
+    "不能证明任何现实 Effect、Domain Adoption 或 Acceptance 已发生。",
+    "不能将 Problem v0 或候选修订自动晋升为 ACTIVE。",
+    "不能证明所提正式边界具有跨组织、跨制度或一般有效性。",
+    "不能证明新增规范对象相较 RBAC、审批链、合同或人类经纪具有净正价值。"
+  ],
+  "candidate_claims": [
+    "任何执行许可都必须同时满足技术能力和当前有效 Mandate；两者任一成立都不能推出另一者成立。",
+    "Stance、Commitment、Reservation、Execution、Adoption 和 Acceptance 应被视为可独立失败的版本化状态，禁止通过执行成功推导采用或接受。",
+    "material RelationVersion 变化或 Mandate 撤销应使依赖旧版本的后续转换重新进入 Gate，而不是自动继承。",
+    "Standing 应保留为区别于最终签字权的正式可检查资格，否则双边授权可能遮蔽第三方外部性。",
+    "若成熟 RBAC、审批链和审计日志在公平场景中能同等阻止越权、陈旧授权、伪接受、重复承诺和 Standing 遗漏，且成本更低，则新增 Authority-Norms 对象应合并或降级。"
+  ],
+  "new_discriminators": [
+    "相同 Entity、相同认证和相同执行能力，仅改变 Mandate 目的或 Authority Locus 时，系统结果是否随授权差异改变。",
+    "RelationVersion 发生 material change 后，旧 Stance 是否停止授权新版本；若结果不变，精确版本 Stance 没有实际判别力。",
+    "Mandate 被撤销后，旧 token 仍技术有效时是否可继续执行；若可继续，认证或能力正在冒充授权。",
+    "存在 Commitment 但不存在 Reservation 时是否仍进入执行；若仍进入，规范承诺和现实可行性被折叠。",
+    "无最终签字权但具有 Standing 的受影响方提出 challenge 时，系统是否能局部重开且不赋予其不属于自己的签字权。",
+    "在相同四类场景与资源预算下，联邦式规范机制相较成熟 RBAC/审批链是否降低权威错误或披露成本；若无改善或总成本更高，应支持降级。"
+  ],
+  "cost": {
+    "elapsed_seconds": 67.604,
+    "output_bytes": 10790
+  }
+}

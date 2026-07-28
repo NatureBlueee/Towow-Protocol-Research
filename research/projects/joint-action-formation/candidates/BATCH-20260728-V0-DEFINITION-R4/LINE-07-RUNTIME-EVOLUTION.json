@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-07-RUNTIME-EVOLUTION",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-07-RUNTIME-EVOLUTION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "75d175a10925a1ab436977cf7504f63bb53b3e09fd0628cf00c76f5be3f04ed6",
+  "direct_observations": [
+    "Problem v0 已把版本化、学习、退出、局部重开、治理成本和漂移列入研究范围，但没有定义哪些版本变化具有规范意义、Defeater 如何传播、旧授权或旧接受何时失效，以及局部重开的最小闭包如何确定。",
+    "Problem v0 的分析单位同时覆盖关系形成与运行 episode；这保留了端到端谱系，却可能混合两类不同问题：新关系如何首次构成，以及已构成关系如何在依赖变化后继续有效。",
+    "原生运行线区分 Problem、Design、Engineering IR，并明确实现完成不能倒写为原问题已经解决。",
+    "原生运行线提出将稳定子图编译为最小权限流程，而不是冻结整个关系或完整世界。",
+    "原生运行线提出 Defeater 应引用被击败的 Assertion、Mandate、Effect 或 RelationVersion，并沿依赖闭包局部重开。",
+    "原生运行线明确指出 Context Compiler 的编译视图不是新的事实源，Evidence Closure 也不能退化为文件、测试或报告存在。",
+    "原生运行线把中心、平台、联邦、确定性服务和人工裁决视为条件选择，而非默认要求联邦运行。",
+    "原生材料明确承认 Router 的真实冷启动能力、编译复用净值以及 scoped reopen 的现实精度尚未得到证明。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 要求拒绝、Unknown、退出和重开保持为真实结果，并把运行漂移如何触发局部而非全局重开列为关键未知。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "invariants[4]; key_unknowns[5]"
+    },
+    {
+      "statement": "Problem v0 将分析单位定义为有版本边界的跨 Principal 关系形成与运行 episode，并要求比较强中心、平台流程和人类经纪基线的净价值。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "unit_of_analysis; question; strong_baselines"
+    },
+    {
+      "statement": "Problem v0 将失败、撤销、退出和重开是否局部、可追责、可恢复，以及新增价值是否超过治理和恢复成本，列为可观察结果。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "observable_outcomes[4:6]"
+    },
+    {
+      "statement": "原生运行线主张区分 Problem、Design、Engineering IR，以阻止局部实现绿灯被解释为原问题闭环。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-001：Problem/Design/Engineering IR 分离"
+    },
+    {
+      "statement": "原生运行线把 Context Compiler 定义为带回源引用的最小充分上下文生成机制，并声明编译视图不是新事实源。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-002：Context Compiler"
+    },
+    {
+      "statement": "原生运行线建议只把满足权威、证据、资源、Effect、退出和恢复 Gate 的稳定子图编译为最小权限流程。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-003：形成到确定性运行的局部编译"
+    },
+    {
+      "statement": "原生运行线提出 Defeater 引用失效对象并沿依赖闭包重开，以避免陈旧执行和任意变化导致的全局停摆。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-004：Defeater 与依赖闭包重开"
+    },
+    {
+      "statement": "原生运行线要求独立 verifier 读取权威结果，而不是仅检查产物存在。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-005：证据闭合而非产物闭合"
+    },
+    {
+      "statement": "原生运行线认为机制应按制度充分性、信息可集中性、权威拓扑、不可逆性、witness 和漂移选择；简单机制能够无损完成时应旁路重型联邦机制。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "CAP-RUN-006：多机制 Router; CAP-RUN-007：中心与联邦是条件选择"
+    },
+    {
+      "statement": "原生运行线明确说 Router 的真实材料冷启动、编译复用净值和 scoped reopen 现实精度仍未证明。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "后续解释与整合结果"
+    },
+    {
+      "statement": "原生运行线建议独立保留 Harness 三类 IR、Context Compiler 和 Evidence Closure，并暂时只把 Router 作为人机检查表和风险扫描器。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "source_range": "当前保留建议"
+    }
+  ],
+  "inferences": [
+    "Problem v0 的主要遗漏不是缺少“重开”一词，而是缺少时间化效力模型：旧 RelationVersion、Mandate、证据和 Acceptance 在新版本出现后分别是仍有效、被替代、被撤销、过期还是仅待复核。",
+    "形成与运行不应完全拆成无关问题，但需要两个可独立证伪的子问题：首次形成是否创造新路径；运行内核是否能在漂移下保持授权安全和责任谱系，并比重新签约更省成本。",
+    "局部重开只有在依赖边可追溯时才有明确含义；若系统不能说明某个 Mandate、Assertion、Operation、证据或 Acceptance 依赖哪些前态，所谓 scoped reopen 只是策略性猜测。",
+    "不是每次模型、工具或账户变化都应成为正式关系事实。只有当变化可能改变已承诺行为、权限、可验证结果、恢复能力或责任归属时，才应产生 Defeater 或再验证义务。",
+    "授权撤销与一般能力漂移不对称：撤销必须优先阻断依赖行动；模型升级则可以先隔离新版本，经等价性或重新验证后再替换执行组件。",
+    "Acceptance 必须绑定目标、范围、证据和版本；新证据不能改写历史上曾发生的接受，但可以击败其继续适用于未来行动的资格。",
+    "账户离线可能只是可恢复的运行事件，不必自动重开规范关系；只有当它击败可用性承诺、期限、唯一权威路径或恢复假设时才进入关系闭包。",
+    "若固定不可变合同、普通监控、版本化工作流和人工 amendment 能用更低成本安全处理漂移，持续关系运行内核没有独立成立的必要。",
+    "连续性不能由日志存在、进程存活或版本号递增支持；至少需要版本间权威谱系、未被击败的依赖闭包、适用的证据以及明确的未决 Defeater。"
+  ],
+  "design_proposals": [
+    "把候选问题修订为两个相连但分别评估的对象：Formation Episode 产生首个可授权 RelationVersion；Runtime Evolution Episode 判断该版本在依赖变化后哪些子图仍可继续、哪些必须阻断、复核、退出或重开。",
+    "最小正式运行内核候选仅包括：不可变 RelationVersion、带时间和范围的 Mandate/Acceptance 引用、依赖边、Defeater、局部状态转换、退出与恢复记录。Problem/Design/Engineering IR、Context Compiler、Evidence Closure 和 Router 保持独立内核或派生机制，除非实验显示缺失它们会丢失规范判别力。",
+    "定义版本关系而非单一递增版本号：supersedes 表示替代，amends 表示局部修订，revokes 表示撤销，revalidates 表示在新证据下重新确认，forks 表示存在未解决分歧。禁止用覆盖旧记录制造连续性。",
+    "为每个 Defeater 记录 target、触发证据、影响闭包、立即阻断集合、可继续集合、所需权威、恢复条件和最终处置。闭包无法确定时保持 Unknown，并采用最小安全阻断范围，而不是自动宣布全局有效或全局失效。",
+    "公平比较三种方案：持续关系运行内核；不可变合同加监控、人工 amendment；成熟平台工作流加审批、审计和回滚。给予相同事件输入、授权入口、恢复预算和 verifier，比较错误继续执行、无谓重开、恢复时间、Principal 负担、披露量和总成本。",
+    "把自动 Router 降级为待验证设计。初期只输出推荐机制及理由，由有权主体决定；只有在多分布场景中持续优于固定规则且没有扩大权威后，才考虑自动化。"
+  ],
+  "negative_results": [
+    "授权材料只包含问题定义和原生线档案，没有漂移注入实验、现实运行记录或独立复核，因此不能确认 scoped reopen 在任何真实关系中有效。",
+    "没有证据证明持续关系运行内核优于不可变一次性合同、普通监控、平台版本控制或人工更新。",
+    "没有数据支持编译复用能够产生净正价值；原生材料本身将其净值列为未证明。",
+    "无法从现有材料确定六 roots 或任何特定对象集合就是充分且最小的正式运行事实。",
+    "无法证明依赖闭包在部分披露条件下总能精确计算；闭包可能因隐藏依赖而过窄，也可能因保守传播而接近全局重开。",
+    "无法证明 Router 能可靠识别何时使用中心、平台、人工或联邦机制。",
+    "Problem v0 尚不足以区分“规范关系失效”与“执行组件暂时不可用”，因此可能把运维事故错误升级为全关系重开。",
+    "本线没有观察到 Effect、Domain Adoption、Principal Acceptance、真人授权或现实净价值。"
+  ],
+  "alternative_explanations": [
+    "不可变合同加普通监控和人工 amendment 可能已足够：它天然保存历史版本、让撤销回到责任主体，并在低漂移、小依赖图场景下避免维护复杂 Defeater 图。",
+    "成熟平台工作流可能已提供版本、审批、通知、回滚和审计；新增关系内核只是把已有变更管理重新命名。",
+    "真正承重的可能是证据系统和人工治理，而非持续关系对象；关系可以在每次高后果行动前重新验证，无需长期保持为活跃实体。",
+    "局部重开表现良好可能只是依赖图预先设计得简单，而不是协议发现了隐藏边界；在真实部分披露环境中优势可能消失。",
+    "模型升级、账户离线等事件可能仅需组件级熔断、替换和恢复，不构成 Principal 间规范关系的演化。",
+    "持续关系内核即使减少重复协商，也可能因依赖维护、披露、验证和恢复成本而净值为负。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json#unit_of_analysis",
+    "research/projects/joint-action-formation/problem/v0.json#key_unknowns",
+    "research/projects/joint-action-formation/problem/v0.json#observable_outcomes",
+    "research/projects/joint-action-formation/problem/v0.json#falsification_conditions",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#CAP-RUN-001",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#CAP-RUN-003",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#CAP-RUN-004",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#CAP-RUN-005",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#CAP-RUN-006",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md#后续解释与整合结果"
+  ],
+  "applicability": "适用于定义和评估跨 Principal 关系形成后的版本连续、漂移处理、退出、恢复与局部重开问题；当前仅是基于两份授权文本的候选问题攻击和实验设计。它不支持现实频率、生产安全、商业净值或跨领域普遍性结论。",
+  "cannot_support": [
+    "不能证明任何现实目标域 Effect 已发生。",
+    "不能证明任何 Domain Adoption 或 Principal Acceptance 已发生。",
+    "不能代表真人或组织作出授权、承诺、责任认领或退出决定。",
+    "不能证明 PFE、NAC、通爻或持续关系运行内核在现实中有效。",
+    "不能证明多 Agent 研究优于单一强研究者。",
+    "不能证明联邦机制优于权威感知中心、平台工作流或人类治理。",
+    "不能把 Problem v0 或本线候选修订自动晋升为 ACTIVE。",
+    "不能把档案中的机制描述视为已独立复现或生产验证。"
+  ],
+  "candidate_claims": [
+    "候选主张：运行连续性的最小判据不是进程或版本号连续，而是仍有效的权威、证据和责任依赖在版本间可追溯。",
+    "候选主张：Formation 与 Runtime Evolution 应共享 RelationVersion 谱系，但必须有分别可证伪的成功标准。",
+    "候选主张：局部重开的必要条件是显式依赖图、Defeater 目标和保守的 Unknown 处理；缺一时不能声称重开范围正确。",
+    "候选主张：Mandate 撤销、证据失效、目标变化、组件升级和暂时离线属于不同漂移类别，不应共享一个统一重开动作。",
+    "候选主张：持续运行内核只有在相对不可变合同、成熟平台和人工 amendment 显著减少错误继续执行或无谓全局重建，且净成本更低时，才具有独立价值。",
+    "候选问题修订：多个不可替代 Principal 首次形成版本化共同可行动性后，哪些权威、证据、目标和执行依赖必须被保存为可击败的正式事实，使模型、Mandate、账户、能力、证据或目标变化时，系统能够在不永久化旧接受、不冒领新授权且不重建无关子图的情况下，区分继续、阻断、复核、退出与局部重开；这种持续运行机制在哪些权威拓扑和漂移分布下，相较不可变合同加监控、平台变更流程和人工治理产生可重复净增值？"
+  ],
+  "new_discriminators": [
+    "模型升级：保持 Mandate、目标和账户不变，替换执行模型。比较候选内核与基线能否隔离新模型、验证行为等价范围并仅重开受模型行为保证影响的操作；若所有关系均重开或无需任何验证即继续，两者都失败。",
+    "授权撤销：撤销一个局部 Mandate，同时存在依赖和不依赖该 Mandate 的并发操作。判别点是依赖操作是否及时阻断、无关操作是否继续、历史责任是否保留，以及基线能否以更低成本做到相同结果。",
+    "账户离线：分别注入可快速恢复的账户离线和唯一权威账户永久失效。判别点是前者能否保持为组件级恢复、后者能否升级为相应权威路径重开，而不混淆两类事件。",
+    "证据失效：让某项关键证据过期或被反证。判别点是系统能否定位所有依赖该证据的 Assertion、Operation 和未来适用的 Acceptance，同时保留历史上曾发生的记录。",
+    "目标变化：Principal 修改局部目标，另有无关目标保持不变。判别点是变化被识别为 Problem/Design 层修订还是现有关系 amendment，并且不能由 Engineering 实现反向定义新目标。",
+    "隐藏依赖：在部分披露条件下保留一个系统未知但会影响安全的依赖。此反例检验 scoped reopen 是否会产生危险的过窄闭包，以及 Unknown 或人工升级是否能限制损失。",
+    "高耦合压力：构造依赖闭包接近全图的关系。若局部重开机制仍声称显著节省成本，则检查是否只是漏掉依赖；若诚实退化为全局重开，则记录其适用边界。",
+    "低漂移基线优势：选择长期稳定、依赖少、更新稀疏的关系。若不可变合同加监控和人工 amendment 更便宜且同样安全，应降级持续运行内核。",
+    "成本拐点：跨不同漂移率、图密度、授权主体数和不可逆性，测量错误继续执行、无谓重开、恢复时延、人工审批次数、披露量和总成本，寻找运行内核相对基线由正转负的边界。",
+    "消融测试：分别移除显式依赖边、Defeater、版本谱系、独立 verifier 和 Problem/Design/Engineering 分离。只有移除后出现可定位且基线不能同成本避免的失败，相关机制才有进入正式内核的依据。"
+  ],
+  "cost": {
+    "elapsed_seconds": 100.281,
+    "output_bytes": 16387
+  }
+}

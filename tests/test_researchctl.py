@@ -245,6 +245,10 @@ class RuntimeTests(unittest.TestCase):
                 "invalid_json_schema\n",
                 encoding="utf-8",
             )
+            (run_dir / "result.raw.json").write_text(
+                '{"candidate_claims":[]}\n',
+                encoding="utf-8",
+            )
         researchctl.write_json(plan_path, plan)
 
         disclosure = {"disclosure_sha256": "a" * 64}
@@ -276,6 +280,122 @@ class RuntimeTests(unittest.TestCase):
                     path.read_text(encoding="utf-8")
                     for path in sorted(run_dir.glob("infra-history/*/attempt-1-error.txt"))
                 ],
+            )
+            self.assertEqual(
+                ['{"candidate_claims":[]}\n'],
+                [
+                    path.read_text(encoding="utf-8")
+                    for path in sorted(run_dir.glob("infra-history/*/result.raw.json"))
+                ],
+            )
+
+    def test_runner_binds_authoritative_result_envelope(self):
+        plan_path = self.plan("BATCH-TEST-RESULT-ENVELOPE")
+        plan = researchctl.load_plan(plan_path)
+        first = plan["runs"][0]
+        run_dir = researchctl.resolve_root_path(first["run_dir"])
+        bundle = researchctl.load_json(run_dir / "input.json")
+        model_result = {
+            "run_id": "model-guessed-run",
+            "batch_id": "model-guessed-batch",
+            "line_id": "model-guessed-line",
+            "question_version": "unknown",
+            "scenario_version": "unknown",
+            "input_hash": "0" * 64,
+            "candidate_claims": [{"claim": "content remains unchanged"}],
+        }
+        bound = researchctl.bind_result_envelope(model_result, bundle)
+        self.assertEqual(bundle["run_id"], bound["run_id"])
+        self.assertEqual(bundle["batch_id"], bound["batch_id"])
+        self.assertEqual(bundle["line"]["id"], bound["line_id"])
+        self.assertEqual(bundle["problem"]["version"], bound["question_version"])
+        self.assertEqual(bundle["scenario"]["version"], bound["scenario_version"])
+        self.assertEqual(bundle["input_hash"], bound["input_hash"])
+        self.assertEqual(model_result["candidate_claims"], bound["candidate_claims"])
+
+    def test_codex_prompt_embeds_exact_authorized_input_without_file_access(self):
+        plan_path = self.plan("BATCH-TEST-INBAND-INPUT")
+        plan = researchctl.load_plan(plan_path)
+        first = plan["runs"][0]
+        run_dir = researchctl.resolve_root_path(first["run_dir"])
+        bundle = researchctl.load_json(run_dir / "input.json")
+        input_text = (run_dir / "input.json").read_text(encoding="utf-8")
+        prompt = researchctl.build_codex_prompt(bundle, input_text)
+        self.assertIn(input_text, prompt)
+        self.assertIn("<AUTHORIZED_INPUT_JSON>", prompt)
+        self.assertIn("do not inspect the filesystem", prompt)
+        self.assertNotIn("Read WORKER_POLICY.md", prompt)
+
+    def test_access_blocked_result_is_retryable_but_substantive_result_is_not(self):
+        blocked = {
+            "source_statements": [],
+            "candidate_claims": [],
+            "negative_results": [
+                {"finding": "The permitted evidence source was unavailable."}
+            ],
+        }
+        substantive = {
+            "source_statements": [
+                {"source_locator": "allowed.md", "statement": "Observed content."}
+            ],
+            "candidate_claims": [],
+            "negative_results": [],
+        }
+        self.assertTrue(researchctl.result_is_access_blocked(blocked))
+        self.assertFalse(researchctl.result_is_access_blocked(substantive))
+
+    def test_completed_access_block_is_archived_before_retry(self):
+        plan_path = self.plan("BATCH-TEST-ACCESS-BLOCK-RETRY")
+        plan = researchctl.load_plan(plan_path)
+        plan["mode"] = "codex"
+        plan["status"] = "COMPLETED"
+        plan["external_disclosure"] = {
+            "manifest": ".research-runtime/test-access-disclosure.json",
+            "approval_decision_id": "DEC-TEST-ACCESS-RETRY",
+        }
+        for run in plan["runs"]:
+            run_dir = researchctl.resolve_root_path(run["run_dir"])
+            manifest_path = run_dir / "manifest.json"
+            manifest = researchctl.load_json(manifest_path)
+            manifest["mode"] = "codex"
+            manifest["status"] = "COMPLETED"
+            manifest["attempt"] = 1
+            researchctl.write_json(manifest_path, manifest)
+            researchctl.write_json(
+                run_dir / "result.json",
+                {
+                    "source_statements": [],
+                    "candidate_claims": [],
+                    "negative_results": [
+                        {"finding": "The permitted evidence source was unavailable."}
+                    ],
+                },
+            )
+        researchctl.write_json(plan_path, plan)
+
+        with (
+            mock.patch.object(
+                researchctl,
+                "verify_external_disclosure",
+                return_value={"disclosure_sha256": "b" * 64},
+            ),
+            mock.patch.object(researchctl, "decision_allows", return_value=True),
+        ):
+            self.assertEqual(
+                0,
+                researchctl.retry_infra_batch(
+                    argparse.Namespace(batch="BATCH-TEST-ACCESS-BLOCK-RETRY")
+                ),
+            )
+
+        for run in researchctl.load_plan(plan_path)["runs"]:
+            run_dir = researchctl.resolve_root_path(run["run_dir"])
+            manifest = researchctl.load_json(run_dir / "manifest.json")
+            self.assertEqual("PLANNED", manifest["status"])
+            self.assertFalse((run_dir / "result.json").exists())
+            self.assertEqual(
+                1,
+                len(list(run_dir.glob("infra-history/*/result.json"))),
             )
 
 

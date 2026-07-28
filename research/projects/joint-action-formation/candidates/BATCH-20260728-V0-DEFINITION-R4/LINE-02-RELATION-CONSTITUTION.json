@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-02-RELATION-CONSTITUTION",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-02-RELATION-CONSTITUTION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "6e996e51d762f2308816bcc66ea7703dc18716fffe5d3027d47b215899a599b1",
+  "direct_observations": [
+    "Problem v0 已把“问题与参与者尚未完整给定时的关系构成”纳入范围，并把形成与运行 episode 设为分析单位，因此主要缺口不是是否提及 formation，而是缺少可操作的构成判据。",
+    "Problem v0 要求候选行动空间出现冻结前不存在的新路径，但没有规定哪些变化构成关系身份的 material change，也没有规定旧版本 Stance 是否可继承。",
+    "原生研究线明确区分固定 Schema 内改参数与新增角色、动作、权威、证据或退出路径；后者改变的是可被搜索、授权和执行的关系语言。",
+    "原生研究线提出五种可分离能力：可变关系语法、版本化 Coordination IR、多作者共同对象、隐藏贡献的 column 机制，以及候选与承诺分离。",
+    "档案自身指出，把 JAA 映射为 RelationVersion 可以保住版本与引用，却不会自动保住 Schema 生成过程、隐藏 column 或多作者的范围语义。",
+    "当前材料没有提供一个实际对照运行，无法观察权威感知中心方案是否能够无损吸收主体异议、参与者变化、目标重构和局部认领。",
+    "当前材料也没有证明 RelationVersion 必须是独立事实根、独立服务或联邦式架构；可变 Schema、版本、来源范围和授权 Gate 原则上也可由强中心实现。",
+    "CAP-REL-004 的本地 column generation 解决的是有限披露下的候选生成问题，但它不是所有关系构成 episode 的必要条件；在行动集可公开或很小的场景中，其增益可能为零。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 将研究对象定义为多个不可互相替代的 Principal 世界之间，原本不存在、不可行或不可判断的联合行动关系如何被构成并取得规范与现实效力。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.research_object"
+    },
+    {
+      "statement": "Problem v0 的目标转换要求必要主体能够理解、修正、拒绝、授权、承诺、执行、验证和承担后果。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.target_transition"
+    },
+    {
+      "statement": "Problem v0 把有版本边界的跨 Principal 关系形成与运行 episode 作为分析单位，而不是单条消息、单次模型调用或孤立任务完成。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.unit_of_analysis"
+    },
+    {
+      "statement": "Problem v0 明确将预先固定目标和角色的普通任务分工优化排除在研究范围之外。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.out_of_scope[1]"
+    },
+    {
+      "statement": "Problem v0 把“冻结前无合格路径、加入可定位 operator 后出现路径、消融后再次消失”列为 formation 解释的判别观察。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.competing_explanations[3]"
+    },
+    {
+      "statement": "Problem v0 要求公平对待权威感知的强中心 Agent：给予同等模型、工具、查询机会、预算和恢复机制。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.strong_baselines[0]"
+    },
+    {
+      "statement": "Problem v0 将强中心或现有平台在公平条件下持续取得相同或更好结果且成本更低，列为证伪条件。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "$.falsification_conditions[0]"
+    },
+    {
+      "statement": "原生研究线认为，开放协调中的角色、变量、动作、约束和评价函数可能需要在互动中形成，因此问题包含形成可被搜索和执行的关系语言。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "## 当时面对的真实问题"
+    },
+    {
+      "statement": "CAP-REL-001 区分固定 Schema 内的参数修改与新增角色、动作、权威、证据或退出路径，并把 Coordination Schema 本身作为形成对象。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "### CAP-REL-001：关系语法本身可变化"
+    },
+    {
+      "statement": "CAP-REL-002 要求每次 material change 产生新版本，旧版本可追溯，但 Stance 不得静默继承，承诺必须引用精确版本。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "### CAP-REL-002：版本化 Coordination IR"
+    },
+    {
+      "statement": "CAP-REL-003 将 JAA 描述为保存来源、条件、未决项、版本和局部 Stance 的多作者共同对象，并明确共同对象不等于共同世界模型。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "### CAP-REL-003：JAA 作为多作者共同对象"
+    },
+    {
+      "statement": "CAP-REL-004 让本地 Oracle 只提交改善当前解的 column 或 counterexample，使协调器不必取得完整私有行动集。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "### CAP-REL-004：隐藏贡献的 column 机制"
+    },
+    {
+      "statement": "CAP-REL-005 通过 typed ledger 分离 candidate、evidence、recognition 和 commitment，并要求 proposal 到 commitment 经过相称 Authority 的 Gate。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "### CAP-REL-005：候选与承诺分离"
+    },
+    {
+      "statement": "档案指出，RelationVersion 映射保住了版本与引用，但没有自动保住 Schema 生成求解过程、隐藏 column 和多作者范围语义。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "## 后续解释与整合结果"
+    },
+    {
+      "statement": "当前保留建议将 RelationVersion 和精确版本 Stance 视为事实对象，同时把 Schema 形成、column generation 和 JAA 工作台保留为异构机制。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "source_range": "## 当前保留建议"
+    }
+  ],
+  "inferences": [
+    "v0 的首要遗漏是没有给出“重新描述已有任务”与“构成新关系版本”的最小判据。建议以至少一项权威相关的关系语法变化，加上可追溯的新版本和非继承式 Stance，作为候选判据，而不是以文本新颖度或术语数量判断。",
+    "不可约的现实差异至少包括四组：参数变化与关系语法变化；中心摘要与带来源范围的多作者认领；候选可行性与有权承诺；精确旧版本与发生 material change 后的新版本。去掉这些差异会分别造成陈旧流程继续运行、异议被吞并、候选静默成为义务以及旧同意被套用到新方案。",
+    "RelationVersion 是必要表示的强候选，但现有证据只支持必须能够表达版本边界，不支持它必须成为独立架构层。一个权威感知中心若能保存相同的版本、来源范围、拒绝权和 Gate，可能实现等价语义。",
+    "多作者共同对象的关键不是多人编辑，而是每项陈述、条件和 Stance 的权威来源及适用范围不可被中心统一摘要抹平。中心可以托管该对象，但不能成为所有内容的作者或权威。",
+    "隐藏 column 的必要性取决于场景：只有当完整行动集不可披露、不可枚举或披露成本过高，同时局部 Oracle 可产生缺口相关贡献时，它才可能改变可达行动空间。",
+    "形成与授权应被拆成相邻但不等价的状态转换：互动可以形成一个新候选关系语言，却仍没有任何 Principal 承诺；反之，对预定义任务的审批可以产生授权，却未发生关系构成。",
+    "最强替代解释不是越权的中心，而是一个可动态修改任务 Schema、保留逐项来源和版本、把高后果决定返回 Authority Locus 的中心系统。若它在相同披露和预算下无损完成同一转换，独立关系构成层的架构主张应降级为数据与审计约束。",
+    "档案分析只能说明这些差异有明确的失败语义，不能判断它们在现实任务中的发生频率、净价值或是否只能由通爻特有机制实现。"
+  ],
+  "design_proposals": [
+    "为 v1 增加候选构成判据：只有当互动导致参与者集合、角色、可用动作、Authority Locus、必要证据、接受规则或退出路径中至少一项发生 material change，并生成可引用的新版本时，才记录为关系构成；普通参数更新仍属于既有关系内协调。",
+    "规定 material change 后旧版本 Stance 默认不继承。每个必要 Principal 只能在自身 Authority Envelope 内对精确版本表达 understand、amend、reject、recognize 或 commit；未回应保持 Unknown。",
+    "把关系形成记录分为三个可检查但不预设独立服务的部分：RelationSchemaVersion 描述可行动语言；Contribution/Provenance 记录各主体贡献、反例和适用范围；Stance 记录主体对精确版本的局部态度。",
+    "保留 candidate、recognition、commitment 的类型分离。新路径被发现或验证为技术可行，不得自动写成授权、承诺、执行许可或接受。",
+    "把 column generation 定义为可选的有限披露 operator，而非所有关系形成的本体要求。使用它时需记录：当前缺口、局部生成者、披露边界、贡献列、反例以及消融后是否仍存在合格路径。",
+    "构造公平判别场景：初始任务是“供应方向买方上传数据”；数据 Principal 拒绝上传并提出“代码进入数据域、禁止训练”，同时新增安全审查角色和新的执行 witness。比较两套方案：A 为可变 Schema、多作者范围 Stance 和新 RelationVersion；B 为权威感知中心的预定义任务加审批，并允许 B 使用相同模型、查询、预算和恢复机制。",
+    "该场景的构成成功判据仅限结构性结果：冻结前不存在满足数据边界的合格路径；互动后出现一个改变动作、执行域、证据和接受规则的新版本；消融相应 operator 后路径消失。它不构成真实 Effect、Adoption 或 Acceptance 证明。",
+    "公平评测同时检查：是否识别新增必要 Principal；是否保留拒绝的来源和范围；是否阻止旧 Stance 继承；是否避免复制完整私有行动集；是否把候选与承诺分开；以及协调、披露、等待、验证和恢复成本。",
+    "增加降级规则：若可动态扩展的中心任务模型在相同约束下持续保留全部上述差异，且成本不高于关系层，则把“独立关系构成层”降级为中心系统内部的版本化 Schema、provenance 和 Authority Gate 约束。",
+    "候选问题修订：在不可互相代行权威且仅有限披露的主体之间，什么可观察的互动会产生一个冻结前不存在的、版本化且来源分域的共同可行动语言；哪些 material changes 必须使旧 Stance 失效；在何种场景下，该表示相较可动态扩展并权威感知的中心任务系统产生不可替代且净正的增益？"
+  ],
+  "negative_results": [
+    "未找到证据证明单有 RelationVersion 就能保住 Schema 的生成过程、隐藏贡献或多作者范围语义；档案明确指出这种自动保留并不存在。",
+    "未找到实际对照结果证明联邦式或独立关系层优于权威感知中心 Agent、成熟平台工作流或人类经纪。",
+    "未找到证据证明每个 episode 都需要 column generation；该机制在无隐私或小行动集场景中可能没有附加价值。",
+    "未找到从原始现实材料冷启动识别“Schema 尚未形成”的已验证方法；档案将这一点保留为开放研究假说。",
+    "未找到任何真人 Principal 对候选关系的理解、授权、承诺或接受证据。",
+    "未观察到目标域 Effect、Domain Adoption、Acceptance 或长期净正价值。",
+    "不能仅因中心方案使用一个对象或一个协调器就判定它抹平主权差异；决定性问题是它是否保留来源范围、拒绝权、版本失效和 Authority Gate。",
+    "七线隔离研究相对单一强研究者直接综合是否带来净增益，在本线材料中仍为 Unknown。"
+  ],
+  "alternative_explanations": [
+    "一个可动态扩展 Schema 的权威感知中心系统可以实现版本、来源、局部 Stance、拒绝权和授权 Gate；观察到这些机制并不能区分独立关系层与强中心实现。",
+    "成熟平台可以把新增角色、表单、审批、证据和回滚表示为工作流迁移；若迁移保留旧版本与逐项权威，其结果可能与 RelationVersion 等价。",
+    "人类经纪可以通过访谈发现未表达的主体、隐性条件和社会合法性要求，且可能以更低建模成本完成关系重构。",
+    "所谓新关系可能只是原任务空间中未被枚举的既有选项。若冻结前存在语义等价路径，则互动只改善了搜索或描述，没有构成新行动空间。",
+    "新路径可能来自新增工具、权限或资源，而非关系语言本身。必须消融具体形成 operator，并控制外部能力变化，才能归因。",
+    "多作者结构可能只提高审计可见性而不改变实际可达路径；若移除来源分域仍得到相同安全决策，则其作用应限定为治理或证据质量。",
+    "即使形成机制产生新路径，其协调、披露、验证、等待和恢复成本也可能吞噬全部增益。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md"
+  ],
+  "applicability": "结论仅适用于 Problem v0 的档案级问题定义攻击，以及如何设计未来可判别的关系构成场景。它支持修订候选定义、形式化不可约差异和建立公平基线，不支持对真实组织、生产关系或通爻总体有效性作判断。",
+  "cannot_support": [
+    "不能证明 PFE、NAC、RelationVersion、JAA、column generation 或通爻在现实中有效。",
+    "不能证明形成了真实目标域 Effect、Domain Adoption 或 Principal Acceptance。",
+    "不能代表任何真人 Principal 的理解、意愿、授权、承诺、责任承担或拒绝。",
+    "不能证明独立或联邦式关系构成层优于权威感知强中心、平台工作流、人类经纪或单一强研究者。",
+    "不能把档案中的正例描述当作已复现的现实 episode。",
+    "不能将候选问题修订自动晋升为 ACTIVE、替代 Problem v0 或宣称一般有效。",
+    "不能估计这些机制在现实中的发生频率、长期可靠性或净价值。"
+  ],
+  "candidate_claims": [
+    "候选主张 C1：关系构成的最小对象不是一段新文本，而是一个因权威相关 material change 而产生、可被精确引用的新关系语法版本。",
+    "候选主张 C2：新版本必须阻止旧 Stance 静默继承，并允许各 Principal 在自身范围内分别修正、拒绝或保持 Unknown。",
+    "候选主张 C3：多作者共同对象的不可约属性是来源与权威范围，而不是去中心化托管；因此中心实现与联邦实现都可能满足该属性。",
+    "候选主张 C4：candidate、recognition 与 commitment 的类型分离是防止模型候选变成真实义务的必要约束，但现有材料尚未证明具体 ledger 架构唯一必要。",
+    "候选主张 C5：column generation 仅在有限披露或不可枚举行动空间中是潜在形成 operator，并应通过冻结前态与消融试验验证其是否真正创造新路径。",
+    "候选主张 C6：若公平的可扩展中心基线能保留全部版本、来源、拒绝和授权语义且成本更低，则独立关系构成层应降级，不能以“中心”标签本身拒绝该结果。"
+  ],
+  "new_discriminators": [
+    "冻结等价性检查：在互动前完整记录允许动作、必要主体、Authority Locus、证据和接受规则；检查互动后方案是否在此前已有语义等价路径。",
+    "Material-change 分类测试：让评审者分别判断价格变化、截止时间变化、数据位置变化、新增否决主体、新增 witness 和退出路径，检验规则能否稳定区分参数协调与关系重构。",
+    "Stance 继承攻击：先让主体对 v1 原则同意，再加入 no-training、预算占用或新责任条款；系统若沿用旧同意，则关系版本语义失败。",
+    "来源吞并攻击：让技术方、数据方和业务方给出范围不同且部分冲突的判断；中心摘要若无法恢复每项来源、范围和保留意见，则多作者语义失败。",
+    "隐藏行动集测试：禁止中心取得主体的完整资源集合，只允许缺口查询与局部 column；比较是否形成合格路径、披露量和错误无解率。",
+    "Operator 消融：在模型、工具、权限和预算不变时移除 Schema 变更、局部 column 或反例反馈中的一个；若新路径仍存在，则相应机制不能被称为形成原因。",
+    "公平中心反向测试：允许中心动态创建角色、动作、证据和版本，并把所有高后果决定返回相应 Authority Locus；若其结果等价且成本更低，独立关系层主张降级。",
+    "净价值测试：即使结构性 formation 成功，也分别计入发现、协调、披露、等待、验证、治理和恢复成本；若不优于可信基线，保留负净值结果。",
+    "局部重开测试：只改变一个主体的证据条件，检查系统能否仅使依赖该条件的版本与 Stance 失效，而不重开无关部分。",
+    "研究方法反向测试：让一个单一强研究者在同等材料和时间内直接整合，再比较其是否同样保留不可约差异、负结果和来源谱系；本线输出本身不能预判多线方案胜出。"
+  ],
+  "cost": {
+    "elapsed_seconds": 114.764,
+    "output_bytes": 18308
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "kind": "ResearchResult",
+  "run_id": "BATCH-20260728-V0-DEFINITION-R4-LINE-04-CAPABILITY-REALIZATION",
+  "batch_id": "BATCH-20260728-V0-DEFINITION-R4",
+  "line_id": "LINE-04-CAPABILITY-REALIZATION",
+  "status": "COMPLETED",
+  "question_version": "v0",
+  "scenario_version": "v0",
+  "input_hash": "8d26868cffb2c70f0b87f485af21a57263aad512874b1fd3cbfbf1fff20f9fd5",
+  "direct_observations": [
+    "Problem v0 已将能力条件的形成和兑现纳入范围，并明确能力提升不能自动扩大 Authority Envelope。",
+    "Problem v0 要求区分执行成功、目标域采用、Principal 接受和责任归属，但没有进一步区分能力自报、逻辑可行、获权可行、留出任务证明和跨漂移稳定兑现。",
+    "原生能力兑现线把能力描述为绑定 executor、environment、authority、resource、recovery、version 和 time 的可过期主张，而非 Entity 的永久布尔属性。",
+    "原生材料建议将带 provenance 的 Assertion、Mandate、Reservation、Operation、Effect 保留为事实，将 Capability Claim 与 Assurance Case 作为派生视图，并将资格化 Gate、expiry、recovery 和 Defeater 放在运行时。",
+    "原生材料报告的既有结果仅为六轴 4/6、静态方法 3/6；干预后 6/6 只表明条件改变后动作空间扩大，不能证明干预前的能力主张具有前瞻性。",
+    "既有 held-out 材料只覆盖本地 adapter；组合容量、漂移和跨伙伴资格化没有现实证据。"
+  ],
+  "source_statements": [
+    {
+      "statement": "Problem v0 规定能力提升不能自动扩大 Authority Envelope 或改变主体目标，并要求执行成功不得替代目标域采用、Principal 接受与责任归属。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "invariants[1], invariants[3]"
+    },
+    {
+      "statement": "Problem v0 将能力条件形成与兑现、漂移触发局部重开以及净价值比较列为范围、未知或可观察结果。",
+      "source_locator": "research/projects/joint-action-formation/problem/v0.json",
+      "source_range": "scope[2], key_unknowns[5], observable_outcomes[4-5]"
+    },
+    {
+      "statement": "能力兑现原生线认为静态能力标签会混淆工具安装、曾经成功、当前可执行、权限和可恢复性。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "当时面对的真实问题"
+    },
+    {
+      "statement": "Capability Claim 被设计为绑定 executor、environment、authority、resource、recovery、version 和 time 的环境相关主张。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "CAP-CAP-001：环境索引能力"
+    },
+    {
+      "statement": "前瞻 holdout 要求在干预前冻结 claim，在未见条件执行，并由独立 readback 判断；干预后的成功不能倒推干预前已有能力。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "CAP-CAP-002：前瞻 holdout"
+    },
+    {
+      "statement": "能力证据不能由执行者单方面闭合；目标域后置状态与 producer 日志或退出码需要分开。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "CAP-CAP-003：能力证据的来源与目标 readback"
+    },
+    {
+      "statement": "恢复条件、有效期、Defeater 和重新资格化被视为能力边界，而不是事后运维备注。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "CAP-CAP-004：恢复与有效期边界"
+    },
+    {
+      "statement": "组合能力需要依赖、容量、资源与时间窗口资格化，以防多个单点 claim 同时占用同一稀缺资源。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "CAP-CAP-005：组合、容量与漂移资格化"
+    },
+    {
+      "statement": "既有结果没有证明能力模型成立，且本地 adapter 的 held-out 结果不能外推到跨主体能力或商业交付。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "原始证据与边界"
+    },
+    {
+      "statement": "当前保留建议把 Assertion、Mandate、Reservation、Operation、Effect 作为事实，把 Capability Claim 与 Assurance Case 作为派生视图。",
+      "source_locator": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "source_range": "当前保留建议"
+    }
+  ],
+  "inferences": [
+    "v0 的主要遗漏不是缺少“能力”一词，而是缺少一条可判别的能力依赖链：自报或目录声明、环境中逻辑可行、Authority Envelope 内可执行、资源与依赖已资格化、冻结留出任务已证明、在有效期和恢复边界内可依赖。这些状态不能被一个 capability=true 折叠。",
+    "Capability Envelope 与 Authority Envelope 是不可约区别：能力证据可以提高对执行成功的预期，但不能产生 Mandate、扩大授权范围或替 Principal 改变目标。",
+    "单次目标域 readback 只能支持特定绑定条件下的一次兑现，不能单独支持稳定能力；稳定性还需要迁移、撤销、离线、恢复、容量竞争和版本漂移下的重新资格化。",
+    "Capability Claim 和 Assurance Case 可以是由权威事实重建的派生视图；若它们另建正式事实源，会产生与 Mandate、Reservation、Operation 或目标后置状态竞争的现实。",
+    "能力兑现机制是否属于通爻特有的关系形成机制仍不确定。权威感知中心 Agent、成熟平台工作流或更强 Agent Card 同样可以实现环境绑定 probe、有效期和重新资格化。",
+    "能力兑现最可能改变的是从候选路径到可承诺路径的提升条件，而不是直接构成授权、现实 Effect、Adoption 或 Acceptance。",
+    "最强替代解释是增强的静态互操作方案：版本化 Agent Card 加按需探测、标准任务协议和平台审批可能以更低治理成本达到相同预测质量。只有前瞻留出、漂移和恢复测试显示额外资格化机制带来可重复增益时，独立能力兑现层才有保留理由。"
+  ],
+  "design_proposals": [
+    "候选问题修订：在 v0 的 target transition 中明确加入“从能力可能性，经 Authority Envelope、环境与资源资格化、前瞻证明，转变为有有效期、可被 Defeater 推翻且可重新资格化的可依赖能力”；同时声明这一转变不产生授权、采用或接受。",
+    "将能力表达为有界、可证伪的关系 C(entity, operation, executor, environment, authority, resources, dependencies, version, time, recovery)，而不是 Entity 的永久属性。该关系应由底层事实派生。",
+    "采用最小状态区分但避免新增竞争事实源：declared、logically_possible、authority_eligible、resource_qualified、prospectively_demonstrated、currently_reliable。状态转换必须引用 Assertion、Mandate、Reservation、Operation、目标读回和 Defeater。",
+    "在承诺 Gate 前冻结 claim、环境版本、账户、权限、资源预留、依赖与成功判据；使用未参与自报或实现的留出任务，并由独立目标读回判断。",
+    "加入时间方向约束：修复、授权或配置变化之后的成功只能支持新版本 claim，不能回填旧版本 claim。",
+    "加入局部失效规则：权限撤销、目标版本变化、依赖失效、容量冲突、过期或读回异常只应击穿受影响的 operation-binding，并触发局部重新资格化，而不是自动撤销整个 Entity 的所有能力。",
+    "建立公平消融比较：同等模型、工具、预算、查询机会和恢复机制下，对比增强 Agent Card/任务协议、权威感知中心 Agent、成熟平台工作流与完整动态资格化方案；共同计入 probe、等待、披露、验证和恢复成本。"
+  ],
+  "negative_results": [
+    "嵌入来源没有提供跨 Principal 组合能力、真实组织任务或商业交付的验证结果。",
+    "既有六轴结果未达到原预注册门槛，因此不能据此宣称 Capability Claim 具有充分前瞻可靠性。",
+    "干预后成功不能证明干预前已有能力，也不能区分成功来自能力模型还是来自新工具、修复、授权或环境改变。",
+    "本轮只是隔离档案分析，没有执行留出任务、撤销、漂移、恢复或公平基线实验。",
+    "没有证据表明额外能力兑现机制相较增强静态声明、中心 Agent 或平台工作流具有净正价值。",
+    "没有证据支持真实 Effect、Domain Adoption、Principal Acceptance、人类授权或跨域一般有效性。"
+  ],
+  "alternative_explanations": [
+    "静态声明之所以失败，可能只是声明缺少环境版本、权限和过期字段；扩展 Agent Card 后无需独立能力兑现体系。",
+    "动态方案的增益可能主要来自即时 probe，而不是 Capability Claim、Assurance Case 或新的关系形成机制。",
+    "平台审批链或权威感知中心 Agent 可以维护相同的 Mandate、Reservation、probe、expiry 和 recovery 状态，且可能以更低协调成本完成。",
+    "目标域 readback 的改善可能由修复或新增权限直接造成，而非更准确的能力表示。",
+    "留出任务表现可能只对被测试的 adapter 和任务分布有效；迁移到新伙伴、账户、工具或目标域后可能消失。",
+    "形式化资格化可能提高预测质量但增加延迟、披露、验证和恢复成本，最终净价值为零或负。"
+  ],
+  "evidence_refs": [
+    "research/projects/joint-action-formation/problem/v0.json#invariants",
+    "research/projects/joint-action-formation/problem/v0.json#competing_explanations",
+    "research/projects/joint-action-formation/problem/v0.json#observable_outcomes",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#CAP-CAP-001",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#CAP-CAP-002",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#CAP-CAP-003",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#CAP-CAP-004",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#CAP-CAP-005",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#原始证据与边界",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md#当前保留建议"
+  ],
+  "applicability": "适用于 Problem v0 的候选修订和后续受控场景设计，尤其用于判断一条候选联合行动路径何时可从“声称或逻辑可能”提升为“当前绑定条件下可承诺”。结论来自嵌入档案的概念与既有局部实验边界，只能生成候选定义和判别实验，不能外推到真人、组织、生产环境或跨主体一般有效性。",
+  "cannot_support": [
+    "不能证明 PFE、NAC、通爻或能力兑现机制在现实中有效。",
+    "不能证明动态能力资格化优于增强 Agent Card、权威感知中心 Agent、平台流程或人类经纪。",
+    "不能证明任何真实目标域 Effect、Adoption 或 Acceptance。",
+    "不能代表 Principal 的意愿、授权、承诺、责任认领或接受。",
+    "不能把本地 adapter 的 held-out 结果外推为跨伙伴、跨环境或商业交付能力。",
+    "不能自动激活、替代或稳定化 Problem v1。"
+  ],
+  "candidate_claims": [
+    "候选定义：可依赖能力不是主体拥有的永久属性，而是在明确 operation、executor、environment、Authority Envelope、资源、依赖、版本、时间和恢复条件下，由可追溯证据暂时支持且可被 Defeater 推翻的关系。",
+    "候选不可约区分一：语言自报或目录登记不等于环境中逻辑可执行。",
+    "候选不可约区分二：逻辑可执行不等于已获 Principal 授权；Capability Envelope 不得扩大 Authority Envelope。",
+    "候选不可约区分三：单组件可执行不等于组合路径具备无冲突的资源、容量、依赖和时间窗口。",
+    "候选不可约区分四：过去成功或修复后成功不等于冻结前 claim 对未见任务具有预测力。",
+    "候选不可约区分五：执行者日志或 exit code 不等于独立目标后置状态。",
+    "候选不可约区分六：一次成功不等于在撤销、漂移、离线、恢复和过期之后仍可依赖。",
+    "候选降级条件：若增强静态声明在预注册留出、权限变化、迁移、容量竞争和恢复测试中达到与动态资格化同等的校准、错误率和恢复质量，且总成本更低，则 Capability Claim、Assurance Case 和运行时资格化应降级为可选保障。",
+    "候选降级条件：若动态资格化的所有预测增益均可归因于即时 probe 或平台已有审批状态，则不应把它保留为独立权威对象或通爻特有机制。",
+    "候选否证条件：若在公平比较中，动态方案不能减少错误承诺、不能更早识别 Defeater、不能改善局部恢复，或其治理成本吞噬收益，则该研究线不支持更强的问题定义。"
+  ],
+  "new_discriminators": [
+    "冻结迁移测试：在环境 A 生成版本化 claim，不修改 claim 地迁移到环境 B；比较静态声明与动态资格化对成功、失败和 Unknown 的校准，随后恢复到 A 并测试局部重新资格化。",
+    "权限撤销测试：同一工具保持安装和在线，仅撤销目标账户权限；检查系统是否从“能做”降为 authority-ineligible，并验证恢复授权后是否产生新版本 claim，而非复活旧证据。",
+    "干预时间测试：预先冻结 claim 和留出任务，先执行失败，再提供修复、工具或权限并重试；禁止用干预后成功回填旧 claim。",
+    "producer/readback 分离测试：构造 producer 返回成功但目标后置状态未改变、状态随后被撤销或目标离线的条件，比较各方案是否错误提升能力。",
+    "组合资源冲突测试：多个单点能力 claim 同时依赖同一稀缺账户、预算或时间窗口；只有显式 Reservation 和依赖 Gate 的方案应拒绝空头组合承诺。",
+    "漂移与 Defeater 测试：改变 adapter、API、目标版本或依赖伙伴状态，测量发现延迟、错误承诺数、局部失效范围和重新资格化成本。",
+    "强替代公平测试：给增强 Agent Card、权威感知中心 Agent、平台工作流和动态资格化方案相同材料、模型、预算、查询机会及恢复能力；比较前瞻准确率、校准、隐私披露、等待、治理成本和净价值。",
+    "消融测试：依次移除环境绑定、独立 readback、expiry/recovery、资源 Gate 和 Defeater；只有移除后在未见任务中产生可重复性能下降，才能支持相应机制为必要条件。"
+  ],
+  "cost": {
+    "elapsed_seconds": 94.79,
+    "output_bytes": 14808
+  }
+}

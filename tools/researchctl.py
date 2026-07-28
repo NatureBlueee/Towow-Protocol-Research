@@ -824,16 +824,19 @@ def mock_result(bundle: Mapping[str, Any]) -> Dict[str, Any]:
     }
 
 
-def build_codex_prompt(bundle: Mapping[str, Any]) -> str:
+def build_codex_prompt(bundle: Mapping[str, Any], input_json_text: str) -> str:
     return (
-        "Read WORKER_POLICY.md and input.json in the current directory. "
         "You are one isolated research line. Use only the source text embedded in input.json. "
-        "Do not inspect the workspace, call tools, browse, spawn sub-agents, or infer user approval. "
+        "The exact authorized input.json bytes are included below; do not inspect the filesystem, "
+        "call tools, browse, spawn sub-agents, or infer user approval. "
         "Attack Problem v0 from this line's native capability and strongest alternative. "
         "Return a ResearchResult JSON matching the supplied schema. "
         "Every source_statement.source_locator must exactly match one source_allowlist entry. "
         "Preserve negative and inconclusive results. Do not claim real Effect, Adoption, Acceptance, "
-        "human authorization, or general validity."
+        "human authorization, or general validity.\n"
+        "<AUTHORIZED_INPUT_JSON>\n"
+        f"{input_json_text}"
+        "</AUTHORIZED_INPUT_JSON>\n"
     )
 
 
@@ -858,6 +861,72 @@ def validate_result_semantics(
         if statement.get("source_locator") not in allowed:
             errors.append(f"result cites non-allowlisted source: {statement.get('source_locator')}")
     return errors
+
+
+def bind_result_envelope(
+    result: Mapping[str, Any],
+    bundle: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """Bind runner-owned identity fields without altering research content."""
+    bound = dict(result)
+    bound.update(
+        {
+            "run_id": bundle["run_id"],
+            "batch_id": bundle["batch_id"],
+            "line_id": bundle["line"]["id"],
+            "question_version": bundle["problem"]["version"],
+            "scenario_version": bundle["scenario"]["version"],
+            "input_hash": bundle["input_hash"],
+        }
+    )
+    return bound
+
+
+INFRA_FAILURE_MARKERS = (
+    "invalid_json_schema",
+    "failed to initialize in-process app-server",
+    "attempt to write a readonly database",
+    "result run_id mismatch",
+    "result batch_id mismatch",
+    "result line_id mismatch",
+    "result question_version mismatch",
+    "result scenario_version mismatch",
+    "result input_hash mismatch",
+)
+
+
+def is_infrastructure_failure(error_text: str) -> bool:
+    return any(marker in error_text for marker in INFRA_FAILURE_MARKERS)
+
+
+ACCESS_BLOCK_MARKERS = (
+    "source text could not be accessed",
+    "source text was unavailable",
+    "source text is unavailable",
+    "permitted evidence source was unavailable",
+    "no authorized source text was available",
+    "required file contents are supplied in-band",
+    "provide the contents of worker_policy.md and input.json",
+    "provide the complete contents of worker_policy.md and input.json",
+)
+
+
+def result_is_access_blocked(result: Mapping[str, Any]) -> bool:
+    if result.get("source_statements") or result.get("candidate_claims"):
+        return False
+    text = json.dumps(result, ensure_ascii=False).lower()
+    return any(marker in text for marker in ACCESS_BLOCK_MARKERS)
+
+
+def preserve_attempt_artifacts(run_dir: Path, attempt: int) -> None:
+    for source_name, target_name in (
+        ("result.raw.json", f"attempt-{attempt}-result.raw.json"),
+        ("events.jsonl", f"attempt-{attempt}-events.jsonl"),
+    ):
+        source = run_dir / source_name
+        target = run_dir / target_name
+        if source.is_file() and not target.exists():
+            shutil.copy2(source, target)
 
 
 def run_codex(run_dir: Path, bundle: Mapping[str, Any], timeout: int) -> Tuple[Dict[str, Any], int, str]:
@@ -885,7 +954,10 @@ def run_codex(run_dir: Path, bundle: Mapping[str, Any], timeout: int) -> Tuple[D
     try:
         proc = subprocess.run(
             command,
-            input=build_codex_prompt(bundle),
+            input=build_codex_prompt(
+                bundle,
+                (run_dir / "input.json").read_text(encoding="utf-8"),
+            ),
             text=True,
             capture_output=True,
             timeout=timeout,
@@ -956,6 +1028,7 @@ def run_one(plan: Mapping[str, Any], run: Mapping[str, Any]) -> Tuple[str, str]:
                     bundle,
                     timeout=int(budget["max_minutes"]) * 60,
                 )
+            result = bind_result_envelope(result, bundle)
             elapsed = time.monotonic() - started
             raw = canonical_bytes(result)
             result["cost"] = {
@@ -982,18 +1055,12 @@ def run_one(plan: Mapping[str, Any], run: Mapping[str, Any]) -> Tuple[str, str]:
         except (ResearchError, OSError, json.JSONDecodeError) as exc:
             elapsed = time.monotonic() - started
             error_text = str(exc)
-            infra_failure = any(
-                marker in error_text
-                for marker in (
-                    "invalid_json_schema",
-                    "failed to initialize in-process app-server",
-                    "attempt to write a readonly database",
-                )
-            )
+            infra_failure = is_infrastructure_failure(error_text)
             (run_dir / f"attempt-{manifest['attempt']}-error.txt").write_text(
                 error_text + "\n",
                 encoding="utf-8",
             )
+            preserve_attempt_artifacts(run_dir, manifest["attempt"])
             manifest["status"] = "INFRA_FAILED" if infra_failure else "FAILED"
             manifest["finished_at"] = utc_now()
             manifest["exit_code"] = 1
@@ -1161,12 +1228,19 @@ def retry_infra_batch(args: argparse.Namespace) -> int:
         run_dir = resolve_root_path(run["run_dir"])
         manifest_path = run_dir / "manifest.json"
         manifest = load_json(manifest_path)
-        if manifest["status"] not in {"FAILED", "INFRA_FAILED"}:
+        if manifest["status"] not in {"FAILED", "INFRA_FAILED", "COMPLETED"}:
             raise ResearchError(
                 f"cannot infrastructure-reset {run['line_id']} from {manifest['status']}"
             )
-        if (run_dir / "result.json").exists():
-            raise ResearchError(f"cannot reset {run['line_id']}: a result already exists")
+        result_path = run_dir / "result.json"
+        access_blocked = False
+        if result_path.exists():
+            result = load_json(result_path)
+            access_blocked = result_is_access_blocked(result)
+            if not access_blocked:
+                raise ResearchError(
+                    f"cannot reset {run['line_id']}: substantive result already exists"
+                )
         evidence_parts: List[str] = []
         for path in sorted(run_dir.glob("attempt-*-error.txt")):
             evidence_parts.append(path.read_text(encoding="utf-8", errors="replace"))
@@ -1174,23 +1248,23 @@ def retry_infra_batch(args: argparse.Namespace) -> int:
         if events_path.is_file():
             evidence_parts.append(events_path.read_text(encoding="utf-8", errors="replace"))
         evidence = "\n".join(evidence_parts)
-        if not any(
-            marker in evidence
-            for marker in (
-                "invalid_json_schema",
-                "failed to initialize in-process app-server",
-                "attempt to write a readonly database",
-            )
-        ):
+        if not is_infrastructure_failure(evidence) and not access_blocked:
             raise ResearchError(
                 f"cannot classify {run['line_id']} as infrastructure failure"
             )
         history = run_dir / "infra-history" / timestamp
         history.mkdir(parents=True, exist_ok=False)
-        for path in sorted(run_dir.glob("attempt-*-error.txt")):
+        evidence_files = set(run_dir.glob("attempt-*-error.txt"))
+        evidence_files.update(run_dir.glob("attempt-*-events.jsonl"))
+        evidence_files.update(run_dir.glob("attempt-*-result.raw.json"))
+        for name in ("events.jsonl", "result.raw.json", "result.json"):
+            path = run_dir / name
+            if path.is_file():
+                evidence_files.add(path)
+        for path in sorted(evidence_files):
             shutil.copy2(path, history / path.name)
-        if events_path.is_file():
-            shutil.copy2(events_path, history / events_path.name)
+        if result_path.is_file():
+            result_path.unlink()
         manifest["status"] = "PLANNED"
         manifest["attempt"] = 0
         manifest["started_at"] = None

@@ -21,7 +21,7 @@
   ],
   "current_batch": ".research-runtime/BATCH-20260728-V0-DEFINITION-R4/plan.json",
   "pending_user_decisions": [
-    "是否明确同意将 BATCH-20260728-V0-DEFINITION-R4 的 209792 字节 NON_PUBLIC_RESEARCH 冻结输入（disclosure SHA-256: aaf8241a5751b68df95332224dbbfa08498bded0cab799c87aa0adb8ced43d51）发送给 OpenAI Codex",
+    "是否批准将 BATCH-20260728-V0-DEFINITION-R4 的 109078 字节 NON_PUBLIC_DERIVED_RESEARCH 匿名盲审包（SHA-256: 26590d5dca63ab062364110a01ab4b32d4d7698f85bb194533ce8a1cd80aae73）发送给 Anthropic Claude",
     "在七线问题定义批次和盲审完成后，选择、重写或拒绝 Problem v1"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
@@ -35,8 +35,28 @@
 
 截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
 研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
-不是统一答案。mock 七线闭环已经通过；真实 `v0` 定义批次已经冻结精确 payload，等待用户
-直接确认该非公开材料可发送给 OpenAI Codex，再由七条原生研究线在隔离条件下分别攻击和重构。
+不是统一答案。真实 `v0` 定义批次已经由七条原生研究线在隔离条件下完成，并形成候选分歧
+矩阵；匿名 Claude 盲审包已在本地冻结，尚未获得外发授权。
+
+## 本批次改变的候选理解
+
+这些只是 `Problem v1` 的输入，不是已经激活的统一结论：
+
+- 当前 v0 同时容纳发现、关系构成、可能性形成、能力兑现、规范权威、现实效力和持续运行，
+  但没有形式化说明这些层之间哪些不蕴含、何时发生状态转换，因此仍可能被漂亮叙事满足；
+- “中心或联邦”不是充分判别器。强中心、平台或人类经纪只要保留来源范围、局部拒绝权、
+  版本失效和 Authority Gate，就可能成为可信实现；通爻必须在公平条件下证明额外净价值；
+- 形成主张需要预先冻结路径资格谓词与世界前态，并指出哪个获得授权的 operator 改变了
+  状态；若等价路径原已存在，只能支持发现，不能支持 formation；
+- 能力、授权、承诺、执行、目标域 Effect、Domain Adoption、Principal Acceptance 和
+  Settlement 必须允许分别失败，不能由上游成功自动推出下游成立；
+- 漂移不是一个统一事件。Mandate 撤销、证据失效、目标变化、组件升级和暂时离线需要不同
+  的失效传播、阻断、复核、退出和局部重开语义；
+- 任何候选机制都必须接受增强静态声明、权威感知强中心、成熟平台流程和人类经纪的公平
+  对照，并把披露、等待、验证、治理、恢复及认知负担计入净价值。
+
+本批次只分析既有档案，没有观察到真人授权、真实 Effect、Adoption、Acceptance、长期运行
+或商业净价值；七线也没有证明 NAC、PFE、ledger、对象数量或联邦拓扑是唯一必要实现。
 
 ## 唯一最新源包
 
@@ -93,9 +113,10 @@
 
 ## 审计后的下一条高价值线索
 
-先运行七条原生研究线的问题定义批次，并在不暴露预期答案的情况下形成 Claude 盲审。只有
-用户明确激活 `Problem v1` 后，才从 Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate
-explain-back、Q3 单案 causal formation、Q5 真实复用中选择机制实验。
+在用户精确批准后，对已冻结的匿名包执行 Claude 盲审；然后把七线候选、真实分歧和盲审
+反例交给用户，选择、重写或拒绝唯一 `Problem v1 / ACTIVE`。只有用户明确激活 v1 后，
+才从 Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate explain-back、Q3 单案 causal
+formation、Q5 真实复用中选择机制实验。
 
 任何实验开工前必须说明会改变哪个设计、反向结果是什么以及三类结果怎样修改系统；否则转入
 CI、实现保障或档案校准。

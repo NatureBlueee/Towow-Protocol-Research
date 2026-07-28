@@ -88,13 +88,13 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
 `.research-runtime/` 每批上限 250 MiB、总上限 2 GiB。达到上限时拒绝新运行，不自动删除
 历史证据。
 
-## 2026-07-28 — 待精确确认 Codex v0 问题定义批次 R4 的 payload
+## 2026-07-28 — 批准 Codex v0 问题定义批次 R4 的精确 payload
 
 <!-- research-decision:start -->
 ```json
 {
   "decision_id": "DEC-2026-07-28-CODEX-V0-R4",
-  "status": "PENDING_EXACT_CONFIRMATION",
+  "status": "APPROVED",
   "decided_by": "USER",
   "actions": [
     "SEND_BATCH_TO_CODEX"
@@ -117,10 +117,10 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
     "PROMOTE_STABLE_CLAIM",
     "DEPLOY_OR_PUBLISH"
   ],
-  "rationale": "用户回复了批准开始，但外部安全门要求用户消息直接确认这一精确批次、目的地和非公开材料外发；在获得该句确认前不得发送。"
+  "rationale": "用户直接确认同意将该精确批次、字节数、分类和 disclosure SHA-256 对应的冻结输入发送给 OpenAI Codex。"
 }
 ```
 <!-- research-decision:end -->
 
-本记录尚不授权外发。获得精确确认后，只可授权 disclosure manifest 已冻结的 `R4` 输入；
-payload、目的地或指纹发生变化时必须重新取得批准。
+本决定只授权 disclosure manifest 已冻结的 `R4` 输入。payload、目的地或指纹发生变化时
+必须重新取得批准。
