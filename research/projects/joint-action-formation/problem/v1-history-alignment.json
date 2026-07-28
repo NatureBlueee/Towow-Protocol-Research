@@ -8,7 +8,8 @@
     "version": "v1"
   },
   "canonical_capability_matrix": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
-  "activation_recommendation": "REWRITE_BEFORE_ACTIVATION",
+  "activation_recommendation": "READY",
+  "coverage_interpretation": "EXPLICIT、PARTIAL、ABSENT 只表示某项历史能力在 Problem v1 文本中的展开程度，不是 V1 质量评分，也不要求问题定义枚举全部机制；未显式展开的能力由研究线、场景、机制实验和系统设计继续继承。",
   "coverage_summary": {
     "explicit": 22,
     "partial": 10,
@@ -17,8 +18,8 @@
   "cross_cutting_findings": [
     {
       "id": "HIF-FREEZE-PROTOCOL",
-      "finding": "当前 V1 把冻结前态、资格谓词和 operator 消融从因果 formation 主张的验证协议提升成了整个研究对象。",
-      "required_correction": "保留该协议用于判定形成主张，但允许问题、参与者、角色、动作、证据和评价语言本身先经过构成。",
+      "finding": "V1 用冻结前态、资格谓词和 operator 消融严格约束 formation 主张；后续讨论一度把这一验证协议误读成了整个研究对象。",
+      "required_correction": "保持 V1 不变；解释和实验中仅在检验具体 formation 主张时使用该协议，同时由问题与关系构成研究线处理上游语法形成。",
       "source_refs": [
         "research/projects/joint-action-formation/problem/v1-candidate.md:9-37",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/11_7-从搜索到行动构成：coordination-schema、sjac-与-jaa.md:14-25"
@@ -26,8 +27,8 @@
     },
     {
       "id": "HIF-AGENT-RUNTIME",
-      "finding": "当前 V1 以关系 episode 为主，未把 AgentExecution 所需的任务相关上下文、模型、工具、预算、权限和执行环境作为独立研究尺度。",
-      "required_correction": "恢复 Agent 原生运行环境与 Context Compiler，并把身份、授权和证据保留为产生相应现实后果时按风险启用的语义能力。",
+      "finding": "后续讨论把 Agent 原生运行环境解释成了新的研究中心；历史表明它是支撑 RelationEpisode 的 AgentExecution 尺度，不是 V1 的替代问题。",
+      "required_correction": "保持 V1 的关系问题不变；在运行与演化研究线中继承 AgentExecution、Context Compiler 和执行环境，并按现实风险启用权威与证据能力。",
       "source_refs": [
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/08_4-主体、世界与权威：agent-entity-不是模型实例.md:98-123",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/19_15-系统架构、协议内核与外部连接器.md:129-152"
@@ -35,8 +36,8 @@
     },
     {
       "id": "HIF-MULTISCALE",
-      "finding": "单一联合行动 episode 不能覆盖历史中的网络级发现、关系生成、路径沉淀、拓扑学习和未来发现成本递减。",
-      "required_correction": "至少同时保留 AgentExecution、RelationEpisode 与跨 episode 的关系生态或编译路径种群三个分析尺度。",
+      "finding": "V1 选择 RelationEpisode 作为形式化分析单位；后续研究若只剩这一尺度，会遗漏历史中的网络发现、路径沉淀、拓扑学习和未来发现成本递减。",
+      "required_correction": "不要求 V1 把全部尺度写进同一问题契约，但研究程序必须并列维护 AgentExecution、RelationEpisode 与跨 episode 的 RelationEcology。",
       "source_refs": [
         "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/21/2108128d0c98ad1349bb4061284ef48c67ac92601b04a5b51ab46bb05eebbf99.md:11-49",
         "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/21/2108128d0c98ad1349bb4061284ef48c67ac92601b04a5b51ab46bb05eebbf99.md:175-179"
@@ -44,8 +45,8 @@
     },
     {
       "id": "HIF-VALUE-FRONTIER",
-      "finding": "当前 V1 把生命周期成本低于可信基线写成核心成立条件，压低了形成原先不可达但净价值为正关系的历史目标。",
-      "required_correction": "比较可达关系集合、真实价值、成本、风险、时间、披露和后悔的联合前沿；成本更低只是可能结果之一。",
+      "finding": "V1 把全生命周期成本作为可证伪的经济目标；后续讨论一度把成本变成了对整个问题的单一解释中心。",
+      "required_correction": "保持 V1 的强基线与成本检验，同时在解释中比较可达关系集合、真实价值、风险、时间、披露和后悔的联合前沿。",
       "source_refs": [
         "research/projects/joint-action-formation/problem/v1-candidate.md:21-45",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/29_25-经济模型：系统创造的不是-更多成交-，而是更真实的行动效率.md:14-75"
@@ -53,8 +54,8 @@
     },
     {
       "id": "HIF-MECHANISM-ROUTING",
-      "finding": "中心、平台、联邦、人类和确定性服务是不同层与生命周期阶段的组合机制，不是对整个研究问题的一次性胜负判定。",
-      "required_correction": "强中心在某一分布胜出时只缩小相应机制的必要域；Router 必须输出带前后置条件、Gate、编译和回退的机制图。",
+      "finding": "V1 已把中心、平台、联邦、人类和确定性服务处理为 Router 的组合结果；后续讨论重新围绕中心与去中心的优劣展开，遮住了这一点。",
+      "required_correction": "后续讨论以 V1 的机制路由为锚；强中心局部胜出只更新适用边界，Router 输出带前后置条件、Gate、编译和回退的机制图。",
       "source_refs": [
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/17_13-多机制协调：中心化、a2a-与人类判断的组合器.md:14-55",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/17_13-多机制协调：中心化、a2a-与人类判断的组合器.md:59-105"
@@ -62,8 +63,8 @@
     },
     {
       "id": "HIF-HUMAN-PARTICIPATION",
-      "finding": "当前 V1 主要测量人的高认知时间，却没有保留哪些判断交给 Agent、哪些保留给人、哪些编译或升级的配置问题。",
-      "required_correction": "把人的参与质量、判断位置和升级条件作为结果，而不是把减少人工分钟本身设为目标。",
+      "finding": "后续讨论用高认知人力成本解释 Agent 环境时，容易把人的参与降成待消除成本；这不是 V1 已经作出的价值判断。",
+      "required_correction": "把人的参与质量、判断位置和升级条件作为机制结果；高认知分钟可以计量，但减少人工本身不是研究目标。",
       "source_refs": [
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/18_14-面向超级个体与-opc-的主权代理操作系统.md:14-23",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/18_14-面向超级个体与-opc-的主权代理操作系统.md:49-101"
@@ -71,8 +72,8 @@
     },
     {
       "id": "HIF-LAYER-NONCOLLAPSE",
-      "finding": "历史要求各层结果不能互相推出，但不要求每个低风险 episode 都显式运行完整的重型对象和 Gate。",
-      "required_correction": "按层分别保存发现、构成、形成、资格化、认领、效力、编译和价值结果，并允许稳定低风险部分旁路或轻量编译。",
+      "finding": "V1 要求能力、授权、执行和现实结果不能互相推出；后续解释不能把这种非蕴含误读成每个低风险 episode 都要运行完整重型对象。",
+      "required_correction": "按层保存结果与失败语义，同时允许稳定低风险部分旁路、轻量编译或由既有制度承载。",
       "source_refs": [
         "research/projects/a2a-reconstruction/00_orientation/CURRENT_GLOBAL_VIEW.md:18-31",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/16_12-形成期与编译运行期：局部稳定、局部重开.md:14-23"
@@ -80,8 +81,8 @@
     },
     {
       "id": "HIF-NONFORMATION-VALUE",
-      "finding": "发现、澄清、保护性收缩、快速拒绝和 Unknown 变得可判断都是历史中的正结果，不能被降为 formation 未成立后的边角状态。",
-      "required_correction": "为 Expansion、Transformation、Protective Contraction、Clarification、Reject 和 Defer 分别保留结果与价值判据。",
+      "finding": "V1 已保存拒绝和 Unknown，但后续讨论聚焦新关系形成时，可能弱化发现、澄清、保护性收缩和快速拒绝的独立价值。",
+      "required_correction": "不改写 V1；在场景与结果契约中为 Expansion、Transformation、Protective Contraction、Clarification、Reject 和 Defer 保留判据。",
       "source_refs": [
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/12_8-可能性形成：把-做不了-转化为可构造缺口.md:42-84",
         "research/projects/a2a-reconstruction/02_derived/large-docs/monograph-v1.1/12_8-可能性形成：把-做不了-转化为可构造缺口.md:148-175"

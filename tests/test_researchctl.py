@@ -87,11 +87,24 @@ class ContractTests(unittest.TestCase):
         problem = researchctl.load_json(path)
         problem["status"] = "ACTIVE"
 
-        errors = researchctl.check_problem_historical_inheritance(
-            researchctl.DEFAULT_PROJECT,
-            path,
-            problem,
-        )
+        original_load_json = researchctl.load_json
+
+        def load_nonready_audit(candidate_path):
+            document = original_load_json(candidate_path)
+            if document.get("kind") == "HistoricalInheritanceAudit":
+                document["activation_recommendation"] = "REWRITE_BEFORE_ACTIVATION"
+            return document
+
+        with mock.patch.object(
+            researchctl,
+            "load_json",
+            side_effect=load_nonready_audit,
+        ):
+            errors = researchctl.check_problem_historical_inheritance(
+                researchctl.DEFAULT_PROJECT,
+                path,
+                problem,
+            )
 
         joined = "\n".join(errors)
         self.assertIn("ACTIVE problem requires a REVIEWED", joined)

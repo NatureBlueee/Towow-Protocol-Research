@@ -24,7 +24,7 @@
   "current_batch": null,
   "latest_completed_batch": "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/finalization-manifest.json",
   "pending_user_decisions": [
-    "审阅历史继承审计后，重写或拒绝 Problem v1；当前不建议激活"
+    "激活、重写或拒绝 research/projects/joint-action-formation/problem/v1-candidate.json"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
 }
@@ -38,36 +38,38 @@
 截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
 研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
 不是统一答案。真实 `v0` 定义批次已经由七条原生研究线在隔离条件下完成；Claude 匿名
-盲审也已完成并建议 `REWRITE_BEFORE_ACTIVATION`。吸收七线真实分歧与盲审反例的
+盲审也已完成并建议对 v0 `REWRITE_BEFORE_ACTIVATION`。吸收七线真实分歧与盲审反例的
 `Problem v1 / CANDIDATE` 已形成，但没有 ACTIVE 问题。
 
-用户随后指出：本轮讨论可能使研究过度拟合最近的中心成本与 Agent 环境表述，并在所谓升级
-或整合中丢失历史。逐项历史继承审计确认了这一风险，当前 v1 的激活建议已经降为
-`REWRITE_BEFORE_ACTIVATION`。现有 v1 被保留为可追溯候选，不会静默替换为另一段新表述。
+用户随后作出关键校正：`Problem v1` 本身是好的；过度拟合发生在 V1 形成以后，我们围绕
+中心成本、Agent 原生环境和人的参与进行的继续讨论。此前一度把“讨论漂移”错误诊断成
+“V1 需要重写”，现已纠正。V1 保持原样，历史审计只约束后续研究不得静默缩窄或替换它。
 
 ## 历史继承校正
 
-- 当前 v1 对 39 项历史设计能力的覆盖为 `EXPLICIT=22`、`PARTIAL=10`、`ABSENT=7`；
-- 权威与现实效力链保留较好，主要缺口在上游发现与边界、本地私有候选生成、前瞻能力
-  验证、任务相关上下文编译和跨 episode 的关系生态学习；
+- 当前 v1 文本对 39 项历史设计能力的展开程度为 `EXPLICIT=22`、`PARTIAL=10`、
+  `ABSENT=7`；这不是 V1 质量评分，也不要求问题陈述枚举全部机制；
+- 未显式展开的能力由七条研究线、场景、机制实验和系统设计继续继承，不能因为后续讨论
+  没有提到就被删除；
 - 本轮提出的“上下文—智能大脑—工具—执行环境”不是新中心，而是恢复历史中的
   `AgentExecution—Sovereign World—Context Compiler—Harness/World/Desk/Trace` 运行线；
 - 研究至少需要并列 `AgentExecution`、`RelationEpisode`、`RelationEcology` 三个尺度；
   单一 episode 不能解释网络发现、路径沉淀、拓扑学习和未来发现成本递减；
-- `S0—Q—operator—消融` 是 formation 主张的因果验证协议，不是所有问题、角色、动作和
-  评价语言形成之前就必须存在的总本体；
+- `S0—Q—operator—消融` 在 V1 中严格约束 formation 主张；后续解释不能把它扩张成
+  吞并问题、角色、动作和评价语言构成的总本体；
 - PFE 的历史机制已经确认，核心是 typed Unknown、形成算子、局部实验/反例、行动空间更新
   以及与 CRA 的资格化循环；PEC/PCC 暂未在档案中找到正式定义；
 - 中心、联邦、平台、人类和确定性服务应按层与阶段组合。一个强中心在局部分布胜出，只会
   缩小其他机制的必要域，不会同时推翻 Agent 运行环境、边界、formation、Effect 或编译线；
-- 成本应进入价值前沿，而不能成为唯一成功判据。更高成本但形成可信基线无法形成、且净价值
-  为正的关系，仍可能是重要成功；
+- 成本是 V1 的重要可证伪经济目标；后续讨论不能把整项研究缩成成本问题，还要共同观察
+  可达价值、错误、风险、披露、时间和后悔；
 - `CAP-REL-004` 仍是唯一历史审计为 `LOST` 的能力：本地私有 candidate/column generation
   与最小贡献证明目前没有 owner。
 
 完整逐项审计见
 `research/projects/joint-action-formation/problem/v1-history-alignment.md`；其机器契约绑定
-历史能力矩阵，任何候选或激活问题缺少该继承引用都将被研究治理检查拒绝。
+历史能力矩阵，任何候选或激活问题缺少该继承引用都将被研究治理检查拒绝。这里检查的是
+研究程序不失忆，不是要求 ProblemContract 逐字包含所有历史机制。
 
 ## 本批次改变的候选理解
 
@@ -175,11 +177,10 @@
 
 ## 审计后的下一条高价值线索
 
-先按历史继承审计重写 `problem/v1-candidate.json`，并为七条 LineContract 设计从 v0 到新
-候选的显式迁移，而不是立即激活现有 v1 或启动成本案例。重写必须同时恢复三尺度分析单位、
-七条原生研究核、五类贯穿语义、Agent 原生运行环境、非 formation 正结果与价值前沿；同时
-保留当前 v1 已经加强的权威、现实效力、强基线、负结果和 formation 因果判据。只有新的
-候选通过逐项历史继承门禁并由用户确认后，才选择机制实验。
+继续以 `problem/v1-candidate.json` 为锚，把最近讨论分别登记为三个从属研究输入：
+AgentExecution 运行环境假说、跨机制 Router 假说、生命周期成本与价值前沿假说。下一轮
+讨论或研究必须逐项说明它正在展开 V1 的哪一部分、没有覆盖什么、什么结果会改变设计；
+不得再把某个最新输入升格成新的总问题。V1 是否激活仍由用户单独决定。
 
 任何实验开工前必须说明会改变哪个设计、反向结果是什么以及三类结果怎样修改系统；否则转入
 CI、实现保障或档案校准。

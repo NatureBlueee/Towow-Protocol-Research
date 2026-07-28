@@ -12,6 +12,7 @@
     "problem_ref",
     "canonical_capability_matrix",
     "activation_recommendation",
+    "coverage_interpretation",
     "coverage_summary",
     "cross_cutting_findings",
     "capabilities",
@@ -35,6 +36,7 @@
     "activation_recommendation": {
       "enum": ["READY", "REWRITE_BEFORE_ACTIVATION", "REJECT"]
     },
+    "coverage_interpretation": {"type": "string", "minLength": 40},
     "coverage_summary": {
       "type": "object",
       "additionalProperties": false,
