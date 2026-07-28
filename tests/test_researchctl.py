@@ -7,6 +7,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -222,6 +223,60 @@ class RuntimeTests(unittest.TestCase):
         first_payload.write_text(first_payload.read_text(encoding="utf-8") + "\n", encoding="utf-8")
         with self.assertRaises(researchctl.ResearchError):
             researchctl.verify_external_disclosure(plan)
+
+    def test_infrastructure_retry_preserves_evidence_and_resets_same_batch(self):
+        plan_path = self.plan("BATCH-TEST-INFRA-RETRY")
+        plan = researchctl.load_plan(plan_path)
+        plan["mode"] = "codex"
+        plan["status"] = "FAILED"
+        plan["external_disclosure"] = {
+            "manifest": ".research-runtime/test-disclosure.json",
+            "approval_decision_id": "DEC-TEST-INFRA-RETRY",
+        }
+        for run in plan["runs"]:
+            run_dir = researchctl.resolve_root_path(run["run_dir"])
+            manifest_path = run_dir / "manifest.json"
+            manifest = researchctl.load_json(manifest_path)
+            manifest["mode"] = "codex"
+            manifest["status"] = "INFRA_FAILED"
+            manifest["attempt"] = 1
+            researchctl.write_json(manifest_path, manifest)
+            (run_dir / "attempt-1-error.txt").write_text(
+                "invalid_json_schema\n",
+                encoding="utf-8",
+            )
+        researchctl.write_json(plan_path, plan)
+
+        disclosure = {"disclosure_sha256": "a" * 64}
+        with (
+            mock.patch.object(
+                researchctl,
+                "verify_external_disclosure",
+                return_value=disclosure,
+            ),
+            mock.patch.object(researchctl, "decision_allows", return_value=True),
+        ):
+            self.assertEqual(
+                0,
+                researchctl.retry_infra_batch(
+                    argparse.Namespace(batch="BATCH-TEST-INFRA-RETRY")
+                ),
+            )
+
+        reset_plan = researchctl.load_plan(plan_path)
+        self.assertEqual("PLANNED", reset_plan["status"])
+        for run in reset_plan["runs"]:
+            run_dir = researchctl.resolve_root_path(run["run_dir"])
+            manifest = researchctl.load_json(run_dir / "manifest.json")
+            self.assertEqual("PLANNED", manifest["status"])
+            self.assertEqual(0, manifest["attempt"])
+            self.assertEqual(
+                ["invalid_json_schema\n"],
+                [
+                    path.read_text(encoding="utf-8")
+                    for path in sorted(run_dir.glob("infra-history/*/attempt-1-error.txt"))
+                ],
+            )
 
 
 if __name__ == "__main__":

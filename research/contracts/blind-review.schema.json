@@ -17,8 +17,8 @@
     "cannot_conclude"
   ],
   "properties": {
-    "schema_version": {"const": "1.0"},
-    "kind": {"const": "BlindReview"},
+    "schema_version": {"type": "string", "const": "1.0"},
+    "kind": {"type": "string", "const": "BlindReview"},
     "status": {"enum": ["COMPLETED", "INCONCLUSIVE", "REFUSED"]},
     "strongest_counterarguments": {
       "type": "array",

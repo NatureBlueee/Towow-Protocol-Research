@@ -28,8 +28,8 @@
     "cost"
   ],
   "properties": {
-    "schema_version": {"const": "1.0"},
-    "kind": {"const": "ResearchResult"},
+    "schema_version": {"type": "string", "const": "1.0"},
+    "kind": {"type": "string", "const": "ResearchResult"},
     "run_id": {"type": "string"},
     "batch_id": {"type": "string"},
     "line_id": {"type": "string"},

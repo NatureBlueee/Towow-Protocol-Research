@@ -900,7 +900,8 @@ def run_codex(run_dir: Path, bundle: Mapping[str, Any], timeout: int) -> Tuple[D
     events = (proc.stdout or "") + (proc.stderr or "")
     (run_dir / "events.jsonl").write_text(events, encoding="utf-8")
     if proc.returncode != 0:
-        raise ResearchError(f"codex exited {proc.returncode}")
+        diagnostic = events[-4000:]
+        raise ResearchError(f"codex exited {proc.returncode}: {diagnostic}")
     result = load_json(output_path)
     return result, proc.returncode, events
 
@@ -980,11 +981,20 @@ def run_one(plan: Mapping[str, Any], run: Mapping[str, Any]) -> Tuple[str, str]:
             return run["line_id"], "COMPLETED"
         except (ResearchError, OSError, json.JSONDecodeError) as exc:
             elapsed = time.monotonic() - started
+            error_text = str(exc)
+            infra_failure = any(
+                marker in error_text
+                for marker in (
+                    "invalid_json_schema",
+                    "failed to initialize in-process app-server",
+                    "attempt to write a readonly database",
+                )
+            )
             (run_dir / f"attempt-{manifest['attempt']}-error.txt").write_text(
-                str(exc) + "\n",
+                error_text + "\n",
                 encoding="utf-8",
             )
-            manifest["status"] = "FAILED"
+            manifest["status"] = "INFRA_FAILED" if infra_failure else "FAILED"
             manifest["finished_at"] = utc_now()
             manifest["exit_code"] = 1
             manifest["cost"] = {
@@ -992,6 +1002,8 @@ def run_one(plan: Mapping[str, Any], run: Mapping[str, Any]) -> Tuple[str, str]:
                 "output_bytes": directory_size(run_dir),
             }
             write_json(manifest_path, manifest)
+            if infra_failure:
+                return run["line_id"], "INFRA_FAILED"
     return run["line_id"], "FAILED"
 
 
@@ -1107,11 +1119,93 @@ def authorize_batch(args: argparse.Namespace) -> int:
     disclosure_path = resolve_root_path(plan["external_disclosure"]["manifest"])
     disclosure["approval_decision_id"] = args.decision_id
     plan["external_disclosure"]["approval_decision_id"] = args.decision_id
+    # Recording the user's exact-batch approval necessarily changes
+    # research/DECISIONS.md after planning. Refresh the protected snapshot here,
+    # inside the user-gated authorization operation, before any worker starts.
+    # Subsequent worker-time changes are still detected by run_batch/finalize.
+    project = resolve_root_path(plan["project"])
+    refreshed_protected = hash_paths(protected_paths(project))
+    plan["protected_hashes"] = refreshed_protected
+    for run in plan["runs"]:
+        manifest_path = resolve_root_path(run["run_dir"]) / "manifest.json"
+        manifest = load_json(manifest_path)
+        if manifest["status"] != "PLANNED":
+            raise ResearchError(
+                f"cannot authorize after a worker started: {run['line_id']}={manifest['status']}"
+            )
+        manifest["protected_hashes"] = refreshed_protected
+        write_json(manifest_path, manifest)
     write_json(disclosure_path, disclosure)
     write_json(plan_path, plan)
     print(
         f"[OK] authorized exact Codex payload: {target['id']}@{target['version']} "
         f"via {args.decision_id}"
+    )
+    return 0
+
+
+def retry_infra_batch(args: argparse.Namespace) -> int:
+    batch_dir = RUNTIME / args.batch
+    plan_path = batch_dir / "plan.json"
+    plan = load_plan(plan_path)
+    if plan.get("mode") != "codex":
+        raise ResearchError("infrastructure retry is only valid for codex batches")
+    disclosure = verify_external_disclosure(plan)
+    target = {"id": plan["batch_id"], "version": plan.get("plan_fingerprint")}
+    decision_id = (plan.get("external_disclosure") or {}).get("approval_decision_id")
+    if not decision_allows(decision_id, "SEND_BATCH_TO_CODEX", target):
+        raise ResearchError("the exact Codex payload is no longer authorized")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    reset_count = 0
+    for run in plan["runs"]:
+        run_dir = resolve_root_path(run["run_dir"])
+        manifest_path = run_dir / "manifest.json"
+        manifest = load_json(manifest_path)
+        if manifest["status"] not in {"FAILED", "INFRA_FAILED"}:
+            raise ResearchError(
+                f"cannot infrastructure-reset {run['line_id']} from {manifest['status']}"
+            )
+        if (run_dir / "result.json").exists():
+            raise ResearchError(f"cannot reset {run['line_id']}: a result already exists")
+        evidence_parts: List[str] = []
+        for path in sorted(run_dir.glob("attempt-*-error.txt")):
+            evidence_parts.append(path.read_text(encoding="utf-8", errors="replace"))
+        events_path = run_dir / "events.jsonl"
+        if events_path.is_file():
+            evidence_parts.append(events_path.read_text(encoding="utf-8", errors="replace"))
+        evidence = "\n".join(evidence_parts)
+        if not any(
+            marker in evidence
+            for marker in (
+                "invalid_json_schema",
+                "failed to initialize in-process app-server",
+                "attempt to write a readonly database",
+            )
+        ):
+            raise ResearchError(
+                f"cannot classify {run['line_id']} as infrastructure failure"
+            )
+        history = run_dir / "infra-history" / timestamp
+        history.mkdir(parents=True, exist_ok=False)
+        for path in sorted(run_dir.glob("attempt-*-error.txt")):
+            shutil.copy2(path, history / path.name)
+        if events_path.is_file():
+            shutil.copy2(events_path, history / events_path.name)
+        manifest["status"] = "PLANNED"
+        manifest["attempt"] = 0
+        manifest["started_at"] = None
+        manifest["finished_at"] = None
+        manifest["exit_code"] = None
+        manifest["result_sha256"] = None
+        manifest["cost"] = {"elapsed_seconds": 0, "output_bytes": 0}
+        write_json(manifest_path, manifest)
+        reset_count += 1
+    plan["status"] = "PLANNED"
+    plan.pop("finished_at", None)
+    write_json(plan_path, plan)
+    print(
+        f"[OK] preserved infrastructure evidence and reset {reset_count} runs "
+        f"for the same authorized payload: {disclosure['disclosure_sha256']}"
     )
     return 0
 
@@ -1589,6 +1683,9 @@ def build_parser() -> argparse.ArgumentParser:
     authorize.add_argument("--batch", required=True)
     authorize.add_argument("--decision-id", required=True)
     authorize.set_defaults(func=authorize_batch)
+    retry_infra = batch_sub.add_parser("retry-infra")
+    retry_infra.add_argument("--batch", required=True)
+    retry_infra.set_defaults(func=retry_infra_batch)
 
     review = sub.add_parser("review", help="prepare or run a blind review")
     review_sub = review.add_subparsers(dest="review_command", required=True)

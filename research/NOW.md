@@ -21,7 +21,7 @@
   ],
   "current_batch": ".research-runtime/BATCH-20260728-V0-DEFINITION-R4/plan.json",
   "pending_user_decisions": [
-    "是否批准 current_batch 的 disclosure-manifest.json 所列冻结输入发送给 OpenAI Codex",
+    "是否明确同意将 BATCH-20260728-V0-DEFINITION-R4 的 209792 字节 NON_PUBLIC_RESEARCH 冻结输入（disclosure SHA-256: aaf8241a5751b68df95332224dbbfa08498bded0cab799c87aa0adb8ced43d51）发送给 OpenAI Codex",
     "在七线问题定义批次和盲审完成后，选择、重写或拒绝 Problem v1"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
@@ -35,8 +35,8 @@
 
 截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
 研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
-不是统一答案。mock 七线闭环已经通过；真实 `v0` 定义批次已经冻结输入，等待用户对精确
-payload 指纹作出外发授权后，由七条原生研究线在隔离条件下分别攻击和重构。
+不是统一答案。mock 七线闭环已经通过；真实 `v0` 定义批次已经冻结精确 payload，等待用户
+直接确认该非公开材料可发送给 OpenAI Codex，再由七条原生研究线在隔离条件下分别攻击和重构。
 
 ## 唯一最新源包
 
