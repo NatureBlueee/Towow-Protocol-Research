@@ -304,3 +304,45 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
 
 本决定不覆盖前一份快照，而是登记治理修正后的 NAC v1 精确内容。未来若改变主张、证据状态、
 已验证范围或负面范围，仍需新的精确决定；普通研究结果只能进入候选区。
+
+## 2026-07-28 — 激活 Problem v2
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-PROBLEM-V2",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_PROBLEM"
+  ],
+  "target": {
+    "kind": "ProblemContract",
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2",
+    "source_path": "research/projects/joint-action-formation/problem/v2-candidate.json",
+    "source_sha256": "c8d60f43508e2f375cedc7f9db7c6949341a80562d9edb9973910c3a33a54da1",
+    "activation_bundle_path": "research/projects/joint-action-formation/problem/activation/v2.json",
+    "activation_bundle_sha256": "e24b7e7638de0de7f8a835798bbd60b3cad5f79d157359b1a827e938bd99b421"
+  },
+  "does_not_authorize": [
+    "SUPERSEDE_PROBLEM_V1",
+    "ACTIVATE_RESEARCH_LINE",
+    "ACTIVATE_SCENARIO",
+    "ACTIVATE_REAL_SCENARIO",
+    "VALIDATE_SCOPED_MECHANISM",
+    "REBASE_SCOPED_MECHANISM",
+    "REFUTE_SCOPED_MECHANISM",
+    "SUPERSEDE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户在明确区分当前任务负责 V2 激活、后续新任务负责独立研究线，并确认激活不会自动启动 NAC、场景或实验后，回复“好的，去吧”，明确授权按当前候选与五件材料闭包的精确 SHA-256 激活 Problem v2。"
+}
+```
+<!-- research-decision:end -->
+
+本决定只改变 `PRB-JOINT-ACTION-FORMATION / v2` 的正式问题状态。V1 继续作为不可覆写的
+历史候选快照保留；NAC 研究线仍为 `DRAFT`，没有机制场景、现实 Effect、稳定主张或部署被
+同时授权。

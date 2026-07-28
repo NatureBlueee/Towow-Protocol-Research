@@ -7,9 +7,9 @@
   "updated_at": "2026-07-28",
   "current_project": "research/projects/joint-action-formation",
   "seed_problem": "research/projects/joint-action-formation/problem/v0.json",
-  "candidate_problem": "research/projects/joint-action-formation/problem/v2-candidate.json",
+  "candidate_problem": null,
   "history_alignment": "research/projects/joint-action-formation/problem/v2-history-alignment.json",
-  "active_problem": null,
+  "active_problem": "research/projects/joint-action-formation/problem/v2.json",
   "preserved_problem_versions": [
     {
       "version": "v1",
@@ -59,7 +59,7 @@
       ]
     },
     "PRB-JOINT-ACTION-FORMATION@v2": {
-      "status": "DRAFT",
+      "status": "ACTIVE_NO_ACTIVE_LINES",
       "lines": [
         "LINE-01-NAC"
       ]
@@ -68,8 +68,7 @@
   "current_batch": null,
   "latest_completed_batch": "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/finalization-manifest.json",
   "pending_user_decisions": [
-    "审阅、重写或激活 V2 五件材料闭包 research/projects/joint-action-formation/problem/activation/v2.json",
-    "V2 激活后决定何时把 LINE-01-NAC 从 DRAFT 迁入首个按需机制批次"
+    "决定何时把 LINE-01-NAC 从 DRAFT 迁入首个按需机制批次"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
 }
@@ -84,12 +83,13 @@
 的七线隔离定义批次与 Claude 匿名盲审已经完成；吸收其分歧与反例的 `Problem v1 /
 CANDIDATE` 已形成并按精确哈希保存。
 
-本轮新增了 `Problem v2` 加法式候选快照。它不修改、不判错也不 supersede V1，只把 V1
-与历史中已有、但独立研究者容易遗漏的世界前提、服务对象、评价框架和有界机制研究范式显式
-冻结为共同知识底座。V2 专属继承审计已经完成并给出 `REVIEWED / READY`；候选正文、说明、
-继承审计、审计说明和 39 项能力矩阵也已组成待用户决定的五件材料闭包。其当前是否仍为候选、
-是否已经激活，以及哪些研究线实际生效，只以本页顶部结构化状态块为准；
-`v2-candidate.*` 始终保留为不可覆写的候选来源。
+本轮新增并激活了 `Problem v2` 加法式问题快照。它不修改、不判错也不 supersede V1，只把
+V1 与历史中已有、但独立研究者容易遗漏的世界前提、服务对象、评价框架和有界机制研究范式
+显式冻结为共同知识底座。V2 专属继承审计已经完成并给出 `REVIEWED / READY`；候选正文、
+说明、继承审计、审计说明和 39 项能力矩阵组成五件材料闭包。用户决定
+`DEC-2026-07-28-ACTIVATE-PROBLEM-V2` 精确绑定候选与闭包哈希，promotion receipt 再绑定
+实际 ACTIVE JSON 与人类说明。V2 是否激活以及哪些研究线实际生效，只以本页顶部结构化
+状态块为准；`v2-candidate.*` 始终保留为不可覆写的候选来源。
 
 用户已经采用有界机制研究范式：每个机制按自己的环境、问题、能力、要求、非目标、证据和
 反例独立推进；作用域外未覆盖不构成否定，负结果只改变受检验主张，已有方案能用就复用，
@@ -267,11 +267,12 @@ V2 LineContract 现在要求每项机制线绑定 scoped claims、历史与现�
 
 ## 当前下一条高价值线索
 
-先由用户审阅或重写 `problem/v2-candidate.md`；只有显式决定后才能激活 V2。V2 激活后，
-首个 `LINE-01-NAC / v1` 只冻结 `E-H1′ → MC-NAC-ANCHOR`：按原门槛比较跨厂商召回与
-vec2vec，并把自然语言加稳定 Schema 明确标成 V2 新增臂。H2–H8、方向性、自描述和迁移
-分别建立后续有界线；传统索引、平台路由、强中心与混合方案在相应 M3/端到端线公平比较，
-不能把它们的效果算作 NAC 坐标已经通过。
+V2 已经激活，但当前没有任何 `ACTIVE` 研究线、场景或实验。下一项用户决定不是重写 V2，
+而是选择何时以及依据什么输入激活一条独立研究线。现有首个候选
+`LINE-01-NAC / v1` 仍为 `DRAFT`，且只冻结 `E-H1′ → MC-NAC-ANCHOR`：按原门槛比较
+跨厂商召回与 vec2vec，并把自然语言加稳定 Schema 明确标成 V2 新增臂。H2–H8、方向性、
+自描述和迁移分别建立后续有界线；传统索引、平台路由、强中心与混合方案在相应 M3/端到端
+线公平比较，不能把它们的效果算作 NAC 坐标已经通过。
 
 其他机制按相同范式逐个恢复为 profile 或新版本研究线。任何实验开工前必须说明受检验的
 scoped claim、已有方案、反向结果只会改变什么、哪些主张不受影响，以及三类结果怎样修改

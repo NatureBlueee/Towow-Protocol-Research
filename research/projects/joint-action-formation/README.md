@@ -1,22 +1,23 @@
 # 共同可行动性构成：核心试点
 
 本项目是有界自治研究环境的第一个试点。`Problem v0 / SEED` 已完成七线定义批次；
-`Problem v1 / CANDIDATE` 作为第一份正式问题快照完整保留；当前工作问题是新文件
-`Problem v2 / CANDIDATE`。
+`Problem v1 / CANDIDATE` 作为第一份正式问题快照完整保留；当前正式问题是
+`Problem v2 / ACTIVE`。
 
 V2 不是重写 V1。它用前序文件 SHA-256 完整继承 V1，并显式冻结后续独立研究者必须共享的
-世界前提、服务对象、核心区别、评价框架和有界机制研究范式。V2 未经用户决定不是
-`ACTIVE`，当前也没有机制或现实场景批次被自动启动。V2 专属继承审计已经
-`REVIEWED / READY`，五件激活材料由 `problem/activation/v2.json` 统一冻结；这表示
-“可以交给用户决定”，不表示已经激活。
+世界前提、服务对象、核心区别、评价框架和有界机制研究范式。用户已经通过
+`DEC-2026-07-28-ACTIVATE-PROBLEM-V2`，按五件材料闭包的精确哈希激活 V2；候选文件继续
+作为不可覆写的激活来源，promotion receipt 记录实际生成物。问题激活没有自动激活任何
+研究线、场景、机制主张或现实行动。
 
 ## 当前版本关系
 
 1. `problem/v0.json`：历史 `SEED` 和 R4 问题定义批次锚点；
 2. `problem/v1-candidate.json`：保留的第一份候选问题快照；
-3. `problem/v2-candidate.json`：加法式新候选，共享知识底座；
-4. V1 与 V2 并存；新版本不把旧版本标记为错误或 `SUPERSEDED`；
-5. 任何问题激活、机制稳定化和现实场景仍由用户决定。
+3. `problem/v2-candidate.json`：V2 的不可覆写候选来源和共享知识底座；
+4. `problem/v2.json`：当前 `ACTIVE` 问题，由精确用户决定和 promotion receipt 约束；
+5. V1 与 V2 并存；新版本不把旧版本标记为错误或 `SUPERSEDED`；
+6. 研究线激活、机制稳定化和现实场景仍需各自独立的用户决定。
 
 ## 七条原生线
 
@@ -50,8 +51,8 @@ V2 不是重写 V1。它用前序文件 SHA-256 完整继承 V1，并显式冻�
 
 首个恢复的 profile 是 `MEC-NAC / v1`。它处于 `ACTIVE_RESEARCH`，因为历史上有独立规格、
 预注册和失败门但关键实验未运行。相应的 `LINE-01-NAC / v1` 当前是 `DRAFT`：它属于
-“发现与边界”母线，且只冻结 `E-H1′ → MC-NAC-ANCHOR`，等待 V2 激活和已有方案检查完成
-后按需推进，不会自动带起 H2–H8、其他六条问题家族或配套 M3/M5 机制。
+“发现与边界”母线，且只冻结 `E-H1′ → MC-NAC-ANCHOR`，等待已有方案检查完成和用户另行
+激活该研究线后按需推进，不会自动带起 H2–H8、其他六条问题家族或配套 M3/M5 机制。
 
 一个机制没有解决其作用域外问题，不构成降级。一个子主张失败，只改变该子主张。现成平台、
 标准、制度或 adapter 完整满足要求时直接复用；部分满足时只扩展缺口；只有确认真实缺口后
@@ -59,9 +60,11 @@ V2 不是重写 V1。它用前序文件 SHA-256 完整继承 V1，并显式冻�
 
 ## 当前入口
 
-- V2 人类说明：`problem/v2-candidate.md`
+- 当前 V2 人类说明：`problem/v2.md`
+- V2 不可覆写候选来源：`problem/v2-candidate.md`
 - V2 历史继承审计：`problem/v2-history-alignment.md`
 - V2 激活材料闭包：`problem/activation/v2.json`
+- V2 promotion receipt：`promotions/PRB-JOINT-ACTION-FORMATION-DEC-2026-07-28-ACTIVATE-PROBLEM-V2.json`
 - V1 保留快照：`problem/v1-candidate.md`
 - NAC 机制档案：`mechanisms/nac.md`
 - NAC 草案研究线：`lines/01-nac.md`

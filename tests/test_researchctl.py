@@ -824,8 +824,12 @@ class ContractTests(unittest.TestCase):
 
     def test_now_history_alignment_tracks_current_problem(self):
         state = researchctl.read_state()
+        current_problem_locator = (
+            state.get("candidate_problem") or state.get("active_problem")
+        )
+        self.assertIsInstance(current_problem_locator, str)
         problem_path = researchctl.resolve_root_path(
-            state["candidate_problem"]
+            current_problem_locator
         )
         problem = researchctl.load_json(problem_path)
         self.assertEqual(
@@ -1046,15 +1050,40 @@ class ContractTests(unittest.TestCase):
             researchctl.validate_result_semantics(failed_not_run, bundle),
         )
 
-    def test_candidate_problem_blocks_implicit_fallback_to_seed(self):
-        state = researchctl.read_state()
-        self.assertIsNone(state["active_problem"])
-        self.assertTrue(state["candidate_problem"])
+    def test_candidate_without_active_problem_blocks_implicit_fallback_to_seed(self):
+        state = copy.deepcopy(researchctl.read_state())
+        state["active_problem"] = None
+        state["candidate_problem"] = (
+            "research/projects/joint-action-formation/problem/"
+            "v2-candidate.json"
+        )
         with self.assertRaisesRegex(
             researchctl.ResearchError,
             "pass --problem explicitly",
         ):
             researchctl.select_problem(researchctl.DEFAULT_PROJECT, state)
+
+    def test_current_state_selects_receipted_active_v2(self):
+        state = researchctl.read_state()
+        self.assertIsNone(state["candidate_problem"])
+        self.assertEqual(
+            "research/projects/joint-action-formation/problem/v2.json",
+            state["active_problem"],
+        )
+        path, problem = researchctl.select_problem(
+            researchctl.DEFAULT_PROJECT,
+            state,
+        )
+        self.assertEqual("ACTIVE", problem["status"])
+        self.assertEqual("v2", problem["version"])
+        self.assertEqual(
+            [],
+            researchctl.check_exact_promotion_receipt(
+                path,
+                problem,
+                "problem",
+            ),
+        )
 
     def test_nac_hypotheses_separate_core_from_companion_mechanisms(self):
         profile = researchctl.load_json(
