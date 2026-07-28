@@ -226,6 +226,50 @@ def decision_allows(decision_id: Optional[str], action: str, target: Optional[Ma
     return True
 
 
+def decision_allows_transfer(
+    decision_id: Optional[str],
+    action: str,
+    target: Mapping[str, Any],
+    disclosure: Mapping[str, Any],
+    project: str,
+) -> bool:
+    if not decision_allows(decision_id, action, target):
+        return False
+    decision = read_decisions().get(str(decision_id))
+    if not decision:
+        return False
+    scope = decision.get("standing_transfer_scope")
+    if not isinstance(scope, dict):
+        return True
+    if scope.get("project") != project:
+        return False
+    destinations = scope.get("action_destinations", {}).get(action, [])
+    if disclosure.get("destination") not in destinations:
+        return False
+    classification = disclosure.get("classification")
+    if classification not in scope.get("allowed_classifications", []):
+        return False
+    payload_bytes = disclosure.get(
+        "total_payload_bytes",
+        disclosure.get("payload_size_bytes"),
+    )
+    if not isinstance(payload_bytes, int) or payload_bytes < 0:
+        return False
+    if payload_bytes > int(scope.get("max_payload_bytes", 0)):
+        return False
+    exclusions = {
+        str(item).strip().lower()
+        for item in disclosure.get("does_not_include", [])
+    }
+    required = scope.get("required_exclusions_by_classification", {}).get(
+        classification,
+        [],
+    )
+    if any(str(item).strip().lower() not in exclusions for item in required):
+        return False
+    return bool(scope.get("requires_frozen_disclosure_manifest"))
+
+
 def project_path(value: Optional[str]) -> Path:
     if not value:
         return DEFAULT_PROJECT
@@ -1113,11 +1157,17 @@ def run_batch(args: argparse.Namespace) -> int:
     plan = load_plan(plan_path)
     project = resolve_root_path(plan["project"])
     if plan["mode"] == "codex":
-        verify_external_disclosure(plan)
+        disclosure_document = verify_external_disclosure(plan)
         disclosure = plan.get("external_disclosure") or {}
         decision_id = disclosure.get("approval_decision_id")
         target = {"id": plan["batch_id"], "version": plan.get("plan_fingerprint")}
-        if not decision_allows(decision_id, "SEND_BATCH_TO_CODEX", target):
+        if not decision_allows_transfer(
+            decision_id,
+            "SEND_BATCH_TO_CODEX",
+            target,
+            disclosure_document,
+            plan["project"],
+        ):
             raise ResearchError(
                 "Codex batch is blocked until a structured user decision authorizes "
                 f"SEND_BATCH_TO_CODEX for {target['id']}@{target['version']}"
@@ -1177,12 +1227,18 @@ def authorize_batch(args: argparse.Namespace) -> int:
     if plan.get("mode") != "codex":
         raise ResearchError("only codex batches require external-transfer authorization")
     target = {"id": plan["batch_id"], "version": plan.get("plan_fingerprint")}
-    if not decision_allows(args.decision_id, "SEND_BATCH_TO_CODEX", target):
+    disclosure = verify_external_disclosure(plan)
+    if not decision_allows_transfer(
+        args.decision_id,
+        "SEND_BATCH_TO_CODEX",
+        target,
+        disclosure,
+        plan["project"],
+    ):
         raise ResearchError(
             f"user decision {args.decision_id} does not authorize "
             f"SEND_BATCH_TO_CODEX for {target['id']}@{target['version']}"
         )
-    disclosure = verify_external_disclosure(plan)
     disclosure_path = resolve_root_path(plan["external_disclosure"]["manifest"])
     disclosure["approval_decision_id"] = args.decision_id
     plan["external_disclosure"]["approval_decision_id"] = args.decision_id
@@ -1220,7 +1276,13 @@ def retry_infra_batch(args: argparse.Namespace) -> int:
     disclosure = verify_external_disclosure(plan)
     target = {"id": plan["batch_id"], "version": plan.get("plan_fingerprint")}
     decision_id = (plan.get("external_disclosure") or {}).get("approval_decision_id")
-    if not decision_allows(decision_id, "SEND_BATCH_TO_CODEX", target):
+    if not decision_allows_transfer(
+        decision_id,
+        "SEND_BATCH_TO_CODEX",
+        target,
+        disclosure,
+        plan["project"],
+    ):
         raise ResearchError("the exact Codex payload is no longer authorized")
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     reset_count = 0
@@ -1413,7 +1475,14 @@ def run_review(args: argparse.Namespace) -> int:
     disclosure_path = review_dir / "review-disclosure.json"
     disclosure = load_json(disclosure_path)
     review_target = {"id": args.batch, "version": disclosure["payload_sha256"]}
-    if not decision_allows(args.decision_id, "SEND_BLIND_REVIEW_TO_CLAUDE", review_target):
+    plan = load_plan(batch_dir / "plan.json")
+    if not decision_allows_transfer(
+        args.decision_id,
+        "SEND_BLIND_REVIEW_TO_CLAUDE",
+        review_target,
+        disclosure,
+        plan["project"],
+    ):
         raise ResearchError(
             f"user decision {args.decision_id} does not authorize "
             f"SEND_BLIND_REVIEW_TO_CLAUDE for {args.batch}@{disclosure['payload_sha256']}"
@@ -1426,12 +1495,22 @@ def run_review(args: argparse.Namespace) -> int:
     if not executable:
         raise ResearchError("claude executable is unavailable")
     bundle = load_json(bundle_path)
-    schema = schema_for("BlindReview")
+    schema = {
+        key: value
+        for key, value in schema_for("BlindReview").items()
+        if key not in {"$schema", "$id"}
+    }
     prompt = (
         (review_dir / "REVIEW_POLICY.md").read_text(encoding="utf-8")
         + "\n\nReview this isolated bundle:\n"
         + json.dumps(bundle, ensure_ascii=False)
     )
+    raw_path = review_dir / "claude-raw.json"
+    if raw_path.is_file():
+        history = review_dir / "attempt-history"
+        history.mkdir(exist_ok=True)
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        shutil.copy2(raw_path, history / f"{timestamp}-claude-raw.json")
     command = [
         executable,
         "--safe-mode",
@@ -1440,6 +1519,8 @@ def run_review(args: argparse.Namespace) -> int:
         "",
         "--permission-mode",
         "dontAsk",
+        "--model",
+        args.model,
         "--effort",
         "high",
         "--max-budget-usd",
@@ -1462,7 +1543,7 @@ def run_review(args: argparse.Namespace) -> int:
         )
     except subprocess.TimeoutExpired as exc:
         raise ResearchError(f"Claude blind review timed out after {args.timeout_minutes} minutes") from exc
-    (review_dir / "claude-raw.json").write_text(
+    raw_path.write_text(
         (proc.stdout or "") + (proc.stderr or ""),
         encoding="utf-8",
     )
@@ -1534,10 +1615,43 @@ def make_divergence_markdown(results: Sequence[Mapping[str, Any]], batch_id: str
 def finalize_batch(args: argparse.Namespace) -> int:
     batch_dir = RUNTIME / args.batch
     plan = load_plan(batch_dir / "plan.json")
+    project = resolve_root_path(plan["project"])
+    target = project / "candidates" / plan["batch_id"]
+    if target.exists():
+        manifest_path = target / "finalization-manifest.json"
+        if manifest_path.is_file():
+            review_path = batch_dir / "review" / "blind-review.json"
+            if not review_path.is_file():
+                print(f"[OK] candidate already finalized: {relative(target)}")
+                return 0
+            review = load_json(review_path)
+            errors = validate_schema(review, review_path)
+            if errors:
+                raise ResearchError("; ".join(errors))
+            target_review = target / "blind-review.json"
+            if target_review.is_file() and sha256_file(target_review) != sha256_file(review_path):
+                raise ResearchError("candidate blind review differs from runtime review")
+            if not target_review.is_file():
+                shutil.copy2(review_path, target_review)
+            disclosure = load_json(batch_dir / "review" / "review-disclosure.json")
+            manifest = load_json(manifest_path)
+            manifest["result_hashes"][target_review.name] = sha256_file(target_review)
+            manifest["blind_review"] = {
+                "reviewer": "Anthropic Claude",
+                "result": target_review.name,
+                "result_sha256": sha256_file(target_review),
+                "payload_sha256": disclosure["payload_sha256"],
+                "approval_decision_id": disclosure["approval_decision_id"],
+                "status": review["status"],
+                "recommendation": review["recommendation"],
+            }
+            write_json(manifest_path, manifest)
+            print(f"[OK] attached blind review without promotion: {relative(target_review)}")
+            return 0
+        raise ResearchError(f"candidate directory exists without manifest: {relative(target)}")
     results = completed_results(plan)
     if len(results) != len(plan["runs"]):
         raise ResearchError("not all planned runs returned")
-    project = resolve_root_path(plan["project"])
     if hash_paths(protected_paths(project)) != plan["protected_hashes"]:
         for run in plan["runs"]:
             manifest_path = resolve_root_path(run["run_dir"]) / "manifest.json"
@@ -1545,14 +1659,6 @@ def finalize_batch(args: argparse.Namespace) -> int:
             manifest["status"] = "STALE_FOR_CURRENT"
             write_json(manifest_path, manifest)
         raise ResearchError("canonical inputs changed; results were preserved but marked stale")
-
-    target = project / "candidates" / plan["batch_id"]
-    if target.exists():
-        manifest_path = target / "finalization-manifest.json"
-        if manifest_path.is_file():
-            print(f"[OK] candidate already finalized: {relative(target)}")
-            return 0
-        raise ResearchError(f"candidate directory exists without manifest: {relative(target)}")
     target.mkdir(parents=True)
     result_hashes: Dict[str, str] = {}
     for result in results:
@@ -1671,6 +1777,7 @@ def show_status(args: argparse.Namespace) -> int:
     print("通爻研究现场")
     print(f"- 当前项目: {state['current_project']}")
     print(f"- Seed 问题: {state.get('seed_problem')}")
+    print(f"- Candidate 问题: {state.get('candidate_problem') or '无'}")
     print(f"- Active 问题: {state.get('active_problem') or '无'}")
     print(f"- 已验证场景: {state.get('validated_scenario') or '无'}")
     print(f"- Active 机制场景: {state.get('active_mechanism_scenario') or '无'}")
@@ -1771,6 +1878,7 @@ def build_parser() -> argparse.ArgumentParser:
     review_run.add_argument("--decision-id", required=True)
     review_run.add_argument("--timeout-minutes", type=int, default=30)
     review_run.add_argument("--max-budget-usd", type=float, default=2.0)
+    review_run.add_argument("--model", default="sonnet")
     review_run.set_defaults(func=run_review)
 
     finalize = sub.add_parser("finalize", help="copy validated results into candidate space")

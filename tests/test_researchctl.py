@@ -73,6 +73,65 @@ class ContractTests(unittest.TestCase):
             )
         )
 
+    def test_standing_transfer_authority_is_bounded_by_manifest(self):
+        decision_id = "DEC-2026-07-28-STANDING-RESEARCH-TRANSFER"
+        target = {"id": "BATCH-FUTURE", "version": "f" * 64}
+        disclosure = {
+            "destination": "Anthropic Claude",
+            "classification": "NON_PUBLIC_DERIVED_RESEARCH",
+            "payload_size_bytes": 1000,
+            "does_not_include": ["private participant data"],
+        }
+        self.assertTrue(
+            researchctl.decision_allows_transfer(
+                decision_id,
+                "SEND_BLIND_REVIEW_TO_CLAUDE",
+                target,
+                disclosure,
+                "research/projects/joint-action-formation",
+            )
+        )
+        missing_privacy_exclusion = copy.deepcopy(disclosure)
+        missing_privacy_exclusion["does_not_include"] = []
+        self.assertFalse(
+            researchctl.decision_allows_transfer(
+                decision_id,
+                "SEND_BLIND_REVIEW_TO_CLAUDE",
+                target,
+                missing_privacy_exclusion,
+                "research/projects/joint-action-formation",
+            )
+        )
+        wrong_destination = copy.deepcopy(disclosure)
+        wrong_destination["destination"] = "Unknown External Model"
+        self.assertFalse(
+            researchctl.decision_allows_transfer(
+                decision_id,
+                "SEND_BLIND_REVIEW_TO_CLAUDE",
+                target,
+                wrong_destination,
+                "research/projects/joint-action-formation",
+            )
+        )
+        self.assertFalse(
+            researchctl.decision_allows(
+                decision_id,
+                "ACTIVATE_PROBLEM",
+                target,
+            )
+        )
+
+    def test_claude_output_schema_can_drop_external_draft_metadata(self):
+        schema = {
+            key: value
+            for key, value in researchctl.schema_for("BlindReview").items()
+            if key not in {"$schema", "$id"}
+        }
+        self.assertNotIn("$schema", schema)
+        self.assertNotIn("$id", schema)
+        self.assertEqual("object", schema["type"])
+        self.assertIn("strongest_counterarguments", schema["required"])
+
 
 class RuntimeTests(unittest.TestCase):
     def setUp(self):
@@ -258,7 +317,7 @@ class RuntimeTests(unittest.TestCase):
                 "verify_external_disclosure",
                 return_value=disclosure,
             ),
-            mock.patch.object(researchctl, "decision_allows", return_value=True),
+            mock.patch.object(researchctl, "decision_allows_transfer", return_value=True),
         ):
             self.assertEqual(
                 0,
@@ -379,7 +438,7 @@ class RuntimeTests(unittest.TestCase):
                 "verify_external_disclosure",
                 return_value={"disclosure_sha256": "b" * 64},
             ),
-            mock.patch.object(researchctl, "decision_allows", return_value=True),
+            mock.patch.object(researchctl, "decision_allows_transfer", return_value=True),
         ):
             self.assertEqual(
                 0,

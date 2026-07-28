@@ -7,6 +7,7 @@
   "updated_at": "2026-07-28",
   "current_project": "research/projects/joint-action-formation",
   "seed_problem": "research/projects/joint-action-formation/problem/v0.json",
+  "candidate_problem": "research/projects/joint-action-formation/problem/v1-candidate.json",
   "active_problem": null,
   "validated_scenario": "research/projects/joint-action-formation/scenarios/problem-definition-archive-v0.json",
   "active_mechanism_scenario": null,
@@ -19,10 +20,10 @@
     "LINE-06-REALITY-EFFECT",
     "LINE-07-RUNTIME-EVOLUTION"
   ],
-  "current_batch": ".research-runtime/BATCH-20260728-V0-DEFINITION-R4/plan.json",
+  "current_batch": null,
+  "latest_completed_batch": "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/finalization-manifest.json",
   "pending_user_decisions": [
-    "是否批准将 BATCH-20260728-V0-DEFINITION-R4 的 109078 字节 NON_PUBLIC_DERIVED_RESEARCH 匿名盲审包（SHA-256: 26590d5dca63ab062364110a01ab4b32d4d7698f85bb194533ce8a1cd80aae73）发送给 Anthropic Claude",
-    "在七线问题定义批次和盲审完成后，选择、重写或拒绝 Problem v1"
+    "激活、重写或拒绝 research/projects/joint-action-formation/problem/v1-candidate.json"
   ],
   "canonical_source": "research/sources/archive-v1.2.json"
 }
@@ -35,8 +36,9 @@
 
 截至 v1.2 的完整研究档案已经完成第一轮材料重建和历史设计能力审计。当前正在建立有界自治
 研究环境，并以“共同可行动性构成”作为首个试点。当前长问题只登记为 `Problem v0 / SEED`，
-不是统一答案。真实 `v0` 定义批次已经由七条原生研究线在隔离条件下完成，并形成候选分歧
-矩阵；匿名 Claude 盲审包已在本地冻结，尚未获得外发授权。
+不是统一答案。真实 `v0` 定义批次已经由七条原生研究线在隔离条件下完成；Claude 匿名
+盲审也已完成并建议 `REWRITE_BEFORE_ACTIVATION`。吸收七线真实分歧与盲审反例的
+`Problem v1 / CANDIDATE` 已形成，但没有 ACTIVE 问题。
 
 ## 本批次改变的候选理解
 
@@ -57,6 +59,19 @@
 
 本批次只分析既有档案，没有观察到真人授权、真实 Effect、Adoption、Acceptance、长期运行
 或商业净价值；七线也没有证明 NAC、PFE、ledger、对象数量或联邦拓扑是唯一必要实现。
+
+## Claude 盲审改变的候选理解
+
+- 七线都没有排除权威感知强中心等效，不能把联邦拓扑写进问题的预设答案；
+- 合同、RBAC、审批链和事务系统可能已经承载候选规范差异，需要证明不是概念重命名；
+- 当前 formation 主张没有实际执行冻结前态—operator—消融，可能仍只是发现或披露改进；
+- 七线共享底层来源和模型语境，一致意见不能按七次独立验证计算；
+- 还需要与单一强研究者直接整合比较，证明多线隔离确实保留了更多判别力且成本合理；
+- 因此不激活 v0，也不从七线平均生成答案，而是形成带反事实条件和强基线的 v1 候选。
+
+持续研究模型外发已获得有边界授权：只有冻结 disclosure manifest、允许的 Codex/Claude
+目的地、允许的研究分类、250 MiB 上限和相应隐私排除同时满足时，才可不再逐批询问。该授权
+不覆盖真人私密材料、完整私有档案、现实动作、Problem 激活、稳定主张、部署或公开发布。
 
 ## 唯一最新源包
 
@@ -113,10 +128,10 @@
 
 ## 审计后的下一条高价值线索
 
-在用户精确批准后，对已冻结的匿名包执行 Claude 盲审；然后把七线候选、真实分歧和盲审
-反例交给用户，选择、重写或拒绝唯一 `Problem v1 / ACTIVE`。只有用户明确激活 v1 后，
-才从 Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate explain-back、Q3 单案 causal
-formation、Q5 真实复用中选择机制实验。
+由用户选择激活、重写或拒绝 `problem/v1-candidate.json`。只有用户明确激活 v1 后，才从
+Q1 强中心基线、Q4 Router 冷启动、Q2 Mandate explain-back、Q3 单案 causal formation、
+Q5 真实复用中选择机制实验。若用户要求继续研究而不激活，则优先运行
+BASE-DIRECT-INTEGRATION，检验七线隔离方法是否真的增加判别力。
 
 任何实验开工前必须说明会改变哪个设计、反向结果是什么以及三类结果怎样修改系统；否则转入
 CI、实现保障或档案校准。

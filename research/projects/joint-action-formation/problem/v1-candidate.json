@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "kind": "ProblemContract",
+  "id": "PRB-JOINT-ACTION-FORMATION",
+  "version": "v1",
+  "status": "CANDIDATE",
+  "title": "权威不可代行条件下可验证共同可行动性的形成与持续",
+  "question": "在多个 Principal 的信息、权利、能力与责任不能被安全汇聚，且任何实体都不能代行他方权威的条件下，怎样使一个或多个对外具有连续身份、可认证权威、有限授权和可追责性的 Agent Entity，通过有限披露和可归因的授权 operator，把冻结前不存在的合格联合行动路径构造成版本化、可执行、可验证且可局部重开的共同可行动性；怎样以可观察证据区分既存路径的发现、现实条件的创造与目标或价值底线的改写，分别验证能力、授权、承诺、执行、目标域 Effect、Domain Adoption、Principal Acceptance 与 Settlement，并判定这种结构在哪些权威拓扑、任务分布和漂移条件下，相较权威感知强中心、成熟制度、平台流程、人类经纪与单一强研究者直接整合产生可重复的净正价值？",
+  "research_object": "一个联合行动 episode 中，从冻结前态、路径资格谓词和局部权威边界出发，经可归因 operator 产生候选路径，并分别经过能力、授权、承诺、执行、目标域效力、采用、接受、持续与重开的版本化状态转换。",
+  "target_transition": "把无法判断或不存在的合格联合行动路径，转变为不冒领任何 Principal 权威、保留来源与版本谱系、能够被目标域独立读回并在后续漂移中安全继续、阻断、退出或局部重开的共同可行动性。",
+  "invariants": [
+    "Agent Entity 的认证、技术能力与 Principal 的授权是不同事实，任一项不能推出其余项",
+    "任何形成主张必须冻结前态与路径资格谓词，不能用事后降低目标或验收标准制造成功",
+    "发现既存路径、改变现实条件和重写原始问题必须被记录为不同状态转换",
+    "多作者共同对象必须保留主张来源、权威范围、反对意见和版本失效，中心托管与否不是先验判据",
+    "Capability、Mandate、Commitment、Execution、Effect、Adoption、Acceptance 与 Settlement 必须允许分别失败",
+    "目标域 readback、主体接受和现实后果不能由 producer PASS、消息 ACK、退出码或模型判断替代",
+    "拒绝、Unknown、撤销、争议、退出、中心方案更好和负净价值必须是可保存结果",
+    "模型、工具或执行成功率提升不能自动扩大 Authority Envelope、改变 Principal 目标或复活过期授权"
+  ],
+  "unit_of_analysis": "一个绑定冻结前态 S0、路径资格谓词 Q、必要 Principal、授权 operator、版本化关系状态、目标域 witness、强基线与总成本的联合行动 episode。",
+  "scope": [
+    "问题、参与者、动作、条件、证据或接受规则尚未完整给定时的联合行动构成",
+    "有限披露条件下的边界发现、反例、条件创造、伙伴引入、能力兑现和任务重表示",
+    "来源分域的权威认领、版本化 Stance、承诺、资源保留和执行 Gate",
+    "Effect、Adoption、Acceptance、Settlement 的独立验证及负状态保存",
+    "Mandate 撤销、证据失效、目标变化、组件升级和暂时离线后的持续、阻断、退出与局部重开",
+    "相对强中心、成熟制度、平台、人类经纪和直接整合的公平比较与净价值边界"
+  ],
+  "out_of_scope": [
+    "把消息互通、任务委派、匹配率或更多协商文本本身当作关系形成",
+    "预设联邦、去中心化、PFE、NAC、ledger 或任何对象集合必然优于替代实现",
+    "用弱中心、无授权中心或缺少成熟功能的平台作为稻草人基线",
+    "用合成场景、模型共识或内部日志宣称真人授权、现实效力或商业价值",
+    "要求主体复制完整本地世界、接受全局本体或放弃拒绝与退出权",
+    "由 Agent 替 Principal 宣布意愿、接受、责任或价值底线变化"
+  ],
+  "key_unknowns": [
+    "哪些来源、权威、版本和依赖差异必须成为正式事实，哪些可由现有制度或派生视图无损承载",
+    "怎样在交互前可靠冻结语义等价的路径集合与资格谓词，避免把未知既存路径误记为 formation",
+    "哪些 operator 真正改变现实可达集合，以及这种改变是否在移除 operator 后消失",
+    "部分披露下怎样发现必要 Principal 和隐藏依赖，同时限制过窄闭包与过度披露风险",
+    "类型化 Unknown、Mandate、Stance、Standing、Reservation 和分层效力事实是否产生可测增益，还是概念重命名",
+    "局部重开在高耦合、隐藏依赖和多类漂移下何时安全，何时必须退化为全局复核",
+    "七线隔离研究相对单一强研究者直接整合是否增加判别力，并如何校正共享来源和模型偏差",
+    "共同可行动性在哪些任务、权威拓扑和成本区间内具有净正价值，何时应交给中心、平台、制度或人类"
+  ],
+  "competing_explanations": [
+    {
+      "id": "ALT-DISCOVERY",
+      "claim": "所谓 formation 只是让冻结前已存在的路径变得可见、可搜索或可表达。",
+      "distinguishing_observation": "在保持资格谓词不变的前态审计中已存在语义等价合格路径，或移除 operator 后路径仍然存在。"
+    },
+    {
+      "id": "ALT-CENTRAL",
+      "claim": "权威感知强中心能够在内部保存来源范围、局部拒绝、版本失效和目标域验证，并以更低成本获得相同结果。",
+      "distinguishing_observation": "在同等模型、工具、查询、隐私、授权和恢复条件下，中心方案的正确性与净价值不劣于候选结构。"
+    },
+    {
+      "id": "ALT-INSTITUTION",
+      "claim": "合同、RBAC、审批链、事务系统和既有人类制度已经无损表达候选结构所强调的规范差异。",
+      "distinguishing_observation": "移除通爻特有机制后，成熟制度仍同等阻止越权、陈旧授权、伪效力、伪接受和错误结算。"
+    },
+    {
+      "id": "ALT-HUMAN-BROKER",
+      "claim": "人类经纪依靠隐性知识、社会合法性和现实问责，以更低建模成本完成必要关系构成。",
+      "distinguishing_observation": "按真实时间、等待、披露和治理成本核算后，人类经纪达到同等或更好的联合行动结果。"
+    },
+    {
+      "id": "ALT-GOAL-SUBSTITUTION",
+      "claim": "新路径来自降低原始价值底线、改变资格谓词或省略必要主体，而非创造了原问题的可行动性。",
+      "distinguishing_observation": "operator 前后 Q、不可接受底线或必要 Principal 发生未被明确认领的实质变化。"
+    },
+    {
+      "id": "ALT-NET-NEGATIVE",
+      "claim": "结构性 formation 即使存在，也被协调、披露、等待、验证、治理、恢复和认知成本吞噬。",
+      "distinguishing_observation": "按相同成本口径计算后，候选结构的长期净价值不高于最强可信基线。"
+    },
+    {
+      "id": "ALT-RESEARCH-METHOD",
+      "claim": "七线一致性来自共享来源、共享模型或同一概念框架，并不构成独立验证。",
+      "distinguishing_observation": "控制来源重叠或加入单一强研究者直接整合后，七线的额外判别力消失或成本显著更高。"
+    }
+  ],
+  "strong_baselines": [
+    {
+      "id": "BASE-AUTHORITY-AWARE-CENTRAL",
+      "name": "权威感知强中心 Agent",
+      "authority_model": "中心可动态创建角色、动作、证据和版本，但每项高后果决定返回相应 Principal 或 Authority Locus。",
+      "comparison_obligation": "给予同等模型、工具、局部查询、预算、隐私约束、目标域 readback、恢复机制和制度支持。"
+    },
+    {
+      "id": "BASE-PLATFORM-INSTITUTION",
+      "name": "成熟平台流程与既有制度",
+      "authority_model": "RBAC、审批、合同、事务、审计和人工例外共同保存角色、权限、现实执行与争议处理。",
+      "comparison_obligation": "允许使用其成熟表单、通知、回滚、版本控制、监控和人工 amendment，不人为删减基线能力。"
+    },
+    {
+      "id": "BASE-HUMAN-BROKER",
+      "name": "人类经纪或项目负责人",
+      "authority_model": "通过访谈、转介、解释、谈判和现实责任关系定位主体并促成行动。",
+      "comparison_obligation": "同时记录隐性知识与社会合法性优势，以及时间、等待、失误和规模成本。"
+    },
+    {
+      "id": "BASE-DIRECT-INTEGRATION",
+      "name": "单一强研究者直接整合",
+      "authority_model": "单一研究者读取相同材料后直接形成问题定义、反例和实验建议，不以多线共识代替证据。",
+      "comparison_obligation": "使用相同材料、时间和模型预算，比较保留差异、负结果、来源谱系、错误率和总成本。"
+    }
+  ],
+  "observable_outcomes": [
+    "冻结前态 S0 中是否存在满足同一资格谓词 Q 的语义等价路径",
+    "授权 operator 后是否首次出现合格路径，且移除或反转该 operator 后路径是否消失",
+    "目标、价值底线、必要 Principal 或验收规则是否被改变并获得相应主体认领",
+    "每项主张、Stance、Mandate、承诺和 challenge 是否保留来源、范围与精确版本",
+    "能力资格化能否在权限撤销、迁移、资源冲突、漂移和恢复中减少错误承诺",
+    "Execution、Effect、Adoption、Acceptance 与 Settlement 是否按各自权威来源分别判定",
+    "失败或漂移能否只使真实依赖闭包失效，并在隐藏依赖或高耦合时诚实升级",
+    "相对各强基线的误报、漏报、隐私披露、等待、人工负担、恢复质量和长期净价值",
+    "七线方法相对直接整合是否保留更多不可约差异，且收益高于额外研究成本"
+  ],
+  "falsification_conditions": [
+    "冻结前已存在语义等价合格路径，或消融声称的 formation operator 后结果不变",
+    "候选结果依赖未认领地降低原始价值底线、改变 Q、遗漏必要主体或扩大 Authority Envelope",
+    "权威感知强中心、成熟制度、人类经纪或直接整合在公平条件下持续不劣且成本更低",
+    "显式规范与效力对象不能减少越权、伪成功、错误结算或全局重开，反而增加不可接受负担",
+    "部分披露导致必要主体或隐藏依赖被系统性遗漏，且 Unknown、挑战或升级机制不能限制损失",
+    "真实任务中的协调、披露、等待、验证、治理、恢复和认知成本使净价值持续为零或负",
+    "七线差异在控制共享来源或模型偏差后消失，说明研究方法没有新增判别力"
+  ],
+  "reopen_conditions": [
+    "出现现有状态转换与非蕴含结构无法表达的真人失败、外部性或权威主体",
+    "公平基线实验显示中心、制度、人类或直接整合能够吸收当前候选的全部判别能力",
+    "真实试验表明冻结前态、路径资格谓词或 operator 因部分披露而无法可靠定义",
+    "新的 Effect、Adoption、Acceptance、撤销或争议证据改变当前分层结构",
+    "模型、制度、法律、成本或权威拓扑变化使原适用边界发生实质改变"
+  ],
+  "evidence_requirements": [
+    "预注册冻结前态、路径资格谓词、必要 Principal、不可接受底线、operator 和反向结果",
+    "所有正式结果可追到问题版本、场景、来源、模型、输入哈希、运行环境和原始输出",
+    "使用与候选方案同等能力、约束和成本口径的强中心、成熟制度、人类经纪和直接整合基线",
+    "区分直接观察、来源陈述、推断、设计建议、主体认领、授权、目标域 readback 和接受",
+    "能力、授权、Effect、Adoption、Acceptance 与 Settlement 分别具有权威 witness 和失败语义",
+    "保存失败、拒绝、Unknown、撤销、中心更好、制度等效、无形成和负净价值结果",
+    "合成与档案结果只支持机制或反例，真人、生产和长期价值主张必须来自相称现实证据",
+    "报告七线或多模型证据的来源重叠、模型相关性和独立性边界"
+  ],
+  "decision_authority": {
+    "activate": "USER",
+    "reopen": "USER",
+    "supersede": "USER"
+  },
+  "source_refs": [
+    "research/projects/joint-action-formation/problem/v0.json",
+    "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/divergence-matrix.md",
+    "research/projects/joint-action-formation/candidates/BATCH-20260728-V0-DEFINITION-R4/blind-review.json"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/problem/v1-candidate.md"
+}

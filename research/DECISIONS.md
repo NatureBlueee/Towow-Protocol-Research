@@ -124,3 +124,93 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
 
 本决定只授权 disclosure manifest 已冻结的 `R4` 输入。payload、目的地或指纹发生变化时
 必须重新取得批准。
+
+## 2026-07-28 — 批准 R4 匿名 Claude 盲审包
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-CLAUDE-R4",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "SEND_BLIND_REVIEW_TO_CLAUDE"
+  ],
+  "target": {
+    "id": "BATCH-20260728-V0-DEFINITION-R4",
+    "version": "26590d5dca63ab062364110a01ab4b32d4d7698f85bb194533ce8a1cd80aae73"
+  },
+  "payload": {
+    "destination": "Anthropic Claude",
+    "classification": "NON_PUBLIC_DERIVED_RESEARCH",
+    "payload_size_bytes": 109078,
+    "payload_sha256": "26590d5dca63ab062364110a01ab4b32d4d7698f85bb194533ce8a1cd80aae73"
+  },
+  "does_not_authorize": [
+    "ACTIVATE_PROBLEM_V1",
+    "ACTIVATE_REAL_SCENARIO",
+    "PROMOTE_STABLE_CLAIM",
+    "CONTACT_REAL_PARTICIPANTS",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户直接确认同意将该精确匿名盲审包发送给 Anthropic Claude。"
+}
+```
+<!-- research-decision:end -->
+
+## 2026-07-28 — 持续授权有边界的研究模型外发
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-STANDING-RESEARCH-TRANSFER",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "SEND_BATCH_TO_CODEX",
+    "SEND_BLIND_REVIEW_TO_CLAUDE"
+  ],
+  "standing_transfer_scope": {
+    "project": "research/projects/joint-action-formation",
+    "action_destinations": {
+      "SEND_BATCH_TO_CODEX": [
+        "OpenAI Codex"
+      ],
+      "SEND_BLIND_REVIEW_TO_CLAUDE": [
+        "Anthropic Claude"
+      ]
+    },
+    "allowed_classifications": [
+      "NON_PUBLIC_RESEARCH",
+      "NON_PUBLIC_DERIVED_RESEARCH"
+    ],
+    "max_payload_bytes": 262144000,
+    "required_exclusions_by_classification": {
+      "NON_PUBLIC_RESEARCH": [
+        "credentials",
+        "real participant data"
+      ],
+      "NON_PUBLIC_DERIVED_RESEARCH": [
+        "private participant data"
+      ]
+    },
+    "requires_frozen_disclosure_manifest": true
+  },
+  "does_not_authorize": [
+    "SEND_CREDENTIALS",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "SEND_FULL_PRIVATE_ARCHIVE",
+    "CONTACT_REAL_PARTICIPANTS",
+    "ACTIVATE_PROBLEM_V1",
+    "ACTIVATE_REAL_SCENARIO",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户说明以后不需要逐批取得授权；按当前上下文登记为有 disclosure、隐私排除和容量上限的研究模型外发持续授权，不扩展为现实动作或正式研究状态变更授权。"
+}
+```
+<!-- research-decision:end -->
+
+持续授权只消除重复询问，不降低 disclosure、哈希冻结、来源白名单、隐私排除、运行隔离和
+结果晋升门槛。超出上述机器可检查范围时，系统必须阻断或另取授权。

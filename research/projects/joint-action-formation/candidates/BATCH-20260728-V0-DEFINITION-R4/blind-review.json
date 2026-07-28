@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "kind": "BlindReview",
+  "status": "COMPLETED",
+  "strongest_counterarguments": [
+    "ALT-CENTRAL（权威感知强中心 Agent 在同等模型、工具、查询、预算和恢复机制下不劣于联邦方案）在 R01 至 R07 全部七条独立线中都被列为最强替代解释：类型化 Oracle 响应、Mandate/Authority Gate、RelationVersion、Effect/Adoption/Acceptance 分离、Defeater 依赖闭包等机制，原则上都可以由一个权威感知的中心系统实现。全部七条线的共同不确定性表明，问题框架尚未证明'联邦式关系构成'相对'中心系统内部的版本化、来源分域实现'具有不可替代性，而只是反复假设了这一点。",
+    "ALT-INSTITUTION（合同、RBAC、审批链、平台工作流等既有制度可能已经无损承载所声称的规范差异）在 R05、R06、R07 中被独立提出，且均未被否证：Mandate、Stance、Reservation、Standing、Effect/Adoption/Acceptance 的区分都可能只是把既有制度概念重新命名，而非揭示了制度无法表达的新结构。",
+    "问题框架把'发现一个原本存在但未知的可行路径'与'通过改变条件创造原本不存在的路径'混为一谈（R01、R03）。ALT-FORMATION 要求的冻结前态—operator—消融验证从未在本档案中被实际执行，因此当前所有'形成'主张都可能只是搜索或披露层面的改善，而非现实可达集合的扩展。",
+    "ALT-NET-NEGATIVE（新增价值被协调、披露、验证、等待、治理和恢复成本吞噬）在全部七条线的 negative_results 或 cannot_support 中被反复承认为未被排除的可能性，而档案中没有任何真实成本数据可以驳斥它。",
+    "档案本身的元层面问题：七条'匿名回归线'虽然被呈现为独立返回，但它们反复引用同一批底层来源（如反复出现的 R5.4、R5C、CAP-* 系列条目），却没有任何机制说明这七条线之间是否共享模型、实现或来源偏差。R03 自己指出'operator、判定器和实验生成器共享同一模型或实现，导致消融结果受共同偏差影响'是一种失败模式，但同样的非独立性风险未被应用于审视这七条线本身的一致性（例如它们对 ALT-CENTRAL 的一致强调，可能反映共享来源偏向，而非七次独立验证）。",
+    "场景自身声明'不能证明多 Agent 研究优于单一强研究者'（cannot_support），而 BASE-DIRECT-INTEGRATION 被列为最强可信基线，但档案中没有任何证据表明七线隔离方法相对单一强研究者直接综合产生了更高的判别力或更低的成本——这是对整个七线研究设计（而不仅是对 Problem v0）的框架性质疑。"
+  ],
+  "unsupported_inferences": [
+    "所有七条线中标记为'inferences'的条目大量是规范性建议（如何降级、如何拆分对象），而非从 direct_observations 严格推出的结论；例如 R01 断言'NAC 的名称或编码形式不是不可约能力'，这是一个尚待检验的假设，被写成推断陈述。",
+    "R03 的核心判据——冻结路径资格谓词、operator 分类、双重消融——被作为分析推论提出，但档案明确承认'原生 discovery protocol 尚无端到端保真重建测试'，也没有任何一次实际的 operator 消融被执行；因此当前不能推断出任何具体 formation 主张已经通过或未通过这一判据。",
+    "R05 关于'不可约的最小区分至少包括：Entity 身份与 Principal 身份、……Standing 与签字权'的推断是纯概念性主张，档案中没有任何运行场景（场景 A–D 均为提议而非结果）验证过这些区分在实践中确实不可压缩、且不能被成熟 RBAC 等价表达。",
+    "多条线（R01 C2/C5、R04、R06 C2）推断'类型化响应/分层证据能降低误读或误判率'，但档案的 negative_results 明确说明尚未有对照实验将其与自由文本或单层 success/failure 标签比较；因此该因果推断当前不受支持。",
+    "把'更多真实模型互动/更多规范条件'与'关系已被构成'相关联的隐含推断被 R03 明确标记为负结果（R5.4：规范条件增加但无签署、无代码补丁、无目标域采用），说明档案内部已存在反证前述推断的材料，不应被后续综合悄悄略过。"
+  ],
+  "erased_distinctions": [
+    "R01：发现（既存路径可见性提升）与条件创造（operator 改变现实可达集合）之间的区分；若被合并，则任何查询结果都可能被误记为 formation。",
+    "R01：NAC/HDC 作为可替换 provider 与作为架构必要组件之间的区分；不同线对其降级条件的表述并不完全相同，合并会掩盖各自独立的可证伪降级测试。",
+    "R02：'参数在既有关系语法内修改' 与 '新增角色/动作/权威/证据/退出路径导致的 material change' 之间的区分，以及旧 Stance 默认不继承这一规则。",
+    "R02：多作者共同对象的关键属性是'来源与权威范围不可被中心统一摘要抹平'，而不是'去中心化托管'本身；把这一点简化为'中心 vs 联邦'的架构选择会抹去其真正的判别内容。",
+    "R03：认识转变（发现既存路径）、世界转变（现实条件被真实改变）、问题转变（目标或价值底线被重写）三种'新路径'来源的区分；若合并，目标偷换可能被误记为合法 formation。",
+    "R04：能力从'自报/目录声明'到'逻辑可行'到'获权可行'到'资源已资格化'到'留出任务证明'再到'漂移后仍可依赖'的六段依赖链；不能折叠为单一 capability=true/false。",
+    "R05：Entity 认证与 Principal 全面授权的区分；以及'最终签字权'与'Standing（可提出 material challenge 但无签字权）'之间的区分——后者关系到未被代表方的外部性，是七线中较易被合并抹去的少数派细节。",
+    "R06：Effect、Adoption、Acceptance、Settlement 四层互不蕴含的区分，以及负状态（not_adopted、revoked、offline、disputed、unknown）必须作为带来源、版本、时间的一等事实保留，而非压缩为单一 success=false。",
+    "R07：'规范关系失效'（如 Mandate 撤销、证据被推翻）与'执行组件暂时不可用'（如账户离线、可快速恢复的故障）之间的区分；合并会导致运维事故被错误升级为全关系重开，或真正的权威撤销被错误降级为可恢复故障。"
+  ],
+  "missing_evidence": [
+    "原生 discovery protocol 端到端保真重建测试（R01 明确指出缺失）。",
+    "任何真实 Principal（自然人或组织）对候选关系的理解、修正、授权、承诺或接受证据（所有七线均声明缺失）。",
+    "协调、披露、验证、等待、治理与恢复的真实成本数据，用以检验 ALT-NET-NEGATIVE（所有七线的 cannot_support/negative_results 均承认此空缺）。",
+    "针对 BASE-AUTHORITY-AWARE-CENTRAL、BASE-PLATFORM-WORKFLOW、BASE-HUMAN-BROKER 的实际公平多臂对照实验（目前均只是 design_proposals，未被执行）。",
+    "针对 BASE-DIRECT-INTEGRATION（单一强研究者直接综合）的实际比较结果，用以检验七线隔离研究是否真的保留了更多原生差异、负结果和来源谱系而不增加不成比例的成本。",
+    "冻结路径资格谓词后、对同一 operator 分别交给联邦机制与权威感知中心执行的双重消融结果（R03 D2/D4 提议，未执行）。",
+    "真实主体理解并维护显式 Mandate、Stance、Standing 等正式对象的可用性证据（R05 负结果明确指出缺失）。",
+    "七条'匿名返回线'之间源材料重叠度与相关性的说明，用以评估其结论一致性是否反映独立验证还是共享来源偏差。"
+  ],
+  "baseline_challenges": [
+    "BASE-AUTHORITY-AWARE-CENTRAL：七条线均未能排除该基线在获得同等 Oracle 语义、版本化、Mandate/Gate 和恢复机制后与联邦方案等效或更优的可能性；这是本档案中反复出现却始终未解决的核心挑战。",
+    "BASE-PLATFORM-WORKFLOW：R05、R06 指出成熟 RBAC、审批链、事务系统和审计日志可能已经完整表达 Mandate、Reservation、Stance 版本、Effect/Adoption/Acceptance 分离等语义，档案未提供任何证据排除这种可能。",
+    "BASE-HUMAN-BROKER：R02、R03 指出人类经纪凭隐性知识和社会合法性可能以更低建模成本更快定位真正的 Authority Locus，而仅比较机器查询次数会系统性低估该基线，档案未对此提供公平核算。",
+    "BASE-DIRECT-INTEGRATION：这是场景自身声明的最强可信基线，但整个七线材料中没有任何结果表明相对该基线取得了更强判别力或更低成本；scenario.cannot_support 明确写明'不能证明多 Agent 研究优于单一强研究者'。"
+  ],
+  "recommendation": "REWRITE_BEFORE_ACTIVATION",
+  "cannot_conclude": [
+    "不能证明 PFE、NAC、BIC、Boundary Oracle、RelationVersion、Mandate、通爻或任何联邦式机制在现实中有效。",
+    "不能证明分布式/联邦式关系构成相对权威感知强中心、平台工作流或人类经纪具有净正价值或更低成本。",
+    "不能证明七线隔离研究方法优于单一强研究者直接综合。",
+    "不能证明任何真人或组织 Principal 已理解、授权、承诺、采用或接受过任何候选关系。",
+    "不能证明任何目标域 Effect、Domain Adoption 或 Acceptance 已经发生。",
+    "不能证明档案中所谓的'形成'确实创造了冻结前不存在的现实可行路径，而非仅提升了既存路径的可见性或可判定性。",
+    "不能将 Problem v0 或本档案中任何候选修订自动晋升为 ACTIVE。",
+    "不能从本档案的合成场景与概念设计推断这些机制在现实任务中的发生频率、可靠性、安全性或一般有效性。"
+  ]
+}
