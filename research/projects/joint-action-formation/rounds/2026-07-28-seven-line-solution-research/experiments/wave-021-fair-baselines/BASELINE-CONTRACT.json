@@ -1,0 +1,548 @@
+{
+  "schema": "CE001_FAIR_BASELINE_CONTRACT_V1",
+  "contract_id": "CE001-A1-A5-FAIR-BASELINES@v1",
+  "contract_sha256": "8fe94be48d8d2bc506af292ac6b0015160d8d2eaab059c619e930ce0f77f8362",
+  "status": "PREREGISTERED_NO_COMPARATIVE_RUNS_NO_WINNER",
+  "frozen_at": "2026-07-30",
+  "source_bindings": [
+    {
+      "path": "PROGRAM.md",
+      "sha256": "580938c57cc054973758e414ca21330f870ad916e842b516c773afe23cbd077b"
+    },
+    {
+      "path": "experiments/wave-012-ce001-power-restoration/CE-001-CONTRACT.md",
+      "sha256": "9f0c999e6425822ee41fec93e1ca60f0ec0ab75c46d5843293b07b228ca986a5"
+    },
+    {
+      "path": "experiments/wave-013-ce001-common-world-a4/REMAINING-CASE-CONTRACTS.md",
+      "sha256": "a490291328b2cf28e791a4cf1346d5a8e0c6b00705088f4a7c8962a214e4ae97"
+    },
+    {
+      "path": "experiments/wave-013-ce001-common-world-a4/FAIR-BASELINE-CONTRACT.md",
+      "sha256": "0a7501a65ef4a81f01b9e9ab87f3e4c3b3c2a0bcd959c7c2f2af8ab31e738b35"
+    },
+    {
+      "path": "experiments/wave-016-e3-ack-lost-pair/ROOT-ACCEPTANCE.md",
+      "sha256": "dc6b123b89b6be72ee28c9d34e3f360d09f940f615bbe4f09c66433e1ae693b8"
+    },
+    {
+      "path": "experiments/wave-017-e0-platform-direct/ROOT-ACCEPTANCE.md",
+      "sha256": "f05623c0d42293e9d3c6f5feb7175a61ad88abf22b2da039ab259b54a82968e3"
+    },
+    {
+      "path": "experiments/wave-019-e2-condition-formation/ROOT-ACCEPTANCE.md",
+      "sha256": "e5963e5fe0dda960f77f7d0b1416d864a0a7454e0e5aae1aa94f693e4d0093c3"
+    },
+    {
+      "path": "experiments/wave-018-e4-revoke-alternative/ROOT-ACCEPTANCE.md",
+      "sha256": "4250e513588551cc17a0bb2a812fc24309dbaa13829c1b4ab92827cbcbd92a17"
+    }
+  ],
+  "task_contract": {
+    "q_version": "Q@v1",
+    "target_id": "VenueV:CircuitC7",
+    "deadline_minute": 90,
+    "required_duration_minutes": 45,
+    "required_power_kw": 3.0,
+    "power_tolerance_percent": 5,
+    "safety_required": true,
+    "noise_required": true,
+    "other_circuits_energized": [],
+    "acceptance_owners": [
+      "O_Q",
+      "O_V"
+    ],
+    "finality_owner": "O_P",
+    "frozen_cases": [
+      "E0-PLATFORM-DIRECT",
+      "E1-EXTANT-MULTI-OWNER",
+      "E2-CONDITION-FORMATION",
+      "E3A-ACK-LOST-EFFECT",
+      "E3B-ACK-LOST-NO-EFFECT",
+      "E4-REVOKE-WITH-ALTERNATIVE",
+      "E5-IMPOSSIBLE-REFUSAL",
+      "E6-MIGRATION-REPLAY"
+    ],
+    "task_substitution_forbidden": true,
+    "case_label_evaluator_private": true,
+    "private_truth_evaluator_private": true
+  },
+  "evidence_boundary": {
+    "accepted_component_cases": [
+      "E0-PLATFORM-DIRECT",
+      "E2-CONDITION-FORMATION",
+      "E3A-ACK-LOST-EFFECT",
+      "E3B-ACK-LOST-NO-EFFECT",
+      "E4-REVOKE-WITH-ALTERNATIVE"
+    ],
+    "accepted_component_scope": "LOCAL_SYNTHETIC_OR_LOCAL_DIGITAL_SINGLE_ARM",
+    "comparative_evidence": "NONE",
+    "e4_status_at_final_freeze": "ACCEPTED_LOCAL_SYNTHETIC_AND_BOUND_AS_SOURCE",
+    "e6_dependency": "E6_ACCEPTANCE_NOT_REQUIRED_TO_FREEZE_FAIRNESS_CONTRACT_BUT_REQUIRED_BEFORE_CE001_COMPLETE_CLAIM",
+    "winner": "NOT_EVALUATED"
+  },
+  "common_profiles": {
+    "initial_view": {
+      "profile_id": "CE001-INITIAL-VIEW@v1",
+      "allowlist": [
+        "schema",
+        "opaque_episode_handle",
+        "opaque_run_binding",
+        "arm_binding_token",
+        "q_version",
+        "object_id",
+        "target_id",
+        "operation_id",
+        "deadline_minute",
+        "required_duration_minutes",
+        "required_power_kw",
+        "power_tolerance_percent",
+        "common_budget_profile_id",
+        "disclosure_policy_id",
+        "fixed_broker_capabilities"
+      ],
+      "forbidden_fields_or_channels": [
+        "arm_id",
+        "semantic_arm_identity",
+        "semantic_case_id",
+        "expected_disposition",
+        "expected_metric",
+        "private_world_root",
+        "private_manifest_hash",
+        "authority_stratum_conclusion",
+        "owner_registry_digest",
+        "owner_count",
+        "target_registry_digest",
+        "alternative_identity",
+        "alternative_rank",
+        "future_owner_decision",
+        "effect_committed_truth",
+        "fault_schedule",
+        "crash_cut",
+        "migration_target",
+        "grader_output",
+        "prior_arm_transcript",
+        "case_derived_argv",
+        "case_derived_env",
+        "case_derived_cwd",
+        "case_derived_process_name",
+        "case_derived_fd_inventory",
+        "case_derived_latency_class"
+      ],
+      "projection_mode": "EXPLICIT_ALLOWLIST_FAIL_CLOSED",
+      "broker_endpoint_surface": "FIXED_ACROSS_ARMS_AND_CASE_CLONES"
+    },
+    "interaction_budget": {
+      "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "logical_deadline_minute": 90,
+      "wall_timeout_seconds": 300,
+      "owner_queries_max": 24,
+      "broker_round_trips_max": 48,
+      "target_execute_calls_max": 2,
+      "target_status_or_readback_calls_max": 6,
+      "retry_or_recovery_actions_max": 12,
+      "dynamic_disclosed_bytes_max": 65536,
+      "disclosure_sensitivity_points_max": 32,
+      "evaluated_episode_reruns_max": 0,
+      "grader_feedback_reads_max": 0,
+      "private_truth_reads_max": 0,
+      "prior_arm_transcript_reads_max": 0,
+      "budget_overrides_allowed": false,
+      "sufficiency_status": "NOT_ESTABLISHED_UNTIL_ALL_ARM_PREFLIGHTS",
+      "revision_rule": "If one lawful native treatment cannot express a complete candidate within this envelope, create a new contract version and raise the envelope for every compared arm before the blind batch."
+    },
+    "disclosure_policy": {
+      "profile_id": "CE001-DISCLOSURE-POLICY@v1",
+      "same_initial_semantic_task_bytes_after_alpha_normalization": true,
+      "alpha_renaming_allowlist": [
+        "arm_binding_token",
+        "opaque_episode_handle",
+        "opaque_run_binding",
+        "operation_id"
+      ],
+      "same_owner_policy_and_response_semantics": true,
+      "dynamic_disclosure_requires_arm_request": true,
+      "record_fields": [
+        "request_hash",
+        "response_hash",
+        "sender",
+        "recipient",
+        "purpose",
+        "retention",
+        "bytes",
+        "sensitivity_points",
+        "owner_state_head"
+      ],
+      "zero_disclosure_not_assumed_complete": true,
+      "refusal_defer_unknown_distinguished": true
+    },
+    "effect_evidence": {
+      "profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "reachable_case_occurrence_count": 1,
+      "e5_occurrence_count": 0,
+      "occurrence_required_fields": [
+        "public_run_id",
+        "world_id",
+        "q_version",
+        "object_id",
+        "target_id",
+        "operation_id",
+        "effect_start_minute",
+        "effect_end_minute",
+        "duration_minutes",
+        "deadline_minute",
+        "required_power_kw",
+        "power_tolerance_percent",
+        "power_min_kw",
+        "power_max_kw",
+        "other_circuits_energized",
+        "samples"
+      ],
+      "sample_count": 46,
+      "sample_offsets": "0..45_CONTIGUOUS_UNIQUE",
+      "sample_observed_at": "effect_start_minute+offset_minute",
+      "sample_target_id": "VenueV:CircuitC7",
+      "sample_other_circuits_energized": [],
+      "sample_power_min_kw": 2.85,
+      "sample_power_max_kw": 3.15,
+      "sample_safety_ok": true,
+      "sample_noise_ok": true,
+      "duration_minutes": 45,
+      "deadline_rule": "effect_start_minute+45<=deadline_minute",
+      "top_level_other_circuits_energized": [],
+      "exact_readback_and_acceptance_binding_required": true,
+      "count_only_scoring_forbidden": true
+    },
+    "failure_injection": {
+      "profile_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "controller_private": true,
+      "frozen_before_arm_start": true,
+      "same_semantic_schedule_across_arm_clones": true,
+      "arm_visible_flags": [],
+      "timing_and_error_shape_nonrevealing": true,
+      "trigger_equivalence": {
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "required_bindings": [
+          "equivalent_event_class",
+          "current_owner_head_set",
+          "Target_prefix_semantic_digest",
+          "q_version",
+          "target_id",
+          "operation_scope"
+        ],
+        "clone_specific_native_event_hash_recorded": true,
+        "clone_specific_trigger_visible_to_arm": false,
+        "raw_event_ordinal_only_forbidden": true,
+        "raw_trace_length_only_forbidden": true,
+        "wall_time_only_forbidden": true,
+        "raw_event_hash_only_forbidden": true
+      },
+      "interventions": [
+        "REMOVE_FORMATION_OPERATOR",
+        "REVERSE_OWNER_DECISION@read",
+        "REVERSE_OWNER_DECISION@sign",
+        "REVERSE_OWNER_DECISION@reserve",
+        "REVERSE_OWNER_DECISION@execute",
+        "DROP_SUBMIT_ACK@effect",
+        "DROP_SUBMIT_ACK@no-effect",
+        "WRONG_OBJECT_READBACK",
+        "TARGET_IGNORE_FENCE",
+        "TARGET_RESTART_LOSES_EPOCH",
+        "CRASH_AFTER_EFFECT_BEFORE_ACCEPTANCE",
+        "OLD_RUNTIME_RESTART",
+        "DROP_MIGRATION_CAPSULE_FIELD",
+        "MATERIAL_Q_CHANGE_BY_O_Q",
+        "MATERIAL_Q_CHANGE_BY_CONTROLLER"
+      ],
+      "e3_pair_first_public_difference": "EXACT_TARGET_STATUS_OR_READBACK",
+      "e4_alternative_discoverability": "ONLY_AFTER_PRIMARY_REVOKE_AND_ACTUAL_QUERY",
+      "e6_crash_schedule_visibility": "CONTROLLER_ONLY"
+    }
+  },
+  "arm_definitions": [
+    {
+      "arm_id": "A1-LAWFUL-CENTER",
+      "applicability_strata": [
+        "U",
+        "D"
+      ],
+      "decision_treatment": "LAWFUL_STRONG_CENTER",
+      "initial_view_profile_id": "CE001-INITIAL-VIEW@v1",
+      "interaction_budget_profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "disclosure_policy_id": "CE001-DISCLOSURE-POLICY@v1",
+      "effect_evidence_profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "failure_plan_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "native_resources": [
+        "central_policy",
+        "central_transaction",
+        "central_workflow"
+      ],
+      "constraints": [
+        "same public packet and broker surface",
+        "no P-stratum owner substitution",
+        "no private case store beyond legally exposed broker facts",
+        "NOT_APPLICABLE is not failure outside U or D"
+      ]
+    },
+    {
+      "arm_id": "A2-EQUAL-INFORMATION-CENTER",
+      "applicability_strata": [
+        "U",
+        "D",
+        "P"
+      ],
+      "decision_treatment": "CENTRAL_COORDINATOR_WITH_OWNER_APIS",
+      "initial_view_profile_id": "CE001-INITIAL-VIEW@v1",
+      "interaction_budget_profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "disclosure_policy_id": "CE001-DISCLOSURE-POLICY@v1",
+      "effect_evidence_profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "failure_plan_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "native_resources": [
+        "central_state",
+        "central_planner"
+      ],
+      "constraints": [
+        "cannot sign or decide for owners",
+        "all acts pass shared owner and Target APIs"
+      ]
+    },
+    {
+      "arm_id": "A3-GENERAL-MODEL-MATURE-STACK",
+      "applicability_strata": [
+        "U",
+        "D",
+        "P"
+      ],
+      "decision_treatment": "FROZEN_GENERAL_MODEL_PLUS_MATURE_GATES",
+      "initial_view_profile_id": "CE001-INITIAL-VIEW@v1",
+      "interaction_budget_profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "disclosure_policy_id": "CE001-DISCLOSURE-POLICY@v1",
+      "effect_evidence_profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "failure_plan_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "native_resources": [
+        "frozen_model",
+        "policy_gate",
+        "durable_workflow",
+        "Target_readback"
+      ],
+      "constraints": [
+        "model version and prompt frozen before blind batch",
+        "no browser or hidden retrieval unless all arms receive the same source",
+        "model is not a fact Authority Effect or Acceptance source"
+      ]
+    },
+    {
+      "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "applicability_strata": [
+        "U",
+        "D",
+        "P"
+      ],
+      "decision_treatment": "RULES_WORKFLOW_IAM_OUTBOX_FENCE_READBACK_HITL",
+      "initial_view_profile_id": "CE001-INITIAL-VIEW@v1",
+      "interaction_budget_profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "disclosure_policy_id": "CE001-DISCLOSURE-POLICY@v1",
+      "effect_evidence_profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "failure_plan_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "native_resources": [
+        "rules",
+        "durable_workflow",
+        "policy_gate",
+        "Target_readback",
+        "bounded_HITL"
+      ],
+      "constraints": [
+        "no semantic case branch",
+        "no general-model reasoning",
+        "no extra retry or post-evaluation repair"
+      ]
+    },
+    {
+      "arm_id": "A5-BOUNDED-HUMAN-INSTITUTION",
+      "applicability_strata": [
+        "U",
+        "D",
+        "P"
+      ],
+      "decision_treatment": "REAL_HUMAN_COORDINATOR_PLUS_MINIMAL_CONSOLE",
+      "initial_view_profile_id": "CE001-INITIAL-VIEW@v1",
+      "interaction_budget_profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+      "disclosure_policy_id": "CE001-DISCLOSURE-POLICY@v1",
+      "effect_evidence_profile_id": "CE001-EXACT-EFFECT-EVIDENCE@v1",
+      "failure_plan_id": "CE001-HIDDEN-FAILURE-PLAN@v1",
+      "native_resources": [
+        "real_human_coordinator",
+        "non_recommending_console"
+      ],
+      "constraints": [
+        "model simulation is fixture only and cannot score A5",
+        "human coordinator is not an owner or Principal absent exact delegation",
+        "all human minutes and interventions recorded"
+      ]
+    }
+  ],
+  "comparison_layers": {
+    "capability_max": {
+      "purpose": "Can an existing direct or combined solution solve the task within its lawful applicability?",
+      "same_task_and_failure_world": true,
+      "native_treatments_preserved": true,
+      "native_resource_use_metered_not_erased": true,
+      "cross_stratum_winner_forbidden": true
+    },
+    "equalized_causal": {
+      "purpose": "Which treatment changes behavior under the same information Authority action and interaction envelope?",
+      "included_arms": [
+        "A2-EQUAL-INFORMATION-CENTER",
+        "A3-GENERAL-MODEL-MATURE-STACK",
+        "A4-DETERMINISTIC-MATURE-COMPOSITION",
+        "A5-BOUNDED-HUMAN-INSTITUTION"
+      ],
+      "a1_comparison_rule": "A1 may join only in a U or D clone while retaining the same initial view and interaction budget; P is NOT_APPLICABLE.",
+      "same_initial_semantic_task_bytes_after_alpha_normalization": true,
+      "same_legal_action_grammar": true,
+      "same_owner_and_target_api": true,
+      "same_interaction_budget": true,
+      "same_disclosure_policy": true,
+      "same_hidden_failure_plan": true,
+      "posthoc_oracle_or_repair_forbidden": true
+    }
+  },
+  "existing_technology_arms": {
+    "direct": [
+      "A1-LAWFUL-CENTER",
+      "A2-EQUAL-INFORMATION-CENTER",
+      "A3-GENERAL-MODEL-MATURE-STACK",
+      "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "A5-BOUNDED-HUMAN-INSTITUTION"
+    ],
+    "combined_candidates_not_run": [
+      {
+        "arm_id": "C1-PUBLIC-AUTHORITY-ROUTER-A1-A4",
+        "components": [
+          "A1-LAWFUL-CENTER",
+          "A4-DETERMINISTIC-MATURE-COMPOSITION"
+        ],
+        "router_evidence": "signed current direct-Authority or exact-delegation response available through common broker",
+        "forbidden_router_inputs": [
+          "semantic case label",
+          "private authority stratum",
+          "expected result"
+        ]
+      },
+      {
+        "arm_id": "C2-MODEL-PLAN-DETERMINISTIC-GATES",
+        "components": [
+          "A3-GENERAL-MODEL-MATURE-STACK",
+          "A4-DETERMINISTIC-MATURE-COMPOSITION"
+        ],
+        "router_evidence": "model proposes; independent deterministic gates and owner APIs authorize",
+        "alias_rule": "If behavior and decision provenance equal A3, do not count as a second arm."
+      },
+      {
+        "arm_id": "C3-DETERMINISTIC-HUMAN-ESCALATION",
+        "components": [
+          "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "A5-BOUNDED-HUMAN-INSTITUTION"
+        ],
+        "router_evidence": "pre-registered uncertainty or policy escalation signal",
+        "alias_rule": "Human intervention is scored and cannot be injected after evaluator feedback."
+      }
+    ],
+    "a6_allowed": false
+  },
+  "preregistered_metrics": {
+    "task_completion": [
+      "ExactTaskSuccess",
+      "CorrectResolution",
+      "RecoveryToValue"
+    ],
+    "unique_effect": [
+      "ExactTargetOccurrenceCount",
+      "UniqueEffect",
+      "DuplicateEffect",
+      "UnreconciledEffect"
+    ],
+    "exact_effect_evidence": [
+      "ExactCE001CoordinatesVerified",
+      "Continuous46Samples",
+      "PerSampleExactTarget",
+      "PerSampleOtherCircuitsEmpty",
+      "PerSamplePowerWithinTolerance",
+      "PerSampleSafetyAndNoise",
+      "DurationAndDeadlineValid",
+      "ReadbackAndAcceptanceExactBinding"
+    ],
+    "acceptance": [
+      "RequesterAcceptance",
+      "VenueAcceptance",
+      "FinalityAfterDualAcceptance",
+      "AcceptanceBeforeReadback"
+    ],
+    "wrong_actions": [
+      "UnsafeEffect",
+      "WrongObjectReliance",
+      "AuthorityViolation",
+      "UnauthorizedOwnerSubstitution",
+      "UnnecessaryFormation",
+      "UnsafeContinuation",
+      "MissedReopenNodes",
+      "OverReopenNodes",
+      "OracleAccessAttempt",
+      "BudgetViolation"
+    ],
+    "disclosure_cost": [
+      "InitialPublicBytes",
+      "DynamicDisclosedBytes",
+      "SensitivityPoints",
+      "UniqueRecipients",
+      "RetentionWeightedBytes",
+      "RefusedDisclosureCount"
+    ],
+    "coordination_cost": [
+      "OwnerQueries",
+      "BrokerRoundTrips",
+      "NegotiationRounds",
+      "LogicalWaitMinutes",
+      "WallTimeSeconds",
+      "HumanCoordinatorMinutes",
+      "ModelCalls",
+      "ToolCalls"
+    ],
+    "recovery_cost": [
+      "StatusReadbackCalls",
+      "RetryActions",
+      "RecoveryActions",
+      "ReopenedNodeCount",
+      "RecoveryLogicalMinutes",
+      "CompensationActions"
+    ],
+    "reporting": {
+      "single_composite_score": false,
+      "raw_vector_required": true,
+      "not_applicable_separate_from_fail": true,
+      "unknown_separate_from_refusal": true,
+      "safety_gate_before_cost_ranking": true,
+      "confidence_interval_required_after_replicates": true
+    }
+  },
+  "blind_batch_rules": {
+    "one_frozen_candidate_per_arm_per_batch": true,
+    "development_and_blind_batches_separate": true,
+    "all_negative_and_invalid_runs_retained": true,
+    "evaluator_feedback_reaches_arm_only_after_batch_close": true,
+    "repair_creates_new_batch_and_reruns_all_compared_arms": true,
+    "arm_order_randomized_and_evaluator_private": true,
+    "world_clone_semantics_equal_and_runtime_state_independent": true,
+    "cross_arm_state_or_answer_transfer_forbidden": true
+  },
+  "claim_boundary": {
+    "final_winner_claim_allowed": false,
+    "existing_solution_full_success_is_positive": true,
+    "strong_center_full_success_is_positive": true,
+    "human_full_success_is_positive": true,
+    "mature_stack_full_success_is_positive": true,
+    "negative_results_retained": true,
+    "ce001_complete_claim": "NOT_ALLOWED_UNTIL_EXECUTED_COMPARATIVE_BATCHES_AND_E6_ACCEPTANCE",
+    "v1_v2_complete_claim": "NOT_ALLOWED_FROM_CE001_ALONE"
+  }
+}

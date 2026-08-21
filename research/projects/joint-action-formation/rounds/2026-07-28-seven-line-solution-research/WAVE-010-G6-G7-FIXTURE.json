@@ -1,0 +1,253 @@
+{
+  "schema": "towow.wave010.g6-g7.fixture.v1",
+  "status": "LOCAL_SYNTHETIC_DEVELOPMENT_FIXTURE",
+  "evidence_boundary": [
+    "No real participant, production write, payment, adoption, acceptance, settlement, or long-running recovery is represented.",
+    "T2 is an archival design replay whose published answer is known.",
+    "T3 is a new synthetic task specification because the cited R7 source is only an execution-resource list.",
+    "T6 is a mutation-replay pair, not a qualified real or blind base run."
+  ],
+  "tasks": {
+    "T2": {
+      "evidence_level": "ARCHIVAL_ANSWER_LEAKAGE_REPLAY",
+      "task": "Buyer-domain read-only AI pilot; the workflow reports completion but the buyer target write is rejected.",
+      "truth_owners": {
+        "Attempt": "service-execution-ledger",
+        "Effect": "buyer-sandbox-audit",
+        "Adoption": "buyer-service-operations-backlog",
+        "Acceptance": "buyer-business-principal",
+        "Settlement": "buyer-procurement-ledger"
+      }
+    },
+    "T3": {
+      "evidence_level": "SYNTHETIC_TASK_SPEC_CANDIDATE",
+      "source_correction": "R7_RESOURCE_REQUEST.md does not contain a task pre-state; this makerspace resource request is newly constructed and must not be called archival or real.",
+      "task": "An independent design team requests a two-hour makerspace laser-cutter slot, technician operation, purpose limitation, revocation rights, and acceptance of one exact prototype.",
+      "truth_owners": {
+        "Attempt": "makerspace-job-controller",
+        "Effect": "makerspace-machine-job-ledger",
+        "Adoption": "requester-prototype-inventory",
+        "Acceptance": "requester-design-principal",
+        "Settlement": "makerspace-finance-ledger"
+      }
+    },
+    "T6": {
+      "evidence_level": "MUTATION_REPLAY_SPEC",
+      "task": "Repeat the read-only pilot after a container upgrade; the public transcript is identical across a pair whose unexpressed sidecar-account dependency is respectively current or revoked.",
+      "truth_owners": {
+        "Attempt": "current-executor-authority",
+        "Effect": "buyer-target-domain",
+        "Adoption": "buyer-operational-owner",
+        "Acceptance": "buyer-principal",
+        "Settlement": "buyer-accounting-authority",
+        "Reopen": "dependency-and-current-head-owners"
+      }
+    }
+  },
+  "worlds": [
+    {
+      "opaque_id": "ep-7c2f91a4",
+      "task": "T2",
+      "public": {
+        "episode_kind": "CROSS_AUTHORITY_EXECUTION",
+        "workflow_status": "COMPLETED",
+        "outbox_status": "PUBLISHED",
+        "cloud_event_status": "DELIVERED",
+        "timeout_position": "NONE",
+        "causal_identity": "cid-0d9b",
+        "public_dependency_coverage": "COMPLETE_FOR_THIS_ONE_SHOT",
+        "public_changed_nodes": [],
+        "all_active_nodes": []
+      },
+      "truth": {
+        "layers": {
+          "Attempt": {
+            "owner": "service-execution-ledger",
+            "state": "TRUE"
+          },
+          "Effect": {
+            "owner": "buyer-sandbox-audit",
+            "state": "FALSE"
+          },
+          "Adoption": {
+            "owner": "buyer-service-operations-backlog",
+            "state": "FALSE"
+          },
+          "Acceptance": {
+            "owner": "buyer-business-principal",
+            "state": "REFUSED"
+          },
+          "Settlement": {
+            "owner": "buyer-procurement-ledger",
+            "state": "PENDING"
+          }
+        },
+        "effect_count_before_recovery": 0,
+        "retry_with_new_identity_adds_effect": false,
+        "recovery_opportunity": false,
+        "expected_reopen": null
+      }
+    },
+    {
+      "opaque_id": "ep-a10d6e53",
+      "task": "T3",
+      "public": {
+        "episode_kind": "CROSS_AUTHORITY_EXECUTION",
+        "workflow_status": "COMPLETED",
+        "outbox_status": "PUBLISHED",
+        "cloud_event_status": "DELIVERED",
+        "timeout_position": "AFTER_TARGET_COMMIT_BEFORE_ACK",
+        "causal_identity": "cid-a771",
+        "public_dependency_coverage": "COMPLETE_FOR_THIS_ONE_SHOT",
+        "public_changed_nodes": [],
+        "all_active_nodes": []
+      },
+      "truth": {
+        "layers": {
+          "Attempt": {
+            "owner": "makerspace-job-controller",
+            "state": "TRUE"
+          },
+          "Effect": {
+            "owner": "makerspace-machine-job-ledger",
+            "state": "TRUE"
+          },
+          "Adoption": {
+            "owner": "requester-prototype-inventory",
+            "state": "TRUE"
+          },
+          "Acceptance": {
+            "owner": "requester-design-principal",
+            "state": "TRUE"
+          },
+          "Settlement": {
+            "owner": "makerspace-finance-ledger",
+            "state": "PENDING"
+          }
+        },
+        "effect_count_before_recovery": 1,
+        "retry_with_new_identity_adds_effect": true,
+        "recovery_opportunity": true,
+        "expected_reopen": null
+      }
+    },
+    {
+      "opaque_id": "ep-3b8f64c2",
+      "task": "T6",
+      "pair_id": "hidden-dependency-pair-01",
+      "public": {
+        "episode_kind": "REPEAT_AFTER_MODEL_UPGRADE",
+        "workflow_status": "COMPLETED",
+        "outbox_status": "PUBLISHED",
+        "cloud_event_status": "DELIVERED",
+        "timeout_position": "NONE",
+        "causal_identity": "cid-70b5",
+        "public_dependency_coverage": "PARTIAL_UNKNOWN",
+        "public_changed_nodes": [
+          "container-v2"
+        ],
+        "all_active_nodes": [
+          "container-v2",
+          "sidecar-account",
+          "buyer-sandbox",
+          "backlog-rule-v1"
+        ],
+        "dependency_query_contract": "owner-current-head-query-v1"
+      },
+      "truth": {
+        "layers": {
+          "Attempt": {
+            "owner": "current-executor-authority",
+            "state": "TRUE"
+          },
+          "Effect": {
+            "owner": "buyer-target-domain",
+            "state": "TRUE"
+          },
+          "Adoption": {
+            "owner": "buyer-operational-owner",
+            "state": "TRUE"
+          },
+          "Acceptance": {
+            "owner": "buyer-principal",
+            "state": "TRUE"
+          },
+          "Settlement": {
+            "owner": "buyer-accounting-authority",
+            "state": "TRUE"
+          }
+        },
+        "effect_count_before_recovery": 1,
+        "retry_with_new_identity_adds_effect": false,
+        "hidden_dependency_state": "CURRENT",
+        "dependency_query_response": "CURRENT",
+        "recovery_opportunity": false,
+        "expected_reopen": {
+          "action": "CONTINUE",
+          "closure": []
+        }
+      }
+    },
+    {
+      "opaque_id": "ep-f5d1a08e",
+      "task": "T6",
+      "pair_id": "hidden-dependency-pair-01",
+      "public": {
+        "episode_kind": "REPEAT_AFTER_MODEL_UPGRADE",
+        "workflow_status": "COMPLETED",
+        "outbox_status": "PUBLISHED",
+        "cloud_event_status": "DELIVERED",
+        "timeout_position": "NONE",
+        "causal_identity": "cid-70b5",
+        "public_dependency_coverage": "PARTIAL_UNKNOWN",
+        "public_changed_nodes": [
+          "container-v2"
+        ],
+        "all_active_nodes": [
+          "container-v2",
+          "sidecar-account",
+          "buyer-sandbox",
+          "backlog-rule-v1"
+        ],
+        "dependency_query_contract": "owner-current-head-query-v1"
+      },
+      "truth": {
+        "layers": {
+          "Attempt": {
+            "owner": "current-executor-authority",
+            "state": "TRUE"
+          },
+          "Effect": {
+            "owner": "buyer-target-domain",
+            "state": "TRUE"
+          },
+          "Adoption": {
+            "owner": "buyer-operational-owner",
+            "state": "TRUE"
+          },
+          "Acceptance": {
+            "owner": "buyer-principal",
+            "state": "TRUE"
+          },
+          "Settlement": {
+            "owner": "buyer-accounting-authority",
+            "state": "TRUE"
+          }
+        },
+        "effect_count_before_recovery": 1,
+        "retry_with_new_identity_adds_effect": false,
+        "hidden_dependency_state": "REVOKED",
+        "dependency_query_response": "REVOKED",
+        "recovery_opportunity": true,
+        "expected_reopen": {
+          "action": "LOCAL_REOPEN",
+          "closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox"
+          ]
+        }
+      }
+    }
+  ]
+}

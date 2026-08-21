@@ -1,0 +1,91 @@
+{
+  "fragment_version": "wave010-x1-m01-g5-domain-v0",
+  "authority_domain_id": "independent-validation-domain",
+  "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+  "applies_to_episode_keys": [
+    "765f0698-edb8-459d-bba6-ceb0ae154e51",
+    "d952741e-11f8-44db-a98d-7a34c12e6801"
+  ],
+  "truth_owner": {
+    "principal_id": "independent-estuary-validation-lab",
+    "controller_id": "independent-validation-governance-board",
+    "agent_entity_id": "independent-validation-witness-agent",
+    "owner_key_id": "independent-validation-domain:owner-key:v1",
+    "private_key_material_included": false,
+    "exclusive_signing_scope": [
+      "validation mandate",
+      "independent witness stance",
+      "independent validation commitment"
+    ],
+    "may_not_sign_for_other_domains": true,
+    "controlled_by_delta_calibration": false
+  },
+  "ledger_candidates": {
+    "genesis_candidate_id": "independent-validation-domain:ledger-genesis:v0",
+    "root_candidate_id": "independent-validation-domain:ledger-root:v0",
+    "root_preimage_rule": "canonical JSON object containing authority_domain_id, relation_coordinate, truth_owner, private_truth, and not_run_boundary",
+    "root_candidate_sha256": "85af09cf9381386c31d791f275c84103bbc7f53c6de35b927414c08d49e3ee35",
+    "status": "CANDIDATE_UNSEALED_NOT_RUN"
+  },
+  "private_truth": {
+    "s0": {
+      "relation_formation_state": "PROPOSAL_NOT_FORMED",
+      "mandate": {
+        "mandate_id": "mandate-independent-validation-joint-bid-0001",
+        "version_head": "mandate-independent-validation-joint-bid-0001@v2",
+        "revocation_head": "mandate-independent-validation-joint-bid-0001/revocations@seq-0",
+        "status": "CURRENT_ACTIVE_EXACT_SCOPE",
+        "owner_receipt_id": "independent-validation-domain:mandate-owner-receipt@v2",
+        "exact_scope": "independently decide the witness role and issue validation-domain stance, commitment, and validation evidence"
+      },
+      "stance": {
+        "status": "NOT_RECORDED_AT_S0",
+        "version_head": null,
+        "owner_receipt_id": null
+      },
+      "commitment": {
+        "candidate_id": "commitment-independent-validation-joint-bid-0001",
+        "status": "NOT_CREATED_AT_S0",
+        "version_head": null,
+        "revocation_head": null,
+        "owner_receipt_id": null
+      }
+    },
+    "transition_receipt_rules": [
+      {
+        "transition": "S0_TO_CURRENT_STANCE",
+        "requires": [
+          "owner-signed G2 formed receipt@v1",
+          "receipt relation coordinate equals relation-estuary-sensor-calibration-joint-bid@v1",
+          "current mandate owner receipt",
+          "independence from delta calibration remains current"
+        ],
+        "effect": "owner may create a current attributable independent witness stance receipt",
+        "only_valid_signer_key_id": "independent-validation-domain:owner-key:v1"
+      },
+      {
+        "transition": "CURRENT_STANCE_TO_COMMITMENT",
+        "requires": [
+          "current independent validation stance owner receipt",
+          "current exact-scope mandate head",
+          "no unresolved validation-domain challenge",
+          "independence remains current"
+        ],
+        "effect": "owner may create the independent validation commitment and receipt",
+        "only_valid_signer_key_id": "independent-validation-domain:owner-key:v1"
+      }
+    ],
+    "forbidden": [
+      "delta calibration controls or signs the witness receipt",
+      "program coordinator signs the witness receipt",
+      "G5 evaluator signs the witness receipt",
+      "sign another domain stance or commitment"
+    ]
+  },
+  "not_run_boundary": {
+    "run_state": "NOT_RUN",
+    "stance_receipt_created": false,
+    "commitment_receipt_created": false,
+    "formal_status_changed": false
+  }
+}

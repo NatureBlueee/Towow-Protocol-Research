@@ -1,0 +1,251 @@
+{
+  "schema_version": "2.0",
+  "fixture_id": "WAVE-010-G4-RELIANCE-FRONTIER-V2",
+  "status": "LOCAL_SYNTHETIC_PUBLIC_PACKETS",
+  "method_input_rule": "worker receives only a randomized serialization of expanded method_packet plus fresh opaque packet_id and run_nonce",
+  "templates": {
+    "T2_CURRENT": {
+      "declaration": "ACTIVE",
+      "readiness": "HEALTHY",
+      "operation": "RUN-READONLY-AGGREGATES-v1",
+      "executor": "provider-container@sha256:111",
+      "environment": "buyer-sandbox@2026.07",
+      "exact_probe": {
+        "status": "PASS",
+        "binding_matches": true,
+        "head_current": true
+      },
+      "permission": {
+        "status": "ACTIVE",
+        "head_current": true
+      },
+      "reservation": {
+        "required": true,
+        "status": "VALID",
+        "current": true
+      },
+      "telemetry": "STABLE",
+      "attestation": "CURRENT",
+      "recovery_evidence": "PASS",
+      "dependency": {
+        "kind": "NONE",
+        "query_supported": false,
+        "query_result": "NOT_REQUIRED"
+      },
+      "human": {
+        "required": false,
+        "owner_stance": "NOT_REQUIRED"
+      }
+    },
+    "T4_CURRENT": {
+      "declaration": "ACTIVE",
+      "readiness": "HEALTHY",
+      "operation": "PRIME-v5+FIELD-fw17+ASSURE-audit2",
+      "executor": "three-principal-joint-chain",
+      "environment": "city-tender@addendum-3",
+      "exact_probe": {
+        "status": "PASS",
+        "binding_matches": true,
+        "head_current": true
+      },
+      "permission": {
+        "status": "ACTIVE",
+        "head_current": true
+      },
+      "reservation": {
+        "required": true,
+        "status": "VALID",
+        "current": true
+      },
+      "telemetry": "STABLE",
+      "attestation": "CURRENT",
+      "recovery_evidence": "PASS",
+      "dependency": {
+        "kind": "DECLARED",
+        "query_supported": true,
+        "query_result": "ACTIVE"
+      },
+      "human": {
+        "required": true,
+        "owner_stance": "APPROVE"
+      }
+    },
+    "T6_HIDDEN": {
+      "declaration": "ACTIVE",
+      "readiness": "HEALTHY",
+      "operation": "REPEAT-READONLY-PILOT-v1",
+      "executor": "provider-container@sha256:111",
+      "environment": "buyer-sandbox@2026.07",
+      "exact_probe": {
+        "status": "PASS",
+        "binding_matches": true,
+        "head_current": true
+      },
+      "permission": {
+        "status": "ACTIVE",
+        "head_current": true
+      },
+      "reservation": {
+        "required": true,
+        "status": "VALID",
+        "current": true
+      },
+      "telemetry": "STABLE",
+      "attestation": "CURRENT",
+      "recovery_evidence": "PASS",
+      "dependency": {
+        "kind": "HIDDEN",
+        "query_supported": false,
+        "query_result": "UNAVAILABLE"
+      },
+      "human": {
+        "required": false,
+        "owner_stance": "NOT_REQUIRED"
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_ref": "T2-EXACT-CURRENT-SUCCESS",
+      "task_family": "T2",
+      "split": "DEVELOPMENT",
+      "template": "T2_CURRENT",
+      "overrides": {}
+    },
+    {
+      "case_ref": "T2-HEALTHY-BUT-VERSION-REGRESSED",
+      "task_family": "T2",
+      "split": "DEVELOPMENT",
+      "template": "T2_CURRENT",
+      "overrides": {
+        "operation": "RUN-READONLY-AGGREGATES-v2",
+        "executor": "provider-container@sha256:222",
+        "exact_probe": {
+          "status": "FAIL",
+          "binding_matches": true,
+          "head_current": true
+        }
+      }
+    },
+    {
+      "case_ref": "T2-STALE-ACTIVE-PERMISSION-HEAD",
+      "task_family": "T2",
+      "split": "HELD_OUT",
+      "template": "T2_CURRENT",
+      "overrides": {
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": false
+        }
+      }
+    },
+    {
+      "case_ref": "T2-RECOVERY-UNKNOWN",
+      "task_family": "T2",
+      "split": "HELD_OUT",
+      "template": "T2_CURRENT",
+      "overrides": {
+        "recovery_evidence": "UNKNOWN"
+      }
+    },
+    {
+      "case_ref": "T4-QUALIFIED-AND-RESERVED",
+      "task_family": "T4",
+      "split": "DEVELOPMENT",
+      "template": "T4_CURRENT",
+      "overrides": {}
+    },
+    {
+      "case_ref": "T4-CAPABLE-BUT-RESERVATION-CONFLICT",
+      "task_family": "T4",
+      "split": "DEVELOPMENT",
+      "template": "T4_CURRENT",
+      "overrides": {
+        "reservation": {
+          "required": true,
+          "status": "CONFLICT",
+          "current": true
+        }
+      }
+    },
+    {
+      "case_ref": "T4-MULTI-FAULT",
+      "task_family": "T4",
+      "split": "HELD_OUT",
+      "template": "T4_CURRENT",
+      "overrides": {
+        "exact_probe": {
+          "status": "FAIL",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "REVOKED",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "CONFLICT",
+          "current": true
+        },
+        "human": {
+          "required": true,
+          "owner_stance": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "case_ref": "T6-HIDDEN-DEPENDENCY-VALID",
+      "task_family": "T6",
+      "split": "DEVELOPMENT",
+      "template": "T6_HIDDEN",
+      "overrides": {}
+    },
+    {
+      "case_ref": "T6-HIDDEN-DEPENDENCY-REVOKED",
+      "task_family": "T6",
+      "split": "DEVELOPMENT",
+      "template": "T6_HIDDEN",
+      "overrides": {}
+    },
+    {
+      "case_ref": "T6-QUERYABLE-DEPENDENCY-VALID",
+      "task_family": "T6",
+      "split": "DEVELOPMENT",
+      "template": "T6_HIDDEN",
+      "overrides": {
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "ACTIVE"
+        }
+      }
+    },
+    {
+      "case_ref": "T6-DECLARED-UNQUERYABLE-REVOKED",
+      "task_family": "T6",
+      "split": "HELD_OUT",
+      "template": "T6_HIDDEN",
+      "overrides": {
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": false,
+          "query_result": "UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "case_ref": "T6-QUERYABLE-DEPENDENCY-REVOKED",
+      "task_family": "T6",
+      "split": "DEVELOPMENT",
+      "template": "T6_HIDDEN",
+      "overrides": {
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "REVOKED"
+        }
+      }
+    }
+  ]
+}

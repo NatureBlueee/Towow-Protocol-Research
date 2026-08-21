@@ -1,0 +1,160 @@
+{
+  "artifact_sha256": "23b0896b77c25bcadbbe19199cc20689f7315b7bb70bd074c247b234d2dd23f3",
+  "capsule_file": "recovery-capsule.json",
+  "capsule_file_sha256": "3989bbb51d87c53ce32620b2d7eb211ef18ac215878c640f91074bcc133eacf6",
+  "claim_boundary": "LOCAL_SYNTHETIC_EXISTING_DURABLE_WORKFLOW_LEDGER_FENCE",
+  "controller_processes": {
+    "generation_one_exitcode": 73,
+    "generation_one_pid": 90578,
+    "generation_two_exitcode": 0,
+    "generation_two_pid": 90579
+  },
+  "database_artifacts": {
+    "durable.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "aec95a0f3a6760941502c1c20c8691890eb3a78a6070943ee273b45d904f900c",
+      "standalone": true
+    },
+    "migrated-state.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "eaa3be71ee7e52eb10d21290ab06a038972588d099bd358803980f44e0eb4f61",
+      "standalone": true
+    },
+    "owners/o_p.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "02426afa4bf7910138c8dab6c3441c2b99ec805d5022a96f7f48d95990b297df",
+      "standalone": true
+    },
+    "owners/o_q.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "8d582048d322e99721eb9e40ffa37aead597c0de6df7d19315b8207fc800935d",
+      "standalone": true
+    },
+    "owners/o_v.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "34c705d7a0cf3c75926b93e94270d760dd869981095703a8181aa99b5a868f76",
+      "standalone": true
+    },
+    "source-state.sqlite3": {
+      "checkpoint": "TRUNCATE",
+      "checkpointed_frames": 0,
+      "journal_mode": "delete",
+      "log_frames": 0,
+      "sha256": "3a09b89b59c3770f93f3ab3cd605d9ad9391e85cfe469a2d0693323f76442ee0",
+      "standalone": true
+    }
+  },
+  "evidence_projection": "REMOVE_TARGET_LEDGER_READBACK",
+  "frozen_input": {
+    "frozen_input_sha256": "45a71872ddceb51b0b4f076a269d3159ecd5df95791b9dfaadcce83a9650c6e9",
+    "migrated_epoch": 2,
+    "migrated_public_key_hex": "6c48c84fbfa19abbf9b11e6ed1d72df976fda83f90099838ba75211b7a926442",
+    "migrated_runtime_handle": "runtime-e4596a7fd67c48dfae331051f54a71ba",
+    "migrated_runtime_id": "migrated-5363b666d6be4d0d9fe0026f5e9e3f35",
+    "operation_id": "CE001:VenueV:CircuitC7:3kW:45m",
+    "owner_heads": {
+      "O_P": {
+        "head": {
+          "authority_state": "CURRENT",
+          "operation_id": "CE001:VenueV:CircuitC7:3kW:45m",
+          "owner_id": "O_P",
+          "principal_id": "Principal:O_P",
+          "revision": 1,
+          "schema": "OWNER_HEAD_V1"
+        },
+        "head_hash": "6ba7fa0f6f135273439ff604312aa026c7638870148acc034a2c4abde9657ed6",
+        "principal_id": "Principal:O_P",
+        "public_key_hex": "535fa37f98477cd59b337743a0b51d15c7849ed83430bf06f3557d6628604240"
+      },
+      "O_Q": {
+        "head": {
+          "authority_state": "CURRENT",
+          "operation_id": "CE001:VenueV:CircuitC7:3kW:45m",
+          "owner_id": "O_Q",
+          "principal_id": "Principal:O_Q",
+          "revision": 1,
+          "schema": "OWNER_HEAD_V1"
+        },
+        "head_hash": "6affb3985f0d79b2205ae0e750493710d8179974f2b30527407202732613c3bf",
+        "principal_id": "Principal:O_Q",
+        "public_key_hex": "4524da27e145641fdf279dc865163b2c21dc605d45bfe065e555afb1ae86d31e"
+      },
+      "O_V": {
+        "head": {
+          "authority_state": "CURRENT",
+          "operation_id": "CE001:VenueV:CircuitC7:3kW:45m",
+          "owner_id": "O_V",
+          "principal_id": "Principal:O_V",
+          "revision": 1,
+          "schema": "OWNER_HEAD_V1"
+        },
+        "head_hash": "338067c76c4aab41cd166bd82e590c4bea5231b253419e4feeb945f4b1f47cca",
+        "principal_id": "Principal:O_V",
+        "public_key_hex": "21791c9bf78ccf3fb2ed2b7525fd7dab3b0c9ffbdb6a2fa130dda447f2ba070f"
+      }
+    },
+    "schema": "E6_MIGRATION_FROZEN_INPUT_V1",
+    "source_epoch": 1,
+    "source_public_key_hex": "177fb39552a54c011519ace8e90187dce3b69d26d9b7c725864e8d365ff19177",
+    "source_runtime_handle": "runtime-ee422cd99696417b863b2a1b72c4be94",
+    "source_runtime_id": "source-16d0ef28ff75442598159e8af7892656",
+    "target_authentication_key_sha256": "fc7d359c12674edb5f457b8f79a987beefa82781174045d8d64bba68695394e0",
+    "target_capability_id": "target-cap-2f048e4575eb4e00b1e58100af38a90c",
+    "target_genesis_commit_id": "genesis-909eb72b69f04c7eb032b2d476338336",
+    "target_ledger_id": "target-ledger-963ab0062cd243d797fd0e6c3ab2d4d8",
+    "target_request_id": "target-request-7a7fcf2fcf8b48f5b0e81c417353f8ef",
+    "task": {
+      "deadline_minute": 90,
+      "effect_start_minute": 0,
+      "noise_required": true,
+      "object_id": "CE001:VenueV:CircuitC7:3kW:45m",
+      "operation_id": "CE001:VenueV:CircuitC7:3kW:45m",
+      "other_circuits_energized": [],
+      "power_tolerance_percent": 5,
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "safety_required": true,
+      "schema": "CE001_EXACT_TASK_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "task_sha256": "bfc775c6ef56b9a667838b23f538ffefe3dfed23ff1d2f3b586f01359cb2c17e"
+  },
+  "history_count": 4,
+  "migrated_process": {
+    "exitcode": 0,
+    "pid": 90581
+  },
+  "migration_outcome": {
+    "disposition": "BOUNDED_UNKNOWN/UNRECONCILED_EFFECT",
+    "execute_count": 0,
+    "history_head_hash": "ba208a0c5962c5704e2c77d52a66317761c55cf8aa341e8f8797deafc88560da",
+    "postconditions_ready": false,
+    "schema": "MIGRATION_OUTCOME_V1"
+  },
+  "owner_process_ids": {},
+  "postcondition_count": 0,
+  "schema": "E6_MIGRATION_RUN_ARTIFACT_V1",
+  "source_process": {
+    "exitcode": -15,
+    "pid": 90575,
+    "result_queue_present": false
+  },
+  "store_id": "store-01b7c5d44e0848b5b607ed3347c7c5d8",
+  "target_ledger_file": null
+}

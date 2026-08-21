@@ -1,0 +1,202 @@
+{
+  "schema": "CE001_SEALED_RUN_ADMISSION_CONTRACT_V1",
+  "contract_id": "CE001-SEALED-RUN-ADMISSION@v1",
+  "contract_sha256": "0a6313ae6ec835be6c044dd75cf546db3d63d31f988782962065baaae531f627",
+  "status": "PREREGISTERED_ADMISSION_ONLY_COMPARISON_NOT_RUN",
+  "baseline_binding": {
+    "contract_id": "CE001-A1-A5-FAIR-BASELINES@v1",
+    "path": "wave-021-fair-baselines/BASELINE-CONTRACT.json",
+    "sha256": "91a0e174971782362672e0909240b7f2467d68969a103542282e92c90297a41d"
+  },
+  "problem_source_bindings": [
+    {
+      "path": "problem/v1-candidate.md",
+      "sha256": "7982aa908ce4e457e655fbe553db228f2ab9a09fdaa1202309df261d1bdc4a56"
+    },
+    {
+      "path": "problem/v1-candidate.json",
+      "sha256": "9a59de81ac7c5ca0a42ff012bbade98b4be60978742b3c81d26f9024a3e9b408"
+    },
+    {
+      "path": "problem/v2.md",
+      "sha256": "d305867ca07d02f86daddfe8bb76fc22df5a68ee18edb7ce599e6c03a2ab3cc8"
+    },
+    {
+      "path": "problem/v2.json",
+      "sha256": "cb6d4bd9c5930181df9176957daa144085a3eaf9f1edfc3c3992cd87f94a2f46"
+    }
+  ],
+  "full_task_preimage": {
+    "q_version": "Q@v1",
+    "q_bytes_utf8": "Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.",
+    "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+    "object_id": "PowerOccurrence:VenueV:CircuitC7",
+    "target_id": "VenueV:CircuitC7",
+    "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+    "deadline_minute": 90,
+    "required_duration_minutes": 45,
+    "required_power_kw": 3.0,
+    "power_tolerance_percent": 5,
+    "safety_required": true,
+    "noise_required": true,
+    "acceptance_owners": ["O_Q", "O_V"],
+    "finality_owner": "O_P"
+  },
+  "batch_families": {
+    "direct": [
+      "A1-LAWFUL-CENTER",
+      "A2-EQUAL-INFORMATION-CENTER",
+      "A3-GENERAL-MODEL-MATURE-STACK",
+      "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "A5-BOUNDED-HUMAN-INSTITUTION"
+    ],
+    "combined": [
+      "C1-PUBLIC-AUTHORITY-ROUTER-A1-A4",
+      "C2-MODEL-PLAN-DETERMINISTIC-GATES",
+      "C3-DETERMINISTIC-HUMAN-ESCALATION"
+    ],
+    "mixing_forbidden": true
+  },
+  "authority_policy": {
+    "allowed_strata": ["U", "D", "P"],
+    "witness_algorithm": "ED25519",
+    "witness_verified_before_launch": true,
+    "a1_applicable_strata": ["U", "D"],
+    "a1_plural_status": "NOT_APPLICABLE",
+    "topology_statement_required_fields": [
+      "schema",
+      "world_id",
+      "world_preimage_sha256",
+      "q_sha256",
+      "target_id",
+      "operation_scope",
+      "authority_stratum",
+      "principals",
+      "delegation_ids",
+      "authority_epoch",
+      "valid_at_logical_minute"
+    ]
+  },
+  "candidate_seal_policy": {
+    "one_candidate_per_treatment": true,
+    "alternates_forbidden": true,
+    "sealed_before_world_assignment": true,
+    "required_artifact_slots": ["executable", "model", "prompt", "console"],
+    "model_required_for": [
+      "A3-GENERAL-MODEL-MATURE-STACK",
+      "C2-MODEL-PLAN-DETERMINISTIC-GATES"
+    ],
+    "prompt_required_for": [
+      "A3-GENERAL-MODEL-MATURE-STACK",
+      "C2-MODEL-PLAN-DETERMINISTIC-GATES"
+    ],
+    "console_required_for": [
+      "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "A5-BOUNDED-HUMAN-INSTITUTION",
+      "C3-DETERMINISTIC-HUMAN-ESCALATION"
+    ],
+    "development_fixture_marker_forbidden_in_actual": true
+  },
+  "launch_receipt_policy": {
+    "controller_observed_actual_values_required": true,
+    "required_receipts": [
+      "initial_payload",
+      "argv",
+      "env",
+      "cwd",
+      "process_name",
+      "fd_inventory",
+      "network_inventory",
+      "endpoint_inventory"
+    ],
+    "same_surface_across_treatments": true,
+    "candidate_visible_case_or_stratum_forbidden": true
+  },
+  "failure_trigger_policy": {
+    "basis": "SEMANTIC_NATIVE_BOUNDARY",
+    "frozen_before_launch": true,
+    "required_bindings": [
+      "q_sha256",
+      "target_id",
+      "operation_scope",
+      "equivalent_event_class",
+      "current_owner_head_set",
+      "target_prefix_semantic_digest",
+      "intervention",
+      "fired_status",
+      "fired_count",
+      "pre_state_sha256",
+      "post_state_sha256",
+      "clone_native_event_sha256",
+      "semantic_projection_sha256"
+    ],
+    "allowed_fired_statuses": ["FROZEN_NOT_FIRED", "FIRED", "TRIGGER_NOT_REACHED"],
+    "raw_only_triggers_forbidden": true,
+    "pre_post_required_when_fired": true
+  },
+  "world_clone_policy": {
+    "world_preimage_bytes_required": true,
+    "one_independent_clone_per_treatment": true,
+    "unique_storage_namespace": true,
+    "unique_keyset": true,
+    "shared_mutable_state_forbidden": true,
+    "cross_clone_channels_forbidden": true,
+    "semantic_preimage_equal": true
+  },
+  "runtime_native_receipt_policy": {
+    "required_if_execution_occurs": true,
+    "pre_run_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN",
+    "commit_time_authority_receipt_fields": [
+      "signed_authority_epoch",
+      "q_sha256",
+      "target_id",
+      "operation_scope",
+      "current_at_commit"
+    ],
+    "target_native_receipts": ["EFFECT_COMMIT", "TARGET_STATUS", "TARGET_READBACK"],
+    "owner_native_receipts": ["O_Q_ACCEPTANCE", "O_V_ACCEPTANCE"],
+    "finality_native_receipt": "O_P_FINALITY",
+    "controller_declaration_cannot_substitute": true
+  },
+  "common_budget": {
+    "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+    "limits": {
+      "logical_deadline_minute": 90,
+      "wall_timeout_seconds": 300,
+      "owner_queries_max": 24,
+      "broker_round_trips_max": 48,
+      "target_execute_calls_max": 2,
+      "target_status_or_readback_calls_max": 6,
+      "retry_or_recovery_actions_max": 12,
+      "dynamic_disclosed_bytes_max": 65536,
+      "disclosure_sensitivity_points_max": 32,
+      "evaluated_episode_reruns_max": 0,
+      "grader_feedback_reads_max": 0,
+      "private_truth_reads_max": 0,
+      "prior_arm_transcript_reads_max": 0
+    },
+    "actual_meter_log_required": true,
+    "overrides_forbidden": true,
+    "combined_candidate_single_total_budget": true,
+    "component_budget_grants_forbidden": true
+  },
+  "randomization_replication_ci": {
+    "seed_commitment_before_launch": true,
+    "order_commitment_before_launch": true,
+    "order_evaluator_private": true,
+    "actual_min_replicates_per_world_treatment": 2,
+    "ci_method": "STRATIFIED_NONPARAMETRIC_BOOTSTRAP",
+    "ci_level": 0.95,
+    "ci_only_after_replicates": true,
+    "fixed_stop_rule": "RUN_ALL_SEALED_REPLICATES_THEN_STOP",
+    "optional_stopping_forbidden": true,
+    "repair_requires_new_batch_all_treatments": true
+  },
+  "claim_boundary": {
+    "admission_is_not_execution": true,
+    "development_smoke_unscored": true,
+    "comparison_status": "NOT_RUN",
+    "winner": "NOT_EVALUATED",
+    "ce001_complete_claim_allowed": false
+  }
+}

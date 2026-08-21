@@ -1,0 +1,89 @@
+{
+  "schema_version": "2.0",
+  "fixture_id": "WAVE-010-G4-RELIANCE-FRONTIER-V2",
+  "status": "LOCAL_SYNTHETIC_PRIVATE_ORACLE",
+  "evidence_boundary": "expected_decision and expected_recovery_labels are evaluator labels, not executed recovery postconditions",
+  "cases": {
+    "T2-EXACT-CURRENT-SUCCESS": {
+      "safe_to_rely": true,
+      "expected_decision": "RELY",
+      "expected_recovery_labels": []
+    },
+    "T2-HEALTHY-BUT-VERSION-REGRESSED": {
+      "safe_to_rely": false,
+      "expected_decision": "BLOCK",
+      "expected_recovery_labels": [
+        "REQUALIFY_OPERATION"
+      ]
+    },
+    "T2-STALE-ACTIVE-PERMISSION-HEAD": {
+      "safe_to_rely": false,
+      "expected_decision": "ABSTAIN",
+      "expected_recovery_labels": [
+        "REAUTHORIZE"
+      ]
+    },
+    "T2-RECOVERY-UNKNOWN": {
+      "safe_to_rely": false,
+      "expected_decision": "ABSTAIN",
+      "expected_recovery_labels": [
+        "RECOVERY_REHEARSAL"
+      ]
+    },
+    "T4-QUALIFIED-AND-RESERVED": {
+      "safe_to_rely": true,
+      "expected_decision": "RELY",
+      "expected_recovery_labels": []
+    },
+    "T4-CAPABLE-BUT-RESERVATION-CONFLICT": {
+      "safe_to_rely": false,
+      "expected_decision": "BLOCK",
+      "expected_recovery_labels": [
+        "RE_RESERVE"
+      ]
+    },
+    "T4-MULTI-FAULT": {
+      "safe_to_rely": false,
+      "expected_decision": "BLOCK",
+      "expected_recovery_labels": [
+        "HUMAN_AMEND",
+        "REAUTHORIZE",
+        "REQUALIFY_OPERATION",
+        "RE_RESERVE"
+      ]
+    },
+    "T6-HIDDEN-DEPENDENCY-VALID": {
+      "safe_to_rely": true,
+      "expected_decision": "ABSTAIN",
+      "expected_recovery_labels": [
+        "GLOBAL_REOPEN"
+      ]
+    },
+    "T6-HIDDEN-DEPENDENCY-REVOKED": {
+      "safe_to_rely": false,
+      "expected_decision": "ABSTAIN",
+      "expected_recovery_labels": [
+        "GLOBAL_REOPEN"
+      ]
+    },
+    "T6-QUERYABLE-DEPENDENCY-VALID": {
+      "safe_to_rely": true,
+      "expected_decision": "RELY",
+      "expected_recovery_labels": []
+    },
+    "T6-DECLARED-UNQUERYABLE-REVOKED": {
+      "safe_to_rely": false,
+      "expected_decision": "ABSTAIN",
+      "expected_recovery_labels": [
+        "GLOBAL_REOPEN"
+      ]
+    },
+    "T6-QUERYABLE-DEPENDENCY-REVOKED": {
+      "safe_to_rely": false,
+      "expected_decision": "BLOCK",
+      "expected_recovery_labels": [
+        "REAUTHORIZE_DEPENDENCY"
+      ]
+    }
+  }
+}

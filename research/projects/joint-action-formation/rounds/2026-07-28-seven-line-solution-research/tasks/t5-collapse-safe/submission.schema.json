@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:towow:t5-collapse-safe:submission:v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "method_id",
+    "path_kind",
+    "adapter",
+    "operations",
+    "disclosures",
+    "failure_handling",
+    "cannot_support"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "3.0"
+    },
+    "task_id": {
+      "const": "T5-COLLAPSE-SAFE-SAAS-V3"
+    },
+    "method_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "path_kind": {
+      "enum": [
+        "DIRECT",
+        "LIGHTWEIGHT_ADAPTER"
+      ]
+    },
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "artifact_sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_sha256": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        }
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "op",
+          "authority_source",
+          "inputs"
+        ],
+        "properties": {
+          "op": {
+            "enum": [
+              "READ_CATALOG",
+              "REQUEST_BUYER_APPROVAL",
+              "CREATE_ORDER",
+              "AUTHORIZE_PAYMENT",
+              "READ_PROVISIONING",
+              "READ_INVOICE"
+            ]
+          },
+          "authority_source": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "disclosures": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "recipient",
+          "purpose",
+          "retention",
+          "fields"
+        ],
+        "properties": {
+          "recipient": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "retention": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "failure_handling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ORDER_REJECTED",
+        "PAYMENT_FAILED",
+        "PROVISIONING_FAILED",
+        "CANCELLED"
+      ],
+      "properties": {
+        "ORDER_REJECTED": {
+          "const": "READ_PLATFORM_STATE_AND_STOP"
+        },
+        "PAYMENT_FAILED": {
+          "const": "READ_PLATFORM_STATE_AND_STOP"
+        },
+        "PROVISIONING_FAILED": {
+          "const": "READ_PLATFORM_STATE_AND_STOP"
+        },
+        "CANCELLED": {
+          "const": "READ_PLATFORM_STATE_AND_STOP"
+        }
+      }
+    },
+    "cannot_support": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "path_kind": {
+            "const": "DIRECT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "adapter": {
+            "properties": {
+              "id": {
+                "type": "null"
+              },
+              "artifact_sha256": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "adapter": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

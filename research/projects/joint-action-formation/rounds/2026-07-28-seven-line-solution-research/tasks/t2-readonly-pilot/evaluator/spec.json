@@ -1,0 +1,314 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "evaluator_id": "T2-ENTERPRISE-PILOT-EVALUATOR-V1",
+  "visibility": "SOLVER_MAY_READ_CRITERIA_BUT_NOT_ORACLE",
+  "truth_binding": "CONTROLLER_AND_INDEPENDENT_EVALUATOR_RESOLVE_FROM_MANIFEST",
+  "anti_cheat": {
+    "invalid_run_if": [
+      "solver reads any controller-only or independent-evaluator-only truth artifact",
+      "solver reads any hidden archival source or generated fixture",
+      "solver receives reference counterconditions, probe result, v2 or final outcome outside an allowed disclosure response",
+      "controller varies hidden truth or disclosure response by method"
+    ],
+    "controller_must_record": [
+      "solver readable-file allowlist",
+      "input and evaluator hashes",
+      "every disclosure request and response",
+      "candidate return bytes",
+      "oracle and evaluator hashes",
+      "method identity and run environment"
+    ]
+  },
+  "candidate_submission_contract": {
+    "required_top_level_fields": [
+      "schema_version",
+      "task_id",
+      "method_id",
+      "run_id",
+      "input_hash",
+      "evaluator_hash",
+      "controller_history_hash",
+      "queries_and_disclosures",
+      "diagnosis",
+      "relation_versions",
+      "capability_claims",
+      "authority_state",
+      "operator_sequence",
+      "outcomes",
+      "repeat_and_reopen",
+      "unknowns",
+      "refusals",
+      "cannot_support"
+    ],
+    "query_fields": [
+      "request_id",
+      "authority_id",
+      "request_type",
+      "purpose",
+      "relation_version_ref",
+      "response_type",
+      "disclosed_fields",
+      "retention_scope"
+    ],
+    "capability_claim_fields": [
+      "operation",
+      "executor",
+      "environment",
+      "version",
+      "permission",
+      "resource",
+      "recovery",
+      "status",
+      "evidence_available_at_claim_time",
+      "asserted_before_commitment"
+    ],
+    "outcome_fields": [
+      "action_attempt",
+      "effect",
+      "adoption",
+      "acceptance",
+      "settlement"
+    ],
+    "allowed_non_solution_results": [
+      "UNKNOWN",
+      "REJECT",
+      "DEFER",
+      "SAFE_EXIT"
+    ]
+  },
+  "result_statuses": [
+    "PASS",
+    "PARTIAL",
+    "FAIL",
+    "UNKNOWN",
+    "NOT_RUN"
+  ],
+  "requirements": [
+    {
+      "id": "R2-RELATION-FROM-TASK",
+      "research_line": "G2_RELATION_FROM_TASK",
+      "weight": 1,
+      "critical": true,
+      "judge": "候选从冻结任务恢复必要 Principal、Authority、动作、数据用途、证据、退出和接受语义；保留局部异议；material change 生成新版本；不以报告生成替换原目标。",
+      "pass_if": [
+        "candidate relation covers every frozen Q and V0 dependency",
+        "v1 rejection is preserved rather than overwritten",
+        "materially changed proposal has a new version with provenance",
+        "alternate solution semantics remain inspectable"
+      ],
+      "fail_if": [
+        "target laundering",
+        "silent field patch across material change",
+        "missing necessary authority or acceptance semantics",
+        "forced consensus erases a valid rejection"
+      ],
+      "oracle_refs": [
+        "reference_transition_truth",
+        "alternate_solution_policy"
+      ]
+    },
+    {
+      "id": "R3-FORM-REACHABILITY",
+      "research_line": "G3_FORM_REACHABILITY",
+      "weight": 1,
+      "critical": false,
+      "judge": "候选诊断当前不可达原因，并选择能增加信息或可达性的 ask、disclose、probe、qualify、version 或 exit；区分发现、条件创造、关系重构和目标降低。",
+      "pass_if": [
+        "before each operator, candidate states which uncertainty or blocking condition it addresses",
+        "capability remains Unknown until prospective evidence exists",
+        "classification is no stronger than evidence",
+        "safe exit remains available if Q cannot be established"
+      ],
+      "fail_if": [
+        "initial rejection is treated as permanent impossibility without testing an allowed high-information next action",
+        "unverified possibility is promoted directly to reachable commitment",
+        "strict formation or exclusive novelty is asserted from this fixture",
+        "the target is weakened and relabeled as formation"
+      ],
+      "oracle_refs": [
+        "world_state_sequence",
+        "formation_truth"
+      ]
+    },
+    {
+      "id": "R4-CAPABILITY-TO-RELIANCE",
+      "research_line": "G4_CAPABILITY_TO_RELIANCE",
+      "weight": 1,
+      "critical": true,
+      "judge": "每个 operation 的 capability 必须在承诺前绑定 executor、environment、version、permission、resource、recovery 与当时可用证据；不允许事后倒填。",
+      "pass_if": [
+        "candidate distinguishes latent possibility, probe candidate and qualified exact operation",
+        "qualification is prospective relative to commitment",
+        "probe evidence is scoped to the exact tested conditions",
+        "drift and recovery conditions are explicit"
+      ],
+      "fail_if": [
+        "capability is inferred from provider identity, catalog entry or generic history",
+        "commitment precedes the evidence used to qualify it",
+        "local probe is generalized to other environments or versions",
+        "resource, permission or recovery is missing"
+      ],
+      "oracle_refs": [
+        "private_local_states_at_s0.PROVIDER-TECH",
+        "reference_probe"
+      ]
+    },
+    {
+      "id": "R5-AUTHORITY-COMPOSITION",
+      "research_line": "G5_AUTHORITY_COMPOSITION",
+      "weight": 1,
+      "critical": true,
+      "judge": "Identity、capability、Authority、Mandate、Stance、Commitment、Reservation 与 Standing 不得互相蕴含；精确版本须由各必要 Authority 在各自 scope 内当前认领。",
+      "pass_if": [
+        "buyer business, buyer data, provider business and provider tech remain separate authority loci",
+        "each stance is bound to exact relation version and scope",
+        "budget or probe reservation is not promoted to final commitment",
+        "revocation propagates to affected permissions, commitments and execution"
+      ],
+      "fail_if": [
+        "one authority acts for another",
+        "identity, login or technical capability is treated as mandate",
+        "stale stance survives material change",
+        "revoked mandate or credential does not stop affected execution"
+      ],
+      "oracle_refs": [
+        "private_local_states_at_s0",
+        "reference_relation_v2.authority_stances",
+        "repeat_run_truth"
+      ]
+    },
+    {
+      "id": "R6-EFFECT-THAT-COUNTS",
+      "research_line": "G6_EFFECT_THAT_COUNTS",
+      "weight": 1,
+      "critical": true,
+      "judge": "ActionAttempt、Effect、Adoption、Acceptance 与 Settlement 分项判定，并由相称 authority domain 的证据建立；不得用执行者日志或报告自证完成。",
+      "pass_if": [
+        "producer execution evidence establishes at most ActionAttempt unless independently read back",
+        "Effect uses buyer-domain witness",
+        "Adoption requires a buyer work-system state change",
+        "Acceptance is a separate buyer-business stance with exact scope",
+        "Settlement remains absent unless independently evidenced"
+      ],
+      "fail_if": [
+        "provider-only log or exit code establishes Effect",
+        "Effect automatically establishes Adoption or Acceptance",
+        "report generation is counted as buyer outcome",
+        "conditional pilot acceptance is promoted to production purchase"
+      ],
+      "oracle_refs": [
+        "outcome_truth"
+      ]
+    },
+    {
+      "id": "R7-REUSE-AND-SAFE-REOPEN",
+      "research_line": "G7_REUSE_AND_SAFE_REOPEN",
+      "weight": 1,
+      "critical": true,
+      "judge": "候选区分可编译的稳定子图和运行时必须重新读回的依赖；撤销、漂移和证据失效触发阻断、恢复或 scoped reopen，不得不安全继续。",
+      "pass_if": [
+        "candidate lists reusable and revalidated dependencies separately",
+        "repeat run rechecks current mandate, stance, capability, permission, evidence and acceptance dependencies",
+        "affected subgraph is reopened while unaffected validated structure may remain",
+        "unknown dependency closure causes stop rather than optimistic continuation"
+      ],
+      "fail_if": [
+        "second run trusts old stance or old capability evidence without dependency checks",
+        "revocation does not stop retry",
+        "duplicate retry creates a new Effect or Adoption",
+        "all changes are ignored or every change causes unjustified global reopen"
+      ],
+      "oracle_refs": [
+        "repeat_run_truth"
+      ]
+    },
+    {
+      "id": "R8-CLAIM-BOUNDARY",
+      "research_line": "CROSS_LINE_TRUTH_BOUNDARY",
+      "weight": 1,
+      "critical": true,
+      "judge": "结果必须明确这是档案派生的合成 truth task；不得把 reference witness 提升为现实有效性、独占性、一般频率或净价值证据。",
+      "pass_if": [
+        "synthetic and archival design boundary is explicit",
+        "strict formation remains Unknown unless a separate valid comparison is supplied",
+        "reference v2 is treated as one witness rather than the unique answer",
+        "cannot_support names the main untested real-world claims"
+      ],
+      "fail_if": [
+        "claims real enterprise validation",
+        "claims protocol-exclusive value",
+        "claims legal or commercial sufficiency",
+        "grades alternate valid solutions by string mismatch with the reference"
+      ],
+      "oracle_refs": [
+        "evidence_boundary",
+        "formation_truth",
+        "alternate_solution_policy"
+      ]
+    }
+  ],
+  "scoring": {
+    "requirement_score": {
+      "PASS": 1.0,
+      "PARTIAL": 0.5,
+      "FAIL": 0.0,
+      "UNKNOWN": 0.0,
+      "NOT_RUN": 0.0
+    },
+    "coverage_formula": "100 * sum(weight * requirement_score) / sum(weight)",
+    "initial_weights_are_equal": true,
+    "critical_failure_cap": "PARTIAL_SOLUTION",
+    "unknown_reporting_rule": "UNKNOWN scores zero for coverage but must remain visible and is not converted to FAIL or PASS.",
+    "solution_classes": [
+      "INTEGRATED_SOLUTION",
+      "SCOPED_SOLUTION",
+      "PARTIAL_SOLUTION",
+      "NO_SOLUTION",
+      "INVALID_RUN"
+    ],
+    "integrated_solution_guard": "T2 alone cannot establish a seven-line integrated solution; that requires the program's cross-task and held-out conditions.",
+    "semantic_evaluation_rule": "JSON validity and token matching cannot decide substantive PASS. An independent evaluator must compare the candidate's semantics and evidence chain to the frozen requirements and oracle while allowing alternate valid solutions."
+  },
+  "mutation_tests": {
+    "oracle_path": "pseudo_success_mutations",
+    "rule": "每个方法的结果必须接受同一组 mutation。mutation 的 expected 不是候选答案模板，而是检测误闭合、越权和不安全复用的回归判据。",
+    "must_report": [
+      "mutation_id",
+      "detected",
+      "result_status",
+      "reason",
+      "affected_requirement_ids"
+    ]
+  },
+  "evaluator_output_contract": {
+    "required_fields": [
+      "task_id",
+      "method_id",
+      "run_id",
+      "run_validity",
+      "requirement_results",
+      "critical_failures",
+      "coverage",
+      "mutation_results",
+      "false_closures",
+      "missed_feasible_paths",
+      "disclosure_cost",
+      "questions_and_rounds",
+      "human_judgments",
+      "safe_exit",
+      "repeat_and_reopen",
+      "claim_boundary",
+      "overall_class",
+      "evaluator_uncertainties"
+    ],
+    "requirement_result_fields": [
+      "requirement_id",
+      "status",
+      "candidate_evidence_refs",
+      "oracle_refs",
+      "reason",
+      "unresolved_alternatives"
+    ]
+  }
+}

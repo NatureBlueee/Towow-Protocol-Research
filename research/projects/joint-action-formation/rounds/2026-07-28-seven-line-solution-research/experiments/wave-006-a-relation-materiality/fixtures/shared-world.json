@@ -1,0 +1,167 @@
+{
+  "schema": "towow.relation-materiality-world.v1",
+  "experiment_id": "WAVE-006-A-RELATION-MATERIALITY",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "world_id": "W6-STERILE-ROUTE-WORLD",
+  "evaluation_step": 7,
+  "subjects": [
+    "LAB-SEEK",
+    "LAB-OFFER"
+  ],
+  "recipient": "SIM-RECIPIENT",
+  "beneficiary": "BENEFICIARY-REVIEWER",
+  "anchor": "ANCHOR-W6",
+  "initial_task": {
+    "operation": "RUN-STERILE-ROUTE-SIM-v1",
+    "purpose": "sterile-route-simulation",
+    "retention": "PT7M",
+    "environment_version": "sterile-sim-env-v1",
+    "authorization_epoch": "task-grant-v1",
+    "idempotency_key": "w6-sterile-route-001",
+    "continuity": "ONE_OPERATION_ONLY",
+    "ongoing_relation_authorized": false
+  },
+  "common_truth": {
+    "delivery_receipts": 2,
+    "recipient_commit_acks": 2,
+    "domain_postcondition": "PASS",
+    "beneficiary_acceptance": "ACCEPTED",
+    "accepted_initial_value": 40,
+    "base_disclosure_units": 2,
+    "operation_truth_is_identical_for_all_strategies": true
+  },
+  "explain_backs": [
+    {
+      "issuer": "LAB-SEEK",
+      "understood_purpose": "sterile-route-simulation",
+      "understood_continuity": "ONE_OPERATION_ONLY",
+      "future_task_rule": "FRESH_TASK_AUTHORIZATION_REQUIRED"
+    },
+    {
+      "issuer": "LAB-OFFER",
+      "understood_purpose": "sterile-route-simulation",
+      "understood_continuity": "ONE_OPERATION_ONLY",
+      "future_task_rule": "FRESH_TASK_AUTHORIZATION_REQUIRED"
+    }
+  ],
+  "relation_proposal": {
+    "proposal_id": "REL-PROPOSAL-W6-v1",
+    "version": 1,
+    "bound_operation": "RUN-STERILE-ROUTE-SIM-v1",
+    "bound_purpose": "sterile-route-simulation",
+    "bound_environment_version": "sterile-sim-env-v1",
+    "valid_at_step": 7,
+    "status": "PROPOSED_NOT_CONSTITUTED",
+    "reason": "Both explain-backs retain one-operation-only scope."
+  },
+  "event_sequence": [
+    {
+      "event": "E0",
+      "kind": "DECLARED",
+      "truth": "POSSIBILITY_ONLY"
+    },
+    {
+      "event": "E1",
+      "kind": "PROBED",
+      "truth": "OPERATION_PROBE_SUCCESS",
+      "disturbance": "HOLDER_REVOKED_THEN_REAUTHORIZED_BEFORE_DELIVERY",
+      "recovery_time_steps": 1
+    },
+    {
+      "event": "E2",
+      "kind": "DELIVERED",
+      "truth": "TWO_DELIVERY_RECEIPTS"
+    },
+    {
+      "event": "E3",
+      "kind": "ACKED",
+      "truth": "TWO_RECIPIENT_COMMIT_ACKS",
+      "disturbances": [
+        "DELAYED_SECOND_ACK",
+        "SINGLE_SIDE_PARTIAL_MATERIALIZATION"
+      ],
+      "recovery_time_steps": 1
+    },
+    {
+      "event": "E4",
+      "kind": "DOMAIN_POSTCONDITION",
+      "truth": "FROZEN_OUTPUT_PRODUCED"
+    },
+    {
+      "event": "E5",
+      "kind": "ACCEPTED",
+      "truth": "BENEFICIARY_ACCEPTED_EXACT_OUTPUT",
+      "negative_branch": "BENEFICIARY_REFUSAL_MUST_REMAIN_REFUSE"
+    },
+    {
+      "event": "E6",
+      "kind": "REUSE_REQUEST",
+      "truth": "VALID_ONLY_AFTER_FRESH_TASK_AUTHORIZATION",
+      "request": {
+        "operation": "RUN-STERILE-ROUTE-SIM-v1.1",
+        "purpose": "sterile-route-simulation",
+        "retention": "PT7M",
+        "environment_version": "sterile-sim-env-v1",
+        "schema_alias": "simulation_window->sterile_simulation_window",
+        "semantic_change": false,
+        "fresh_task_authorization_available": true
+      },
+      "expected_action": "CLARIFY_REAUTHORIZE_EXECUTE",
+      "accepted_value": 20
+    },
+    {
+      "event": "E7",
+      "kind": "DRIFT",
+      "cases": [
+        {
+          "case": "EXACT_REPLAY",
+          "expected": "EXACT_REPLAY",
+          "status_class": "ABSENT"
+        },
+        {
+          "case": "SCHEMA_COMPATIBLE_ALIAS",
+          "expected": "USE_FRESH_TASK_AUTHORIZATION",
+          "status_class": "ABSENT"
+        },
+        {
+          "case": "RECIPIENT_KEY_ROTATION_WITHOUT_NEW_ACK",
+          "expected": "UNKNOWN",
+          "status_class": "UNKNOWN"
+        },
+        {
+          "case": "ENVIRONMENT_VERSION_DRIFT",
+          "expected": "UNKNOWN",
+          "status_class": "UNKNOWN"
+        },
+        {
+          "case": "SAME_KEY_CHANGED_COMMAND",
+          "expected": "REFUSE",
+          "status_class": "REFUSE"
+        },
+        {
+          "case": "ANCHOR_FORK",
+          "expected": "REFUSE",
+          "status_class": "REFUSE"
+        },
+        {
+          "case": "MATERIAL_PURPOSE_CHANGE",
+          "expected": "REFUSE",
+          "status_class": "REFUSE"
+        },
+        {
+          "case": "BENEFICIARY_REFUSAL",
+          "expected": "REFUSE",
+          "status_class": "REFUSE"
+        }
+      ]
+    },
+    {
+      "event": "E8",
+      "kind": "WITHDRAW_OR_RECOVER",
+      "truth": "BOTH_SUBJECTS_WITHDRAW_ANY_CONTINUITY_CLAIM",
+      "post_withdrawal_request": "REFUSE",
+      "required_residual_active_relation_count": 0
+    }
+  ]
+}

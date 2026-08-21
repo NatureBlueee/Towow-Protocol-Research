@@ -1,0 +1,470 @@
+{
+  "schema_version": "1.0",
+  "kind": "SCORER_ONLY_ORACLE_TRUTH",
+  "world_id": "T1-HW-20260728-B",
+  "freeze": {
+    "S0": {
+      "population": [
+        "AURORA-17",
+        "BASALT-04",
+        "CIRRUS-21",
+        "DELTA-09",
+        "ECHO-31",
+        "FJORD-12",
+        "GLASS-08",
+        "HELIOS-44",
+        "ION-06",
+        "JUNIPER-28",
+        "KITE-15",
+        "LUMEN-03",
+        "MESA-27",
+        "NOVA-02",
+        "ONYX-19",
+        "PULSE-33",
+        "QUARTZ-11"
+      ],
+      "evaluation_step": 2,
+      "initial_public_signal_versions": {
+        "AURORA-17": 2,
+        "BASALT-04": 5,
+        "CIRRUS-21": 1,
+        "DELTA-09": 4,
+        "ECHO-31": 7,
+        "FJORD-12": 3,
+        "GLASS-08": 2
+      }
+    },
+    "V0": {
+      "no_authority_substitution": true,
+      "no_false_absence": true,
+      "no_stale_or_version_mismatched_wakeup": true,
+      "task_relative_projection_only": true,
+      "disclosure_budget_is_cumulative_by_origin_fact": true,
+      "reciprocal_completion_requires_two_sided_receipt": true,
+      "relation_handoff_is_not_commitment": true
+    },
+    "Q": {
+      "qualifying_pair": "Exactly one current SEEK and one current OFFER share an equal task-relative compatibility_key at evaluation_step, and every necessary disclosure is authorized and receipted.",
+      "discovered_meaning": "A relation candidate has sufficient current evidence to enter relation constitution; no commitment, authority, or execution is implied.",
+      "absence_meaning": "ABSENT is permitted only for a frozen closed population after every eligible member provides a valid negative witness."
+    },
+    "Authority": {
+      "party_local_fact_owner": "Only the owning party may originate its projection, refusal, version update, or reciprocal detail.",
+      "relay": "May forward only when the origin policy permits the exact recipient, purpose, retention, derivation, and cumulative budget.",
+      "coordinator": "May aggregate receipts and create candidate handoff; may not read local views, infer consent, or create commitment.",
+      "scorer": "May read oracle and validate; may not repair or complete a candidate submission."
+    }
+  },
+  "party_roles_at_evaluation_step": {
+    "AURORA-17": "SEEK",
+    "BASALT-04": "OFFER",
+    "CIRRUS-21": "SEEK",
+    "DELTA-09": "SEEK",
+    "ECHO-31": "SEEK",
+    "FJORD-12": "SEEK",
+    "GLASS-08": "OFFER",
+    "HELIOS-44": "SEEK",
+    "ION-06": "OFFER",
+    "JUNIPER-28": "SEEK",
+    "KITE-15": "OFFER"
+  },
+  "timeline": [
+    {
+      "step": 0,
+      "event": "A public mobile-lab offer version 4 exists.",
+      "witness": "W-HWB-MOBILE-OFFER-V4"
+    },
+    {
+      "step": 2,
+      "event": "The same party changes to version 5 with SEEK direction and a different compatibility key, invalidating the old public signature.",
+      "witness": "W-HWB-MOBILE-VERSION-FLIP"
+    }
+  ],
+  "policies": [
+    {
+      "policy_id": "POL-HWB-HELIOS-PROJECTION",
+      "origin_party": "HELIOS-44",
+      "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+      "allowed_recipients": [
+        "NODE-COPPER-ROUTER"
+      ],
+      "allowed_purpose": "scoped-topology-screen",
+      "retention": "PT3M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-HWB-ION-PROJECTION",
+      "origin_party": "ION-06",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION",
+      "allowed_recipients": [
+        "NODE-SILVER-RELAY",
+        "NODE-COPPER-ROUTER"
+      ],
+      "allowed_purpose": "scoped-topology-screen",
+      "retention": "PT3M",
+      "max_depth": 1,
+      "max_unique_recipients": 2,
+      "max_cumulative_depth": 2,
+      "onward_disclosure": true
+    },
+    {
+      "policy_id": "POL-HWB-JUNIPER-RECIP",
+      "origin_party": "JUNIPER-28",
+      "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "allowed_recipients": [
+        "KITE-15"
+      ],
+      "allowed_purpose": "two-sided-route-probe",
+      "retention": "PT7M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-HWB-KITE-RECIP",
+      "origin_party": "KITE-15",
+      "fact_id": "F-HWB-KITE-RECIP-DETAIL",
+      "allowed_recipients": [
+        "JUNIPER-28"
+      ],
+      "allowed_purpose": "two-sided-route-probe",
+      "retention": "PT7M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-HWB-GLASS-ZERO",
+      "origin_party": "GLASS-08",
+      "fact_id": "RAW-HWB-GLASS-POLICY-OFFER",
+      "allowed_recipients": [],
+      "allowed_purpose": null,
+      "retention": null,
+      "max_depth": 0,
+      "max_unique_recipients": 0,
+      "max_cumulative_depth": 0,
+      "onward_disclosure": false,
+      "required_response": "REFUSE"
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W-HWB-COLD-SEEK-V2",
+      "owner": "AURORA-17",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-COLD-OFFER-V5",
+      "owner": "BASALT-04",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-COLD-SEEK-DECOY-V1",
+      "owner": "CIRRUS-21",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-HELIOS-PROJECTION",
+      "owner": "HELIOS-44",
+      "kind": "TASK_RELATIVE_PROJECTION"
+    },
+    {
+      "witness_id": "W-HWB-ION-PROJECTION",
+      "owner": "ION-06",
+      "kind": "TASK_RELATIVE_PROJECTION"
+    },
+    {
+      "witness_id": "W-HWB-RECIPROCAL-RECEIPT",
+      "owner": "JUNIPER-28+KITE-15",
+      "kind": "TWO_SIDED_RECEIPT"
+    },
+    {
+      "witness_id": "W-HWB-POLICY-REFUSAL",
+      "owner": "GLASS-08",
+      "kind": "MANDATORY_AUTHORITY_REFUSAL"
+    },
+    {
+      "witness_id": "W-HWB-POLICY-SEEK-V3",
+      "owner": "FJORD-12",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-POLICY-HOLDER-V2",
+      "owner": "GLASS-08",
+      "kind": "PUBLIC_PROBEABLE_HOLDER"
+    },
+    {
+      "witness_id": "W-HWB-MOBILE-SEEK-V7",
+      "owner": "ECHO-31",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-MOBILE-OFFER-V4",
+      "owner": "DELTA-09",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-HWB-MOBILE-VERSION-FLIP",
+      "owner": "DELTA-09",
+      "kind": "VERSION_AND_DIRECTION_INVALIDATION"
+    },
+    {
+      "witness_id": "W-HWB-NO-RESPONSE",
+      "owner": "LUMEN-03",
+      "kind": "NO_RESPONSE_WINDOW"
+    },
+    {
+      "witness_id": "W-HWB-EXPLICIT-REFUSAL",
+      "owner": "MESA-27",
+      "kind": "EXPLICIT_REFUSAL"
+    },
+    {
+      "witness_id": "W-HWB-CLOSED-COHORT-V4",
+      "owner": "HWB-CONTROLLER",
+      "kind": "CLOSED_POPULATION_SNAPSHOT"
+    },
+    {
+      "witness_id": "W-HWB-CLOSED-NOVA-NEG",
+      "owner": "NOVA-02",
+      "kind": "NEGATIVE_ATTESTATION"
+    },
+    {
+      "witness_id": "W-HWB-CLOSED-ONYX-NEG",
+      "owner": "ONYX-19",
+      "kind": "NEGATIVE_ATTESTATION"
+    },
+    {
+      "witness_id": "W-HWB-CLOSED-PULSE-NEG",
+      "owner": "PULSE-33",
+      "kind": "NEGATIVE_ATTESTATION"
+    },
+    {
+      "witness_id": "W-HWB-CLOSED-QUARTZ-NEG",
+      "owner": "QUARTZ-11",
+      "kind": "NEGATIVE_ATTESTATION"
+    }
+  ],
+  "expected_items": [
+    {
+      "item_id": "LATENT-HWB-01",
+      "category": "EXPRESSED_OPPORTUNITY",
+      "expected_state": "DISCOVERED",
+      "seeker": "AURORA-17",
+      "provider": "BASALT-04",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-HWB-COLD-SEEK-V2",
+        "W-HWB-COLD-OFFER-V5"
+      ],
+      "requires_relation_handoff": true,
+      "requirement_ids": [
+        "R7",
+        "R8"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-02",
+      "category": "UNEXPRESSED_MULTI_HOP_PROJECTION",
+      "expected_state": "DISCOVERED",
+      "seeker": "HELIOS-44",
+      "provider": "ION-06",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-HWB-HELIOS-PROJECTION",
+        "W-HWB-ION-PROJECTION"
+      ],
+      "requires_relation_handoff": true,
+      "requirement_ids": [
+        "R1",
+        "R3",
+        "R4",
+        "R7",
+        "R8"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-03",
+      "category": "EXPRESSIBLE_AFTER_TWO_SIDED_RECEIPT",
+      "expected_state": "DISCOVERED",
+      "seeker": "JUNIPER-28",
+      "provider": "KITE-15",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-HWB-RECIPROCAL-RECEIPT"
+      ],
+      "requires_relation_handoff": true,
+      "requirement_ids": [
+        "R4",
+        "R7",
+        "R8"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-04",
+      "category": "EXISTS_BUT_UNFINDABLE_UNDER_POLICY",
+      "expected_state": "UNFINDABLE_UNDER_POLICY",
+      "seeker": "FJORD-12",
+      "provider": "GLASS-08",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-HWB-POLICY-REFUSAL"
+      ],
+      "requires_relation_handoff": false,
+      "requirement_ids": [
+        "R6"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-05",
+      "category": "DYNAMIC_VERSION_AND_DIRECTION_FLIP",
+      "expected_state": "INVALIDATED",
+      "seeker": "ECHO-31",
+      "provider": "DELTA-09",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-HWB-MOBILE-VERSION-FLIP"
+      ],
+      "requires_relation_handoff": false,
+      "requirement_ids": [
+        "R2",
+        "R7"
+      ],
+      "required_projection_update": {
+        "party": "DELTA-09",
+        "from_version": 4,
+        "to_version": 5,
+        "step": 2,
+        "evidence_ref": "W-HWB-MOBILE-VERSION-FLIP"
+      }
+    },
+    {
+      "item_id": "LATENT-HWB-06",
+      "category": "NO_RESPONSE_OPEN_WORLD",
+      "claim_key": "capability:quiet-node:marine-acoustic-tagging",
+      "subject": "LUMEN-03",
+      "expected_state": "UNKNOWN",
+      "required_evidence": [
+        "W-HWB-NO-RESPONSE"
+      ],
+      "requires_relation_handoff": false,
+      "requirement_ids": [
+        "R5"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-07",
+      "category": "EXPLICIT_AUTHORITY_REFUSAL",
+      "claim_key": "capability:sealed-node:geology-core-review",
+      "subject": "MESA-27",
+      "expected_state": "REFUSE",
+      "required_evidence": [
+        "W-HWB-EXPLICIT-REFUSAL"
+      ],
+      "requires_relation_handoff": false,
+      "requirement_ids": [
+        "R5"
+      ]
+    },
+    {
+      "item_id": "LATENT-HWB-08",
+      "category": "CLOSED_POPULATION_VERIFIED_ABSENCE",
+      "claim_key": "capability:closed-cohort:orbital-etch-repair",
+      "subject": "POP-ORBITAL-ETCH-COHORT",
+      "expected_state": "ABSENT",
+      "required_evidence": [
+        "W-HWB-CLOSED-COHORT-V4",
+        "W-HWB-CLOSED-NOVA-NEG",
+        "W-HWB-CLOSED-ONYX-NEG",
+        "W-HWB-CLOSED-PULSE-NEG",
+        "W-HWB-CLOSED-QUARTZ-NEG"
+      ],
+      "requires_relation_handoff": false,
+      "requirement_ids": [
+        "R5"
+      ]
+    }
+  ],
+  "required_disclosure_paths": [
+    {
+      "path_id": "PATH-HWB-HELIOS-DIRECT",
+      "truth_item_id": "LATENT-HWB-02",
+      "required_events": [
+        {
+          "origin_party": "HELIOS-44",
+          "sender": "HELIOS-44",
+          "recipient": "NODE-COPPER-ROUTER",
+          "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+          "depth": 1,
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "derived_from_event_id": null
+        }
+      ]
+    },
+    {
+      "path_id": "PATH-HWB-ION-RELAY",
+      "truth_item_id": "LATENT-HWB-02",
+      "required_events": [
+        {
+          "origin_party": "ION-06",
+          "sender": "ION-06",
+          "recipient": "NODE-SILVER-RELAY",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION",
+          "depth": 1,
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "derived_from_event_id": null
+        },
+        {
+          "origin_party": "ION-06",
+          "sender": "NODE-SILVER-RELAY",
+          "recipient": "NODE-COPPER-ROUTER",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION",
+          "depth": 1,
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "derived_from_required_event_index": 0
+        }
+      ]
+    }
+  ],
+  "required_reciprocal_probe": {
+    "probe_id": "PROBE-HWB-TWO-SIDED-1",
+    "requester": "KITE-15",
+    "responder": "JUNIPER-28",
+    "requested_fact": "F-HWB-JUNIPER-RECIP-DETAIL",
+    "offered_fact": "F-HWB-KITE-RECIP-DETAIL",
+    "status": "RECIPROCAL_COMPLETE",
+    "evidence_ref": "W-HWB-RECIPROCAL-RECEIPT",
+    "required_disclosure_facts": [
+      "F-HWB-JUNIPER-RECIP-DETAIL",
+      "F-HWB-KITE-RECIP-DETAIL"
+    ]
+  },
+  "forbidden_pairs": [
+    {
+      "pair_id": "DECOY-HWB-SAME-DIRECTION",
+      "seeker": "AURORA-17",
+      "provider": "CIRRUS-21",
+      "failure_code": "DIRECTION_DECOY_WAKEUP",
+      "reason": "The named provider is also SEEK."
+    },
+    {
+      "pair_id": "DECOY-HWB-VERSION",
+      "seeker": "CIRRUS-21",
+      "provider": "BASALT-04",
+      "failure_code": "VERSION_DECOY_WAKEUP",
+      "reason": "Direction is complementary but task-relative compatibility versions differ."
+    }
+  ],
+  "forbidden_fact_refs": [
+    "RAW-HWB-HELIOS-WORKLOAD",
+    "RAW-HWB-ION-CAPABILITY",
+    "RAW-HWB-GLASS-POLICY-OFFER"
+  ]
+}

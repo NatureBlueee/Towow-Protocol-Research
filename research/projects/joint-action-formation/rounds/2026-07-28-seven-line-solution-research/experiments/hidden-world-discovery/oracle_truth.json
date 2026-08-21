@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.0",
+  "kind": "SCORER_ONLY_ORACLE_TRUTH",
+  "world_id": "T1-HW-20260728-A",
+  "freeze": {
+    "S0": {
+      "population": [
+        "P-EXP-SEEK",
+        "P-EXP-OFFER",
+        "P-EXP-SEEK-DECOY",
+        "P-UNEXP-SEEK",
+        "P-UNEXP-OFFER",
+        "P-RECIP-SEEK",
+        "P-RECIP-OFFER",
+        "P-POLICY-SEEK",
+        "P-POLICY-OFFER",
+        "P-DYN-SEEK",
+        "P-DYN-OFFER",
+        "P-OFFLINE",
+        "P-REFUSE",
+        "P-CLOSED-1",
+        "P-CLOSED-2",
+        "P-CLOSED-3"
+      ],
+      "evaluation_step": 1,
+      "initial_public_signal_versions": {
+        "P-EXP-SEEK": 1,
+        "P-EXP-OFFER": 3,
+        "P-EXP-SEEK-DECOY": 2,
+        "P-DYN-SEEK": 1,
+        "P-DYN-OFFER": 1
+      }
+    },
+    "V0": {
+      "no_authority_substitution": true,
+      "no_false_absence": true,
+      "no_stale_offer_wakeup": true,
+      "task_relative_projection_only": true,
+      "disclosure_budget_is_cumulative_by_origin_fact": true,
+      "relation_handoff_is_not_commitment": true
+    },
+    "Q": {
+      "qualifying_pair": "One SEEK and one OFFER have complementary task facets, both are current at evaluation_step, and all necessary disclosures are authorized.",
+      "discovered_meaning": "A relation candidate has sufficient current evidence to enter relation constitution; no commitment or execution is implied.",
+      "absence_meaning": "ABSENT is permitted only for the frozen closed population after all eligible members provide valid negative witnesses."
+    },
+    "Authority": {
+      "party_local_fact_owner": "Only the owning party can project, disclose, refuse, or update its local fact.",
+      "coordinator": "May route receipts and create a candidate handoff; may not infer consent, disclose on behalf of a party, or convert a candidate into commitment.",
+      "scorer": "May read oracle truth and validate receipts; may not repair a submission."
+    },
+    "policy_ids": [
+      "POL-UNEXP-SEEK-PROJECTION",
+      "POL-UNEXP-OFFER-PROJECTION",
+      "POL-RECIP-SEEK",
+      "POL-RECIP-OFFER",
+      "POL-POLICY-ZERO"
+    ],
+    "witness_set": [
+      "W-EXP-SEEK-PUBLIC",
+      "W-EXP-OFFER-PUBLIC",
+      "W-EXP-SEEK-DECOY-PUBLIC",
+      "W-UNEXP-SEEK-PROJECTION",
+      "W-UNEXP-OFFER-PROJECTION",
+      "W-PROBE-COMPLETE",
+      "W-POLICY-REFUSAL",
+      "W-POLICY-SEEK-PUBLIC",
+      "W-POLICY-HOLDER-PUBLIC",
+      "W-DYN-OFFER-V1",
+      "W-DYN-SEEK-PUBLIC",
+      "W-DYN-REVOKE",
+      "W-OFFLINE-NO-RESPONSE",
+      "W-EXPLICIT-REFUSAL",
+      "W-CLOSED-POPULATION",
+      "W-CLOSED-P1-NEG",
+      "W-CLOSED-P2-NEG",
+      "W-CLOSED-P3-NEG"
+    ]
+  },
+  "party_roles": {
+    "P-EXP-SEEK": "SEEK",
+    "P-EXP-OFFER": "OFFER",
+    "P-EXP-SEEK-DECOY": "SEEK",
+    "P-UNEXP-SEEK": "SEEK",
+    "P-UNEXP-OFFER": "OFFER",
+    "P-RECIP-SEEK": "SEEK",
+    "P-RECIP-OFFER": "OFFER",
+    "P-POLICY-SEEK": "SEEK",
+    "P-POLICY-OFFER": "OFFER",
+    "P-DYN-SEEK": "SEEK",
+    "P-DYN-OFFER": "OFFER"
+  },
+  "timeline": [
+    {
+      "step": 0,
+      "event": "P-DYN-OFFER publishes gpu-burst OFFER version 1.",
+      "witness": "W-DYN-OFFER-V1"
+    },
+    {
+      "step": 1,
+      "event": "P-DYN-OFFER revokes version 1 and emits version 2 invalidation.",
+      "witness": "W-DYN-REVOKE"
+    }
+  ],
+  "policies": [
+    {
+      "policy_id": "POL-UNEXP-SEEK-PROJECTION",
+      "origin_party": "P-UNEXP-SEEK",
+      "fact_id": "F-UNEXP-SEEK-PROJECTION",
+      "allowed_recipients": [
+        "P-COORDINATOR"
+      ],
+      "allowed_purpose": "candidate-routing",
+      "retention": "PT5M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-UNEXP-OFFER-PROJECTION",
+      "origin_party": "P-UNEXP-OFFER",
+      "fact_id": "F-UNEXP-OFFER-PROJECTION",
+      "allowed_recipients": [
+        "P-COORDINATOR"
+      ],
+      "allowed_purpose": "candidate-routing",
+      "retention": "PT5M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-RECIP-SEEK",
+      "origin_party": "P-RECIP-SEEK",
+      "fact_id": "F-RECIP-SEEK-DETAIL",
+      "allowed_recipients": [
+        "P-RECIP-OFFER"
+      ],
+      "allowed_purpose": "reciprocal-relation-probe",
+      "retention": "PT10M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-RECIP-OFFER",
+      "origin_party": "P-RECIP-OFFER",
+      "fact_id": "F-RECIP-OFFER-DETAIL",
+      "allowed_recipients": [
+        "P-RECIP-SEEK"
+      ],
+      "allowed_purpose": "reciprocal-relation-probe",
+      "retention": "PT10M",
+      "max_depth": 1,
+      "max_unique_recipients": 1,
+      "max_cumulative_depth": 1,
+      "onward_disclosure": false
+    },
+    {
+      "policy_id": "POL-POLICY-ZERO",
+      "origin_party": "P-POLICY-OFFER",
+      "fact_id": "RAW-POLICY-OFFER",
+      "allowed_recipients": [],
+      "allowed_purpose": null,
+      "retention": null,
+      "max_depth": 0,
+      "max_unique_recipients": 0,
+      "max_cumulative_depth": 0,
+      "onward_disclosure": false,
+      "required_response": "REFUSE"
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W-EXP-SEEK-PUBLIC",
+      "owner": "P-EXP-SEEK",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-EXP-OFFER-PUBLIC",
+      "owner": "P-EXP-OFFER",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-EXP-SEEK-DECOY-PUBLIC",
+      "owner": "P-EXP-SEEK-DECOY",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-UNEXP-SEEK-PROJECTION",
+      "owner": "P-UNEXP-SEEK",
+      "kind": "TASK_RELATIVE_PROJECTION"
+    },
+    {
+      "witness_id": "W-UNEXP-OFFER-PROJECTION",
+      "owner": "P-UNEXP-OFFER",
+      "kind": "TASK_RELATIVE_PROJECTION"
+    },
+    {
+      "witness_id": "W-PROBE-COMPLETE",
+      "owner": "P-RECIP-SEEK+P-RECIP-OFFER",
+      "kind": "RECIPROCAL_PROBE_RECEIPT"
+    },
+    {
+      "witness_id": "W-POLICY-REFUSAL",
+      "owner": "P-POLICY-OFFER",
+      "kind": "EXPLICIT_REFUSAL"
+    },
+    {
+      "witness_id": "W-POLICY-SEEK-PUBLIC",
+      "owner": "P-POLICY-SEEK",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-POLICY-HOLDER-PUBLIC",
+      "owner": "P-POLICY-OFFER",
+      "kind": "PUBLIC_PROBEABLE_HOLDER"
+    },
+    {
+      "witness_id": "W-DYN-OFFER-V1",
+      "owner": "P-DYN-OFFER",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-DYN-SEEK-PUBLIC",
+      "owner": "P-DYN-SEEK",
+      "kind": "PUBLIC_SIGNAL"
+    },
+    {
+      "witness_id": "W-DYN-REVOKE",
+      "owner": "P-DYN-OFFER",
+      "kind": "VERSION_INVALIDATION"
+    },
+    {
+      "witness_id": "W-OFFLINE-NO-RESPONSE",
+      "owner": "P-OFFLINE",
+      "kind": "NO_RESPONSE_WINDOW"
+    },
+    {
+      "witness_id": "W-EXPLICIT-REFUSAL",
+      "owner": "P-REFUSE",
+      "kind": "EXPLICIT_REFUSAL"
+    },
+    {
+      "witness_id": "W-CLOSED-POPULATION",
+      "owner": "P-CONTROLLER",
+      "kind": "CLOSED_POPULATION_SNAPSHOT"
+    },
+    {
+      "witness_id": "W-CLOSED-P1-NEG",
+      "owner": "P-CLOSED-1",
+      "kind": "NEGATIVE_ATTESTATION"
+    },
+    {
+      "witness_id": "W-CLOSED-P2-NEG",
+      "owner": "P-CLOSED-2",
+      "kind": "NEGATIVE_ATTESTATION"
+    },
+    {
+      "witness_id": "W-CLOSED-P3-NEG",
+      "owner": "P-CLOSED-3",
+      "kind": "NEGATIVE_ATTESTATION"
+    }
+  ],
+  "expected_items": [
+    {
+      "item_id": "OPP-EXPRESSED",
+      "category": "EXPRESSED_OPPORTUNITY",
+      "expected_state": "DISCOVERED",
+      "seeker": "P-EXP-SEEK",
+      "provider": "P-EXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-EXP-SEEK-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ],
+      "requires_relation_handoff": true
+    },
+    {
+      "item_id": "OPP-UNEXPRESSED",
+      "category": "EXISTS_BUT_UNEXPRESSED",
+      "expected_state": "DISCOVERED",
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ],
+      "requires_relation_handoff": true
+    },
+    {
+      "item_id": "OPP-RECIPROCAL",
+      "category": "EXPRESSIBLE_AFTER_RECIPROCAL_PROBE",
+      "expected_state": "DISCOVERED",
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-PROBE-COMPLETE"
+      ],
+      "requires_relation_handoff": true
+    },
+    {
+      "item_id": "OPP-POLICY",
+      "category": "EXISTS_BUT_UNFINDABLE_UNDER_POLICY",
+      "expected_state": "UNFINDABLE_UNDER_POLICY",
+      "seeker": "P-POLICY-SEEK",
+      "provider": "P-POLICY-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-POLICY-REFUSAL"
+      ],
+      "requires_relation_handoff": false
+    },
+    {
+      "item_id": "OPP-DYNAMIC",
+      "category": "DYNAMIC_FLIP",
+      "expected_state": "INVALIDATED",
+      "seeker": "P-DYN-SEEK",
+      "provider": "P-DYN-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "required_evidence": [
+        "W-DYN-REVOKE"
+      ],
+      "requires_relation_handoff": false,
+      "required_projection_update": {
+        "party": "P-DYN-OFFER",
+        "from_version": 1,
+        "to_version": 2,
+        "step": 1,
+        "evidence_ref": "W-DYN-REVOKE"
+      }
+    },
+    {
+      "item_id": "CLAIM-UNKNOWN",
+      "category": "NO_RESPONSE_OPEN_WORLD",
+      "claim_key": "capability:offline-node:audio-transcription",
+      "subject": "P-OFFLINE",
+      "expected_state": "UNKNOWN",
+      "required_evidence": [
+        "W-OFFLINE-NO-RESPONSE"
+      ],
+      "requires_relation_handoff": false
+    },
+    {
+      "item_id": "CLAIM-REFUSE",
+      "category": "EXPLICIT_AUTHORITY_REFUSAL",
+      "claim_key": "capability:refusal-node:document-review",
+      "subject": "P-REFUSE",
+      "expected_state": "REFUSE",
+      "required_evidence": [
+        "W-EXPLICIT-REFUSAL"
+      ],
+      "requires_relation_handoff": false
+    },
+    {
+      "item_id": "CLAIM-ABSENT",
+      "category": "CLOSED_POPULATION_VERIFIED_ABSENCE",
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "subject": "POPULATION-CLOSED-RARE-FORMAT",
+      "expected_state": "ABSENT",
+      "required_evidence": [
+        "W-CLOSED-POPULATION",
+        "W-CLOSED-P1-NEG",
+        "W-CLOSED-P2-NEG",
+        "W-CLOSED-P3-NEG"
+      ],
+      "requires_relation_handoff": false
+    }
+  ],
+  "required_reciprocal_probe": {
+    "probe_id": "PROBE-RECIP-1",
+    "requester": "P-RECIP-SEEK",
+    "responder": "P-RECIP-OFFER",
+    "requested_fact": "F-RECIP-OFFER-DETAIL",
+    "offered_fact": "F-RECIP-SEEK-DETAIL",
+    "status": "RECIPROCAL_COMPLETE",
+    "evidence_ref": "W-PROBE-COMPLETE",
+    "required_disclosure_facts": [
+      "F-RECIP-SEEK-DETAIL",
+      "F-RECIP-OFFER-DETAIL"
+    ]
+  },
+  "forbidden_pairs": [
+    {
+      "pair_id": "FALSE-SEEK-SEEK",
+      "left": "P-EXP-SEEK",
+      "right": "P-EXP-SEEK-DECOY",
+      "reason": "Same topic does not override SEEK/SEEK direction mismatch."
+    }
+  ],
+  "forbidden_fact_refs": [
+    "RAW-UNEXP-SEEK",
+    "RAW-UNEXP-OFFER",
+    "RAW-POLICY-OFFER"
+  ],
+  "required_absence_population": [
+    "P-CLOSED-1",
+    "P-CLOSED-2",
+    "P-CLOSED-3"
+  ]
+}

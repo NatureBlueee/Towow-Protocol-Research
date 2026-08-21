@@ -1,0 +1,34 @@
+{
+  "schema": "towow.anchor-equivocation-scenarios.v1",
+  "scenarios": [
+    {
+      "id": "honest_consistent",
+      "description": "Both clients receive the same signed head."
+    },
+    {
+      "id": "partitioned_equivocation",
+      "description": "A malicious anchor signs two conflicting sequence-1 heads with the correct key."
+    },
+    {
+      "id": "rejoin_after_equivocation",
+      "description": "Clients reconnect and may exchange their signed checkpoints."
+    },
+    {
+      "id": "honest_replay",
+      "description": "The same signed receipt is delivered twice and must not be called a fork."
+    },
+    {
+      "id": "witness_partition",
+      "description": "Only one of three independent witnesses is reachable for an honest head."
+    }
+  ],
+  "measurements": [
+    "equivocation_detection",
+    "false_rejection",
+    "conflicting_acceptances",
+    "message_cost",
+    "evidence_cost",
+    "partition_rejoin_recovery_steps",
+    "missed_valid_action"
+  ]
+}

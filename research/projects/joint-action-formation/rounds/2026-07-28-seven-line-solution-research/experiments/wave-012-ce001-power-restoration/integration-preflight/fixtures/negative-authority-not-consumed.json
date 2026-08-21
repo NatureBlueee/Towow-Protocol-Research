@@ -1,0 +1,8 @@
+{
+  "extends": "qualified-e1.json",
+  "patch": {
+    "components.G6.evidence.target_authority_consumption.consumed_by_target": false,
+    "components.G6.evidence.target_authority_consumption.consumption_event_hash": null
+  },
+  "expected_rejection": "TARGET_CONSUMED_AUTHORITY_MISSING"
+}

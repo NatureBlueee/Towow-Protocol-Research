@@ -1,0 +1,96 @@
+{
+  "schema_version": "2.0",
+  "experiment_id": "WAVE-007-C2-G4-ACCESS-METERED-RELIANCE",
+  "status": "LOCAL_REPAIR_REGRESSION_COMPLETE_NOT_INDEPENDENTLY_AUDITED",
+  "shared_task_binding": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "governance_input_provenance": {
+    "repair_harness": {
+      "path": "../../WAVE-007-REPAIR-HARNESS.md",
+      "sha256_at_final_read": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653"
+    },
+    "independent_audit_protocol": {
+      "path": "../../WAVE-007-INDEPENDENT-AUDIT-PROTOCOL.md",
+      "sha256_at_final_read": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f"
+    },
+    "trigger": "Independent audit invalidated Wave-007-C after its local 10/10 self-tests."
+  },
+  "supersedes_for_current_research": {
+    "path": "../wave-007-c-access-metered-reliance",
+    "historical_files_modified": false,
+    "historical_self_tests_retained_as_validity_evidence": false
+  },
+  "repair_boundaries": {
+    "authority_status": "Signed status must match parent-trusted authority_head, authority_epoch, authority_contract_version, subject, status, and key.",
+    "operation_log": "Evidence broker and ledger live in parent process; candidate has JSON/RPC proxy only.",
+    "identity": "Parent registry owner determines evaluator grouping; candidate implementation_id is untrusted display data.",
+    "candidate_runtime_read_guard": "Python audit hook blocks candidate-time file read, import, process, and network expansion.",
+    "native_hostile_process_guarantee": false
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "bdfa4ef1c414c0e08c2a44aeb43bc3b0cc74ad18ac369b4a746d3d4a49868971"
+    },
+    {
+      "path": "broker.py",
+      "sha256": "254976223f8222a601328b731a44d4a0f41d5517d303474e2536a2cd150a64fa"
+    },
+    {
+      "path": "candidate_strategies.py",
+      "sha256": "8ee127f187d971e721ccd4676d358e2ae68b13349236075bcbb26a782ae5a0c5"
+    },
+    {
+      "path": "candidate_worker.py",
+      "sha256": "6f10f659fbefe4542f455164f9a2d72995ee566f1f2b38b83d9d92cff974b876"
+    },
+    {
+      "path": "runner.py",
+      "sha256": "960cb97640f55111a7956d4d675c10752e9e33caa03794ba6828cff866c255e5"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "c7d536f40643e0a2cd6f4a6796caafb4f800cec6f3865de10b256fc4429cfb83"
+    },
+    {
+      "path": "private/build_public_fixture.py",
+      "sha256": "705114920d839336a4484cf3d8e442262077488619f47fe0c81a746fafe6c76b"
+    },
+    {
+      "path": "private/truth.json",
+      "sha256": "12711253701a139b12cf553db0c8029dc738dcb8f2beee71479c9bfb8822f54d"
+    },
+    {
+      "path": "fixtures/evidence.json",
+      "sha256": "f9f90ef814dcc4533f156120b757dff8fc098a9c0946209067b9a3cc85bfe717"
+    },
+    {
+      "path": "results/evaluation.json",
+      "sha256": "0ed87f42aa30fc0d626c5455107042c9ed9da4c590ae52891d86a3e054ed27c7"
+    },
+    {
+      "path": "tests/test_wave007c2.py",
+      "sha256": "aa1ee271ce368eb747225ed7a98e2eb4adee95263f3f166920060c6bbd8aaadb"
+    }
+  ],
+  "direct_mutation_regression": {
+    "old_active_authority_replay_rejected": true,
+    "candidate_context_cannot_override_parent_trusted_head": true,
+    "candidate_log_clear_blocked": true,
+    "candidate_identity_spoof_ignored": true,
+    "candidate_private_state_read_blocked": true,
+    "same_researcher_regression_is_independent_evidence": false
+  },
+  "scoped_result": {
+    "pareto_frontier": [
+      "IMPL_DECLARATION",
+      "IMPL_LATEST_PROBE"
+    ],
+    "universal_winner_claimed": false,
+    "real_world_frequency_claimed": false,
+    "independent_reaudit_required": true
+  }
+}

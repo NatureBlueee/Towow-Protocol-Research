@@ -1,0 +1,129 @@
+{
+  "authorizations": [
+    {
+      "declared_sha256": "2d17bf5611b88f2cddf5f8db84f8c3a5f949bd14e6c2ff9cdaa6438920eff0f6",
+      "payload": {
+        "authorization_type": "RECIPROCAL_OFFER",
+        "counterparty_contract": {
+          "allowed_counterparties": [
+            "KITE-15"
+          ]
+        },
+        "evaluation_step": 2,
+        "issuer": "JUNIPER-28",
+        "policy": {
+          "budget_units": 1,
+          "max_depth": 0,
+          "onward_allowed": false,
+          "purpose": "two-sided-route-probe",
+          "recipient": "KITE-15",
+          "retention": "PT7M"
+        },
+        "projection": {
+          "compatibility_key": "sterile-route-simulation@8",
+          "direction": "SEEK",
+          "facet": "reciprocal-detail-demand",
+          "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL"
+        },
+        "receipt_id": "HWB-AUTH-JUNIPER-28",
+        "revoked": false,
+        "schema": "towow.holder-authorization.v1",
+        "source_file_sha256": "d53836004fd003320fba6bb0f28c83e95a66594d122845ff38f3eaad26884083",
+        "source_semantics": {
+          "authorization_is_not_execution": true,
+          "receipt_type": "AUTHORIZED_PROBE_OFFER",
+          "requested_counterfact_id": "F-HWB-KITE-RECIP-DETAIL",
+          "source_exchange_status": "NOT_PERFORMED",
+          "witness_ref": "W-HWB-RECIPROCAL-RECEIPT"
+        },
+        "status": "AUTHORIZED",
+        "valid_from_step": 2,
+        "valid_through_step": 2,
+        "world_id": "T1-HW-20260728-B"
+      }
+    },
+    {
+      "declared_sha256": "342b1afbc05402ffe17864fd63cba1d0e9abe74bf9f665b34d2b6236a8c68911",
+      "payload": {
+        "authorization_type": "RECIPROCAL_OFFER",
+        "counterparty_contract": {
+          "allowed_counterparties": [
+            "JUNIPER-28"
+          ]
+        },
+        "evaluation_step": 2,
+        "issuer": "KITE-15",
+        "policy": {
+          "budget_units": 1,
+          "max_depth": 0,
+          "onward_allowed": false,
+          "purpose": "two-sided-route-probe",
+          "recipient": "JUNIPER-28",
+          "retention": "PT7M"
+        },
+        "projection": {
+          "compatibility_key": "sterile-route-simulation@8",
+          "direction": "OFFER",
+          "facet": "reciprocal-detail-supply",
+          "fact_id": "F-HWB-KITE-RECIP-DETAIL"
+        },
+        "receipt_id": "HWB-AUTH-KITE-15",
+        "revoked": false,
+        "schema": "towow.holder-authorization.v1",
+        "source_file_sha256": "c31ea346b59a5372e0c4295f5dc65da694faa4ae9ace32702e0280e5871f87d1",
+        "source_semantics": {
+          "authorization_is_not_execution": true,
+          "receipt_type": "AUTHORIZED_PROBE_OFFER",
+          "requested_counterfact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+          "source_exchange_status": "AUTHORIZED_NOT_EXCHANGED",
+          "witness_ref": "W-HWB-RECIPROCAL-RECEIPT"
+        },
+        "status": "AUTHORIZED",
+        "valid_from_step": 2,
+        "valid_through_step": 2,
+        "world_id": "T1-HW-20260728-B"
+      }
+    }
+  ],
+  "evaluation_step": 2,
+  "idempotency_key": "hwb:2:juniper-kite-reciprocal",
+  "request_id": "HWB-REQ-JUNIPER-KITE-RECIPROCAL",
+  "route": {
+    "budget_units_each": 1,
+    "delivery_mode": "COUNTERPARTY_EXCHANGE",
+    "depth": 0,
+    "purpose": "two-sided-route-probe",
+    "retention": "PT7M",
+    "sides": [
+      {
+        "compatibility_key": "sterile-route-simulation@8",
+        "counterparty": "KITE-15",
+        "delivery": {
+          "depth": 0,
+          "purpose": "two-sided-route-probe",
+          "recipient": "KITE-15",
+          "retention": "PT7M"
+        },
+        "direction": "SEEK",
+        "facet": "reciprocal-detail-demand",
+        "receipt_id": "HWB-AUTH-JUNIPER-28"
+      },
+      {
+        "compatibility_key": "sterile-route-simulation@8",
+        "counterparty": "JUNIPER-28",
+        "delivery": {
+          "depth": 0,
+          "purpose": "two-sided-route-probe",
+          "recipient": "JUNIPER-28",
+          "retention": "PT7M"
+        },
+        "direction": "OFFER",
+        "facet": "reciprocal-detail-supply",
+        "receipt_id": "HWB-AUTH-KITE-15"
+      }
+    ]
+  },
+  "route_type": "RECIPROCAL_EXCHANGE",
+  "schema": "towow.controller-request.v1",
+  "world_id": "T1-HW-20260728-B"
+}

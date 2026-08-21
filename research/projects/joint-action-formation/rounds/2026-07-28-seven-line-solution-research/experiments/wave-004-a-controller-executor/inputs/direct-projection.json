@@ -1,0 +1,50 @@
+{
+  "schema": "towow.controller-request.v1",
+  "request_id": "REQ-DIRECT-001",
+  "idempotency_key": "idem-direct-001",
+  "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+  "evaluation_step": 7,
+  "route_type": "DIRECT_PROJECTION",
+  "authorizations": [
+    {
+      "declared_sha256": "4d759d3ab8495debda6cd52394c8d144d39f9a3b62994170db7389b9c233aa01",
+      "payload": {
+        "schema": "towow.holder-authorization.v1",
+        "receipt_id": "AUTH-DIRECT-ALPHA-001",
+        "issuer": "HOLDER-ALPHA",
+        "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+        "evaluation_step": 7,
+        "valid_from_step": 7,
+        "valid_through_step": 7,
+        "status": "AUTHORIZED",
+        "revoked": false,
+        "authorization_type": "PROJECTION_ROUTE",
+        "projection": {
+          "direction": "OFFER",
+          "facet": "transport-slot",
+          "compatibility_key": "route-au-mel-2030"
+        },
+        "policy": {
+          "recipient": "COORDINATOR-A",
+          "purpose": "joint-action-discovery",
+          "retention": "session:1h",
+          "max_depth": 0,
+          "onward_allowed": false,
+          "budget_units": 1
+        }
+      }
+    }
+  ],
+  "route": {
+    "projection": {
+      "direction": "OFFER",
+      "facet": "transport-slot",
+      "compatibility_key": "route-au-mel-2030"
+    },
+    "recipient": "COORDINATOR-A",
+    "purpose": "joint-action-discovery",
+    "retention": "session:1h",
+    "depth": 0,
+    "budget_units": 1
+  }
+}

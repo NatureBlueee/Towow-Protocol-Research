@@ -1,0 +1,24 @@
+{
+  "schema": "towow.anchor-equivocation-spec.v1",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "world_id": "W6-STERILE-ROUTE-WORLD",
+  "evaluation_step": 7,
+  "operation": "RUN-STERILE-ROUTE-SIM-v1",
+  "anchor": "ANCHOR-W6",
+  "clients": ["CLIENT-A", "CLIENT-B"],
+  "witnesses": ["WITNESS-1", "WITNESS-2", "WITNESS-3"],
+  "witness_quorum": 2,
+  "strategies": [
+    "SINGLE_PINNED_VIEW",
+    "CLIENT_GOSSIP",
+    "INDEPENDENT_WITNESS_QUORUM"
+  ],
+  "protected_denominator": [
+    "operation",
+    "frozen truth",
+    "client-visible anchor receipt format",
+    "anchor signing key",
+    "beneficiary acceptance semantics"
+  ]
+}

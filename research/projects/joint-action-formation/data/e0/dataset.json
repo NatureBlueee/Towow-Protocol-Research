@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "kind": "NACH1NonEvaluativeFixture",
+  "fixture_id": "NAC-H1-E0-R7-FICTIONAL-001",
+  "status": "NON_EVALUATIVE_FIXTURE",
+  "tested_hypothesis": "E-H1-PRIME",
+  "tested_claim": "MC-NAC-ANCHOR",
+  "fixture_purpose": [
+    "verify source hash binding",
+    "verify SEEK and OFFER role declaration",
+    "verify private source bodies are not copied",
+    "verify downstream tooling refuses non-evaluative inputs"
+  ],
+  "source_identity": {
+    "case_count": 1,
+    "case_nature": "FICTIONAL_RESEARCH_ONLY_SAMPLE",
+    "participant_count": 4,
+    "source_hash_manifest": "source-hashes.json"
+  },
+  "materialization": {
+    "mode": "SOURCE_REFERENCED_NO_PRIVATE_BODY_COPY",
+    "records": "records.jsonl",
+    "field_mapping": "field-mapping.json",
+    "embeddable_text_present": false
+  },
+  "observed_dataset_state": {
+    "seek_record_count": 1,
+    "offer_record_count": 1,
+    "candidate_pool_size": 1,
+    "candidate_pool_larger_than_100": false,
+    "relevance_gold_status": "ABSENT",
+    "ground_truth_independent_of_tested_models": "NOT_APPLICABLE_NO_GOLD",
+    "train_dev_test_split_status": "ABSENT",
+    "model_receipt_count": 0,
+    "cross_model_evaluation_count": 0
+  },
+  "allowed_uses": [
+    "schema smoke testing",
+    "source provenance verification",
+    "direction-field validation",
+    "negative testing that rejects missing evaluation inputs"
+  ],
+  "prohibited_metrics": [
+    "Recall",
+    "Recall@100",
+    "R_AB/R_AA",
+    "R_AB/R_BB",
+    "R_AB/sqrt(R_AA*R_BB)",
+    "model ranking",
+    "mechanism pass or fail"
+  ],
+  "cannot_support": [
+    "NAC cross-model discriminative power",
+    "the E-H1 Prime 80 percent gate",
+    "comparison with vec2vec, Procrustes, shared reference encoder, or sparse retrieval",
+    "real-world Intent to profile frequency",
+    "authorization, relation formation, Effect, Adoption, Acceptance, or net value"
+  ],
+  "missing_before_any_evaluation": [
+    "frozen embeddable SEEK and OFFER texts",
+    "candidate pool larger than 100 for every query",
+    "independently adjudicated relevance labels",
+    "grouped leakage-safe splits",
+    "at least five exact model receipts",
+    "native information condition receipts for every comparison arm",
+    "complete lifecycle resource accounting"
+  ],
+  "claim_boundary": "FIXTURE_VALIDATION_IS_NOT_DATASET_VALIDATION_OR_MECHANISM_VALIDATION"
+}

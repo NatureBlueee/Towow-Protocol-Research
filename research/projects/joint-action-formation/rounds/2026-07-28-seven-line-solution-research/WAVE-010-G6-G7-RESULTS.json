@@ -1,0 +1,1988 @@
+{
+  "claims_not_supported": [
+    "real Effect, Adoption, Acceptance, Settlement, production safety, real distribution frequency",
+    "blind or independent implementation",
+    "X1/X2 scoreable run or formal G6/G7 promotion"
+  ],
+  "fixture_sha256": "a2c942cee262b115dccd1f340bb767224adbb9cce1dc4a8f343617a106d96207",
+  "method_results": {
+    "EVENT_BUS_ONLY": {
+      "dependency_queries": 0,
+      "duplicate_effects": 1,
+      "failed_recoveries": 2,
+      "false_promotions": 20,
+      "gate_count": 7,
+      "gate_pass_count": 0,
+      "gates": {
+        "authoritative_postcondition": false,
+        "bounded_recovery": false,
+        "causal_idempotency": false,
+        "effect_liveness": false,
+        "exact_reopen": false,
+        "ladder_noncollapse": false,
+        "safe_continuation": false
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 5,
+      "method_id": "EVENT_BUS_ONLY",
+      "missed_effects": 3,
+      "missed_reopen_nodes": 3,
+      "over_reopen_nodes": 0,
+      "owner_readback_queries": 0,
+      "recovery_steps": 1,
+      "unsafe_continuations": 1,
+      "wrong_owner_promotions": 20
+    },
+    "HUMAN_INSTITUTION": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 0,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 6,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": true,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": false,
+        "ladder_noncollapse": true,
+        "safe_continuation": true
+      },
+      "human_actions": 20,
+      "ladder_collapse_errors": 0,
+      "method_id": "HUMAN_INSTITUTION",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 0,
+      "over_reopen_nodes": 5,
+      "owner_readback_queries": 20,
+      "recovery_steps": 19,
+      "unsafe_continuations": 0,
+      "wrong_owner_promotions": 0
+    },
+    "LAWFUL_STRONG_CENTER": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 0,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 6,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": true,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": false,
+        "ladder_noncollapse": true,
+        "safe_continuation": true
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "LAWFUL_STRONG_CENTER",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 0,
+      "over_reopen_nodes": 5,
+      "owner_readback_queries": 20,
+      "recovery_steps": 13,
+      "unsafe_continuations": 0,
+      "wrong_owner_promotions": 0
+    },
+    "MATURE_COMPOSITION_CONSERVATIVE": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 0,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 6,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": true,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": false,
+        "ladder_noncollapse": true,
+        "safe_continuation": true
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "MATURE_COMPOSITION_CONSERVATIVE",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 0,
+      "over_reopen_nodes": 5,
+      "owner_readback_queries": 20,
+      "recovery_steps": 13,
+      "unsafe_continuations": 0,
+      "wrong_owner_promotions": 0
+    },
+    "MATURE_COMPOSITION_LOCAL": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 1,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 4,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": false,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": false,
+        "ladder_noncollapse": true,
+        "safe_continuation": false
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "MATURE_COMPOSITION_LOCAL",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 2,
+      "over_reopen_nodes": 1,
+      "owner_readback_queries": 20,
+      "recovery_steps": 5,
+      "unsafe_continuations": 1,
+      "wrong_owner_promotions": 0
+    },
+    "MATURE_COMPOSITION_WITH_OWNER_DEP_QUERY": {
+      "dependency_queries": 2,
+      "duplicate_effects": 0,
+      "failed_recoveries": 0,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 7,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": true,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": true,
+        "ladder_noncollapse": true,
+        "safe_continuation": true
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "MATURE_COMPOSITION_WITH_OWNER_DEP_QUERY",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 0,
+      "over_reopen_nodes": 0,
+      "owner_readback_queries": 20,
+      "recovery_steps": 4,
+      "unsafe_continuations": 0,
+      "wrong_owner_promotions": 0
+    },
+    "STRONG_CENTER_WITH_OWNER_DEP_QUERY": {
+      "dependency_queries": 2,
+      "duplicate_effects": 0,
+      "failed_recoveries": 0,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 7,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": true,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": true,
+        "ladder_noncollapse": true,
+        "safe_continuation": true
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "STRONG_CENTER_WITH_OWNER_DEP_QUERY",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 0,
+      "over_reopen_nodes": 0,
+      "owner_readback_queries": 20,
+      "recovery_steps": 4,
+      "unsafe_continuations": 0,
+      "wrong_owner_promotions": 0
+    },
+    "TARGET_EFFECT_READBACK_ONLY": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 1,
+      "false_promotions": 0,
+      "gate_count": 7,
+      "gate_pass_count": 4,
+      "gates": {
+        "authoritative_postcondition": true,
+        "bounded_recovery": false,
+        "causal_idempotency": true,
+        "effect_liveness": true,
+        "exact_reopen": false,
+        "ladder_noncollapse": true,
+        "safe_continuation": false
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 0,
+      "method_id": "TARGET_EFFECT_READBACK_ONLY",
+      "missed_effects": 0,
+      "missed_reopen_nodes": 3,
+      "over_reopen_nodes": 0,
+      "owner_readback_queries": 4,
+      "recovery_steps": 1,
+      "unsafe_continuations": 1,
+      "wrong_owner_promotions": 0
+    },
+    "WORKFLOW_IDEMPOTENCY_ONLY": {
+      "dependency_queries": 0,
+      "duplicate_effects": 0,
+      "failed_recoveries": 2,
+      "false_promotions": 20,
+      "gate_count": 7,
+      "gate_pass_count": 1,
+      "gates": {
+        "authoritative_postcondition": false,
+        "bounded_recovery": false,
+        "causal_idempotency": true,
+        "effect_liveness": false,
+        "exact_reopen": false,
+        "ladder_noncollapse": false,
+        "safe_continuation": false
+      },
+      "human_actions": 0,
+      "ladder_collapse_errors": 5,
+      "method_id": "WORKFLOW_IDEMPOTENCY_ONLY",
+      "missed_effects": 3,
+      "missed_reopen_nodes": 3,
+      "over_reopen_nodes": 0,
+      "owner_readback_queries": 0,
+      "recovery_steps": 2,
+      "unsafe_continuations": 1,
+      "wrong_owner_promotions": 20
+    }
+  },
+  "per_world": {
+    "EVENT_BUS_ONLY": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 4,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NEW_CAUSAL_ID"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 1,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 1,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": false,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 3,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": true,
+          "recovery_steps": 0,
+          "recovery_succeeded": false,
+          "reopen_exact": false,
+          "unsafe_continuations": 1,
+          "wrong_owner_promotions": 5
+        }
+      }
+    },
+    "HUMAN_INSTITUTION": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 5,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 4,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 8,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 5,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "MANUAL_READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 5,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 3,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 5,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 1,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 8,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "LAWFUL_STRONG_CENTER": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 4,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 6,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 1,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 6,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "MATURE_COMPOSITION_CONSERVATIVE": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 4,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 6,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "GLOBAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox",
+            "backlog-rule-v1"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 1,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 6,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "MATURE_COMPOSITION_LOCAL": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "LOCAL_REOPEN",
+          "reopen_closure": [
+            "container-v2"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 1,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 2,
+          "recovery_succeeded": true,
+          "reopen_exact": false,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "LOCAL_REOPEN",
+          "reopen_closure": [
+            "container-v2"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 2,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 2,
+          "recovery_succeeded": false,
+          "reopen_exact": false,
+          "unsafe_continuations": 1,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "MATURE_COMPOSITION_WITH_OWNER_DEP_QUERY": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 1,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "LOCAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 1,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 2,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "STRONG_CENTER_WITH_OWNER_DEP_QUERY": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 1,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Attempt": {
+              "source": "service-execution-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "REFUSED",
+            "Adoption": "FALSE",
+            "Attempt": "TRUE",
+            "Effect": "FALSE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "requester-design-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "requester-prototype-inventory",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "makerspace-job-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "PENDING"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "buyer-principal",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "buyer-operational-owner",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "current-executor-authority",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "buyer-accounting-authority",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Acceptance": "TRUE",
+            "Adoption": "TRUE",
+            "Attempt": "TRUE",
+            "Effect": "TRUE",
+            "Settlement": "TRUE"
+          },
+          "reopen_action": "LOCAL_REOPEN",
+          "reopen_closure": [
+            "container-v2",
+            "sidecar-account",
+            "buyer-sandbox"
+          ],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 1,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 5,
+          "recovery_expected": true,
+          "recovery_steps": 2,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "TARGET_EFFECT_READBACK_ONLY": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Effect": "TRUE"
+          },
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 1,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {},
+          "observations": {
+            "Effect": "FALSE"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 1,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Effect": {
+              "source": "makerspace-machine-job-ledger",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Effect": "TRUE"
+          },
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "READBACK_FIRST"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 1,
+          "recovery_expected": true,
+          "recovery_steps": 1,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 0
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Effect": {
+              "source": "buyer-target-domain",
+              "state": "TRUE"
+            }
+          },
+          "observations": {
+            "Effect": "TRUE"
+          },
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 0,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 3,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 1,
+          "recovery_expected": true,
+          "recovery_steps": 0,
+          "recovery_succeeded": false,
+          "reopen_exact": false,
+          "unsafe_continuations": 1,
+          "wrong_owner_promotions": 0
+        }
+      }
+    },
+    "WORKFLOW_IDEMPOTENCY_ONLY": {
+      "ep-3b8f64c2": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-7c2f91a4": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 4,
+          "missed_effects": 0,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": false,
+          "recovery_steps": 0,
+          "recovery_succeeded": true,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-a10d6e53": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "NOT_APPLICABLE",
+          "reopen_closure": [],
+          "retry": "SAME_CAUSAL_ID"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 1,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 0,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": true,
+          "recovery_steps": 2,
+          "recovery_succeeded": false,
+          "reopen_exact": true,
+          "unsafe_continuations": 0,
+          "wrong_owner_promotions": 5
+        }
+      },
+      "ep-f5d1a08e": {
+        "decision": {
+          "claims": {
+            "Acceptance": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Adoption": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Attempt": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Effect": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            },
+            "Settlement": {
+              "source": "workflow-controller",
+              "state": "TRUE"
+            }
+          },
+          "observations": {},
+          "reopen_action": "CONTINUE",
+          "reopen_closure": [],
+          "retry": "NO_RETRY"
+        },
+        "evaluation": {
+          "dependency_queries": 0,
+          "duplicate_effects": 0,
+          "false_promotions": 5,
+          "human_actions": 0,
+          "ladder_collapse_errors": 0,
+          "missed_effects": 1,
+          "missed_reopen_nodes": 3,
+          "over_reopen_nodes": 0,
+          "owner_readback_queries": 0,
+          "recovery_expected": true,
+          "recovery_steps": 0,
+          "recovery_succeeded": false,
+          "reopen_exact": false,
+          "unsafe_continuations": 1,
+          "wrong_owner_promotions": 5
+        }
+      }
+    }
+  },
+  "schema": "towow.wave010.g6-g7.results.v1",
+  "self_test_checks": [
+    "t6_hidden_dependency_pair_public_transcript_identical",
+    "t3_source_correction_preserved",
+    "lawful_strong_center_causally_equal_under_same_legal_observations",
+    "owner_dependency_query_closes_this_fixture_for_both_control_topologies",
+    "workflow_green_counterexample_exposes_false_closure_duplicate_and_unsafe_reuse",
+    "opaque_identifier_and_order_permutation_invariant"
+  ],
+  "self_test_count": 6,
+  "simulator_sha256": "559ac0c080f83171702c1b22f8a25f9d6f918056e07efc638bf525411223850e",
+  "status": "LOCAL_SYNTHETIC_DEVELOPMENT_RUN",
+  "task_families": [
+    "T2",
+    "T3",
+    "T6"
+  ],
+  "world_count": 4
+}

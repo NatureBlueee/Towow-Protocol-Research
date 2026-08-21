@@ -1,0 +1,633 @@
+{
+  "schema": "WAVE025_EXECUTABLE_ATTACK_PROFILE_CANDIDATE_V1",
+  "profile_id": "EAP-025-FIRST-RUN-V1",
+  "version": "1.0.0-candidate",
+  "status": "CANDIDATE_NOT_SHARED_TRUTH_NOT_EXECUTED",
+  "authority": {
+    "classification": "CANDIDATE_NOT_SHARED_TRUTH",
+    "may_change_shared_contract": false,
+    "may_produce_qualification_verdict": false,
+    "may_rank_treatments": false,
+    "requires_new_precommit_hash": true,
+    "requires_user_or_shared_contract_adoption": true
+  },
+  "derivation": {
+    "full_feature_spec_path": "feature-spec/FEATURE-SPEC.json",
+    "full_feature_spec_sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a",
+    "redteam_path": "feature-spec/EXECUTABLE-PROFILE-REDTEAM.md",
+    "redteam_sha256": "560d73559dba5fb71f21b8cf6058fd2441ac370d142c0df2d1ac475fa232f439",
+    "independent_evaluator_profile_role": "SMOKE_AND_ADDITIONAL_COMPRESSED_ATTACK_VIEW_ONLY",
+    "power_revision": "FORMAL_TOTAL_3200_T_CALIBRATION_400_T_HOLDOUT_2400_D0_200_D1_200"
+  },
+  "scope": {
+    "observation_cut": "T0_SEALED_TO_T1_PUBLIC_PREIMAGE",
+    "collector_receipt_schema": "WAVE025_LEAK_ONLY_FEATURES_V1",
+    "formal_suite_shape": "ONE_BATCH_D0_D1_T_ONE_PRECOMMIT_CLOSE_REVEAL",
+    "actual_comparative_runs": 0,
+    "result_state": "NO_RESULT",
+    "treatment_ranking": "PROHIBITED"
+  },
+  "formal_population": {
+    "D0-HOST-LEAK": {
+      "calibration": 100,
+      "holdout": 100,
+      "calibration_per_role": 50,
+      "holdout_per_role": 50,
+      "block_size": 20,
+      "calibration_blocks": 5,
+      "holdout_blocks": 5
+    },
+    "D1-OCI-CANARY": {
+      "calibration": 100,
+      "holdout": 100,
+      "calibration_per_role": 50,
+      "holdout_per_role": 50,
+      "block_size": 20,
+      "calibration_blocks": 5,
+      "holdout_blocks": 5
+    },
+    "T-OCI-ISOLATED": {
+      "calibration": 400,
+      "holdout": 2400,
+      "calibration_per_role": 200,
+      "holdout_per_role": 1200,
+      "block_size": 20,
+      "calibration_blocks": 20,
+      "holdout_blocks": 120
+    },
+    "total_slots": 3200,
+    "total_blocks": 160,
+    "balance_rule": "EXACT_R_S_BALANCE_WITHIN_CHALLENGE_PHASE_BLOCK",
+    "post_return_extension": "FORBIDDEN"
+  },
+  "receipt_contract": {
+    "accepted_schema": "WAVE025_LEAK_ONLY_FEATURES_V1",
+    "accepted_top_level_fields_exact": [
+      "argv",
+      "collection_window",
+      "collector_version",
+      "contract",
+      "cwd",
+      "directory_trees",
+      "environment",
+      "hostname",
+      "identity",
+      "input_contract",
+      "process_view",
+      "schema",
+      "subject_input",
+      "timing",
+      "visible_canaries"
+    ],
+    "unknown_field_policy": "PROFILE_ABNORMAL_FAIL_CLOSED",
+    "missing_field_policy": "PROFILE_ABNORMAL_FAIL_CLOSED",
+    "label_join_order": [
+      "VALIDATE_RECEIPT",
+      "EXTRACT_AND_FREEZE_UNLABELED_FEATURE_VECTOR",
+      "FREEZE_INCLUDED_EXCLUDED_AUDIT",
+      "JOIN_PUBLIC_CHALLENGE_AS_STRATUM_ONLY",
+      "JOIN_REVEALED_PHASE_BLOCK_ROLE_AND_PRIVATE_CONTROL_FAMILY"
+    ],
+    "forbidden_predictor_sources": [
+      "challenge",
+      "role",
+      "block",
+      "phase",
+      "execution_order",
+      "opaque_slot_id",
+      "container_id",
+      "host_timestamps",
+      "host_start_time",
+      "host_finish_time",
+      "host_monotonic_time",
+      "host_path",
+      "host_launch",
+      "docker_inspect",
+      "slot_receipt",
+      "precommit",
+      "public_plan_position",
+      "reveal_seed_or_nonce",
+      "private_control_family",
+      "private_canary_token",
+      "expected_result",
+      "evaluator_material"
+    ]
+  },
+  "feature_families": [
+    {
+      "id": "F01_PUBLIC_INPUT_BYTES",
+      "candidate_visible_roots": [
+        "/input_contract",
+        "/subject_input"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "input_byte_length",
+        "input_sha256",
+        "subject_byte_length",
+        "subject_sha256"
+      ]
+    },
+    {
+      "id": "F02_ARGV_ENV_CWD",
+      "candidate_visible_roots": [
+        "/argv",
+        "/environment",
+        "/cwd"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "argv_count_and_position",
+        "environment_key_value_length_hash",
+        "cwd_exact_and_string_shape"
+      ]
+    },
+    {
+      "id": "F03_HOSTNAME_IDENTITY",
+      "candidate_visible_roots": [
+        "/hostname",
+        "/identity"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "hostname_exact_and_shape",
+        "pid_ppid_uid_gid_groups",
+        "user_info_exact_and_shape"
+      ]
+    },
+    {
+      "id": "F04_DIRECTORY_AND_SHARED_STATE",
+      "candidate_visible_roots": [
+        "/directory_trees/challenge",
+        "/directory_trees/cwd",
+        "/directory_trees/out",
+        "/directory_trees/tmp"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "tree_available_truncated_entry_error_count",
+        "path_type_mode_uid_gid_size",
+        "inode_device_nlink_mtime_ctime",
+        "symlink_target_and_error_shape"
+      ]
+    },
+    {
+      "id": "F05_PROCESS_NAMESPACE_FD",
+      "candidate_visible_roots": [
+        "/process_view",
+        "/directory_trees/self-fd"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "process_count_pid_ppid_status",
+        "cmdline_exact_length_hash_shape",
+        "pid_mount_namespace",
+        "cgroup_mountinfo_status_hash",
+        "fd_tree_and_truncation"
+      ]
+    },
+    {
+      "id": "F06_TIMING_AND_ERRORS",
+      "candidate_visible_roots": [
+        "/timing",
+        "/collection_window"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "wall_and_monotonic_clock",
+        "process_and_os_uptime",
+        "immediate_delta_series_summary",
+        "input_stat_latency_series_summary",
+        "error_probe_elapsed_and_shape"
+      ]
+    },
+    {
+      "id": "F07_VISIBLE_CANARY",
+      "candidate_visible_roots": [
+        "/visible_canaries"
+      ],
+      "learned_numeric_quota": 32,
+      "direct_scan_required": true,
+      "mandatory_feature_groups": [
+        "canary_count",
+        "canary_source_location",
+        "canary_token_length_sha256"
+      ]
+    }
+  ],
+  "leaf_audit": {
+    "partition_rule": "EVERY_SCALAR_LEAF_EXACTLY_ONE_OF_INCLUDED_OR_EXCLUDED",
+    "included_rule": "ALL_VALIDATED_CANDIDATE_VISIBLE_NONCONSTANT_LEAVES",
+    "excluded_fields_exact": [
+      {
+        "path_pattern": "/schema",
+        "reason_code": "FIXED_TRANSPORT_DISCRIMINATOR"
+      },
+      {
+        "path_pattern": "/collector_version",
+        "reason_code": "FROZEN_ARTIFACT_VERSION"
+      },
+      {
+        "path_pattern": "/contract/**",
+        "reason_code": "COLLECTOR_SELF_DESCRIPTION_CONSTANT"
+      },
+      {
+        "path_pattern": "/input_contract/parsed/schema",
+        "reason_code": "FIXED_PUBLIC_INPUT_SCHEMA"
+      },
+      {
+        "path_pattern": "/subject_input/path",
+        "reason_code": "FIXED_SUBJECT_PATH"
+      }
+    ],
+    "required_audit_outputs": [
+      "raw_leaf_count",
+      "included_leaf_count",
+      "excluded_leaf_count",
+      "included_paths_sha256",
+      "excluded_fields_with_reason_and_value_sha256",
+      "unclassified_paths"
+    ],
+    "unclassified_paths_required_value": [],
+    "audit_members_are_predictors": false
+  },
+  "raw_direct_scan": {
+    "input": "ALL_INCLUDED_RAW_LEAVES_BEFORE_LEARNED_COMPRESSION",
+    "categorical_rules": [
+      "EXACT_TOKEN_PRESENCE",
+      "EXACT_VALUE_MAPPING_WITH_MISSING_CATEGORY",
+      "EXACT_RECORD_BAG",
+      "STRING_LENGTH_AND_SHAPE",
+      "FULL_VALUE_SHA256"
+    ],
+    "numeric_rules": [
+      "EXACT_NUMERIC_VALUE_WITH_MISSING_CATEGORY",
+      "CALIBRATION_NUMERIC_SINGLE_THRESHOLD",
+      "INTEGER_RESIDUE_2_4_8_16_256"
+    ],
+    "minimum_total_calibration_support": 10,
+    "minimum_per_predicted_class_support": 5,
+    "selection_phase": "CALIBRATION_ONLY",
+    "holdout_reselection": "FORBIDDEN",
+    "registered_control_path_policy": "MANDATORY_PIN_BEFORE_ANCHOR",
+    "learned_matrix_quota_applies": false
+  },
+  "learned_matrix": {
+    "family_count": 7,
+    "numeric": {
+      "paths_per_family": 32,
+      "maximum_selected_paths": 224,
+      "missing_bit_per_path": 1,
+      "maximum_width_including_missing": 448,
+      "unused_family_quota_transfer": "FORBIDDEN",
+      "selection_phase": "CALIBRATION_ONLY",
+      "selection_inputs": [
+        "MANDATORY_PATHS_FIRST",
+        "COVERAGE",
+        "VARIANCE",
+        "UNIQUE_COUNT",
+        "UTF8_PATH_TIE_BREAK"
+      ],
+      "label_aware_selection": false,
+      "quota_overflow": "PROFILE_ABNORMAL_REFREEZE_BEFORE_FORMAL"
+    },
+    "categorical": {
+      "banks_per_family": 2,
+      "dimensions_per_bank": 256,
+      "total_width": 3584,
+      "encoding": "SIGNED_SHA256_FEATURE_HASH_COUNT",
+      "bank_domains": [
+        "WAVE025_EAP_CAT_BANK_A_V1",
+        "WAVE025_EAP_CAT_BANK_B_V1"
+      ],
+      "count_transform": "LOG1P_MIN_COUNT_255",
+      "hash_collision_audit": true
+    },
+    "lexical": {
+      "ngram_n": [
+        2,
+        3,
+        4
+      ],
+      "dimensions_per_family": 256,
+      "total_width": 1792,
+      "hash_domain": "WAVE025_EAP_UTF8_NGRAM_V1",
+      "maximum_bytes_scanned_per_string": 4096,
+      "overlength_rule": "FIRST_2048_PLUS_LAST_2048_KEEP_FULL_LENGTH_SHA256_AND_FLAG",
+      "full_value_sha256_stays_in_direct_scan": true
+    },
+    "family_norms": {
+      "one_per_family": true,
+      "total_width": 7,
+      "value": "LOG1P_PRENORMALIZATION_L2_NORM"
+    },
+    "maximum_total_width": 5831,
+    "preprocessing": {
+      "fit_phase": "CALIBRATION_ONLY_PER_CHALLENGE_AND_CONTROL_FAMILY",
+      "logistic_and_knn": "ROBUST_NUMERIC_SCALE_CLIP_8_PER_FAMILY_L2_KEEP_FAMILY_NORM",
+      "stump_and_tree": "MEDIAN_FILL_UNCLIPPED_NUMERIC_MISSING_BITS_CATEGORY_PRESENCE_NO_ROW_L2",
+      "numeric_scale": "MAX_IQR_DIV_1_349_OR_1_IF_ZERO",
+      "missing_fill": "CALIBRATION_MEDIAN_OR_ZERO_IF_ALL_MISSING",
+      "feature_order": "FAMILY_THEN_UTF8_FEATURE_ID_THEN_BUCKET",
+      "class_order": "UTF8_SORTED_CLASS0_FIRST"
+    }
+  },
+  "attacks": [
+    {
+      "id": "A-DIRECT",
+      "kind": "RAW_DETERMINISTIC_DIRECT_SCAN",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "minimum_total_support": 10,
+      "minimum_per_predicted_class_support": 5,
+      "stable_recovery": "RECALL_1_FOR_BOTH_CLASSES_NO_ABSTENTION_IN_CALIBRATION_AND_HOLDOUT",
+      "tie_break": "LOWER_RULE_COMPLEXITY_THEN_UTF8_RULE_SERIALIZATION"
+    },
+    {
+      "id": "A-LOGISTIC",
+      "kind": "L2_LOGISTIC_FULL_BATCH_ARMIJO",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "l2": 0.01,
+      "maximum_iterations": 500,
+      "gradient_linf_stop": 0.000001,
+      "initial_step": 1.0,
+      "backtracking_factor": 0.5,
+      "armijo_c": 0.0001,
+      "probability_threshold": 0.5,
+      "nonconvergence": "PROFILE_ABNORMAL_NO_CHANCE_SCORE",
+      "tie_prediction": "CLASS0"
+    },
+    {
+      "id": "A-STUMP",
+      "kind": "BOUNDED_GINI_TREE",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "maximum_depth": 1,
+      "minimum_leaf": 10,
+      "maximum_numeric_quantile_thresholds": 31,
+      "categorical_split": "HASH_BUCKET_PRESENCE_GT_ZERO",
+      "tie_break": "GAIN_DESC_FEATURE_UTF8_THRESHOLD_ASC_CLASS0"
+    },
+    {
+      "id": "A-TREE3",
+      "kind": "BOUNDED_GINI_TREE",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "maximum_depth": 3,
+      "minimum_leaf": 10,
+      "minimum_gain": 0.000000000001,
+      "maximum_numeric_quantile_thresholds": 31,
+      "categorical_split": "HASH_BUCKET_PRESENCE_GT_ZERO",
+      "tie_break": "GAIN_DESC_FEATURE_UTF8_THRESHOLD_ASC_CLASS0"
+    },
+    {
+      "id": "A-KNN5",
+      "kind": "K_NEAREST_NEIGHBOUR",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "k": 5,
+      "distance": "EUCLIDEAN_ON_FAMILY_NORMALIZED_VECTOR",
+      "neighbour_order_reuse_group": "KNN_SHARED_DISTANCE_PASS",
+      "boundary_distance_tie": "INCLUDE_ALL_AT_KTH_DISTANCE",
+      "vote": "UNWEIGHTED",
+      "tie_prediction": "CLASS0"
+    },
+    {
+      "id": "A-KNN11",
+      "kind": "K_NEAREST_NEIGHBOUR",
+      "fit_phase": "CALIBRATION_ONLY",
+      "inference_phase": "FRESH_HOLDOUT_ONLY",
+      "k": 11,
+      "distance": "EUCLIDEAN_ON_FAMILY_NORMALIZED_VECTOR",
+      "neighbour_order_reuse_group": "KNN_SHARED_DISTANCE_PASS",
+      "boundary_distance_tie": "INCLUDE_ALL_AT_KTH_DISTANCE",
+      "vote": "UNWEIGHTED",
+      "tie_prediction": "CLASS0"
+    }
+  ],
+  "statistics": {
+    "metric": "BALANCED_ACCURACY_HALF_RECALL_R_PLUS_HALF_RECALL_S",
+    "confidence_intervals": {
+      "decision_method": "CLASS_WISE_CLOPPER_PEARSON_ONE_SIDED_BONFERRONI_THEN_AVERAGE",
+      "confidence": 0.95,
+      "class_tail_alpha": 0.025,
+      "lower_zero_success": 0.0,
+      "upper_all_success": 1.0,
+      "inversion": "DEPENDENCY_FREE_BINOMIAL_TAIL_BISECTION_TOLERANCE_1E_12",
+      "balanced_total_cp_role": "DIAGNOSTIC_ONLY"
+    },
+    "thresholds": {
+      "D0_D1_primary_holdout_ba_lower_min": 0.9,
+      "T_each_attack_holdout_ba_upper_max": 0.55,
+      "direct_stable_recovery_ba": 1.0,
+      "ordinary_p_gt_0_05_is_equivalence": false
+    },
+    "permutation": {
+      "target": "FROZEN_HOLDOUT_PREDICTIONS",
+      "retrain_models_per_permutation": false,
+      "strata": "CHALLENGE_PHASE_BLOCK",
+      "preserve_role_balance": true,
+      "base_replicates": 999,
+      "family_size_threshold_for_extension": 50,
+      "raw_minimum_formula": "CEIL(HOLM_FAMILY_SIZE_DIV_0_05)_MINUS_1",
+      "rounding_rule": "SMALLEST_B_GE_MAX_999_RAW_MINIMUM_WITH_B_MOD_1000_EQ_999",
+      "p_value_formula": "(1_PLUS_EXTREME_COUNT)/(1_PLUS_B)",
+      "tail": "GREATER_OR_EQUAL",
+      "seed_derivation": "SHA256_PRECOMMIT_PROFILE_TEST_ID_V1"
+    },
+    "holm": {
+      "method": "HOLM_STEP_DOWN_V1",
+      "familywise_alpha": 0.05,
+      "sort": "P_ASC_THEN_UTF8_TEST_ID",
+      "families": [
+        "T_PREDICTIVE_ATTACKS",
+        "T_HOST_ONLY_ASSOCIATIONS",
+        "D0_PRIMARY_CONTROLS",
+        "D1_PRIMARY_CONTROLS"
+      ],
+      "nonrejection_is_equivalence": false
+    }
+  },
+  "positive_controls": {
+    "pool_D0_and_D1": false,
+    "registry_freeze": "BEFORE_EXTERNAL_ANCHOR",
+    "required_registration_fields": [
+      "family_id",
+      "challenge",
+      "injection_surface",
+      "expected_feature_family",
+      "primary_detector_id",
+      "calibration_population_by_role",
+      "holdout_population_by_role",
+      "private_token_commitment"
+    ],
+    "allowed_primary_detector_ids": [
+      "A-DIRECT",
+      "A-LOGISTIC",
+      "A-STUMP",
+      "A-TREE3",
+      "A-KNN5",
+      "A-KNN11"
+    ],
+    "D0-HOST-LEAK": {
+      "control_kind": "SACRIFICIAL_PREDECESSOR_SHARED_STATE_CONTAMINATION",
+      "registered_family_selector_is_predictor": false,
+      "secondary_can_rescue_primary": false,
+      "insufficient_family_population": "PROFILE_ABNORMAL_DETECTOR_INADEQUATE"
+    },
+    "D1-OCI-CANARY": {
+      "control_kind": "CURRENT_RUN_ROLE_CORRELATED_CANARY",
+      "registered_family_selector_is_predictor": false,
+      "secondary_can_rescue_primary": false,
+      "insufficient_family_population": "PROFILE_ABNORMAL_DETECTOR_INADEQUATE"
+    }
+  },
+  "host_only_audit": {
+    "excluded_from_predictor_exact": [
+      "challenge",
+      "role",
+      "block",
+      "phase",
+      "execution_order",
+      "opaque_slot_id",
+      "container_id",
+      "host_start_time",
+      "host_finish_time",
+      "host_monotonic_time",
+      "host_path",
+      "public_plan_position",
+      "docker_inspect",
+      "host_launch"
+    ],
+    "association_audit_required": true,
+    "numeric_statistic": "ABSOLUTE_STANDARDIZED_MEAN_DIFFERENCE",
+    "categorical_statistic": "CRAMERS_V_MISSING_AS_CATEGORY",
+    "set_path_statistic": "MAX_ABSOLUTE_ROLE_RATE_DEVIATION_SUPPORT_GE_10",
+    "permutation_family": "T_HOST_ONLY_ASSOCIATIONS",
+    "may_copy_association_fields_into_learned_matrix": false
+  },
+  "abnormal_fail_closed": {
+    "default_outcome": "PROFILE_ABNORMAL_NO_CHANCE_SCORE_NO_QUALIFICATION_RESULT",
+    "conditions": [
+      {
+        "code": "UNKNOWN_OR_MISSING_SCHEMA_FIELD",
+        "trigger": "TOP_LEVEL_OR_NESTED_SCHEMA_MISMATCH"
+      },
+      {
+        "code": "UNCLASSIFIED_RAW_LEAF",
+        "trigger": "LEAF_NOT_EXACTLY_INCLUDED_OR_EXCLUDED"
+      },
+      {
+        "code": "REQUIRED_FEATURE_FAMILY_MISSING",
+        "trigger": "ANY_F01_TO_F07_ABSENT"
+      },
+      {
+        "code": "MANDATORY_PATH_OR_CONTROL_REGISTRY_MISSING",
+        "trigger": "PIN_OR_PREANCHOR_CONTROL_REGISTRATION_ABSENT"
+      },
+      {
+        "code": "FEATURE_CAP_OVERFLOW",
+        "trigger": "MANDATORY_FEATURES_EXCEED_FAMILY_QUOTA_OR_TOTAL_WIDTH"
+      },
+      {
+        "code": "NONFINITE_OR_DUPLICATE_FEATURE",
+        "trigger": "NAN_INFINITY_OR_UNDECLARED_DUPLICATE_KEY"
+      },
+      {
+        "code": "CLASSIFIER_NONCONVERGENCE_OR_EXCEPTION",
+        "trigger": "LOGISTIC_GRADIENT_NOT_CONVERGED_OR_ANY_ATTACK_EXCEPTION"
+      },
+      {
+        "code": "HOLDOUT_ADAPTATION",
+        "trigger": "FEATURE_RULE_MODEL_THRESHOLD_OR_SAMPLE_CHANGED_AFTER_HOLDOUT_READ"
+      },
+      {
+        "code": "PERMUTATION_RESOLUTION_INADEQUATE",
+        "trigger": "B_PLUS_1_LT_HOLM_FAMILY_SIZE_DIV_ALPHA"
+      },
+      {
+        "code": "PROFILE_COST_CEILING_EXCEEDED",
+        "trigger": "ANY_FROZEN_ATTACK_PHASE_RESOURCE_CEILING_EXCEEDED"
+      },
+      {
+        "code": "DETERMINISTIC_REPLAY_DRIFT",
+        "trigger": "ANY_FEATURE_PREDICTION_STATISTIC_OR_OUTPUT_BYTE_DIFFERS"
+      }
+    ],
+    "may_translate_abnormal_to_chance": false,
+    "may_reduce_profile_after_formal_data": false,
+    "refreeze_required_before_retry": true
+  },
+  "cost_and_replay_ceiling": {
+    "scope": "EVALUATOR_ATTACK_PHASE_AFTER_EVIDENCE_INTEGRITY_NOT_DOCKER_LAUNCH",
+    "maximum_learned_width": 5831,
+    "maximum_calibration_rows_per_challenge": 400,
+    "maximum_holdout_rows_per_challenge": 2400,
+    "peak_resident_memory_bytes": 4294967296,
+    "temporary_derived_cache_bytes": 2147483648,
+    "formal_evaluation_output_bytes": 104857600,
+    "feature_extraction_wall_seconds": 1200,
+    "model_and_statistics_wall_seconds": 2400,
+    "attack_phase_total_wall_seconds": 3600,
+    "deterministic_replay": {
+      "feature_byte_differences": 0,
+      "prediction_differences": 0,
+      "statistic_differences": 0,
+      "evaluation_output_byte_differences": 0
+    },
+    "preformal_benchmark": {
+      "required": true,
+      "distinct_non_evidence_batch_id": true,
+      "receipt_population": 3200,
+      "actual_shape_receipts": true,
+      "max_size_tree_process_truncation_fixtures": true,
+      "record_host_python_cpu_count": true,
+      "bind_profile_and_code_hashes": true,
+      "ceiling_pass_is_formal_qualification": false
+    },
+    "current_evidence_state": "CEILINGS_NOT_YET_BENCHMARKED"
+  },
+  "output_prohibitions": {
+    "qualification_verdict": "PROHIBITED_BY_THIS_CANDIDATE_ARTIFACT",
+    "A1_A5_score_coverage_pareto_ranking_winner": "PROHIBITED",
+    "shared_contract_promotion": "REQUIRES_SEPARATE_USER_OR_CONTRACT_DECISION",
+    "unknown_leak_absence_claim": "PROHIBITED"
+  },
+  "not_tested": [
+    "DYNAMIC_FIXED_BROKER_AND_EARLIEST_LAWFUL_DIVERGENCE",
+    "CROSS_RUN_PROVIDER_OR_HUMAN_MEMORY",
+    "EVALUATOR_TRUTH_VALIDITY",
+    "NATIVE_TREATMENT_QUALIFICATION_OR_COMPARISON",
+    "AUTHORITY_EFFECT_ACCEPTANCE_OR_COST_FAIRNESS",
+    "HOST_ADMIN_HYPERVISOR_COLLUSION",
+    "MICROARCHITECTURAL_OR_PHYSICAL_SIDE_CHANNELS",
+    "ADAPTIVE_MULTI_INVOCATION_CANDIDATES",
+    "GENERALIZATION_BEYOND_BOUND_IMAGE_KERNEL_DAEMON_AND_ISOLATION_PROFILE",
+    "ARBITRARY_FRESH_UNIQUE_CODEBOOK",
+    "HIGHER_THAN_THREE_WAY_INTERACTION_OR_PRIVATE_DECODER",
+    "RARE_EVENT_OR_ROLE_ADVANTAGE_AT_OR_BELOW_0_55_MARGIN",
+    "FULL_16384_CATEGORICAL_AND_4096_NGRAM_ATTACK",
+    "9999_PERMUTATION_RESOLUTION",
+    "LONG_TERM_PRODUCTION_RELIABILITY"
+  ],
+  "adoption_gate": {
+    "current_state": "CANDIDATE_ONLY",
+    "required_before_formal_use": [
+      "EXACT_SHARED_INTERFACE_FREEZE",
+      "PROFILE_BYTES_USER_OR_SHARED_CONTRACT_ADOPTION",
+      "INDEPENDENT_EVALUATOR_IMPLEMENTATION_OR_AUDITED_PROVIDER",
+      "PREFORMAL_1600_RECEIPT_COST_BENCHMARK_PASS",
+      "RUNNER_EVALUATOR_COLLECTOR_PROFILE_HASH_RECOMPUTATION",
+      "NEW_EXTERNAL_PRECOMMIT_ANCHOR"
+    ],
+    "automatic_promotion": false,
+    "formal_use_before_adoption": "FORBIDDEN"
+  }
+}

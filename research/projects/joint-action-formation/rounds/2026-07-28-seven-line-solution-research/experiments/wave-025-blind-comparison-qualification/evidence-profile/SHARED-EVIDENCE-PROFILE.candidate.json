@@ -1,0 +1,690 @@
+{
+  "$schema": "./SHARED-EVIDENCE-PROFILE.schema.json",
+  "schema": "WAVE025_SHARED_EVIDENCE_PROFILE_CANDIDATE_V1",
+  "profile_id": "wave025-shared-evidence-profile-v1-candidate",
+  "status": "CANDIDATE_WITH_BLOCKERS",
+  "scope": {
+    "batch_mode_observed": "smoke",
+    "evidence_batch": "runs/smoke-v13-20260801-f",
+    "purpose": "Exact runner-to-evaluator evidence interface candidate derived from runner source and F raw evidence",
+    "does_not_reclassify_f": true,
+    "does_not_modify_runner_contract_or_evaluator": true
+  },
+  "source_locks": {
+    "runner": {
+      "path": "runner/runner.py",
+      "sha256": "32614983f5292a708ac38118f587bed50cbb8aa44f5a9c2179a1fe12ae378e3e"
+    },
+    "qualification_contract": {
+      "path": "QUALIFICATION-CONTRACT.md",
+      "sha256": "7a382b8c91af6819b4e66b69691fd250b6b52c77a7f5229a077698790de0c670"
+    },
+    "batch_contract": {
+      "path": "BATCH-EVIDENCE-CONTRACT.md",
+      "sha256": "d194f56add3739b66e8056ca1c1fd7297b8bf381b1a27ca6bbb2ee419f62cbbf"
+    },
+    "collector_source": {
+      "path": "attackers/leak-only-collector/collector.js",
+      "sha256": "bc18911c65815da3747755eae44b8f77398d034f9c7c67b54430893c5a1ad699"
+    },
+    "collector_dockerfile": {
+      "path": "attackers/leak-only-collector/Dockerfile",
+      "sha256": "a22d89b34c595ff533dc65323a87e41e4731d08a6cb1da2d15e998b84467f18a"
+    },
+    "f_root_objects": {
+      "precommit.json": "d9a44ab9a5a781a90b70e25ff2a448a329c151ca19998255a2d4d6b45904a77e",
+      "public-plan.json": "09a8fc8a57906bc3d4182af7f3b1f08cccf5c36b2a6c6a07c2ccf1a9033acf72",
+      "runner-private-state.json": "1bc65e04d729bb2ce5c1ebb70583660f88d84e6fe72ab201aba833b9fdeafc22",
+      "anchor-receipt.json": "16f3d7d494afac916d3ef4af6d1b8697c5cd51770f65f140b7bd6d679aae9cb9",
+      "closed.json": "26471d579c13a3f26261512c1d9ac1c67516cb3f610840afa7c8c1f16c42cb5e",
+      "reveal.json": "7f698271d211441ad46b6851d8b219238f6e81b87f72afbdcf6de579adb70287"
+    }
+  },
+  "serialization_registry": [
+    {
+      "artifact_class": "runner_canonical_json",
+      "path_patterns": [
+        "precommit.json",
+        "public-plan.json",
+        "runner-private-state.json",
+        "anchor-receipt.json",
+        "slots/<opaque_slot_id>/host-launch.json",
+        "slots/<opaque_slot_id>/slot-receipt.json",
+        "closed.json",
+        "reveal.json"
+      ],
+      "producer": "runner",
+      "encoding": "UTF-8",
+      "framing": "one JSON value followed by exactly one LF",
+      "canonicalization": "recursive lexicographic key order; compact separators comma and colon; ensure_ascii=false; finite numbers only",
+      "schema_policy": "closed fields through RUNNER-EVIDENCE-OBJECTS.schema.json"
+    },
+    {
+      "artifact_class": "docker_inspect_raw_json",
+      "path_patterns": [
+        "slots/<opaque_slot_id>/docker-inspect-pre.json",
+        "slots/<opaque_slot_id>/docker-inspect-post.json"
+      ],
+      "producer": "Docker daemon via docker inspect",
+      "encoding": "opaque raw stdout bytes; currently UTF-8 JSON array",
+      "framing": "exact daemon/CLI stdout; no runner canonicalization",
+      "canonicalization": "FORBIDDEN",
+      "schema_policy": "parse one-element array; preserve all unknown daemon fields; consume only registered JSON pointers"
+    },
+    {
+      "artifact_class": "docker_events_raw_jsonl",
+      "path_patterns": [
+        "slots/<opaque_slot_id>/docker-events.jsonl"
+      ],
+      "producer": "Docker daemon via docker events",
+      "encoding": "opaque raw stdout bytes; one UTF-8 JSON object per LF-delimited line",
+      "framing": "19 non-empty lines for a complete V1 post-cut slot",
+      "canonicalization": "FORBIDDEN",
+      "schema_policy": "F-observed envelope plus exact semantic projection; Actor.Attributes remains daemon-open and is a portability blocker"
+    },
+    {
+      "artifact_class": "raw_extraction_bytes",
+      "path_patterns": [
+        "slots/<opaque_slot_id>/collector-ready.bin",
+        "slots/<opaque_slot_id>/collector-exit-code.bin",
+        "slots/<opaque_slot_id>/collector-stdout.bin",
+        "slots/<opaque_slot_id>/collector-stderr.bin",
+        "slots/<opaque_slot_id>/collector-out.bin",
+        "slots/<opaque_slot_id>/supervisor-control-stdout.bin",
+        "slots/<opaque_slot_id>/supervisor-control-stderr.bin"
+      ],
+      "producer": "host command receipt stdout/stderr",
+      "encoding": "opaque bytes",
+      "framing": "whole command channel bytes",
+      "canonicalization": "FORBIDDEN",
+      "schema_policy": "hash and equality constraints only, except ready/exit/control constants"
+    },
+    {
+      "artifact_class": "validated_collector_feature_receipt",
+      "path_patterns": [
+        "slots/<opaque_slot_id>/collector-features.json"
+      ],
+      "producer": "runner exclusive-copy from validated collector-out bytes",
+      "encoding": "UTF-8 canonical JSON plus LF",
+      "framing": "byte-identical to collector-out.bin and collector-stdout.bin",
+      "canonicalization": "collector canonical JSON",
+      "schema_policy": "schema const WAVE025_LEAK_ONLY_FEATURES_V1; feature leaf allowlist is external feature-spec bytes"
+    }
+  ],
+  "runner_owned_object_registry": [
+    {
+      "schema": "WAVE025_BATCH_PRECOMMIT_V1",
+      "path_pattern": "precommit.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/precommit",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_PUBLIC_PLAN_V1",
+      "path_pattern": "public-plan.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/publicPlan",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_RUNNER_PRIVATE_STATE_V1",
+      "path_pattern": "runner-private-state.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/privateState",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_ANCHOR_RECEIPT_V1",
+      "path_pattern": "anchor-receipt.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/anchor",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_HOST_LAUNCH_V1",
+      "path_pattern": "slots/<opaque_slot_id>/host-launch.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/hostLaunch",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_SLOT_RECEIPT_V1",
+      "path_pattern": "slots/<opaque_slot_id>/slot-receipt.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/slotReceipt",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_BATCH_CLOSED_V1",
+      "path_pattern": "closed.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/closed",
+      "field_policy": "EXACT_RECURSIVE"
+    },
+    {
+      "schema": "WAVE025_BATCH_REVEAL_V1",
+      "path_pattern": "reveal.json",
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/reveal",
+      "field_policy": "EXACT_RECURSIVE"
+    }
+  ],
+  "command_receipt_profile": {
+    "schema": "WAVE025_HOST_COMMAND_RECEIPT_V1",
+    "exact_fields": [
+      "schema",
+      "command",
+      "started_at",
+      "finished_at",
+      "monotonic_start_ns",
+      "monotonic_finish_ns",
+      "returncode",
+      "stdout_base64",
+      "stderr_base64"
+    ],
+    "byte_channels": {
+      "stdout_base64": "RFC4648 base64 of exact stdout bytes",
+      "stderr_base64": "RFC4648 base64 of exact stderr bytes"
+    },
+    "ordering": {
+      "within_receipt": "monotonic_start_ns <= monotonic_finish_ns",
+      "within_one_runner_invocation": "array order must be non-overlapping: next.monotonic_start_ns >= previous.monotonic_finish_ns",
+      "across_invocations": "NOT_COMPARABLE; prepare, run and close are separate monotonic clock scopes"
+    },
+    "authoritative_locations": [
+      "runner-private-state.json#/final_image_inspect_receipt",
+      "runner-private-state.json#/base_image_inspect_receipt",
+      "slots/<opaque_slot_id>/host-launch.json#/diagnostics/docker_version_command",
+      "slots/<opaque_slot_id>/host-launch.json#/diagnostics/host_command_receipts/*",
+      "closed.json#/docker_daemon/diagnostics/command"
+    ],
+    "runtime_journal_status": "host-only recovery duplicate; not an additional shared truth source"
+  },
+  "randomization_profile": {
+    "byte_conventions": {
+      "text": "UTF-8 without implicit terminator",
+      "separator": "single 0x00 byte exactly where shown",
+      "counter": "unsigned 64-bit big-endian",
+      "hex": "lowercase; two hex characters per byte",
+      "sha256": "32 raw digest bytes internally; 64 lowercase hex characters in JSON"
+    },
+    "domains": [
+      {
+        "name": "PRIVATE_ASSIGNMENT_ORDER",
+        "seed_bytes": 32,
+        "nonce_bytes": 32,
+        "uses": [
+          "block role shuffle",
+          "execution order shuffle",
+          "D0/D1 private token"
+        ]
+      },
+      {
+        "name": "PUBLIC_ID",
+        "seed_bytes": 32,
+        "nonce_bytes": 32,
+        "uses": [
+          "opaque slot ID"
+        ]
+      },
+      {
+        "name": "MEASUREMENT_PADDING",
+        "seed_bytes": 32,
+        "nonce_bytes": 32,
+        "uses": [
+          "host-private padding integer"
+        ]
+      }
+    ],
+    "commitment": {
+      "formula": "SHA256(UTF8(domain) || 0x00 || seed32 || 0x00 || nonce32 || 0x00 || canonical_public_plan_bytes)",
+      "public_plan_bytes": "exact public-plan.json canonical bytes including final LF"
+    },
+    "hmac_stream": {
+      "block_formula": "HMAC-SHA256(key=seed, msg=UTF8(label) || 0x00 || counter_u64_be)",
+      "counter_initial": 0,
+      "blocks": "concatenated in counter order and consumed without reset",
+      "randbelow": "width=max(1,ceil(bit_length(upper-1)/8)); ceiling=2^(8*width); limit=ceiling-(ceiling mod upper); reject unsigned-big-endian draw >= limit; return draw mod upper"
+    },
+    "assignment": {
+      "base_roles": "for each exact block: S repeated size/2 followed by R repeated size/2",
+      "shuffle": "descending Fisher-Yates i=n-1..1 using HMAC-stream randbelow(i+1)",
+      "block_label_bytes": "UTF8('roles') || 0x00 || UTF8(block)",
+      "block_iteration": "lexicographic block key order; each block creates a fresh HMAC stream with counter 0",
+      "formal_layout": "D0 cal 5x20, D0 holdout 5x20, D1 cal 5x20, D1 holdout 5x20, T cal 20x20, T holdout 120x20",
+      "smoke_layout": "challenge order D0,D1,T; within each challenge calibration then holdout; one block per split; block size is frozen smoke_per_split"
+    },
+    "execution_order": {
+      "input": "mapping opaque_slot_id values in original layout index order",
+      "shuffle_label": "execution-order",
+      "shuffle": "same descending Fisher-Yates with PRIVATE_ASSIGNMENT_ORDER seed and a fresh counter-0 stream"
+    },
+    "public_id": {
+      "formula": "'s_' || first_32_lower_hex(HMAC-SHA256(key=PUBLIC_ID seed, msg=UTF8('W025-PUBLIC-ID-V1') || 0x00 || layout_index_u64_be))"
+    },
+    "padding": {
+      "stream_label_bytes": "UTF8('W025-PADDING-V1') || 0x00 || UTF8(opaque_slot_id)",
+      "value": "HMAC-stream randbelow(257) with MEASUREMENT_PADDING seed and fresh counter-0 stream"
+    },
+    "private_token": {
+      "families": {
+        "D0-HOST-LEAK": "D0_RESIDUE",
+        "D1-OCI-CANARY": "D1_CURRENT",
+        "T-OCI-ISOLATED": null
+      },
+      "formula": "'WAVE025_CANARY_' || family || '_' || first_24_lower_hex(HMAC-SHA256(key=PRIVATE_ASSIGNMENT_ORDER seed, msg=UTF8('W025-' || family || '-TOKEN-V1') || 0x00 || UTF8(role)))"
+    }
+  },
+  "control_registry": [
+    {
+      "control_id": "batch_identity_and_mode",
+      "authority_before_reveal": "precommit.json and public-plan.json exact equality",
+      "locations": [
+        "/batch_id",
+        "/mode"
+      ],
+      "public_before_reveal": true,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Host/evaluator control only"
+    },
+    {
+      "control_id": "challenge",
+      "authority_before_reveal": "public-plan.json#/slots/*/challenge",
+      "locations": [
+        "public-plan.json#/slots/*/challenge",
+        "slot-receipt.json#/challenge"
+      ],
+      "public_before_reveal": true,
+      "candidate_visible": "indirectly through registered D0/D1 surfaces; not passed as a field",
+      "classifier_feature_eligible": false,
+      "notes": "Challenge is not hidden role"
+    },
+    {
+      "control_id": "hidden_role",
+      "authority_before_reveal": "runner-private-state.json#/mapping/*/role",
+      "locations": [
+        "runner-private-state.json#/mapping/*/role",
+        "reveal.json#/mapping/*/role"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Never present in public plan, host launch or slot receipt"
+    },
+    {
+      "control_id": "phase_and_block",
+      "authority_before_reveal": "runner-private-state.json#/mapping/*",
+      "locations": [
+        "runner-private-state.json#/mapping/*/phase",
+        "runner-private-state.json#/mapping/*/block",
+        "reveal.json#/mapping/*/phase",
+        "reveal.json#/mapping/*/block"
+      ],
+      "public_before_reveal": "block names and sizes are public; per-slot association is private",
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Used only for split/balance and audit"
+    },
+    {
+      "control_id": "execution_order",
+      "authority_before_reveal": "runner-private-state.json#/execution_order",
+      "locations": [
+        "runner-private-state.json#/execution_order",
+        "slot-receipt.json#/execution_index",
+        "reveal.json#/execution_order"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Association audit only"
+    },
+    {
+      "control_id": "domain_secrets",
+      "authority_before_reveal": "runner-private-state.json#/domains",
+      "locations": [
+        "runner-private-state.json#/domains",
+        "reveal.json#/domains"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Three independent seed/nonce pairs"
+    },
+    {
+      "control_id": "opaque_slot_id",
+      "authority_before_reveal": "public-plan.json#/slots/*/opaque_slot_id",
+      "locations": [
+        "public-plan.json#/slots/*/opaque_slot_id",
+        "slot path",
+        "slot-receipt.json#/opaque_slot_id"
+      ],
+      "public_before_reveal": true,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Deterministic association audit only"
+    },
+    {
+      "control_id": "measurement_padding",
+      "authority_before_reveal": "runner-private-state.json#/mapping/*/measurement_padding_bytes",
+      "locations": [
+        "runner-private-state.json#/mapping/*/measurement_padding_bytes",
+        "reveal.json#/mapping/*/measurement_padding_bytes"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Current runner records but does not expose padding to candidate"
+    },
+    {
+      "control_id": "private_canary_token",
+      "authority_before_reveal": "runner-private-state.json#/mapping/*/private_canary_token_or_null",
+      "locations": [
+        "runner-private-state.json#/mapping/*/private_canary_token_or_null",
+        "reveal.json#/mapping/*/canary_token_or_null"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": "D0/D1 only through registered leak surface",
+      "classifier_feature_eligible": true,
+      "notes": "Positive-control signal; null for T"
+    },
+    {
+      "control_id": "commitments",
+      "authority_before_reveal": "precommit.json",
+      "locations": [
+        "precommit.json#/assignment_commitment",
+        "precommit.json#/public_id_commitment",
+        "precommit.json#/padding_commitment"
+      ],
+      "public_before_reveal": true,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Binds secrets plus exact public-plan bytes"
+    },
+    {
+      "control_id": "host_identifiers_and_time",
+      "authority_before_reveal": "raw Docker receipts and host command receipts",
+      "locations": [
+        "host-launch.json#/container_id",
+        "host-launch.json#/container_name",
+        "host-launch.json#/created_at",
+        "host-launch.json#/started_at",
+        "host-launch.json#/finished_at"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": "container-local derivatives may be visible to collector",
+      "classifier_feature_eligible": false,
+      "notes": "Audit-only; never predictor input"
+    },
+    {
+      "control_id": "infrastructure_classification",
+      "authority_before_reveal": "slot-receipt.json#/infrastructure_classification",
+      "locations": [
+        "slot-receipt.json#/infrastructure_classification",
+        "closed.json#/slots/*/status"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Runner evidence completeness state, not a leakage verdict"
+    },
+    {
+      "control_id": "file_hashes",
+      "authority_before_reveal": "slot-receipt.json#/files plus closed.json recomputation",
+      "locations": [
+        "slot-receipt.json#/files",
+        "closed.json#/slots/*/files"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": false,
+      "classifier_feature_eligible": false,
+      "notes": "Integrity only"
+    },
+    {
+      "control_id": "collector_feature_receipt",
+      "authority_before_reveal": "slot collector-features.json exact bytes after channel validation",
+      "locations": [
+        "slots/<opaque_slot_id>/collector-features.json"
+      ],
+      "public_before_reveal": false,
+      "candidate_visible": "collector produced the equal stdout/out bytes",
+      "classifier_feature_eligible": true,
+      "notes": "Only feature-spec allowlisted leaves may become predictors"
+    }
+  ],
+  "merkle_profile": {
+    "current_v1": {
+      "algorithm_label": "SHA256-PAIR-CONCAT-DUPLICATE-LAST-W025-V1",
+      "leaf_order": "lexicographic opaque_slot_id order",
+      "leaf": "SHA256(exact canonical slot-receipt.json bytes including LF)",
+      "node": "SHA256(left_digest_32 || right_digest_32)",
+      "odd_level": "duplicate the last digest before pairing",
+      "empty": null,
+      "domain_separation": false,
+      "evaluator_consumption": "full-set verification: recompute exact expected slot IDs and count, every exact slot-receipt byte string, the closed slot/file inventory, then recompute the root; no standalone membership proof is accepted",
+      "current_threat_model_attack_assessment": "No concrete receipt substitution or slot reordering attack is available while the evaluator independently fixes the complete ordered leaf set and exact receipt bytes; the root is redundant integrity aggregation in this scope",
+      "status": "ACCEPTABLE_FOR_F_FULL_SET_VERIFICATION_ONLY",
+      "reason": "Leaf/internal-node prefixes and explicit tree-shape binding are still required before the root is reused as a standalone membership, consistency, or partial-set proof interface"
+    },
+    "proposed_v2": {
+      "version": "W025-MERKLE-RFC6962-SLOTBOUND-V2",
+      "leaf_order": "lexicographic UTF-8 opaque_slot_id bytes",
+      "leaf": "SHA256(0x00 || slot_id_length_u16_be || UTF8(slot_id) || receipt_length_u64_be || exact_receipt_bytes)",
+      "node": "SHA256(0x01 || left_digest_32 || right_digest_32)",
+      "tree_shape": "RFC6962 split: for n>1 split at largest power of two strictly less than n; no duplicate-last",
+      "empty": "SHA256(empty bytes)",
+      "adoption": "requires a new contract/runner/evaluator version; does not rewrite F"
+    }
+  },
+  "feature_and_profile_bytes": {
+    "full_feature_spec": {
+      "path": "feature-spec/FEATURE-SPEC.json",
+      "sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a",
+      "binding": "precommit.json#/feature_spec_sha256",
+      "embedded_in_f_batch": false,
+      "status": "BOUND_EXTERNAL_BYTES_NOT_SELF_CONTAINED"
+    },
+    "collector_feature_receipts": {
+      "path_pattern": "runs/smoke-v13-20260801-f/slots/<opaque_slot_id>/collector-features.json",
+      "binding": "slot-receipt.json#/files/collector-features.json",
+      "byte_equality": "collector-features.json == collector-out.bin == collector-stdout.bin",
+      "status": "PRESENT_IN_F"
+    },
+    "post_cut_extraction_profile": {
+      "location": "runs/smoke-v13-20260801-f/precommit.json#/evidence_extraction_profile",
+      "canonical_subobject_sha256": "7690c01ea12ba82bbb113779f699b1395545d48653d69bb97045803b10596c6c",
+      "binding": "transitively bound by anchored exact precommit bytes",
+      "status": "PRESENT_IN_F_PRECOMMIT"
+    },
+    "executable_attack_profile": {
+      "selected_path": "EXECUTABLE-ATTACK-PROFILE.json",
+      "selected_sha256": "64a4e366a67ec2c12b1194d6fb01fab5b633529035a16f20b22acbf83346e5a7",
+      "candidate_path": "feature-spec/EXECUTABLE-ATTACK-PROFILE.candidate.json",
+      "candidate_sha256": "2eba3bbbd2c99ebdf6ece4107ff535589e89066f3588063e9e9c3408c478b444",
+      "precommit_binding": null,
+      "status": "BLOCKING_NOT_PRECOMMITTED"
+    }
+  },
+  "post_cut_profile": {
+    "ready_frame_utf8": "WAVE025_SUPERVISOR_READY_V1\n",
+    "ready_frame_sha256": "ce855d33139ab7d9c034e4bedd5d59da45888d51c92fbef8e670b371e15fdea3",
+    "pre_ready_allowed_host_commands": [
+      "docker logs <exact-container-name>",
+      "docker inspect <exact-container-name>"
+    ],
+    "ordered_reads": [
+      {
+        "ordinal": 1,
+        "command_suffix": [
+          "exec",
+          "--user",
+          "65534:65534",
+          "<exact-container-name>",
+          "/bin/cat",
+          "/out/collector-ready"
+        ],
+        "evidence_file": "collector-ready.bin"
+      },
+      {
+        "ordinal": 2,
+        "command_suffix": [
+          "exec",
+          "--user",
+          "65534:65534",
+          "<exact-container-name>",
+          "/bin/cat",
+          "/out/collector-exit-code"
+        ],
+        "evidence_file": "collector-exit-code.bin"
+      },
+      {
+        "ordinal": 3,
+        "command_suffix": [
+          "exec",
+          "--user",
+          "65534:65534",
+          "<exact-container-name>",
+          "/bin/cat",
+          "/out/collector-stdout"
+        ],
+        "evidence_file": "collector-stdout.bin"
+      },
+      {
+        "ordinal": 4,
+        "command_suffix": [
+          "exec",
+          "--user",
+          "65534:65534",
+          "<exact-container-name>",
+          "/bin/cat",
+          "/out/collector-stderr"
+        ],
+        "evidence_file": "collector-stderr.bin"
+      },
+      {
+        "ordinal": 5,
+        "command_suffix": [
+          "exec",
+          "--user",
+          "65534:65534",
+          "<exact-container-name>",
+          "/bin/cat",
+          "/out/leak-features.json"
+        ],
+        "evidence_file": "collector-out.bin"
+      }
+    ],
+    "termination_command_suffix": [
+      "kill",
+      "--signal",
+      "TERM",
+      "<exact-container-name>"
+    ],
+    "complete_event_action_sequence": [
+      "create",
+      "start",
+      "exec_create: /bin/cat /out/collector-ready",
+      "exec_start: /bin/cat /out/collector-ready",
+      "exec_die",
+      "exec_create: /bin/cat /out/collector-exit-code",
+      "exec_start: /bin/cat /out/collector-exit-code",
+      "exec_die",
+      "exec_create: /bin/cat /out/collector-stdout",
+      "exec_start: /bin/cat /out/collector-stdout",
+      "exec_die",
+      "exec_create: /bin/cat /out/collector-stderr",
+      "exec_start: /bin/cat /out/collector-stderr",
+      "exec_die",
+      "exec_create: /bin/cat /out/leak-features.json",
+      "exec_start: /bin/cat /out/leak-features.json",
+      "exec_die",
+      "kill",
+      "die"
+    ],
+    "event_semantic_projection": {
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/postCutEventProjection",
+      "exact_fields": [
+        "type",
+        "action",
+        "command_or_null",
+        "container_id",
+        "container_name",
+        "exec_id_or_null",
+        "exit_code_or_null",
+        "signal_or_null",
+        "time_nano"
+      ],
+      "raw_json_pointers": {
+        "type": "/Type",
+        "action": "/Action before optional colon",
+        "command_or_null": "/Action suffix after colon-space",
+        "container_id": "/Actor/ID",
+        "container_name": "/Actor/Attributes/name",
+        "exec_id_or_null": "/Actor/Attributes/execID",
+        "exit_code_or_null": "/Actor/Attributes/exitCode",
+        "signal_or_null": "/Actor/Attributes/signal",
+        "time_nano": "/timeNano"
+      }
+    },
+    "f_observed_raw_event_envelope": {
+      "schema_ref": "./RUNNER-EVIDENCE-OBJECTS.schema.json#/$defs/fObservedRawDockerEvent",
+      "exact_top_level_fields": [
+        "Type",
+        "Action",
+        "Actor",
+        "scope",
+        "time",
+        "timeNano"
+      ],
+      "exact_actor_fields": [
+        "ID",
+        "Attributes"
+      ],
+      "consumed_attribute_fields": [
+        "name",
+        "execID",
+        "exitCode",
+        "signal"
+      ],
+      "unconsumed_attribute_policy": "preserve raw bytes and ignore for action reconstruction",
+      "current_threat_model_assessment": "Unknown daemon attributes cannot alter the frozen consumed projection and are covered by exact raw-file hashes; they do not block current projected verification",
+      "portability_status": "NON_BLOCKING_OPEN_WORLD_RAW_WITH_FROZEN_PROJECTION"
+    },
+    "complete_slot_constraints": [
+      "control stdout equals exact ready frame and control stderr is empty",
+      "ready exec stdout equals ASCII READY plus LF",
+      "exit-code exec stdout equals decimal collector exit plus LF",
+      "all five exec receipts return 0 with empty stderr in exact order after ready observation",
+      "collector-stderr.bin is empty",
+      "collector-stdout.bin equals collector-out.bin byte-for-byte",
+      "collector-out.bin is canonical WAVE025_LEAK_ONLY_FEATURES_V1 JSON",
+      "collector-features.json equals collector-out.bin byte-for-byte",
+      "TERM is the only post-read signal and supervisor/container exit equals collector exit",
+      "event JSONL reconstructs exactly five distinct exec IDs and the 19-action sequence"
+    ]
+  },
+  "conditional_hardening": [
+    {
+      "code": "MERKLE_V1_NO_DOMAIN_SEPARATION",
+      "severity": "BLOCKING_BEFORE_STANDALONE_PROOF_REUSE",
+      "scope": "future standalone membership, consistency, or partial-set Merkle interface; not F full-set verification",
+      "evidence": "runner merkle_root_hex hashes leaf receipt digests and internal digest pairs without distinct prefixes",
+      "required_resolution": "adopt a versioned domain-separated, shape-bound algorithm such as proposed_v2; never rewrite F"
+    },
+    {
+      "code": "RAW_DOCKER_EVENT_ATTRIBUTES_OPEN_WORLD",
+      "severity": "BLOCKING_ONLY_FOR_EXACT_RAW_DAEMON_SCHEMA_CLAIM",
+      "scope": "future portable exact-schema claim for daemon-owned Actor.Attributes; not current frozen semantic projection",
+      "evidence": "F Docker Desktop adds daemon-specific Actor.Attributes and the runner consumes only four named attributes",
+      "required_resolution": "continue retaining exact raw JSONL and bind the consumed semantic projection; never schema-reject unknown daemon attributes"
+    }
+  ],
+  "blocking_issues": [
+    {
+      "code": "EXECUTABLE_ATTACK_PROFILE_NOT_PRECOMMITTED",
+      "severity": "BLOCKING",
+      "scope": "claim that a particular executable attack profile was frozen for F",
+      "evidence": "F precommit binds feature_spec_sha256 but has no field containing either executable profile SHA",
+      "required_resolution": "future precommit must bind exact selected executable profile bytes and schema/version before run"
+    },
+    {
+      "code": "FEATURE_SPEC_BYTES_NOT_EMBEDDED_IN_BATCH",
+      "severity": "BLOCKING_FOR_SELF_CONTAINED_TRANSFER",
+      "scope": "offline evaluation from the F batch directory alone",
+      "evidence": "F stores only feature_spec_sha256; matching bytes exist at feature-spec/FEATURE-SPEC.json outside the batch",
+      "required_resolution": "package exact bytes or a content-addressed external receipt without altering F"
+    }
+  ]
+}

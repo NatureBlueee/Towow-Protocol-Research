@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "manifest_id": "T2-ENTERPRISE-PILOT-MANIFEST-V1",
+  "controller_visibility": "CONTROLLER_ONLY",
+  "solver_payload_allowlist": [
+    "blind/input.json",
+    "evaluator/spec.json",
+    "schemas/query-batch.schema.json",
+    "schemas/final-submission.schema.json"
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "task_readme",
+      "sha256": "39c280738799e22ce727a8b110a656d53f69dc75a71862b4bab2e04b66f25a7d"
+    },
+    {
+      "path": "blind/input.json",
+      "role": "solver_initial_input",
+      "sha256": "e5a7f7edc89f0ae5ef7effe4c70abfcfc1b22be36cb108c41da181e39db23771"
+    },
+    {
+      "path": "controller.py",
+      "role": "controller_only_deterministic_disclosure_state_machine",
+      "sha256": "d7569239b39751425e09add3022f78e2b49cb6d5c5477046f2dc56003009e9d4"
+    },
+    {
+      "path": "schemas/query-batch.schema.json",
+      "role": "solver_visible_query_contract",
+      "sha256": "7e3fe2a3f7b3d6161553bc2332918c0b2da75db459ea13db4c1ad3b65840e989"
+    },
+    {
+      "path": "schemas/final-submission.schema.json",
+      "role": "solver_visible_final_return_contract",
+      "sha256": "7da289755224e290068043b7cf83b2cd0fd65998d5da98e9037478e2edebe310"
+    },
+    {
+      "path": "oracle/truth.json",
+      "role": "controller_and_evaluator_truth",
+      "sha256": "fb573b7e060812744c775f2ce30a01593156a1bcbfb78eee5c2343925db770cf"
+    },
+    {
+      "path": "evaluator/spec.json",
+      "role": "solver_visible_criteria_and_evaluator_contract",
+      "sha256": "ed3bddabcee31cc91455b2f82a6b2b508f680e2975a8e3c65e58b6c6ff7b0a7f"
+    },
+    {
+      "path": "tests/test_controller.py",
+      "role": "deterministic_controller_and_closure_tests",
+      "sha256": "5e4acecc115e526de0cc7a0cf76e0b21b54d435481063c277d9f32bd6db98420"
+    },
+    {
+      "path": "validate_task.py",
+      "role": "deterministic_structural_validator",
+      "sha256": "56332b71bd190df2cfdd6dd1fd3e1d41cadd57462e448dd684b90d4a90067e4e"
+    }
+  ],
+  "source_closure": [
+    {
+      "path": "Towow_Complete_Research_Archive_v1.2_2026-07-27/02_WORKSPACE_SNAPSHOT/Towow_A2A_Independent_Research_v0.4/real_world_protocol/04_示例案例_企业AI只读试点.md",
+      "role": "archival_design_source",
+      "sha256": "87941802972875c2298cf984da08239ff90692afe47cfdce31611d8d06fa99ec"
+    },
+    {
+      "path": "Towow_Complete_Research_Archive_v1.2_2026-07-27/02_WORKSPACE_SNAPSHOT/Towow_A2A_Independent_Research_v0.4/instrument/sample_case/README.md",
+      "role": "synthetic_fixture_boundary",
+      "sha256": "f52777b349847a30a86e92c45a1d56a7350f6083efcba3978ae3e81608874a7b"
+    },
+    {
+      "path": "Towow_Complete_Research_Archive_v1.2_2026-07-27/02_WORKSPACE_SNAPSHOT/Towow_A2A_Independent_Research_v0.4/instrument/sample_case/change_report.json",
+      "role": "reference_material_change_instrument_output",
+      "sha256": "fca0ace82d8ae63b0617bc2e63b67bedbde9a9f11aea2f48417ff63bb90604a9"
+    },
+    {
+      "path": "Towow_Complete_Research_Archive_v1.2_2026-07-27/02_WORKSPACE_SNAPSHOT/Towow_A2A_Independent_Research_v0.4/instrument/sample_case/compile_readiness.json",
+      "role": "reference_compile_readiness_instrument_output",
+      "sha256": "96277f759b8f80d4952b1753e6711302f20552ba03a718a82a642a953cd40721"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "manifest_self_hash": null,
+  "notes": [
+    "manifest.json is intentionally not included in its own artifact hash closure",
+    "source hashes establish byte provenance only and do not upgrade the source from synthetic design evidence",
+    "directory separation is not an access-control boundary; the controller must enforce the solver payload allowlist"
+  ]
+}

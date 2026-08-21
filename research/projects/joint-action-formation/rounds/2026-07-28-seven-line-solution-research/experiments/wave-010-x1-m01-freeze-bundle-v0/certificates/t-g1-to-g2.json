@@ -1,0 +1,313 @@
+{
+  "schema": "towow.wave010.x1.transition-certificate.t-g1-to-g2.v0",
+  "certificate_id": "wave010-x1-m01-t-g1-to-g2-v0",
+  "transition": "T_G1_TO_G2",
+  "status": "CANDIDATE_UNSEALED_NOT_RUN",
+  "owner": {
+    "owner_id": "wave010-x1-m01-t-g1-to-g2-owner",
+    "owner_key_id": "wave010-x1-m01-t-g1-to-g2-owner-key-v0",
+    "may_only": [
+      "verify the two required source receipt bindings",
+      "verify source freshness and owner identity",
+      "emit the non-expanding two-role candidate semantic handoff",
+      "emit exact typed non-success and NOT_REACHED"
+    ],
+    "may_not": [
+      "discover or substitute a role filler",
+      "invent the independent validation witness",
+      "create a RelationVersion",
+      "create a Principal stance",
+      "create Mandate Commitment Reservation or authority",
+      "read G3 or G5 private truth"
+    ]
+  },
+  "source_boundary": {
+    "read_inputs": [
+      {
+        "path": "public/common-coordinate.json",
+        "raw_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87"
+      },
+      {
+        "path": "private/g1-fragment.json",
+        "raw_sha256": "57f7409d61cad62a13a2176622cae6a5e28a5a69c6093ddb2ba91d1a18794af6"
+      }
+    ],
+    "excluded_inputs": [
+      "private G2 fragment or downstream G2 truth",
+      "private G3 fragment",
+      "private G5 fragment",
+      "method implementation or output",
+      "motif or branch label",
+      "other transition certificates"
+    ]
+  },
+  "coordinate_binding": {
+    "coordinate_version": "x1-common-v0",
+    "task_family": "joint-bid-estuary-sensor-calibration",
+    "intent_id": "intent-estuary-calibration-0001",
+    "Q_episode_not_satisfied_by_transition": true
+  },
+  "assessment_boundary": {
+    "input": "LAWFUL_G1_CANDIDATE_SEMANTIC_HANDOFF",
+    "output": "NON_EXPANDING_TWO_ROLE_CANDIDATE_SEMANTIC_HANDOFF",
+    "non_expansion_rule": "The output may contain only role candidates already established by the two bound source receipts.",
+    "does_not_establish": [
+      "relation formation",
+      "RelationVersion",
+      "Principal stance",
+      "authority",
+      "Commitment",
+      "Reservation",
+      "execution permission"
+    ]
+  },
+  "required_source_bindings": {
+    "independent_validation_witness": {
+      "role": "independent_validation_witness",
+      "entity_id": "independent-estuary-validation-lab",
+      "source_status": "PREQUALIFIED_IDENTITY_NOT_COMMITTED",
+      "source_receipt_ref": "public/common-coordinate.json#/intent_at_coordination_interface/fixed_participants_at_interface/0",
+      "source_container_raw_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+      "expected_source_owner": "estuary-monitoring-program",
+      "runtime_requirement": "owner-issued current Intent-interface source receipt binding this exact entity role and status",
+      "must_remain": "PREQUALIFIED_IDENTITY_NOT_COMMITTED"
+    },
+    "calibration_operator": {
+      "role": "calibration_operator",
+      "candidate_semantic_id": "candidate-calibration-consortium-role-filler-0007",
+      "source_status": "CANDIDATE_NOT_COMMITMENT",
+      "g1_fragment_ref": "private/g1-fragment.json#/shared_latent_candidate",
+      "g1_fragment_raw_sha256": "57f7409d61cad62a13a2176622cae6a5e28a5a69c6093ddb2ba91d1a18794af6",
+      "g1_fragment_root_candidate_sha256": "c71ce9542cbd74e1570eaf49ce2a018e3343e873c9069daa658b1d6bb7b8e3a1",
+      "candidate_projection_ref": "g1-api/candidate-projection.json",
+      "candidate_projection_raw_sha256": "86b64a07b88cad013a10c6b7c3da918964b35fbb67673fa2edc2020212fbbc9c",
+      "episode_local_projection_responses": {
+        "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+          "ref": "g1-api/local-projection-response-765f0698.json",
+          "raw_sha256": "02d8686218b2341821dc5646960486051ea485361cd90e335666bdb1b097c16c"
+        },
+        "d952741e-11f8-44db-a98d-7a34c12e6801": {
+          "ref": "g1-api/local-projection-response-d952741e.json",
+          "raw_sha256": "13fcb9656b8a80e94463cb98604a30f76aa202a4afe9fcbc68f41e1de14072ee"
+        }
+      },
+      "expected_semantic_owner_key_id": "delta-field-calibration-local-projection-key-v0",
+      "expected_g1_line_owner_key_id": "g1-line-evaluator-key-v0",
+      "runtime_requirement": "owner-signed current G1 lawful semantic handoff receipt for this exact candidate and episode",
+      "must_remain": "CANDIDATE_NOT_COMMITMENT"
+    }
+  },
+  "event_ordering": [
+    {
+      "event_index": 0,
+      "event": "INTENT_INTERFACE_FIXED_WITNESS_SOURCE_EXISTS",
+      "constraint": "must predate G1 candidate handoff"
+    },
+    {
+      "event_index": 1,
+      "event": "G1_LAWFUL_CALIBRATION_CANDIDATE_HANDOFF_REACHED",
+      "constraint": "must be owner-signed current and episode-bound"
+    },
+    {
+      "event_index": 2,
+      "event": "TRANSITION_VALIDATES_BOTH_SOURCE_RECEIPTS",
+      "constraint": "both exact raw hashes owners statuses freshness and episode bindings must pass before output"
+    },
+    {
+      "event_index": 3,
+      "event": "TRANSITION_EMITS_TWO_ROLE_CANDIDATE_SEMANTIC_HANDOFF",
+      "constraint": "only after event_index 2 passes atomically"
+    }
+  ],
+  "success_output_contract": {
+    "status": "CANDIDATE_NOT_COMMITMENT",
+    "required_source_receipt_fields": [
+      "receipt_ref",
+      "raw_bytes_sha256",
+      "owner_key_id",
+      "receipt_version",
+      "status",
+      "freshness_head",
+      "episode_key"
+    ],
+    "semantic_handoff_payload": {
+      "handoff_semantic_key": "estuary-calibration-two-role-joint-bid-candidate-v0",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "intent_id": "intent-estuary-calibration-0001",
+      "roles": [
+        {
+          "role": "calibration_operator",
+          "candidate_semantic_id": "candidate-calibration-consortium-role-filler-0007",
+          "source_status": "CANDIDATE_NOT_COMMITMENT",
+          "frozen_source_receipt_ref": "private/g1-fragment.json#/shared_latent_candidate",
+          "frozen_source_container_raw_sha256": "57f7409d61cad62a13a2176622cae6a5e28a5a69c6093ddb2ba91d1a18794af6",
+          "frozen_semantic_payload_raw_sha256": "86b64a07b88cad013a10c6b7c3da918964b35fbb67673fa2edc2020212fbbc9c",
+          "runtime_owner_receipt_required": true
+        },
+        {
+          "role": "independent_validation_witness",
+          "entity_id": "independent-estuary-validation-lab",
+          "source_status": "PREQUALIFIED_IDENTITY_NOT_COMMITTED",
+          "frozen_source_receipt_ref": "public/common-coordinate.json#/intent_at_coordination_interface/fixed_participants_at_interface/0",
+          "frozen_source_container_raw_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+          "runtime_owner_receipt_required": true
+        }
+      ],
+      "source_binding_requirement": "both role entries must carry their own validated source receipt ref and raw bytes SHA-256 in the enclosing transition output",
+      "does_not_imply": [
+        "relation",
+        "Principal stance",
+        "Mandate",
+        "Commitment",
+        "Reservation",
+        "authority"
+      ]
+    }
+  },
+  "episode_transition_projections": [
+    {
+      "episode_key": "765f0698-edb8-459d-bba6-ceb0ae154e51",
+      "g1_branch_source_ref": "private/g1-fragment.json#/branches/765f0698-edb8-459d-bba6-ceb0ae154e51/handoff_semantics_if_lawfully_reached",
+      "g1_local_projection_response_ref": "g1-api/local-projection-response-765f0698.json",
+      "g1_local_projection_response_raw_sha256": "02d8686218b2341821dc5646960486051ea485361cd90e335666bdb1b097c16c",
+      "required_runtime_source_receipts": {
+        "calibration_operator": "G1 owner-signed lawful handoff receipt for episode 765f0698-edb8-459d-bba6-ceb0ae154e51",
+        "independent_validation_witness": "Intent owner-signed fixed-participant receipt for independent-estuary-validation-lab"
+      },
+      "semantic_handoff_payload_ref": "#/success_output_contract/semantic_handoff_payload"
+    },
+    {
+      "episode_key": "d952741e-11f8-44db-a98d-7a34c12e6801",
+      "g1_branch_source_ref": "private/g1-fragment.json#/branches/d952741e-11f8-44db-a98d-7a34c12e6801/handoff_semantics_if_lawfully_reached",
+      "g1_local_projection_response_ref": "g1-api/local-projection-response-d952741e.json",
+      "g1_local_projection_response_raw_sha256": "13fcb9656b8a80e94463cb98604a30f76aa202a4afe9fcbc68f41e1de14072ee",
+      "required_runtime_source_receipts": {
+        "calibration_operator": "G1 owner-signed lawful handoff receipt for episode d952741e-11f8-44db-a98d-7a34c12e6801",
+        "independent_validation_witness": "Intent owner-signed fixed-participant receipt for independent-estuary-validation-lab"
+      },
+      "semantic_handoff_payload_ref": "#/success_output_contract/semantic_handoff_payload"
+    }
+  ],
+  "semantic_invariance_contract": {
+    "compared_bytes": "canonical UTF-8 JSON bytes of success_output_contract.semantic_handoff_payload",
+    "required_relation_if_lawfully_reached": "BYTE_IDENTICAL",
+    "episode_specific_receipt_envelopes_excluded_from_semantic_byte_comparison": true,
+    "directory_provenance_may_change_semantic_bytes": false
+  },
+  "outcome_reason_registry_binding": {
+    "contract_ref": "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json",
+    "contract_raw_sha256": "4492aeb31048044a2aacd54de72b2f86a4317236f36f788125014da9c9ba5b88",
+    "reason_registry_ref": "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json#/reason_registry",
+    "reason_registry_version": "x1-reason-registry-v1",
+    "reason_registry_preimage_sha256": "6ab1de71f251c87414d00bc14693a970ddfa35474956a78928d9b65928b0d8dc"
+  },
+  "typed_non_success_contract": [
+    {
+      "condition": "either required source receipt is missing",
+      "category": "UNRESOLVED_SCHEMA",
+      "reason_code": "MISSING_REQUIRED_RECEIPT",
+      "transition_status": "NOT_REACHED",
+      "output_payload": "NONE"
+    },
+    {
+      "condition": "either required source receipt is expired",
+      "category": "EXPIRED",
+      "reason_code": "G1_EVIDENCE_EXPIRED",
+      "transition_status": "NOT_REACHED",
+      "output_payload": "NONE"
+    },
+    {
+      "condition": "either required source receipt is not signed by its exact owner",
+      "category": "INVALID",
+      "reason_code": "INVALID_TRANSITION_BINDING",
+      "transition_status": "NOT_REACHED",
+      "output_payload": "NONE"
+    },
+    {
+      "condition": "either receipt hash status role candidate or episode binding mismatches",
+      "category": "INVALID",
+      "reason_code": "INVALID_TRANSITION_BINDING",
+      "transition_status": "NOT_REACHED",
+      "output_payload": "NONE"
+    },
+    {
+      "condition": "G1 returns a registered typed non-success before lawful handoff",
+      "passthrough_envelope": {
+        "source_return_requirement": "verified owner-signed episode-bound G1 return",
+        "category_source_field": "G1_return.category",
+        "reason_code_source_field": "G1_return.reason_code",
+        "copy_rule": "COPY_THE_ACTUAL_RUNTIME_CATEGORY_AND_REASON_CODE_PAIR_BYTE_EXACT",
+        "registry_binding_ref": "#/outcome_reason_registry_binding",
+        "registry_membership_requirement": "the exact runtime category and reason_code pair must already be registered together in the bound X1 outcome reason registry",
+        "fail_closed_cases": [
+          {
+            "condition": "the attempted G1 return is not owner-signed, not episode-bound, or otherwise fails exact source binding",
+            "category": "INVALID",
+            "reason_code": "INVALID_TRANSITION_BINDING",
+            "transition_status": "NOT_REACHED",
+            "attempted_raw_return_sha256_required": true,
+            "receipt_rule": "emit an owner-signed typed transition receipt binding the attempted raw return hash and the failed exact binding"
+          },
+          {
+            "condition": "the G1 return is owner-signed and episode-bound but its exact category and reason_code pair is absent from the bound registry",
+            "category": "UNRESOLVED_SCHEMA",
+            "reason_code": "UNREGISTERED_CATEGORY_REASON_PAIR",
+            "transition_status": "NOT_REACHED",
+            "attempted_raw_return_sha256_required": true,
+            "receipt_rule": "emit an owner-signed typed transition receipt binding the attempted raw return hash and the bound registry hash"
+          }
+        ],
+        "totality_rule": "Every attempted upstream non-success produces exactly one owner-signed typed transition receipt: byte-exact passthrough for a verified registered pair, INVALID for a failed binding, or UNRESOLVED_SCHEMA for a verified but unregistered pair.",
+        "forbidden": [
+          "emit NOT_REACHED without a registered category and reason_code pair",
+          "emit a placeholder category",
+          "emit a placeholder reason_code",
+          "substitute a different registered pair",
+          "manufacture a new category and reason_code pair"
+        ]
+      },
+      "transition_status": "NOT_REACHED",
+      "output_payload": "NONE"
+    }
+  ],
+  "no_second_role_synthesis_rule": {
+    "if_fixed_witness_source_invalid": "NOT_REACHED",
+    "if_calibration_source_invalid": "NOT_REACHED",
+    "permitted_fallback": "NONE",
+    "forbidden": [
+      "copy the other role",
+      "query a directory to fill the missing role inside this transition",
+      "invent a second role receipt",
+      "downgrade the two-role requirement"
+    ]
+  },
+  "ledger": {
+    "genesis": {
+      "candidate_id": "transition-ledger-genesis:wave010-x1-m01:t-g1-to-g2:v0",
+      "event_type": "T_G1_TO_G2_CERTIFICATE_CANDIDATE_CREATED",
+      "owner_key_id": "wave010-x1-m01-t-g1-to-g2-owner-key-v0",
+      "status": "UNSIGNED_CANDIDATE_NOT_RUN"
+    },
+    "root_candidate": {
+      "algorithm": "SHA-256",
+      "preimage_rule": "canonical JSON bytes of this certificate excluding ledger.root_candidate.sha256",
+      "sha256": "5e16c308d67f6275a2af47185431d4a7cd0721b5cee3ae8fc4fe627cfc5807f3",
+      "status": "COMPUTED_UNSIGNED_CANDIDATE_NOT_RUN"
+    }
+  },
+  "not_run_boundary": {
+    "transition_run": false,
+    "method_run": false,
+    "g1_receipts_issued": false,
+    "certificate_signed": false,
+    "coverage_available": false,
+    "formal_promotion": "NONE",
+    "does_not_establish": [
+      "either episode lawfully reached the transition",
+      "a two-role handoff was emitted",
+      "a relation formed",
+      "any Principal stance",
+      "authority or execution readiness"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "towow.wave007b-artifact-manifest.v1",
+  "experiment_id": "WAVE-007-B-PAIRED-RELATION-MATERIALITY",
+  "status": "LOCAL_SYNTHETIC_SELF_TEST_COMPLETE_PENDING_INDEPENDENT_AUDIT",
+  "created_on": "2026-07-29",
+  "scope": "G2 paired relation materiality for W6 sterile-route simulation only",
+  "provenance": {
+    "shared_task": {
+      "path": "../../WAVE-006-SHARED-TASK.md",
+      "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+    },
+    "repair_harness": {
+      "path": "../../WAVE-007-REPAIR-HARNESS.md",
+      "handoff_sha256_at_start": "934e0fb834577530ce523b79476a9a4bbaa286ac91f14abb012fd0bd0a54f212",
+      "actual_read_sha256": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653",
+      "drift_note": "The shared duplicate-vote attack condition changed after handoff; 007-B-specific semantics were unchanged. This artifact binds the actual-read version."
+    },
+    "independent_audit_protocol": {
+      "path": "../../WAVE-007-INDEPENDENT-AUDIT-PROTOCOL.md",
+      "sha256": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f"
+    }
+  },
+  "candidate_boundary": {
+    "public_module": "public_api.py",
+    "truth_visible": false,
+    "private_keys_visible": false,
+    "unconstrained_signer_visible": false,
+    "candidate_self_report_used_by_evaluator": false
+  },
+  "paired_world_dimensions": [
+    "ONE_OPERATION_ONLY vs EXPLICIT_BOUNDED_REUSE_AUTHORIZED",
+    "valid relation evidence vs missing or contradictory relation evidence"
+  ],
+  "representations": [
+    "TASK_BOUND",
+    "EXPLAIN_BACK",
+    "BOUNDED_RELATION",
+    "NO_EVIDENCE"
+  ],
+  "validation": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave007b-pycache python3 -m unittest discover -s tests -v",
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0,
+    "independent_audit": "PENDING"
+  },
+  "scoped_claims": {
+    "task_bound_evidence_sufficient_for_one_shot_non_constitution": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC",
+    "explicit_bounded_relation_evidence_enables_legitimate_reuse": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC",
+    "explain_back_alone_is_reuse_authority": "REFUTED_LOCAL_SYNTHETIC",
+    "no_evidence_zero_cost_is_adequate_across_paired_worlds": "REFUTED_LOCAL_SYNTHETIC",
+    "withdrawal_clears_active_relation": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC"
+  },
+  "attack_coverage": [
+    "opaque rename",
+    "truth-label flip",
+    "decisive evidence deletion",
+    "self-report injection",
+    "label/function swap",
+    "candidate signer and truth surface inspection",
+    "signed bytes mutation",
+    "wrong evidence kind and cross-purpose valid signature",
+    "duplicate authorization",
+    "allowlist-external valid signature",
+    "allowlist-external withdrawal signature",
+    "direct authority authorization-set validation",
+    "raw operation-log recompute",
+    "UNKNOWN REFUSE ABSENT distinction",
+    "false constitution without evidence",
+    "post-withdrawal reuse and active residual"
+  ],
+  "artifacts": {
+    "README.md": "9d1268ee27fcc62cb226800a0edcc9d71a0a8692a42d7b0d76234b4bce811658",
+    "public_api.py": "9df155df499cadfbf27a4a4444f72a34880734fc6f322a4527ed96025d81b94d",
+    "authority.py": "8f7414bf26c8a2c7a0395a921f0a4d444eafefd08c0d4001bae8186972051bc6",
+    "candidate.py": "86da18df30a6c7d751fe708b1bb628bbdf45db88e4bf2cbe9318c50303e83476",
+    "simulator.py": "50a1f657667df50cf4940b19f68b3dbc2199fe8396b4b95ea19a4c6dff25d8d8",
+    "evaluator.py": "ba6f7dfd5b9cd028cf7bf5a51cba40d3877ce388163419f1af7bdf93a9835e20",
+    "fixtures/cost-model.json": "1911bdb73b74c5a01d129aee813a44dbb63be360a8f6aca03c070ea7b9fa78e6",
+    "fixtures/paired-worlds.json": "a23110c92872134d9ff9763a3638a19761f28af214a2f6c6a1b332929a3b7844",
+    "fixtures/representations.json": "583704dbf5631f71a3dc834463b0c1aaed4f792221328e324e1599cdee3e67b4",
+    "tests/test_paired_relation_materiality.py": "d66a8076960154d46037d36fb6ace498930665263bc379da1b4aad5b0c465194",
+    "results.json": "16c6bff9ee03e18cc3dbe5cc7216b97e2dd9337f9c846203ccc3fd04bef26ea6"
+  },
+  "overall_grade": null,
+  "evidence_boundary": [
+    "local synthetic paired-world simulation",
+    "same-implementer tests are not independent audit",
+    "no production or real-subject validation",
+    "no universal representation winner claimed"
+  ]
+}

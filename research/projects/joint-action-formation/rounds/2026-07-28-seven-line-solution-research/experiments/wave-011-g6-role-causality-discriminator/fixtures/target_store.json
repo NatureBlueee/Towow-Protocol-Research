@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "TARGET_NATIVE_TRANSITION_STORE",
+  "worlds": {
+    "P1-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 101, "current_predicate": false, "transitions": []},
+    "P1-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 102, "current_predicate": true, "transitions": [{"occurrence": "e1b", "object": "target-v1", "operation_id": "a1b", "before": false, "after": true, "writer": "intruder"}]},
+    "P2-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 103, "current_predicate": true, "transitions": [{"occurrence": "e2old", "object": "target-v1", "operation_id": "prior-third-party", "before": false, "after": true, "writer": "other"}]},
+    "P2-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 104, "current_predicate": true, "transitions": [{"occurrence": "e2b", "object": "target-v1", "operation_id": "a2b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P3-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 105, "current_predicate": true, "transitions": [{"occurrence": "e3a", "object": "target-v1", "operation_id": "a3a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P3-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 106, "current_predicate": false, "transitions": [{"occurrence": "e3b", "object": "wrong-target-v9", "operation_id": "a3b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P4-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 108, "current_predicate": true, "transitions": [{"occurrence": "e4a", "object": "target-v1", "operation_id": "a4a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P4-B": {"exact_object": "target-v1", "read_status": "STALE", "current_head": 107, "known_latest_head": 109, "current_predicate": true, "transitions": [{"occurrence": "e4b", "object": "target-v1", "operation_id": "a4b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P5-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 110, "current_predicate": true, "transitions": [{"occurrence": "e5a", "object": "target-v1", "operation_id": "a5a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P5-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 111, "current_predicate": true, "transitions": [{"occurrence": "e5b", "object": "target-v1", "operation_id": "a5b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P6-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 112, "current_predicate": true, "transitions": [{"occurrence": "e6a", "object": "target-v1", "operation_id": "a6a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P6-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 113, "current_predicate": true, "transitions": [{"occurrence": "e6b", "object": "target-v1", "operation_id": "a6b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P7-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 114, "current_predicate": true, "transitions": [{"occurrence": "e7a", "object": "target-v1", "operation_id": "a7a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P7-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 115, "current_predicate": true, "transitions": [{"occurrence": "e7b", "object": "target-v1", "operation_id": "a7b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P8-A": {"exact_object": "invoice-v1", "read_status": "FRESH", "current_head": 116, "current_predicate": true, "transitions": [{"occurrence": "e8a", "object": "invoice-v1", "operation_id": "a8a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P8-B": {"exact_object": "invoice-v1", "read_status": "FRESH", "current_head": 117, "current_predicate": true, "transitions": [{"occurrence": "e8b", "object": "invoice-v1", "operation_id": "a8b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P9-A": {"exact_object": "invoice-v1", "read_status": "FRESH", "current_head": 118, "current_predicate": true, "transitions": [{"occurrence": "e9a", "object": "invoice-v1", "operation_id": "a9a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P9-B": {"exact_object": "invoice-v1", "read_status": "FRESH", "current_head": 119, "current_predicate": true, "transitions": [{"occurrence": "e9b", "object": "invoice-v1", "operation_id": "a9b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P10-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 120, "current_predicate": false, "transitions": []},
+    "P10-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 121, "current_predicate": true, "transitions": [{"occurrence": "e10b", "object": "target-v1", "operation_id": "a10b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P11-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 122, "current_predicate": true, "transitions": [{"occurrence": "e11a", "object": "target-v1", "operation_id": "a11a", "before": false, "after": true, "writer": "executor-1"}]},
+    "P11-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 123, "current_predicate": true, "transitions": [{"occurrence": "e11b", "object": "target-v1", "operation_id": "a11b", "before": false, "after": true, "writer": "executor-1"}]},
+    "P12-A": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 124, "current_predicate": true, "transitions": [{"occurrence": "e12a", "object": "target-v1", "operation_id": "a12a", "before": false, "after": true, "writer": "owner-agent"}]},
+    "P12-B": {"exact_object": "target-v1", "read_status": "FRESH", "current_head": 125, "current_predicate": true, "transitions": [{"occurrence": "e12b", "object": "target-v1", "operation_id": "a12b", "before": false, "after": true, "writer": "center-delegate"}]}
+  }
+}

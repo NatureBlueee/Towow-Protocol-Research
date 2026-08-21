@@ -1,0 +1,108 @@
+{
+  "schema_version": "2.0",
+  "fixture_id": "CE-001-G4-RELIANCE-HOLDOUT-V2",
+  "truth_owner": "LOCAL_CE001_OWNER_SIMULATOR",
+  "claim_boundary": "Private transition configuration for local component testing. It is loaded by the broker only and is not an expected-label table.",
+  "cases": [
+    {
+      "case_ref": "E3A-ACK-LOST-EFFECT",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "NONE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "E3B-ACK-LOST-NO-EFFECT",
+      "first_submit": "NO_EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": true,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "NONE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "PRESSURE-DOUBLE-SUBMIT",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": true,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_REFUSE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "PRESSURE-REVOKE-AFTER-RESERVE",
+      "first_submit": "NO_EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": true,
+      "acceptance_mutation": "NONE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "ACCEPTANCE-WRONG-EPISODE",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_WRONG_EPISODE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "ACCEPTANCE-WRONG-Q",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_WRONG_Q",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "ACCEPTANCE-WRONG-EFFECT",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_WRONG_EFFECT",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "ACCEPTANCE-STALE-OWNER-REVISION",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_STALE",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "ACCEPTANCE-DUPLICATED-OWNER",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "O_V_DUPLICATE_ISSUER",
+      "resolution_terminal": true
+    },
+    {
+      "case_ref": "RESOLUTION-NONTERMINAL-READBACK",
+      "first_submit": "EFFECT_ACK_LOST",
+      "wrong_object_first": true,
+      "effect_on_retry": false,
+      "duplicate_delivery": false,
+      "revoke_after_reservation": false,
+      "acceptance_mutation": "NONE",
+      "resolution_terminal": false
+    }
+  ]
+}

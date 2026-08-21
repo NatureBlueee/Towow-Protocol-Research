@@ -1,0 +1,189 @@
+{
+  "schema": "WAVE025_F4_SEMANTICS_DUEL_FIXTURES_V1",
+  "classes": ["R", "S"],
+  "top_token_limit": 256,
+  "selection": {
+    "minimum_total_calibration_support": 10,
+    "minimum_predicted_support_each_class": 5,
+    "order": [
+      "maximum calibration balanced accuracy",
+      "minimum family-local complexity units",
+      "lexicographically minimum canonical UTF-8 JSON rule bytes"
+    ],
+    "no_eligible_rule": "predict R for every row"
+  },
+  "cases": [
+    {
+      "case_id": "D01_AND",
+      "question": "Can the family recover a positive two-token conjunction?",
+      "registered_pair": ["and-a", "and-b"],
+      "frozen_truth_table": {"00": "R", "01": "R", "10": "R", "11": "S"},
+      "expected_relation": "S iff and-a and and-b are both present",
+      "tags": ["AND", "positive-pattern"],
+      "calibration": [
+        {"label": "R", "count": 8, "tokens": []},
+        {"label": "R", "count": 6, "tokens": ["and-a"]},
+        {"label": "R", "count": 6, "tokens": ["and-b"]},
+        {"label": "S", "count": 20, "tokens": ["and-a", "and-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 8, "tokens": []},
+        {"label": "R", "count": 6, "tokens": ["and-a"]},
+        {"label": "R", "count": 6, "tokens": ["and-b"]},
+        {"label": "S", "count": 20, "tokens": ["and-a", "and-b"]}
+      ]
+    },
+    {
+      "case_id": "D02_NEGATED_SIGNED_PATTERN",
+      "question": "Does one present and one absent token require a signed literal?",
+      "registered_pair": ["neg-a", "neg-b"],
+      "frozen_truth_table": {"00": "R", "01": "R", "10": "S", "11": "R"},
+      "expected_relation": "S iff neg-a is present and neg-b is absent",
+      "tags": ["negated-signed-pattern", "absence"],
+      "calibration": [
+        {"label": "R", "count": 8, "tokens": []},
+        {"label": "R", "count": 6, "tokens": ["neg-b"]},
+        {"label": "R", "count": 6, "tokens": ["neg-a", "neg-b"]},
+        {"label": "S", "count": 20, "tokens": ["neg-a"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 8, "tokens": []},
+        {"label": "R", "count": 6, "tokens": ["neg-b"]},
+        {"label": "R", "count": 6, "tokens": ["neg-a", "neg-b"]},
+        {"label": "S", "count": 20, "tokens": ["neg-a"]}
+      ]
+    },
+    {
+      "case_id": "D03_XOR",
+      "question": "Can one pair assign two disjoint states to the same class?",
+      "registered_pair": ["xor-a", "xor-b"],
+      "frozen_truth_table": {"00": "R", "01": "S", "10": "S", "11": "R"},
+      "expected_relation": "S iff exactly one of xor-a and xor-b is present",
+      "tags": ["XOR", "arbitrary-2-bit-mapping"],
+      "calibration": [
+        {"label": "R", "count": 10, "tokens": []},
+        {"label": "S", "count": 10, "tokens": ["xor-b"]},
+        {"label": "S", "count": 10, "tokens": ["xor-a"]},
+        {"label": "R", "count": 10, "tokens": ["xor-a", "xor-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 10, "tokens": []},
+        {"label": "S", "count": 10, "tokens": ["xor-b"]},
+        {"label": "S", "count": 10, "tokens": ["xor-a"]},
+        {"label": "R", "count": 10, "tokens": ["xor-a", "xor-b"]}
+      ]
+    },
+    {
+      "case_id": "D04_SPURIOUS_PAIR_TIE",
+      "question": "When a spurious and a persistent pair tie on calibration, which pair is frozen?",
+      "registered_pair": ["z-true-a", "z-true-b"],
+      "expected_relation": "Only z-true-a plus z-true-b persists; a-spur-a plus a-spur-b is calibration-only",
+      "tags": ["spurious-pair", "tie", "misselection"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["a-spur-a", "a-spur-b", "z-true-a", "z-true-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 10, "tokens": []},
+        {"label": "R", "count": 10, "tokens": ["a-spur-a", "a-spur-b"]},
+        {"label": "S", "count": 10, "tokens": ["z-true-a", "z-true-b"]},
+        {"label": "S", "count": 10, "tokens": ["a-spur-a", "a-spur-b", "z-true-a", "z-true-b"]}
+      ]
+    },
+    {
+      "case_id": "D05_LOW_SUPPORT_BELOW_5",
+      "question": "Does the historical predicted-class support floor reject a four-row minority branch?",
+      "registered_pair": ["low-a", "low-b"],
+      "expected_relation": "Only four S rows carry the pair; the remaining states are label-indistinguishable",
+      "tags": ["low-support", "support-rejection"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 16, "tokens": []},
+        {"label": "S", "count": 4, "tokens": ["low-a", "low-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 16, "tokens": []},
+        {"label": "S", "count": 4, "tokens": ["low-a", "low-b"]}
+      ]
+    },
+    {
+      "case_id": "D06_LOW_SUPPORT_EDGE_SPURIOUS",
+      "question": "Does the five-row boundary admit a calibration-only pattern?",
+      "registered_pair": null,
+      "expected_relation": "No persistent relation; the five-row pair vanishes in holdout",
+      "tags": ["low-support", "support-boundary", "spurious-pair"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 15, "tokens": []},
+        {"label": "S", "count": 5, "tokens": ["edge-a", "edge-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": []}
+      ]
+    },
+    {
+      "case_id": "D07_HOLDOUT_UNSEEN_STATE_IS_R",
+      "question": "What happens when a new pair state appears and its class agrees with fallback R?",
+      "registered_pair": ["state-a", "state-b"],
+      "expected_relation": "Calibration observes 00=R and 11=S; holdout adds 01=R",
+      "tags": ["holdout-unseen-state", "fallback-compatible"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["state-a", "state-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 20, "tokens": ["state-b"]},
+        {"label": "S", "count": 20, "tokens": ["state-a", "state-b"]}
+      ]
+    },
+    {
+      "case_id": "D08_HOLDOUT_UNSEEN_STATE_IS_S",
+      "question": "Can the same calibration determine that an unseen pair state should be S?",
+      "registered_pair": ["state-a", "state-b"],
+      "expected_relation": "The calibration bytes match D07, but holdout adds 01=S",
+      "tags": ["holdout-unseen-state", "fallback-incompatible", "underdetermination"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["state-a", "state-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["state-b"]}
+      ]
+    },
+    {
+      "case_id": "D09_HOLDOUT_OOV_TOKENS",
+      "question": "Does a fresh-token holdout preserve a relation learned on a frozen pair?",
+      "registered_pair": ["known-a", "known-b"],
+      "expected_relation": "Calibration atoms do not recur; holdout has only fresh OOV atoms",
+      "tags": ["OOV", "frozen-universe"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["known-a", "known-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 20, "tokens": ["fresh-r"]},
+        {"label": "S", "count": 20, "tokens": ["fresh-s"]}
+      ]
+    },
+    {
+      "case_id": "D10_ROLE_NULL_TRANSFER",
+      "question": "Does a calibration control relation survive when holdout features are role-null?",
+      "registered_pair": null,
+      "expected_relation": "Holdout state is independent of class and should remain at chance",
+      "tags": ["role-null", "placebo", "false-recovery"],
+      "calibration": [
+        {"label": "R", "count": 20, "tokens": []},
+        {"label": "S", "count": 20, "tokens": ["null-a", "null-b"]}
+      ],
+      "holdout": [
+        {"label": "R", "count": 10, "tokens": []},
+        {"label": "R", "count": 10, "tokens": ["null-a", "null-b"]},
+        {"label": "S", "count": 10, "tokens": []},
+        {"label": "S", "count": 10, "tokens": ["null-a", "null-b"]}
+      ]
+    }
+  ]
+}

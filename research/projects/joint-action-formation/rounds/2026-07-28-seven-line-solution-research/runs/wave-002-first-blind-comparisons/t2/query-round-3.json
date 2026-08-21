@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "method_id": "t2-ab-strong-composition",
+  "run_id": "T2-AB-RUN-001",
+  "round": 3,
+  "previous_round_hash": "f8e36d2f5ec68423cdc94f0e3175593e295a2abaa2bec2a72db3130e6f50f31a",
+  "queries": [
+    {
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_ACCEPTABLE_WITNESS",
+      "purpose": "为 REL-T2-V2-CANDIDATE 确定可由采购方独立建立目标域 Effect 的最小审计见证：见证来源、必备字段、读回主体、与获批聚合查询及零原始行导出的绑定方式，以及何种证据最多只能证明 ActionAttempt；不把 probe 成功判据、服务方日志或报告视为已产生 Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_REVOCATION_RULE",
+      "purpose": "确定从有界 probe 转入任何正式试点以及失败后重试时适用的最小撤销规则：触发条件、受影响的 credential、permission、执行与证据依赖、停止时点、审计记录、恢复前必须重新取得或读回的当前状态；不把第2轮测试授权延伸为正式试点或重复运行授权。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_FAILURE_AND_RECOVERY",
+      "purpose": "补齐固定分析容器候选在 buyer_controlled_sandbox 中执行获批聚合只读查询时的失败停止、清理、幂等性、credential 撤销响应、恢复和重试边界，并明确每次重试必须重新核验的 executor、environment、version、permission 与 resource；仅形成待 probe 验证的技术条件，不声明 probe 已运行或 capability 已资格化。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "CLARIFY_ACCEPTANCE",
+      "purpose": "确定两周分析试点的最小业务判定语义和门槛：哪些采购方可独立检查的结果足以影响续费问题处理，Effect、实际工作系统变更所构成的 Adoption、以及对精确试点版本的 Acceptance 如何分别判定，失败或信息不足时如何记录；不请求生产采购承诺，也不从数据授权、probe 或报告生成推断业务接受。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_SCOPE_STANCE",
+      "purpose": "确定若采用采购方权限域内的固定容器、仅执行获批聚合只读查询、禁止训练和持久记忆、并以采购方审计见证结果，服务方可考虑认领的精确两周试点交付范围、排除项、资源责任和成果边界；仅请求范围条件，不把候选技术规格或测试授权视为交付承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_PRICE_STANCE",
+      "purpose": "针对上述候选范围，确定服务方价格条件是否可保持在 9800 元以内，以及该价格覆盖与不覆盖的项目、会触发重新定价的 material change；不从采购方预算上限或技术候选推断服务方价格承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_SCHEDULE_STANCE",
+      "purpose": "针对上述候选范围，确定服务方可考虑认领的 14 天进度条件、起算前置条件、关键依赖、资源保留边界及会导致暂停或重新确认的漂移；不把有界 probe 时长、测试资源或候选路径视为正式排期承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    }
+  ]
+}

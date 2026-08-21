@@ -1,0 +1,88 @@
+{
+  "fragment_version": "wave010-x1-m01-g5-domain-v0",
+  "authority_domain_id": "program-coordinator-domain",
+  "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+  "applies_to_episode_keys": [
+    "765f0698-edb8-459d-bba6-ceb0ae154e51",
+    "d952741e-11f8-44db-a98d-7a34c12e6801"
+  ],
+  "truth_owner": {
+    "principal_id": "estuary-monitoring-program",
+    "controller_id": "estuary-program-authority-board",
+    "agent_entity_id": "estuary-joint-bid-coordinator-agent",
+    "owner_key_id": "program-coordinator-domain:owner-key:v1",
+    "private_key_material_included": false,
+    "exclusive_signing_scope": [
+      "program mandate",
+      "program relation stance",
+      "program front-half commitment"
+    ],
+    "may_not_sign_for_other_domains": true
+  },
+  "ledger_candidates": {
+    "genesis_candidate_id": "program-coordinator-domain:ledger-genesis:v0",
+    "root_candidate_id": "program-coordinator-domain:ledger-root:v0",
+    "root_preimage_rule": "canonical JSON object containing authority_domain_id, relation_coordinate, truth_owner, private_truth, and not_run_boundary",
+    "root_candidate_sha256": "d42bca7c014e440e6b7103b625334fe642a712ba64895ea0acb52385a4fdec00",
+    "status": "CANDIDATE_UNSEALED_NOT_RUN"
+  },
+  "private_truth": {
+    "s0": {
+      "relation_formation_state": "PROPOSAL_NOT_FORMED",
+      "mandate": {
+        "mandate_id": "mandate-estuary-joint-bid-0001",
+        "version_head": "mandate-estuary-joint-bid-0001@v3",
+        "revocation_head": "mandate-estuary-joint-bid-0001/revocations@seq-0",
+        "status": "CURRENT_ACTIVE_EXACT_SCOPE",
+        "owner_receipt_id": "program-coordinator-domain:mandate-owner-receipt@v3",
+        "exact_scope": "coordinate the joint-bid front half and request other domains to decide without impersonating them"
+      },
+      "stance": {
+        "status": "NOT_RECORDED_AT_S0",
+        "version_head": null,
+        "owner_receipt_id": null
+      },
+      "commitment": {
+        "candidate_id": "commitment-program-coordinator-joint-bid-0001",
+        "status": "NOT_CREATED_AT_S0",
+        "version_head": null,
+        "revocation_head": null,
+        "owner_receipt_id": null
+      }
+    },
+    "transition_receipt_rules": [
+      {
+        "transition": "S0_TO_CURRENT_STANCE",
+        "requires": [
+          "owner-signed G2 formed receipt@v1",
+          "receipt relation coordinate equals relation-estuary-sensor-calibration-joint-bid@v1",
+          "current mandate owner receipt"
+        ],
+        "effect": "owner may create a current attributable program stance receipt",
+        "only_valid_signer_key_id": "program-coordinator-domain:owner-key:v1"
+      },
+      {
+        "transition": "CURRENT_STANCE_TO_COMMITMENT",
+        "requires": [
+          "current program stance owner receipt",
+          "current exact-scope mandate head",
+          "no unresolved program-domain challenge"
+        ],
+        "effect": "owner may create the program front-half commitment and receipt",
+        "only_valid_signer_key_id": "program-coordinator-domain:owner-key:v1"
+      }
+    ],
+    "forbidden": [
+      "sign delta calibration stance commitment or reservation",
+      "sign independent validation stance or commitment",
+      "sign site-data steward stance or commitment",
+      "treat orchestration as authority"
+    ]
+  },
+  "not_run_boundary": {
+    "run_state": "NOT_RUN",
+    "stance_receipt_created": false,
+    "commitment_receipt_created": false,
+    "formal_status_changed": false
+  }
+}

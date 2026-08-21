@@ -1,0 +1,166 @@
+{
+  "claim_boundary": {
+    "authority_status": "NOT_INFERRED",
+    "commitment_status": "NOT_CREATED",
+    "real_world_effect": "NOT_CLAIMED",
+    "relation_status": "NOT_ESTABLISHED"
+  },
+  "controller_result": {
+    "execution_receipt": {
+      "authoritative_event_sha256": "d9ab5091d2e87981a3c875cc122b1fd2f31469d1cc19dc8f4b66541111495fc0",
+      "authoritative_state_root": "4737e078e1f8df9627fef909fb993aefb98b58a9d1fddfa38b0b5a45972831e6",
+      "code": "EXECUTED",
+      "contract_sha256": "2f4fb6ab15762a79b6d99e45d657f8fab6a1848e63097f046cc2592aab9ba4e8",
+      "decision": "EXECUTED",
+      "idempotency_key": "hwb:2:juniper-kite-reciprocal",
+      "input_sha256": "95a9db727ce13b34678cc85fb97d706243c54f18da199a62b69c28748a01e2e5",
+      "issuer": "LOCAL-CONTROLLER-W4A",
+      "output_sha256": "95fc7877c3bb0fe1d5ed9676cee44bd777ee50d4fca32c8628dc9176ef045e46",
+      "policy_snapshot_sha256": "71bfde5704bd095e131200aed56e60fccb61f9a491be48503129f6a4469ea5e2",
+      "prior_event_sha256": "ef94fcc2876cea06a1779a1b3da1ecf403b1c4a484bbc921d9ca81ef6ac4cbe9",
+      "prior_state_sha256": "6a4548c41604fa990b0f0b1b30c72a7fe84995fa675226c3c35a50c1afd79d0f",
+      "readback_sha256": "1bb7d84955218a1365635a2bb217b79062545b71216b258f0dce9703937ee0a4",
+      "receipt_sha256": "118807b911b071c744b8d30eab8cf956b1a4705988526b34597f0bfebc0b5420",
+      "schema": "towow.controller-execution-receipt.v1",
+      "sequence": 3,
+      "trusted_holder_envelopes_sha256": "a598ed23f676aa2901739696551310b1de6a1dbbf080845dc3f822db723784f1"
+    },
+    "outcome": {
+      "authority_evidence": {
+        "authoritative_state_root": "4737e078e1f8df9627fef909fb993aefb98b58a9d1fddfa38b0b5a45972831e6",
+        "readback": {
+          "all_postconditions_observed": true,
+          "authoritative_event_sha256": "d9ab5091d2e87981a3c875cc122b1fd2f31469d1cc19dc8f4b66541111495fc0",
+          "authoritative_state_root": "4737e078e1f8df9627fef909fb993aefb98b58a9d1fddfa38b0b5a45972831e6",
+          "delivery_count": 2,
+          "delivery_event_ids": [
+            "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+            "reciprocal-disclosure-3842afc0740ec49a91f4afde"
+          ],
+          "recipient_store_observations": [
+            {
+              "delivery_event_id": "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+              "delivery_sha256": "cec9099f43434af912ed494e0f17980ef1a7b6ca35673bd43587bbd44ab611a5",
+              "recipient": "KITE-15"
+            },
+            {
+              "delivery_event_id": "reciprocal-disclosure-3842afc0740ec49a91f4afde",
+              "delivery_sha256": "ff6e251e6d563369859f179d29a2eed30918028808d0e7732d03df6ed2d0db91",
+              "recipient": "JUNIPER-28"
+            }
+          ],
+          "schema": "towow.recipient-delivery-readback.v1",
+          "transaction_id": "delivery-transaction-476de9162e4681eca811bba4"
+        },
+        "readback_sha256": "1bb7d84955218a1365635a2bb217b79062545b71216b258f0dce9703937ee0a4",
+        "recipient_delivery_event_sha256": "d9ab5091d2e87981a3c875cc122b1fd2f31469d1cc19dc8f4b66541111495fc0"
+      },
+      "authority_status": "NOT_INFERRED",
+      "commitment_status": "NOT_CREATED",
+      "derived_authorizations": [],
+      "disclosures": [
+        {
+          "counterparty": "KITE-15",
+          "depth": 0,
+          "event_id": "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+          "from": "JUNIPER-28",
+          "projection": {
+            "compatibility_key": "sterile-route-simulation@8",
+            "direction": "SEEK",
+            "facet": "reciprocal-detail-demand",
+            "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL"
+          },
+          "purpose": "two-sided-route-probe",
+          "retention": "PT7M",
+          "source_holder_receipt_sha256": "2d17bf5611b88f2cddf5f8db84f8c3a5f949bd14e6c2ff9cdaa6438920eff0f6",
+          "status": "PERFORMED",
+          "to": "KITE-15"
+        },
+        {
+          "counterparty": "JUNIPER-28",
+          "depth": 0,
+          "event_id": "reciprocal-disclosure-3842afc0740ec49a91f4afde",
+          "from": "KITE-15",
+          "projection": {
+            "compatibility_key": "sterile-route-simulation@8",
+            "direction": "OFFER",
+            "facet": "reciprocal-detail-supply",
+            "fact_id": "F-HWB-KITE-RECIP-DETAIL"
+          },
+          "purpose": "two-sided-route-probe",
+          "retention": "PT7M",
+          "source_holder_receipt_sha256": "342b1afbc05402ffe17864fd63cba1d0e9abe74bf9f665b34d2b6236a8c68911",
+          "status": "PERFORMED",
+          "to": "JUNIPER-28"
+        }
+      ],
+      "reciprocal_exchange": {
+        "compatibility_key": "sterile-route-simulation@8",
+        "controller_id": "LOCAL-CONTROLLER-W4A",
+        "delivery_mode": "COUNTERPARTY_EXCHANGE",
+        "disclosure_event_ids": [
+          "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+          "reciprocal-disclosure-3842afc0740ec49a91f4afde"
+        ],
+        "exchange_id": "reciprocal-exchange-5a96eb1c1d00283ef5191b8a",
+        "holder_receipt_sha256": [
+          "2d17bf5611b88f2cddf5f8db84f8c3a5f949bd14e6c2ff9cdaa6438920eff0f6",
+          "342b1afbc05402ffe17864fd63cba1d0e9abe74bf9f665b34d2b6236a8c68911"
+        ],
+        "participant_issuers": [
+          "JUNIPER-28",
+          "KITE-15"
+        ],
+        "receipt_sha256": "d3551ed728883dc88ee8d03b240d2395c1f7563b4b7cbe58273043a9b8aa0947",
+        "schema": "towow.reciprocal-exchange.v1",
+        "scope": "RECIPROCAL_COUNTERPARTY_PROJECTION_EXCHANGE",
+        "status": "PERFORMED"
+      },
+      "relation_status": "NOT_ESTABLISHED",
+      "route_type": "RECIPROCAL_EXCHANGE",
+      "status": "EXECUTED"
+    },
+    "replay": "FIRST_ATTEMPT",
+    "state_changed": true
+  },
+  "coordinator_visible": {
+    "disclosures": [
+      {
+        "depth": 0,
+        "event_id": "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+        "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+        "origin_party": "JUNIPER-28",
+        "purpose": "two-sided-route-probe",
+        "recipient": "KITE-15",
+        "retention": "PT7M",
+        "sender": "JUNIPER-28"
+      },
+      {
+        "depth": 0,
+        "event_id": "reciprocal-disclosure-3842afc0740ec49a91f4afde",
+        "fact_id": "F-HWB-KITE-RECIP-DETAIL",
+        "origin_party": "KITE-15",
+        "purpose": "two-sided-route-probe",
+        "recipient": "JUNIPER-28",
+        "retention": "PT7M",
+        "sender": "KITE-15"
+      }
+    ],
+    "probe": {
+      "offered_fact": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "probe_id": "reciprocal-exchange-5a96eb1c1d00283ef5191b8a",
+      "requested_fact": "F-HWB-KITE-RECIP-DETAIL",
+      "requester": "JUNIPER-28",
+      "responder": "KITE-15",
+      "status": "COMPLETED_RECIPROCAL_RECEIPT"
+    }
+  },
+  "development_label": "DEVELOPMENT_POST_FEEDBACK_NOT_BLIND",
+  "generated_from": {
+    "controller_execution_receipt_sha256": "118807b911b071c744b8d30eab8cf956b1a4705988526b34597f0bfebc0b5420",
+    "controller_output_sha256": "4c86833f55d4754596d1912415c2a3f2f9b5850ae8de0efa801b91e4a3168f50",
+    "path": "experiments/wave-004-b-hwb-controller-development/outputs/reciprocal-juniper-kite.json",
+    "source_file_sha256": "d5dd9f58d7eac3b05411455896db7da6467723cfbab8392f7d9323f6965f7c29"
+  },
+  "schema": "towow.hwb-controller-export.v1"
+}

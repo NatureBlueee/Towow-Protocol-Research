@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "T5-COLLAPSE-SAFE-SAAS-V3-MANIFEST",
+  "status": "FROZEN_SYNTHETIC_NEGATIVE_CONTROL",
+  "task_id": "T5-COLLAPSE-SAFE-SAAS-V3",
+  "claims": {
+    "strong_center_is_allowed_to_win": true,
+    "existing_platform_direct_is_allowed_to_win": true,
+    "stateless_non_authoritative_adapter_is_allowed_to_win": true,
+    "new_protocol_mechanism_is_required": false,
+    "asserts_real_purchase": false,
+    "asserts_production_reliability": false
+  },
+  "invalidated_predecessors": [
+    {
+      "record": "FIRST-EVALUATOR-FAILURE.md",
+      "reason": "V1 rewarded labels and self-reported truth sources instead of authoritative task execution."
+    },
+    {
+      "record": "SECOND-EVALUATOR-FAILURE.md",
+      "reason": "V2 trusted adapter attestations and reported injected failures that were never reached."
+    }
+  ],
+  "verification": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "observed_result": "15 tests passed on 2026-07-28"
+  },
+  "artifacts": [
+    {
+      "path": "FIRST-EVALUATOR-FAILURE.md",
+      "role": "INVALIDATED_EVALUATOR_RECORD",
+      "sha256": "5974db8c5c497b0fbb2b7732bdda5fd678fbdc5fa1c3e0cc9351eea824cce6cf"
+    },
+    {
+      "path": "SECOND-EVALUATOR-FAILURE.md",
+      "role": "INVALIDATED_V2_EVALUATOR_RECORD",
+      "sha256": "05de08c09cccb46dee516fde4cfbbfa803a657ce8c39107fe4ea3f1d21a32aa5"
+    },
+    {
+      "path": "README.md",
+      "role": "PUBLIC_TASK_CONTRACT",
+      "sha256": "cc74be58cae4b2e9e476c0ab8103d7dfbfcb30ab0e0d507c47149d415f83c215"
+    },
+    {
+      "path": "input.json",
+      "role": "FROZEN_SYNTHETIC_TASK",
+      "sha256": "a7a30462154f9a30b13c4443ed1ec2b6707635602091ad20613b60d7495c116d"
+    },
+    {
+      "path": "submission.schema.json",
+      "role": "CANDIDATE_SCHEMA",
+      "sha256": "bf851d6b95faf4e46c6a4e8b7861e4174097dd9eb49c274be335b50754cb9e70"
+    },
+    {
+      "path": "adapter_program.json",
+      "role": "HASH_BOUND_BOUNDED_JSON_TRANSDUCER",
+      "sha256": "ba52157ae959a10427c3040a8afc63eca7c141e891036d2488cbcf18c617d9d9"
+    },
+    {
+      "path": "platform_simulator.py",
+      "role": "AUTHORITATIVE_SYNTHETIC_PLATFORM",
+      "sha256": "9f44cb0238e8019db9b0c8953632d246a89492c0c0c5f0c92545110c840b7ca3"
+    },
+    {
+      "path": "evaluator.py",
+      "role": "R1_TO_R6_EVALUATOR",
+      "sha256": "71b6dd828c7893ab234fbdab9a03f2f976e43186fde87ac472d2eeab0151ee43"
+    },
+    {
+      "path": "fixtures/platform-direct.json",
+      "role": "POSITIVE_EXISTING_PLATFORM_BASELINE",
+      "sha256": "32b9551085b2966a942462c3ff6c157cd0518a862e9ee3ec963313b197a0d0fa"
+    },
+    {
+      "path": "fixtures/stateless-adapter.json",
+      "role": "POSITIVE_LIGHTWEIGHT_ADAPTER_BASELINE",
+      "sha256": "52fdd53878089f965accb1e4ac2f58c70fb302445106c55d5cdff3da742a593f"
+    },
+    {
+      "path": "fixtures/overengineered.json",
+      "role": "NEGATIVE_LABEL_ONLY_BASELINE",
+      "sha256": "43cf61cd85ff3391674134584825bcced61081cc33501626a7918419d6c3e8fd"
+    },
+    {
+      "path": "tests/test_evaluator.py",
+      "role": "DIRECTED_AND_MUTATION_TESTS",
+      "sha256": "18d55cc50e9c1f8cd85273690493cdfb60f6dc7d94ae58e1723c56cd9f727a76"
+    }
+  ]
+}

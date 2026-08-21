@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "kind": "CONTROLLER_ONLY_PACKET_SOURCE",
+  "world_id": "T1-HW-20260728-A",
+  "evaluation_step": 1,
+  "query": {
+    "intent": "Find currently valid complementary joint-action opportunities without asserting commitments.",
+    "allowed_terminal_states": [
+      "DISCOVERED",
+      "INVALIDATED",
+      "UNFINDABLE_UNDER_POLICY",
+      "UNKNOWN",
+      "REFUSE",
+      "ABSENT"
+    ],
+    "required_direction": "SEEK_TO_OFFER"
+  },
+  "public_view": {
+    "signals": [
+      {
+        "witness_id": "W-EXP-SEEK-PUBLIC",
+        "party": "P-EXP-SEEK",
+        "direction": "SEEK",
+        "facet": "translation-zh-en",
+        "version": 1
+      },
+      {
+        "witness_id": "W-EXP-OFFER-PUBLIC",
+        "party": "P-EXP-OFFER",
+        "direction": "OFFER",
+        "facet": "translation-zh-en",
+        "version": 3
+      },
+      {
+        "witness_id": "W-EXP-SEEK-DECOY-PUBLIC",
+        "party": "P-EXP-SEEK-DECOY",
+        "direction": "SEEK",
+        "facet": "translation-zh-en",
+        "version": 2
+      },
+      {
+        "witness_id": "W-DYN-OFFER-V1",
+        "party": "P-DYN-OFFER",
+        "direction": "OFFER",
+        "facet": "gpu-burst",
+        "version": 1,
+        "published_at_step": 0
+      },
+      {
+        "witness_id": "W-DYN-SEEK-PUBLIC",
+        "party": "P-DYN-SEEK",
+        "direction": "SEEK",
+        "facet": "gpu-burst",
+        "version": 1
+      },
+      {
+        "witness_id": "W-POLICY-SEEK-PUBLIC",
+        "party": "P-POLICY-SEEK",
+        "direction": "SEEK",
+        "facet": "sensitive-data-export",
+        "version": 1
+      },
+      {
+        "witness_id": "W-POLICY-HOLDER-PUBLIC",
+        "party": "P-POLICY-OFFER",
+        "direction": "PROBEABLE_HOLDER",
+        "facet": "sensitive-data-export",
+        "version": 1
+      }
+    ],
+    "claims_to_resolve": [
+      {
+        "claim_key": "capability:offline-node:audio-transcription",
+        "subject": "P-OFFLINE",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:refusal-node:document-review",
+        "subject": "P-REFUSE",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:closed-population:rare-format-conversion",
+        "subject": "POPULATION-CLOSED-RARE-FORMAT",
+        "question": "Does any eligible member currently offer the requested capability?"
+      }
+    ],
+    "closed_population_notice": {
+      "witness_id": "W-CLOSED-POPULATION",
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "eligible_parties": [
+        "P-CLOSED-1",
+        "P-CLOSED-2",
+        "P-CLOSED-3"
+      ],
+      "snapshot": "population-v1"
+    }
+  },
+  "local_execution_views": [
+    {
+      "holder": "P-UNEXP-SEEK",
+      "delivery_scope": "LOCAL_ONLY:P-UNEXP-SEEK",
+      "observations": [
+        {
+          "local_fact_id": "RAW-UNEXP-SEEK",
+          "summary": "A private task could benefit from a verified data-cleaning provider.",
+          "permitted_projection": "F-UNEXP-SEEK-PROJECTION",
+          "projection_witness": "W-UNEXP-SEEK-PROJECTION",
+          "permitted_recipient": "P-COORDINATOR",
+          "purpose": "candidate-routing",
+          "retention": "PT5M",
+          "max_depth": 1
+        }
+      ]
+    },
+    {
+      "holder": "P-UNEXP-OFFER",
+      "delivery_scope": "LOCAL_ONLY:P-UNEXP-OFFER",
+      "observations": [
+        {
+          "local_fact_id": "RAW-UNEXP-OFFER",
+          "summary": "A private capability can satisfy a verified data-cleaning request.",
+          "permitted_projection": "F-UNEXP-OFFER-PROJECTION",
+          "projection_witness": "W-UNEXP-OFFER-PROJECTION",
+          "permitted_recipient": "P-COORDINATOR",
+          "purpose": "candidate-routing",
+          "retention": "PT5M",
+          "max_depth": 1
+        }
+      ]
+    },
+    {
+      "holder": "P-RECIP-SEEK",
+      "delivery_scope": "LOCAL_ONLY:P-RECIP-SEEK",
+      "observations": [
+        {
+          "local_fact_id": "F-RECIP-SEEK-DETAIL",
+          "summary": "A complementary counterpart may exist, but detail may be disclosed only by a reciprocal direct probe.",
+          "policy_ref": "POL-RECIP-SEEK",
+          "permitted_recipient": "P-RECIP-OFFER",
+          "purpose": "reciprocal-relation-probe",
+          "retention": "PT10M",
+          "max_depth": 1,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "P-RECIP-OFFER",
+      "delivery_scope": "LOCAL_ONLY:P-RECIP-OFFER",
+      "observations": [
+        {
+          "local_fact_id": "F-RECIP-OFFER-DETAIL",
+          "summary": "A complementary counterpart may exist, but detail may be disclosed only by a reciprocal direct probe.",
+          "policy_ref": "POL-RECIP-OFFER",
+          "permitted_recipient": "P-RECIP-SEEK",
+          "purpose": "reciprocal-relation-probe",
+          "retention": "PT10M",
+          "max_depth": 1,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "P-POLICY-OFFER",
+      "delivery_scope": "LOCAL_ONLY:P-POLICY-OFFER",
+      "observations": [
+        {
+          "local_fact_id": "RAW-POLICY-OFFER",
+          "summary": "Authority requires refusal for every discovery disclosure.",
+          "permitted_response_witness": "W-POLICY-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "P-DYN-OFFER",
+      "delivery_scope": "LOCAL_ONLY:P-DYN-OFFER",
+      "observations": [
+        {
+          "local_fact_id": "DYN-OFFER-STATE",
+          "summary": "Published offer version 1 was revoked at step 1.",
+          "permitted_update_witness": "W-DYN-REVOKE",
+          "from_version": 1,
+          "to_version": 2
+        }
+      ]
+    },
+    {
+      "holder": "P-OFFLINE",
+      "delivery_scope": "LOCAL_ONLY:P-OFFLINE",
+      "observations": [
+        {
+          "local_fact_id": "OFFLINE-STATE",
+          "summary": "No response is available in the evaluation window.",
+          "permitted_witness": "W-OFFLINE-NO-RESPONSE"
+        }
+      ]
+    },
+    {
+      "holder": "P-REFUSE",
+      "delivery_scope": "LOCAL_ONLY:P-REFUSE",
+      "observations": [
+        {
+          "local_fact_id": "REFUSAL-STATE",
+          "summary": "Authority explicitly refuses to answer the requested claim.",
+          "permitted_witness": "W-EXPLICIT-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "P-CLOSED-1",
+      "delivery_scope": "LOCAL_ONLY:P-CLOSED-1",
+      "observations": [
+        {
+          "local_fact_id": "CLOSED-NEG-1",
+          "summary": "No matching offer exists at the frozen snapshot.",
+          "permitted_witness": "W-CLOSED-P1-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "P-CLOSED-2",
+      "delivery_scope": "LOCAL_ONLY:P-CLOSED-2",
+      "observations": [
+        {
+          "local_fact_id": "CLOSED-NEG-2",
+          "summary": "No matching offer exists at the frozen snapshot.",
+          "permitted_witness": "W-CLOSED-P2-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "P-CLOSED-3",
+      "delivery_scope": "LOCAL_ONLY:P-CLOSED-3",
+      "observations": [
+        {
+          "local_fact_id": "CLOSED-NEG-3",
+          "summary": "No matching offer exists at the frozen snapshot.",
+          "permitted_witness": "W-CLOSED-P3-NEG"
+        }
+      ]
+    }
+  ],
+  "available_actions": [
+    "EMIT_TASK_RELATIVE_PROJECTION",
+    "PROPOSE_RECIPROCAL_PROBE",
+    "REFUSE",
+    "ABSTAIN_AS_UNKNOWN",
+    "EMIT_VERSION_INVALIDATION",
+    "HANDOFF_RELATION_CANDIDATE"
+  ],
+  "execution_contract": {
+    "source_is_method_visible": false,
+    "packet_builder_required": true,
+    "central_aggregation_of_local_views": false,
+    "raw_local_fact_disclosure": false,
+    "commitment_or_execution_authority_granted": false,
+    "all_disclosures_require_receipts": true
+  }
+}

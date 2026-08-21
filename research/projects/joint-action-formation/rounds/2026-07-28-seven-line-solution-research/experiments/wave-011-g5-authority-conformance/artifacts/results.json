@@ -1,0 +1,3928 @@
+{
+  "adversarial_corpus_audit": {
+    "case_count": 34,
+    "coverage_index": {
+      "AUTHORITY_STRATUM": [
+        "AUTH-01-TRUE-UNIFIED",
+        "AUTH-02-SAME-PERMISSION-NONDELEGABLE",
+        "AUTH-03-EXTERNAL-OWNER-APPROVES",
+        "AUTH-04-LOCAL-ACID-EXTERNAL-EFFECT"
+      ],
+      "MATERIAL_OPERATION_CLOSURE": [
+        "OBJ-01-CANONICAL-EQUIVALENCE",
+        "OBJ-02-CANONICALIZATION-CONFUSION",
+        "OBJ-03-SIDECAR-DROPPED",
+        "OBJ-04-EXTERNAL-DEPENDENCY-DRIFT",
+        "OBJ-05-NONMATERIAL-DEPENDENCY-DRIFT"
+      ],
+      "MIGRATION": [
+        "MIG-01-PRESERVE-NATIVE-UNKNOWN",
+        "MIG-02-PRESERVE-FORBID",
+        "MIG-03-PRESERVE-PROVENANCE",
+        "MIG-04-KNOWN-CORPUS-EQUIVALENT",
+        "MIG-05-HOLDOUT-DIVERGENCE",
+        "MIG-06-ROUNDTRIP-NONINJECTIVE"
+      ],
+      "RACE": [
+        "RACE-01-AFTER-READ",
+        "RACE-02-AFTER-RE-READ",
+        "RACE-03-AFTER-SIGN",
+        "RACE-04-AFTER-RESERVE",
+        "RACE-05-AFTER-EXECUTE-BEFORE-READBACK"
+      ],
+      "REGISTRY": [
+        "REG-01-FORKED-HEADS",
+        "REG-02-DELAYED-PUBLICATION",
+        "REG-03-BACKDATED-REVOCATION",
+        "REG-04-OWNER-OUTAGE",
+        "REG-05-KEY-COMPROMISE"
+      ],
+      "STANDING": [
+        "STAND-01-UNREGISTERED-STAKEHOLDER",
+        "STAND-02-LATE-CHALLENGE-UPHELD",
+        "STAND-03-CONFLICTING-JURISDICTION",
+        "STAND-04-MALICIOUS-BLOCKER",
+        "STAND-05-PENDING-WITH-DEADLINE"
+      ],
+      "TARGET_FENCE": [
+        "FENCE-01-TARGET-ENFORCES",
+        "FENCE-02-TARGET-IGNORES",
+        "FENCE-03-RESTART-LOSS",
+        "FENCE-04-CROSS-REGION-REORDER"
+      ]
+    },
+    "execution_boundary": "The corpus is an adversarial design artifact. Overlapping cases are executed by the owner/race/fence/materiality/standing/migration harness; the corpus as a 34-case product matrix remains DRAFT_NOT_RUN.",
+    "families_complete": true,
+    "race_boundaries_complete": true,
+    "status": "DRAFT_NOT_RUN",
+    "unique_ids": true
+  },
+  "authority_strata": {
+    "paired_variable": "AUTHORITY_OWNERSHIP_ONLY_TECHNICAL_PERMISSIONS_IDENTICAL",
+    "positive_results_allowed": [
+      "strong center wins in true unified Authority",
+      "mature composition fully closes external-owner world",
+      "CLM/HITL or human rules win on lifecycle cost"
+    ],
+    "rows": [
+      {
+        "owner_receipts_available": true,
+        "strategies": {
+          "AUTHORITY_AWARE_STRONG_CENTER": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_DIRECT"
+          },
+          "CLM_HITL": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_EXACT_OWNER_APPROVAL"
+          },
+          "HUMAN_RULES": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_OWNER_RULE_AND_SIGNATURE"
+          },
+          "MATURE_COMPOSITION": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_WITH_OWNER_RECEIPTS"
+          },
+          "PERMISSION_ONLY_CENTER": {
+            "assessment": "CORRECT",
+            "route": "ALLOW"
+          }
+        },
+        "stratum": {
+          "all_effect_domains_accept_center_write": true,
+          "expected_safe_route": "STRONG_CENTER_DIRECT",
+          "external_non_delegable_right": false,
+          "id": "U_TRUE_UNIFIED_AUTHORITY",
+          "normative_authority": "CENTER_PRINCIPAL_OWNS_ALL_REQUIRED_RIGHTS",
+          "separation_of_duties_allows_center": true,
+          "technical_permissions": "IDENTICAL_FULL_CONTROL"
+        }
+      },
+      {
+        "owner_receipts_available": true,
+        "strategies": {
+          "AUTHORITY_AWARE_STRONG_CENTER": {
+            "assessment": "CORRECT",
+            "route": "QUERY_EXTERNAL_OWNER"
+          },
+          "CLM_HITL": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_EXACT_OWNER_APPROVAL"
+          },
+          "HUMAN_RULES": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_OWNER_RULE_AND_SIGNATURE"
+          },
+          "MATURE_COMPOSITION": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_WITH_OWNER_RECEIPTS"
+          },
+          "PERMISSION_ONLY_CENTER": {
+            "assessment": "FALSE_ALLOW",
+            "route": "ALLOW"
+          }
+        },
+        "stratum": {
+          "all_effect_domains_accept_center_write": false,
+          "expected_safe_route": "QUERY_EXTERNAL_OWNER",
+          "external_non_delegable_right": true,
+          "id": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+          "normative_authority": "SITE_DATA_STEWARD_RETAINS_NON_DELEGABLE_RIGHT",
+          "separation_of_duties_allows_center": true,
+          "technical_permissions": "IDENTICAL_FULL_CONTROL"
+        }
+      },
+      {
+        "owner_receipts_available": true,
+        "strategies": {
+          "AUTHORITY_AWARE_STRONG_CENTER": {
+            "assessment": "CORRECT",
+            "route": "OUTBOX_FENCE_TARGET_READBACK"
+          },
+          "CLM_HITL": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_EXACT_OWNER_APPROVAL"
+          },
+          "HUMAN_RULES": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_AFTER_OWNER_RULE_AND_SIGNATURE"
+          },
+          "MATURE_COMPOSITION": {
+            "assessment": "CORRECT",
+            "route": "ALLOW_WITH_OWNER_RECEIPTS"
+          },
+          "PERMISSION_ONLY_CENTER": {
+            "assessment": "FALSE_ALLOW",
+            "route": "ALLOW"
+          }
+        },
+        "stratum": {
+          "all_effect_domains_accept_center_write": false,
+          "expected_safe_route": "OUTBOX_FENCE_TARGET_READBACK",
+          "external_non_delegable_right": true,
+          "id": "X_SINGLE_DOMAIN_TX_EXTERNAL_EFFECT",
+          "normative_authority": "CENTER_OWNS_LOCAL_RECORDS_ONLY",
+          "separation_of_duties_allows_center": true,
+          "technical_permissions": "IDENTICAL_FULL_CONTROL"
+        }
+      }
+    ]
+  },
+  "claim": "This run distinguishes candidate G5 failure classes and strategy guarantee boundaries. It does not establish a canonical IR, stable residual, production closure, or product comparison.",
+  "cross_owner_races": {
+    "boundaries": [
+      "read",
+      "re-read",
+      "sign",
+      "reserve",
+      "execute"
+    ],
+    "guarantee_boundary": "Only true unified Authority is modeled as single-domain atomic. Other strategies are coordination, bounded hold, or compensation.",
+    "rows": [
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": false,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": false,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": false,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": false,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "NO_COMMON_TRANSACTION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": "CONFIRM_AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": "CONFIRM_AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": "CONFIRM_AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": "CONFIRM_AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "BOUNDED_LEASE_CONFIRM",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "CONFIRM",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-re-read",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-sign",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-reserve",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-execute",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-re-read",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-sign",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-reserve",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": true,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TWO_PC_LIKE_HOLD",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "HOLD",
+            "statuses": {
+              "delta-calibration": "HELD",
+              "independent-validation": "HELD",
+              "program-coordinator": "HELD",
+              "site-data-steward": "HELD"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "held_by": "hold-execute",
+              "kind": "REVOKE",
+              "status": "DEFERRED_BY_HOLD"
+            }
+          },
+          {
+            "event": "RELEASE",
+            "statuses": {
+              "delta-calibration": "RELEASED",
+              "independent-validation": "RELEASED",
+              "program-coordinator": "RELEASED",
+              "site-data-steward": "RELEASED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": true,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "COMPENSATE",
+            "status": "RECORDED"
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": true,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "COMPENSATE",
+            "status": "RECORDED"
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "SIGN_REJECTED_OR_STALE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "STALE_HEAD"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": true,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "COMPENSATE",
+            "status": "RECORDED"
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": true,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "COMPENSATE",
+            "status": "RECORDED"
+          }
+        ],
+        "transient_stale_effect": true
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "AUTHORITATIVE_REJECT_OR_REVOKE",
+        "strategy": "SAGA_COMPENSATION",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [
+          {
+            "event": "READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "RE_READ",
+            "statuses": {
+              "delta-calibration": "OK",
+              "independent-validation": "OK",
+              "program-coordinator": "OK",
+              "site-data-steward": "OK"
+            }
+          },
+          {
+            "event": "SIGN",
+            "statuses": {
+              "delta-calibration": "SIGNED",
+              "independent-validation": "SIGNED",
+              "program-coordinator": "SIGNED",
+              "site-data-steward": "SIGNED"
+            }
+          },
+          {
+            "event": "RESERVE",
+            "status": "RESERVED"
+          },
+          {
+            "event": "EXECUTE",
+            "result": {
+              "stale": false,
+              "status": "EFFECT_CREATED"
+            }
+          },
+          {
+            "event": "RACE",
+            "result": {
+              "head": 2,
+              "kind": "REVOKE",
+              "status": "MUTATED"
+            }
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "ATOMIC_REVOKE_WON",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "SINGLE_DOMAIN_SERIALIZATION",
+            "winner": "REVOKE"
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "SINGLE_DOMAIN_SERIALIZATION",
+            "winner": "EXECUTE"
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "SINGLE_DOMAIN_SERIALIZATION",
+            "winner": "EXECUTE"
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "SINGLE_DOMAIN_SERIALIZATION",
+            "winner": "EXECUTE"
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": true,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": null,
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "U_TRUE_UNIFIED_AUTHORITY",
+        "trace": [
+          {
+            "event": "SINGLE_DOMAIN_SERIALIZATION",
+            "winner": "EXECUTE"
+          }
+        ],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "read",
+        "safe_final_state": true,
+        "stopped_reason": "NOT_APPLICABLE_EXTERNAL_NON_DELEGABLE_RIGHT",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "re-read",
+        "safe_final_state": true,
+        "stopped_reason": "NOT_APPLICABLE_EXTERNAL_NON_DELEGABLE_RIGHT",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "sign",
+        "safe_final_state": true,
+        "stopped_reason": "NOT_APPLICABLE_EXTERNAL_NON_DELEGABLE_RIGHT",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "reserve",
+        "safe_final_state": true,
+        "stopped_reason": "NOT_APPLICABLE_EXTERNAL_NON_DELEGABLE_RIGHT",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [],
+        "transient_stale_effect": false
+      },
+      {
+        "blocking_hold": false,
+        "compensated": false,
+        "effect": false,
+        "race_after": "execute",
+        "safe_final_state": true,
+        "stopped_reason": "NOT_APPLICABLE_EXTERNAL_NON_DELEGABLE_RIGHT",
+        "strategy": "TRUE_UNIFIED_CENTER",
+        "stratum": "P_SAME_PERMISSION_EXTERNAL_RIGHT",
+        "trace": [],
+        "transient_stale_effect": false
+      }
+    ]
+  },
+  "engine_status": {
+    "CEDAR": "NOT_RUN_ENGINE_NOT_INSTALLED",
+    "LOCAL_REFERENCE_POLICY_ENGINE": "RUN",
+    "OPA": "NOT_RUN_ENGINE_NOT_INSTALLED",
+    "OPENFGA": "NOT_RUN_ENGINE_NOT_INSTALLED",
+    "XACML": "NOT_RUN_ENGINE_NOT_INSTALLED"
+  },
+  "limitations": [
+    "LOCAL_SYNTHETIC",
+    "COOPERATIVE_SAME_UID_PROCESS_BOUNDARY",
+    "NO_REAL_PRINCIPAL_OR_LEGAL_AUTHORITY",
+    "NO_REAL_CLM_OR_HUMAN_DECISION",
+    "OPA_NOT_RUN",
+    "CEDAR_NOT_RUN",
+    "OPENFGA_NOT_RUN",
+    "XACML_NOT_RUN",
+    "LOCAL_REFERENCE_ENGINE_NOT_PRODUCT_EVIDENCE",
+    "MIGRATION_EQUIVALENCE_WITNESSED_CORPUS_ONLY",
+    "NO_CANONICAL_IR_CLAIM",
+    "NO_STABLE_RESIDUAL_CLAIM"
+  ],
+  "materiality_standing_migration": {
+    "material_operation_closure": {
+      "all_exact": true,
+      "rows": [
+        {
+          "case_id": "same-primary-digest-material-sidecar-changed",
+          "decision": "REAUTHORIZE",
+          "exact": true,
+          "expected": "REAUTHORIZE"
+        },
+        {
+          "case_id": "different-bytes-owner-approved-canonical-equivalence",
+          "decision": "SAME_OPERATION_CLOSURE",
+          "exact": true,
+          "expected": "SAME_OPERATION_CLOSURE"
+        },
+        {
+          "case_id": "same-primary-external-dependency-head-changed",
+          "decision": "REAUTHORIZE",
+          "exact": true,
+          "expected": "REAUTHORIZE"
+        },
+        {
+          "case_id": "unknown-materiality-rule-version",
+          "decision": "UNKNOWN",
+          "exact": true,
+          "expected": "UNKNOWN"
+        }
+      ]
+    },
+    "migration": {
+      "claim_boundary": "Equivalence is witnessed only for the executed corpus; native Unknown, forbid, and provenance are mandatory.",
+      "rows": [
+        {
+          "cases": [
+            {
+              "case_id": "permit-preserved",
+              "preserved": true,
+              "source": {
+                "forbid": false,
+                "native_outcome": "PERMIT",
+                "owner": "program-coordinator",
+                "source_bytes_hash": "sha256:permit",
+                "unknown": false
+              },
+              "target": {
+                "forbid": false,
+                "native_outcome": "PERMIT",
+                "owner": "program-coordinator",
+                "source_bytes_hash": "sha256:permit",
+                "unknown": false
+              }
+            },
+            {
+              "case_id": "forbid-preserved",
+              "preserved": true,
+              "source": {
+                "forbid": true,
+                "native_outcome": "FORBID",
+                "owner": "site-data-steward",
+                "source_bytes_hash": "sha256:forbid",
+                "unknown": false
+              },
+              "target": {
+                "forbid": true,
+                "native_outcome": "FORBID",
+                "owner": "site-data-steward",
+                "source_bytes_hash": "sha256:forbid",
+                "unknown": false
+              }
+            },
+            {
+              "case_id": "unknown-preserved",
+              "preserved": true,
+              "source": {
+                "forbid": false,
+                "native_outcome": "INDETERMINATE",
+                "owner": "independent-validation",
+                "source_bytes_hash": "sha256:unknown",
+                "unknown": true
+              },
+              "target": {
+                "forbid": false,
+                "native_outcome": "INDETERMINATE",
+                "owner": "independent-validation",
+                "source_bytes_hash": "sha256:unknown",
+                "unknown": true
+              }
+            },
+            {
+              "case_id": "provenance-preserved",
+              "preserved": true,
+              "source": {
+                "forbid": false,
+                "native_outcome": "NOT_APPLICABLE",
+                "owner": "delta-calibration",
+                "source_bytes_hash": "sha256:provenance",
+                "unknown": true
+              },
+              "target": {
+                "forbid": false,
+                "native_outcome": "NOT_APPLICABLE",
+                "owner": "delta-calibration",
+                "source_bytes_hash": "sha256:provenance",
+                "unknown": true
+              }
+            }
+          ],
+          "declaration": "WITNESSED_EQUIVALENT_ON_THIS_CORPUS",
+          "mapping": "FAITHFUL",
+          "outside_corpus": "UNKNOWN"
+        },
+        {
+          "cases": [
+            {
+              "case_id": "permit-preserved",
+              "preserved": false,
+              "source": {
+                "forbid": false,
+                "native_outcome": "PERMIT",
+                "owner": "program-coordinator",
+                "source_bytes_hash": "sha256:permit",
+                "unknown": false
+              },
+              "target": {
+                "native_outcome": "PERMIT"
+              }
+            },
+            {
+              "case_id": "forbid-preserved",
+              "preserved": false,
+              "source": {
+                "forbid": true,
+                "native_outcome": "FORBID",
+                "owner": "site-data-steward",
+                "source_bytes_hash": "sha256:forbid",
+                "unknown": false
+              },
+              "target": {
+                "native_outcome": "FORBID"
+              }
+            },
+            {
+              "case_id": "unknown-preserved",
+              "preserved": false,
+              "source": {
+                "forbid": false,
+                "native_outcome": "INDETERMINATE",
+                "owner": "independent-validation",
+                "source_bytes_hash": "sha256:unknown",
+                "unknown": true
+              },
+              "target": {
+                "native_outcome": "INDETERMINATE"
+              }
+            },
+            {
+              "case_id": "provenance-preserved",
+              "preserved": false,
+              "source": {
+                "forbid": false,
+                "native_outcome": "NOT_APPLICABLE",
+                "owner": "delta-calibration",
+                "source_bytes_hash": "sha256:provenance",
+                "unknown": true
+              },
+              "target": {
+                "native_outcome": "NOT_APPLICABLE"
+              }
+            }
+          ],
+          "declaration": "SEMANTIC_LOSS_DETECTED",
+          "mapping": "LOSSY",
+          "outside_corpus": "UNKNOWN"
+        }
+      ]
+    },
+    "standing_lifecycle": {
+      "all_exact": true,
+      "liveness_floor": "Rejected malicious challenges do not permanently stop execution.",
+      "rows": [
+        {
+          "case_id": "known-suspensive-challenge",
+          "decision": "DEFER",
+          "exact": true,
+          "expected": "DEFER"
+        },
+        {
+          "case_id": "late-unregistered-stakeholder",
+          "decision": "LATE_REOPEN",
+          "exact": true,
+          "expected": "LATE_REOPEN"
+        },
+        {
+          "case_id": "conflicting-jurisdiction",
+          "decision": "DEFER",
+          "exact": true,
+          "expected": "DEFER"
+        },
+        {
+          "case_id": "malicious-blocking-challenge",
+          "decision": "CONTINUE_WITH_AUDIT",
+          "exact": true,
+          "expected": "CONTINUE_WITH_AUDIT"
+        }
+      ]
+    }
+  },
+  "native_outcome_conformance": {
+    "all_business_exact": true,
+    "all_native_exact": true,
+    "claim_boundary": "Local executable engine conformance only; no OPA/Cedar/OpenFGA/XACML product result is claimed.",
+    "engine_runs": {
+      "CEDAR": "NOT_RUN_ENGINE_NOT_INSTALLED",
+      "LOCAL_REFERENCE_POLICY_ENGINE": "RUN",
+      "OPA": "NOT_RUN_ENGINE_NOT_INSTALLED",
+      "OPENFGA": "NOT_RUN_ENGINE_NOT_INSTALLED",
+      "XACML": "NOT_RUN_ENGINE_NOT_INSTALLED"
+    },
+    "oracle_visibility": "WORKER_RECEIVES_CASE_ONLY_EVALUATOR_READS_ORACLE_AFTER_SEAL",
+    "provider_adapter_corpus": {
+      "all_business_exact": true,
+      "rows": [
+        {
+          "business_exact": true,
+          "case_id": "opa-defined-allow-fresh",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "ALLOW",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "opa-defined-allow-fresh",
+              "input_complete": true,
+              "native_engine": "OPA",
+              "native_error": null,
+              "native_outcome": "OPA_DEFINED_ALLOW",
+              "negative_authority_fact": false,
+              "policy_version": "bundle-revision-17",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "FRESH_COMPLETE_NATIVE_PERMIT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "opa-defined-allow-fresh",
+            "input_complete": true,
+            "native_engine": "OPA",
+            "native_error": null,
+            "native_outcome": "OPA_DEFINED_ALLOW",
+            "negative_authority_fact": false,
+            "policy_version": "bundle-revision-17",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "OPA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "opa-undefined",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "opa-undefined",
+              "input_complete": false,
+              "native_engine": "OPA",
+              "native_error": null,
+              "native_outcome": "OPA_UNDEFINED",
+              "negative_authority_fact": false,
+              "policy_version": "bundle-revision-17",
+              "resolver": "policy-owner",
+              "source_freshness": "FRESH"
+            },
+            "reason": "RESOLVER_AVAILABLE",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "opa-undefined",
+            "input_complete": false,
+            "native_engine": "OPA",
+            "native_error": null,
+            "native_outcome": "OPA_UNDEFINED",
+            "negative_authority_fact": false,
+            "policy_version": "bundle-revision-17",
+            "resolver": "policy-owner",
+            "source_freshness": "FRESH"
+          },
+          "provider": "OPA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "opa-stale-bundle-allow",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "opa-stale-bundle-allow",
+              "input_complete": true,
+              "native_engine": "OPA",
+              "native_error": null,
+              "native_outcome": "OPA_DEFINED_ALLOW",
+              "negative_authority_fact": false,
+              "policy_version": "bundle-revision-16",
+              "resolver": "bundle-distributor",
+              "source_freshness": "STALE"
+            },
+            "reason": "STALE_SOURCE_REQUIRES_REFRESH",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "opa-stale-bundle-allow",
+            "input_complete": true,
+            "native_engine": "OPA",
+            "native_error": null,
+            "native_outcome": "OPA_DEFINED_ALLOW",
+            "negative_authority_fact": false,
+            "policy_version": "bundle-revision-16",
+            "resolver": "bundle-distributor",
+            "source_freshness": "STALE"
+          },
+          "provider": "OPA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "cedar-allow",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "ALLOW",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "cedar-allow",
+              "input_complete": true,
+              "native_engine": "CEDAR",
+              "native_error": null,
+              "native_outcome": "CEDAR_ALLOW",
+              "negative_authority_fact": false,
+              "policy_version": "cedar-set-v9",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "FRESH_COMPLETE_NATIVE_PERMIT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "cedar-allow",
+            "input_complete": true,
+            "native_engine": "CEDAR",
+            "native_error": null,
+            "native_outcome": "CEDAR_ALLOW",
+            "negative_authority_fact": false,
+            "policy_version": "cedar-set-v9",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "CEDAR"
+        },
+        {
+          "business_exact": true,
+          "case_id": "cedar-explicit-forbid",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "REJECT",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "cedar-explicit-forbid",
+              "input_complete": true,
+              "native_engine": "CEDAR",
+              "native_error": null,
+              "native_outcome": "CEDAR_DENY_EXPLICIT_FORBID",
+              "negative_authority_fact": true,
+              "policy_version": "cedar-set-v9",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "AUTHORITATIVE_NEGATIVE_FACT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "cedar-explicit-forbid",
+            "input_complete": true,
+            "native_engine": "CEDAR",
+            "native_error": null,
+            "native_outcome": "CEDAR_DENY_EXPLICIT_FORBID",
+            "negative_authority_fact": true,
+            "policy_version": "cedar-set-v9",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "CEDAR"
+        },
+        {
+          "business_exact": true,
+          "case_id": "cedar-skip-on-error-plus-permit",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "cedar-skip-on-error-plus-permit",
+              "input_complete": false,
+              "native_engine": "CEDAR",
+              "native_error": {
+                "code": "POLICY_EVALUATION_ERROR",
+                "materiality": "UNKNOWN"
+              },
+              "native_outcome": "CEDAR_ALLOW_WITH_EVALUATION_ERRORS",
+              "negative_authority_fact": false,
+              "policy_version": "cedar-set-v9",
+              "resolver": "policy-owner",
+              "source_freshness": "FRESH"
+            },
+            "reason": "NATIVE_ERROR_REQUIRES_OWNER_MAPPING",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "cedar-skip-on-error-plus-permit",
+            "input_complete": false,
+            "native_engine": "CEDAR",
+            "native_error": {
+              "code": "POLICY_EVALUATION_ERROR",
+              "materiality": "UNKNOWN"
+            },
+            "native_outcome": "CEDAR_ALLOW_WITH_EVALUATION_ERRORS",
+            "negative_authority_fact": false,
+            "policy_version": "cedar-set-v9",
+            "resolver": "policy-owner",
+            "source_freshness": "FRESH"
+          },
+          "provider": "CEDAR"
+        },
+        {
+          "business_exact": true,
+          "case_id": "openfga-allowed-true",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "ALLOW",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "openfga-allowed-true",
+              "input_complete": true,
+              "native_engine": "OPENFGA",
+              "native_error": null,
+              "native_outcome": "OPENFGA_ALLOWED_TRUE",
+              "negative_authority_fact": false,
+              "policy_version": "model-01JABC",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "FRESH_COMPLETE_NATIVE_PERMIT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "openfga-allowed-true",
+            "input_complete": true,
+            "native_engine": "OPENFGA",
+            "native_error": null,
+            "native_outcome": "OPENFGA_ALLOWED_TRUE",
+            "negative_authority_fact": false,
+            "policy_version": "model-01JABC",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "OPENFGA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "openfga-allowed-false",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "openfga-allowed-false",
+              "input_complete": true,
+              "native_engine": "OPENFGA",
+              "native_error": null,
+              "native_outcome": "OPENFGA_ALLOWED_FALSE",
+              "negative_authority_fact": false,
+              "policy_version": "model-01JABC",
+              "resolver": "tuple-owner",
+              "source_freshness": "FRESH"
+            },
+            "reason": "RESOLVER_AVAILABLE",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "openfga-allowed-false",
+            "input_complete": true,
+            "native_engine": "OPENFGA",
+            "native_error": null,
+            "native_outcome": "OPENFGA_ALLOWED_FALSE",
+            "negative_authority_fact": false,
+            "policy_version": "model-01JABC",
+            "resolver": "tuple-owner",
+            "source_freshness": "FRESH"
+          },
+          "provider": "OPENFGA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "openfga-undefined-relation-400",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "openfga-undefined-relation-400",
+              "input_complete": false,
+              "native_engine": "OPENFGA",
+              "native_error": {
+                "code": "UNDEFINED_RELATION"
+              },
+              "native_outcome": "OPENFGA_HTTP_400_UNDEFINED_RELATION",
+              "negative_authority_fact": false,
+              "policy_version": "model-01JABC",
+              "resolver": "model-owner",
+              "source_freshness": "UNKNOWN"
+            },
+            "reason": "STALE_SOURCE_REQUIRES_REFRESH",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "openfga-undefined-relation-400",
+            "input_complete": false,
+            "native_engine": "OPENFGA",
+            "native_error": {
+              "code": "UNDEFINED_RELATION"
+            },
+            "native_outcome": "OPENFGA_HTTP_400_UNDEFINED_RELATION",
+            "negative_authority_fact": false,
+            "policy_version": "model-01JABC",
+            "resolver": "model-owner",
+            "source_freshness": "UNKNOWN"
+          },
+          "provider": "OPENFGA"
+        },
+        {
+          "business_exact": true,
+          "case_id": "xacml-permit",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "ALLOW",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "xacml-permit",
+              "input_complete": true,
+              "native_engine": "XACML",
+              "native_error": null,
+              "native_outcome": "XACML_PERMIT",
+              "negative_authority_fact": false,
+              "policy_version": "policy-set-v12",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "FRESH_COMPLETE_NATIVE_PERMIT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "xacml-permit",
+            "input_complete": true,
+            "native_engine": "XACML",
+            "native_error": null,
+            "native_outcome": "XACML_PERMIT",
+            "negative_authority_fact": false,
+            "policy_version": "policy-set-v12",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "XACML"
+        },
+        {
+          "business_exact": true,
+          "case_id": "xacml-deny",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "REJECT",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "xacml-deny",
+              "input_complete": true,
+              "native_engine": "XACML",
+              "native_error": null,
+              "native_outcome": "XACML_DENY",
+              "negative_authority_fact": true,
+              "policy_version": "policy-set-v12",
+              "resolver": null,
+              "source_freshness": "FRESH"
+            },
+            "reason": "AUTHORITATIVE_NEGATIVE_FACT",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "xacml-deny",
+            "input_complete": true,
+            "native_engine": "XACML",
+            "native_error": null,
+            "native_outcome": "XACML_DENY",
+            "negative_authority_fact": true,
+            "policy_version": "policy-set-v12",
+            "resolver": null,
+            "source_freshness": "FRESH"
+          },
+          "provider": "XACML"
+        },
+        {
+          "business_exact": true,
+          "case_id": "xacml-not-applicable",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "xacml-not-applicable",
+              "input_complete": true,
+              "native_engine": "XACML",
+              "native_error": null,
+              "native_outcome": "XACML_NOT_APPLICABLE",
+              "negative_authority_fact": false,
+              "policy_version": "policy-set-v12",
+              "resolver": "policy-owner",
+              "source_freshness": "FRESH"
+            },
+            "reason": "RESOLVER_AVAILABLE",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "xacml-not-applicable",
+            "input_complete": true,
+            "native_engine": "XACML",
+            "native_error": null,
+            "native_outcome": "XACML_NOT_APPLICABLE",
+            "negative_authority_fact": false,
+            "policy_version": "policy-set-v12",
+            "resolver": "policy-owner",
+            "source_freshness": "FRESH"
+          },
+          "provider": "XACML"
+        },
+        {
+          "business_exact": true,
+          "case_id": "xacml-indeterminate-dp",
+          "execution_status": "SYNTHETIC_NATIVE_SHAPE_PRODUCT_NOT_RUN",
+          "mapped_record": {
+            "business_outcome": "DEFER",
+            "mapping_version": "task-mapping-estuary-v1",
+            "native_record": {
+              "case_id": "xacml-indeterminate-dp",
+              "input_complete": false,
+              "native_engine": "XACML",
+              "native_error": {
+                "code": "MISSING_ATTRIBUTE"
+              },
+              "native_outcome": "XACML_INDETERMINATE_DP",
+              "negative_authority_fact": false,
+              "policy_version": "policy-set-v12",
+              "resolver": "attribute-owner",
+              "source_freshness": "FRESH"
+            },
+            "reason": "NATIVE_ERROR_REQUIRES_OWNER_MAPPING",
+            "schema": "mcb-g5-v2.task-mapped-decision.v1"
+          },
+          "native_shape": {
+            "case_id": "xacml-indeterminate-dp",
+            "input_complete": false,
+            "native_engine": "XACML",
+            "native_error": {
+              "code": "MISSING_ATTRIBUTE"
+            },
+            "native_outcome": "XACML_INDETERMINATE_DP",
+            "negative_authority_fact": false,
+            "policy_version": "policy-set-v12",
+            "resolver": "attribute-owner",
+            "source_freshness": "FRESH"
+          },
+          "provider": "XACML"
+        }
+      ],
+      "status": "SYNTHETIC_NATIVE_SHAPE_FIXTURE_PRODUCTS_NOT_RUN"
+    },
+    "rows": [
+      {
+        "business_exact": true,
+        "case_id": "native-permit-fresh",
+        "mapped_record": {
+          "business_outcome": "ALLOW",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-permit-fresh",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": null,
+            "native_outcome": "PERMIT",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v7",
+            "resolver": null,
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "FRESH"
+          },
+          "reason": "FRESH_COMPLETE_NATIVE_PERMIT",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-permit-fresh",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": null,
+          "native_outcome": "PERMIT",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v7",
+          "resolver": null,
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "FRESH"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "db82c42fe0ec58989dd1f3e2b23433149fe73338ceb0096250f65528cd433b5d",
+        "worker_stdout_sha256": "f56364c28b1e224734efa0830b330058e5ac43b254e50a2aca24d2887c2b07b5"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-explicit-forbid",
+        "mapped_record": {
+          "business_outcome": "REJECT",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-explicit-forbid",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": null,
+            "native_outcome": "FORBID",
+            "negative_authority_fact": true,
+            "policy_version": "policy-v7",
+            "resolver": null,
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "FRESH"
+          },
+          "reason": "AUTHORITATIVE_NEGATIVE_FACT",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-explicit-forbid",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": null,
+          "native_outcome": "FORBID",
+          "negative_authority_fact": true,
+          "policy_version": "policy-v7",
+          "resolver": null,
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "FRESH"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "75b8b28c6f478c624b4d55352bb71c1f34fc9c858b07bca444a6076cfc8c694c",
+        "worker_stdout_sha256": "c26f8bc72493e803e51b2b05e297e3a5e382a90664a2a22fe7e536ee248f4be9"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-not-applicable",
+        "mapped_record": {
+          "business_outcome": "DEFER",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-not-applicable",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": null,
+            "native_outcome": "NOT_APPLICABLE",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v7",
+            "resolver": "policy-owner",
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "FRESH"
+          },
+          "reason": "RESOLVER_AVAILABLE",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-not-applicable",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": null,
+          "native_outcome": "NOT_APPLICABLE",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v7",
+          "resolver": "policy-owner",
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "FRESH"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "5bc57f20957c038a39eac892980ed39e4c61b193547c2e717cd5203d7fb7564b",
+        "worker_stdout_sha256": "71d64bb0f801b7004fe8f5b7f7f7267386947fccb237045b98d5a3d7bf510c92"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-missing-attribute",
+        "mapped_record": {
+          "business_outcome": "DEFER",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-missing-attribute",
+            "input_complete": false,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": {
+              "attributes": [
+                "mandate"
+              ],
+              "code": "MISSING_ATTRIBUTE",
+              "recoverable": true
+            },
+            "native_outcome": "INDETERMINATE",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v7",
+            "resolver": "mandate-owner",
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "FRESH"
+          },
+          "reason": "NATIVE_ERROR_REQUIRES_OWNER_MAPPING",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-missing-attribute",
+          "input_complete": false,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": {
+            "attributes": [
+              "mandate"
+            ],
+            "code": "MISSING_ATTRIBUTE",
+            "recoverable": true
+          },
+          "native_outcome": "INDETERMINATE",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v7",
+          "resolver": "mandate-owner",
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "FRESH"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "a87a5efde95ff5ef7bc281fa92c8b76c752e283ce21237c3bc42af9ba7532778",
+        "worker_stdout_sha256": "8d8babec0a9dbf95a4ed38f111c24b977726f687df8b0394d2455d28c7990244"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-stale-permit",
+        "mapped_record": {
+          "business_outcome": "DEFER",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-stale-permit",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": null,
+            "native_outcome": "PERMIT",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v6",
+            "resolver": "policy-head-service",
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "STALE"
+          },
+          "reason": "STALE_SOURCE_REQUIRES_REFRESH",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-stale-permit",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": null,
+          "native_outcome": "PERMIT",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v6",
+          "resolver": "policy-head-service",
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "STALE"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "9fee620d0dd041c3500ba39e1625ed4b4a67a74facebcb2beb832d5e20d2f265",
+        "worker_stdout_sha256": "38647f8b485b5ec773ff17f972b4949cae51961240ca307e8a94cef851de39eb"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-pending-approval",
+        "mapped_record": {
+          "business_outcome": "DEFER",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-pending-approval",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": null,
+            "native_outcome": "PENDING_EXTERNAL_APPROVAL",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v7",
+            "resolver": "human-approval-board",
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "FRESH"
+          },
+          "reason": "RESOLVER_AVAILABLE",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-pending-approval",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": null,
+          "native_outcome": "PENDING_EXTERNAL_APPROVAL",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v7",
+          "resolver": "human-approval-board",
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "FRESH"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "07f1cf8b994a43b2fdacfb5e6183c04aa393f18352729512af8ca569fb88f859",
+        "worker_stdout_sha256": "fe08f76c57139af65369577af9645705c8bc4b9dd38ac646262297a369918f3e"
+      },
+      {
+        "business_exact": true,
+        "case_id": "native-engine-error",
+        "mapped_record": {
+          "business_outcome": "DEFER",
+          "mapping_version": "task-mapping-estuary-v1",
+          "native_record": {
+            "case_id": "native-engine-error",
+            "input_complete": true,
+            "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+            "native_error": {
+              "code": "REFERENCE_ENGINE_FAILURE",
+              "recoverable": true
+            },
+            "native_outcome": "ENGINE_ERROR",
+            "negative_authority_fact": false,
+            "policy_version": "policy-v7",
+            "resolver": "engine-operator",
+            "schema": "mcb-g5-v2.local-reference-native-result.v1",
+            "source_freshness": "UNKNOWN"
+          },
+          "reason": "STALE_SOURCE_REQUIRES_REFRESH",
+          "schema": "mcb-g5-v2.task-mapped-decision.v1"
+        },
+        "native_exact": true,
+        "native_record": {
+          "case_id": "native-engine-error",
+          "input_complete": true,
+          "native_engine": "LOCAL_REFERENCE_POLICY_ENGINE",
+          "native_error": {
+            "code": "REFERENCE_ENGINE_FAILURE",
+            "recoverable": true
+          },
+          "native_outcome": "ENGINE_ERROR",
+          "negative_authority_fact": false,
+          "policy_version": "policy-v7",
+          "resolver": "engine-operator",
+          "schema": "mcb-g5-v2.local-reference-native-result.v1",
+          "source_freshness": "UNKNOWN"
+        },
+        "worker_exit": 0,
+        "worker_input_sha256": "f748478bb47bcf0235a26e75c6be6f50b5f378d9c4241af2a9c318bdd9ecdd51",
+        "worker_stdout_sha256": "f00c442ea3768a808a19e7406eeb365cd5f5cf7a8e5437c3f54d8ab25768cc79"
+      }
+    ]
+  },
+  "operation_hash": "8502eb957c636c5652d6c39607dbb102d41c733edcd53cc7f74b0d969ac1cce3",
+  "owner_independence": {
+    "distinct_processes": true,
+    "distinct_public_keys": true,
+    "distinct_stores": true,
+    "fault_observations": {
+      "delta-calibration": {
+        "mutation": "REVOKE",
+        "mutation_result": {
+          "head": 2,
+          "kind": "REVOKE",
+          "status": "MUTATED"
+        },
+        "other_owner_state_unchanged": true,
+        "owner_read_after": {
+          "envelope": {
+            "payload": {
+              "body": {
+                "commitment": "READY_TO_SIGN",
+                "fork_views": [],
+                "mandate": "REVOKED",
+                "stance": "SUPPORT"
+              },
+              "owner_head": 2,
+              "owner_id": "delta-calibration"
+            },
+            "public_key_ed25519_b64": "buBlJdylAX2xLKdaPushwOv2lH3C9QiVSWCMpl3gzmU=",
+            "signature_ed25519_b64": "/Cxh0s0GRGVbElPcrTh8HTMok5UeMXECZHP5Su96Rn1JxQAsKb/apn11oL6MaSKboD5hWyfCVr/+aQWiU39OBg=="
+          },
+          "status": "OK"
+        }
+      },
+      "independent-validation": {
+        "mutation": "OUTAGE",
+        "mutation_result": {
+          "head": 1,
+          "kind": "OUTAGE",
+          "status": "MUTATED"
+        },
+        "other_owner_state_unchanged": true,
+        "owner_read_after": {
+          "owner_id": "independent-validation",
+          "status": "OUTAGE"
+        }
+      },
+      "program-coordinator": {
+        "mutation": "REJECT",
+        "mutation_result": {
+          "head": 2,
+          "kind": "REJECT",
+          "status": "MUTATED"
+        },
+        "other_owner_state_unchanged": true,
+        "owner_read_after": {
+          "envelope": {
+            "payload": {
+              "body": {
+                "commitment": "READY_TO_SIGN",
+                "fork_views": [],
+                "mandate": "ACTIVE",
+                "stance": "REJECT"
+              },
+              "owner_head": 2,
+              "owner_id": "program-coordinator"
+            },
+            "public_key_ed25519_b64": "IrYikzLeJmmwQqj+BSiHYZg314gZvrLOWXcbRN19yZM=",
+            "signature_ed25519_b64": "lAGsSFmHYLX+biL/XOVfX/6EpSUm6rkSbOmNO7IbsQd2aTU0wKy/Cq0TcGhK+0NJWqmvcGDeyeD7Nc5RX99BBA=="
+          },
+          "status": "OK"
+        }
+      },
+      "site-data-steward": {
+        "mutation": "FORK",
+        "mutation_result": {
+          "head": 2,
+          "kind": "FORK",
+          "status": "MUTATED"
+        },
+        "other_owner_state_unchanged": true,
+        "owner_read_after": {
+          "envelope": {
+            "payload": {
+              "body": {
+                "commitment": "READY_TO_SIGN",
+                "fork_views": [
+                  {
+                    "head": 2,
+                    "stance": "SUPPORT"
+                  },
+                  {
+                    "head": 2,
+                    "stance": "REVOKED"
+                  }
+                ],
+                "mandate": "ACTIVE",
+                "stance": "SUPPORT"
+              },
+              "owner_head": 2,
+              "owner_id": "site-data-steward"
+            },
+            "public_key_ed25519_b64": "FId2Cpj8fL2jXstEBR1DLuwqwKagHchZa1GuF+gbhyA=",
+            "signature_ed25519_b64": "NEwJJmcacNHXhbYfPLvCvrgJGfzTDzAdiEFrgfIHvsW20vu6s5MZunhH1dKD54JPtj51PtXFOcHakQ4A/ER0Ag=="
+          },
+          "status": "OK"
+        }
+      }
+    },
+    "initial_reads_signed": true,
+    "owners": {
+      "delta-calibration": {
+        "pid": 94456,
+        "public_key_ed25519_b64": "buBlJdylAX2xLKdaPushwOv2lH3C9QiVSWCMpl3gzmU=",
+        "store": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g5-authority-conformance/artifacts/runtime/current/owners/delta-calibration/store.json"
+      },
+      "independent-validation": {
+        "pid": 94464,
+        "public_key_ed25519_b64": "e+NTtj8a0RcdOrz2FJk1UlRpffil06LsdUb9jC3wdB0=",
+        "store": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g5-authority-conformance/artifacts/runtime/current/owners/independent-validation/store.json"
+      },
+      "program-coordinator": {
+        "pid": 94451,
+        "public_key_ed25519_b64": "IrYikzLeJmmwQqj+BSiHYZg314gZvrLOWXcbRN19yZM=",
+        "store": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g5-authority-conformance/artifacts/runtime/current/owners/program-coordinator/store.json"
+      },
+      "site-data-steward": {
+        "pid": 94468,
+        "public_key_ed25519_b64": "FId2Cpj8fL2jXstEBR1DLuwqwKagHchZa1GuF+gbhyA=",
+        "store": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g5-authority-conformance/artifacts/runtime/current/owners/site-data-steward/store.json"
+      }
+    }
+  },
+  "schema": "mcb-g5-v2.discriminator-results.v1",
+  "status": "COMPLETE_LOCAL_SYNTHETIC_DISCRIMINATOR",
+  "target_fence": {
+    "all_failure_modes_exposed": true,
+    "claim_boundary": "A fence exists only where the target enforces and persists monotonic epochs.",
+    "rows": [
+      {
+        "execute_result": {
+          "required_fence": 2,
+          "status": "STALE_FENCE_REJECTED"
+        },
+        "expected_safe": true,
+        "mode": "strict",
+        "stale_effect_by_authoritative_epoch": false,
+        "target_readback": {
+          "state": {
+            "effects": [],
+            "max_fence": 2,
+            "region_max": {
+              "A": 2,
+              "B": 2
+            }
+          },
+          "status": "OK"
+        }
+      },
+      {
+        "execute_result": {
+          "stale": true,
+          "status": "EFFECT_CREATED"
+        },
+        "expected_safe": false,
+        "mode": "ignore",
+        "stale_effect_by_authoritative_epoch": true,
+        "target_readback": {
+          "state": {
+            "effects": [
+              {
+                "fence": 1,
+                "operation_hash": "8502eb957c636c5652d6c39607dbb102d41c733edcd53cc7f74b0d969ac1cce3",
+                "region": "A",
+                "required_fence": 2
+              }
+            ],
+            "max_fence": 2,
+            "region_max": {
+              "A": 2,
+              "B": 2
+            }
+          },
+          "status": "OK"
+        }
+      },
+      {
+        "execute_result": {
+          "stale": false,
+          "status": "EFFECT_CREATED"
+        },
+        "expected_safe": false,
+        "mode": "restart_loss",
+        "stale_effect_by_authoritative_epoch": true,
+        "target_readback": {
+          "state": {
+            "effects": [
+              {
+                "fence": 1,
+                "operation_hash": "8502eb957c636c5652d6c39607dbb102d41c733edcd53cc7f74b0d969ac1cce3",
+                "region": "A",
+                "required_fence": 0
+              }
+            ],
+            "max_fence": 1,
+            "region_max": {
+              "A": 1,
+              "B": 0
+            }
+          },
+          "status": "OK"
+        }
+      },
+      {
+        "execute_result": {
+          "stale": false,
+          "status": "EFFECT_CREATED"
+        },
+        "expected_safe": false,
+        "mode": "cross_region_reorder",
+        "stale_effect_by_authoritative_epoch": true,
+        "target_readback": {
+          "state": {
+            "effects": [
+              {
+                "fence": 1,
+                "operation_hash": "8502eb957c636c5652d6c39607dbb102d41c733edcd53cc7f74b0d969ac1cce3",
+                "region": "B",
+                "required_fence": 0
+              }
+            ],
+            "max_fence": 2,
+            "region_max": {
+              "A": 2,
+              "B": 1
+            }
+          },
+          "status": "OK"
+        }
+      }
+    ]
+  },
+  "validations": {
+    "adversarial_corpus_structurally_complete": true,
+    "fence_failure_modes_exposed": true,
+    "four_owner_process_store_key": true,
+    "material_closure_exact": true,
+    "native_raw_and_mapping_exact": true,
+    "owner_reject_revoke_outage_fork_exposed": true,
+    "provider_adapter_shape_corpus_exact": true,
+    "standing_lifecycle_exact": true,
+    "u_p_authority_differs": true,
+    "u_p_permission_equal": true
+  }
+}

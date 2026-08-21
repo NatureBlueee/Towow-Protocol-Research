@@ -1,0 +1,258 @@
+{
+  "fragment_schema": "towow.wave010.x1.m01.g3-truth-fragment.v0",
+  "fragment_id": "WAVE-010-X1-M01-G3-FRAGMENT-v0",
+  "status": "CANDIDATE_NOT_RUN",
+  "truth_owner_domain": "G3_CAUSAL_REACHABILITY",
+  "owner_key_id": "x1-m01-g3-owner-v0-candidate",
+  "owner_signature_status": "NOT_ISSUED_NOT_RUN",
+  "source_boundary": {
+    "read_public_inputs": [
+      {
+        "path": "public/common-coordinate.json",
+        "sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87"
+      },
+      {
+        "path": "public/episode-765f0698.json",
+        "sha256": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c"
+      },
+      {
+        "path": "public/episode-d952741e.json",
+        "sha256": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de"
+      }
+    ],
+    "other_private_fragments": "NOT_READ",
+    "method_returns": "NOT_AVAILABLE_NOT_READ",
+    "scope_rule": "This fragment owns only G3 causal reachability truth after a lawful G1 and G2 handoff."
+  },
+  "owner_authority_boundary": {
+    "may_attest": [
+      "G3 assessment entry boundary",
+      "bounded transition model",
+      "S0 G3-qualified path-set membership",
+      "operator class",
+      "formation counterfactual",
+      "actual-policy reachability within the frozen bound",
+      "semantic and byte equality of the two G3 projections"
+    ],
+    "must_not_attest": [
+      "G1 directory visibility or observation-route truth",
+      "G1 candidate qualification",
+      "G2 relation formation or semantic materiality",
+      "G5 Principal authority, commitment, reservation, standing, or handoff eligibility",
+      "method output correctness before a method return exists",
+      "Q_episode satisfaction",
+      "execution permission, Effect, Adoption, Acceptance, or Settlement"
+    ]
+  },
+  "common_coordinate_binding": {
+    "coordinate_version": "x1-common-v0",
+    "common_coordinate_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+    "subvalue_hash_preimage_rule": {
+      "source": "public/common-coordinate.json",
+      "json_pointer_resolution": "RFC6901 exact subvalue only",
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "sort_keys": true,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "trailing_newline": false,
+      "V0_json_pointer": "/V0",
+      "Q_episode_json_pointer": "/Q_episode"
+    },
+    "V0_canonical_sha256": "c18acde708e8fe10a1957255286042a44679dfe16ed374dc8591a92a760cf2f5",
+    "Q_episode_canonical_sha256": "77c97c7b84747601ab8a93e26b0f103148f5f23fc4ef721d46219906b413cb0a",
+    "action_grammar_and_transition_bound_hash_preimage_rule": {
+      "source": "public/common-coordinate.json",
+      "preimage_construction": "Construct exactly the JSON object {\"action_grammar\": <RFC6901 /action_grammar>, \"transition_bound\": <RFC6901 /transition_bound>} from the two resolved source subvalues, with no other source members.",
+      "action_grammar_json_pointer": "/action_grammar",
+      "transition_bound_json_pointer": "/transition_bound",
+      "json_pointer_resolution": "RFC6901 exact subvalue only",
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "sort_keys": true,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "trailing_newline": false
+    },
+    "action_grammar_and_transition_bound_sha256": "29dfa2943dcc20340bcc2419e26d276e90606f131cc597f50f00d127b67af70a",
+    "coordinate_change_policy": "Any change to V0, Q_episode, action grammar, transition bound, or common-coordinate bytes invalidates this fragment."
+  },
+  "assessment_boundary": {
+    "entrypoint": "POST_LAWFUL_G1_G2_HANDOFF",
+    "required_ingress_receipts": [
+      "owner-signed G1 lawful candidate handoff receipt",
+      "current T_G1_TO_G2 receipt",
+      "owner-signed G2 exact relation-version assessment receipt",
+      "current T_G2_TO_G3 receipt"
+    ],
+    "event_index_rule": {
+      "g3_entry_event_symbol": "e_g3_entry",
+      "required_order": [
+        "e_g1_handoff < e_t_g1_to_g2",
+        "e_t_g1_to_g2 <= e_g2_assessment",
+        "e_g2_assessment < e_t_g2_to_g3",
+        "e_t_g2_to_g3 < e_g3_entry"
+      ],
+      "binding": "All ingress receipts must bind the same run, episode, arm, V0 hash, Q_episode hash, relation version, and finalized input bytes."
+    },
+    "excluded_upstream_observation_truth": [
+      "directory index presence or absence",
+      "query_directory route",
+      "purpose-bound-local-projection route",
+      "which lawful G1 observation path produced the handoff",
+      "G1 query count, latency, or disclosure cost"
+    ],
+    "boundary_reason": "M01 changes an upstream G1 observation path. G3 begins only after a lawful current G1 and G2 handoff and does not use that upstream route as G3 truth."
+  },
+  "shared_g3_assessment_projection": {
+    "projection_version": "x1-m01-g3-projection-v0",
+    "coordinate": {
+      "V0_canonical_sha256": "c18acde708e8fe10a1957255286042a44679dfe16ed374dc8591a92a760cf2f5",
+      "Q_episode_canonical_sha256": "77c97c7b84747601ab8a93e26b0f103148f5f23fc4ef721d46219906b413cb0a"
+    },
+    "transition_model": {
+      "model_id": "g3-estuary-preexisting-path-v0",
+      "assessment_entry_state": "LAWFUL_CURRENT_G1_G2_HANDOFF_RECEIVED",
+      "states": [
+        "LAWFUL_CURRENT_G1_G2_HANDOFF_RECEIVED",
+        "S0_PATH_MEMBERSHIP_ASSESSED",
+        "G3_CAUSAL_CLASS_EMITTED"
+      ],
+      "transitions": [
+        {
+          "from": "LAWFUL_CURRENT_G1_G2_HANDOFF_RECEIVED",
+          "action": "assess_frozen_s0_path_membership",
+          "to": "S0_PATH_MEMBERSHIP_ASSESSED",
+          "world_state_mutation": false
+        },
+        {
+          "from": "S0_PATH_MEMBERSHIP_ASSESSED",
+          "action": "emit_bounded_causal_classification",
+          "to": "G3_CAUSAL_CLASS_EMITTED",
+          "world_state_mutation": false
+        }
+      ],
+      "upstream_directory_observation_path_in_model": false
+    },
+    "S0_qualified_path_set": {
+      "set_id": "g3-s0-qualified-path-set-v0",
+      "qualification_scope": "G3 path existence relative to the unchanged V0 and Q_episode coordinate; G5 authority and later X2 truth remain external.",
+      "members": [
+        {
+          "path_id": "preexisting-role-constrained-joint-bid-path-001",
+          "exists_at_S0": true,
+          "semantic_equivalence_class": "estuary-calibration-plus-independent-validation-front-half",
+          "requires_world_changing_formation_operator": false,
+          "role_filler_identity_in_g3_truth": "OPAQUE_NOT_REQUIRED_FOR_CAUSAL_CLASS",
+          "authority_obligations": "EXTERNAL_G5_ASSESSMENT_REQUIRED"
+        }
+      ],
+      "closed_world_claim": false,
+      "outside_frozen_transition_bound": "UNKNOWN"
+    },
+    "operator_assessment": {
+      "causal_class": "EPISTEMIC_DISCOVERY",
+      "formation_operator": null,
+      "world_changing_operator_required": false,
+      "claim_scope": "The same G3-qualified path already exists in S0. A lawful G1/G2 handoff may make it knowable but does not create the path."
+    },
+    "counterfactual": {
+      "test": "remove_or_reverse_claimed_world_changing_formation_operator",
+      "frozen_result": "S0_QUALIFIED_PATH_REMAINS",
+      "formation_claim_supported": false,
+      "upstream_directory_observation_ablation": "OUT_OF_G3_TRUTH_SCOPE",
+      "interpretation": "Loss of an observation route may prevent a method from finding the path; it does not remove the pre-existing path from G3 S0."
+    },
+    "actual_policy_bound": {
+      "start": "POST_LAWFUL_G1_G2_HANDOFF",
+      "horizon": "ONE_SHOT_EPISODE",
+      "max_total_logical_steps": 16,
+      "g3_additional_truth_actions": [
+        "assess_frozen_s0_path_membership",
+        "emit_bounded_causal_classification"
+      ],
+      "reachable_within_bound": true,
+      "reachable_class": "PREEXISTING_PATH_EPISTEMIC_DISCOVERY",
+      "outside_bound": "UNKNOWN",
+      "does_not_assert_method_will_return_this_class": true
+    }
+  },
+  "shared_projection_hash_preimage_rule": {
+    "json_pointer": "/shared_g3_assessment_projection",
+    "json_pointer_resolution": "RFC6901 exact subvalue only",
+    "encoding": "UTF-8",
+    "ensure_ascii": false,
+    "sort_keys": true,
+    "separators": [
+      ",",
+      ":"
+    ],
+    "trailing_newline": false
+  },
+  "episode_projection_bindings": [
+    {
+      "episode_id": "765f0698-edb8-459d-bba6-ceb0ae154e51",
+      "public_packet_sha256": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c",
+      "projection_ref": "#/shared_g3_assessment_projection",
+      "projection_canonical_sha256": "fc320a1652480f66d3b588974bfc3695799c4e53c4917d9f642abf3c70cca84a"
+    },
+    {
+      "episode_id": "d952741e-11f8-44db-a98d-7a34c12e6801",
+      "public_packet_sha256": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de",
+      "projection_ref": "#/shared_g3_assessment_projection",
+      "projection_canonical_sha256": "fc320a1652480f66d3b588974bfc3695799c4e53c4917d9f642abf3c70cca84a"
+    }
+  ],
+  "pair_equality_attestation_candidate": {
+    "semantic_projection_equal": true,
+    "canonical_byte_projection_equal": true,
+    "equality_basis": "Both episode bindings resolve to the same shared projection object and canonical projection SHA-256.",
+    "non_bearing_upstream_difference": "Directory observation path is excluded from the G3 assessment boundary and G3 truth projection.",
+    "status": "UNSIGNED_CANDIDATE_NOT_RUN"
+  },
+  "method_output_boundary": {
+    "expected_method_return": null,
+    "prejudged_method_result": false,
+    "evaluation_rule": "After a method return is frozen, a G3 evaluator may compare it with this truth fragment. This fragment does not predict or manufacture that return."
+  },
+  "ledger": {
+    "ledger_schema": "towow.wave010.x1.truth-owner-ledger.v0",
+    "genesis": {
+      "event_index": 0,
+      "previous_root": null,
+      "event_type": "G3_FRAGMENT_FREEZE_CANDIDATE_CREATED",
+      "owner_key_id": "x1-m01-g3-owner-v0-candidate",
+      "payload_binding": {
+        "fragment_id": "WAVE-010-X1-M01-G3-FRAGMENT-v0",
+        "common_coordinate_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+        "left_public_packet_sha256": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c",
+        "right_public_packet_sha256": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de",
+        "shared_projection_sha256": "fc320a1652480f66d3b588974bfc3695799c4e53c4917d9f642abf3c70cca84a"
+      },
+      "event_sha256": "bc8fca944a49bff598c54e636cd1572fb1cf7c1a50a593948522435f4f4b11c8"
+    },
+    "root_candidate": {
+      "algorithm": "SHA-256",
+      "json_pointer": "/ledger/genesis",
+      "excluded_json_pointer": "/ledger/genesis/event_sha256",
+      "preimage_rule": "Resolve /ledger/genesis, remove only its event_sha256 member, then serialize that exact subvalue as UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators=(',', ':'), and no trailing newline.",
+      "sha256": "bc8fca944a49bff598c54e636cd1572fb1cf7c1a50a593948522435f4f4b11c8",
+      "status": "UNSIGNED_CANDIDATE_NOT_RUN"
+    }
+  },
+  "evidence_boundary": {
+    "fragment_created": true,
+    "truth_frozen_by_signature": false,
+    "runner_implemented": false,
+    "method_run": false,
+    "evaluator_run": false,
+    "coverage_available": false,
+    "real_world_claim": false,
+    "formal_promotion": "NONE",
+    "summary": "G3 candidate truth only: after a lawful G1/G2 handoff, both episodes use the same pre-existing-path transition truth and may be classified as EPISTEMIC_DISCOVERY. No method output is pre-judged."
+  }
+}

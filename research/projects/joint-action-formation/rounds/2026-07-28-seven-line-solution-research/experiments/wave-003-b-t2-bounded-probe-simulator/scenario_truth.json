@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "kind": "SYNTHETIC_EXECUTION_BRANCH_TRUTH",
+  "world_id": "T2-PROBE-W003-B-WORLD-001",
+  "scenarios": [
+    {
+      "scenario_id": "success",
+      "observed_environment_version": "buyer-sandbox-fixture-2026.07.28",
+      "credential_event": "ACTIVE_THROUGH_QUERY_3",
+      "audit_mode": "PRESENT",
+      "expected_attempt_status": "COMPLETED",
+      "expected_executed_query_count": 3,
+      "recovery_state": "NO_RECOVERY_REQUIRED"
+    },
+    {
+      "scenario_id": "environment_mismatch",
+      "observed_environment_version": "buyer-sandbox-fixture-2026.07.29-drifted",
+      "credential_event": "ACTIVE_NOT_USED",
+      "audit_mode": "PRESENT",
+      "expected_attempt_status": "BLOCKED_PRE_EXECUTION",
+      "expected_executed_query_count": 0,
+      "recovery_state": "STOP_AND_REBIND_ENVIRONMENT"
+    },
+    {
+      "scenario_id": "credential_revoked_mid_run",
+      "observed_environment_version": "buyer-sandbox-fixture-2026.07.28",
+      "credential_event": "REVOKED_AFTER_QUERY_2",
+      "audit_mode": "PRESENT",
+      "expected_attempt_status": "ABORTED_CREDENTIAL_REVOKED",
+      "expected_executed_query_count": 2,
+      "recovery_state": "STOP_AND_REQUIRE_NEW_AUTHORIZATION"
+    },
+    {
+      "scenario_id": "audit_witness_missing",
+      "observed_environment_version": "buyer-sandbox-fixture-2026.07.28",
+      "credential_event": "ACTIVE_THROUGH_QUERY_3",
+      "audit_mode": "MISSING",
+      "expected_attempt_status": "COMPLETED",
+      "expected_executed_query_count": 3,
+      "recovery_state": "STOP_QUALIFICATION_AND_REPAIR_AUDIT_CHANNEL"
+    },
+    {
+      "scenario_id": "duplicate_retry",
+      "observed_environment_version": "buyer-sandbox-fixture-2026.07.28",
+      "credential_event": "NOT_REUSED",
+      "audit_mode": "REUSE_PRIOR",
+      "preseed_scenario": "success",
+      "expected_attempt_status": "DEDUPLICATED_REPLAY",
+      "expected_executed_query_count": 0,
+      "recovery_state": "RETURN_PRIOR_RECEIPT_WITHOUT_NEW_EXECUTION"
+    }
+  ],
+  "evidence_boundary": {
+    "synthetic_only": true,
+    "is_real_execution": false,
+    "is_real_buyer_witness": false,
+    "does_not_establish_capability": true,
+    "does_not_establish_effect": true
+  }
+}

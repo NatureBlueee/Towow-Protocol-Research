@@ -1,0 +1,202 @@
+{
+  "actual_policy_transcript": {
+    "actual_response": "UNRESOLVED",
+    "execution": {
+      "final_facts": [
+        "terminal_safe"
+      ],
+      "goal_reached": false,
+      "response": "UNRESOLVED",
+      "steps": [
+        {
+          "action_id": "safe_exit",
+          "after": [
+            "terminal_safe"
+          ],
+          "applied": true,
+          "before": [],
+          "index": 0,
+          "reason": "APPLIED"
+        }
+      ],
+      "terminal_safe": true,
+      "valid": true
+    },
+    "frozen_before_scoring": true,
+    "method_return": {
+      "action_ids": [
+        "safe_exit"
+      ],
+      "arm_id": "B-CENTER-LEGAL-CONTROL",
+      "authority_binding": {
+        "grants": [
+          "PUBLIC_EPISODE_ENDPOINTS",
+          "OWNER_DECLARED_CENTRAL_ORCHESTRATION"
+        ],
+        "principal_impersonation_used": false,
+        "selected_action_endpoints": [
+          {
+            "action_id": "safe_exit",
+            "authority_endpoint": "executor"
+          }
+        ]
+      },
+      "authority_mode": "OWNER_DECLARED_CENTRAL_CONTROL",
+      "baseline_implementation": "deterministic_center_rule",
+      "comparison_scope": "DIFFERENT_ENVIRONMENT_CONSTRUCTIVE_COUNTEREXAMPLE",
+      "environment_variant": "LEGITIMATELY_CENTRALIZED",
+      "formation_witness_proposal": {
+        "claimed_operator_ids": [],
+        "claims_oracle_verdict": false,
+        "source": "PUBLIC_PACKET_AND_SELECTED_ACTIONS_ONLY",
+        "task_change_claim": null
+      },
+      "lawful_inputs_used": {
+        "available_action_ids": [
+          "safe_exit"
+        ],
+        "operator_proposal_id": null,
+        "s0_observations": [
+          "owner_task_current",
+          "known_actions_exhausted"
+        ]
+      },
+      "worker": "blind-actual-policy-v1",
+      "world_id": "E05"
+    },
+    "policy_sha256": "e00acea2c9566131b6dc9ab3503f4ffb773b482a3f8a7e704e33a600b2c8adf0"
+  },
+  "arm_id": "B-CENTER-LEGAL-CONTROL",
+  "category": "UNKNOWN",
+  "comparison_scope": "DIFFERENT_ENVIRONMENT_CONSTRUCTIVE_COUNTEREXAMPLE",
+  "environment_variant": "LEGITIMATELY_CENTRALIZED",
+  "evidence_binding": {
+    "actual_policy_transcript_sha256": "cd83d74c6b334254732b464bd894400b5cc17f23731ad0b1c4a48cccadb516e1",
+    "binding_sha256": "291bf390b7b36a11ae247533e616939f9e87652047a61a10737cef11ba594570",
+    "exact_task_diff_sha256": "d0e17c0966d7279753ced698489b60dcb631fc953997c88c05412ad8232aad75",
+    "g3_body_sha256": "e6f95726d0e86b8e90c914ff78f3706f536ca7223d5a1791a0eafafa02416c2a",
+    "oracle_receipts_sha256": "281c79a743fa2e04ac016d1aeee86b13052b3986c5c5bb28f2e510f915198632"
+  },
+  "exact_task_diff": {
+    "changes": [],
+    "classification": "UNCHANGED",
+    "controller_claim_refs": [],
+    "material_fields": [],
+    "original_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa",
+    "owner_authorization_receipts": [],
+    "result_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa"
+  },
+  "g3_receipt": {
+    "body": {
+      "C": "UNKNOWN",
+      "E": "SAME",
+      "N": "NONE",
+      "R": {
+        "R_actual": "TRUE",
+        "R_effect_robust": "FALSE",
+        "R_measurable_exists": "UNKNOWN",
+        "R_physical_exists": "UNKNOWN",
+        "R_safe_robust": "TRUE",
+        "R_terminal_robust": "TRUE"
+      },
+      "T": "INVARIANT",
+      "V": "VALID",
+      "counterfactual": {
+        "block_result": "NOT_APPLICABLE",
+        "evidence_sha256": "72f7b3c95ec3490316edc4ae58e8c42ae829c2797f435987f33a2c549e5851c8",
+        "operator_ids": [],
+        "remove_result": "NOT_APPLICABLE",
+        "reverse_result": "NOT_APPLICABLE",
+        "status": "NOT_APPLICABLE"
+      },
+      "inventory_completeness": {
+        "action_inventory": "INCOMPLETE",
+        "evidence_sha256": "3215288fde934c46496e7a2d5231569cbd4afea2957a3e81be370175480ac76b",
+        "horizon": 4,
+        "observation_kernel": "COMPLETE",
+        "response_family": "UNKNOWN",
+        "search_bound_frozen": true,
+        "transition_semantics": "INCOMPLETE",
+        "unresolved_items": [
+          "tool_inventory",
+          "partner_inventory",
+          "task_representation_language"
+        ]
+      },
+      "task_diff": {
+        "changes": [],
+        "classification": "UNCHANGED",
+        "controller_claim_refs": [],
+        "material_fields": [],
+        "original_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa",
+        "owner_authorization_receipts": [],
+        "result_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa"
+      }
+    },
+    "body_sha256": "e6f95726d0e86b8e90c914ff78f3706f536ca7223d5a1791a0eafafa02416c2a",
+    "receipt_ref": {
+      "owner_key_id": "wave011-g3-evaluator",
+      "raw_bytes_sha256": "e262bd72e8f0d03e2dcb0eaf682b50a98a588c994c7b80aa5f79bee84ad6eb2a",
+      "receipt_version": "1",
+      "ref": "receipt:E05:B-CENTER-LEGAL-CONTROL:g3",
+      "status": "FINAL"
+    }
+  },
+  "oracle_receipts": {
+    "closure": {
+      "extended_closure": {
+        "branches": [],
+        "reason": "INCOMPLETE_INVENTORY",
+        "result": "UNKNOWN"
+      },
+      "old_closure": {
+        "branches": [],
+        "reason": "INCOMPLETE_INVENTORY",
+        "result": "UNKNOWN"
+      },
+      "worker": "closure-oracle-v1"
+    },
+    "counterfactual": {
+      "frozen_policy_sha256": "e00acea2c9566131b6dc9ab3503f4ffb773b482a3f8a7e704e33a600b2c8adf0",
+      "status": "NOT_APPLICABLE",
+      "worker": "frozen-trace-counterfactual-v1"
+    },
+    "measurable": {
+      "reason": "INCOMPLETE_INVENTORY",
+      "result": "UNKNOWN",
+      "trace": [],
+      "worker": "measurable-oracle-v1"
+    },
+    "robust": {
+      "branches": [
+        {
+          "final_facts": [
+            "terminal_safe"
+          ],
+          "goal_reached": false,
+          "response": "UNRESOLVED",
+          "steps": [
+            {
+              "action_id": "safe_exit",
+              "after": [
+                "terminal_safe"
+              ],
+              "applied": true,
+              "before": [],
+              "index": 0,
+              "reason": "APPLIED"
+            }
+          ],
+          "terminal_safe": true,
+          "valid": true
+        }
+      ],
+      "effect_robust": false,
+      "safe_robust": true,
+      "terminal_robust": true,
+      "worker": "robust-tree-checker-v1"
+    }
+  },
+  "reason_code": "G3_OPEN_INVENTORY_UNRESOLVED_MODEL",
+  "world_id": "E05"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "WAVE-006-B-G4-CAPABILITY-RELIANCE",
+  "status": "LOCAL_SYNTHETIC_COMPARISON_COMPLETE",
+  "shared_task_binding": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "frozen_operation": {
+    "world_id": "W6-STERILE-ROUTE-WORLD",
+    "evaluation_step": 7,
+    "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+    "purpose": "sterile-route-simulation",
+    "retention": "PT7M"
+  },
+  "strategy_ids": [
+    "DECLARATION",
+    "LATEST_PROBE",
+    "RECEIPT_HISTORY",
+    "SLA_RECOVERY"
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "01095588023e2845bcb4d9a3091ce657a6edd1606fcda921ea8cca5bc7f35a92"
+    },
+    {
+      "path": "simulator.py",
+      "sha256": "4abca3183e1b5c9b35b402b695a8b2964e29ecdb5de7a84f027d140d647eb592"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "ccf44f2d1a6bb406ff7bebe6251fb3dcbf310da303b113cc23c1ed89c16c207e"
+    },
+    {
+      "path": "fixtures/timeline.json",
+      "sha256": "77209dee84c9bde0d802e85f1b8b7ae0581979523215f7cefae17027182fc004"
+    },
+    {
+      "path": "results/baseline.json",
+      "sha256": "2bac5fe9dbda16cc82cb7117ef6d1c68b385b97d52ebfd776801295e03ad1862"
+    },
+    {
+      "path": "tests/test_capability_reliance.py",
+      "sha256": "1d39f917d189efb5e8b980e1b82493e10df2cd34f605c0a993ea314a21784fe4"
+    }
+  ],
+  "acceptance": {
+    "same_event_sequence_and_visible_snapshot_per_strategy": true,
+    "truth_not_visible_to_strategies": true,
+    "probe_success_then_revocation_is_discriminating": true,
+    "false_reliance_and_missed_opportunity_both_scored": true,
+    "cost_and_recovery_scored": true,
+    "operation_capability_reliance_effect_distinct": true,
+    "unknown_refuse_absent_preserved": true,
+    "simple_existing_strategy_may_win": true,
+    "simple_strategy_wins_steady_low_risk": "DECLARATION",
+    "local_pass_promotes_other_research_lines": false,
+    "synthetic_result_claims_real_world_frequency": false
+  },
+  "scoped_result": {
+    "aggregate_ranking": [
+      "SLA_RECOVERY",
+      "LATEST_PROBE",
+      "DECLARATION",
+      "RECEIPT_HISTORY"
+    ],
+    "steady_low_risk_winner": "DECLARATION",
+    "strongest_counterexample": "ANCHOR_FORK_WITH_DOMAIN_POSTCONDITION_BUT_NO_SAFE_RELIANCE_OR_BUSINESS_ACCEPTANCE"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "implementation_identity": "G7_INTERNAL_AGENT_B",
+  "entries": [
+    {
+      "id": "RED-001-ROOT-EXACT-BINDING-TRANSPLANT",
+      "source": "root independent mutation and Agent B local reproduction",
+      "status": "OPEN_AT_CAPTURE",
+      "command_shape": "mutate prior_context.object_id to Circuit-WRONG and prior_context.q_version to Q@wrong, then call ContextCompiler.repeat against the unchanged current packet",
+      "exit_code": 1,
+      "observed": {
+        "decision": "CONTINUE",
+        "object_id": "Circuit-WRONG",
+        "q_version": "Q@wrong"
+      },
+      "meaning": "field presence and current lease/safety evidence did not bind repeat Context to the current exact Q/object/operation; repeat liveness was therefore unsafe",
+      "required_fix": "reject or rebuild repeat Context when any exact binding differs from the current packet, and add a regression test"
+    },
+    {
+      "id": "RED-002-EXPECTED-NEGATIVE-CONTROL",
+      "source": "Agent B executable negative control",
+      "status": "EXPECTED_RED_DETECTED",
+      "command": "PYTHONPYCACHEPREFIX=/tmp/g7b-pycache python3 tests/negative_controls.py",
+      "exit_code": 1,
+      "observed": {
+        "negative_control": "OLD_RUNTIME_RESTART_COMMITS",
+        "status": "RED_DETECTED",
+        "violations": [
+          "E6 old runtime restart was not fenced"
+        ]
+      },
+      "meaning": "the result auditor rejects a split-brain mutation instead of treating a green workflow as recovery"
+    },
+    {
+      "id": "RED-003-POST-REPAIR-TEST-CONTRACT-DRIFT",
+      "source": "Agent B full-suite post-repair run",
+      "status": "TEST_EXPECTATION_FIXED",
+      "command": "PYTHONPYCACHEPREFIX=/tmp/g7b-pycache python3 -m unittest discover -s tests -v",
+      "exit_code": 1,
+      "observed": {
+        "tests_run": 29,
+        "failures": 1,
+        "failed_test": "test_each_context_field_is_required",
+        "reason": "validator now correctly returned both missing field and invalid context-binding hash, while the old test demanded a single bare field name"
+      },
+      "meaning": "the implementation repair strengthened validation; the narrow pre-repair assertion was updated to require the missing-field violation without suppressing the causally related binding-hash violation"
+    },
+    {
+      "id": "RED-004-AGENT-C-FROZEN-ADVERSARIAL-SET",
+      "source": "G7 INTERNAL AGENT C",
+      "status": "PRE_REPAIR_RED_PRESERVED",
+      "command": "PYTHONPYCACHEPREFIX=/tmp/g7c-pycache python3 -m unittest tests.test_adversarial -v",
+      "exit_code": 1,
+      "observed": {
+        "tests_run": 14,
+        "red": 12,
+        "pass_controls": 2,
+        "errors": 0
+      },
+      "red_classes": [
+        "wrong Q/object repeat Context continued",
+        "wrong operation/effect key repeat Context continued",
+        "history/evidence transplant continued",
+        "present-but-empty Context passed",
+        "cold/repeat lifecycle axes missing",
+        "old primary Effect dedupe counted as E4 alternative recovery",
+        "E4 history rewrite hidden by constant flag",
+        "E6 substituted Q/object self-certified",
+        "volatile target epoch lost old-runtime fence",
+        "empty obligations imported",
+        "field-loss safe stop mislabeled CorrectResolution",
+        "absent hidden pair lacked explicit NOT_CONSTRUCTED boundary"
+      ],
+      "post_repair_local_recheck": "14/14 PASS"
+    },
+    {
+      "id": "RED-005-POST-REPAIR-SECOND-ORDER-ATTACKS",
+      "source": "G7 INTERNAL AGENT C and root contract review",
+      "status": "FIXED_OR_EXPLICITLY_BOUNDED",
+      "observed": {
+        "agent_c_new_red": 3,
+        "root_contract_gaps": 2
+      },
+      "red_classes": [
+        "fence stored in one EffectTarget object did not survive a fresh target instance",
+        "signature-distinct adapters lacked explicit semantic-independence Unknown marker",
+        "fixture cost vectors lacked explicit full-lifecycle NOT_MEASURED marker",
+        "O_Q and O_V Acceptance had been collapsed into one synthetic owner",
+        "active alternative lease lacked exact Q/object/operation scope commitment"
+      ],
+      "resolution": [
+        "independent shared DurableFenceAuthority is injected into new and old target instances",
+        "semantic_independence=NOT_ESTABLISHED",
+        "cost_comparison_status=NOT_MEASURED_FULL_LIFECYCLE",
+        "O_Q and O_V emit distinct receipts and O_P requires both",
+        "O_R emits COMMITTED_EXACT_SCOPE and target Effect binds its evidence hash"
+      ],
+      "post_repair_local_recheck": "33/33 PASS including 17/17 Agent C adversarial tests"
+    },
+    {
+      "id": "RED-006-INTEGRATION-EVIDENCE-SCHEMA-DRIFT",
+      "source": "G7 INTERNAL AGENT C final integration rerun",
+      "status": "FIXED_WITHOUT_DELETING_THE_RED",
+      "command": "PYTHONPYCACHEPREFIX=/tmp/g7c-final-pycache python3 -m unittest discover -s tests -v",
+      "exit_code": 1,
+      "observed": {
+        "tests_run": 33,
+        "errors": 1,
+        "reason": "alternative commitment event schema changed while one integration test still read payload.reservation.resource_id"
+      },
+      "meaning": "the evidence interface and its consumer had drifted even though the underlying alternative-scope logic had been strengthened",
+      "resolution": "restore an explicit compatible evidence binding and rerun the unchanged full suite",
+      "post_repair_independent_recheck": "33/33 PASS; runner 2/2 audit PASS; py_compile PASS"
+    }
+  ],
+  "historical_failures_inherited_not_rerun": [
+    {
+      "source": "wave-010 root audit",
+      "boundary": "stale CURRENT caused unsafe CONTINUE; wrong-object Acceptance passed; wrong reopen action escaped aggregate gate"
+    },
+    {
+      "source": "wave-011 cohort-002 root audit",
+      "boundary": "w010/w011 allowed the same conservative action, so the claimed safety-liveness frontier was not tested"
+    }
+  ]
+}

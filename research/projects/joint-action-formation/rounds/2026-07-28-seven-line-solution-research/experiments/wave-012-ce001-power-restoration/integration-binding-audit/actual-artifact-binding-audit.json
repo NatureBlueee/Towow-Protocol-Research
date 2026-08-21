@@ -1,0 +1,551 @@
+{
+  "checked_lines": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "contract_score_status": "NOT_COMPUTED",
+  "evidence_boundary": "CURRENT_LOCAL_ARTIFACT_BINDING_AUDIT_ONLY; NOT_A_CONTRACT_EVALUATION; NOT_A_PRODUCT_RUN",
+  "failures": [
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G1"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G2"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G3"
+      }
+    },
+    {
+      "code": "PERSISTED_OUTPUT_MISSING",
+      "detail": {
+        "line": "G4"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G4"
+      }
+    },
+    {
+      "code": "SOURCE_DIGEST_MISSING",
+      "detail": {
+        "line": "G4"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G5"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G6"
+      }
+    },
+    {
+      "code": "COMMON_BINDING_MISSING",
+      "detail": {
+        "fields": [
+          "selected_case_id",
+          "episode_manifest_sha256",
+          "run_root",
+          "q_version",
+          "canonical_object_id",
+          "operation_id",
+          "owner_registry_sha256",
+          "target_registry_sha256"
+        ],
+        "line": "G7"
+      }
+    },
+    {
+      "code": "G5_TO_G6_SOURCE_LINK_MISSING",
+      "detail": {
+        "actual": null,
+        "expected": "f922cad009f566f07d11f80d781847e729ff311bc1910bd7e6be8a3c763027a1"
+      }
+    },
+    {
+      "code": "G6_TO_G7_SOURCE_LINK_MISSING",
+      "detail": {
+        "actual": null,
+        "expected": "f8277c8f863a2e0a3a925a941403a0e6e932b22f291e047d2ad3e7defb85787e"
+      }
+    }
+  ],
+  "observations": {
+    "declared_case_refs": {
+      "G1": [],
+      "G2": [],
+      "G3": [
+        "H001",
+        "H002",
+        "H003",
+        "H004",
+        "H005",
+        "H006",
+        "H007",
+        "H008",
+        "H009",
+        "H010"
+      ],
+      "G4": [],
+      "G5": [
+        "COSMETIC_METADATA",
+        "MATERIAL_Q_CHANGE",
+        "RESOURCE_DEPENDENCY_CHANGE",
+        "SAFETY_SIDECAR_CHANGE"
+      ],
+      "G6": [
+        "E0-PLATFORM-DIRECT",
+        "E1-EXTANT-MULTI-OWNER",
+        "E2-CONDITION-FORMATION",
+        "E3-ACK-LOST-OPAQUE",
+        "E3A-ACK-LOST-EFFECT",
+        "E3B-ACK-LOST-NO-EFFECT",
+        "E4-REVOKE-WITH-ALTERNATIVE",
+        "E5-IMPOSSIBLE-REFUSAL",
+        "E6-MIGRATION-REPLAY"
+      ],
+      "G7": []
+    },
+    "declared_episode_refs": {
+      "G1": [
+        "E0-PLATFORM-DIRECT",
+        "E1-EXTANT-MULTI-OWNER",
+        "E2-CONDITION-FORMATION",
+        "E3A-ACK-LOST-EFFECT",
+        "E3B-ACK-LOST-NO-EFFECT",
+        "E4-REVOKE-WITH-ALTERNATIVE",
+        "E5-IMPOSSIBLE-REFUSAL",
+        "E6-MIGRATION-REPLAY"
+      ],
+      "G2": [
+        "CE001-E2-ALL-UNKNOWN",
+        "CE001-E2-COLUMN-ABSENT",
+        "CE001-E2-COLUMN-WITHHELD",
+        "CE001-E2-EXACT-V1",
+        "CE001-E2-SAFETY-REFUSAL",
+        "CE001-E2-WRONG-VERSION",
+        "CE001-T5-PLATFORM-DIRECT"
+      ],
+      "G3": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006",
+        "P007",
+        "P008",
+        "P009",
+        "P010"
+      ],
+      "G4": [],
+      "G5": [
+        "CE-001"
+      ],
+      "G6": [
+        "CE-001:E0-PLATFORM-DIRECT",
+        "CE-001:E1-EXTANT-MULTI-OWNER",
+        "CE-001:E2-CONDITION-FORMATION",
+        "CE-001:E3-ACK-LOST-OPAQUE",
+        "CE-001:E4-REVOKE-WITH-ALTERNATIVE",
+        "CE-001:E6-MIGRATION-REPLAY"
+      ],
+      "G7": []
+    },
+    "declared_object_ids": {
+      "G1": [
+        "Venue-V:Circuit-C7",
+        "Venue-V:Circuit-C8"
+      ],
+      "G2": [
+        "Venue-V/Circuit-C7"
+      ],
+      "G3": [],
+      "G4": [],
+      "G5": [
+        "Venue-V/Circuit-C7"
+      ],
+      "G6": [
+        "Circuit-C7",
+        "Circuit-C8"
+      ],
+      "G7": [
+        "VenueV:CircuitC7"
+      ]
+    },
+    "declared_operation_ids": {
+      "G1": [
+        "TEMPORARY_POWER:C7"
+      ],
+      "G2": [],
+      "G3": [],
+      "G4": [],
+      "G5": [
+        "CE-001-C7-ENERGIZE-P"
+      ],
+      "G6": [
+        "op-alternative",
+        "op-before-crash",
+        "op-e3-fallback",
+        "op-e3-primary",
+        "op-extant",
+        "op-formed",
+        "op-platform",
+        "op-refused",
+        "op-revoked",
+        "recover:occ:E3-ACK-LOST-OPAQUE:op-e3-primary"
+      ],
+      "G7": []
+    },
+    "g4_persisted_component_output": false,
+    "g7_recovery_refs_present_in_g6_report": {
+      "1faa3f5322f7dd480da6c1ff34ec263b73c627716a8da2a8adb3f7372ec03709": false,
+      "22e3e55722081a390f511a40fa7d0c146fd55c704adbe617dbc073d565e42b68": false,
+      "5018b0010304be445bb4a3e13e60370a999143d070f20dc14a47f2c560f8445f": false,
+      "f98c2b554d7181acb9fbe82bcff6ae056d4cb0eb2ac4e94cc8cfb122efee468f": false
+    },
+    "handwritten_preflight_fixtures_are_not_component_runs": true
+  },
+  "records": [
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [],
+      "declared_episode_refs": [
+        "E0-PLATFORM-DIRECT",
+        "E1-EXTANT-MULTI-OWNER",
+        "E2-CONDITION-FORMATION",
+        "E3A-ACK-LOST-EFFECT",
+        "E3B-ACK-LOST-NO-EFFECT",
+        "E4-REVOKE-WITH-ALTERNATIVE",
+        "E5-IMPOSSIBLE-REFUSAL",
+        "E6-MIGRATION-REPLAY"
+      ],
+      "declared_object_ids": [
+        "Venue-V:Circuit-C7",
+        "Venue-V:Circuit-C8"
+      ],
+      "declared_operation_ids": [
+        "TEMPORARY_POWER:C7"
+      ],
+      "declared_q_versions": [
+        "Q@v1"
+      ],
+      "declared_run_roots": [],
+      "detail_source_path": null,
+      "detail_source_sha256": null,
+      "episode_manifest_sha256": null,
+      "line": "G1",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "a3f908e7199d0475d09bd00268bd6074a0cdc31d994eb2c7772cfee17aa8081f",
+      "source_path": "g1-provenance/frozen-output.json",
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [],
+      "declared_episode_refs": [
+        "CE001-E2-ALL-UNKNOWN",
+        "CE001-E2-COLUMN-ABSENT",
+        "CE001-E2-COLUMN-WITHHELD",
+        "CE001-E2-EXACT-V1",
+        "CE001-E2-SAFETY-REFUSAL",
+        "CE001-E2-WRONG-VERSION",
+        "CE001-T5-PLATFORM-DIRECT"
+      ],
+      "declared_object_ids": [
+        "Venue-V/Circuit-C7"
+      ],
+      "declared_operation_ids": [],
+      "declared_q_versions": [
+        "Q@v1"
+      ],
+      "declared_run_roots": [],
+      "detail_source_path": null,
+      "detail_source_sha256": null,
+      "episode_manifest_sha256": null,
+      "line": "G2",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "60732c71de8f38bae3d15a793aa12a257c0d5a115a5594a641a0d29789125618",
+      "source_path": "g2-relation/outputs/rerun-1.json",
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [
+        "H001",
+        "H002",
+        "H003",
+        "H004",
+        "H005",
+        "H006",
+        "H007",
+        "H008",
+        "H009",
+        "H010"
+      ],
+      "declared_episode_refs": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006",
+        "P007",
+        "P008",
+        "P009",
+        "P010"
+      ],
+      "declared_object_ids": [],
+      "declared_operation_ids": [],
+      "declared_q_versions": [],
+      "declared_run_roots": [],
+      "detail_source_path": null,
+      "detail_source_sha256": null,
+      "episode_manifest_sha256": null,
+      "line": "G3",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "957074a35a5547601e3495edd70a861b69cbbde777b15d27bb057f496d649c77",
+      "source_path": "g3-formation/outputs/report.json",
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [],
+      "declared_episode_refs": [],
+      "declared_object_ids": [],
+      "declared_operation_ids": [],
+      "episode_manifest_sha256": null,
+      "line": "G4",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": false,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": null,
+      "source_path": null,
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [
+        "COSMETIC_METADATA",
+        "MATERIAL_Q_CHANGE",
+        "RESOURCE_DEPENDENCY_CHANGE",
+        "SAFETY_SIDECAR_CHANGE"
+      ],
+      "declared_episode_refs": [
+        "CE-001"
+      ],
+      "declared_object_ids": [
+        "Venue-V/Circuit-C7"
+      ],
+      "declared_operation_ids": [
+        "CE-001-C7-ENERGIZE-P"
+      ],
+      "declared_q_versions": [
+        "Q@v1"
+      ],
+      "declared_run_roots": [],
+      "detail_source_path": null,
+      "detail_source_sha256": null,
+      "episode_manifest_sha256": null,
+      "line": "G5",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "f922cad009f566f07d11f80d781847e729ff311bc1910bd7e6be8a3c763027a1",
+      "source_path": "g5-authority/artifacts/results.json",
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [
+        "E0-PLATFORM-DIRECT",
+        "E1-EXTANT-MULTI-OWNER",
+        "E2-CONDITION-FORMATION",
+        "E3-ACK-LOST-OPAQUE",
+        "E3A-ACK-LOST-EFFECT",
+        "E3B-ACK-LOST-NO-EFFECT",
+        "E4-REVOKE-WITH-ALTERNATIVE",
+        "E5-IMPOSSIBLE-REFUSAL",
+        "E6-MIGRATION-REPLAY"
+      ],
+      "declared_episode_refs": [
+        "CE-001:E0-PLATFORM-DIRECT",
+        "CE-001:E1-EXTANT-MULTI-OWNER",
+        "CE-001:E2-CONDITION-FORMATION",
+        "CE-001:E3-ACK-LOST-OPAQUE",
+        "CE-001:E4-REVOKE-WITH-ALTERNATIVE",
+        "CE-001:E6-MIGRATION-REPLAY"
+      ],
+      "declared_object_ids": [
+        "Circuit-C7",
+        "Circuit-C8"
+      ],
+      "declared_operation_ids": [
+        "op-alternative",
+        "op-before-crash",
+        "op-e3-fallback",
+        "op-e3-primary",
+        "op-extant",
+        "op-formed",
+        "op-platform",
+        "op-refused",
+        "op-revoked",
+        "recover:occ:E3-ACK-LOST-OPAQUE:op-e3-primary"
+      ],
+      "declared_q_versions": [
+        "Q@v1"
+      ],
+      "declared_run_roots": [],
+      "detail_source_path": "g6-effect/artifacts/e2e-results.json",
+      "detail_source_sha256": "4ab81546125d3e38aa55ea010e5ec92e32760f50dc72d98864d15f004daacea8",
+      "episode_manifest_sha256": null,
+      "line": "G6",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "f8277c8f863a2e0a3a925a941403a0e6e932b22f291e047d2ad3e7defb85787e",
+      "source_path": "g6-effect/artifacts/integration-fragment.json",
+      "target_registry_sha256": null
+    },
+    {
+      "canonical_object_id": null,
+      "cross_refs": {},
+      "declared_case_refs": [],
+      "declared_episode_refs": [],
+      "declared_object_ids": [
+        "VenueV:CircuitC7"
+      ],
+      "declared_operation_ids": [],
+      "declared_q_versions": [
+        "Q@v1"
+      ],
+      "declared_run_roots": [
+        "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/g7-evolution-v2-jo7jumcg"
+      ],
+      "detail_source_path": null,
+      "detail_source_sha256": null,
+      "episode_manifest_sha256": null,
+      "line": "G7",
+      "operation_id": null,
+      "owner_registry_sha256": null,
+      "persisted_output": true,
+      "q_version": null,
+      "run_root": null,
+      "selected_case_id": null,
+      "source_artifact_sha256": "6d006ad4f5707bd3d4152e0a2cb66645f725407720e6678b9da2f3a67f3e6176",
+      "source_path": "g7-evolution/results.json",
+      "target_registry_sha256": null
+    }
+  ],
+  "status": "NOT_JOINABLE_CURRENT_ARTIFACTS"
+}

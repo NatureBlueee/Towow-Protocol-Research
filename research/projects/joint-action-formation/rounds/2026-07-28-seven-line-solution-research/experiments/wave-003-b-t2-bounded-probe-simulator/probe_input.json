@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "kind": "SYNTHETIC_BOUNDED_PROBE_INPUT",
+  "evidence_level": "ARCHIVAL_DESIGN_DERIVED_SYNTHETIC",
+  "probe_id": "PROBE-T2-W003-B-001",
+  "relation_version_ref": "REL-T2-V2-CANDIDATE",
+  "binding": {
+    "executor": {
+      "executor_id": "fixed_container",
+      "runtime": "synthetic_oci_runner",
+      "authority": "PROVIDER-TECH"
+    },
+    "environment": {
+      "environment_id": "buyer_controlled_sandbox",
+      "environment_version": "buyer-sandbox-fixture-2026.07.28",
+      "authority_domain": "BUYER"
+    },
+    "version": {
+      "container_digest": "sha256:8c27b6fbe792f4e576e5560f0fd37c90e6c235777099e19e7df244fccfe94192",
+      "fixture_only": true
+    },
+    "permission": {
+      "authorization_id": "AUTH-T2-W003-B-001",
+      "authorization_version": 1,
+      "authority": "BUYER-DATA",
+      "state_at_start": "ACTIVE",
+      "credential_id": "CRED-T2-TEMP-001",
+      "credential_mode": "temporary_readonly_test_only",
+      "allowed_purpose": "bounded_capability_probe",
+      "allowed_query_ids": [
+        "Q-T2-AGG-01",
+        "Q-T2-AGG-02",
+        "Q-T2-AGG-03"
+      ],
+      "training_allowed": false,
+      "persistent_memory_allowed": false,
+      "raw_row_export_allowed": false,
+      "repeat_run_authorized": false,
+      "auto_revoke_after_test": true
+    },
+    "resource": {
+      "reservation_id": "RES-T2-W003-B-001",
+      "duration_limit_seconds": 3600,
+      "query_budget": 3,
+      "cpu_limit": 2,
+      "memory_limit_mb": 2048,
+      "network_mode": "disabled",
+      "buyer_audit_channel": "BUYER-AUDIT-T2-FIXTURE-01"
+    }
+  },
+  "queries": [
+    {
+      "query_id": "Q-T2-AGG-01",
+      "operation": "COUNT_BY_CONTACT_REASON",
+      "mode": "AGGREGATE_READ_ONLY",
+      "approved": true,
+      "raw_rows_returned": false
+    },
+    {
+      "query_id": "Q-T2-AGG-02",
+      "operation": "RENEWAL_RISK_RATE_BY_CONTACT_REASON",
+      "mode": "AGGREGATE_READ_ONLY",
+      "approved": true,
+      "raw_rows_returned": false
+    },
+    {
+      "query_id": "Q-T2-AGG-03",
+      "operation": "TOP_THREE_RENEWAL_RISK_SIGNALS",
+      "mode": "AGGREGATE_READ_ONLY",
+      "approved": true,
+      "raw_rows_returned": false
+    }
+  ],
+  "audit_requirement": {
+    "buyer_domain_witness_required": true,
+    "required_fields": [
+      "observed_attempt_id",
+      "observed_environment_version",
+      "observed_query_ids",
+      "query_output_hashes",
+      "raw_row_export_count",
+      "credential_events"
+    ],
+    "producer_evidence_is_sufficient": false
+  },
+  "idempotency": {
+    "key": "IDEM-T2-W003-B-001",
+    "scope": "exact_probe_binding_and_query_set",
+    "duplicate_policy": "RETURN_PRIOR_RECEIPT_WITHOUT_NEW_EXECUTION"
+  },
+  "recovery_rules": {
+    "environment_mismatch": "STOP_AND_REBIND_ENVIRONMENT",
+    "credential_revoked": "STOP_AND_REQUIRE_NEW_AUTHORIZATION",
+    "audit_witness_missing": "STOP_QUALIFICATION_AND_REPAIR_AUDIT_CHANNEL",
+    "duplicate_retry": "RETURN_PRIOR_RECEIPT_WITHOUT_NEW_EXECUTION"
+  }
+}

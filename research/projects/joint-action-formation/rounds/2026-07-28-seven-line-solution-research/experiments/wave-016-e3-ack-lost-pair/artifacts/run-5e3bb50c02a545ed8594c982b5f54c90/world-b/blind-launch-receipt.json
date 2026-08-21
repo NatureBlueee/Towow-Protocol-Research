@@ -1,0 +1,451 @@
+{
+  "exit_code": 0,
+  "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; HOSTILE_SAME_OS_USER_AND_UNRELATED_CONCURRENT_SPAWN_NOT_COVERED",
+  "private_material_absent": true,
+  "process_start_method": "spawn",
+  "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+  "status": "CHILD_VISIBLE_SURFACE_RECORDED",
+  "visible_surface": {
+    "argv": [
+      "wave015-blind-child",
+      "--opaque"
+    ],
+    "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-ia3qmeu6",
+    "cwd_entries": [],
+    "environment": {
+      "LANG": "C.UTF-8",
+      "PATH": "/usr/bin:/bin",
+      "PYTHONHASHSEED": "0"
+    },
+    "inherited_file_descriptors": [
+      "0",
+      "1",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "2",
+      "20",
+      "21",
+      "22",
+      "28",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "process_name": "arm-worker-41fc36fa0dcdfa41",
+    "view": {
+      "arm_binding_token": "arm-bind-e6bdd231904c2149452ec74b39f97ad61ba1f2adfd58a7ca08e20fbb41017ed3",
+      "arm_id": "A4-MATURE-ACK-RECONCILIATION",
+      "broker_surface": {
+        "capabilities": [
+          "DISCOVER",
+          "REQUEST",
+          "STATUS"
+        ],
+        "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-e30d1950cf3cae207500ee00948df803",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "view_bytes": "{\"arm_binding_token\":\"arm-bind-e6bdd231904c2149452ec74b39f97ad61ba1f2adfd58a7ca08e20fbb41017ed3\",\"arm_id\":\"A4-MATURE-ACK-RECONCILIATION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"1ef841faaf9f6b445a039a5b6d90ba28\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-e30d1950cf3cae207500ee00948df803\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-45e6c9f2a431b13cca374c5ee72e8777\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-fa9de56aa6ee77d9c63cbeedcedc9835\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+  },
+  "visible_surface_sha256": "c3bc501ecf325cf819c4f529e25c703627bdf950f35a8e114b17c5322dc86485",
+  "worker_result": {
+    "decoy_exclusions": [
+      {
+        "excluded": true,
+        "reasons": [
+          "PUBLIC_RUN_ID_MISMATCH",
+          "WORLD_ID_MISMATCH",
+          "OBJECT_ID_MISMATCH",
+          "TARGET_ID_MISMATCH",
+          "OPERATION_ID_MISMATCH"
+        ],
+        "record_sha256": "0b6953b0235663acdf8b2b65710714a907b95999e65b31bc4700dd1bdd4f52cb"
+      }
+    ],
+    "disposition": "RECOVERED_NO_EFFECT_SAFE_RETRY",
+    "final_readback": {
+      "actor_id": "A4-MATURE-ACK-RECONCILIATION",
+      "attached_to_receipt_commit": true,
+      "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+      "ledger_id": "target-ledger-b-d60eb8b6bb6b4fbeae7fd69ad7013d92",
+      "observed_commit_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+      "observed_commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+      "observed_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "observed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "observed_version": 1,
+      "readback_auth_hex": "b0d3115e730125dc943cde08014f1e56bb5d4cafaa6c96c548775f0245909c85",
+      "readback_id": "readback-5d8eb5dfd9ef4a1cbf7d8ccad8cb3425",
+      "readback_sha256": "fc0b5786d5fbae4c53ed7ba4f0dfd1c191e9dd4f2413157335a7d61391edee5d",
+      "receipt_commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+      "receipt_decision": "COMMITTED",
+      "receipt_id": "receipt-192ab09bc9304e40997e309f8a48ff9a",
+      "receipt_mutation_applied": true,
+      "receipt_post_version": 1,
+      "receipt_sha256": "1c44268ab6f89eaec0c8ea35f6acbb075935adea5495eafc5573e4a735fee479",
+      "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+      "request_sha256": "f72a5096dd104c7866ad732d4bc2ea4ed956dd6501d56755bb546c0c16f5f1c2",
+      "schema": "TARGET_READBACK_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "final_receipt": {
+      "actor_id": "A4-MATURE-ACK-RECONCILIATION",
+      "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+      "commit_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+      "commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+      "decision": "COMMITTED",
+      "expected_version": 0,
+      "ledger_id": "target-ledger-b-d60eb8b6bb6b4fbeae7fd69ad7013d92",
+      "mutation_applied": true,
+      "operation": "SET_STATE",
+      "post_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "post_version": 1,
+      "pre_state": {
+        "energized": false,
+        "power_kw": 0.0
+      },
+      "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+      "pre_version": 0,
+      "reason": "TARGET_MUTATION_COMMITTED",
+      "receipt_auth_hex": "325d49816fa7e8c21705398b2a0fa58f4908dc7e9dc301bd32f9e8c9d3bb417f",
+      "receipt_id": "receipt-192ab09bc9304e40997e309f8a48ff9a",
+      "receipt_sha256": "1c44268ab6f89eaec0c8ea35f6acbb075935adea5495eafc5573e4a735fee479",
+      "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+      "request_sha256": "f72a5096dd104c7866ad732d4bc2ea4ed956dd6501d56755bb546c0c16f5f1c2",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "freshness_response": {
+      "capability_freshness": {
+        "capability_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+        "capability_allowed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+        "capability_consumed_by_request_id": null,
+        "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+        "capability_operation": "SET_STATE",
+        "capability_target_id": "VenueV:CircuitC7",
+        "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+        "object_id": "VenueV:CircuitC7",
+        "observed_negative_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+        "observed_version": 0,
+        "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+        "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+        "q_version": "Q@v1",
+        "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+        "schema": "TARGET_CAPABILITY_FRESHNESS_V1",
+        "signature_hex": "f2bb1f47120860ff8d166f535ccb0a19cc36da1e96f9ab97099b760ef5ed37bc4e57b5d1db04ccc3ce1ed3ecf0d6bfa8b1ad69554bccd03cada4bb18b1b0fd0f",
+        "status": "CURRENT",
+        "target_id": "VenueV:CircuitC7",
+        "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+        "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+      },
+      "schema": "BROKER_CAPABILITY_FRESHNESS_RESULT_V1"
+    },
+    "retry_performed": true,
+    "schema": "E3_ARM_RESULT_V1",
+    "status_envelope": {
+      "covered_ledger_range": {
+        "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+        "from_version": 0,
+        "through_version": 0
+      },
+      "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+      "matching_occurrence_hashes": [],
+      "object_id": "VenueV:CircuitC7",
+      "observed_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+      "observed_version": 0,
+      "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+      "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+      "q_version": "Q@v1",
+      "query_request_bytes": "{\"endpoint_handle\":\"1ef841faaf9f6b445a039a5b6d90ba28\",\"object_id\":\"VenueV:CircuitC7\",\"operation_handle\":\"handle-f2c732139cc2ecc18c2d5b75fda7e308\",\"operation_id\":\"operation-45e6c9f2a431b13cca374c5ee72e8777\",\"public_run_id\":\"run-fa9de56aa6ee77d9c63cbeedcedc9835\",\"q_version\":\"Q@v1\",\"request_id\":\"request-4d6f84cb5ead94c21d6056a51c0bda18\",\"schema\":\"BROKER_EXACT_STATUS_QUERY_V1\",\"target_id\":\"VenueV:CircuitC7\",\"world_id\":\"episode-e30d1950cf3cae207500ee00948df803\"}",
+      "query_request_sha256": "9746ac005dc7a5c264868a7543b5958bd78d82c01dc4ebc57ba4831292841ba8",
+      "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+      "schema": "TARGET_OPERATION_STATUS_V1",
+      "signature_hex": "269bbb79b54ededf02ecff6874a6d7f6abc655f89f279acee8943170c3e39dd626898cb93be2fba8ea0add49b5d751f7a725a134f894f5860f8fca760dfe8300",
+      "status": "NOT_COMMITTED",
+      "target_id": "VenueV:CircuitC7",
+      "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+      "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+    },
+    "submit_message_count": 2,
+    "transcript": [
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "desired_state": {
+            "energized": true,
+            "power_kw": 3.0
+          },
+          "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+          "expected_version": 0,
+          "object_id": "VenueV:CircuitC7",
+          "operation": "SET_STATE",
+          "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+          "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+          "q_version": "Q@v1",
+          "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+          "schema": "BROKER_SUBMIT_REQUEST_V1",
+          "target_id": "VenueV:CircuitC7",
+          "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "operation_handle": "handle-f2c732139cc2ecc18c2d5b75fda7e308",
+          "schema": "BROKER_SUBMIT_RESULT_V1",
+          "status": "OUTCOME_UNCONFIRMED"
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+          "object_id": "VenueV:CircuitC7",
+          "operation_handle": "handle-f2c732139cc2ecc18c2d5b75fda7e308",
+          "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+          "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+          "q_version": "Q@v1",
+          "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+          "schema": "BROKER_EXACT_STATUS_QUERY_V1",
+          "target_id": "VenueV:CircuitC7",
+          "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "nearby_decoys": [
+            {
+              "historical_only": true,
+              "object_id": "VenueV:CircuitC8",
+              "occurrence_hash": "1476963647bf2c3100ca8c42244a55ad1c7c2de25cd8a8d7bc773d094cd42f27",
+              "operation_id": "historical-operation-45e6c9f2a431b13cca374c5ee72e8777",
+              "public_run_id": "prior-run-fa9de56aa6ee77d9c63cbeedcedc9835",
+              "q_version": "Q@v1",
+              "schema": "TARGET_HISTORICAL_OCCURRENCE_V1",
+              "signature_hex": "7436bc82581f0050868beefe926aab3ffb78b095efe4d48ea58f0aebc8d73026c393e112b1f70ba3f8871f681b7a8c43f724e37d18ad0aad971f6fdc73ed5200",
+              "source_commit_id": "commit-19fa1810927c4899a48a85203ae58535",
+              "source_ledger_id": "historical-decoy-b-252efc3e90ac44909eec9cb92707336e",
+              "source_readback_sha256": "a19782492676b683f6e2d8c02cbcf9fcf04b0e373fe6d8d21970592e20734a57",
+              "source_receipt_id": "receipt-05b97363ac1f4fed84a198cd09c21bce",
+              "source_receipt_sha256": "1476963647bf2c3100ca8c42244a55ad1c7c2de25cd8a8d7bc773d094cd42f27",
+              "status": "COMMITTED",
+              "target_id": "VenueV:CircuitC8",
+              "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+              "world_id": "prior-episode-e30d1950cf3cae207500ee00948df803"
+            }
+          ],
+          "schema": "BROKER_EXACT_STATUS_RESULT_V1",
+          "status_envelope": {
+            "covered_ledger_range": {
+              "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+              "from_version": 0,
+              "through_version": 0
+            },
+            "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+            "matching_occurrence_hashes": [],
+            "object_id": "VenueV:CircuitC7",
+            "observed_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+            "observed_version": 0,
+            "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+            "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+            "q_version": "Q@v1",
+            "query_request_bytes": "{\"endpoint_handle\":\"1ef841faaf9f6b445a039a5b6d90ba28\",\"object_id\":\"VenueV:CircuitC7\",\"operation_handle\":\"handle-f2c732139cc2ecc18c2d5b75fda7e308\",\"operation_id\":\"operation-45e6c9f2a431b13cca374c5ee72e8777\",\"public_run_id\":\"run-fa9de56aa6ee77d9c63cbeedcedc9835\",\"q_version\":\"Q@v1\",\"request_id\":\"request-4d6f84cb5ead94c21d6056a51c0bda18\",\"schema\":\"BROKER_EXACT_STATUS_QUERY_V1\",\"target_id\":\"VenueV:CircuitC7\",\"world_id\":\"episode-e30d1950cf3cae207500ee00948df803\"}",
+            "query_request_sha256": "9746ac005dc7a5c264868a7543b5958bd78d82c01dc4ebc57ba4831292841ba8",
+            "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+            "schema": "TARGET_OPERATION_STATUS_V1",
+            "signature_hex": "269bbb79b54ededf02ecff6874a6d7f6abc655f89f279acee8943170c3e39dd626898cb93be2fba8ea0add49b5d751f7a725a134f894f5860f8fca760dfe8300",
+            "status": "NOT_COMMITTED",
+            "target_id": "VenueV:CircuitC7",
+            "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+            "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+          }
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+          "object_id": "VenueV:CircuitC7",
+          "observed_negative_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+          "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+          "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+          "q_version": "Q@v1",
+          "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+          "schema": "BROKER_CAPABILITY_FRESHNESS_QUERY_V1",
+          "target_id": "VenueV:CircuitC7",
+          "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "capability_freshness": {
+            "capability_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+            "capability_allowed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+            "capability_consumed_by_request_id": null,
+            "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+            "capability_operation": "SET_STATE",
+            "capability_target_id": "VenueV:CircuitC7",
+            "current_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+            "object_id": "VenueV:CircuitC7",
+            "observed_negative_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+            "observed_version": 0,
+            "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+            "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+            "q_version": "Q@v1",
+            "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+            "schema": "TARGET_CAPABILITY_FRESHNESS_V1",
+            "signature_hex": "f2bb1f47120860ff8d166f535ccb0a19cc36da1e96f9ab97099b760ef5ed37bc4e57b5d1db04ccc3ce1ed3ecf0d6bfa8b1ad69554bccd03cada4bb18b1b0fd0f",
+            "status": "CURRENT",
+            "target_id": "VenueV:CircuitC7",
+            "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+            "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+          },
+          "schema": "BROKER_CAPABILITY_FRESHNESS_RESULT_V1"
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "desired_state": {
+            "energized": true,
+            "power_kw": 3.0
+          },
+          "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+          "expected_version": 0,
+          "object_id": "VenueV:CircuitC7",
+          "observed_negative_head": "391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79",
+          "operation": "SET_STATE",
+          "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+          "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+          "q_version": "Q@v1",
+          "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+          "schema": "BROKER_SAFE_RETRY_REQUEST_V1",
+          "target_id": "VenueV:CircuitC7",
+          "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "ledger_readback": {
+            "actor_id": "A4-MATURE-ACK-RECONCILIATION",
+            "attached_to_receipt_commit": true,
+            "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+            "ledger_id": "target-ledger-b-d60eb8b6bb6b4fbeae7fd69ad7013d92",
+            "observed_commit_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+            "observed_commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+            "observed_state": {
+              "energized": true,
+              "power_kw": 3.0
+            },
+            "observed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+            "observed_version": 1,
+            "readback_auth_hex": "b0d3115e730125dc943cde08014f1e56bb5d4cafaa6c96c548775f0245909c85",
+            "readback_id": "readback-5d8eb5dfd9ef4a1cbf7d8ccad8cb3425",
+            "readback_sha256": "fc0b5786d5fbae4c53ed7ba4f0dfd1c191e9dd4f2413157335a7d61391edee5d",
+            "receipt_commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+            "receipt_decision": "COMMITTED",
+            "receipt_id": "receipt-192ab09bc9304e40997e309f8a48ff9a",
+            "receipt_mutation_applied": true,
+            "receipt_post_version": 1,
+            "receipt_sha256": "1c44268ab6f89eaec0c8ea35f6acbb075935adea5495eafc5573e4a735fee479",
+            "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+            "request_sha256": "f72a5096dd104c7866ad732d4bc2ea4ed956dd6501d56755bb546c0c16f5f1c2",
+            "schema": "TARGET_READBACK_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "ledger_receipt": {
+            "actor_id": "A4-MATURE-ACK-RECONCILIATION",
+            "capability_id": "capability-b-0a3da2eeab964c61869200c3c9cb35b4",
+            "commit_actor_id": "A4-MATURE-ACK-RECONCILIATION",
+            "commit_id": "commit-cfeea9beed4d40a7bc146cd5b00c8b4b",
+            "decision": "COMMITTED",
+            "expected_version": 0,
+            "ledger_id": "target-ledger-b-d60eb8b6bb6b4fbeae7fd69ad7013d92",
+            "mutation_applied": true,
+            "operation": "SET_STATE",
+            "post_state": {
+              "energized": true,
+              "power_kw": 3.0
+            },
+            "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+            "post_version": 1,
+            "pre_state": {
+              "energized": false,
+              "power_kw": 0.0
+            },
+            "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+            "pre_version": 0,
+            "reason": "TARGET_MUTATION_COMMITTED",
+            "receipt_auth_hex": "325d49816fa7e8c21705398b2a0fa58f4908dc7e9dc301bd32f9e8c9d3bb417f",
+            "receipt_id": "receipt-192ab09bc9304e40997e309f8a48ff9a",
+            "receipt_sha256": "1c44268ab6f89eaec0c8ea35f6acbb075935adea5495eafc5573e4a735fee479",
+            "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+            "request_sha256": "f72a5096dd104c7866ad732d4bc2ea4ed956dd6501d56755bb546c0c16f5f1c2",
+            "schema": "TARGET_MUTATION_RECEIPT_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "schema": "BROKER_SAFE_RETRY_RESULT_V1",
+          "status_envelope": {
+            "covered_ledger_range": {
+              "current_head": "eda31d2c7d03626d96a8e747a704bf2547ff5293efa1e288f37b81c008648c50",
+              "from_version": 0,
+              "through_version": 1
+            },
+            "current_head": "eda31d2c7d03626d96a8e747a704bf2547ff5293efa1e288f37b81c008648c50",
+            "matching_occurrence_hashes": [
+              "1c44268ab6f89eaec0c8ea35f6acbb075935adea5495eafc5573e4a735fee479"
+            ],
+            "object_id": "VenueV:CircuitC7",
+            "observed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+            "observed_version": 1,
+            "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+            "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+            "q_version": "Q@v1",
+            "query_request_bytes": "{\"desired_state\":{\"energized\":true,\"power_kw\":3.0},\"endpoint_handle\":\"1ef841faaf9f6b445a039a5b6d90ba28\",\"expected_version\":0,\"object_id\":\"VenueV:CircuitC7\",\"observed_negative_head\":\"391aec6bb11170a59157b280ef1ae8751582afa1e0e15e413d4472324eb88f79\",\"operation\":\"SET_STATE\",\"operation_id\":\"operation-45e6c9f2a431b13cca374c5ee72e8777\",\"public_run_id\":\"run-fa9de56aa6ee77d9c63cbeedcedc9835\",\"q_version\":\"Q@v1\",\"request_id\":\"request-4d6f84cb5ead94c21d6056a51c0bda18\",\"schema\":\"BROKER_SAFE_RETRY_REQUEST_V1\",\"target_id\":\"VenueV:CircuitC7\",\"world_id\":\"episode-e30d1950cf3cae207500ee00948df803\"}",
+            "query_request_sha256": "435546b74fed3507c00b9545f9b1eadb2bd990e249bd8ed60973f292da600cff",
+            "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+            "schema": "TARGET_OPERATION_STATUS_V1",
+            "signature_hex": "04864e837946568578b49aa909d5d19a2eaf88f0aaf4bd888a04aa4b9d72eaef57a9fb3478aa5a839e0e289cd7e70c7c72707d8b2402ab9d520db73882db250a",
+            "status": "COMMITTED",
+            "target_id": "VenueV:CircuitC7",
+            "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+            "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+          }
+        }
+      }
+    ],
+    "transcript_sha256": "32593e5a581a9de7a8673f47360987794288cde739935d49144af870c8c2f5dc"
+  }
+}

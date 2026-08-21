@@ -1,0 +1,2002 @@
+{
+  "arm_transcript": {
+    "arm_id": "A0-PLATFORM-DIRECT",
+    "native_request": {
+      "authority_grant": {
+        "authority_mode": "LAWFULLY_UNIFIED_DIRECT",
+        "decision": "ALLOW",
+        "expires_at_minute": 90,
+        "grant_sha256": "49f8b1df751121e4ff6bddba6bd5d1ae476c166b939f8671ffa06f4fa9d74215",
+        "granted_actions": [
+          "SCHEDULE",
+          "LOCK_INTERNAL_RESOURCE",
+          "EXECUTE_TARGET",
+          "ACCEPT_AS_REQUESTER_ROLE",
+          "ACCEPT_AS_VENUE_ROLE",
+          "FINALIZE_NO_EXTERNAL_TRANSFER"
+        ],
+        "grantee_id": "VenueV:NativeOperationsPlatform",
+        "issued_at_minute": 0,
+        "issuer": "O_V",
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "principal_id": "VenueV",
+        "q_version": "Q@v1",
+        "resource_id": "VenueV:Battery:B7",
+        "schema": "VENUE_DIRECT_AUTHORITY_GRANT_V1",
+        "signature_hex": "d6dbc754913fac857e4ff6dc05b6082dff66140479f0f782a78a419c2bd36ae18e825ed4b6267fd1c6cb27f694d18859b2759a4d97544e490461373a060cd709",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+      "request_id": "request-b5726831339c408284a53c31a982f9f3",
+      "schema": "PLATFORM_NATIVE_REQUEST_V1",
+      "task": {
+        "deadline_minute": 90,
+        "noise_required": true,
+        "other_circuits_energized": [],
+        "power_tolerance_percent": 5,
+        "q_version": "Q@v1",
+        "requester_acceptance_required": true,
+        "required_duration_minutes": 45,
+        "required_power_kw": 3.0,
+        "safety_required": true,
+        "schema": "CE001_EXACT_TASK_V1",
+        "target_id": "VenueV:CircuitC7",
+        "venue_acceptance_required": true
+      }
+    },
+    "native_response": {
+      "decision": "PROVISIONED",
+      "effect_occurred": true,
+      "finality": {
+        "acceptance_sha256s": [
+          "924ee16e0bd2268582b7ac02d3e011b3f970f50a4f2bc63400eb7b282337026f",
+          "8d1198081f5f394f42a5910c95e7be2f534f00dc43d436f223278c55e42a6ee9"
+        ],
+        "decision": "NO_EXTERNAL_TRANSFER_DUE",
+        "external_transfer_count": 0,
+        "finality_sha256": "3e5e87483edd6624bf6b1a70fc862850b91a64a1ce7e4243cb0210c9d0945fa6",
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "reason": "VENUE_OWNS_PLATFORM_RESOURCE_AND_TARGET",
+        "schema": "PLATFORM_NATIVE_FINALITY_V1",
+        "signature_hex": "de632ca0801cfaa5f7e85317e62445746f53dd4cc5e7052d0ba07c44380417ae4658b85d096069e67bdb69233a5f38333bdb94fb48901d4c08110b80b1cb660e",
+        "target_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae"
+      },
+      "reason": "PLATFORM_NATIVE_EXACT_TASK_CLOSED",
+      "request_id": "request-b5726831339c408284a53c31a982f9f3",
+      "resource_lock_receipt_sha256": "b40085ebc5637519dfd44ae02682b4150a0206916deec9fde1bc3194ef062bc0",
+      "schema": "PLATFORM_NATIVE_RESPONSE_V1",
+      "target_readback": {
+        "actor_id": "VenueV:NativeOperationsPlatform",
+        "attached_to_receipt_commit": true,
+        "capability_id": "platform-cap-7226b1286c8043f78359e9c1a7db7187",
+        "ledger_id": "target-ledger-8ffdc82fd9384810938dea4a5bfb0ff2",
+        "observed_commit_actor_id": "VenueV:NativeOperationsPlatform",
+        "observed_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "observed_state": {
+          "duration_minutes": 45,
+          "energized": true,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 3.0,
+          "power_samples": [
+            {
+              "minute": 0,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 1,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 2,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 3,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 4,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 5,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 6,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 7,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 8,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 9,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 10,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 11,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 12,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 13,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 14,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 15,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 16,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 17,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 18,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 19,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 20,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 21,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 22,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 23,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 24,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 25,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 26,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 27,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 28,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 29,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 30,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 31,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 32,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 33,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 34,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 35,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 36,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 37,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 38,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 39,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 40,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 41,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 42,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 43,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 44,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 45,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            }
+          ],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "observed_state_sha256": "fe4ca43c26ad6792309bfa2da7531a7c343747084b8f8debb698d492b0afc9b2",
+        "observed_version": 1,
+        "readback_auth_hex": "f45a41e9db61731a348fb6a84e9f5b978f4237c523440ae008b4975964235ede",
+        "readback_id": "readback-5c9dafa78d06437ca3785feb4fbeb2d2",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "receipt_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "receipt_decision": "COMMITTED",
+        "receipt_id": "receipt-cf36c7c43b1641b7968892d6d97b098c",
+        "receipt_mutation_applied": true,
+        "receipt_post_version": 1,
+        "receipt_sha256": "85e67d14d244ca0997eefb951c436513deb958307f0ddbec02cc7d3a39becfbd",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3",
+        "request_sha256": "61504a74a1a832318ceee77b25b6d97cf9d808df5dc5fc4ead52ddc1ca22676a",
+        "schema": "TARGET_READBACK_V1",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "target_receipt": {
+        "actor_id": "VenueV:NativeOperationsPlatform",
+        "capability_id": "platform-cap-7226b1286c8043f78359e9c1a7db7187",
+        "commit_actor_id": "VenueV:NativeOperationsPlatform",
+        "commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "decision": "COMMITTED",
+        "expected_version": 0,
+        "ledger_id": "target-ledger-8ffdc82fd9384810938dea4a5bfb0ff2",
+        "mutation_applied": true,
+        "operation": "SET_STATE",
+        "post_state": {
+          "duration_minutes": 45,
+          "energized": true,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 3.0,
+          "power_samples": [
+            {
+              "minute": 0,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 1,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 2,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 3,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 4,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 5,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 6,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 7,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 8,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 9,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 10,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 11,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 12,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 13,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 14,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 15,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 16,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 17,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 18,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 19,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 20,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 21,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 22,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 23,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 24,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 25,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 26,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 27,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 28,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 29,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 30,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 31,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 32,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 33,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 34,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 35,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 36,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 37,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 38,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 39,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 40,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 41,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 42,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 43,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 44,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 45,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            }
+          ],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "post_state_sha256": "fe4ca43c26ad6792309bfa2da7531a7c343747084b8f8debb698d492b0afc9b2",
+        "post_version": 1,
+        "pre_state": {
+          "duration_minutes": 0,
+          "energized": false,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 0.0,
+          "power_samples": [],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "pre_state_sha256": "dc87eb8a7247966bad18ee19fd021a1f85e5289332ff738cc4f35d0639689376",
+        "pre_version": 0,
+        "reason": "TARGET_MUTATION_COMMITTED",
+        "receipt_auth_hex": "8f864689afe972deccae4a05d40cadc23be5e94360272475bbf5be3bc6716c12",
+        "receipt_id": "receipt-cf36c7c43b1641b7968892d6d97b098c",
+        "receipt_sha256": "85e67d14d244ca0997eefb951c436513deb958307f0ddbec02cc7d3a39becfbd",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3",
+        "request_sha256": "61504a74a1a832318ceee77b25b6d97cf9d808df5dc5fc4ead52ddc1ca22676a",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7"
+      }
+    },
+    "platform_native_call_count": 1,
+    "process_id": 30871,
+    "schema": "BLIND_PLATFORM_DIRECT_ARM_TRANSCRIPT_V1",
+    "terminal_disposition": "SUCCEEDED",
+    "visibility": {
+      "argv": [
+        "run.py"
+      ],
+      "process_id": 30871,
+      "schema": "BLIND_ARM_VISIBILITY_V1",
+      "start_method": "spawn",
+      "start_payload_sha256": "9c8ba68a2eca4ba386283cecc9eb5f2561edddff928015e3295e9400b6d7e517",
+      "visible_fields": [
+        "authority_grant",
+        "available_native_interface",
+        "operation_id",
+        "request_id",
+        "run_id",
+        "schema",
+        "task"
+      ]
+    }
+  },
+  "artifact_sha256": "bbf4034a8985ac76fdb803b7a1da6f141363f8c8f4f6a5b4a388d4fdca16fd7e",
+  "blindness_receipt": {
+    "arm_pid": 30871,
+    "distinct_processes": true,
+    "private_canary_absent": true,
+    "semantic_case_label_present": false,
+    "service_pid": 30867,
+    "spawn_start_method": "spawn"
+  },
+  "cost": {
+    "boundary": "LOCAL_SYNTHETIC_PLATFORM_DIRECT",
+    "child_process_count": 2,
+    "cold_integration_cost": "PLATFORM_POLICY_IAM_RESOURCE_LOCK_TARGET_LEDGER_ADAPTER",
+    "external_delegation_events": 0,
+    "external_discovery_calls": 0,
+    "external_relation_events": 0,
+    "external_transfer_count": 0,
+    "human_minutes": 0,
+    "internal_resource_lock_ops": 1,
+    "maintenance_cost_not_measured": true,
+    "model_calls": 0,
+    "platform_native_calls": 1,
+    "policy_checks": 1,
+    "repeat_cost": "ONE_PLATFORM_NATIVE_CALL_PLUS_TARGET_COMMIT",
+    "target_mutation_attempts": 1,
+    "wall_seconds": 0.63977
+  },
+  "database_artifacts": {
+    "platform_native_file": "platform-native.sqlite3",
+    "platform_native_sha256": "49ba8734ff8684f409d8cd2d8312aa0f800e842f5ab333165e3ec0e7901b112e",
+    "platform_native_snapshot": {
+      "checkpoint": "TRUNCATE",
+      "journal_mode": "delete",
+      "residual_shm_present_but_not_required": true,
+      "schema": "FROZEN_SQLITE_SNAPSHOT_V1",
+      "standalone_file": true,
+      "wal_checkpointed_frames_before_truncate": 0,
+      "wal_log_frames_before_truncate": 0
+    },
+    "target_ledger_file": "target-ledger.sqlite3",
+    "target_ledger_sha256": "c475428cf2ded8d2128704bd3e359b3edc43738e9ce92f4ebdae7ec01fdb0e7b",
+    "target_ledger_snapshot": {
+      "checkpoint": "TRUNCATE",
+      "journal_mode": "delete",
+      "residual_shm_present_but_not_required": true,
+      "schema": "FROZEN_SQLITE_SNAPSHOT_V1",
+      "standalone_file": true,
+      "wal_checkpointed_frames_before_truncate": 0,
+      "wal_log_frames_before_truncate": 0
+    }
+  },
+  "evaluation": {
+    "CorrectResolution": true,
+    "EffectAttributableToPlatform": true,
+    "EffectAttributionScope": "DIRECT_DIGITAL_TARGET_COMMIT_ONLY",
+    "ExternalDelegationEvents": 0,
+    "ExternalDiscoveryCalls": 0,
+    "ExternalRelationEvents": 0,
+    "ExternalTransferCount": 0,
+    "FrozenInputValid": true,
+    "ResourceLocked": true,
+    "SafeHandling": true,
+    "SignedAuthorityStatus": "PRESENT",
+    "TargetVersion": 1,
+    "TaskOutcomeSatisfied": true,
+    "UnnecessaryFormation": false,
+    "evidence_boundary": "LOCAL_SYNTHETIC_LAWFUL_UNIFIED_DIGITAL_TARGET",
+    "schema": "E0_PLATFORM_DIRECT_EVALUATION_V2"
+  },
+  "frozen_input": {
+    "available_native_interface": "PLATFORM_PROVISION_EXACT_TASK",
+    "frozen_input_sha256": "0f4267229ee8dd9ce1af76e23ec5c6985e231026a6f532468b5fa5a4b844684a",
+    "initial_target_state": {
+      "duration_minutes": 0,
+      "energized": false,
+      "noise_ok": true,
+      "other_circuits_energized": [],
+      "power_kw": 0.0,
+      "power_samples": [],
+      "safety_ok": true,
+      "target_id": "VenueV:CircuitC7"
+    },
+    "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+    "pair_id": "e0-pair-24d590af37d14923b0299951f1ed5bb8",
+    "platform_id": "VenueV:NativeOperationsPlatform",
+    "platform_service_public_key_hex": "ba5c665eec4ec65dcdf994e202f8bc0a76f9455d22b20ef02e8834088754b1ed",
+    "request_id": "request-b5726831339c408284a53c31a982f9f3",
+    "resource": {
+      "max_power_kw": 3.0,
+      "owner_id": "VenueV",
+      "resource_id": "VenueV:Battery:B7"
+    },
+    "schema": "E0_PLATFORM_DIRECT_FROZEN_INPUT_V1",
+    "target_ledger_id": "target-ledger-8ffdc82fd9384810938dea4a5bfb0ff2",
+    "task": {
+      "deadline_minute": 90,
+      "noise_required": true,
+      "other_circuits_energized": [],
+      "power_tolerance_percent": 5,
+      "q_version": "Q@v1",
+      "requester_acceptance_required": true,
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "safety_required": true,
+      "schema": "CE001_EXACT_TASK_V1",
+      "target_id": "VenueV:CircuitC7",
+      "venue_acceptance_required": true
+    },
+    "venue_authority_public_key_hex": "48b2540da3899062e154e2fbcb02c75d4d119720cba04c0bfedb5ebbd16120eb"
+  },
+  "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+  "platform_native_service_log": {
+    "acceptances": [
+      {
+        "acceptance_sha256": "924ee16e0bd2268582b7ac02d3e011b3f970f50a4f2bc63400eb7b282337026f",
+        "decision": "ACCEPTED",
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "principal_id": "VenueV",
+        "q_version": "Q@v1",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "role": "REQUESTER_ROLE",
+        "schema": "PLATFORM_NATIVE_ACCEPTANCE_V1",
+        "signature_hex": "701b14a1d6c1898c90950268daf12daa107b5c606e7100ddf37dc7cde912401925f576ac4d706acc56eaddfbd253abb800c865c0bbb7a16f7714f6338841f900",
+        "target_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "target_id": "VenueV:CircuitC7"
+      },
+      {
+        "acceptance_sha256": "8d1198081f5f394f42a5910c95e7be2f534f00dc43d436f223278c55e42a6ee9",
+        "decision": "ACCEPTED",
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "principal_id": "VenueV",
+        "q_version": "Q@v1",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "role": "VENUE_ROLE",
+        "schema": "PLATFORM_NATIVE_ACCEPTANCE_V1",
+        "signature_hex": "1848aabdc9f871ffe9e3a57a26f491c9297c557e75854b1a71f9c867d8fa6d3c984c5ee31de0e4af6d1bb25882029e8bad2b9f00f23f248c47ce7ed4519df302",
+        "target_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "target_id": "VenueV:CircuitC7"
+      }
+    ],
+    "event_ledger": {
+      "event_count": 8,
+      "events": [
+        {
+          "event_type": "PLATFORM_NATIVE_REQUEST",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "07f10f48456ad728bdd7592a97fdc08bef59a10d400dedd740ae3c063d489be1",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 1
+        },
+        {
+          "event_type": "POLICY_ALLOW",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "cc484e2400c09f102381c58dfcb1d6d56c3cb868e5300c4793ed60d07a3b16ff",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 2
+        },
+        {
+          "event_type": "RESOURCE_LOCKED",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "9d13eae38b7503568dac3044b56bbf301c934298e06e64ebbfa7adf892dcf32f",
+          "request_id": null,
+          "sequence": 3
+        },
+        {
+          "event_type": "TARGET_COMMIT_RECORDED",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "bd54d3cb6ac3cfaadd895250c130888b62b3e45e2c06600534cac9614d159101",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 4
+        },
+        {
+          "event_type": "TARGET_READBACK_RECORDED",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "36be6671b97953e7a73c340749188441d287e20a5e98def922e4db94afde94bc",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 5
+        },
+        {
+          "event_type": "ROLE_ACCEPTANCE",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "e47b3e56cf04c4dfee477d783b575a690d21ed1840dfc6587dd2ea5879c9e1c8",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 6
+        },
+        {
+          "event_type": "ROLE_ACCEPTANCE",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "e53e3f63ef036e2b82186233affaad324afc0c8cb91cfa7c6bc762ed8a2c7d2e",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 7
+        },
+        {
+          "event_type": "NO_EXTERNAL_TRANSFER_FINALITY",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "payload_sha256": "122b89cb855c1fbba6f00afa0a9990ed9ca899d22394433ef2fd1be87308d08a",
+          "request_id": "request-b5726831339c408284a53c31a982f9f3",
+          "sequence": 8
+        }
+      ],
+      "evidence_boundary": "COUNTS_RECORDED_PLATFORM_SERVICE_EVENTS; NOT_OS_LEVEL_NETWORK_NONINTERFERENCE",
+      "external_activity": {
+        "delegation_events": 0,
+        "discovery_calls": 0,
+        "external_transfer_count": 0,
+        "relation_events": 0
+      },
+      "external_event_type_registry": {
+        "EXTERNAL_DELEGATION_EVENT": "delegation_events",
+        "EXTERNAL_DISCOVERY_CALL": "discovery_calls",
+        "EXTERNAL_RELATION_EVENT": "relation_events",
+        "EXTERNAL_TRANSFER": "external_transfer_count"
+      },
+      "schema": "PLATFORM_EVENT_LEDGER_SNAPSHOT_V1"
+    },
+    "external_activity": {
+      "delegation_events": 0,
+      "discovery_calls": 0,
+      "external_transfer_count": 0,
+      "relation_events": 0
+    },
+    "finality": [
+      {
+        "acceptance_sha256s": [
+          "924ee16e0bd2268582b7ac02d3e011b3f970f50a4f2bc63400eb7b282337026f",
+          "8d1198081f5f394f42a5910c95e7be2f534f00dc43d436f223278c55e42a6ee9"
+        ],
+        "decision": "NO_EXTERNAL_TRANSFER_DUE",
+        "external_transfer_count": 0,
+        "finality_sha256": "3e5e87483edd6624bf6b1a70fc862850b91a64a1ce7e4243cb0210c9d0945fa6",
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "reason": "VENUE_OWNS_PLATFORM_RESOURCE_AND_TARGET",
+        "schema": "PLATFORM_NATIVE_FINALITY_V1",
+        "signature_hex": "de632ca0801cfaa5f7e85317e62445746f53dd4cc5e7052d0ba07c44380417ae4658b85d096069e67bdb69233a5f38333bdb94fb48901d4c08110b80b1cb660e",
+        "target_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae"
+      }
+    ],
+    "policy_checks": [
+      {
+        "decision": "ALLOW",
+        "grant_sha256": "49f8b1df751121e4ff6bddba6bd5d1ae476c166b939f8671ffa06f4fa9d74215",
+        "reason": "DIRECT_AUTHORITY_CURRENT",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3"
+      }
+    ],
+    "process_id": 30867,
+    "requests": [
+      {
+        "authority_grant": {
+          "authority_mode": "LAWFULLY_UNIFIED_DIRECT",
+          "decision": "ALLOW",
+          "expires_at_minute": 90,
+          "grant_sha256": "49f8b1df751121e4ff6bddba6bd5d1ae476c166b939f8671ffa06f4fa9d74215",
+          "granted_actions": [
+            "SCHEDULE",
+            "LOCK_INTERNAL_RESOURCE",
+            "EXECUTE_TARGET",
+            "ACCEPT_AS_REQUESTER_ROLE",
+            "ACCEPT_AS_VENUE_ROLE",
+            "FINALIZE_NO_EXTERNAL_TRANSFER"
+          ],
+          "grantee_id": "VenueV:NativeOperationsPlatform",
+          "issued_at_minute": 0,
+          "issuer": "O_V",
+          "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+          "principal_id": "VenueV",
+          "q_version": "Q@v1",
+          "resource_id": "VenueV:Battery:B7",
+          "schema": "VENUE_DIRECT_AUTHORITY_GRANT_V1",
+          "signature_hex": "d6dbc754913fac857e4ff6dc05b6082dff66140479f0f782a78a419c2bd36ae18e825ed4b6267fd1c6cb27f694d18859b2759a4d97544e490461373a060cd709",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3",
+        "schema": "PLATFORM_NATIVE_REQUEST_V1",
+        "task": {
+          "deadline_minute": 90,
+          "noise_required": true,
+          "other_circuits_energized": [],
+          "power_tolerance_percent": 5,
+          "q_version": "Q@v1",
+          "requester_acceptance_required": true,
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "safety_required": true,
+          "schema": "CE001_EXACT_TASK_V1",
+          "target_id": "VenueV:CircuitC7",
+          "venue_acceptance_required": true
+        }
+      }
+    ],
+    "resource_locks": [
+      {
+        "decision": "LOCKED",
+        "max_power_kw": 3.0,
+        "operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+        "owner_id": "VenueV",
+        "platform_id": "VenueV:NativeOperationsPlatform",
+        "receipt_sha256": "b40085ebc5637519dfd44ae02682b4150a0206916deec9fde1bc3194ef062bc0",
+        "resource_id": "VenueV:Battery:B7",
+        "schema": "PLATFORM_INTERNAL_RESOURCE_LOCK_V1"
+      }
+    ],
+    "schema": "PLATFORM_NATIVE_SERVICE_LOG_V1",
+    "target_readbacks": [
+      {
+        "actor_id": "VenueV:NativeOperationsPlatform",
+        "attached_to_receipt_commit": true,
+        "capability_id": "platform-cap-7226b1286c8043f78359e9c1a7db7187",
+        "ledger_id": "target-ledger-8ffdc82fd9384810938dea4a5bfb0ff2",
+        "observed_commit_actor_id": "VenueV:NativeOperationsPlatform",
+        "observed_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "observed_state": {
+          "duration_minutes": 45,
+          "energized": true,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 3.0,
+          "power_samples": [
+            {
+              "minute": 0,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 1,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 2,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 3,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 4,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 5,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 6,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 7,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 8,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 9,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 10,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 11,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 12,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 13,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 14,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 15,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 16,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 17,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 18,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 19,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 20,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 21,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 22,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 23,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 24,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 25,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 26,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 27,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 28,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 29,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 30,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 31,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 32,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 33,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 34,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 35,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 36,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 37,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 38,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 39,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 40,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 41,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 42,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 43,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 44,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 45,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            }
+          ],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "observed_state_sha256": "fe4ca43c26ad6792309bfa2da7531a7c343747084b8f8debb698d492b0afc9b2",
+        "observed_version": 1,
+        "readback_auth_hex": "f45a41e9db61731a348fb6a84e9f5b978f4237c523440ae008b4975964235ede",
+        "readback_id": "readback-5c9dafa78d06437ca3785feb4fbeb2d2",
+        "readback_sha256": "cc6b7e8ed4921227e5ca528779390b63405235e6deb74e307d4b73ae83036f43",
+        "receipt_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "receipt_decision": "COMMITTED",
+        "receipt_id": "receipt-cf36c7c43b1641b7968892d6d97b098c",
+        "receipt_mutation_applied": true,
+        "receipt_post_version": 1,
+        "receipt_sha256": "85e67d14d244ca0997eefb951c436513deb958307f0ddbec02cc7d3a39becfbd",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3",
+        "request_sha256": "61504a74a1a832318ceee77b25b6d97cf9d808df5dc5fc4ead52ddc1ca22676a",
+        "schema": "TARGET_READBACK_V1",
+        "target_id": "VenueV:CircuitC7"
+      }
+    ],
+    "target_receipts": [
+      {
+        "actor_id": "VenueV:NativeOperationsPlatform",
+        "capability_id": "platform-cap-7226b1286c8043f78359e9c1a7db7187",
+        "commit_actor_id": "VenueV:NativeOperationsPlatform",
+        "commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+        "decision": "COMMITTED",
+        "expected_version": 0,
+        "ledger_id": "target-ledger-8ffdc82fd9384810938dea4a5bfb0ff2",
+        "mutation_applied": true,
+        "operation": "SET_STATE",
+        "post_state": {
+          "duration_minutes": 45,
+          "energized": true,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 3.0,
+          "power_samples": [
+            {
+              "minute": 0,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 1,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 2,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 3,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 4,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 5,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 6,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 7,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 8,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 9,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 10,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 11,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 12,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 13,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 14,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 15,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 16,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 17,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 18,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 19,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 20,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 21,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 22,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 23,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 24,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 25,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 26,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 27,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 28,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 29,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 30,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 31,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 32,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 33,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 34,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 35,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 36,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 37,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 38,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 39,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 40,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 41,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 42,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 43,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 44,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            },
+            {
+              "minute": 45,
+              "noise_ok": true,
+              "power_kw": 3.0,
+              "safety_ok": true
+            }
+          ],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "post_state_sha256": "fe4ca43c26ad6792309bfa2da7531a7c343747084b8f8debb698d492b0afc9b2",
+        "post_version": 1,
+        "pre_state": {
+          "duration_minutes": 0,
+          "energized": false,
+          "noise_ok": true,
+          "other_circuits_energized": [],
+          "power_kw": 0.0,
+          "power_samples": [],
+          "safety_ok": true,
+          "target_id": "VenueV:CircuitC7"
+        },
+        "pre_state_sha256": "dc87eb8a7247966bad18ee19fd021a1f85e5289332ff738cc4f35d0639689376",
+        "pre_version": 0,
+        "reason": "TARGET_MUTATION_COMMITTED",
+        "receipt_auth_hex": "8f864689afe972deccae4a05d40cadc23be5e94360272475bbf5be3bc6716c12",
+        "receipt_id": "receipt-cf36c7c43b1641b7968892d6d97b098c",
+        "receipt_sha256": "85e67d14d244ca0997eefb951c436513deb958307f0ddbec02cc7d3a39becfbd",
+        "request_id": "request-b5726831339c408284a53c31a982f9f3",
+        "request_sha256": "61504a74a1a832318ceee77b25b6d97cf9d808df5dc5fc4ead52ddc1ca22676a",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7"
+      }
+    ]
+  },
+  "platform_native_service_start": {
+    "argv": [
+      "run.py"
+    ],
+    "process_id": 30867,
+    "public_key_hex": "ba5c665eec4ec65dcdf994e202f8bc0a76f9455d22b20ef02e8834088754b1ed",
+    "start_method": "spawn"
+  },
+  "private_world_reveal": {
+    "counterfactual_arm": "DIRECT_AUTHORITY_PRESENT",
+    "private_canary_sha256": "ca3a69f627f41192266c8b325a79e4315d128dcb9e63cb9d5c0377bf6c13aab4"
+  },
+  "resource_final_state": {
+    "locked_by_operation_id": "operation-951ef8d3cbfb4f02a8d950ea41d2f564",
+    "max_power_kw": 3.0,
+    "owner_id": "VenueV",
+    "platform_id": "VenueV:NativeOperationsPlatform",
+    "resource_id": "VenueV:Battery:B7"
+  },
+  "run_id": "e0-pair-24d590af37d14923b0299951f1ed5bb8:DIRECT_AUTHORITY_PRESENT",
+  "schema": "E0_PLATFORM_DIRECT_RUN_ARTIFACT_V1",
+  "target_authenticity": {
+    "readback_valid": [
+      true
+    ],
+    "receipt_valid": [
+      true
+    ]
+  },
+  "target_final_state": {
+    "last_commit_actor_id": "VenueV:NativeOperationsPlatform",
+    "last_commit_id": "commit-8b6d8b3d61d54f6db91e6ec5aeccebae",
+    "last_request_sha256": "61504a74a1a832318ceee77b25b6d97cf9d808df5dc5fc4ead52ddc1ca22676a",
+    "state": {
+      "duration_minutes": 45,
+      "energized": true,
+      "noise_ok": true,
+      "other_circuits_energized": [],
+      "power_kw": 3.0,
+      "power_samples": [
+        {
+          "minute": 0,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 1,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 2,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 3,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 4,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 5,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 6,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 7,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 8,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 9,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 10,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 11,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 12,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 13,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 14,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 15,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 16,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 17,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 18,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 19,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 20,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 21,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 22,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 23,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 24,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 25,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 26,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 27,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 28,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 29,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 30,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 31,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 32,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 33,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 34,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 35,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 36,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 37,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 38,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 39,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 40,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 41,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 42,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 43,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 44,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        },
+        {
+          "minute": 45,
+          "noise_ok": true,
+          "power_kw": 3.0,
+          "safety_ok": true
+        }
+      ],
+      "safety_ok": true,
+      "target_id": "VenueV:CircuitC7"
+    },
+    "state_sha256": "fe4ca43c26ad6792309bfa2da7531a7c343747084b8f8debb698d492b0afc9b2",
+    "target_id": "VenueV:CircuitC7",
+    "version": 1
+  },
+  "task": {
+    "deadline_minute": 90,
+    "noise_required": true,
+    "other_circuits_energized": [],
+    "power_tolerance_percent": 5,
+    "q_version": "Q@v1",
+    "requester_acceptance_required": true,
+    "required_duration_minutes": 45,
+    "required_power_kw": 3.0,
+    "safety_required": true,
+    "schema": "CE001_EXACT_TASK_V1",
+    "target_id": "VenueV:CircuitC7",
+    "venue_acceptance_required": true
+  },
+  "task_sha256": "6505f9598201f124f254de25c4eff0ce102656e23c8b57bac9ad7763b6965da3"
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "towow.wave007-a2.manifest.v1",
+  "date": "2026-07-29",
+  "status": "REPAIRED_SELF_TESTED_AWAITING_NEW_INDEPENDENT_AUDIT",
+  "scope": "A v1 repair; G6/G7 minimum closure; no winner claim",
+  "prior_result": {
+    "wave007_a_v1": "INVALIDATED_BY_ROOT_ATTACK",
+    "same_researcher_repair_is_independent_evidence": false
+  },
+  "shared_task": {
+    "id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "repair_claims": {
+    "idempotency_binding_stage": "FIRST_VALID_EFFECT_ATTEMPT",
+    "same_key_changed_bytes_after_l1_l2_l3_or_l4_refuse": "REFUSE_BEFORE_NEW_EFFECT_ATTEMPT",
+    "separate_ledgers": ["ATTEMPT_BINDING", "L3_DOMAIN_POSTCONDITION", "L4_BENEFICIARY_ACCEPTANCE"],
+    "filesystem_truth_isolation": "REFUTED_NOT_CLAIMED",
+    "fixed_candidate_source_truth_read": "NOT_OBSERVED_BY_SOURCE_AUDIT",
+    "spawn_boundary": "PARENT_MEMORY_KEYS_AND_LOG_NOT_PASSED",
+    "anchor_equivocation_fixture": "CENTRAL_HIDDEN_STATE_DETECTOR_FIXTURE_ONLY",
+    "malicious_anchor_self_proof": "NOT_CLAIMED",
+    "retained_anchor_claim": "UNIQUE_ALLOWLISTED_ISSUERS_BOUND_TO_CHECKPOINT_SLOT_BRANCH"
+  },
+  "verification": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave007-a2-cache python3 -m unittest -v tests/test_harness.py",
+    "tests_run": 17,
+    "tests_passed": 17,
+    "normal_worlds": 13,
+    "terminal_matches": 13,
+    "attempt_binding_delta_matches": 13,
+    "l3_delta_matches": 13,
+    "l4_delta_matches": 13,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "independent_a2_audit": "NOT_YET_RUN_BY_ROOT"
+  },
+  "input_files": {
+    "../../WAVE-007-REPAIR-HARNESS.md": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653",
+    "../../WAVE-007-INDEPENDENT-AUDIT-PROTOCOL.md": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f",
+    "../../audits/wave-007/root_attack_a.py": "1e99f17136f4868de724d13c52cb7018c48dc880b18c2cce35ce8ee5d8b9a72f",
+    "../wave-007-a-opaque-authority-harness/authorities.py": "4c668488e6bedafed5a64d1ad57357e1c6e27bb14220481afb0a102d3239d7f5",
+    "../wave-007-a-opaque-authority-harness/evaluator.py": "2515f9aa2fd97c7be568fe25e2a57f35926a8c7b92398d8262f341396332108c",
+    "../wave-007-a-opaque-authority-harness/fixtures/public-requests.json": "553d34f2625d6f93e0cbdb752ad205ecbad5b47fe057d15de834fbae9f9662c3",
+    "../wave-007-a-opaque-authority-harness/fixtures/hidden-worlds.json": "58bef0b5855a6cf614bccf410ae189897ad31ae3d11a590fd11cf18336b95c82",
+    "../wave-007-a-opaque-authority-harness/manifest.json": "a97ad8aeb7a91f3dc90148378c84803107e6a05f12224247e5781d0105877e42"
+  },
+  "files": {
+    "README.md": "101c18d0f3096ab7cbaad737514fe9643f8b6fc9dbbaec0f29f0e1b01a75452c",
+    "authorities.py": "57fa27aa5086385aa4b04b7f2b7f49fe928d0fd7444031066461bc464f5e3ef9",
+    "evaluator.py": "269b914bf1d99cb9399c62e39bf2ee1488b1afd1afebf0f194460509762aebcc",
+    "protocol.py": "74a63d7ffbfe795ae0216da20aadc3d16e57845ae3e2810b933900fa15c09f28",
+    "results.json": "d5f0da68ebb277da952a3205e18d1e8ed35cea220d8b3f8421531318879ff632",
+    "runner.py": "fd0daeae4576dbb744d392c06b20bf407f90c8a5047dde84743589b10fd4455a",
+    "strategy.py": "94726b5d18880e8bbc1c94518f815f9410fb7367dda7bffe40ba6f492dd2dc32",
+    "tests/test_harness.py": "59d9548a9f7d26d886c9ed435c1e4fd27faace770ad7903423a27a4805b1ed7d"
+  }
+}

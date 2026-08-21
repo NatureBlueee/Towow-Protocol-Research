@@ -1,0 +1,290 @@
+{
+  "schema_version": "2.0",
+  "kind": "HIDDEN_WORLD_ORACLE",
+  "world_id": "T1-HW-20260729-C",
+  "freeze": {
+    "evaluation_step": 4,
+    "truth_batch": "HWC-TRUTH-20260729-01"
+  },
+  "expected_items": [
+    {
+      "item_id": "HWC-O-01",
+      "kind": "PAIR",
+      "seeker": "CEDAR-72",
+      "provider": "DUNE-18",
+      "direction": "SEEK_TO_OFFER",
+      "expected_state": "DISCOVERED",
+      "required_evidence_refs": [
+        "W-HWC-SPECTRAL-SEEK-V3",
+        "W-HWC-SPECTRAL-OFFER-V9"
+      ],
+      "requirements": ["R1", "R7", "R8"]
+    },
+    {
+      "item_id": "HWC-O-02",
+      "kind": "PAIR",
+      "seeker": "EMBER-45",
+      "provider": "FALLOW-26",
+      "direction": "SEEK_TO_OFFER",
+      "expected_state": "INVALIDATED",
+      "required_evidence_refs": [
+        "W-HWC-SPORE-SEEK-V8",
+        "W-HWC-SPORE-OFFER-V2",
+        "W-HWC-SPORE-FLIP-V3"
+      ],
+      "requirements": ["R2", "R7"]
+    },
+    {
+      "item_id": "HWC-O-03",
+      "kind": "PAIR",
+      "seeker": "GROVE-61",
+      "provider": "HOLLOW-34",
+      "direction": "SEEK_TO_OFFER",
+      "expected_state": "DISCOVERED",
+      "required_evidence_refs": [
+        "W-HWC-GROVE-PROJECTION",
+        "W-HWC-HOLLOW-PROJECTION"
+      ],
+      "execution_action_id": "ACT-HWC-RELAY-01",
+      "requirements": ["R1", "R3", "R4", "R7", "R8"]
+    },
+    {
+      "item_id": "HWC-O-04",
+      "kind": "PAIR",
+      "seeker": "ISLET-53",
+      "provider": "JUNCTION-88",
+      "direction": "SEEK_TO_OFFER",
+      "expected_state": "DISCOVERED",
+      "required_evidence_refs": [
+        "W-HWC-ISLET-RECIP-AUTH",
+        "W-HWC-JUNCTION-RECIP-AUTH"
+      ],
+      "execution_action_id": "ACT-HWC-RECIP-01",
+      "requirements": ["R1", "R3", "R4", "R7", "R8"]
+    },
+    {
+      "item_id": "HWC-O-05",
+      "kind": "PAIR",
+      "seeker": "KARST-11",
+      "provider": "LAGOON-97",
+      "direction": "SEEK_TO_OFFER",
+      "expected_state": "UNFINDABLE_UNDER_POLICY",
+      "required_evidence_refs": [
+        "W-HWC-PEAT-SEEK-V4",
+        "W-HWC-PEAT-POLICY-REFUSAL"
+      ],
+      "requirements": ["R5", "R6"]
+    },
+    {
+      "item_id": "HWC-C-01",
+      "kind": "CLAIM",
+      "claim_key": "capability:drift-window:avian-contamination-survey",
+      "subject": "MORAIN-20",
+      "expected_state": "UNKNOWN",
+      "required_evidence_refs": ["W-HWC-NO-RESPONSE"],
+      "requirements": ["R5"]
+    },
+    {
+      "item_id": "HWC-C-02",
+      "kind": "CLAIM",
+      "claim_key": "capability:sealed:lichen-spore-culture",
+      "subject": "NARROW-63",
+      "expected_state": "REFUSE",
+      "required_evidence_refs": ["W-HWC-EXPLICIT-REFUSAL"],
+      "requirements": ["R5"]
+    },
+    {
+      "item_id": "HWC-C-03",
+      "kind": "CLAIM",
+      "claim_key": "capability:closed:subsea-alkalinity-cassette",
+      "subject": "POP-SUBSEA-ALKALINITY",
+      "expected_state": "ABSENT",
+      "required_evidence_refs": [
+        "W-HWC-CLOSED-POP-V2",
+        "W-HWC-CLOSED-ORBIT-NEG",
+        "W-HWC-CLOSED-PINNACLE-NEG",
+        "W-HWC-CLOSED-QUARRY-NEG"
+      ],
+      "requirements": ["R5"]
+    }
+  ],
+  "expected_update": {
+    "party": "FALLOW-26",
+    "invalidated_signature": "SIG-HWC-SPORE-OFFER-V2",
+    "from_version": 2,
+    "to_version": 3,
+    "step": 4,
+    "current_direction": "SEEK",
+    "evidence_ref": "W-HWC-SPORE-FLIP-V3"
+  },
+  "forbidden_pairs": [
+    {
+      "seeker": "CEDAR-72",
+      "provider": "TUNDRA-41",
+      "direction": "SEEK_TO_OFFER",
+      "reason": "compatibility-version-decoy"
+    },
+    {
+      "seeker": "FALLOW-26",
+      "provider": "EMBER-45",
+      "direction": "SEEK_TO_OFFER",
+      "reason": "reversed-orientation-and-current-seek-seek"
+    },
+    {
+      "seeker": "ISLET-53",
+      "provider": "ISLET-53",
+      "direction": "SEEK_TO_OFFER",
+      "reason": "reciprocal-self-pair"
+    }
+  ],
+  "execution_actions": [
+    {
+      "action_id": "ACT-HWC-RELAY-01",
+      "target_item_id": "HWC-O-03",
+      "action_kind": "DERIVED_ONWARD",
+      "action_digest": "cfc9e6da7f9c77be5b49ee73e4ed7d18e473af21215b76d0a9504625f1339a52",
+      "idempotency_key": "HWC-CANOPY-ROUTE-01",
+      "controller_receipt_ref": "CR-HWC-RELAY-0007",
+      "recipient_ack_refs": [
+        "ACK-HWC-HUB-MOSS-0042",
+        "ACK-HWC-NODE-REED-0014"
+      ],
+      "external_anchor_ref": "ANCHOR-HWC-000091",
+      "delivery_events": [
+        {
+          "event_ref": "EV-HWC-GROVE-HUB-001",
+          "origin_party": "GROVE-61",
+          "sender": "GROVE-61",
+          "recipient": "HUB-MOSS",
+          "fact_id": "F-HWC-GROVE-CANOPY-PROJECTION",
+          "depth": 0,
+          "purpose": "canopy-counterpart-screen",
+          "retention": "PT4M"
+        },
+        {
+          "event_ref": "EV-HWC-HOLLOW-REED-001",
+          "origin_party": "HOLLOW-34",
+          "sender": "HOLLOW-34",
+          "recipient": "NODE-REED",
+          "fact_id": "F-HWC-HOLLOW-CANOPY-PROJECTION",
+          "depth": 0,
+          "purpose": "canopy-counterpart-screen",
+          "retention": "PT4M"
+        },
+        {
+          "event_ref": "EV-HWC-HOLLOW-HUB-002",
+          "origin_party": "HOLLOW-34",
+          "sender": "NODE-REED",
+          "recipient": "HUB-MOSS",
+          "fact_id": "F-HWC-HOLLOW-CANOPY-PROJECTION",
+          "depth": 1,
+          "purpose": "canopy-counterpart-screen",
+          "retention": "PT4M"
+        }
+      ]
+    },
+    {
+      "action_id": "ACT-HWC-RECIP-01",
+      "target_item_id": "HWC-O-04",
+      "action_kind": "RECIPROCAL_EXCHANGE",
+      "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+      "idempotency_key": "HWC-TIDAL-RECIP-01",
+      "controller_receipt_ref": "CR-HWC-RECIP-0011",
+      "recipient_ack_refs": [
+        "ACK-HWC-ISLET-0028",
+        "ACK-HWC-JUNCTION-0033"
+      ],
+      "external_anchor_ref": "ANCHOR-HWC-000092",
+      "delivery_events": [
+        {
+          "event_ref": "EV-HWC-ISLET-TO-JUNCTION-001",
+          "origin_party": "ISLET-53",
+          "sender": "ISLET-53",
+          "recipient": "JUNCTION-88",
+          "fact_id": "F-HWC-ISLET-RECIP-PROJECTION",
+          "depth": 0,
+          "purpose": "symmetric-tidal-probe",
+          "retention": "PT6M"
+        },
+        {
+          "event_ref": "EV-HWC-JUNCTION-TO-ISLET-001",
+          "origin_party": "JUNCTION-88",
+          "sender": "JUNCTION-88",
+          "recipient": "ISLET-53",
+          "fact_id": "F-HWC-JUNCTION-RECIP-PROJECTION",
+          "depth": 0,
+          "purpose": "symmetric-tidal-probe",
+          "retention": "PT6M"
+        }
+      ]
+    }
+  ],
+  "trusted_execution_evidence": {
+    "controller_receipts": {
+      "CR-HWC-RELAY-0007": {
+        "issuer": "CTRL-HWC-DELIVERY",
+        "world_id": "T1-HW-20260729-C",
+        "evaluation_step": 4,
+        "action_digest": "cfc9e6da7f9c77be5b49ee73e4ed7d18e473af21215b76d0a9504625f1339a52",
+        "idempotency_key": "HWC-CANOPY-ROUTE-01",
+        "outcome": "EXECUTED",
+        "state_root": "ROOT-HWC-RELAY-71A4"
+      },
+      "CR-HWC-RECIP-0011": {
+        "issuer": "CTRL-HWC-DELIVERY",
+        "world_id": "T1-HW-20260729-C",
+        "evaluation_step": 4,
+        "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+        "idempotency_key": "HWC-TIDAL-RECIP-01",
+        "outcome": "EXECUTED",
+        "state_root": "ROOT-HWC-RECIP-89C2"
+      }
+    },
+    "recipient_acks": {
+      "ACK-HWC-HUB-MOSS-0042": {
+        "issuer": "HUB-MOSS",
+        "action_digest": "cfc9e6da7f9c77be5b49ee73e4ed7d18e473af21215b76d0a9504625f1339a52",
+        "idempotency_key": "HWC-CANOPY-ROUTE-01",
+        "event_refs": ["EV-HWC-GROVE-HUB-001", "EV-HWC-HOLLOW-HUB-002"]
+      },
+      "ACK-HWC-NODE-REED-0014": {
+        "issuer": "NODE-REED",
+        "action_digest": "cfc9e6da7f9c77be5b49ee73e4ed7d18e473af21215b76d0a9504625f1339a52",
+        "idempotency_key": "HWC-CANOPY-ROUTE-01",
+        "event_refs": ["EV-HWC-HOLLOW-REED-001"]
+      },
+      "ACK-HWC-ISLET-0028": {
+        "issuer": "ISLET-53",
+        "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+        "idempotency_key": "HWC-TIDAL-RECIP-01",
+        "event_refs": ["EV-HWC-JUNCTION-TO-ISLET-001"]
+      },
+      "ACK-HWC-JUNCTION-0033": {
+        "issuer": "JUNCTION-88",
+        "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+        "idempotency_key": "HWC-TIDAL-RECIP-01",
+        "event_refs": ["EV-HWC-ISLET-TO-JUNCTION-001"]
+      }
+    },
+    "external_anchors": {
+      "ANCHOR-HWC-000091": {
+        "issuer": "EXTERNAL-AUDIT-DOMAIN-C",
+        "sequence": 91,
+        "previous_hash": "ANCHOR-HWC-PREV-000090",
+        "action_digest": "cfc9e6da7f9c77be5b49ee73e4ed7d18e473af21215b76d0a9504625f1339a52",
+        "idempotency_key": "HWC-CANOPY-ROUTE-01",
+        "controller_receipt_ref": "CR-HWC-RELAY-0007",
+        "recipient_ack_refs": ["ACK-HWC-HUB-MOSS-0042", "ACK-HWC-NODE-REED-0014"]
+      },
+      "ANCHOR-HWC-000092": {
+        "issuer": "EXTERNAL-AUDIT-DOMAIN-C",
+        "sequence": 92,
+        "previous_hash": "ANCHOR-HWC-ENTRY-000091",
+        "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+        "idempotency_key": "HWC-TIDAL-RECIP-01",
+        "controller_receipt_ref": "CR-HWC-RECIP-0011",
+        "recipient_ack_refs": ["ACK-HWC-ISLET-0028", "ACK-HWC-JUNCTION-0033"]
+      }
+    }
+  }
+}

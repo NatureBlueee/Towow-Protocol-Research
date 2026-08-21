@@ -1,0 +1,160 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-06-EFFECT-AUTHORITY-GATE-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "REALITY_EFFECT",
+  "title": "跨权威现实效力晋升 Gate",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-EFF-001",
+    "CAP-EFF-002",
+    "CAP-EFF-003",
+    "CAP-EFF-004",
+    "CAP-EFF-005"
+  ],
+  "local_question": "在执行者、目标状态权威、采用者、Acceptance authority 与结算权威不保证重合时，现有事务、事件历史、Saga、工作流回执和人工验收的最小组合能否无误重建 ActionAttempt、Effect、Adoption、Acceptance 与 Settlement；若不能，跨权威晋升 Gate 还必须验证什么而不复制目标域事实？",
+  "blocked_decision": "决定跨权威现实效力 Gate 应保留为最小 adapter/validator、由成熟平台和现成方案组合无损承担，还是因没有新增判别力而关闭；不得预设新的五段事实根。",
+  "reverse_result": "若单权威强平台或事务、Event Sourcing、Saga、工作流审批与独立目标 readback 的组合在相同失败注入和维护成本下零误晋升、零重复副作用且历史可追溯，则本线应退化为映射规范或直接关闭，不改变效力语义差异本身。",
+  "minimum_discriminator": "冻结两个 authority domain、operation identity、目标 readback、Acceptance authority 与精确版本，在同等输入和权限下比较强平台组合与最小 Gate，运行 Attempt 成功无 Effect、Effect 无 Adoption、Adoption 无 Acceptance、接受后被击败、同一 Operation replay 和单权威安全压缩六类案例。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/evidence_ledger.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/formal_fact_ownership.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4d/4d7087c58f96a463e730dbb84cc3b5d4be817efa237dad4bbc598978e3e61171.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/00/004142f8275b76a91ce5d9b994395d7bf843e5e5cf1f49654e4039fe4ff019bd.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/93/938949f5c145310b046381720f27aef8a36327d4ea7e73c75529f1ce3eaaa2d7.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/64/64f7a7c74327766165d6367faf65f59bfc66a54d88d768e471cd8af5c4907b28.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 45,
+    "max_attempts": 2,
+    "max_output_bytes": 2097152
+  },
+  "stop_conditions": [
+    "开始要求未经授权地写入现实目标域、执行现实结算或取得真人 Acceptance",
+    "把 producer PASS、消息 ACK、CloudEvents envelope、workflow completion 或模型判断晋升为目标 Effect",
+    "把 Saga 补偿描述为世界必然回到原状态，或删除已发生 Effect 和历史 Acceptance",
+    "强平台基线没有获得相同 readback、幂等 identity、失败注入、人工验收和恢复机会",
+    "两次运行只重复 R5.2 或 R5C 已知案例而没有产生新的强基线判别"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "authority_promotion_errors",
+    "replay_identity_results",
+    "baseline_comparison",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "结果生产者不得同时充当唯一 Effect witness、Adoption source 和 Acceptance authority",
+    "必须给予单权威强平台、Event Sourcing、Saga、durable workflow、人工审批和目标 readback 完整组合机会",
+    "必须分别报告正状态、明确负状态、Unknown、revoked 与 disputed，不能压成 success false",
+    "本线结果不得支持或反驳发现、formation、Capability、Mandate、Router 或中心联邦拓扑主张"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "CLM-V2-EFFECT-AUTHORITY-PRESERVATION"
+    ],
+    "hypothesis_ids": [
+      "H-V2-EFFECT-GATE-01"
+    ],
+    "applicable_assumptions": [
+      "WORLD-AGENT-ENTITY",
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE",
+      "WORLD-COMPILE-AND-REOPEN"
+    ],
+    "non_claims": [
+      "不重新证明关系发现、问题构成、formation、Capability、Mandate 或 Commitment",
+      "不由技术 Adoption 推出真人 Principal Acceptance",
+      "不从合成 readback 推出生产 Effect、现实结算、长期净价值或跨域普遍性",
+      "不建立五个平行事实根，也不把通用事件、事务、workflow 或 Saga 能力登记为通爻原创",
+      "不激活 scoped reopen、自动 Router 或中心与联邦拓扑结论"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4d/4d7087c58f96a463e730dbb84cc3b5d4be817efa237dad4bbc598978e3e61171.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/64/64f7a7c74327766165d6367faf65f59bfc66a54d88d768e471cd8af5c4907b28.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md"
+    ],
+    "disposition": "COMPOSE",
+    "uncovered_requirement": "已核验方案分别覆盖事务提交、事件历史、durable replay、语义补偿、审批和监控；尚需有界检验其组合是否能在多个 authority domain 间阻止 Attempt、Effect、Adoption、Acceptance 与 Settlement 的错误晋升，同时避免复制目标事实。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/native_lines/06_reality_effect.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "历史母线重建了五项效力能力及移除失败，但没有证明独立 Gate 相对成熟组合的新增净值。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "CLM-010 至 CLM-012 保留效力语义差异及单权威折叠反例，没有决定跨权威实现必须采用何种组件。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4d/4d7087c58f96a463e730dbb84cc3b5d4be817efa237dad4bbc598978e3e61171.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "R5.2 在 17 个 Harness 场景支持 authoritative readback，但不覆盖真人 Acceptance、现实结算或强平台组合。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/64/64f7a7c74327766165d6367faf65f59bfc66a54d88d768e471cd8af5c4907b28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "该负边界明确没有人类认领和商业净值，不能为 Acceptance 或 gate 净值补证。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "CloudEvents、Event Sourcing、Saga、workflow、版本、撤销和 telemetry 已被核验并应采用；剩余跨权威晋升缺口尚未通过六案例比较。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能为 CLM-V2-EFFECT-AUTHORITY-PRESERVATION 形成候选证据，并冻结权威域、readback、版本、六案例、强基线、误晋升和成本；不能自动登记新机制或现实效力。",
+    "negative_effect": "负结果会把跨权威 Gate 降为现成事务、事件历史、Saga、workflow、目标 readback 与人工验收的映射规则或直接关闭；不否定 ActionAttempt、Effect、Adoption 与 Acceptance 的现实差异。",
+    "unaffected_claim_ids": [
+      "CLM-001",
+      "CLM-002",
+      "CLM-003",
+      "CLM-004",
+      "CLM-005",
+      "CLM-006",
+      "CLM-007",
+      "CLM-008",
+      "CLM-009",
+      "CLM-010",
+      "CLM-011",
+      "CLM-012",
+      "CLM-013",
+      "CLM-014",
+      "CLM-015",
+      "CLM-016",
+      "CLM-017",
+      "CLM-018",
+      "CLM-019",
+      "CLM-020",
+      "CLM-021",
+      "CLM-022"
+    ],
+    "integration_gate": "只有在相同前提下重放六类正例与移除失败，保留目标 authority、版本、负状态、Unknown、replay identity 和真人 Acceptance 阻塞边界，并证明总成本不劣，现成方案组合或最小 Gate 才能被登记为无损承担者。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/06-effect-authority-gate-v2.md"
+}

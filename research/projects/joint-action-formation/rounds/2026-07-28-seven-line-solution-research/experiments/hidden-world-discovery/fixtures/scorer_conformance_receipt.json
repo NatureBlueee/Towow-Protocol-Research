@@ -1,0 +1,205 @@
+{
+  "schema_version": "1.1",
+  "world_id": "T1-HW-20260728-A",
+  "evaluation_step": 1,
+  "method_id": "MANUAL-ORACLE-CALIBRATION-NOT-A-CANDIDATE",
+  "decisions": [
+    {
+      "detection_id": "CAL-PAIR-001",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-EXP-SEEK",
+      "provider": "P-EXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-002",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-003",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-PROBE-COMPLETE"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-004",
+      "kind": "PAIR",
+      "state": "UNFINDABLE_UNDER_POLICY",
+      "seeker": "P-POLICY-SEEK",
+      "provider": "P-POLICY-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-POLICY-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-005",
+      "kind": "PAIR",
+      "state": "INVALIDATED",
+      "seeker": "P-DYN-SEEK",
+      "provider": "P-DYN-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-DYN-REVOKE"
+      ]
+    },
+    {
+      "detection_id": "CAL-CLAIM-001",
+      "kind": "CLAIM",
+      "claim_key": "capability:offline-node:audio-transcription",
+      "subject": "P-OFFLINE",
+      "state": "UNKNOWN",
+      "evidence_refs": [
+        "W-OFFLINE-NO-RESPONSE"
+      ]
+    },
+    {
+      "detection_id": "CAL-CLAIM-002",
+      "kind": "CLAIM",
+      "claim_key": "capability:refusal-node:document-review",
+      "subject": "P-REFUSE",
+      "state": "REFUSE",
+      "evidence_refs": [
+        "W-EXPLICIT-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "CAL-CLAIM-003",
+      "kind": "CLAIM",
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "subject": "POPULATION-CLOSED-RARE-FORMAT",
+      "state": "ABSENT",
+      "evidence_refs": [
+        "W-CLOSED-POPULATION",
+        "W-CLOSED-P1-NEG",
+        "W-CLOSED-P2-NEG",
+        "W-CLOSED-P3-NEG"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "PROBE-RECIP-1",
+      "requester": "P-RECIP-SEEK",
+      "responder": "P-RECIP-OFFER",
+      "requested_fact": "F-RECIP-OFFER-DETAIL",
+      "offered_fact": "F-RECIP-SEEK-DETAIL",
+      "status": "RECIPROCAL_COMPLETE",
+      "evidence_refs": [
+        "W-PROBE-COMPLETE"
+      ]
+    }
+  ],
+  "disclosures": [
+    {
+      "event_id": "D-UNEXP-SEEK-PROJECTION",
+      "origin_party": "P-UNEXP-SEEK",
+      "sender": "P-UNEXP-SEEK",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-SEEK-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    },
+    {
+      "event_id": "D-UNEXP-OFFER-PROJECTION",
+      "origin_party": "P-UNEXP-OFFER",
+      "sender": "P-UNEXP-OFFER",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-OFFER-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    },
+    {
+      "event_id": "D-RECIP-SEEK",
+      "origin_party": "P-RECIP-SEEK",
+      "sender": "P-RECIP-SEEK",
+      "recipient": "P-RECIP-OFFER",
+      "fact_id": "F-RECIP-SEEK-DETAIL",
+      "depth": 1,
+      "purpose": "reciprocal-relation-probe",
+      "retention": "PT10M"
+    },
+    {
+      "event_id": "D-RECIP-OFFER",
+      "origin_party": "P-RECIP-OFFER",
+      "sender": "P-RECIP-OFFER",
+      "recipient": "P-RECIP-SEEK",
+      "fact_id": "F-RECIP-OFFER-DETAIL",
+      "depth": 1,
+      "purpose": "reciprocal-relation-probe",
+      "retention": "PT10M"
+    }
+  ],
+  "projection_updates": [
+    {
+      "party": "P-DYN-OFFER",
+      "from_version": 1,
+      "to_version": 2,
+      "step": 1,
+      "evidence_ref": "W-DYN-REVOKE"
+    }
+  ],
+  "relation_handoffs": [
+    {
+      "detection_id": "CAL-PAIR-001",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-EXP-SEEK",
+      "provider": "P-EXP-OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ],
+      "open_questions": [
+        "Do both parties authorize a negotiation session?"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-002",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ],
+      "open_questions": [
+        "What additional terms may each party disclose during constitution?"
+      ]
+    },
+    {
+      "detection_id": "CAL-PAIR-003",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "evidence_refs": [
+        "W-PROBE-COMPLETE"
+      ],
+      "open_questions": [
+        "Does either party consent to retain new information beyond PT10M?"
+      ]
+    }
+  ]
+}

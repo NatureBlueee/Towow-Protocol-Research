@@ -1,0 +1,1154 @@
+{
+  "bundle_sha256": "8f4ff7825120518d38d23408bf65c5290ab716f605507ec8b2740d6496f54c0b",
+  "claim_boundary": "RUNNER_FOUNDATION_ONLY; E3_E4_E6_TASKS_NOT_RUN; DIGITAL_TARGET_DIRECT_COMMIT_ATTRIBUTION_ONLY; E6_ACTUAL_LOCAL_RUNTIME_PROBE_NOT_FULL_E6",
+  "controller_identity": {
+    "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+    "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64"
+  },
+  "e6_runtime_probe": {
+    "arm_view": {
+      "arm_binding_token": "arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab",
+      "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "broker_surface": {
+        "capabilities": [
+          "DISCOVER",
+          "REQUEST",
+          "STATUS"
+        ],
+        "endpoint_handle": "299f3cfba9b06979323c9801c68b365f",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-c725683f7b8dfcce996fb57fba0107a8",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "arm_view_schema": "CE001_ARM_VIEW_V1",
+    "capsule": {
+      "capsule_id": "d91d0a7a152a419c8a8f3e88e642a97a",
+      "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+      "history_head": "h-4444444444444444444444444444444444444444444444444444444444444444",
+      "native_event_sha256": "57f7532f240bfae0b0d3178d6720e388d973c32dfa97dad83a79cf3991e0792a",
+      "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+      "pending_obligations": [
+        "OWNER_ACCEPTANCE",
+        "VENUE_ACCEPTANCE",
+        "FINALITY"
+      ],
+      "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+      "schema": "E6_RECOVERY_CAPSULE_V1",
+      "signature_hex": "486c54464f72c5020ae7f29696a12d482e52ca36adcd8802b393a92030384ae386b08228c812e3ef54ca432eae5fb7cdc557703bf49b75a64b9885c52f1ab209",
+      "source_epoch": 1,
+      "source_process_id": 17211,
+      "source_public_key_hex": "3c7672e14fd8dcf1f5f39573f2bb2f3c0991c2bfef8bb5710c6ee5e2e13f2636",
+      "source_runtime_instance_id": "45321bca349042fba2f6d581bf7cac9e"
+    },
+    "controller_identity": {
+      "controller_instance_id": "cbf31dd206f8413781474426b333e47d",
+      "controller_public_key_hex": "260b26901e3544f97bf0a86fafbfae870af10bb60b5cdbebdbfaa642d2f988aa"
+    },
+    "evidence_boundary": "ACTUAL_LOCAL_SPAWN_LIFECYCLE_PROBE; NO_TARGET_EFFECT_OR_FULL_E6_COMPLETION",
+    "exit_codes": {
+      "migrated": 0,
+      "old_runtime_restart": 0,
+      "source": -15
+    },
+    "fence_advance_receipt": {
+      "capsule_sha256": "e4385b8b48a23348e4f06307396e4b41ce163512fa9ebea6795659669933f6e0",
+      "current_epoch": 2,
+      "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+      "fence_instance_id": "11e11b93488c48f7890ea437f6b01ef3",
+      "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+      "previous_epoch": 1,
+      "schema": "E6_FENCE_ADVANCE_V1",
+      "signature_hex": "ecc440149c77f5f3574582adbbd6aa7a2e61bdae92be32a1485d0eee609d8aa82fd50ec73f50e5c69998a2184dcf75eb74a8ff908a9621b5c6d7ebdf32ed1b0c",
+      "trigger_receipt_id": "e8b7f5065e9b476dbf646de98f1868f5"
+    },
+    "fence_identity": {
+      "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+      "fence_instance_id": "11e11b93488c48f7890ea437f6b01ef3",
+      "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+      "public_key_hex": "5d883486d31c89d8ec0eca0fb2847bd2aae367c9945f4adb9062d44bbe7ffb2f"
+    },
+    "fence_public_key_hex": "5d883486d31c89d8ec0eca0fb2847bd2aae367c9945f4adb9062d44bbe7ffb2f",
+    "launch_receipts": {
+      "migrated": {
+        "exit_code_at_ready": null,
+        "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; ASYNC_EXTENSION_LOCAL_TO_E6_PROBE",
+        "launcher_instance_id": "17c3ed867e0f436d8ce108625ca5f0b5",
+        "private_material_absent": true,
+        "process_start_method": "spawn",
+        "runtime_identity": {
+          "process_id": 17221,
+          "public_key_hex": "fcd5ef8baf8cb59db125435491e1119a425f18766b757cb6d68e18ef68ea2611",
+          "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+          "runtime_instance_id": "751ae20b605b414d91c5274221b11847",
+          "schema": "E6_RUNTIME_IDENTITY_V1",
+          "signature_hex": "9653668a43e206d373333f10944d71632ab762de8bd2f3d436c8c950736b942faf76718c4b28abbe52c33ab42feeb965e30db8469c986e44d9a722bd3274630b",
+          "start_method": "spawn"
+        },
+        "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+        "status": "CHILD_RUNTIME_READY",
+        "visible_surface": {
+          "argv": [
+            "wave015-blind-child",
+            "--opaque"
+          ],
+          "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-jwu21snb",
+          "cwd_entries": [],
+          "environment": {
+            "LANG": "C.UTF-8",
+            "PATH": "/usr/bin:/bin",
+            "PYTHONHASHSEED": "0"
+          },
+          "inherited_file_descriptors": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "16",
+            "17",
+            "2",
+            "22",
+            "23",
+            "28",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "process_name": "arm-worker-2ab1976b051c91ac",
+          "view": {
+            "arm_binding_token": "arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "299f3cfba9b06979323c9801c68b365f",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-c725683f7b8dfcce996fb57fba0107a8",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "view_bytes": "{\"arm_binding_token\":\"arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab\",\"arm_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"299f3cfba9b06979323c9801c68b365f\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-3cc432cd2955289e3e7da031f6c2b866\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-fb1af929122ca4625f2885080a7d3535\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-c725683f7b8dfcce996fb57fba0107a8\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+        },
+        "visible_surface_sha256": "a28ca054156436969df86aa09a563d8bde0d060b5acd03150ec62c8487142f62",
+        "worker_code_sha256": "cc670529af9c0dce5d691fbde99f3929e497bd9fca44c06357c27902a859d6dd"
+      },
+      "old_runtime_restart": {
+        "exit_code_at_ready": null,
+        "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; ASYNC_EXTENSION_LOCAL_TO_E6_PROBE",
+        "launcher_instance_id": "17c3ed867e0f436d8ce108625ca5f0b5",
+        "private_material_absent": true,
+        "process_start_method": "spawn",
+        "runtime_identity": {
+          "process_id": 17325,
+          "public_key_hex": "e4e74cef4f47105979ca6568ef28a01d94a185671961d5623689688f8d0e1f4a",
+          "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+          "runtime_instance_id": "af94c269eb9b4e58bf4a0cfd250959a5",
+          "schema": "E6_RUNTIME_IDENTITY_V1",
+          "signature_hex": "7351825db2ff95eef5fa9d142d9a4ccd0fba7ac594354a6f338808f5076d2ae3926e762565bb169cc42f5f04cc3b9950038ec3b02c47d6294e91ce9bfb8c3c0b",
+          "start_method": "spawn"
+        },
+        "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+        "status": "CHILD_RUNTIME_READY",
+        "visible_surface": {
+          "argv": [
+            "wave015-blind-child",
+            "--opaque"
+          ],
+          "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-63std17_",
+          "cwd_entries": [],
+          "environment": {
+            "LANG": "C.UTF-8",
+            "PATH": "/usr/bin:/bin",
+            "PYTHONHASHSEED": "0"
+          },
+          "inherited_file_descriptors": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "2",
+            "28",
+            "29",
+            "3",
+            "34",
+            "35",
+            "4",
+            "40",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "process_name": "arm-worker-5af5106debd8dbc1",
+          "view": {
+            "arm_binding_token": "arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "299f3cfba9b06979323c9801c68b365f",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-c725683f7b8dfcce996fb57fba0107a8",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "view_bytes": "{\"arm_binding_token\":\"arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab\",\"arm_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"299f3cfba9b06979323c9801c68b365f\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-3cc432cd2955289e3e7da031f6c2b866\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-fb1af929122ca4625f2885080a7d3535\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-c725683f7b8dfcce996fb57fba0107a8\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+        },
+        "visible_surface_sha256": "3e6c0bceeba282b15d70ab23b83822530d4d04d128fadd97c56dd3cb285d3305",
+        "worker_code_sha256": "cc670529af9c0dce5d691fbde99f3929e497bd9fca44c06357c27902a859d6dd"
+      },
+      "source": {
+        "exit_code_at_ready": null,
+        "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; ASYNC_EXTENSION_LOCAL_TO_E6_PROBE",
+        "launcher_instance_id": "17c3ed867e0f436d8ce108625ca5f0b5",
+        "private_material_absent": true,
+        "process_start_method": "spawn",
+        "runtime_identity": {
+          "process_id": 17211,
+          "public_key_hex": "3c7672e14fd8dcf1f5f39573f2bb2f3c0991c2bfef8bb5710c6ee5e2e13f2636",
+          "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+          "runtime_instance_id": "45321bca349042fba2f6d581bf7cac9e",
+          "schema": "E6_RUNTIME_IDENTITY_V1",
+          "signature_hex": "bbea1310ae4e98f75996491fa2a4f737f3f629b3f015cbde18220a1f195f7deda5744d1bd8c76d2824e062938ebe97bdb380986c5db9dd546417c5fa3fa07b0b",
+          "start_method": "spawn"
+        },
+        "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+        "status": "CHILD_RUNTIME_READY",
+        "visible_surface": {
+          "argv": [
+            "wave015-blind-child",
+            "--opaque"
+          ],
+          "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-zmg6n4kg",
+          "cwd_entries": [],
+          "environment": {
+            "LANG": "C.UTF-8",
+            "PATH": "/usr/bin:/bin",
+            "PYTHONHASHSEED": "0"
+          },
+          "inherited_file_descriptors": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "process_name": "arm-worker-db70a8a03db5a721",
+          "view": {
+            "arm_binding_token": "arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "299f3cfba9b06979323c9801c68b365f",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-c725683f7b8dfcce996fb57fba0107a8",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "view_bytes": "{\"arm_binding_token\":\"arm-bind-8bf0dc134dc38cf246c28be205e8ca117e511a31a541f04504450054aa744dab\",\"arm_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"299f3cfba9b06979323c9801c68b365f\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-3cc432cd2955289e3e7da031f6c2b866\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-fb1af929122ca4625f2885080a7d3535\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-c725683f7b8dfcce996fb57fba0107a8\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+        },
+        "visible_surface_sha256": "3db5dd6bd936ca4781565d3671086cab9f29806af91bedd59cde1df125937884",
+        "worker_code_sha256": "cc670529af9c0dce5d691fbde99f3929e497bd9fca44c06357c27902a859d6dd"
+      }
+    },
+    "lifecycle_trace": [
+      {
+        "event": "SOURCE_NATIVE_EVENT",
+        "native_event_sha256": "57f7532f240bfae0b0d3178d6720e388d973c32dfa97dad83a79cf3991e0792a",
+        "step": 1
+      },
+      {
+        "event": "EXACT_SCHEDULE_TRIGGERED",
+        "step": 2,
+        "trigger_receipt_id": "e8b7f5065e9b476dbf646de98f1868f5"
+      },
+      {
+        "capsule_sha256": "e4385b8b48a23348e4f06307396e4b41ce163512fa9ebea6795659669933f6e0",
+        "event": "SOURCE_CAPSULE_EXPORTED",
+        "step": 3
+      },
+      {
+        "event": "SOURCE_EXTERNALLY_TERMINATED",
+        "exit_code": -15,
+        "step": 4
+      },
+      {
+        "current_epoch": 2,
+        "event": "FENCE_ADVANCED",
+        "step": 5
+      },
+      {
+        "decision": "ACCEPTED",
+        "event": "MIGRATED_EPOCH_DECIDED",
+        "step": 6
+      },
+      {
+        "decision": "REJECTED_STALE_EPOCH",
+        "event": "OLD_RUNTIME_EPOCH_DECIDED",
+        "step": 7
+      }
+    ],
+    "migrated_action_evaluation": {
+      "authorized_execution": true,
+      "decision": "ACCEPTED",
+      "valid": true
+    },
+    "migrated_action_result": {
+      "executed": true,
+      "fence_receipt": {
+        "action": "RECOVER_POSTCONDITIONS_NO_EXECUTE",
+        "current_epoch": 2,
+        "decision": "ACCEPTED",
+        "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "fence_instance_id": "11e11b93488c48f7890ea437f6b01ef3",
+        "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+        "request_sha256": "8dc61f68f4487981bf5bfd117062dcb15b27c2125a9d8136421ce8afbeb42a18",
+        "requested_epoch": 2,
+        "schema": "E6_FENCE_DECISION_V1",
+        "signature_hex": "c6a7bfa6174a82c82d5d8462c7db69663235b40ef3dc58f861fa388f3993485588125639220efed66325109b2ea6b3a5d7973c1d84b8bd1314b0b73810ae0901"
+      },
+      "kind": "ACTION_RESULT",
+      "request": {
+        "action": "RECOVER_POSTCONDITIONS_NO_EXECUTE",
+        "capsule_sha256": "e4385b8b48a23348e4f06307396e4b41ce163512fa9ebea6795659669933f6e0",
+        "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+        "request_id": "72c86c5d8fd445dfbc75afd90ff52400",
+        "requested_epoch": 2,
+        "runtime_instance_id": "751ae20b605b414d91c5274221b11847",
+        "runtime_process_id": 17221,
+        "runtime_public_key_hex": "fcd5ef8baf8cb59db125435491e1119a425f18766b757cb6d68e18ef68ea2611",
+        "schema": "E6_FENCE_REQUEST_V1",
+        "signature_hex": "5ebe78b7bcb38ff446201ed42a2676bb0633e7a458c3b3c1566df1cacc86db86c9e772d3ba88232f5dfd44774592132617ae0323f2ce014cee00a2064f3e840c"
+      },
+      "status": "ACCEPTED"
+    },
+    "old_runtime_action_evaluation": {
+      "authorized_execution": false,
+      "decision": "REJECTED_STALE_EPOCH",
+      "valid": true
+    },
+    "old_runtime_action_result": {
+      "executed": false,
+      "fence_receipt": {
+        "action": "REPLAY_EXECUTE",
+        "current_epoch": 2,
+        "decision": "REJECTED_STALE_EPOCH",
+        "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "fence_instance_id": "11e11b93488c48f7890ea437f6b01ef3",
+        "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+        "request_sha256": "b6c1fd95dfd9b05c7b3b6baba91738289b45d83cf6cfe5091df51c8c0a0ca87d",
+        "requested_epoch": 1,
+        "schema": "E6_FENCE_DECISION_V1",
+        "signature_hex": "817bd877097f08bc2a8a624ac391b75de8afde0fbaadb276d7b5001ab3b9312a15e0c487ada8cd40d6dcb09542d3b288b1519e443b5276949cc90e7167f2a50a"
+      },
+      "kind": "ACTION_RESULT",
+      "request": {
+        "action": "REPLAY_EXECUTE",
+        "capsule_sha256": null,
+        "episode_instance_id": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "operation_id": "operation-fb1af929122ca4625f2885080a7d3535",
+        "request_id": "c1aeed0008eb4078954dadcda8067264",
+        "requested_epoch": 1,
+        "runtime_instance_id": "af94c269eb9b4e58bf4a0cfd250959a5",
+        "runtime_process_id": 17325,
+        "runtime_public_key_hex": "e4e74cef4f47105979ca6568ef28a01d94a185671961d5623689688f8d0e1f4a",
+        "schema": "E6_FENCE_REQUEST_V1",
+        "signature_hex": "28550d23979f09f0b08c1ead7fe265b7711774913a7608426e380bf385600e65a2a87b517b5dd8bf8a8439dda75010d1a579d36d1a4145345933492c91a81a05"
+      },
+      "status": "REJECTED_STALE_EPOCH"
+    },
+    "private_schedule_packet": {
+      "private_payload": {
+        "scenario_label": "E6-MIGRATION-REPLAY",
+        "schedule": {
+          "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+          "old_runtime_restart_minute": 49,
+          "target_epoch": 2,
+          "trigger_event_sha256": "57f7532f240bfae0b0d3178d6720e388d973c32dfa97dad83a79cf3991e0792a",
+          "trigger_logical_minute": 46
+        },
+        "trigger_rule": "NATIVE_EVENT_HASH_AND_LOGICAL_MINUTE"
+      },
+      "receipt": {
+        "controller_instance_id": "cbf31dd206f8413781474426b333e47d",
+        "controller_public_key_hex": "260b26901e3544f97bf0a86fafbfae870af10bb60b5cdbebdbfaa642d2f988aa",
+        "episode_binding": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "kind": "E6_CRASH_SCHEDULE",
+        "private_payload_sha256": "14fdcf54352a1ee69156a517680c683516dd6402a1b2d894571f12fb07854e79",
+        "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+        "receipt_id": "31b4ce7e1c8d412baa8ad34ddded4641",
+        "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+        "signature_hex": "e25a1ffcf8588cd9318b8f28f11beb792ebe6ef8a8d844fad94daa4ae07893bc83092dbee6ac591f33de88d8fe6a2e6b83151277752fcbb04fdbf4ee3d46dd01"
+      }
+    },
+    "probe_id": "E6_RUNTIME_PROBE",
+    "same_arm_view_hash": true,
+    "same_arm_view_schema": true,
+    "source_native_event": {
+      "body": {
+        "history_head": "h-4444444444444444444444444444444444444444444444444444444444444444",
+        "kind": "TARGET_READBACK_OBSERVED",
+        "logical_minute": 46,
+        "readback_status": "EXACT_EFFECT_PRESENT"
+      },
+      "body_sha256": "57f7532f240bfae0b0d3178d6720e388d973c32dfa97dad83a79cf3991e0792a",
+      "process_id": 17211,
+      "runtime_instance_id": "45321bca349042fba2f6d581bf7cac9e",
+      "runtime_public_key_hex": "3c7672e14fd8dcf1f5f39573f2bb2f3c0991c2bfef8bb5710c6ee5e2e13f2636",
+      "schema": "E6_RUNTIME_NATIVE_EVENT_V1",
+      "signature_hex": "4642c31f5f9a8d337daf5566d15c5acbc4aaeb6160655d8f91feeb26185ce7e648d8ef5b35f0fd4a974eda294618261de3eb78911172b3e49aa06d6618f66c0b"
+    },
+    "trigger_packet": {
+      "private_payload": {
+        "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+        "observed_logical_minute": 46,
+        "observed_native_event_sha256": "57f7532f240bfae0b0d3178d6720e388d973c32dfa97dad83a79cf3991e0792a",
+        "old_runtime_restart_minute": 49,
+        "source_schedule_receipt_id": "31b4ce7e1c8d412baa8ad34ddded4641",
+        "target_epoch": 2
+      },
+      "receipt": {
+        "controller_instance_id": "cbf31dd206f8413781474426b333e47d",
+        "controller_public_key_hex": "260b26901e3544f97bf0a86fafbfae870af10bb60b5cdbebdbfaa642d2f988aa",
+        "episode_binding": "episode-3cc432cd2955289e3e7da031f6c2b866",
+        "kind": "E6_TRIGGER_FIRED",
+        "private_payload_sha256": "51572511b02dcb51c6d4c406b8a1a18d0d954604a95a9a41a05f19afa138de51",
+        "public_view_sha256": "223eedc2ea2e509bfe5699380d59c50eb75a72b7052e97d657bdece551dd4a7f",
+        "receipt_id": "e8b7f5065e9b476dbf646de98f1868f5",
+        "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+        "signature_hex": "ca132fc82040b2c71accd6bb398800c746653ebff9d04b161ee24d359e926ba47b1e4c9a9574fcfe560001edd69a87eb438b92f66040679aba4462525a2fec0a"
+      }
+    }
+  },
+  "hidden_scenarios": {
+    "e3": {
+      "alpha_equivalent": true,
+      "forks": [
+        {
+          "arm_view": {
+            "arm_binding_token": "arm-bind-273ddd6e0798026800b70e6aef9302f307f4792de60da6b34caf089a7fa7e6ac",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "3dfded537abf5bca24d727877d55b377",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-47066830d3b1e9c7e4af73e6fda10269",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-d116417f9a650661b28eb9d18c9d9c63",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-e226ca7b981ea58627f41d52cc29fa1b",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "private_packet": {
+            "private_payload": {
+              "first_permitted_divergence": "EXACT_TARGET_READBACK",
+              "scenario_label": "E3A-ACK-LOST-EFFECT",
+              "submit_ack": "LOST",
+              "target_commit_before_readback": true
+            },
+            "receipt": {
+              "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+              "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+              "episode_binding": "foundation-2cceea49ee07d0790e48-e3",
+              "kind": "E3_PAIRED_FORK",
+              "private_payload_sha256": "513e7b244bcf92c1b04f187855f6b97f588d54dc811eb0504bbc163bd744c79f",
+              "public_view_sha256": "b2b64e6e65d4c8373fe71b3f2ef6c1dfd55638708f7a8c5555c686d03ae1fe22",
+              "receipt_id": "16bb3b64de9747ffa37f1913d80acd83",
+              "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+              "signature_hex": "a0be6139e357886920c3d80953f58f4fe79c05b22e06a224751bdc1dee05975c6d18bec6981ecc53def36bcfe6f1d1463ac4ef813b3e81c1a43fb5b609e9a50f"
+            }
+          },
+          "public_prefix": [
+            {
+              "kind": "SUBMIT_RETURN",
+              "operation_handle": "a1c380a8dd2542659595ba10e1be97b3",
+              "status": "OUTCOME_UNCONFIRMED"
+            }
+          ]
+        },
+        {
+          "arm_view": {
+            "arm_binding_token": "arm-bind-273ddd6e0798026800b70e6aef9302f307f4792de60da6b34caf089a7fa7e6ac",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "3dfded537abf5bca24d727877d55b377",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-47066830d3b1e9c7e4af73e6fda10269",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-d116417f9a650661b28eb9d18c9d9c63",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-e226ca7b981ea58627f41d52cc29fa1b",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "private_packet": {
+            "private_payload": {
+              "first_permitted_divergence": "EXACT_TARGET_READBACK",
+              "scenario_label": "E3B-ACK-LOST-NO-EFFECT",
+              "submit_ack": "LOST",
+              "target_commit_before_readback": false
+            },
+            "receipt": {
+              "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+              "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+              "episode_binding": "foundation-2cceea49ee07d0790e48-e3",
+              "kind": "E3_PAIRED_FORK",
+              "private_payload_sha256": "14920a9c238d284c3076d718fb64e6d5984aa48a0140f2dd2843d8ff539a577a",
+              "public_view_sha256": "b2b64e6e65d4c8373fe71b3f2ef6c1dfd55638708f7a8c5555c686d03ae1fe22",
+              "receipt_id": "531044ebd68e4b5a93f29fa31dac942b",
+              "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+              "signature_hex": "b6e2ae8d513c226a2f184a183794dd2f9d237654a5ce13dc308501a8400004f6e73648e241a58f0288e2ca87663bcccddaf7d8ed83f1587726bc707c8e857803"
+            }
+          },
+          "public_prefix": [
+            {
+              "kind": "SUBMIT_RETURN",
+              "operation_handle": "a1c380a8dd2542659595ba10e1be97b3",
+              "status": "OUTCOME_UNCONFIRMED"
+            }
+          ]
+        }
+      ],
+      "pair_private_packet": {
+        "private_payload": {
+          "first_permitted_divergence": "EXACT_TARGET_READBACK",
+          "fork_private_payload_sha256": [
+            "513e7b244bcf92c1b04f187855f6b97f588d54dc811eb0504bbc163bd744c79f",
+            "14920a9c238d284c3076d718fb64e6d5984aa48a0140f2dd2843d8ff539a577a"
+          ],
+          "shared_public_prefix_sha256": "84097e0dbc51f43def51e95b075fda23ff159bf0652ba5db1668ca167c9ee144"
+        },
+        "receipt": {
+          "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+          "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+          "episode_binding": "foundation-2cceea49ee07d0790e48-e3",
+          "kind": "E3_PAIR_BINDING",
+          "private_payload_sha256": "7ca1e27fb224142e8f7d66dc8148fe4cb608180100566766dfebc323be17945a",
+          "public_view_sha256": "b2b64e6e65d4c8373fe71b3f2ef6c1dfd55638708f7a8c5555c686d03ae1fe22",
+          "receipt_id": "abea913b950a4873bf810ced0674e43c",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "8520de10bffceee948e4d23050f38292a06db60f74d73837f063779383945aa8f682b04f7693fea7754ff490ca2ed75c98101ef4bd5c35352a12816b55323a05"
+        }
+      },
+      "raw_prefix_equal": true,
+      "shared_pre_readback_public_view": {
+        "public_prefix": [
+          {
+            "kind": "SUBMIT_RETURN",
+            "operation_handle": "a1c380a8dd2542659595ba10e1be97b3",
+            "status": "OUTCOME_UNCONFIRMED"
+          }
+        ],
+        "startup_arm_view": {
+          "arm_binding_token": "arm-bind-273ddd6e0798026800b70e6aef9302f307f4792de60da6b34caf089a7fa7e6ac",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "3dfded537abf5bca24d727877d55b377",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-47066830d3b1e9c7e4af73e6fda10269",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-d116417f9a650661b28eb9d18c9d9c63",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-e226ca7b981ea58627f41d52cc29fa1b",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        }
+      }
+    },
+    "e4": {
+      "alternative_discovery": {
+        "owner_handle": "3aa50fe918b944c4889c7a5fdb9cf282",
+        "resource_handle": "11ad0cb1d6384cc68ebe72263310dcc7",
+        "status": "FOUND"
+      },
+      "frozen": {
+        "arm_view": {
+          "arm_binding_token": "arm-bind-451eff6ff9f5e5a7de88aad91ab17e24032ad301a38ace917d61c19ac7153642",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "8e96f0322a234e35a037c912bc08ce00",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-04875a31104d0ecbd312d86ebf6db8fa",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-c86515acaf685ae963663c01f0a9c555",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-2b51029ad7c36e85f1c524c2e6eca8ce",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "private_packet": {
+          "private_payload": {
+            "alternative_reveal_condition": "AFTER_PRIMARY_REVOKE_AND_DISCOVER",
+            "broker_instance_id": "d331f362827547ff9dd10b70d50571d0",
+            "owner_topology": [
+              {
+                "authority_locus": "P",
+                "current_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "discoverability_condition": "INITIAL",
+                "epoch": 1,
+                "owner_instance_id": "O_R:primary",
+                "owner_role": "RESOURCE_PRIMARY",
+                "principal_id": "principal-primary",
+                "resource_kind": "MOBILE_3KW_GENERATOR"
+              },
+              {
+                "authority_locus": "P",
+                "current_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "discoverability_condition": "AFTER_PRIMARY_REVOKE",
+                "epoch": 1,
+                "owner_instance_id": "O_R:alternative",
+                "owner_role": "RESOURCE_ALTERNATIVE",
+                "principal_id": "principal-alternative",
+                "resource_kind": "MOBILE_3KW_GENERATOR"
+              }
+            ],
+            "scenario_label": "E4-REVOKE-WITH-ALTERNATIVE",
+            "topology_sha256": "a75ec3b1d4e82db0dece9221acaffa591e1aa10fd44c99f341daab7404cdc00f"
+          },
+          "receipt": {
+            "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+            "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+            "episode_binding": "foundation-2cceea49ee07d0790e48-e4",
+            "kind": "E4_HIDDEN_TOPOLOGY",
+            "private_payload_sha256": "5f7573b5cf13a7206da90c001792d9340e03af25c360c0c15eb0c4633ebe2051",
+            "public_view_sha256": "035524005f6daba67a7517dd00562e80e968a2cd29329259e71b2706fadbcf4d",
+            "receipt_id": "82858fe5212149b9b440758bd5f095a8",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "1613c1ad4821bf2475f9b508ecb8a03d88b6b93de13e6ed9635d70bd8d84049c665d36a56d42df722ad5b94424d4fce7301d4a146cef6fbbd0085c8176984c0d"
+          }
+        }
+      },
+      "primary_discovery": {
+        "owner_handle": "f5267a8f924c4c7db913cd3fd87f9e35",
+        "resource_handle": "639b718594864b9bac77c663ead7d935",
+        "status": "FOUND"
+      },
+      "revoke_private_packet": {
+        "private_payload": {
+          "broker_epoch": 1,
+          "broker_instance_id": "d331f362827547ff9dd10b70d50571d0",
+          "kind": "PRIMARY_REVOKED",
+          "logical_minute": 12,
+          "native_event_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "source_topology_receipt_id": "82858fe5212149b9b440758bd5f095a8"
+        },
+        "receipt": {
+          "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+          "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+          "episode_binding": "foundation-2cceea49ee07d0790e48-e4",
+          "kind": "E4_PRIMARY_REVOKE",
+          "private_payload_sha256": "f47cdeb18f48dd4b08bff7af0b54478d6a961fdbd40852b5e4ced8362f434238",
+          "public_view_sha256": "035524005f6daba67a7517dd00562e80e968a2cd29329259e71b2706fadbcf4d",
+          "receipt_id": "394058c407784e7bb4159543e09194a5",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "6d47530a005671abb8545a884f1e453bc22388c72b92ed1d8c9d6cbf9ff12d632d728d9365bd0114ee93d4ab4f5318b6d19550087031c8499d7b54174b26ba05"
+        }
+      },
+      "route_private_packets": [
+        {
+          "private_payload": {
+            "broker_epoch": 0,
+            "broker_instance_id": "d331f362827547ff9dd10b70d50571d0",
+            "kind": "BROKER_DISCOVERY_ROUTE",
+            "public_result_sha256": "27fdb61f3dce102594ae7a1ad5cc02632a8a2fb9012a07d0228cd0eb665177a7",
+            "resource_kind": "MOBILE_3KW_GENERATOR",
+            "selected_owner_instance_id": "O_R:primary"
+          },
+          "receipt": {
+            "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+            "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+            "episode_binding": "foundation-2cceea49ee07d0790e48-e4",
+            "kind": "E4_BROKER_ROUTE",
+            "private_payload_sha256": "1dd6453cf2180763723e18c00689ce408a05d5e0967837ec3f844e01c47bf828",
+            "public_view_sha256": "035524005f6daba67a7517dd00562e80e968a2cd29329259e71b2706fadbcf4d",
+            "receipt_id": "f754d5df32de4ed590bedd6fa8bcd97a",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "c7c4535d14c85119115ed0299ff6885400dc9ebfcb71a2b9a593a16a6d70e067e849c9c1e0fe259f3a1a6f662594899e6c8b86a3274343b76bb53e013fe96e06"
+          }
+        },
+        {
+          "private_payload": {
+            "broker_epoch": 1,
+            "broker_instance_id": "d331f362827547ff9dd10b70d50571d0",
+            "kind": "BROKER_DISCOVERY_ROUTE",
+            "public_result_sha256": "ab09d4fc11c85a0ee0d1982f3cc7b10bcb2987029e0c227e916b216334bea7fe",
+            "resource_kind": "MOBILE_3KW_GENERATOR",
+            "selected_owner_instance_id": "O_R:alternative"
+          },
+          "receipt": {
+            "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+            "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+            "episode_binding": "foundation-2cceea49ee07d0790e48-e4",
+            "kind": "E4_BROKER_ROUTE",
+            "private_payload_sha256": "81a022a57fc291fed4bd18caa5728e38588fe54af262a49d1416a282b641b65e",
+            "public_view_sha256": "035524005f6daba67a7517dd00562e80e968a2cd29329259e71b2706fadbcf4d",
+            "receipt_id": "d1e298648bbb46dd8b00746a49f6cd70",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "434932e13753a5ab0434e8ea882f23be0885ea0f374c54b509976d17c88620f47cbb6973a033fa99d6867594c96c08b21754837443231dd2f313405f689bc60d"
+          }
+        }
+      ]
+    },
+    "e6": {
+      "fired_private_packet": {
+        "private_payload": {
+          "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+          "observed_logical_minute": 46,
+          "observed_native_event_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "old_runtime_restart_minute": 49,
+          "source_schedule_receipt_id": "28f6fb8484c1498591baee074b23829e",
+          "target_epoch": 2
+        },
+        "receipt": {
+          "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+          "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+          "episode_binding": "foundation-2cceea49ee07d0790e48-e6",
+          "kind": "E6_TRIGGER_FIRED",
+          "private_payload_sha256": "26c6b013d35358e8ed242405eda19b180244f262f641a0bef24455245a1820d1",
+          "public_view_sha256": "1d79a6dc4c2d548ef81d58deff503bed2ad982798d5b7cb486ebd5941f5fbe02",
+          "receipt_id": "060a2d1a65684afe833f7edd0e39266f",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "16e17f870d9b83da675a6940f5974f3d87081b11a9a6418e454efb2f2b90d18b908d13245f7ff193a0539e4ae3056b2e00da04d17ef13b2c28f6359f19ba8f06"
+        }
+      },
+      "frozen": {
+        "arm_view": {
+          "arm_binding_token": "arm-bind-776262749cf64be7036b482131e2561e5343c2bec9be8a7868796bde83837337",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "1bbdcf12aa6a7086f35babfde1640175",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-e837080a66da2195a57edac973467a9f",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-dafda0be5d1fa47d10d004bbe61f5dfc",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-bf4e9e5468d9bdbf9857b6d2d9d2cd5a",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "private_packet": {
+          "private_payload": {
+            "scenario_label": "E6-MIGRATION-REPLAY",
+            "schedule": {
+              "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+              "old_runtime_restart_minute": 49,
+              "target_epoch": 2,
+              "trigger_event_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+              "trigger_logical_minute": 46
+            },
+            "trigger_rule": "NATIVE_EVENT_HASH_AND_LOGICAL_MINUTE"
+          },
+          "receipt": {
+            "controller_instance_id": "d5218467dd6b4bbebc55600cce779a91",
+            "controller_public_key_hex": "ec5a436bfcbffdf4de517ac48e0af603fc97cf53644260d8e8a7cbc703e9cd64",
+            "episode_binding": "foundation-2cceea49ee07d0790e48-e6",
+            "kind": "E6_CRASH_SCHEDULE",
+            "private_payload_sha256": "11dfe91d15a2fe4c60d8ef366d720cabab3785f1bd0b66cf74584b9c6aba1aa3",
+            "public_view_sha256": "1d79a6dc4c2d548ef81d58deff503bed2ad982798d5b7cb486ebd5941f5fbe02",
+            "receipt_id": "28f6fb8484c1498591baee074b23829e",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "f89643049648ae2f53acc46f01fa9405239e21c709b603f1840aed9b3e949f42136fd9df3e4422eed2647a038acadc29627b59e7f8b3d4eae8f745e4ddbc9e0a"
+          }
+        }
+      }
+    }
+  },
+  "run_id": "foundation-2cceea49ee07d0790e48",
+  "schema": "WAVE015_RUNNER_FOUNDATION_BUNDLE_V1",
+  "target_ledger": {
+    "a4_after_h_readback": {
+      "actor_id": "A4",
+      "attached_to_receipt_commit": true,
+      "capability_id": "cap-a4",
+      "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+      "observed_commit_actor_id": "H",
+      "observed_commit_id": "commit-cc14b7c39b9e4c6382b5c892185e9589",
+      "observed_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "observed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "observed_version": 1,
+      "readback_auth_hex": "c00c644a7640840cda576684ca0c88839c2857b815b82d133812b2bd6199ce83",
+      "readback_id": "readback-ccdee825fc094159b6e334c319c53abe",
+      "readback_sha256": "97ac91c191c03bd3bda5a76bbd7a2c492a24813361c7bf5d9694e2c0fadd01bd",
+      "receipt_commit_id": "commit-cc14b7c39b9e4c6382b5c892185e9589",
+      "receipt_decision": "ALREADY_SATISFIED",
+      "receipt_id": "receipt-d5cf3945efef4349968ec80f3127ef03",
+      "receipt_mutation_applied": false,
+      "receipt_post_version": 1,
+      "receipt_sha256": "66df5428c2e09c59643459069ab53bb07a98b1dc8ebdcd8a6a50a2920533d6a2",
+      "request_id": "request-a4",
+      "request_sha256": "3fea3ebd7cb6dce7b7db08d311e481f8fe687cb41380196f6287ee2141f39d1e",
+      "schema": "TARGET_READBACK_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "a4_after_h_receipt": {
+      "actor_id": "A4",
+      "capability_id": "cap-a4",
+      "commit_actor_id": "H",
+      "commit_id": "commit-cc14b7c39b9e4c6382b5c892185e9589",
+      "decision": "ALREADY_SATISFIED",
+      "expected_version": 0,
+      "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+      "mutation_applied": false,
+      "operation": "SET_STATE",
+      "post_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "post_version": 1,
+      "pre_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "pre_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "pre_version": 1,
+      "reason": "TARGET_ALREADY_IN_DESIRED_STATE",
+      "receipt_auth_hex": "a8ee7e7507093418a882b9df57ee3aac72e38d7fef74f9bbefac9e9db5556f59",
+      "receipt_id": "receipt-d5cf3945efef4349968ec80f3127ef03",
+      "receipt_sha256": "66df5428c2e09c59643459069ab53bb07a98b1dc8ebdcd8a6a50a2920533d6a2",
+      "request_id": "request-a4",
+      "request_sha256": "3fea3ebd7cb6dce7b7db08d311e481f8fe687cb41380196f6287ee2141f39d1e",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "concurrent_receipts": [
+      {
+        "actor_id": "actor-a",
+        "capability_id": "cap-concurrent-a",
+        "commit_actor_id": "actor-b",
+        "commit_id": "commit-72d11cad17d349919aad044e1505f3cc",
+        "decision": "CONFLICT",
+        "expected_version": 0,
+        "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+        "mutation_applied": false,
+        "operation": "SET_STATE",
+        "post_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "post_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "post_version": 1,
+        "pre_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "pre_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "pre_version": 1,
+        "reason": "EXPECTED_VERSION_MISMATCH",
+        "receipt_auth_hex": "b23ed8c788cdfc8360cf2c74b58e73492c996bac2863ab9821cfe3aae599a396",
+        "receipt_id": "receipt-71ac6558d92b4abaa4ec75cdb9d7ed0a",
+        "receipt_sha256": "bcf1f0de919c826bba7e91a67ac22fc19691abc72f8a24d784c5bab32b8f8120",
+        "request_id": "request-concurrent-a",
+        "request_sha256": "e3f1904e360f0b0baccef2d1886ceff64a2cabf922a6dcb481f577a2dd7a96cb",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7:concurrency-probe"
+      },
+      {
+        "actor_id": "actor-b",
+        "capability_id": "cap-concurrent-b",
+        "commit_actor_id": "actor-b",
+        "commit_id": "commit-72d11cad17d349919aad044e1505f3cc",
+        "decision": "COMMITTED",
+        "expected_version": 0,
+        "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+        "mutation_applied": true,
+        "operation": "SET_STATE",
+        "post_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "post_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "post_version": 1,
+        "pre_state": {
+          "energized": false,
+          "power_kw": 0.0
+        },
+        "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+        "pre_version": 0,
+        "reason": "TARGET_MUTATION_COMMITTED",
+        "receipt_auth_hex": "fd6f9e074adc8499ac697ceadd0c5f5c1327a0ac428b562cbaf9ee42c5b1b938",
+        "receipt_id": "receipt-2e39955e91354bee988b87bad8c0eeb8",
+        "receipt_sha256": "6ab5d99ddc52ce4fedb60b36cd043878582e1a445f3bb273fdf9262224a202ed",
+        "request_id": "request-concurrent-b",
+        "request_sha256": "3e4ef1179f7837bab8c9892d97f53d5f7dd091cc1581c36b07ba7c45b0d57fdb",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7:concurrency-probe"
+      }
+    ],
+    "concurrent_target_state": {
+      "last_commit_actor_id": "actor-b",
+      "last_commit_id": "commit-72d11cad17d349919aad044e1505f3cc",
+      "last_request_sha256": "3e4ef1179f7837bab8c9892d97f53d5f7dd091cc1581c36b07ba7c45b0d57fdb",
+      "state": {
+        "energized": true,
+        "power_kw": 2.9
+      },
+      "state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+      "target_id": "VenueV:CircuitC7:concurrency-probe",
+      "version": 1
+    },
+    "database_file": "target-ledger.sqlite3",
+    "database_sha256": "9b2f160d15078e04b6503b14382be087f6077301569f6835044dd3997aaffc69",
+    "h_first_receipt": {
+      "actor_id": "H",
+      "capability_id": "cap-h",
+      "commit_actor_id": "H",
+      "commit_id": "commit-cc14b7c39b9e4c6382b5c892185e9589",
+      "decision": "COMMITTED",
+      "expected_version": 0,
+      "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+      "mutation_applied": true,
+      "operation": "SET_STATE",
+      "post_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "post_version": 1,
+      "pre_state": {
+        "energized": false,
+        "power_kw": 0.0
+      },
+      "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+      "pre_version": 0,
+      "reason": "TARGET_MUTATION_COMMITTED",
+      "receipt_auth_hex": "b5a69c2f92ffe70528a765015d0506ca2f2934c8db329d044709c0bd691e2536",
+      "receipt_id": "receipt-16f4e863532243bab896dc373a8ec8a2",
+      "receipt_sha256": "26b70acdc4ac70431db6a842dc8a3569d020968fd8907a77c44ccc2eae2f846e",
+      "request_id": "request-h",
+      "request_sha256": "6013dd062874fd36c76ec3adb41c7482e499adf2265371464c2aafd5039cea3f",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "ledger_id": "foundation-2cceea49ee07d0790e48-target-truth-owner",
+    "target_state": {
+      "last_commit_actor_id": "H",
+      "last_commit_id": "commit-cc14b7c39b9e4c6382b5c892185e9589",
+      "last_request_sha256": "6013dd062874fd36c76ec3adb41c7482e499adf2265371464c2aafd5039cea3f",
+      "state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "target_id": "VenueV:CircuitC7",
+      "version": 1
+    }
+  },
+  "visibility": {
+    "e4_arm_view": {
+      "arm_binding_token": "arm-bind-451eff6ff9f5e5a7de88aad91ab17e24032ad301a38ace917d61c19ac7153642",
+      "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "broker_surface": {
+        "capabilities": [
+          "DISCOVER",
+          "REQUEST",
+          "STATUS"
+        ],
+        "endpoint_handle": "8e96f0322a234e35a037c912bc08ce00",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-04875a31104d0ecbd312d86ebf6db8fa",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-c86515acaf685ae963663c01f0a9c555",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-2b51029ad7c36e85f1c524c2e6eca8ce",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "launch_receipt": {
+      "exit_code": 0,
+      "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; HOSTILE_SAME_OS_USER_AND_UNRELATED_CONCURRENT_SPAWN_NOT_COVERED",
+      "private_material_absent": true,
+      "process_start_method": "spawn",
+      "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+      "status": "CHILD_VISIBLE_SURFACE_RECORDED",
+      "visible_surface": {
+        "argv": [
+          "wave015-blind-child",
+          "--opaque"
+        ],
+        "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-bw0b3got",
+        "cwd_entries": [],
+        "environment": {
+          "LANG": "C.UTF-8",
+          "PATH": "/usr/bin:/bin",
+          "PYTHONHASHSEED": "0"
+        },
+        "inherited_file_descriptors": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "12",
+          "13",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "process_name": "arm-worker-fe765b42f6923be4",
+        "view": {
+          "arm_binding_token": "arm-bind-451eff6ff9f5e5a7de88aad91ab17e24032ad301a38ace917d61c19ac7153642",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "8e96f0322a234e35a037c912bc08ce00",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-04875a31104d0ecbd312d86ebf6db8fa",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-c86515acaf685ae963663c01f0a9c555",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-2b51029ad7c36e85f1c524c2e6eca8ce",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "view_bytes": "{\"arm_binding_token\":\"arm-bind-451eff6ff9f5e5a7de88aad91ab17e24032ad301a38ace917d61c19ac7153642\",\"arm_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"8e96f0322a234e35a037c912bc08ce00\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-04875a31104d0ecbd312d86ebf6db8fa\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-c86515acaf685ae963663c01f0a9c555\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-2b51029ad7c36e85f1c524c2e6eca8ce\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+      },
+      "visible_surface_sha256": "eadb2d17f0d2781d645a943dd6f8501726bf641dbd08f989fae099bbebddc7a0",
+      "worker_result": {
+        "status": "SURFACE_RECORDED",
+        "view_sha256": "035524005f6daba67a7517dd00562e80e968a2cd29329259e71b2706fadbcf4d"
+      }
+    }
+  }
+}

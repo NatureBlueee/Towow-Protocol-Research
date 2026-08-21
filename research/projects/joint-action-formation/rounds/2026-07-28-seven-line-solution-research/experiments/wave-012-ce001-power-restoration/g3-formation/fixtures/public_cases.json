@@ -1,0 +1,215 @@
+{
+  "schema_version": "ce001-g3-public-v2",
+  "owner_endpoint_verification_key": "1a073631bf3453c33ff012651a8110a7798d8827668619a26e8e8750b0ff8a8d",
+  "task": {
+    "q_version": "CE-001-Q@v1",
+    "deadline": "T0+90min",
+    "target": {
+      "venue_id": "Venue-V",
+      "circuit_id": "C7"
+    },
+    "power_kw": 3.0,
+    "power_tolerance_percent": 5,
+    "minimum_duration_min": 45,
+    "constraints": [
+      "noise",
+      "safety",
+      "exact-target",
+      "no-other-circuit"
+    ],
+    "acceptance_required_from": [
+      "O_Q",
+      "O_V"
+    ]
+  },
+  "cases": [
+    {
+      "case_handle": "H001",
+      "episode_handle": "P001",
+      "authority_stratum": "U",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_V",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "venue_native_service_available": true,
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H002",
+      "episode_handle": "P002",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "current_relationship_receipts_available": true,
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H003",
+      "episode_handle": "P003",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "owner_interaction_available": true,
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H004",
+      "episode_handle": "P004",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "submit_ack": "LOST",
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H005",
+      "episode_handle": "P005",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "submit_ack": "LOST",
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H006",
+      "episode_handle": "P006",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "reservation_can_revoke": true,
+        "rediscovery_available": true,
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H007",
+      "episode_handle": "P007",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S"
+      ],
+      "method_visible_context": {
+        "owner_refusal_possible": true
+      }
+    },
+    {
+      "case_handle": "H008",
+      "episode_handle": "P008",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "migration_capsule_available": true,
+        "target_readback_available": true
+      }
+    },
+    {
+      "case_handle": "H009",
+      "episode_handle": "P009",
+      "authority_stratum": "P",
+      "inventory": {
+        "status": "OPEN",
+        "unresolved_items": [
+          "partner-space",
+          "tool-space",
+          "owner-response-family"
+        ]
+      },
+      "owner_endpoints": [
+        "O_R"
+      ],
+      "method_visible_context": {
+        "bounded_frontier_exhausted": true
+      }
+    },
+    {
+      "case_handle": "H010",
+      "episode_handle": "P010",
+      "authority_stratum": "D",
+      "inventory": {
+        "status": "COMPLETE",
+        "unresolved_items": []
+      },
+      "owner_endpoints": [
+        "O_R",
+        "O_V",
+        "O_S",
+        "O_E"
+      ],
+      "method_visible_context": {
+        "owner_interaction_available": true,
+        "extension_channel_available": true,
+        "target_readback_available": true
+      }
+    }
+  ]
+}

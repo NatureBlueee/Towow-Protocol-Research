@@ -1,0 +1,1282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.example/schemas/wave025/runner-evidence-objects-v1.json",
+  "title": "Wave 025 runner-owned evidence objects",
+  "description": "Closed recursive schemas for runner-produced JSON. Raw Docker inspect and event objects are intentionally outside this schema.",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "challenge": {
+      "enum": [
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY",
+        "T-OCI-ISOLATED"
+      ]
+    },
+    "role": {
+      "enum": [
+        "R",
+        "S"
+      ]
+    },
+    "phase": {
+      "enum": [
+        "calibration",
+        "holdout"
+      ]
+    },
+    "opaqueSlotId": {
+      "type": "string",
+      "pattern": "^s_[0-9a-f]{32}$"
+    },
+    "commandReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "command",
+        "started_at",
+        "finished_at",
+        "monotonic_start_ns",
+        "monotonic_finish_ns",
+        "returncode",
+        "stdout_base64",
+        "stderr_base64"
+      ],
+      "properties": {
+        "schema": {
+          "const": "WAVE025_HOST_COMMAND_RECEIPT_V1"
+        },
+        "command": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "started_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "finished_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "monotonic_start_ns": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "monotonic_finish_ns": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "returncode": {
+          "type": "integer"
+        },
+        "stdout_base64": {
+          "type": "string",
+          "contentEncoding": "base64"
+        },
+        "stderr_base64": {
+          "type": "string",
+          "contentEncoding": "base64"
+        }
+      }
+    },
+    "domainSecret": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nonce_hex",
+        "seed_hex"
+      ],
+      "properties": {
+        "nonce_hex": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "seed_hex": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "domains": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "MEASUREMENT_PADDING",
+        "PRIVATE_ASSIGNMENT_ORDER",
+        "PUBLIC_ID"
+      ],
+      "properties": {
+        "MEASUREMENT_PADDING": {
+          "$ref": "#/$defs/domainSecret"
+        },
+        "PRIVATE_ASSIGNMENT_ORDER": {
+          "$ref": "#/$defs/domainSecret"
+        },
+        "PUBLIC_ID": {
+          "$ref": "#/$defs/domainSecret"
+        }
+      }
+    },
+    "blockRoles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "R",
+        "S"
+      ],
+      "properties": {
+        "R": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "S": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "blockPlanItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block",
+        "roles",
+        "size"
+      ],
+      "properties": {
+        "block": {
+          "type": "string"
+        },
+        "roles": {
+          "$ref": "#/$defs/blockRoles"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "blockPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocks",
+        "count"
+      ],
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/blockPlanItem"
+          }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "classifierPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "families",
+        "holdout_feedback",
+        "multiplicity",
+        "tie_breaking",
+        "version"
+      ],
+      "properties": {
+        "families": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "holdout_feedback": {
+          "type": "string"
+        },
+        "multiplicity": {
+          "type": "string"
+        },
+        "tie_breaking": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "runnerDiagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "docker_command_receipt_schema",
+        "raw_slot_channels",
+        "schema"
+      ],
+      "properties": {
+        "docker_command_receipt_schema": {
+          "const": "WAVE025_HOST_COMMAND_RECEIPT_V1"
+        },
+        "raw_slot_channels": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "schema": {
+          "const": "WAVE025_RUNNER_DIAGNOSTICS_V1"
+        }
+      }
+    },
+    "daemonEventProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capture_window",
+        "extra_exec_policy",
+        "filter_identity",
+        "required_exec_actions_per_read",
+        "required_lifecycle_actions",
+        "trust_boundary",
+        "until_format"
+      ],
+      "properties": {
+        "capture_window": {
+          "type": "string"
+        },
+        "extra_exec_policy": {
+          "type": "string"
+        },
+        "filter_identity": {
+          "type": "string"
+        },
+        "required_exec_actions_per_read": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "required_lifecycle_actions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "trust_boundary": {
+          "type": "string"
+        },
+        "until_format": {
+          "type": "string"
+        }
+      }
+    },
+    "orderedRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_file",
+        "ordinal",
+        "out_path"
+      ],
+      "properties": {
+        "evidence_file": {
+          "type": "string"
+        },
+        "ordinal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "out_path": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceExtractionProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "daemon_event_profile",
+        "exec_binary",
+        "exec_command_template",
+        "exec_user",
+        "ordered_reads",
+        "pre_ready_host_observers",
+        "ready_frame_sha256",
+        "ready_frame_utf8",
+        "schema",
+        "termination_command_template",
+        "threat_boundary"
+      ],
+      "properties": {
+        "daemon_event_profile": {
+          "$ref": "#/$defs/daemonEventProfile"
+        },
+        "exec_binary": {
+          "type": "string"
+        },
+        "exec_command_template": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "exec_user": {
+          "type": "string"
+        },
+        "ordered_reads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedRead"
+          }
+        },
+        "pre_ready_host_observers": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "ready_frame_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "ready_frame_utf8": {
+          "type": "string"
+        },
+        "schema": {
+          "const": "WAVE025_POST_OBSERVATION_EXTRACTION_PROFILE_V1"
+        },
+        "termination_command_template": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "threat_boundary": {
+          "type": "string"
+        }
+      }
+    },
+    "phaseCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration",
+        "holdout"
+      ],
+      "properties": {
+        "calibration": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "holdout": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "samplePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY",
+        "T-OCI-ISOLATED"
+      ],
+      "properties": {
+        "D0-HOST-LEAK": {
+          "$ref": "#/$defs/phaseCounts"
+        },
+        "D1-OCI-CANARY": {
+          "$ref": "#/$defs/phaseCounts"
+        },
+        "T-OCI-ISOLATED": {
+          "$ref": "#/$defs/phaseCounts"
+        }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D0_holdout_balanced_accuracy_lower_bound_min",
+        "D1_holdout_balanced_accuracy_lower_bound_min",
+        "T_holdout_balanced_accuracy_upper_bound_max",
+        "confidence"
+      ],
+      "properties": {
+        "D0_holdout_balanced_accuracy_lower_bound_min": {
+          "type": "number"
+        },
+        "D1_holdout_balanced_accuracy_lower_bound_min": {
+          "type": "number"
+        },
+        "T_holdout_balanced_accuracy_upper_bound_max": {
+          "type": "number"
+        },
+        "confidence": {
+          "type": "number"
+        }
+      }
+    },
+    "precommit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assignment_algorithm",
+        "assignment_commitment",
+        "batch_contract_sha256",
+        "batch_id",
+        "block_plan",
+        "challenges",
+        "classifier_plan",
+        "collector_base_repo_digest",
+        "collector_dockerfile_sha256",
+        "collector_image_id",
+        "collector_image_repo_digest_or_null",
+        "collector_source_sha256",
+        "created_at",
+        "diagnostics",
+        "evaluator_source_sha256",
+        "evidence_extraction_profile",
+        "feature_spec_sha256",
+        "mode",
+        "padding_algorithm",
+        "padding_commitment",
+        "public_id_algorithm",
+        "public_id_commitment",
+        "qualification_contract_sha256",
+        "question_sha256",
+        "runner_source_sha256",
+        "sample_plan",
+        "schema",
+        "supervisor_script_sha256",
+        "thresholds"
+      ],
+      "properties": {
+        "assignment_algorithm": { "type": "string" },
+        "assignment_commitment": { "$ref": "#/$defs/sha256" },
+        "batch_contract_sha256": { "$ref": "#/$defs/sha256" },
+        "batch_id": { "type": "string" },
+        "block_plan": { "$ref": "#/$defs/blockPlan" },
+        "challenges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/challenge" }
+        },
+        "classifier_plan": { "$ref": "#/$defs/classifierPlan" },
+        "collector_base_repo_digest": { "type": "string" },
+        "collector_dockerfile_sha256": { "$ref": "#/$defs/sha256" },
+        "collector_image_id": { "type": "string" },
+        "collector_image_repo_digest_or_null": {
+          "type": ["string", "null"]
+        },
+        "collector_source_sha256": { "$ref": "#/$defs/sha256" },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "diagnostics": { "$ref": "#/$defs/runnerDiagnostics" },
+        "evaluator_source_sha256": { "$ref": "#/$defs/sha256" },
+        "evidence_extraction_profile": { "$ref": "#/$defs/evidenceExtractionProfile" },
+        "feature_spec_sha256": { "$ref": "#/$defs/sha256" },
+        "mode": { "enum": ["smoke", "formal"] },
+        "padding_algorithm": { "type": "string" },
+        "padding_commitment": { "$ref": "#/$defs/sha256" },
+        "public_id_algorithm": { "type": "string" },
+        "public_id_commitment": { "$ref": "#/$defs/sha256" },
+        "qualification_contract_sha256": { "$ref": "#/$defs/sha256" },
+        "question_sha256": { "$ref": "#/$defs/sha256" },
+        "runner_source_sha256": { "$ref": "#/$defs/sha256" },
+        "sample_plan": { "$ref": "#/$defs/samplePlan" },
+        "schema": { "const": "WAVE025_BATCH_PRECOMMIT_V1" },
+        "supervisor_script_sha256": { "$ref": "#/$defs/sha256" },
+        "thresholds": { "$ref": "#/$defs/thresholds" }
+      }
+    },
+    "blockShapeItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["block", "size"],
+      "properties": {
+        "block": { "type": "string" },
+        "size": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "blockShape": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["blocks", "count"],
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/blockShapeItem" }
+        },
+        "count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "resourceEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_uid_gid",
+        "cpu_limit",
+        "measurement_padding_surface",
+        "memory_bytes",
+        "network",
+        "pids_limit",
+        "readonly_rootfs"
+      ],
+      "properties": {
+        "candidate_uid_gid": { "type": "string" },
+        "cpu_limit": { "type": "string" },
+        "measurement_padding_surface": { "type": "string" },
+        "memory_bytes": { "type": "integer", "minimum": 0 },
+        "network": { "type": "string" },
+        "pids_limit": { "type": "integer", "minimum": 0 },
+        "readonly_rootfs": { "type": "boolean" }
+      }
+    },
+    "publicSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["challenge", "opaque_slot_id"],
+      "properties": {
+        "challenge": { "$ref": "#/$defs/challenge" },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" }
+      }
+    },
+    "d0Startup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_profile",
+        "cleanup_boundary",
+        "sacrificial_predecessor",
+        "shared_residue_surface",
+        "supervisor_argv",
+        "supervisor_script_sha256"
+      ],
+      "properties": {
+        "candidate_profile": { "type": "string" },
+        "cleanup_boundary": { "type": "string" },
+        "sacrificial_predecessor": { "type": "boolean" },
+        "shared_residue_surface": { "type": "string" },
+        "supervisor_argv": { "$ref": "#/$defs/stringArray" },
+        "supervisor_script_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "d1Startup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canary_surface_family",
+        "candidate_profile",
+        "supervisor_argv",
+        "supervisor_script_sha256"
+      ],
+      "properties": {
+        "canary_surface_family": { "type": ["string", "null"] },
+        "candidate_profile": { "type": "string" },
+        "supervisor_argv": { "$ref": "#/$defs/stringArray" },
+        "supervisor_script_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "tStartup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canary_surface_family",
+        "candidate_profile",
+        "shared_residue_surface",
+        "supervisor_argv",
+        "supervisor_script_sha256"
+      ],
+      "properties": {
+        "canary_surface_family": { "type": ["string", "null"] },
+        "candidate_profile": { "type": "string" },
+        "shared_residue_surface": { "type": ["string", "null"] },
+        "supervisor_argv": { "$ref": "#/$defs/stringArray" },
+        "supervisor_script_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "startupTemplates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["D0-HOST-LEAK", "D1-OCI-CANARY", "T-OCI-ISOLATED"],
+      "properties": {
+        "D0-HOST-LEAK": { "$ref": "#/$defs/d0Startup" },
+        "D1-OCI-CANARY": { "$ref": "#/$defs/d1Startup" },
+        "T-OCI-ISOLATED": { "$ref": "#/$defs/tStartup" }
+      }
+    },
+    "publicPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "block_shape",
+        "challenges",
+        "mode",
+        "public_packet_sha256",
+        "resource_envelope",
+        "schema",
+        "slot_count",
+        "slots",
+        "startup_templates"
+      ],
+      "properties": {
+        "batch_id": { "type": "string" },
+        "block_shape": { "$ref": "#/$defs/blockShape" },
+        "challenges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/challenge" }
+        },
+        "mode": { "enum": ["smoke", "formal"] },
+        "public_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "resource_envelope": { "$ref": "#/$defs/resourceEnvelope" },
+        "schema": { "const": "WAVE025_PUBLIC_PLAN_V1" },
+        "slot_count": { "type": "integer", "minimum": 0 },
+        "slots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/publicSlot" }
+        },
+        "startup_templates": { "$ref": "#/$defs/startupTemplates" }
+      }
+    },
+    "privateMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block",
+        "challenge",
+        "measurement_padding_bytes",
+        "opaque_slot_id",
+        "phase",
+        "private_canary_token_or_null",
+        "role"
+      ],
+      "properties": {
+        "block": { "type": "string" },
+        "challenge": { "$ref": "#/$defs/challenge" },
+        "measurement_padding_bytes": { "type": "integer", "minimum": 0, "maximum": 256 },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" },
+        "phase": { "$ref": "#/$defs/phase" },
+        "private_canary_token_or_null": { "type": ["string", "null"] },
+        "role": { "$ref": "#/$defs/role" }
+      }
+    },
+    "privateState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_image_inspect_receipt",
+        "base_image_reference_used_for_prepare",
+        "batch_id",
+        "created_at",
+        "domains",
+        "execution_order",
+        "final_image_inspect_receipt",
+        "image_reference_used_for_prepare",
+        "mapping",
+        "precommit_sha256",
+        "public_plan_sha256",
+        "schema"
+      ],
+      "properties": {
+        "base_image_inspect_receipt": { "$ref": "#/$defs/commandReceipt" },
+        "base_image_reference_used_for_prepare": { "type": "string" },
+        "batch_id": { "type": "string" },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "domains": { "$ref": "#/$defs/domains" },
+        "execution_order": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/opaqueSlotId" }
+        },
+        "final_image_inspect_receipt": { "$ref": "#/$defs/commandReceipt" },
+        "image_reference_used_for_prepare": { "type": "string" },
+        "mapping": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/privateMapping" }
+        },
+        "precommit_sha256": { "$ref": "#/$defs/sha256" },
+        "public_plan_sha256": { "$ref": "#/$defs/sha256" },
+        "schema": { "const": "WAVE025_RUNNER_PRIVATE_STATE_V1" }
+      }
+    },
+    "rootReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["anchored_at", "kind", "precommit_sha256", "reference"],
+      "properties": {
+        "anchored_at": { "$ref": "#/$defs/timestamp" },
+        "kind": { "type": "string" },
+        "precommit_sha256": { "$ref": "#/$defs/sha256" },
+        "reference": { "type": "string" }
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "precommit_sha256",
+        "qualifying_external_anchor_present",
+        "recorded_at",
+        "root_receipts",
+        "schema"
+      ],
+      "properties": {
+        "batch_id": { "type": "string" },
+        "precommit_sha256": { "$ref": "#/$defs/sha256" },
+        "qualifying_external_anchor_present": { "type": "boolean" },
+        "recorded_at": { "$ref": "#/$defs/timestamp" },
+        "root_receipts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/rootReceipt" }
+        },
+        "schema": { "const": "WAVE025_ANCHOR_RECEIPT_V1" }
+      }
+    },
+    "environmentHash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "value_byte_length", "value_sha256"],
+      "properties": {
+        "key": { "type": "string" },
+        "value_byte_length": { "type": "string", "pattern": "^[0-9]+$" },
+        "value_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "mountOptions": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "propagation"],
+          "properties": {
+            "mode": { "type": "string" },
+            "propagation": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["raw"],
+          "properties": {
+            "raw": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "mount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["destination", "options", "readonly", "source_or_source_hash", "type"],
+      "properties": {
+        "destination": { "type": "string" },
+        "options": { "$ref": "#/$defs/mountOptions" },
+        "readonly": { "type": "boolean" },
+        "source_or_source_hash": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+          ]
+        },
+        "type": { "type": "string" }
+      }
+    },
+    "configurationCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check", "passed"],
+      "properties": {
+        "check": { "type": "string" },
+        "passed": { "type": "boolean" }
+      }
+    },
+    "execGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_file", "exec_id", "ordinal", "out_path"],
+      "properties": {
+        "evidence_file": { "type": "string" },
+        "exec_id": { "type": ["string", "null"] },
+        "ordinal": { "type": "integer", "minimum": 1 },
+        "out_path": { "type": "string" }
+      }
+    },
+    "postObservationExtraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "daemon_event_actions",
+        "daemon_event_count",
+        "exec_groups",
+        "failures",
+        "ready_frame_sha256",
+        "ready_observed_at",
+        "ready_observed_monotonic_ns",
+        "registered_exec_count",
+        "schema",
+        "valid"
+      ],
+      "properties": {
+        "daemon_event_actions": { "$ref": "#/$defs/stringArray" },
+        "daemon_event_count": { "type": "integer", "minimum": 0 },
+        "exec_groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/execGroup" }
+        },
+        "failures": { "$ref": "#/$defs/stringArray" },
+        "ready_frame_sha256": { "$ref": "#/$defs/sha256" },
+        "ready_observed_at": { "$ref": "#/$defs/timestamp" },
+        "ready_observed_monotonic_ns": { "type": "integer", "minimum": 0 },
+        "registered_exec_count": { "type": "integer", "minimum": 0 },
+        "schema": { "const": "WAVE025_POST_OBSERVATION_EXTRACTION_AUDIT_V1" },
+        "valid": { "type": "boolean" }
+      }
+    },
+    "hostDiagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actual_configuration_checks",
+        "docker_version_command",
+        "host_command_receipts",
+        "post_observation_extraction",
+        "schema"
+      ],
+      "properties": {
+        "actual_configuration_checks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/configurationCheck" }
+        },
+        "docker_version_command": { "$ref": "#/$defs/commandReceipt" },
+        "host_command_receipts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/commandReceipt" }
+        },
+        "post_observation_extraction": { "$ref": "#/$defs/postObservationExtraction" },
+        "schema": { "const": "WAVE025_RUNNER_DIAGNOSTICS_V1" }
+      }
+    },
+    "hostLaunch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "argv",
+        "base_repo_digest",
+        "cap_drop",
+        "container_id",
+        "container_name",
+        "created_at",
+        "daemon_error",
+        "diagnostics",
+        "env_key_value_hashes",
+        "exit_code",
+        "finished_at",
+        "image_id",
+        "ipc_namespace_mode",
+        "memory_limit_bytes",
+        "mounts",
+        "nano_cpus",
+        "network_mode",
+        "oom_killed",
+        "opaque_slot_id",
+        "pid_namespace_mode",
+        "pids_limit",
+        "readonly_rootfs",
+        "repo_digest_or_null",
+        "schema",
+        "security_opt",
+        "started_at",
+        "user",
+        "user_namespace_mode",
+        "uts_namespace_mode",
+        "working_dir"
+      ],
+      "properties": {
+        "argv": { "$ref": "#/$defs/stringArray" },
+        "base_repo_digest": { "type": "string" },
+        "cap_drop": { "$ref": "#/$defs/stringArray" },
+        "container_id": { "type": "string" },
+        "container_name": { "type": "string" },
+        "created_at": { "$ref": "#/$defs/timestamp" },
+        "daemon_error": { "type": ["string", "null"] },
+        "diagnostics": { "$ref": "#/$defs/hostDiagnostics" },
+        "env_key_value_hashes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/environmentHash" }
+        },
+        "exit_code": { "type": "integer" },
+        "finished_at": { "$ref": "#/$defs/timestamp" },
+        "image_id": { "type": "string" },
+        "ipc_namespace_mode": { "type": "string" },
+        "memory_limit_bytes": { "type": "integer", "minimum": 0 },
+        "mounts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/mount" }
+        },
+        "nano_cpus": { "type": "integer", "minimum": 0 },
+        "network_mode": { "type": "string" },
+        "oom_killed": { "type": "boolean" },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" },
+        "pid_namespace_mode": { "type": "string" },
+        "pids_limit": { "type": "integer", "minimum": 0 },
+        "readonly_rootfs": { "type": "boolean" },
+        "repo_digest_or_null": { "type": ["string", "null"] },
+        "schema": { "const": "WAVE025_HOST_LAUNCH_V1" },
+        "security_opt": { "$ref": "#/$defs/stringArray" },
+        "started_at": { "$ref": "#/$defs/timestamp" },
+        "user": { "type": "string" },
+        "user_namespace_mode": { "type": "string" },
+        "uts_namespace_mode": { "type": "string" },
+        "working_dir": { "type": "string" }
+      }
+    },
+    "slotFiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "collector-exit-code.bin",
+        "collector-features.json",
+        "collector-out.bin",
+        "collector-ready.bin",
+        "collector-stderr.bin",
+        "collector-stdout.bin",
+        "docker-events.jsonl",
+        "docker-inspect-post.json",
+        "docker-inspect-pre.json",
+        "host-launch.json",
+        "supervisor-control-stderr.bin",
+        "supervisor-control-stdout.bin"
+      ],
+      "properties": {
+        "collector-exit-code.bin": { "$ref": "#/$defs/sha256" },
+        "collector-features.json": { "$ref": "#/$defs/sha256" },
+        "collector-out.bin": { "$ref": "#/$defs/sha256" },
+        "collector-ready.bin": { "$ref": "#/$defs/sha256" },
+        "collector-stderr.bin": { "$ref": "#/$defs/sha256" },
+        "collector-stdout.bin": { "$ref": "#/$defs/sha256" },
+        "docker-events.jsonl": { "$ref": "#/$defs/sha256" },
+        "docker-inspect-post.json": { "$ref": "#/$defs/sha256" },
+        "docker-inspect-pre.json": { "$ref": "#/$defs/sha256" },
+        "host-launch.json": { "$ref": "#/$defs/sha256" },
+        "supervisor-control-stderr.bin": { "$ref": "#/$defs/sha256" },
+        "supervisor-control-stdout.bin": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "slotReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_count",
+        "challenge",
+        "collector_exit_code",
+        "execution_index",
+        "exit_code",
+        "files",
+        "host_finished_at",
+        "host_monotonic_finish_ns",
+        "host_monotonic_start_ns",
+        "host_started_at",
+        "infrastructure_classification",
+        "opaque_slot_id",
+        "schema"
+      ],
+      "properties": {
+        "attempt_count": { "type": "integer", "minimum": 1 },
+        "challenge": { "$ref": "#/$defs/challenge" },
+        "collector_exit_code": { "type": "integer" },
+        "execution_index": { "type": "integer", "minimum": 0 },
+        "exit_code": { "type": "integer" },
+        "files": { "$ref": "#/$defs/slotFiles" },
+        "host_finished_at": { "$ref": "#/$defs/timestamp" },
+        "host_monotonic_finish_ns": { "type": "integer", "minimum": 0 },
+        "host_monotonic_start_ns": { "type": "integer", "minimum": 0 },
+        "host_started_at": { "$ref": "#/$defs/timestamp" },
+        "infrastructure_classification": { "type": "string" },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" },
+        "schema": { "const": "WAVE025_SLOT_RECEIPT_V1" }
+      }
+    },
+    "closedSlotFiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "collector-exit-code.bin",
+        "collector-features.json",
+        "collector-out.bin",
+        "collector-ready.bin",
+        "collector-stderr.bin",
+        "collector-stdout.bin",
+        "docker-events.jsonl",
+        "docker-inspect-post.json",
+        "docker-inspect-pre.json",
+        "host-launch.json",
+        "slot-receipt.json",
+        "supervisor-control-stderr.bin",
+        "supervisor-control-stdout.bin"
+      ],
+      "properties": {
+        "collector-exit-code.bin": { "$ref": "#/$defs/sha256" },
+        "collector-features.json": { "$ref": "#/$defs/sha256" },
+        "collector-out.bin": { "$ref": "#/$defs/sha256" },
+        "collector-ready.bin": { "$ref": "#/$defs/sha256" },
+        "collector-stderr.bin": { "$ref": "#/$defs/sha256" },
+        "collector-stdout.bin": { "$ref": "#/$defs/sha256" },
+        "docker-events.jsonl": { "$ref": "#/$defs/sha256" },
+        "docker-inspect-post.json": { "$ref": "#/$defs/sha256" },
+        "docker-inspect-pre.json": { "$ref": "#/$defs/sha256" },
+        "host-launch.json": { "$ref": "#/$defs/sha256" },
+        "slot-receipt.json": { "$ref": "#/$defs/sha256" },
+        "supervisor-control-stderr.bin": { "$ref": "#/$defs/sha256" },
+        "supervisor-control-stdout.bin": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "dockerDaemonDiagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "schema"],
+      "properties": {
+        "command": { "$ref": "#/$defs/commandReceipt" },
+        "schema": { "type": "string" }
+      }
+    },
+    "dockerDaemon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "api_version",
+        "arch",
+        "available",
+        "client_version",
+        "diagnostics",
+        "os",
+        "raw_stderr_sha256",
+        "raw_stdout_sha256",
+        "returncode",
+        "server_version"
+      ],
+      "properties": {
+        "api_version": { "type": ["string", "null"] },
+        "arch": { "type": ["string", "null"] },
+        "available": { "type": "boolean" },
+        "client_version": { "type": ["string", "null"] },
+        "diagnostics": { "$ref": "#/$defs/dockerDaemonDiagnostics" },
+        "os": { "type": ["string", "null"] },
+        "raw_stderr_sha256": { "$ref": "#/$defs/sha256" },
+        "raw_stdout_sha256": { "$ref": "#/$defs/sha256" },
+        "returncode": { "type": "integer" },
+        "server_version": { "type": ["string", "null"] }
+      }
+    },
+    "closedSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_count",
+        "challenge",
+        "execution_index",
+        "files",
+        "opaque_slot_id",
+        "status"
+      ],
+      "properties": {
+        "attempt_count": { "type": "integer", "minimum": 1 },
+        "challenge": { "$ref": "#/$defs/challenge" },
+        "execution_index": { "type": "integer", "minimum": 0 },
+        "files": { "$ref": "#/$defs/closedSlotFiles" },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" },
+        "status": { "type": "string" }
+      }
+    },
+    "closed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actual_slot_directory_count",
+        "anchor_receipt_sha256",
+        "batch_id",
+        "batch_merkle_root",
+        "closed_at",
+        "docker_daemon",
+        "expected_slot_count",
+        "first_host_time",
+        "last_host_time",
+        "merkle_algorithm",
+        "precommit_sha256",
+        "schema",
+        "slots",
+        "status",
+        "unexpected_slot_entries"
+      ],
+      "properties": {
+        "actual_slot_directory_count": { "type": "integer", "minimum": 0 },
+        "anchor_receipt_sha256": { "$ref": "#/$defs/sha256" },
+        "batch_id": { "type": "string" },
+        "batch_merkle_root": { "$ref": "#/$defs/sha256" },
+        "closed_at": { "$ref": "#/$defs/timestamp" },
+        "docker_daemon": { "$ref": "#/$defs/dockerDaemon" },
+        "expected_slot_count": { "type": "integer", "minimum": 0 },
+        "first_host_time": { "$ref": "#/$defs/timestamp" },
+        "last_host_time": { "$ref": "#/$defs/timestamp" },
+        "merkle_algorithm": { "type": "string" },
+        "precommit_sha256": { "$ref": "#/$defs/sha256" },
+        "schema": { "const": "WAVE025_BATCH_CLOSED_V1" },
+        "slots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/closedSlot" }
+        },
+        "status": { "type": "string" },
+        "unexpected_slot_entries": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "revealMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block",
+        "canary_token_or_null",
+        "challenge",
+        "measurement_padding_bytes",
+        "opaque_slot_id",
+        "phase",
+        "role"
+      ],
+      "properties": {
+        "block": { "type": "string" },
+        "canary_token_or_null": { "type": ["string", "null"] },
+        "challenge": { "$ref": "#/$defs/challenge" },
+        "measurement_padding_bytes": { "type": "integer", "minimum": 0, "maximum": 256 },
+        "opaque_slot_id": { "$ref": "#/$defs/opaqueSlotId" },
+        "phase": { "$ref": "#/$defs/phase" },
+        "role": { "$ref": "#/$defs/role" }
+      }
+    },
+    "commitmentChecks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignment", "padding", "public_id"],
+      "properties": {
+        "assignment": { "type": "boolean" },
+        "padding": { "type": "boolean" },
+        "public_id": { "type": "boolean" }
+      }
+    },
+    "reconstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commitments",
+        "execution_order_exactly_rebuilt",
+        "mapping_exactly_rebuilt",
+        "opaque_ids_unique_and_rebuilt",
+        "padding_exactly_rebuilt",
+        "strict_block_balance"
+      ],
+      "properties": {
+        "commitments": { "$ref": "#/$defs/commitmentChecks" },
+        "execution_order_exactly_rebuilt": { "type": "boolean" },
+        "mapping_exactly_rebuilt": { "type": "boolean" },
+        "opaque_ids_unique_and_rebuilt": { "type": "boolean" },
+        "padding_exactly_rebuilt": { "type": "boolean" },
+        "strict_block_balance": { "type": "boolean" }
+      }
+    },
+    "reveal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "closed_sha256",
+        "domains",
+        "execution_order",
+        "mapping",
+        "reconstruction",
+        "reconstruction_complete",
+        "revealed_at",
+        "schema"
+      ],
+      "properties": {
+        "batch_id": { "type": "string" },
+        "closed_sha256": { "$ref": "#/$defs/sha256" },
+        "domains": { "$ref": "#/$defs/domains" },
+        "execution_order": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/opaqueSlotId" }
+        },
+        "mapping": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/revealMapping" }
+        },
+        "reconstruction": { "$ref": "#/$defs/reconstruction" },
+        "reconstruction_complete": { "type": "boolean" },
+        "revealed_at": { "$ref": "#/$defs/timestamp" },
+        "schema": { "const": "WAVE025_BATCH_REVEAL_V1" }
+      }
+    },
+    "dockerInspectRaw": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "fObservedDockerEventActor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ID", "Attributes"],
+      "properties": {
+        "ID": { "type": "string" },
+        "Attributes": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "name": { "type": "string" },
+            "execID": { "type": "string" },
+            "exitCode": { "type": "string" },
+            "signal": { "type": "string" }
+          }
+        }
+      }
+    },
+    "fObservedRawDockerEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["Type", "Action", "Actor", "scope", "time", "timeNano"],
+      "properties": {
+        "Type": { "type": "string" },
+        "Action": { "type": "string" },
+        "Actor": { "$ref": "#/$defs/fObservedDockerEventActor" },
+        "scope": { "type": "string" },
+        "time": { "type": "integer" },
+        "timeNano": { "type": "integer" }
+      }
+    },
+    "postCutEventProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "action",
+        "command_or_null",
+        "container_id",
+        "container_name",
+        "exec_id_or_null",
+        "exit_code_or_null",
+        "signal_or_null",
+        "time_nano"
+      ],
+      "properties": {
+        "type": { "type": "string" },
+        "action": { "type": "string" },
+        "command_or_null": { "type": ["string", "null"] },
+        "container_id": { "type": "string" },
+        "container_name": { "type": "string" },
+        "exec_id_or_null": { "type": ["string", "null"] },
+        "exit_code_or_null": { "type": ["string", "null"] },
+        "signal_or_null": { "type": ["string", "null"] },
+        "time_nano": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/precommit" },
+    { "$ref": "#/$defs/publicPlan" },
+    { "$ref": "#/$defs/privateState" },
+    { "$ref": "#/$defs/anchor" },
+    { "$ref": "#/$defs/hostLaunch" },
+    { "$ref": "#/$defs/slotReceipt" },
+    { "$ref": "#/$defs/closed" },
+    { "$ref": "#/$defs/reveal" }
+  ]
+}

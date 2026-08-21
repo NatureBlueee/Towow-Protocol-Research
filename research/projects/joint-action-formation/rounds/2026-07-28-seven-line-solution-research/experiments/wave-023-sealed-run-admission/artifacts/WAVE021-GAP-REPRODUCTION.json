@@ -1,0 +1,31 @@
+{
+  "all_attacks_accepted": true,
+  "claim_boundary": {
+    "wave021_contract_invalidated": false,
+    "wave021_scored_runtime_admission_supported": false,
+    "wave023_sealed_admission_required": true
+  },
+  "interpretation": "ALL_ATTACKS_ACCEPTED_BY_STATIC_VALIDATOR; WAVE021_REMAINS_PREREGISTRATION_ONLY",
+  "results": {
+    "declared_U_actual_P": "FAIR_BATCH_PLAN_ACCEPTED_NOT_EXECUTED",
+    "posthoc_per_arm_trigger": "SEMANTIC_FAILURE_TRIGGER_ACCEPTED_NOT_EXECUTED",
+    "unfrozen_executable_world": "FAIR_BATCH_PLAN_ACCEPTED_NOT_EXECUTED",
+    "unknown_payload_oracle": "FAIR_BATCH_PLAN_ACCEPTED_NOT_EXECUTED",
+    "unmetered_A3": "FAIR_BATCH_PLAN_ACCEPTED_NOT_EXECUTED"
+  },
+  "schema": "WAVE021_RUNTIME_ADMISSION_GAP_REPRODUCTION_V1",
+  "source_files": {
+    "contract": {
+      "path": "rounds/2026-07-28-seven-line-solution-research/experiments/wave-021-fair-baselines/BASELINE-CONTRACT.json",
+      "sha256": "91a0e174971782362672e0909240b7f2467d68969a103542282e92c90297a41d"
+    },
+    "plan": {
+      "path": "rounds/2026-07-28-seven-line-solution-research/experiments/wave-021-fair-baselines/fixtures/FAIR-BATCH-TEMPLATE.json",
+      "sha256": "fe09d15d5ca2d64b7fcfc5041130e711dc25ead605dd6a758c13f51b5d12e6f9"
+    },
+    "trigger": {
+      "path": "rounds/2026-07-28-seven-line-solution-research/experiments/wave-021-fair-baselines/fixtures/FAIR-FAILURE-TRIGGER.json",
+      "sha256": "bf68a722e02db2d1db71372613cf4c65f24d604454299cf10cc72b3721667eac"
+    }
+  }
+}

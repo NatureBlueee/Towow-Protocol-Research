@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "WAVE-003-B-T2-PROBE-SIM-001",
+  "status": "FROZEN_LOCAL_SYNTHETIC_RUNNER",
+  "task": "T2 bounded probe execution truth",
+  "scope": {
+    "implements_execution_simulator": true,
+    "implements_relation_solver": false,
+    "implements_final_evaluator": false,
+    "asserts_real_capability": false,
+    "asserts_real_effect": false,
+    "asserts_real_buyer_witness": false
+  },
+  "frozen_branches": [
+    "success",
+    "environment_mismatch",
+    "credential_revoked_mid_run",
+    "audit_witness_missing",
+    "duplicate_retry"
+  ],
+  "required_separations": [
+    "ActionAttempt vs buyer-domain witness",
+    "producer evidence vs buyer-domain evidence",
+    "new execution vs idempotent replay",
+    "execution result vs capability conclusion",
+    "synthetic receipt vs real-world evidence"
+  ],
+  "wave_002_provenance": [
+    {
+      "path": "../../WAVE-002-FIRST-BLIND-RUNS.md",
+      "sha256": "d23a99d98d7c50b775ad2bcdf650ad55753b2e3a3219e95f4665451c67b3f85c",
+      "use": "probe NOT_RUN and capability UNKNOWN starting state"
+    },
+    {
+      "path": "../../tasks/t2-readonly-pilot/blind/input.json",
+      "sha256": "e5a7f7edc89f0ae5ef7effe4c70abfcfc1b22be36cb108c41da181e39db23771",
+      "use": "frozen value, authority, evidence, and repeat-run boundaries"
+    },
+    {
+      "path": "../../runs/wave-002-first-blind-comparisons/t2/response-round-2.json",
+      "sha256": "e139ca2592c0cf96803ad1890d2bce98f81bc1efa23ebbd746f22ff31bd30a92",
+      "use": "bounded probe conditions and conditional test permission"
+    },
+    {
+      "path": "../../runs/wave-002-first-blind-comparisons/t2/final-submission.json",
+      "sha256": "19ac2def266c355179a401fede37a8c33523c7c1a6237c5706eae798a6ca5e2e",
+      "use": "recovery, idempotency, and outcome-separation requirements"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "PUBLIC_RUNNER_CONTRACT",
+      "sha256": "a12d5d4688218a9b7c0c1cec8b795f2f63e188b7cb60fc35eebb9ea86b1b2efb"
+    },
+    {
+      "path": "probe_input.json",
+      "role": "FROZEN_BOUND_INPUT",
+      "sha256": "0dd1da9eb7a2c79d5a7efcb99a1dad1639bf744feec0b91eada373ca4db1901b"
+    },
+    {
+      "path": "scenario_truth.json",
+      "role": "FROZEN_SYNTHETIC_EXECUTION_TRUTH",
+      "sha256": "8067587f3ebefb07acaadf7ae568e35f49c6f90c51d9a01b340855849fc48369"
+    },
+    {
+      "path": "simulator.py",
+      "role": "DETERMINISTIC_RUNNER",
+      "sha256": "673654cb90d8d18d01e95a1b101d6b937a8b838cccaac71200b36b2d5fb8cfac"
+    },
+    {
+      "path": "tests/test_simulator.py",
+      "role": "DIRECTED_CONTRACT_AND_BRANCH_TESTS",
+      "sha256": "5645c53c5bd5ba27292d508aa1869011476ca7c19cc2f9de39a8fbd64fab56d7"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "visibility": "EVALUATOR_ONLY",
+  "purpose": "用相互独立的失败注入检验候选方法的阻断、scoped reopen、结果分离和安全退出；不规定修复机制。",
+  "mutations": [
+    {
+      "id": "MUT-TENDER-ADDENDUM-AFTER-STANCE",
+      "critical": true,
+      "injection_point": "三方已返回 conditional stance，但尚未提交",
+      "delta": "CITY 发布新的 material addendum，改变允许的数据投影与 acceptance witness。",
+      "expected_guard": "建立新关系版本；阻断受影响技术 qualification、stance 与 acceptance plan；保留无关身份和已验证的独立事实。",
+      "must_not": "静默沿用旧 probe 或旧签署条件",
+      "tests": [
+        "R2-TASK-RELATION",
+        "R4-CAPABILITY-QUALIFICATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    },
+    {
+      "id": "MUT-FIELD-RESERVATION-REVOKED",
+      "critical": true,
+      "injection_point": "FIELD reservation 已建立，其他 reservation 仍有效",
+      "delta": "FIELD-COMMERCIAL 在权限内撤销 12-kit reservation。",
+      "expected_guard": "当前提交路径失去可达性；只重开 FIELD capacity/reservation 及其下游 stance，不伪造 availability 或自动替代签署。",
+      "must_not": "把旧 reservation 当作仍有效或无理由全量删除所有独立证据",
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    },
+    {
+      "id": "MUT-BUDGET-CEILING-REDUCED",
+      "critical": true,
+      "injection_point": "价格界已取得，尚未提交",
+      "delta": "CITY-PROCUREMENT 将当前 ceiling 降低到候选总价以下。",
+      "expected_guard": "阻断 budget qualification；寻求经各商业 Authority 同意的 counterproposal，否则 SAFE_EXIT。",
+      "must_not": "私自改价、删减价值底线或继续宣称可提交",
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    },
+    {
+      "id": "MUT-INTEROP-PROBE-FAILS",
+      "critical": true,
+      "injection_point": "通用 capability 已知，精确 operation 尚未 commitment",
+      "delta": "精确版本和当前环境下的 interop probe 返回 FAIL。",
+      "expected_guard": "保持通用局部能力，但阻断当前跨主体 operation、相关 stance 和提交闭合；允许修复后用新 evidence 重新 qualification。",
+      "must_not": "把历史成功或公开 capability 用来覆盖本次失败",
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R4-CAPABILITY-QUALIFICATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    },
+    {
+      "id": "MUT-ASSURE-INDEPENDENCE-CONFLICT",
+      "critical": true,
+      "injection_point": "ASSURE capability 已确认，尚未签署",
+      "delta": "发现 ASSURE 同时参与了待验收控制的实现设计。",
+      "expected_guard": "当前 independent acceptance role 失效；阻断 ASSURE stance 和 acceptance plan；寻求独立替代 Authority 或 SAFE_EXIT。",
+      "must_not": "因为 ASSURE 技术能力存在而忽略 independence conflict",
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R6-OUTCOME-READBACK"
+      ]
+    },
+    {
+      "id": "MUT-SIGNER-WITHDRAWS",
+      "critical": true,
+      "injection_point": "技术 qualification 和 reservations 有效",
+      "delta": "PRIME-BID 撤回 joint-bid signing stance。",
+      "expected_guard": "保持技术 evidence 的原始作用域，但阻断关系 Commitment 和 submission-ready 状态；重新取得有权 stance 或退出。",
+      "must_not": "从 PRIME-TECH capability 推出 PRIME-BID signature",
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    },
+    {
+      "id": "MUT-DUPLICATE-PORTAL-RECEIPT",
+      "critical": true,
+      "injection_point": "相同 payload 被重复提交",
+      "delta": "portal 返回第二个 delivery receipt，但没有 shortlist 或 award witness。",
+      "expected_guard": "去重 submission attempt；最多确认 payload receipt，不提升 Adoption、Acceptance 或 Effect。",
+      "must_not": "把多个 receipt 视作更强现实结果",
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R6-OUTCOME-READBACK"
+      ]
+    },
+    {
+      "id": "MUT-PROVIDER-LOG-WITHOUT-CITY-READBACK",
+      "critical": true,
+      "injection_point": "现场执行者报告 12 个站点完成",
+      "delta": "只有 provider log，没有城市 operations ledger、签名 readback 或独立 audit hash。",
+      "expected_guard": "ActionAttempt 可记录，Effect 保持 UNKNOWN 或 NOT_ESTABLISHED。",
+      "must_not": "把 performer self-report 提升为 target-domain Effect",
+      "tests": [
+        "R4-CAPABILITY-QUALIFICATION",
+        "R6-OUTCOME-READBACK"
+      ]
+    },
+    {
+      "id": "MUT-SHORTLIST-WITHOUT-AWARD",
+      "critical": true,
+      "injection_point": "CITY 发布 shortlist notice",
+      "delta": "有 Adoption witness，但尚无 award notice。",
+      "expected_guard": "Adoption 成立，Acceptance 保持 NOT_OCCURRED；后续 execution 与 settlement 不被触发。",
+      "must_not": "把 shortlist 当作 award、签约或目标 Effect",
+      "tests": [
+        "R6-OUTCOME-READBACK"
+      ]
+    },
+    {
+      "id": "MUT-HIDDEN-DEPENDENCY-UNKNOWN",
+      "critical": false,
+      "injection_point": "即将形成 submission-ready 判断",
+      "delta": "一个必要的 signer mandate expiry 无法在 deadline 前确认。",
+      "expected_guard": "显式保留 Unknown 并阻断依赖该 mandate 的闭合；可 Defer、提出条件化路径或 SAFE_EXIT。",
+      "must_not": "把没有证据解释为默认有效",
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ]
+    }
+  ],
+  "coverage": {
+    "R2-TASK-RELATION": 4,
+    "R3-FORM-REACHABILITY": 4,
+    "R4-CAPABILITY-QUALIFICATION": 3,
+    "R5-AUTHORITY-RESERVATION": 5,
+    "R6-OUTCOME-READBACK": 4,
+    "R7-REOPEN-REUSE-MIGRATION": 6
+  },
+  "full_pass_rule": "所有 critical mutations 正确阻断且没有 false closure；至少 80% 全部 mutations 产生与依赖相称的 reopen 或 safe exit。",
+  "solution_neutrality": "不要求 Towow-specific event、object 或 protocol；成熟 standards/workflow/IAM/commitment 组合若通过同样 mutation，可得同样评价。"
+}

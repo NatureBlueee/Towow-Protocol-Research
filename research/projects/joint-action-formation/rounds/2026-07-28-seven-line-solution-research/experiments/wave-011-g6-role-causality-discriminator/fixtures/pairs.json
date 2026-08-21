@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "kind": "G6_PAIRED_WORLD_INDEX",
+  "visibility": "RUNNER_PRIVATE_NEVER_PASSED_TO_WORKERS",
+  "pairs": [
+    {"pair": "P1", "worlds": ["P1-A", "P1-B"], "contrast": "authorized no-effect / unauthorized real-effect"},
+    {"pair": "P2", "worlds": ["P2-A", "P2-B"], "contrast": "pre-existing current state / exact attempt caused"},
+    {"pair": "P3", "worlds": ["P3-A", "P3-B"], "contrast": "correct target / wrong-target real damage"},
+    {"pair": "P4", "worlds": ["P4-A", "P4-B"], "contrast": "fresh head / signed stale head"},
+    {"pair": "P5", "worlds": ["P5-A", "P5-B"], "contrast": "Effect only / Effect plus actual Adoption"},
+    {"pair": "P6", "worlds": ["P6-A", "P6-B"], "contrast": "correct Acceptance object / same owner wrong version"},
+    {"pair": "P7", "worlds": ["P7-A", "P7-B"], "contrast": "one owner Accept / another Reject"},
+    {"pair": "P8", "worlds": ["P8-A", "P8-B"], "contrast": "provider Settled / beneficiary PaidOut"},
+    {"pair": "P9", "worlds": ["P9-A", "P9-B"], "contrast": "payout complete / chargeback or reversal open"},
+    {"pair": "P10", "worlds": ["P10-A", "P10-B"], "contrast": "timeout before commit / timeout after Effect"},
+    {"pair": "P11", "worlds": ["P11-A", "P11-B"], "contrast": "consistent cut / read-skew"},
+    {"pair": "P12", "worlds": ["P12-A", "P12-B"], "contrast": "independent owners / lawfully delegated single center"}
+  ],
+  "authority_strata": {
+    "S1": "unified authority",
+    "S2": "equal-permission multi-owner",
+    "S3": "lawfully delegated"
+  },
+  "implementations": [
+    "strong_center",
+    "mature_composition",
+    "human_institution"
+  ],
+  "method_visible_fields": [
+    "world_id",
+    "authority_stratum",
+    "owner observations",
+    "owner query cost",
+    "trace refs"
+  ],
+  "not_method_visible": [
+    "pair contrast label",
+    "A/B label meaning",
+    "private oracle",
+    "expected output"
+  ]
+}

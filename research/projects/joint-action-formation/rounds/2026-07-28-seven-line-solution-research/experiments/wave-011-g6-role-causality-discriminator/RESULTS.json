@@ -1,0 +1,337 @@
+{
+  "evaluation": {
+    "all_records_passed": true,
+    "cannot_support": [
+      "PROGRAM requirement coverage",
+      "X2 population, X2 result, or X1-to-X2 closure",
+      "real-world frequency or external validity",
+      "real Effect, human Acceptance, payment, or production recovery",
+      "general superiority of a center, composition, or human institution",
+      "necessity of a novel Effect protocol",
+      "formal claim, line, mechanism, NOW, or PROGRAM status change"
+    ],
+    "evidence_state": "LOCAL_SYNTHETIC_FINITE_FIXTURE_CONFORMANCE",
+    "kind": "G6_PRIVATE_ORACLE_EVALUATION",
+    "method_summary": {
+      "human_institution": {
+        "S1": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S2": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S3": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        }
+      },
+      "mature_composition": {
+        "S1": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S2": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S3": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        }
+      },
+      "strong_center": {
+        "S1": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S2": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        },
+        "S3": {
+          "passed_checks": 88,
+          "synthetic_check_rate": 1.0,
+          "total_checks": 88
+        }
+      }
+    },
+    "pair_discrimination": {
+      "P1": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P10": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P11": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P12": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P2": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P3": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P4": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P5": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P6": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P7": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P8": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      },
+      "P9": {
+        "all_implementations_and_strata_passed": true,
+        "passed_records": 9,
+        "total_records": 9
+      }
+    },
+    "passed_record_count": 108,
+    "record_count": 108,
+    "schema_version": "1.0"
+  },
+  "gates": {
+    "coverage_allowed": true,
+    "evidence_boundary": "local synthetic gate discrimination only; not X2, production, real Effect, human Acceptance, or formal promotion evidence",
+    "gate_results": {
+      "method_alias": {
+        "attack_detected": true,
+        "attack_present": true,
+        "benign_control_accepted": true,
+        "evidence": {
+          "actual_alias_collisions": [],
+          "actual_method_count": 3,
+          "distinct_executable_identities": 3,
+          "reference_attack_collisions": [
+            {
+              "digest": "73c387c0529d542ea296385727f6f4e8c3d5978819fdabe91c97e3d4e65fc40a",
+              "identity_field": "executable_sha256",
+              "methods": [
+                "strong-center",
+                "mature-composition",
+                "human"
+              ]
+            },
+            {
+              "digest": "73c387c0529d542ea296385727f6f4e8c3d5978819fdabe91c97e3d4e65fc40a",
+              "identity_field": "decision_root_sha256",
+              "methods": [
+                "strong-center",
+                "mature-composition",
+                "human"
+              ]
+            }
+          ]
+        },
+        "failure": null,
+        "name": "method_alias",
+        "passed": true
+      },
+      "read_skew": {
+        "attack_detected": true,
+        "attack_present": true,
+        "benign_control_accepted": true,
+        "evidence": {
+          "attack_rows": 9,
+          "benign_control_rows": 189,
+          "benign_controls_accepted": 189,
+          "safe_rows": 9
+        },
+        "failure": null,
+        "name": "read_skew",
+        "passed": true
+      },
+      "truth_copy": {
+        "attack_detected": true,
+        "attack_present": true,
+        "benign_control_accepted": true,
+        "evidence": {
+          "distinct_source_paths": 8,
+          "forbidden_sources": [],
+          "oracle_unchanged": true,
+          "owner_native_source_count": 8,
+          "reference_attack_detected": true
+        },
+        "failure": null,
+        "name": "truth_copy",
+        "passed": true
+      },
+      "unauthorized_real_effect": {
+        "attack_detected": true,
+        "attack_present": true,
+        "benign_control_accepted": true,
+        "evidence": {
+          "attack_rows": 12,
+          "benign_control_rows": 204,
+          "benign_controls_accepted": 204,
+          "preserved_rows": 12
+        },
+        "failure": null,
+        "name": "unauthorized_real_effect",
+        "passed": true
+      },
+      "wrong_object": {
+        "attack_detected": true,
+        "attack_present": true,
+        "benign_control_accepted": true,
+        "evidence": {
+          "attack_rows": 9,
+          "benign_control_rows": 150,
+          "benign_controls_accepted": 150,
+          "preserved_rows": 9
+        },
+        "failure": null,
+        "name": "wrong_object",
+        "passed": true
+      }
+    },
+    "overall_valid": true,
+    "round_status": "GATES_PASS",
+    "schema": "towow.wave011.g6.invalidation-gates.v1"
+  },
+  "kind": "G6_WAVE011_EXPERIMENT_RESULT",
+  "matrix_summary": {
+    "authority_strata": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "cannot_support": [
+      "X2 scoreable population or X2 result",
+      "real-world Effect, Adoption, Acceptance or Settlement",
+      "production recovery, payment or authorized external action",
+      "general cross-domain sufficiency",
+      "formal LineContract, MechanismProfile, NOW or PROGRAM status change",
+      "novel protocol necessity"
+    ],
+    "implementation_count": 3,
+    "kind": "G6_12_PAIR_3X3_RUN",
+    "oracle_hash_after": "6b3555b7238fe19d0306b67b04ead2c61d61b479e894d95a596a1b013916c004",
+    "oracle_hash_before": "6b3555b7238fe19d0306b67b04ead2c61d61b479e894d95a596a1b013916c004",
+    "owner_source_identities": {
+      "acceptance": {
+        "owner_id": "acceptance-institution-owner",
+        "path": "fixtures/acceptance_acts.json",
+        "sha256": "0d0721cd505d65d22b1cbe2e34d4d53702cb5c9bca58738f5a4683dc1fe05d49",
+        "source_identity": "institutional-act-register-v1"
+      },
+      "adoption": {
+        "owner_id": "adopter-domain-owner",
+        "path": "fixtures/adoption_store.json",
+        "sha256": "45bfd3120feaa5dcd684aa2d8fad857cfb64490710186721c0feec0b8209da94",
+        "source_identity": "operational-use-store-v1"
+      },
+      "authority": {
+        "owner_id": "authority-registry-owner",
+        "path": "fixtures/authority_store.json",
+        "sha256": "28c89917e3c96de55a2ee274013c34e8a93b7e728fedc229eb33e2f30ab0c7d7",
+        "source_identity": "mandate-delegation-current-head-v1"
+      },
+      "claim_head": {
+        "owner_id": "claim-registry-owner",
+        "path": "fixtures/claim_heads.json",
+        "sha256": "86c20fee42b4d78adc2536d4c6f014cc2a0308ab3496b7ba01a05696a26edce5",
+        "source_identity": "append-only-claim-head-ledger-v1"
+      },
+      "cut": {
+        "owner_id": "observation-cut-owner",
+        "path": "fixtures/cut_store.json",
+        "sha256": "fa9d66373b9449c9649c0dcb115fe4012804f323102e9cf3c073966c485db494",
+        "source_identity": "owner-head-vector-register-v1"
+      },
+      "execution": {
+        "owner_id": "execution-domain-owner",
+        "path": "fixtures/execution_sensor.json",
+        "sha256": "be49c0a61b9c5bbdb8685f138db34558552592e378412ad7ec42a45449129e32",
+        "source_identity": "execution-boundary-audit-sensor-v1"
+      },
+      "settlement": {
+        "owner_id": "settlement-scheme-owner",
+        "path": "fixtures/obligation_store.json",
+        "sha256": "be61c23026b6fd5f9c3f5c78ab9be837706025ba69bc430876f9e267a7f97c5b",
+        "source_identity": "obligation-scheme-ledger-v1"
+      },
+      "target": {
+        "owner_id": "target-domain-owner",
+        "path": "fixtures/target_store.json",
+        "sha256": "8dea13ecfd1457c32eae124796b781f9996133796de1f9e28e31d6b69bfb18cb",
+        "source_identity": "target-transition-store-v1"
+      }
+    },
+    "pair_count": 12,
+    "record_count": 108,
+    "run_validity": "VALID_LOCAL_SYNTHETIC_GATES_PASS",
+    "schema_version": "1.0",
+    "worker_executable_source_hashes": {
+      "human_institution": {
+        "decision_module": "human_institution.py",
+        "executable_identity": "/Library/Developer/CommandLineTools/usr/bin/python3:/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g6-role-causality-discriminator/workers/human_institution.py",
+        "source": "workers/human_institution.py",
+        "source_sha256": "1117d6bbec776c547ffea89840499acefba35c524c6e721796333bf376d114fa"
+      },
+      "mature_composition": {
+        "decision_module": "mature_composition.py",
+        "executable_identity": "/Library/Developer/CommandLineTools/usr/bin/python3:/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g6-role-causality-discriminator/workers/mature_composition.py",
+        "source": "workers/mature_composition.py",
+        "source_sha256": "acf83c5711f0da70093ed34ee325743af39b95d19d2badd17da64c41c25c1971"
+      },
+      "strong_center": {
+        "decision_module": "strong_center.py",
+        "executable_identity": "/Library/Developer/CommandLineTools/usr/bin/python3:/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-011-g6-role-causality-discriminator/workers/strong_center.py",
+        "source": "workers/strong_center.py",
+        "source_sha256": "493cf7078f9ca513582ec94bbb0bec01254799bf3e88d07a0992d0c9544a973a"
+      }
+    },
+    "world_count": 24
+  },
+  "raw_archive": {
+    "compressed_bytes": 45146,
+    "format": "gzip-compressed JSON",
+    "path": "RUN-RAW.json.gz",
+    "sha256": "0b2a55ff086e926455e0a09d86e6e1ff844c39e1a870e6cce66d950427cfd18f",
+    "uncompressed_bytes": 1778680
+  },
+  "schema_version": "1.0",
+  "status": "VALID_LOCAL_SYNTHETIC_GATES_PASS"
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.1",
+  "manifest_id": "T1-HW-MANIFEST-20260728-B",
+  "world_id": "T1-HW-20260728-A",
+  "status": "FROZEN_LOCAL_SYNTHETIC_EVALUATOR",
+  "task": "G1/T1 hidden-world discovery truth and fair blind evaluator",
+  "evaluation_step": 1,
+  "freeze_scope": [
+    "S0",
+    "V0",
+    "Q",
+    "Authority",
+    "policies",
+    "witnesses",
+    "timeline"
+  ],
+  "visibility": {
+    "method_visible": [
+      "submission_schema.json",
+      "generated packet for the solver's exact recipient only"
+    ],
+    "controller_only": [
+      "controller_input.json",
+      "packet_builder.py"
+    ],
+    "scorer_only": [
+      "oracle_truth.json",
+      "evaluator.py"
+    ],
+    "scorer_conformance_only": [
+      "fixtures/scorer_conformance_receipt.json",
+      "mutations/negative_mutations.json",
+      "tests/test_evaluator.py"
+    ]
+  },
+  "packetization": {
+    "builder": "packet_builder.py",
+    "coordinator_packet_count": 1,
+    "local_packet_count": 11,
+    "aggregate_controller_source_is_method_visible": false,
+    "cross_recipient_packet_delivery_allowed": false
+  },
+  "submission_identity": {
+    "candidate_owns_detection_id": true,
+    "oracle_item_id_required": false,
+    "mapping_basis": [
+      "observable seeker/provider/direction",
+      "public claim_key/subject"
+    ],
+    "unmapped_latent_target_is_recall_miss": true
+  },
+  "claims": {
+    "implements_candidate_solution": false,
+    "fixture_is_candidate_result": false,
+    "oracle_is_method_visible": false,
+    "controller_aggregate_is_method_visible": false,
+    "synthetic_only": true,
+    "real_world_generality_established": false,
+    "local_filesystem_is_cryptographic_separation": false,
+    "deterministic_evaluator": true,
+    "deterministic_packet_builder": true
+  },
+  "frozen_distinctions": [
+    "EXPRESSED",
+    "EXISTS_BUT_UNEXPRESSED",
+    "EXPRESSIBLE_AFTER_RECIPROCAL_PROBE",
+    "EXISTS_BUT_UNFINDABLE_UNDER_POLICY",
+    "DYNAMIC_FLIP",
+    "UNKNOWN",
+    "REFUSE",
+    "ABSENT",
+    "SEEK_VS_OFFER",
+    "CUMULATIVE_MULTI_RECIPIENT_DISCLOSURE"
+  ],
+  "negative_mutation_count": 7,
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "BOUNDARY_AND_RUNBOOK",
+      "sha256": "c02711283ec37f28fdff03f225fc6d29de57fd5752416cdfc99a20e4f51dbd3e"
+    },
+    {
+      "path": "controller_input.json",
+      "role": "CONTROLLER_ONLY_PACKET_SOURCE",
+      "sha256": "3ee74072af7e49668c0be119b608e675f39c8f90909f2b6f643a48398533841e"
+    },
+    {
+      "path": "packet_builder.py",
+      "role": "DETERMINISTIC_SCOPED_PACKET_BUILDER",
+      "sha256": "0669557b18b97c1052550aedb3e5bbedf32b6214af5bf94c7c150687bc0a7bb5"
+    },
+    {
+      "path": "submission_schema.json",
+      "role": "METHOD_VISIBLE_SUBMISSION_CONTRACT",
+      "sha256": "c7e0c96a297c4dc830a8cfd4001763391a966f6c6a6915b2af1b84fb77a426e5"
+    },
+    {
+      "path": "oracle_truth.json",
+      "role": "SCORER_ONLY_TRUTH",
+      "sha256": "52cc2aa2edb6ab12002acbe41700bdd95e7af9c110f3c1e7b3464bde2b7aed49"
+    },
+    {
+      "path": "evaluator.py",
+      "role": "DETERMINISTIC_HIDDEN_TRUTH_SCORER",
+      "sha256": "448d2a6729aae89589aefaa6baa0b2e25968b582be737a8b4abc184f954c98fc"
+    },
+    {
+      "path": "fixtures/scorer_conformance_receipt.json",
+      "role": "SCORER_CONFORMANCE_ONLY",
+      "sha256": "6faff3d95c8848ee76f12c1acf22da83fd80f04ca8b9095a35e89cc10c71840e"
+    },
+    {
+      "path": "mutations/negative_mutations.json",
+      "role": "NEGATIVE_MUTATION_SET",
+      "sha256": "bbbfdf3b93623fbcd01830053b3180a11a909dbe31fb81e840adc956ed83d3a7"
+    },
+    {
+      "path": "tests/test_evaluator.py",
+      "role": "DIRECTED_FAIRNESS_AND_MUTATION_TESTS",
+      "sha256": "f94d8907dc5982b3ee299fed8863f68c893465199cba092435aa57149d650d3b"
+    }
+  ]
+}

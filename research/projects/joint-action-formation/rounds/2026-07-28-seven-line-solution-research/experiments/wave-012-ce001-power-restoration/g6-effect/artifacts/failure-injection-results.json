@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "acceptance_refusal_blocks_settlement": true,
+    "owner_unavailable_stays_unknown": true,
+    "preexisting_not_counted": true,
+    "reversal_reopens_obligation": true
+  },
+  "evidence_class": "LOCAL_SYNTHETIC_FAILURE_INJECTION",
+  "injection_count": 4,
+  "passed": 4,
+  "real_product_execution": "NOT_RUN",
+  "records": [
+    {
+      "counting_effects": 0,
+      "injection_id": "PREEXISTING_STATE",
+      "preexisting_effects": 1,
+      "resolution": "BOUNDED_UNKNOWN",
+      "reversed_obligations": 0,
+      "settled_obligations": 0,
+      "settlement_attempted": false
+    },
+    {
+      "counting_effects": 0,
+      "injection_id": "OWNER_READBACK_UNAVAILABLE",
+      "preexisting_effects": 0,
+      "resolution": "BOUNDED_UNKNOWN_OWNER_UNAVAILABLE",
+      "reversed_obligations": 0,
+      "settled_obligations": 0,
+      "settlement_attempted": false
+    },
+    {
+      "counting_effects": 1,
+      "injection_id": "VENUE_ACCEPTANCE_REFUSAL",
+      "preexisting_effects": 0,
+      "resolution": "EFFECT_WITHOUT_ACCEPTANCE",
+      "reversed_obligations": 0,
+      "settled_obligations": 0,
+      "settlement_attempted": false
+    },
+    {
+      "counting_effects": 1,
+      "injection_id": "SETTLEMENT_REVERSAL",
+      "preexisting_effects": 0,
+      "resolution": "ACCEPTED_SETTLEMENT_OPEN",
+      "reversed_obligations": 1,
+      "settled_obligations": 0,
+      "settlement_attempted": true
+    }
+  ],
+  "total": 4
+}

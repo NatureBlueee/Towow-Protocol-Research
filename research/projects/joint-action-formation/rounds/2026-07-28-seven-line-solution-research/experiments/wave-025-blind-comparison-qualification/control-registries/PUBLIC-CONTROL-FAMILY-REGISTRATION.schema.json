@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "WAVE025_PUBLIC_CONTROL_FAMILY_REGISTRATION_V1.schema.json",
+  "title": "Wave 025 public control family registration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "registry_id",
+    "status",
+    "binding_state",
+    "profile_id",
+    "feature_spec_sha256",
+    "private_material_included",
+    "families"
+  ],
+  "properties": {
+    "schema": {
+      "const": "WAVE025_PUBLIC_CONTROL_FAMILY_REGISTRATION_V1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "registry_id": {
+      "const": "WAVE025-PUBLIC-CONTROL-FAMILIES-PREFORMAL-V1"
+    },
+    "status": {
+      "const": "PREFORMAL_CANDIDATE_NOT_BOUND"
+    },
+    "binding_state": {
+      "const": "NOT_BOUND_TO_PROFILE_OR_PRECOMMIT"
+    },
+    "profile_id": {
+      "const": "WAVE025-EXECUTABLE-ATTACK-PROFILE-FULL-V1"
+    },
+    "feature_spec_sha256": {
+      "const": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a"
+    },
+    "private_material_included": {
+      "const": false
+    },
+    "families": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/d0_family"
+        },
+        {
+          "$ref": "#/$defs/d1_family"
+        }
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "family_base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "challenge",
+        "injection_surface",
+        "expected_collector_feature_family",
+        "primary_detector_id_from_C01_TO_C05",
+        "calibration_population_by_role",
+        "holdout_population_by_role"
+      ],
+      "properties": {
+        "family_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "challenge": {
+          "enum": [
+            "D0-HOST-LEAK",
+            "D1-OCI-CANARY"
+          ]
+        },
+        "injection_surface": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_collector_feature_family": {
+          "enum": [
+            "F04_DIRECTORY_AND_SHARED_STATE",
+            "F07_VISIBLE_CANARY"
+          ]
+        },
+        "primary_detector_id_from_C01_TO_C05": {
+          "const": "C01_EXACT_CATEGORICAL_SCAN"
+        },
+        "calibration_population_by_role": {
+          "const": 50
+        },
+        "holdout_population_by_role": {
+          "const": 50
+        }
+      }
+    },
+    "d0_family": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/family_base"
+        },
+        {
+          "properties": {
+            "family_id": {
+              "const": "D0_RESIDUE_OPAQUE_BASENAME_V1"
+            },
+            "challenge": {
+              "const": "D0-HOST-LEAK"
+            },
+            "injection_surface": {
+              "const": "SACRIFICIAL_PREDECESSOR_CREATED_EXACT_BASENAME_IN_READONLY_SHARED_RESIDUE_CWD"
+            },
+            "expected_collector_feature_family": {
+              "const": "F04_DIRECTORY_AND_SHARED_STATE"
+            }
+          }
+        }
+      ]
+    },
+    "d1_family": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/family_base"
+        },
+        {
+          "properties": {
+            "family_id": {
+              "const": "D1_CURRENT_RUN_CANARY_V1"
+            },
+            "challenge": {
+              "const": "D1-OCI-CANARY"
+            },
+            "injection_surface": {
+              "const": "CURRENT_RUN_ROLE_CORRELATED_CANARY_IN_CHALLENGE_ENTRY_NAME_AND_FILE_CONTENT"
+            },
+            "expected_collector_feature_family": {
+              "const": "F07_VISIBLE_CANARY"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

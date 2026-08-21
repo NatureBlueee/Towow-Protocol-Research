@@ -1,0 +1,35 @@
+{
+  "schema": "towow.wave007b-paired-worlds.v1",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "worlds": [
+    {
+      "evaluator_world_id": "PW-ONE-VALID",
+      "opaque_seed": "alpha-17",
+      "reuse_truth": "ONE_OPERATION_ONLY",
+      "relation_evidence": "VALID_NO_REUSE",
+      "withdraw_after_first_reuse": false
+    },
+    {
+      "evaluator_world_id": "PW-ONE-CONTRADICTORY",
+      "opaque_seed": "beta-29",
+      "reuse_truth": "ONE_OPERATION_ONLY",
+      "relation_evidence": "MISSING_OR_CONTRADICTORY",
+      "withdraw_after_first_reuse": false
+    },
+    {
+      "evaluator_world_id": "PW-BOUNDED-VALID",
+      "opaque_seed": "gamma-43",
+      "reuse_truth": "EXPLICIT_BOUNDED_REUSE_AUTHORIZED",
+      "relation_evidence": "VALID_BOUNDED_REUSE",
+      "withdraw_after_first_reuse": true
+    },
+    {
+      "evaluator_world_id": "PW-BOUNDED-CONTRADICTORY",
+      "opaque_seed": "delta-61",
+      "reuse_truth": "EXPLICIT_BOUNDED_REUSE_AUTHORIZED",
+      "relation_evidence": "MISSING_OR_CONTRADICTORY",
+      "withdraw_after_first_reuse": true
+    }
+  ]
+}

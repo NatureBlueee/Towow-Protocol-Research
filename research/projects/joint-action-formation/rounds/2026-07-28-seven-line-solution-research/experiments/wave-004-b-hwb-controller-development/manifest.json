@@ -1,0 +1,127 @@
+{
+  "schema": "towow.hwb-controller-development-manifest.v1",
+  "status": "LOCAL_SYNTHETIC_THREE_ACTION_EXECUTION_COMPLETE_SCORE_FAIL_4_OF_8",
+  "development_label": "DEVELOPMENT_POST_FEEDBACK_NOT_BLIND",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "claims": {
+    "helios_direct": "EXECUTED_RECIPIENT_STORE_READBACK_VERIFIED",
+    "ion_derived": "EXECUTED_DERIVED_RECEIPT_AND_RECIPIENT_STORE_READBACK_VERIFIED",
+    "juniper_kite_reciprocal": "EXECUTED_COUNTERPARTY_STORES_READBACK_VERIFIED",
+    "candidate_v2": "GENERATED_FROM_CONTROLLER_OUTPUTS",
+    "development_score": "FAIL_4_OF_8"
+  },
+  "score": {
+    "command": "python3 scorer.py --submission candidate-submission-v2.json",
+    "requirements_passed": 4,
+    "requirements_total": 8,
+    "coverage_ratio": 0.5,
+    "passing": ["R2", "R5", "R6", "R8"],
+    "failing": ["R1", "R3", "R4", "R7"],
+    "candidate_file_sha256": "f38d2004098a9221bbb1615027ad711118652dde0de32d8d871420ab97c3a91c",
+    "score_file_sha256": "35df066c827ff235544195eecc710096dfcdd4932773852650833b310b0c3bb3"
+  },
+  "controller_results": {
+    "contract_sha256": "2f4fb6ab15762a79b6d99e45d657f8fab6a1848e63097f046cc2592aab9ba4e8",
+    "helios_execution_receipt_sha256": "c7a31d0d00810ab456967186b4ebec998aec91612289a39848393f37d4f0a2a5",
+    "ion_execution_receipt_sha256": "924e2c48eb0ebaf5c876716188e56c168a0e208cf2bdde8fe9d008bc4f78e6c3",
+    "reciprocal_execution_receipt_sha256": "118807b911b071c744b8d30eab8cf956b1a4705988526b34597f0bfebc0b5420"
+  },
+  "frozen_source_files": {
+    "HELIOS-44": "283be89a5de49c9e023318f4ffdfe32e553409498fde8f28c7fe0ea603d08941",
+    "ION-06": "7d21eb56c0724dd22b03981a6daab032a4905b539ae36dbc8febd0cd7e50ef39",
+    "JUNIPER-28": "d53836004fd003320fba6bb0f28c83e95a66594d122845ff38f3eaad26884083",
+    "KITE-15": "c31ea346b59a5372e0c4295f5dc65da694faa4ae9ace32702e0280e5871f87d1"
+  },
+  "dependency": {
+    "path": "../wave-004-a-controller-executor/executor.py",
+    "sha256": "e298755a6e39958e0006557e766c259aa857c91127febafac7e7a56e86784fc7",
+    "modified_by_this_integration": false
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "a3495202c10c4c2b423370eb113e55f8b862f7fdc627d38aaf7e5189923bb110"
+    },
+    {
+      "path": "adapter.py",
+      "sha256": "56f30f7a6ddde67b0dfcdeb20dee3e5adfe73b25c93435ac0ac2b52d6e8d78b9"
+    },
+    {
+      "path": "run_integration.py",
+      "sha256": "ccea597dee1702d85aa94c5d47728e6b999d29d852e3e8eae7a83e924ecf3f8a"
+    },
+    {
+      "path": "export_candidate_controller.py",
+      "sha256": "5e0eb2e304fac17c1fd36ae6d8698971f24f03e3fb3a361d06ac7a70e04a8255"
+    },
+    {
+      "path": "score_development.py",
+      "sha256": "de44a754a603700b8b0a254182bf4f90afc400285d81b30973a916692c62b7a7"
+    },
+    {
+      "path": "tests/test_integration.py",
+      "sha256": "08a56cea3fc15eb291dacc3c297b05337e8f588c44b6981f09372d5bd72e1e36"
+    },
+    {
+      "path": "source-bindings.json",
+      "sha256": "fd4c48f6431d4d0c8eda7226c113067196483af82e19299844d996c715d7365f"
+    },
+    {
+      "path": "normalized/contract.json",
+      "sha256": "a0b17679003a0b319401e433a9bfec573b417bf281d5a146ae9523ecb8e57be8"
+    },
+    {
+      "path": "normalized/inputs/direct.json",
+      "sha256": "174ae87d7bc4c8d1e79b11c0339e04908cb81cf5fa8c7f72bc7ba34ffb8bd009"
+    },
+    {
+      "path": "normalized/inputs/derived.json",
+      "sha256": "afc0a6f0944eebbe1333f5ff59ca92526d01ba5a7006ca2542666a2cf6522930"
+    },
+    {
+      "path": "normalized/inputs/reciprocal.json",
+      "sha256": "8e3d09a0f9ef270cdb4b3ac39da79c03fd7c669305a24f8f57cb6e1e5a7c6943"
+    },
+    {
+      "path": "outputs/helios-direct.json",
+      "sha256": "c0994eda408cd0cb72231d8399c688f80c21d75cd5ba98c61ab9f982c12418a3"
+    },
+    {
+      "path": "outputs/ion-derived.json",
+      "sha256": "18567b0829318084f8fa4b0d054022abd387731d19bd174a6269f15efb1f5c8e"
+    },
+    {
+      "path": "outputs/reciprocal-juniper-kite.json",
+      "sha256": "d5dd9f58d7eac3b05411455896db7da6467723cfbab8392f7d9323f6965f7c29"
+    },
+    {
+      "path": "state/controller-state.json",
+      "sha256": "1ee10c61779eb4488e3aacaf3c43185260ccf0191653af8615ebe879d5438745"
+    },
+    {
+      "path": "development-score-record.json",
+      "sha256": "5a98b567dfb5d615a0e6a54cc5275357d6b2da2bbd4ac054bc35d7578eb66def"
+    },
+    {
+      "path": "../../runs/wave-003-a-held-out-world/g1/t1-hw-b/candidate-controller/route-helios-direct.json",
+      "sha256": "d3e07d25469910e2736b73e4deb6b2d1986c8ccb74888ff4a3952fa765749708"
+    },
+    {
+      "path": "../../runs/wave-003-a-held-out-world/g1/t1-hw-b/candidate-controller/route-ion-relay.json",
+      "sha256": "2420fd36e3e763d33d2fe705b88aac1571758301149f193b3430cac3d474bbd4"
+    },
+    {
+      "path": "../../runs/wave-003-a-held-out-world/g1/t1-hw-b/candidate-controller/reciprocal-juniper-kite.json",
+      "sha256": "cc3c9d910c60f27a07f0f248b16b871090626ee2acb9eb5ff56eca965def82d7"
+    },
+    {
+      "path": "../../runs/wave-003-a-held-out-world/g1/t1-hw-b/candidate-submission-v2.json",
+      "sha256": "f38d2004098a9221bbb1615027ad711118652dde0de32d8d871420ab97c3a91c"
+    },
+    {
+      "path": "../../runs/wave-003-a-held-out-world/g1/t1-hw-b/candidate-score-v2-development.json",
+      "sha256": "35df066c827ff235544195eecc710096dfcdd4932773852650833b310b0c3bb3"
+    }
+  ]
+}

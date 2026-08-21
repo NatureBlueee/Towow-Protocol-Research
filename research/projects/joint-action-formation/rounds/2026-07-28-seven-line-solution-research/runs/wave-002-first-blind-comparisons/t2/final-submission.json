@@ -1,0 +1,566 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "method_id": "t2-ab-strong-composition",
+  "run_id": "T2-AB-RUN-001",
+  "input_hash": "e5a7f7edc89f0ae5ef7effe4c70abfcfc1b22be36cb108c41da181e39db23771",
+  "evaluator_hash": "ed3bddabcee31cc91455b2f82a6b2b508f680e2975a8e3c65e58b6c6ff7b0a7f",
+  "controller_history_hash": "23be472af944ef01715347b4a424e4cdc7118535ee40289f13951be3621ccdc9",
+  "queries_and_disclosures": [
+    {
+      "request_id": "REQ-11a6068bbe5a6cc6db16",
+      "receipt_hash": "0e36ba3d83cbbd9f0034d0a5058464b96c64d6d4381a86bf519992a3ed46e967",
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_MINIMAL_COUNTERCONDITION",
+      "purpose": "确定数据权威拒绝 REL-T2-V1 的最小可披露反条件，以判断是否存在保持 V0-DATA、V0-AUTHORITY 与 V0-EVIDENCE 的新版本空间；不将反条件视为授权。",
+      "relation_version_ref": "REL-T2-V1",
+      "response_type": "COUNTERCONDITION",
+      "disclosed_fields": [
+        "conditions"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-4f532bcdce91671b707a",
+      "receipt_hash": "0f13b81596f4ab11ad3f476f1d8027681b7279918d2b60655b6ed87b280f2a30",
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_ALTERNATIVE_PATH",
+      "purpose": "确定服务方是否能指出不同于 REL-T2-V1 标准云端路径的候选执行方式及其待验证边界，以判断是否值得后续请求受限 probe；不据此推断 capability、permission 或 commitment。",
+      "relation_version_ref": "REL-T2-V1",
+      "response_type": "UNKNOWN",
+      "disclosed_fields": [
+        "candidate",
+        "qualified",
+        "reason"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-579397ed1dd42bd727ff",
+      "receipt_hash": "181a970a88328c6435af2890c050c6f2d8a5625d08dfa0a4a55ecf7f86a4bc15",
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_MINIMAL_PROBE",
+      "purpose": "为采购方 sandbox 内运行固定分析容器这一未资格化候选，披露一次受限 probe 所需的最小精确条件：executor、environment、version、只读 operation、resource、成功判据、失败停止与 recovery；仅用于判断能否前瞻资格化该精确 operation，不据此推断采购方 permission、服务承诺或其他环境能力。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "duration_minutes",
+        "environment",
+        "executor",
+        "query_count",
+        "success_observations"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-0b8e145be9c977b8655c",
+      "receipt_hash": "02efd20b46d0e281c11dc8f88df53bdbf8330ee167bd14fd54eff6ebcb64b105",
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_BOUNDED_PROBE_AUTHORIZATION",
+      "purpose": "针对固定分析容器在采购方 sandbox 内、原始数据不离域、仅执行明确批准的聚合只读查询、禁止训练和持久记忆且由采购方审计回执见证的候选 probe，披露是否可授权以及授权所需的最小数据范围、查询边界、credential、审计、期限和撤销条件；仅请求该 probe 的有界 permission，不视为 REL-T2-V2-CANDIDATE、正式试点或后续重复运行的授权。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "allowed_queries",
+        "auto_revoke_after_test",
+        "buyer_audit_required",
+        "credential"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-5deb89933afd78a8b371",
+      "receipt_hash": "926e1d1c2d2d6146185607429db4344b235d29ee72e8bb9080bb5d4b85d48c8b",
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_ACCEPTABLE_WITNESS",
+      "purpose": "为 REL-T2-V2-CANDIDATE 确定可由采购方独立建立目标域 Effect 的最小审计见证：见证来源、必备字段、读回主体、与获批聚合查询及零原始行导出的绑定方式，以及何种证据最多只能证明 ActionAttempt；不把 probe 成功判据、服务方日志或报告视为已产生 Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "WITNESS",
+      "disclosed_fields": [
+        "provider_log_role",
+        "required"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-1a73de05e2791668c67c",
+      "receipt_hash": "1d421a9a472f40fc250c8a7651d1227c4b0562cf116003daf3701c05dc164876",
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_REVOCATION_RULE",
+      "purpose": "确定从有界 probe 转入任何正式试点以及失败后重试时适用的最小撤销规则：触发条件、受影响的 credential、permission、执行与证据依赖、停止时点、审计记录、恢复前必须重新取得或读回的当前状态；不把第2轮测试授权延伸为正式试点或重复运行授权。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "FACT",
+      "disclosed_fields": [
+        "required_action",
+        "triggers"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-84a78c0f1fbe69ac65c9",
+      "receipt_hash": "427e33263cdd36797a70730898434496afb6dd9a77803bfb232d7bc7ee28fc37",
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_FAILURE_AND_RECOVERY",
+      "purpose": "补齐固定分析容器候选在 buyer_controlled_sandbox 中执行获批聚合只读查询时的失败停止、清理、幂等性、credential 撤销响应、恢复和重试边界，并明确每次重试必须重新核验的 executor、environment、version、permission 与 resource；仅形成待 probe 验证的技术条件，不声明 probe 已运行或 capability 已资格化。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "FACT",
+      "disclosed_fields": [
+        "on_credential_revocation",
+        "on_environment_mismatch",
+        "on_probe_failure"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-e5d8d7dce233e6cba41f",
+      "receipt_hash": "6f3353d56ef0640fe45c40e7021dd946e9e9a1cbb8a67ed3b785a72985c12f88",
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "CLARIFY_ACCEPTANCE",
+      "purpose": "确定两周分析试点的最小业务判定语义和门槛：哪些采购方可独立检查的结果足以影响续费问题处理，Effect、实际工作系统变更所构成的 Adoption、以及对精确试点版本的 Acceptance 如何分别判定，失败或信息不足时如何记录；不请求生产采购承诺，也不从数据授权、probe 或报告生成推断业务接受。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "FACT",
+      "disclosed_fields": [
+        "acceptance_floor",
+        "acceptance_scope"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-05900cb0c401d021c2a2",
+      "receipt_hash": "eca680247ba1f8cf4acd3da5e401959bcd02acca2975f590b472cc73b882077f",
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_SCOPE_STANCE",
+      "purpose": "确定若采用采购方权限域内的固定容器、仅执行获批聚合只读查询、禁止训练和持久记忆、并以采购方审计见证结果，服务方可考虑认领的精确两周试点交付范围、排除项、资源责任和成果边界；仅请求范围条件，不把候选技术规格或测试授权视为交付承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "material_change_requires_new_stance",
+        "production_integration",
+        "scope"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-bb1a6bbb355bbad8f4da",
+      "receipt_hash": "c90d6c13b35db2f6d405014c1245132c3f486351ae28f0544569091d2282980b",
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_PRICE_STANCE",
+      "purpose": "针对上述候选范围，确定服务方价格条件是否可保持在 9800 元以内，以及该价格覆盖与不覆盖的项目、会触发重新定价的 material change；不从采购方预算上限或技术候选推断服务方价格承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "condition",
+        "price_cny"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-085022438eda0160d873",
+      "receipt_hash": "18191711fb762c049f48e15dd2898a51b2749a0528c73f2f7d7f376b81559609",
+      "authority_id": "PROVIDER-BUSINESS",
+      "request_type": "REQUEST_SCHEDULE_STANCE",
+      "purpose": "针对上述候选范围，确定服务方可考虑认领的 14 天进度条件、起算前置条件、关键依赖、资源保留边界及会导致暂停或重新确认的漂移；不把有界 probe 时长、测试资源或候选路径视为正式排期承诺。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "condition",
+        "deadline_days"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-6c9d83d83c458a44648b",
+      "receipt_hash": "88398bfa8a6938f3c9a0ae87d15e8a9b44679ef6a95c17773ef7435c42ee9263",
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_DATA_PURPOSE_BOUNDARY",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方数据权威声明正式两周试点中获批聚合只读查询、派生结果、审计回执的精确允许用途、禁止用途、保存、披露和再次运行边界；若边界不能确定则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "FACT",
+      "disclosed_fields": [
+        "allowed_purpose",
+        "persistent_memory",
+        "raw_export",
+        "training"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-6cb7394f08cc2d482555",
+      "receipt_hash": "5e847b7a07a9c24b604ac39c6705440d42d4ac9f3c9dfd21d9d9e0f28bed7563",
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_CAPABILITY_EVIDENCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求服务方技术权威声明固定分析容器在 buyer_controlled_sandbox 中针对精确 executor、environment、version、permission、resource 与 recovery 条件是否已有可在承诺前使用的前瞻能力证据；若 probe 未运行、证据不足或只能返回 Unknown，则原样保留 Unknown，不暗示 probe 已运行或 capability 已资格化。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "UNKNOWN",
+      "disclosed_fields": [
+        "current_evidence",
+        "minimum_next_evidence"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-c13cf8206fc0165d214b",
+      "receipt_hash": "ce66ca68eaa47b92fa486d3f8711be71adb6017237af9b5b9e6cc47d34152ddb",
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "REQUEST_PILOT_BUDGET_STANCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方业务权威声明对精确两周固定试点、9800 元价格及其排除项的当前预算 Stance，并区分预算可用、预算保留与最终支出承诺；若不能声明则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "budget_ceiling_cny",
+        "condition"
+      ],
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "request_id": "REQ-757c2ca74b0477b610c2",
+      "receipt_hash": "deccaab6dc11db961476fbc298342d06ce2a03f0c80795c5342f52133a731d90",
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "REQUEST_ADOPTION_STANCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方业务权威声明：若采购方独立见证的结果达到既定门槛，是否以及在何种精确条件下愿意把至少三条结论纳入真实客服 backlog，并将该工作系统状态变更与 Effect、试点 Acceptance、生产上线和未来采购分开；若不能声明则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": [
+        "adoption_rule"
+      ],
+      "retention_scope": "RUN_ONLY"
+    }
+  ],
+  "diagnosis": {
+    "current_result": "DEFER",
+    "frozen_problem": "采购方希望在 14 天、9800 元上限内获得可独立判断且足以影响续费问题处理的业务结果；报告生成、服务方日志或容器退出码不能替代该目标。",
+    "v1_status": "REJECTED",
+    "v1_rejection_preserved": true,
+    "v1_blockers": [
+      "原始工单离开采购方权限域",
+      "派生结果用于服务方模型改进",
+      "90 天保存",
+      "由服务方执行日志充当 Effect witness"
+    ],
+    "high_information_result": "BUYER-DATA 披露了保持原始数据不离域、仅批准聚合只读查询、禁止训练和持久记忆、采购方审计见证的反条件；PROVIDER-TECH 仅披露固定容器在 buyer_controlled_sandbox 中运行的未资格化可能性。",
+    "current_capability_evidence": "none_for_this_environment",
+    "minimum_next_evidence": "bounded_probe",
+    "reachability": "REL-T2-V2-CANDIDATE 仅是条件候选。必须先在当前有效的有界测试授权下运行精确 bounded probe，并在任何交付承诺之前取得与 executor、environment、version、permission、resource、recovery 完整绑定的前瞻证据。",
+    "formation_classification": "condition_creation_and_mediated_discovery",
+    "strict_formation": "UNKNOWN_NOT_PROVEN",
+    "safe_exit": "若 probe 未获当前授权、失败、环境不匹配、证据无效或任一必要 Authority 不认领精确后续版本，则停止并返回 UNKNOWN、REJECT、DEFER 或 SAFE_EXIT。",
+    "archive_boundary": "本结果是档案设计派生的合成 truth task 分析，不是现实企业部署、商业、法律或生产验证。reference v2 仅作为一个 witness，不是唯一答案。"
+  },
+  "relation_versions": [
+    {
+      "id": "REL-T2-V1",
+      "status": "REJECTED",
+      "preserved_rejection": true,
+      "objective": "客服数据分析试点",
+      "data_flow": "原始工单导出至服务方云环境",
+      "data_use": [
+        "pilot_analysis",
+        "provider_model_improvement"
+      ],
+      "retention_days": 90,
+      "executor": "provider_cloud",
+      "effect_witness": "provider_execution_log",
+      "acceptance": "buyer_business_reviews_report",
+      "price_cny": 9800,
+      "deadline_days": 14,
+      "known_stances": {
+        "BUYER-DATA": "REJECT"
+      },
+      "superseded": false,
+      "reason": "拒绝事实必须保留，不能由候选 v2 覆写。"
+    },
+    {
+      "id": "REL-T2-V2-CANDIDATE",
+      "status": "CONDITIONAL_UNFORMED",
+      "provenance": "由 REL-T2-V1 的拒绝反条件、替代路径候选及后续 Authority 披露形成的新版本 witness。",
+      "objective": "在采购方权限域内分析过去六个月客服工单，产出采购方可独立检查、足以影响续费问题处理的结论。",
+      "scope": "fixed_two_week_pilot",
+      "production_integration": false,
+      "price_cny": 9800,
+      "deadline_days": 14,
+      "executor": "fixed_container",
+      "environment": "buyer_controlled_sandbox",
+      "operation": "仅执行 3 个明确批准的聚合只读查询",
+      "data_location": "原始数据不离开采购方权限域",
+      "data_purpose": "pilot_evaluation_only",
+      "training": false,
+      "persistent_memory": false,
+      "raw_export": false,
+      "effect_witness": {
+        "buyer_domain_required": [
+          "buyer_audit_receipt",
+          "output_hash",
+          "raw_row_export_count"
+        ],
+        "provider_log_role": "corroborating_only"
+      },
+      "business_floor": "至少 3 条可进入真实客服 backlog 的合格结论",
+      "adoption_rule": "业务负责人复核后，至少 3 条合格结论实际进入采购方真实客服 backlog",
+      "acceptance_scope": "仅可接受该精确试点有用，不等于生产上线或未来采购",
+      "probe": {
+        "status": "NOT_RUN",
+        "authorization": "CONDITIONAL_BOUNDED_TEST_ONLY",
+        "credential": "temporary_readonly_test_only",
+        "allowed_queries": 3,
+        "duration_minutes": [
+          30,
+          60
+        ],
+        "auto_revoke_after_test": true,
+        "success_observations": [
+          "container_runs",
+          "approved_aggregate_queries_complete",
+          "buyer_audit_receipt_exists",
+          "raw_row_export_count_is_zero"
+        ]
+      },
+      "formation_blockers": [
+        "当前环境 capability evidence=none_for_this_environment",
+        "bounded probe 尚未运行",
+        "精确 operation 尚未资格化",
+        "probe 测试授权不是正式试点数据授权",
+        "四个必要 Authority 尚未对一个经 probe 资格化的精确最终版本形成当前承诺"
+      ],
+      "material_change_rule": "executor、environment、version、permission、resource、recovery、数据用途、见证、范围、价格、进度或接受语义发生 material change 时必须生成新版本并重新取得受影响 Authority 的 Stance。"
+    }
+  ],
+  "capability_claims": [
+    {
+      "operation": "在 buyer_controlled_sandbox 中由 fixed_container 执行 3 个获批聚合只读查询",
+      "executor": "fixed_container",
+      "environment": "buyer_controlled_sandbox",
+      "version": "精确容器版本尚未由披露资格化，必须在 probe 记录中固定",
+      "permission": "仅有 temporary_readonly_test_only 的条件性有界 probe 授权；不覆盖正式试点或重复运行",
+      "resource": "30 至 60 分钟、3 个查询的有界测试资源；正式交付资源尚无承诺",
+      "recovery": {
+        "probe_failure": "retain_unknown_and_return_diagnostics",
+        "environment_mismatch": "stop_without_delivery_commitment",
+        "credential_revocation": "stop_and_do_not_retry_without_new_authorization"
+      },
+      "status": "UNKNOWN_UNQUALIFIED_PROBE_CANDIDATE",
+      "evidence_available_at_claim_time": "none_for_this_environment",
+      "asserted_before_commitment": false
+    }
+  ],
+  "authority_state": {
+    "relation_version_ref": "REL-T2-V2-CANDIDATE",
+    "overall": "NOT_FORMED",
+    "BUYER-DATA": {
+      "authority_scope": [
+        "data_access",
+        "data_location",
+        "data_use",
+        "credential",
+        "audit_witness",
+        "revocation"
+      ],
+      "disclosed_boundary": {
+        "allowed_purpose": "pilot_evaluation_only",
+        "training": false,
+        "persistent_memory": false,
+        "raw_export": false
+      },
+      "probe_stance": "CONDITIONAL_BOUNDED_TEST_ONLY",
+      "formal_pilot_authorization": "NOT_ESTABLISHED",
+      "revocation_triggers": [
+        "credential_revoked",
+        "data_rule_changed",
+        "approved_query_scope_changed",
+        "audit_witness_missing_or_invalid"
+      ]
+    },
+    "PROVIDER-TECH": {
+      "candidate_path": "fixed_container in buyer_controlled_sandbox",
+      "capability": "UNKNOWN",
+      "current_evidence": "none_for_this_environment",
+      "required_next_step": "bounded_probe",
+      "delivery_commitment": "NOT_ESTABLISHED"
+    },
+    "PROVIDER-BUSINESS": {
+      "scope_stance": "CONDITIONAL",
+      "price_stance": "CONDITIONAL_9800_CNY",
+      "schedule_stance": "CONDITIONAL_14_DAYS_AFTER_PROBE_AND_MANDATES",
+      "commitment": "NOT_FORMED",
+      "material_change_requires_new_stance": true
+    },
+    "BUYER-BUSINESS": {
+      "budget_stance": "CONDITIONAL_UP_TO_9800_CNY",
+      "budget_commitment": "NOT_FORMED",
+      "acceptance_floor": "至少 3 条可进入真实客服 backlog 的结论",
+      "adoption_stance": "CONDITIONAL",
+      "acceptance": "NOT_OCCURRED"
+    },
+    "composition_rule": "Identity、capability、Authority、Mandate、Stance、Commitment、Reservation 与 Standing 相互不蕴含。任何条件披露、测试授权、预算上限或候选范围都不能替代其他 Authority 对精确版本的当前认领。"
+  },
+  "operator_sequence": [
+    {
+      "order": 1,
+      "operator": "ASK_MINIMAL_COUNTERCONDITION",
+      "status": "COMPLETED_DISCLOSURE",
+      "blocking_condition_addressed": "BUYER-DATA 对 v1 的拒绝原因及是否存在保持 V0 的新版本空间未知",
+      "classification": "mediated_discovery"
+    },
+    {
+      "order": 2,
+      "operator": "VERSION",
+      "status": "COMPLETED_AS_CANDIDATE_ONLY",
+      "blocking_condition_addressed": "v1 的数据流、用途和见证发生 material change",
+      "classification": "relation_reconstruction",
+      "result": "建立 REL-T2-V2-CANDIDATE，保留 v1 拒绝，不静默继承旧 Stance"
+    },
+    {
+      "order": 3,
+      "operator": "SPECIFY_AND_AUTHORIZE_BOUNDED_PROBE",
+      "status": "CONDITIONS_DISCLOSED_NOT_EXECUTED",
+      "blocking_condition_addressed": "固定容器在该采购方环境的 capability 没有前瞻证据",
+      "classification": "condition_creation",
+      "guard": "只有当前有效的有界测试授权、临时只读 credential、3 个批准查询、采购方审计及固定版本条件同时成立才可运行"
+    },
+    {
+      "order": 4,
+      "operator": "RUN_BOUNDED_PROBE",
+      "status": "NOT_RUN_REQUIRED_NEXT",
+      "blocking_condition_addressed": "current_evidence=none_for_this_environment",
+      "classification": "prospective_qualification_attempt",
+      "success_criteria": [
+        "container_runs",
+        "approved_aggregate_queries_complete",
+        "buyer_audit_receipt_exists",
+        "raw_row_export_count_is_zero"
+      ],
+      "failure_rule": "失败保留 capability=UNKNOWN 并返回 diagnostics；环境不匹配、credential 撤销或审计无效时立即停止"
+    },
+    {
+      "order": 5,
+      "operator": "QUALIFY_EXACT_OPERATION",
+      "status": "BLOCKED_ON_PROBE",
+      "blocking_condition_addressed": "需要将 capability 绑定到精确 executor、environment、version、permission、resource、recovery",
+      "classification": "qualification",
+      "guard": "不得用服务方身份、通用历史或其他环境结果替代该证据"
+    },
+    {
+      "order": 6,
+      "operator": "CREATE_POST_PROBE_EXACT_VERSION_AND_RESEEK_STANCES",
+      "status": "BLOCKED",
+      "blocking_condition_addressed": "测试授权、条件预算与条件服务范围尚未构成正式试点承诺",
+      "classification": "formation_attempt",
+      "required_authorities": [
+        "BUYER-DATA",
+        "BUYER-BUSINESS",
+        "PROVIDER-TECH",
+        "PROVIDER-BUSINESS"
+      ]
+    },
+    {
+      "order": 7,
+      "operator": "COMMIT_AND_EXECUTE_FORMAL_PILOT",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "blocking_condition_addressed": "只有 capability 前瞻资格化且全部必要 Authority 对精确版本形成当前 Mandate、Stance 和 Commitment 后才可执行",
+      "classification": "action_attempt"
+    },
+    {
+      "order": 8,
+      "operator": "READ_BACK_EFFECT_ADOPTION_ACCEPTANCE",
+      "status": "NOT_RUN",
+      "blocking_condition_addressed": "目标域结果必须由采购方相称证据分别建立",
+      "classification": "outcome_verification"
+    },
+    {
+      "order": 9,
+      "operator": "SAFE_EXIT",
+      "status": "AVAILABLE",
+      "blocking_condition_addressed": "任何关键依赖持续 Unknown、撤销、失败或无法形成",
+      "classification": "honest_non_solution"
+    }
+  ],
+  "outcomes": {
+    "action_attempt": {
+      "status": "NOT_RUN",
+      "reason": "bounded probe 尚未运行，正式试点更未获形成和授权；服务方日志即使未来存在也至多是旁证。"
+    },
+    "effect": {
+      "status": "NOT_OCCURRED",
+      "rule": "必须由采购方域证据读回，并至少绑定 buyer_audit_receipt、output_hash、raw_row_export_count；报告、模型输出、服务方日志或 exit code 不足以建立 Effect。"
+    },
+    "adoption": {
+      "status": "NOT_OCCURRED",
+      "rule": "须经业务负责人复核后，至少 3 条合格结论实际进入采购方真实客服 backlog；Effect 不自动推出 Adoption。"
+    },
+    "acceptance": {
+      "status": "NOT_OCCURRED",
+      "rule": "BUYER-BUSINESS 必须对精确试点版本作出单独的当前 Acceptance；其范围最多为试点有用，不等于生产上线或未来采购。"
+    },
+    "settlement": {
+      "status": "NOT_OCCURRED",
+      "reason": "没有独立的付款、结算或其他 Settlement 证据。"
+    }
+  },
+  "repeat_and_reopen": {
+    "reusable_stable_structure": [
+      "V0 的价值底线与 Authority 分离原则",
+      "ActionAttempt、Effect、Adoption、Acceptance、Settlement 的分项语义",
+      "buyer-domain witness 必须独立于 producer-only evidence 的结构要求",
+      "material change 生成新版本的规则",
+      "撤销触发 stop_and_scoped_reopen 的依赖图规则"
+    ],
+    "must_revalidate_each_run": [
+      "精确 executor",
+      "buyer_controlled_sandbox 的当前环境状态",
+      "精确容器 version 与输出哈希机制",
+      "当前 credential 与数据 Mandate",
+      "获批查询范围和 allowed purpose",
+      "training、persistent_memory、raw_export 禁止项",
+      "测试或正式运行 permission",
+      "资源、价格和 14 天排期是否仍有效且未被重复承诺",
+      "capability evidence 是否仍适用于当前精确条件",
+      "buyer audit witness 是否存在且有效",
+      "四个必要 Authority 对当前精确版本的 Stance、Commitment 与 Reservation",
+      "业务门槛、Adoption rule 与 Acceptance scope"
+    ],
+    "reopen_triggers": [
+      "credential_revoked",
+      "data_rule_changed",
+      "approved_query_scope_changed",
+      "audit_witness_missing_or_invalid",
+      "executor_or_environment_mismatch",
+      "container_version_drift",
+      "resource_or_schedule_drift",
+      "material scope, price, purpose, witness or acceptance change"
+    ],
+    "reopen_policy": "立即阻断受影响执行，只重开受影响子图；未受影响且仍有效的结构可以保留。恢复前重新取得或读回当前授权、Stance、capability、permission、resource 和 witness 条件。",
+    "retry_policy": "credential 撤销后不得重试，除非获得新授权；probe 失败保持 UNKNOWN 并返回 diagnostics；每次重试必须重新核验精确依赖。",
+    "duplicate_effect_guard": "幂等重试、重复日志或重复回执不得被计为新的 Effect、Adoption 或 Acceptance。",
+    "unknown_closure": "任何关键依赖无法当前读回时停止，不做乐观继承。"
+  },
+  "unknowns": [
+    "固定分析容器在该 buyer_controlled_sandbox 中的 capability 仍为 UNKNOWN；current evidence=none_for_this_environment。",
+    "bounded probe 是否会获当时有效授权并成功运行未知。",
+    "精确容器 version、正式运行 resource 与正式试点 permission 尚未形成。",
+    "BUYER-DATA 尚未授权正式两周试点；测试授权不能延伸。",
+    "全部必要 Authority 是否会对 probe 后的精确版本形成当前承诺未知。",
+    "任何正式 ActionAttempt、Effect、Adoption、Acceptance 或 Settlement 均未知且未发生。",
+    "严格 formation 是否成立未知，现有证据只支持条件创造、披露与关系重构。",
+    "是否存在不同于 reference v2 的其他合格路径未知；reference v2 只是一个 witness。"
+  ],
+  "refusals": [
+    "拒绝把 v1 的 REJECT 覆写为同意或永久无解。",
+    "拒绝把未运行的 bounded probe 表述为已运行。",
+    "拒绝把 none_for_this_environment 表述为 capability 已资格化。",
+    "拒绝从身份、候选技术、测试 credential、预算上限或条件 Stance 推导正式 Mandate 或 Commitment。",
+    "拒绝把 probe 测试授权延伸为正式试点或重复运行授权。",
+    "拒绝用服务方日志、报告、输出文件或 exit code 单方面建立 Effect。",
+    "拒绝从 Effect 自动推出 Adoption、Acceptance 或 Settlement。",
+    "拒绝把条件性试点接受提升为生产上线或未来采购。",
+    "拒绝在撤销、漂移、见证无效或关键依赖 Unknown 时继续执行。"
+  ],
+  "cannot_support": [
+    "不能支持该方案已经在现实企业环境验证或具备现实成功频率。",
+    "不能支持该试点的现实净价值、ROI、商业充分性或法律充分性。",
+    "不能支持生产有效性、生产安全性、生产集成或未来采购。",
+    "不能支持严格 formation 已被证明；缺少独立有效的比较与现实形成证据。",
+    "不能支持协议独占性、方法独占价值或 reference v2 是唯一有效答案。",
+    "不能把档案设计派生的合成 truth task 推广为一般企业实践结论。",
+    "不能支持 capability 已资格化、任何交付承诺已形成或正式试点已执行。",
+    "不能支持 Effect、Adoption、Acceptance 或 Settlement 已发生。"
+  ]
+}

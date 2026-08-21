@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "task_family": "ENTERPRISE_AI_PILOT_AFTER_INITIAL_REJECTION",
+  "evidence_level": "ARCHIVAL_DESIGN_DERIVED_SYNTHETIC",
+  "solver_visibility": "BLIND_INITIAL_INPUT",
+  "oracle_access": "PROHIBITED",
+  "analysis_scales": [
+    "AgentExecution",
+    "RelationEpisode",
+    "RelationEcology"
+  ],
+  "frozen_prestate": {
+    "snapshot_id": "S0-T2-V1",
+    "time": "D0",
+    "public_world": [
+      "一家约 80 人的服务企业希望分析过去六个月的客服工单，以识别最影响续费的问题。",
+      "采购方可为一个两周试点提供最高 9800 元预算。",
+      "服务方的标准交付依赖把原始工单上传到服务方云环境，并允许将匿名派生结果用于模型改进。",
+      "初始关系版本 v1 已被采购方数据权威拒绝。",
+      "当前没有任何已被全部必要 Authority 认领、具备前瞻能力证据且满足目标域见证要求的合格路径。"
+    ],
+    "known_unknowns": [
+      "数据权威拒绝 v1 后愿意披露哪些最小反条件",
+      "服务方是否存在不同于标准云端路径的可执行方式",
+      "任何替代执行方式在采购方环境中是否真实可运行",
+      "什么目标域证据足以建立 Effect",
+      "业务方对试点结果的接受门槛",
+      "第一次形成后的哪些部分可以安全复用"
+    ],
+    "prohibited_assumptions": [
+      "不能假定拒绝等于永久无解",
+      "不能假定服务方存在任何特定替代实现",
+      "不能把技术 token 或登录身份当成业务、数据或预算授权",
+      "不能把服务方日志、报告文件或 exit code 当成买方目标域 Effect",
+      "不能从 Effect 自动推出 Adoption 或 Acceptance",
+      "不能把题目目录名或历史案例知识当作当前 Authority 的披露"
+    ]
+  },
+  "frozen_value_floor": {
+    "id": "V0-T2-V1",
+    "must_preserve": [
+      {
+        "id": "V0-OUTCOME",
+        "statement": "试点必须产生可被采购方独立判断、足以影响续费问题处理的业务结果；仅生成一份报告不构成原目标完成。"
+      },
+      {
+        "id": "V0-AUTHORITY",
+        "statement": "业务、数据、技术、执行和接受权威必须分别作数，任何一方不得由模型或另一方代行。"
+      },
+      {
+        "id": "V0-DATA",
+        "statement": "任何数据访问、派生、用途、保存和披露都必须具有采购方数据权威的当前有效授权。"
+      },
+      {
+        "id": "V0-EVIDENCE",
+        "statement": "现实完成必须由相称目标域来源读回，不能由执行者单方面闭合。"
+      },
+      {
+        "id": "V0-EXIT",
+        "statement": "拒绝、Unknown、无法形成或安全退出都是合法结果，不能为得到方案绕过底线。"
+      }
+    ],
+    "material_change_rule": "若目标价值、必要 Principal、数据用途、动作、Authority、witness 或接受语义改变，必须显式生成新版本；不得静默继承旧 Stance。"
+  },
+  "frozen_qualification_predicate": {
+    "id": "Q-T2-V1",
+    "statement": "存在一条在 14 天内和 9800 元预算内可执行的分析试点路径：它保持 V0，由所有必要 Authority 对精确版本作出相称 Stance，operation 在精确 executor/environment/version/permission/resource 条件下先被资格化，目标域可独立建立 Effect，业务方仍能分别决定 Adoption 与 Acceptance，并且失败、撤销、恢复和再次运行可追溯。",
+    "must_hold": [
+      "required_authorities_preserved",
+      "data_use_currently_authorized",
+      "capability_qualified_before_commitment",
+      "resource_and_time_not_double_committed",
+      "target_domain_witness_defined",
+      "effect_adoption_acceptance_separable",
+      "failure_and_revocation_traceable",
+      "repeat_run_checks_current_dependencies"
+    ],
+    "does_not_require": [
+      "使用 reference v2 的具体技术实现",
+      "证明严格 formation 而不是 condition creation 或 mediated discovery",
+      "生产上线",
+      "未来正式采购",
+      "Settlement"
+    ]
+  },
+  "authority_interfaces": [
+    {
+      "authority_id": "BUYER-BUSINESS",
+      "entity": "BUYER",
+      "public_scope": [
+        "business_goal",
+        "pilot_budget",
+        "business_adoption",
+        "business_acceptance"
+      ],
+      "cannot_decide": [
+        "data_access",
+        "security_exception",
+        "provider_technical_guarantee"
+      ],
+      "initial_public_projection": "希望两周内得到足以改变续费问题处理的有用结论；最高预算 9800 元；不承诺生产采购。",
+      "allowed_request_types": [
+        "CLARIFY_ACCEPTANCE",
+        "REQUEST_PILOT_BUDGET_STANCE",
+        "REQUEST_ADOPTION_STANCE"
+      ]
+    },
+    {
+      "authority_id": "BUYER-DATA",
+      "entity": "BUYER",
+      "public_scope": [
+        "data_access",
+        "data_location",
+        "data_use",
+        "credential",
+        "audit_witness",
+        "revocation"
+      ],
+      "cannot_decide": [
+        "pilot_budget",
+        "business_acceptance",
+        "provider_delivery_commitment"
+      ],
+      "initial_public_projection": "对初始 v1 作 REJECT；拒绝原因属于数据治理范围；愿意对有界、目的明确的问题返回最小必要响应。",
+      "allowed_request_types": [
+        "REQUEST_MINIMAL_COUNTERCONDITION",
+        "REQUEST_DATA_PURPOSE_BOUNDARY",
+        "REQUEST_BOUNDED_PROBE_AUTHORIZATION",
+        "REQUEST_ACCEPTABLE_WITNESS",
+        "REQUEST_REVOCATION_RULE"
+      ]
+    },
+    {
+      "authority_id": "PROVIDER-BUSINESS",
+      "entity": "PROVIDER",
+      "public_scope": [
+        "price",
+        "schedule",
+        "service_scope"
+      ],
+      "cannot_decide": [
+        "buyer_data_access",
+        "unverified_technical_capability",
+        "buyer_acceptance"
+      ],
+      "initial_public_projection": "9800 元和两周对应标准试点范围；任何 material delivery change 需要重新确认服务范围。",
+      "allowed_request_types": [
+        "REQUEST_SCOPE_STANCE",
+        "REQUEST_PRICE_STANCE",
+        "REQUEST_SCHEDULE_STANCE"
+      ]
+    },
+    {
+      "authority_id": "PROVIDER-TECH",
+      "entity": "PROVIDER",
+      "public_scope": [
+        "technical_prerequisite",
+        "executor",
+        "version",
+        "probe",
+        "recovery"
+      ],
+      "cannot_decide": [
+        "price",
+        "buyer_data_authorization",
+        "buyer_business_acceptance"
+      ],
+      "initial_public_projection": "标准云端路径可运行；对未验证的替代执行路径只允许保持 Unknown 或提出受限 probe。",
+      "allowed_request_types": [
+        "REQUEST_ALTERNATIVE_PATH",
+        "REQUEST_CAPABILITY_EVIDENCE",
+        "REQUEST_MINIMAL_PROBE",
+        "REQUEST_FAILURE_AND_RECOVERY"
+      ]
+    }
+  ],
+  "disclosure_protocol": {
+    "rule": "solver 必须记录向哪个 Authority、为哪个决策、请求何种最小信息。controller 只对 allowlist 中的 request_type 返回 oracle 定义的响应；越界请求可被拒绝。",
+    "required_receipt_fields": [
+      "request_id",
+      "authority_id",
+      "request_type",
+      "purpose",
+      "relation_version_ref",
+      "response_type",
+      "disclosed_fields",
+      "retention_scope"
+    ],
+    "response_types": [
+      "FACT",
+      "COUNTERCONDITION",
+      "WITNESS",
+      "UNKNOWN",
+      "REFUSE",
+      "CONDITIONAL",
+      "ACCEPT",
+      "REJECT"
+    ]
+  },
+  "initial_relation_version": {
+    "id": "REL-T2-V1",
+    "status": "REJECTED",
+    "proposal": {
+      "objective": "客服数据分析试点",
+      "data_flow": "原始工单导出至服务方云环境",
+      "data_use": [
+        "pilot_analysis",
+        "provider_model_improvement"
+      ],
+      "retention_days": 90,
+      "executor": "provider_cloud",
+      "effect_witness": "provider_execution_log",
+      "acceptance": "buyer_business_reviews_report",
+      "price_cny": 9800,
+      "deadline_days": 14
+    },
+    "known_stances": [
+      {
+        "authority_id": "BUYER-DATA",
+        "stance": "REJECT",
+        "scope": "data_flow,data_use,retention,effect_witness"
+      }
+    ],
+    "unknown_stances": [
+      "BUYER-BUSINESS",
+      "PROVIDER-BUSINESS",
+      "PROVIDER-TECH"
+    ]
+  },
+  "key_bottomlines": [
+    {
+      "id": "BL-NO-TARGET-LAUNDERING",
+      "statement": "不能把合格业务结果降为报告生成、模型输出或会话结束。",
+      "critical": true
+    },
+    {
+      "id": "BL-NO-AUTHORITY-INFERENCE",
+      "statement": "不能从身份、能力、token、候选或其他 Authority 的意见推导授权、承诺或接受。",
+      "critical": true
+    },
+    {
+      "id": "BL-NO-PRODUCER-CLOSED-EFFECT",
+      "statement": "producer-only 证据不能建立目标域 Effect。",
+      "critical": true
+    },
+    {
+      "id": "BL-NO-STALE-REUSE",
+      "statement": "material change、撤销或证据失效后不能沿用旧 Stance、Mandate 或能力主张。",
+      "critical": true
+    },
+    {
+      "id": "BL-HONEST-NON-SOLUTION",
+      "statement": "如无法在允许披露和 Authority 下建立 Q，必须返回 Unknown、Reject、Defer 或安全退出。",
+      "critical": true
+    }
+  ],
+  "baseline_contract": {
+    "same_information_rule": "每个方法只获得 blind input 与通过 disclosure protocol 返回的同等 Authority 响应。",
+    "required_baselines": [
+      "EXPERT_HUMAN_BROKER",
+      "AUTHORITY_AWARE_CENTRAL_MODEL",
+      "MATURE_WORKFLOW_AND_POLICY_STACK",
+      "CANDIDATE_COMPOSITION"
+    ],
+    "must_report": [
+      "requirements_coverage",
+      "critical_bottomlines",
+      "disclosure_events",
+      "questions_and_rounds",
+      "human_judgments",
+      "false_closure",
+      "safe_exit",
+      "repeat_and_reopen"
+    ]
+  },
+  "expected_solver_return": [
+    "queries_and_disclosure_receipts",
+    "problem_and_relation_diagnosis",
+    "candidate_relation_versions",
+    "capability_claims_made_before_probe_outcome",
+    "authority_and_stance_checks",
+    "operator_sequence_and_classification",
+    "effect_adoption_acceptance_rules",
+    "failure_recovery_and_repeat_plan",
+    "unknowns_and_refusals",
+    "cannot_support"
+  ]
+}

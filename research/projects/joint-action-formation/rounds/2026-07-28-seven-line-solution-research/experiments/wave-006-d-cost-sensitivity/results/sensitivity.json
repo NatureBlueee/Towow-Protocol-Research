@@ -1,0 +1,379 @@
+{
+  "analytic_thresholds": {
+    "g2_a_vs_b": {
+      "conclusion": "A weakly dominates B for all nonnegative sampled costs; they tie only when coordination cost is zero.",
+      "difference": "A - B = evidence_multiplier*(2*coordination_operation_cost)"
+    },
+    "g2_b_vs_c": {
+      "conclusion": "B weakly dominates C for all nonnegative sampled costs; they tie only when both disclosure and coordination costs are zero.",
+      "difference": "B - C = evidence_multiplier*(2*disclosure_unit_cost + 5*coordination_operation_cost)"
+    },
+    "g4_declaration_vs_latest_probe": {
+      "baseline_failure_loss": 18.0,
+      "baseline_threshold": 12.866667,
+      "declaration_wins_when": "failure_loss < (60 + 4*missed_opportunity_value + evidence_multiplier*(5.7*disclosure_unit_cost + 19*coordination_operation_cost) + recovery_step_cost)/6",
+      "difference": "DECLARATION - LATEST_PROBE = 60 - 6*failure_loss + 4*missed_opportunity_value + evidence_multiplier*(5.7*disclosure_unit_cost + 19*coordination_operation_cost) + recovery_step_cost"
+    },
+    "g4_sla_vs_declaration": {
+      "baseline_failure_loss": 18.0,
+      "baseline_threshold": 6.457143,
+      "difference": "SLA - DECLARATION = 7*failure_loss - evidence_multiplier*(15.2*disclosure_unit_cost + 60*coordination_operation_cost)",
+      "sla_wins_when": "failure_loss > evidence_multiplier*(15.2*disclosure_unit_cost + 60*coordination_operation_cost)/7"
+    },
+    "g4_sla_vs_latest_probe": {
+      "baseline_difference": 50.0,
+      "difference": "SLA - LATEST_PROBE = 60 + failure_loss + 4*missed_opportunity_value - evidence_multiplier*(9.5*disclosure_unit_cost + 41*coordination_operation_cost) + recovery_step_cost"
+    }
+  },
+  "bound_input_hashes": {
+    "shared_task": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+    "wave_006_a": "2f8c2315dacfee16c414b8310cad2a18146f5c334c2b41a42a746a64fc8a214f",
+    "wave_006_b": "2bac5fe9dbda16cc82cb7117ef6d1c68b385b97d52ebfd776801295e03ad1862",
+    "wave_006_c": "c5176fdfcee3015429a8aec1645d3f0114b96cab0a67293e73b9aae7ae1dd4a0"
+  },
+  "fixed": {
+    "accepted_task_value": 20.0
+  },
+  "g2_relation_representation": {
+    "baseline_claim": "A_DELIVERY_RECEIPT_ONLY",
+    "claim_stability": "ROBUST_WITH_NONNEGATIVE_COSTS_BUT_TIES_AT_ZERO_COORDINATION",
+    "sensitivity": {
+      "baseline": {
+        "scores": {
+          "A_DELIVERY_RECEIPT_ONLY": 17.0,
+          "B_DUAL_RECIPIENT_ACK": 16.0,
+          "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 11.5
+        },
+        "weights": {
+          "coordination_operation_cost": 0.5,
+          "disclosure_unit_cost": 1.0,
+          "evidence_multiplier": 1.0,
+          "failure_loss": 18.0,
+          "missed_opportunity_value": 0.0,
+          "recovery_step_cost": 2.0
+        },
+        "winners": [
+          "A_DELIVERY_RECEIPT_ONLY"
+        ]
+      },
+      "grid_point_count": 7200,
+      "near_tie_or_no_conclusion_count": 4320,
+      "near_tie_or_no_conclusion_share": 0.6,
+      "representative_winner_points": {
+        "A_DELIVERY_RECEIPT_ONLY": {
+          "scores": {
+            "A_DELIVERY_RECEIPT_ONLY": 20.0,
+            "B_DUAL_RECIPIENT_ACK": 20.0,
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 20.0
+          },
+          "weights": {
+            "coordination_operation_cost": 0.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 0.5,
+            "failure_loss": 0.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "A_DELIVERY_RECEIPT_ONLY",
+            "B_DUAL_RECIPIENT_ACK",
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+          ]
+        },
+        "B_DUAL_RECIPIENT_ACK": {
+          "scores": {
+            "A_DELIVERY_RECEIPT_ONLY": 20.0,
+            "B_DUAL_RECIPIENT_ACK": 20.0,
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 20.0
+          },
+          "weights": {
+            "coordination_operation_cost": 0.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 0.5,
+            "failure_loss": 0.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "A_DELIVERY_RECEIPT_ONLY",
+            "B_DUAL_RECIPIENT_ACK",
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+          ]
+        },
+        "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": {
+          "scores": {
+            "A_DELIVERY_RECEIPT_ONLY": 20.0,
+            "B_DUAL_RECIPIENT_ACK": 20.0,
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 20.0
+          },
+          "weights": {
+            "coordination_operation_cost": 0.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 0.5,
+            "failure_loss": 0.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "A_DELIVERY_RECEIPT_ONLY",
+            "B_DUAL_RECIPIENT_ACK",
+            "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+          ]
+        }
+      },
+      "sampled_strict_dominance": {},
+      "sampled_weak_dominance": {
+        "A_DELIVERY_RECEIPT_ONLY": [
+          "B_DUAL_RECIPIENT_ACK",
+          "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+        ],
+        "B_DUAL_RECIPIENT_ACK": [
+          "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+        ]
+      },
+      "tie_count": 1440,
+      "unique_winner_counts": {
+        "A_DELIVERY_RECEIPT_ONLY": 5760,
+        "B_DUAL_RECIPIENT_ACK": 0,
+        "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 0
+      },
+      "unique_winner_share": {
+        "A_DELIVERY_RECEIPT_ONLY": 0.8,
+        "B_DUAL_RECIPIENT_ACK": 0.0,
+        "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 0.0
+      },
+      "winner_counts_including_ties": {
+        "A_DELIVERY_RECEIPT_ONLY": 7200,
+        "B_DUAL_RECIPIENT_ACK": 1440,
+        "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": 360
+      }
+    },
+    "source_metrics": {
+      "A_DELIVERY_RECEIPT_ONLY": {
+        "accepted": 1.0,
+        "coordination": 2.0,
+        "disclosure": 2.0,
+        "failure": 0.0,
+        "missed": 0.0,
+        "recovery": 0.0
+      },
+      "B_DUAL_RECIPIENT_ACK": {
+        "accepted": 1.0,
+        "coordination": 4.0,
+        "disclosure": 2.0,
+        "failure": 0.0,
+        "missed": 0.0,
+        "recovery": 0.0
+      },
+      "C_ACK_EXPLAINBACK_RELATION_PROPOSAL": {
+        "accepted": 1.0,
+        "coordination": 9.0,
+        "disclosure": 4.0,
+        "failure": 0.0,
+        "missed": 0.0,
+        "recovery": 0.0
+      }
+    }
+  },
+  "g4_capability_reliance": {
+    "baseline_claim": "SLA_RECOVERY",
+    "claim_stability": "CONDITION_DEPENDENT_BASELINE_WINNER_NOT_GLOBALLY_STABLE",
+    "sensitivity": {
+      "baseline": {
+        "scores": {
+          "DECLARATION": 78.9,
+          "LATEST_PROBE": 109.7,
+          "RECEIPT_HISTORY": 34.5,
+          "SLA_RECOVERY": 159.7
+        },
+        "weights": {
+          "coordination_operation_cost": 0.5,
+          "disclosure_unit_cost": 1.0,
+          "evidence_multiplier": 1.0,
+          "failure_loss": 18.0,
+          "missed_opportunity_value": 0.0,
+          "recovery_step_cost": 2.0
+        },
+        "winners": [
+          "SLA_RECOVERY"
+        ]
+      },
+      "grid_point_count": 7200,
+      "near_tie_or_no_conclusion_count": 75,
+      "near_tie_or_no_conclusion_share": 0.010417,
+      "representative_winner_points": {
+        "DECLARATION": {
+          "scores": {
+            "DECLARATION": 220.0,
+            "LATEST_PROBE": 160.0,
+            "RECEIPT_HISTORY": 100.0,
+            "SLA_RECOVERY": 220.0
+          },
+          "weights": {
+            "coordination_operation_cost": 0.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 0.5,
+            "failure_loss": 0.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "DECLARATION",
+            "SLA_RECOVERY"
+          ]
+        },
+        "LATEST_PROBE": {
+          "scores": {
+            "DECLARATION": 50.0,
+            "LATEST_PROBE": 60.0,
+            "RECEIPT_HISTORY": -44.0,
+            "SLA_RECOVERY": 56.0
+          },
+          "weights": {
+            "coordination_operation_cost": 2.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 1.0,
+            "failure_loss": 18.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "LATEST_PROBE"
+          ]
+        },
+        "SLA_RECOVERY": {
+          "scores": {
+            "DECLARATION": 220.0,
+            "LATEST_PROBE": 160.0,
+            "RECEIPT_HISTORY": 100.0,
+            "SLA_RECOVERY": 220.0
+          },
+          "weights": {
+            "coordination_operation_cost": 0.0,
+            "disclosure_unit_cost": 0.0,
+            "evidence_multiplier": 0.5,
+            "failure_loss": 0.0,
+            "missed_opportunity_value": 0.0,
+            "recovery_step_cost": 0.0
+          },
+          "winners": [
+            "DECLARATION",
+            "SLA_RECOVERY"
+          ]
+        }
+      },
+      "sampled_strict_dominance": {
+        "LATEST_PROBE": [
+          "RECEIPT_HISTORY"
+        ],
+        "SLA_RECOVERY": [
+          "RECEIPT_HISTORY"
+        ]
+      },
+      "sampled_weak_dominance": {},
+      "tie_count": 62,
+      "unique_winner_counts": {
+        "DECLARATION": 2421,
+        "LATEST_PROBE": 170,
+        "RECEIPT_HISTORY": 0,
+        "SLA_RECOVERY": 4547
+      },
+      "unique_winner_share": {
+        "DECLARATION": 0.33625,
+        "LATEST_PROBE": 0.023611,
+        "RECEIPT_HISTORY": 0.0,
+        "SLA_RECOVERY": 0.631528
+      },
+      "winner_counts_including_ties": {
+        "DECLARATION": 2481,
+        "LATEST_PROBE": 172,
+        "RECEIPT_HISTORY": 0,
+        "SLA_RECOVERY": 4609
+      }
+    },
+    "source_metrics": {
+      "DECLARATION": {
+        "accepted": 11.0,
+        "coordination": 22.0,
+        "disclosure": 4.1000000000000005,
+        "failure": 7.0,
+        "missed": 0.0,
+        "recovery": 0.0
+      },
+      "LATEST_PROBE": {
+        "accepted": 8.0,
+        "coordination": 41.0,
+        "disclosure": 9.799999999999999,
+        "failure": 1.0,
+        "missed": 4.0,
+        "recovery": 1.0
+      },
+      "RECEIPT_HISTORY": {
+        "accepted": 5.0,
+        "coordination": 72.0,
+        "disclosure": 15.500000000000004,
+        "failure": 0.0,
+        "missed": 7.0,
+        "recovery": 7.0
+      },
+      "SLA_RECOVERY": {
+        "accepted": 11.0,
+        "coordination": 82.0,
+        "disclosure": 19.300000000000004,
+        "failure": 0.0,
+        "missed": 0.0,
+        "recovery": 0.0
+      }
+    }
+  },
+  "parameter_ranges": {
+    "coordination_operation_cost": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "disclosure_unit_cost": [
+      0.0,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "evidence_multiplier": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "failure_loss": [
+      0.0,
+      5.0,
+      10.0,
+      18.0,
+      30.0,
+      50.0
+    ],
+    "missed_opportunity_value": [
+      0.0,
+      2.0,
+      5.0,
+      10.0,
+      20.0
+    ],
+    "recovery_step_cost": [
+      0.0,
+      1.0,
+      2.0,
+      5.0
+    ]
+  },
+  "schema_version": "1.0",
+  "scope": {
+    "baseline_winner_is_not_promoted_to_universal_winner": true,
+    "sampled_regions_are_not_real_world_probabilities": true,
+    "simple_solution_winning_is_positive_result": true,
+    "wave_006_c_used_as_bound_denominator_not_rescored": true
+  },
+  "score_formula": "accepted*accepted_task_value - failure*failure_loss - missed*missed_opportunity_value - evidence_multiplier*(disclosure*disclosure_unit_cost + coordination*coordination_operation_cost) - recovery*recovery_step_cost",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+}

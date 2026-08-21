@@ -1,0 +1,614 @@
+{
+  "schema_version": "ce001-g3-owner-truth-v2",
+  "owner_endpoint_signing_seed": "4f7a6b1d92c86ee680cc1db713224a25d24750a53e4fd099095abecd8e97320f",
+  "manifest": {
+    "H001": "E0-PLATFORM-DIRECT",
+    "H002": "E1-EXTANT-MULTI-OWNER",
+    "H003": "E2-CONDITION-FORMATION",
+    "H004": "E3A-ACK-LOST-EFFECT",
+    "H005": "E3B-ACK-LOST-NO-EFFECT",
+    "H006": "E4-REVOKE-WITH-ALTERNATIVE",
+    "H007": "E5-IMPOSSIBLE-REFUSAL",
+    "H008": "E6-MIGRATION-REPLAY",
+    "H009": "G3-OPEN-INVENTORY-CONTROL",
+    "H010": "G3-MODEL-KERNEL-CHANGE-CONTROL"
+  },
+  "cases": {
+    "E0-PLATFORM-DIRECT": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_V",
+          "resources": [
+            {
+              "resource_id": "BAT-V-NATIVE",
+              "direct_qualified": true,
+              "requires_token": false
+            }
+          ]
+        },
+        "sign": {},
+        "reserve": {
+          "BAT-V-NATIVE": {
+            "decision": "RESERVED",
+            "owner_id": "O_V"
+          }
+        },
+        "execute": {
+          "BAT-V-NATIVE": {
+            "decision": "EXECUTE",
+            "owner_id": "O_V",
+            "operation_id": "OP-E0-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "BAT-V-NATIVE:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E0-C7"
+        }
+      }
+    },
+    "E1-EXTANT-MULTI-OWNER": {
+      "initial_state": {
+        "purpose_tokens": [
+          {
+            "token_id": "PT-E1-EXTANT",
+            "resource_id": "BAT-R1",
+            "q_version": "CE-001-Q@v1"
+          }
+        ],
+        "delegations": [
+          {
+            "delegation_id": "DG-E1-EXTANT",
+            "resource_id": "BAT-R1",
+            "q_version": "CE-001-Q@v1"
+          }
+        ],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "BAT-R1",
+              "direct_qualified": false,
+              "requires_token": true
+            }
+          ]
+        },
+        "sign": {},
+        "reserve": {
+          "BAT-R1": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "BAT-R1": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E1-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "BAT-R1:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E1-C7"
+        }
+      }
+    },
+    "E2-CONDITION-FORMATION": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "REQUEST_PURPOSE_DELEGATION",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "GEN-R2",
+              "direct_qualified": false,
+              "requires_token": true
+            }
+          ]
+        },
+        "sign": {
+          "GEN-R2": {
+            "decision": "SIGNED",
+            "owner_id": "O_V",
+            "purpose_token": {
+              "token_id": "PT-E2-R2",
+              "resource_id": "GEN-R2",
+              "q_version": "CE-001-Q@v1",
+              "purpose": "temporary-power-C7"
+            },
+            "delegation": {
+              "delegation_id": "DG-E2-R2",
+              "resource_id": "GEN-R2",
+              "q_version": "CE-001-Q@v1",
+              "scope": "Venue-V/C7/3kW/45min",
+              "expiry": "T0+90min"
+            }
+          }
+        },
+        "reserve": {
+          "GEN-R2": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "GEN-R2": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E2-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "GEN-R2:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E2-C7"
+        }
+      }
+    },
+    "E3A-ACK-LOST-EFFECT": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "BAT-E3",
+              "direct_qualified": false,
+              "requires_token": false
+            }
+          ]
+        },
+        "sign": {},
+        "reserve": {
+          "BAT-E3": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "BAT-E3": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E3-C7",
+            "max_attempts": 2
+          }
+        }
+      },
+      "target_readback": {
+        "BAT-E3:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E3-C7"
+        }
+      }
+    },
+    "E3B-ACK-LOST-NO-EFFECT": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "BAT-E3",
+              "direct_qualified": false,
+              "requires_token": false
+            }
+          ]
+        },
+        "sign": {},
+        "reserve": {
+          "BAT-E3": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "BAT-E3": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E3-C7",
+            "max_attempts": 2
+          }
+        }
+      },
+      "target_readback": {
+        "BAT-E3:1": {
+          "effect_occurred": false,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "operation_id": "OP-E3-C7"
+        },
+        "BAT-E3:2": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E3-C7"
+        }
+      }
+    },
+    "E4-REVOKE-WITH-ALTERNATIVE": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "REQUEST_PURPOSE_DELEGATION",
+        "RESERVE",
+        "RECOVER_ALTERNATIVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "BAT-R1-REVOKED",
+              "direct_qualified": false,
+              "requires_token": false
+            }
+          ]
+        },
+        "rediscover": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "GEN-R3-ALT",
+              "direct_qualified": false,
+              "requires_token": true
+            }
+          ]
+        },
+        "sign": {
+          "GEN-R3-ALT": {
+            "decision": "SIGNED",
+            "owner_id": "O_V",
+            "purpose_token": {
+              "token_id": "PT-E4-R3",
+              "resource_id": "GEN-R3-ALT",
+              "q_version": "CE-001-Q@v1",
+              "purpose": "recovery-temporary-power-C7"
+            },
+            "delegation": {
+              "delegation_id": "DG-E4-R3",
+              "resource_id": "GEN-R3-ALT",
+              "q_version": "CE-001-Q@v1",
+              "scope": "Venue-V/C7/3kW/45min",
+              "expiry": "T0+90min"
+            }
+          }
+        },
+        "reserve": {
+          "BAT-R1-REVOKED": {
+            "decision": "REVOKED",
+            "owner_id": "O_R",
+            "revocation_id": "REV-E4-R1"
+          },
+          "GEN-R3-ALT": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "GEN-R3-ALT": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E4-ALT-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "GEN-R3-ALT:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E4-ALT-C7"
+        }
+      }
+    },
+    "E5-IMPOSSIBLE-REFUSAL": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "REQUEST_PURPOSE_DELEGATION",
+        "RESERVE",
+        "EXECUTE"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "GEN-REFUSED",
+              "direct_qualified": false,
+              "requires_token": true
+            }
+          ]
+        },
+        "sign": {
+          "GEN-REFUSED": {
+            "decision": "REFUSED",
+            "owner_id": "O_V",
+            "non_delegable": true
+          }
+        },
+        "reserve": {},
+        "execute": {}
+      },
+      "target_readback": {}
+    },
+    "E6-MIGRATION-REPLAY": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "BAT-E6",
+              "direct_qualified": false,
+              "requires_token": false
+            }
+          ]
+        },
+        "sign": {},
+        "reserve": {
+          "BAT-E6": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "BAT-E6": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-E6-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "BAT-E6:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-E6-C7"
+        }
+      }
+    },
+    "G3-OPEN-INVENTORY-CONTROL": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER"
+      ],
+      "physical_solution_exists": false,
+      "owner_events": {
+        "read": {
+          "decision": "DEFER",
+          "owner_id": "O_R",
+          "unresolved": [
+            "partner-space",
+            "tool-space",
+            "owner-response-family"
+          ]
+        },
+        "sign": {},
+        "reserve": {},
+        "execute": {}
+      },
+      "target_readback": {}
+    },
+    "G3-MODEL-KERNEL-CHANGE-CONTROL": {
+      "initial_state": {
+        "purpose_tokens": [],
+        "delegations": [],
+        "installed_operators": [],
+        "effect": null
+      },
+      "initial_kernel": [
+        "READ_OWNER",
+        "REQUEST_PURPOSE_DELEGATION",
+        "RESERVE",
+        "EXECUTE",
+        "TARGET_READBACK"
+      ],
+      "physical_solution_exists": true,
+      "owner_events": {
+        "read": {
+          "decision": "DISCLOSED",
+          "owner_id": "O_R",
+          "resources": [
+            {
+              "resource_id": "GEN-KERNEL",
+              "direct_qualified": false,
+              "requires_token": true,
+              "requires_adapter": "OP-TRANSFER-V2"
+            }
+          ]
+        },
+        "sign": {
+          "GEN-KERNEL": {
+            "decision": "SIGNED",
+            "owner_id": "O_V",
+            "purpose_token": {
+              "token_id": "PT-KERNEL",
+              "resource_id": "GEN-KERNEL",
+              "q_version": "CE-001-Q@v1",
+              "purpose": "temporary-power-C7"
+            },
+            "delegation": {
+              "delegation_id": "DG-KERNEL",
+              "resource_id": "GEN-KERNEL",
+              "q_version": "CE-001-Q@v1",
+              "scope": "Venue-V/C7/3kW/45min",
+              "expiry": "T0+90min"
+            },
+            "kernel_extension": {
+              "operator_id": "OP-TRANSFER-V2",
+              "interface": "signed-transfer-v2",
+              "authority_scope": "Venue-V/C7"
+            }
+          }
+        },
+        "reserve": {
+          "GEN-KERNEL": {
+            "decision": "RESERVED",
+            "owner_id": "O_R"
+          }
+        },
+        "execute": {
+          "GEN-KERNEL": {
+            "decision": "EXECUTE",
+            "owner_id": "O_S",
+            "operation_id": "OP-G3-KERNEL-C7",
+            "max_attempts": 1
+          }
+        }
+      },
+      "target_readback": {
+        "GEN-KERNEL:1": {
+          "effect_occurred": true,
+          "venue_id": "Venue-V",
+          "circuit_id": "C7",
+          "q_version": "CE-001-Q@v1",
+          "power_kw": 3.0,
+          "duration_min": 45,
+          "operation_id": "OP-G3-KERNEL-C7"
+        }
+      }
+    }
+  }
+}

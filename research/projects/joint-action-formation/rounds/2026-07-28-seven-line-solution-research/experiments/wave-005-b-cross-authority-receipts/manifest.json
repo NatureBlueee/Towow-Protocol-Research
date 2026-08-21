@@ -1,0 +1,98 @@
+{
+  "schema": "towow.cross-authority-experiment-manifest.v1",
+  "experiment_id": "WAVE-005-B-CROSS-AUTHORITY-RECEIPTS",
+  "status": "LOCAL_CROSS_AUTHORITY_SIMULATION_IMPLEMENTED",
+  "date": "2026-07-29",
+  "source_boundary": "Wave 004-A trusted-controller receipt and same-controller recipient readback",
+  "authority_domains": [
+    "holder authority",
+    "controller",
+    "recipient authority",
+    "external append-only anchor"
+  ],
+  "covered_routes": [
+    "direct with recipient signed prepare and commit ACK",
+    "derived with first-recipient signed onward authorization",
+    "reciprocal with one decision binding both prepare ACKs and success gated on both commit ACKs"
+  ],
+  "covered_attacks_and_failures": [
+    "controller self-signed fake recipient ACK",
+    "forged or modified persisted ACK",
+    "revocation before reservation",
+    "revocation after prepare before commit decision",
+    "signed anchor fork against pinned head",
+    "anchor head rewrite detected on completed replay",
+    "reciprocal partial materialization and recovery",
+    "crash after anchor decision",
+    "exact replay and idempotency conflict",
+    "expired signing key and rotated active key"
+  ],
+  "evidence_boundary": {
+    "environment": "LOCAL_SYNTHETIC_SIMULATION",
+    "keys": "DETERMINISTIC_TEST_ONLY_ED25519",
+    "domain_isolation": "SEPARATE_STATE_AND_SIGNING_SERVICE_OBJECTS_NOT_OS_ISOLATION",
+    "reciprocal_atomicity": "SINGLE_DURABLE_DECISION_AND_NO_SUCCESS_BEFORE_BOTH_ACKS; TRANSIENT_PARTIAL_MATERIALIZATION_REMAINS",
+    "anchor": "SINGLE_PINNED_VIEW; MULTI_CLIENT_EQUIVOCATION_NOT_SOLVED",
+    "not_claimed": [
+      "production security",
+      "hardware-backed key custody",
+      "Byzantine consensus",
+      "instantaneous cross-store visibility",
+      "real relation formation",
+      "real commitment, effect, adoption, acceptance or settlement",
+      "need for a novel Towow protocol"
+    ]
+  },
+  "excluded_inputs": [
+    "HW-C oracle",
+    "HW-C scorer"
+  ],
+  "validation": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "tests_run": 13,
+    "failures": 0,
+    "errors": 0,
+    "additional_checks": [
+      "python3 -m py_compile with isolated pycache",
+      "git diff --check for experiment path"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "5a9b725f096abc56984456889b18cd3ac280115382d1e5b9238afce4f9ce0c92"
+    },
+    {
+      "path": "contract.json",
+      "sha256": "bc45c078756a87b6aa134beaf04abc15bf252d0ba699a3c98247eaa577512cba"
+    },
+    {
+      "path": "protocol.py",
+      "sha256": "b9e937515c4ccdb515a977a36a614831ff9f291d444e7bd6b4c8a6a78d6df530"
+    },
+    {
+      "path": "domains.py",
+      "sha256": "494d1443c79a4b5712cd38a26f6d1846bd91663674befb1cdff18bc4754b1abf"
+    },
+    {
+      "path": "controller.py",
+      "sha256": "1703970e90f423606d763bd41484a5f2f7fca292e79d3bcc7684d7b1633495f1"
+    },
+    {
+      "path": "fixtures/direct.json",
+      "sha256": "ccc40977cc1d69b93293c6f1c48c617ba023a9bc7f67de44c2ebb8d10b4160f3"
+    },
+    {
+      "path": "fixtures/derived.json",
+      "sha256": "53605ac34c742bb192da7f112866ebef430d1b27dd90483a5e51a49e086cf417"
+    },
+    {
+      "path": "fixtures/reciprocal.json",
+      "sha256": "e04b6b1b877a221999d3e953b6f35a2b2f7093dfa562e2033720f81fec93c3d2"
+    },
+    {
+      "path": "tests/test_cross_authority.py",
+      "sha256": "968f4186c473f52aa2638af653b43f7b2ddd227cc6a75af7cf03619ed71bc4e5"
+    }
+  ]
+}

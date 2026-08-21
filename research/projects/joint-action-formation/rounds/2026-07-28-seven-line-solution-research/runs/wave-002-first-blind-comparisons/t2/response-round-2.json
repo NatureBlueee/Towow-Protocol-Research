@@ -1,0 +1,100 @@
+{
+  "controller_behavior_version": "T2-DISCLOSURE-CONTROLLER-V1",
+  "history_hash": "3ae76395f04624bb75f50f244f0fc32bfb082d2f0ccbb91f3a5e0b708651d0e5",
+  "input_hash": "9e1a7564ec2f78dc0f4716ddaa7bd37e48d14f78ac86d2ee871d8e6f2d85a241",
+  "method_id": "t2-ab-strong-composition",
+  "previous_round_hash": "605398200a4b0dcc6a03c5b3bad74585c25ce296a3763a3c1e82437eb71d1f70",
+  "results": [
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "duration_minutes": [
+          30,
+          60
+        ],
+        "environment": "buyer_controlled_sandbox",
+        "executor": "fixed_container",
+        "query_count": 3,
+        "success_observations": [
+          "container_runs",
+          "approved_aggregate_queries_complete",
+          "buyer_audit_receipt_exists",
+          "raw_row_export_count_is_zero"
+        ]
+      },
+      "query_index": 0,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-TECH",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "duration_minutes",
+          "environment",
+          "executor",
+          "query_count",
+          "success_observations"
+        ],
+        "purpose": "为采购方 sandbox 内运行固定分析容器这一未资格化候选，披露一次受限 probe 所需的最小精确条件：executor、environment、version、只读 operation、resource、成功判据、失败停止与 recovery；仅用于判断能否前瞻资格化该精确 operation，不据此推断采购方 permission、服务承诺或其他环境能力。",
+        "query_index": 0,
+        "reason_code": null,
+        "receipt_hash": "181a970a88328c6435af2890c050c6f2d8a5625d08dfa0a4a55ecf7f86a4bc15",
+        "receipt_id": "RCPT-cbbf970d7b2e23f069fbb823",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-579397ed1dd42bd727ff",
+        "request_type": "REQUEST_MINIMAL_PROBE",
+        "response_hash": "0f70734a13c2f18802863276ab75d052288ca6c6700b06795e9db55944a6bdbe",
+        "response_type": "CONDITIONAL",
+        "retention_scope": "RUN_ONLY",
+        "round": 2
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-579397ed1dd42bd727ff",
+      "response_hash": "0f70734a13c2f18802863276ab75d052288ca6c6700b06795e9db55944a6bdbe",
+      "response_type": "CONDITIONAL"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "allowed_queries": 3,
+        "auto_revoke_after_test": true,
+        "buyer_audit_required": true,
+        "credential": "temporary_readonly_test_only"
+      },
+      "query_index": 1,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "BUYER-DATA",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "allowed_queries",
+          "auto_revoke_after_test",
+          "buyer_audit_required",
+          "credential"
+        ],
+        "purpose": "针对固定分析容器在采购方 sandbox 内、原始数据不离域、仅执行明确批准的聚合只读查询、禁止训练和持久记忆且由采购方审计回执见证的候选 probe，披露是否可授权以及授权所需的最小数据范围、查询边界、credential、审计、期限和撤销条件；仅请求该 probe 的有界 permission，不视为 REL-T2-V2-CANDIDATE、正式试点或后续重复运行的授权。",
+        "query_index": 1,
+        "reason_code": null,
+        "receipt_hash": "02efd20b46d0e281c11dc8f88df53bdbf8330ee167bd14fd54eff6ebcb64b105",
+        "receipt_id": "RCPT-1b8090c64ab0dcaeaacdf9ea",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-0b8e145be9c977b8655c",
+        "request_type": "REQUEST_BOUNDED_PROBE_AUTHORIZATION",
+        "response_hash": "92f8681a24b08b70f622341420abb193232cb0f917f910f8c5e69bc441e453c1",
+        "response_type": "CONDITIONAL",
+        "retention_scope": "RUN_ONLY",
+        "round": 2
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-0b8e145be9c977b8655c",
+      "response_hash": "92f8681a24b08b70f622341420abb193232cb0f917f910f8c5e69bc441e453c1",
+      "response_type": "CONDITIONAL"
+    }
+  ],
+  "round": 2,
+  "round_hash": "f8e36d2f5ec68423cdc94f0e3175593e295a2abaa2bec2a72db3130e6f50f31a",
+  "run_id": "T2-AB-RUN-001",
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1"
+}

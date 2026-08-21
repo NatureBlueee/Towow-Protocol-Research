@@ -1,0 +1,138 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-03-CONDITION-FORMATION-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "POSSIBILITY_FORMATION",
+  "title": "可归因条件创造与新合格路径因果判别",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-FORM-002",
+    "CAP-FORM-003",
+    "CAP-FORM-004"
+  ],
+  "local_question": "在冻结同一目标与价值底线 Q、前态 S0、合格路径判据和 Authority/Effect 约束后，一个可归因 operator 是否第一次创造了合格路径，还是只发现隐藏路径、细化规范、调用既有工具、降低目标或执行强中心同样会做的普通 amendment？",
+  "blocked_decision": "决定 condition formation 应保留为 CEGIS、planning、workflow amendment、probe 与 target readback 的有界组合，还是 PFE/A2A 具有不可替代的独立机制增量。",
+  "reverse_result": "若冻结前已有等价路径、移除 operator 后路径仍可达、operator 只增加文本或降低价值底线，或 same-information strong center 加 HITL 以同等或更低成本完成同一变化，则相应 formation 或 PFE/A2A 独特性主张必须失败或缩窄；技术负结果不影响真人价值等未测试主张。",
+  "minimum_discriminator": "冻结 R5C 或等价 episode 的 Q、价值底线、S0、operator、Authority、target-authoritative postcondition 与总资源口径，比较 no-op/static search、strong-center planner 加 HITL、formation policy、wrong-authority、producer-only 和 remove-operator/recovery/readback 消融；只有 S0 无合格路径、S1 首现同一 Q 路径且消融失败时才能支持 formation。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/lines/03-possibility-formation.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+    "research/projects/a2a-reconstruction/04_audit/source_registry.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/88/882d3eedfa83a49040bc9130bac836230fbff23daf9669530537516750785751.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/00/004142f8275b76a91ce5d9b994395d7bf843e5e5cf1f49654e4039fe4ff019bd.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/43/43e7bf31d3500210842c95bb8a35a4fffb861c7b2443a75d05b91566305d17b9.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/54/54656efe70b7fd1b94bc6ad5d0dfc4a51b61222845647b9e1d0961551ec8dbca.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/64/64f7a7c74327766165d6367faf65f59bfc66a54d88d768e471cd8af5c4907b28.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 60,
+    "max_attempts": 2,
+    "max_output_bytes": 3145728
+  },
+  "stop_conditions": [
+    "开始降低冻结价值底线或改写 Q 来制造可达成功",
+    "producer 自证被当成 target-authoritative Effect 或 Acceptance",
+    "比较臂没有相同模型、工具、Authority、行动权限和总资源账",
+    "R5C 本地合成结果被外推为真人、商业、生产或跨组织证据"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "必须给 planning/action-model learning、CEGIS、workflow amendment 和 strong-center 加 HITL 完整基线机会",
+    "必须保留 R5.4 的隐藏路径、规范细化、中心充分与未采用负结果",
+    "必须分别报告 operator 必要性、Authority 位置、target readback、recovery 和互动拓扑消融",
+    "formation happened 与 PFE/A2A 独特或更优必须作为不同 claim 判断"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-FORM-CAUSAL-CONDITION"
+    ],
+    "hypothesis_ids": [
+      "FORM-H-R5C-CENTRAL-REPLAY"
+    ],
+    "applicable_assumptions": [
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE",
+      "WORLD-COMPILE-AND-REOPEN"
+    ],
+    "non_claims": [
+      "不证明 PFE 是顶层引擎或所有 Intent 必经环节",
+      "不证明互动、A2A、联邦或通爻是形成路径的唯一方式",
+      "不证明真人 Principal、客户偏好、商业价值或生产就绪",
+      "不把技术 Effect 等同于 Adoption、Acceptance 或责任认领",
+      "不证明形成后的稳定运行应继续使用开放协商"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/88/882d3eedfa83a49040bc9130bac836230fbff23daf9669530537516750785751.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/00/004142f8275b76a91ce5d9b994395d7bf843e5e5cf1f49654e4039fe4ff019bd.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/54/54656efe70b7fd1b94bc6ad5d0dfc4a51b61222845647b9e1d0961551ec8dbca.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/64/64f7a7c74327766165d6367faf65f59bfc66a54d88d768e471cd8af5c4907b28.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "Planning、action-model learning、CEGIS、分解优化、workflow amendment、HITL 和承诺协议已覆盖搜索、模型修复、条件补充和执行的大量组成；仍需用同一 Q 的 S0/operator/S1、Authority、target readback 和消融区分发现、普通 amendment 与现实条件创造。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "一手核验已证明 action-model learning 和不确定 planning 处理不完整模型；它们不自动证明现实权限、伙伴、资源或 target Effect 被可归因 operator 创建。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/00/004142f8275b76a91ce5d9b994395d7bf843e5e5cf1f49654e4039fe4ff019bd.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "R5C 支持本地合成技术路径，但 matched strong-center formation、真人 Recognition、外部迁移和长期净值仍为 Unknown。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/88/882d3eedfa83a49040bc9130bac836230fbff23daf9669530537516750785751.md",
+        "coverage": "NONE",
+        "uncovered_requirement": "R5.4 的交互只细化规范条件，未签署、实现或采用，不能支持 formation success。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能提升 SC-FORM-CAUSAL-CONDITION 的本地技术候选证据，并冻结 Q、S0、operator、Authority、postcondition、消融、强中心基线与资源账；不能支持真人或 PFE 独特性。",
+    "negative_effect": "若路径预先存在、operator 不必要、目标被降低或强中心等效，则只反驳或缩窄 SC-FORM-CAUSAL-CONDITION 或 PFE/A2A 增量；R5C 的其他技术能力与未测试研究线保持不变。",
+    "unaffected_claim_ids": [
+      "CAP-FORM-001",
+      "CAP-FORM-005",
+      "CAP-REL-001",
+      "CAP-REL-002",
+      "CAP-REL-003",
+      "CAP-REL-004",
+      "CAP-REL-005",
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有在同一 Q 和 S0 下由 target-authoritative readback 证明 operator 后首条合格路径出现，且 remove-operator、wrong-authority、producer-only 失败并完成 matched strong-center 比较，才能提出 scoped 支持；正式状态变化仍需用户决定。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/03-condition-formation-v2.md"
+}

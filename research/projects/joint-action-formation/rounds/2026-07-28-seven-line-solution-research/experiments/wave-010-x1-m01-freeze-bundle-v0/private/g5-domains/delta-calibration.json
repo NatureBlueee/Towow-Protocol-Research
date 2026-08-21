@@ -1,0 +1,115 @@
+{
+  "fragment_version": "wave010-x1-m01-g5-domain-v0",
+  "authority_domain_id": "delta-calibration-domain",
+  "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+  "applies_to_episode_keys": [
+    "765f0698-edb8-459d-bba6-ceb0ae154e51",
+    "d952741e-11f8-44db-a98d-7a34c12e6801"
+  ],
+  "truth_owner": {
+    "principal_id": "delta-field-calibration-cooperative",
+    "controller_id": "delta-calibration-operations-board",
+    "agent_entity_id": "delta-calibration-service-agent",
+    "owner_key_id": "delta-calibration-domain:owner-key:v1",
+    "private_key_material_included": false,
+    "exclusive_signing_scope": [
+      "delta mandate",
+      "delta calibration-role stance",
+      "delta calibration commitment",
+      "delta-owned field-service reservation"
+    ],
+    "may_not_sign_for_other_domains": true
+  },
+  "ledger_candidates": {
+    "genesis_candidate_id": "delta-calibration-domain:ledger-genesis:v0",
+    "root_candidate_id": "delta-calibration-domain:ledger-root:v0",
+    "root_preimage_rule": "canonical JSON object containing authority_domain_id, relation_coordinate, truth_owner, private_truth, and not_run_boundary",
+    "root_candidate_sha256": "4907b0c00291c0ec78035c9ca026844adbd74a2f8e6f5b0ecb7f8ef957cad471",
+    "status": "CANDIDATE_UNSEALED_NOT_RUN"
+  },
+  "private_truth": {
+    "s0": {
+      "relation_formation_state": "PROPOSAL_NOT_FORMED",
+      "mandate": {
+        "mandate_id": "mandate-delta-calibration-joint-bid-0001",
+        "version_head": "mandate-delta-calibration-joint-bid-0001@v2",
+        "revocation_head": "mandate-delta-calibration-joint-bid-0001/revocations@seq-0",
+        "status": "CURRENT_ACTIVE_EXACT_SCOPE",
+        "owner_receipt_id": "delta-calibration-domain:mandate-owner-receipt@v2",
+        "exact_scope": "decide the calibration role, issue delta-domain stance and commitment, and reserve the delta-owned field-service slot"
+      },
+      "stance": {
+        "status": "NOT_RECORDED_AT_S0",
+        "version_head": null,
+        "owner_receipt_id": null
+      },
+      "commitment": {
+        "candidate_id": "commitment-delta-calibration-joint-bid-0001",
+        "status": "NOT_CREATED_AT_S0",
+        "version_head": null,
+        "revocation_head": null,
+        "owner_receipt_id": null
+      },
+      "resource": {
+        "resource_id": "field-service-slot-estuary-18h-01",
+        "resource_owner_principal_id": "delta-field-calibration-cooperative",
+        "availability_head": "field-service-slot-estuary-18h-01/availability@v1",
+        "state": "AVAILABLE_UNHELD",
+        "active_lease_count": 0,
+        "reservation": {
+          "status": "NOT_CREATED_AT_S0",
+          "version_head": null,
+          "revoke_release_head": null,
+          "owner_receipt_id": null,
+          "lease_token": null
+        }
+      }
+    },
+    "transition_receipt_rules": [
+      {
+        "transition": "S0_TO_CURRENT_STANCE",
+        "requires": [
+          "owner-signed G2 formed receipt@v1",
+          "receipt relation coordinate equals relation-estuary-sensor-calibration-joint-bid@v1",
+          "current mandate owner receipt"
+        ],
+        "effect": "owner may create a current attributable delta calibration stance receipt",
+        "only_valid_signer_key_id": "delta-calibration-domain:owner-key:v1"
+      },
+      {
+        "transition": "CURRENT_STANCE_TO_COMMITMENT",
+        "requires": [
+          "current delta calibration stance owner receipt",
+          "current exact-scope mandate head",
+          "no unresolved delta-domain challenge"
+        ],
+        "effect": "owner may create the delta calibration commitment and receipt",
+        "only_valid_signer_key_id": "delta-calibration-domain:owner-key:v1"
+      },
+      {
+        "transition": "COMMITMENT_TO_ATOMIC_RESERVATION",
+        "requires": [
+          "current delta commitment owner receipt",
+          "resource remains AVAILABLE_UNHELD at current availability head",
+          "compare-and-set observes zero active leases"
+        ],
+        "effect": "resource owner atomically creates exactly one reservation lease and owner receipt",
+        "only_valid_signer_key_id": "delta-calibration-domain:owner-key:v1",
+        "failure_effect": "no reservation record and no G5 success"
+      }
+    ],
+    "forbidden": [
+      "program coordinator signs or creates the reservation receipt",
+      "G5 evaluator signs or creates the reservation receipt",
+      "sign another domain stance or commitment",
+      "reserve without a current delta commitment owner receipt"
+    ]
+  },
+  "not_run_boundary": {
+    "run_state": "NOT_RUN",
+    "stance_receipt_created": false,
+    "commitment_receipt_created": false,
+    "reservation_receipt_created": false,
+    "formal_status_changed": false
+  }
+}

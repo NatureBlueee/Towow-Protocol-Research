@@ -1,0 +1,246 @@
+{
+  "coverage": {
+    "ratio": 0.125,
+    "requirements_passed": 1,
+    "requirements_total": 8
+  },
+  "critical_failures": [
+    {
+      "code": "RECALL_MISS",
+      "detail": "No candidate-owned detection maps to this latent target.",
+      "detection_id": null,
+      "requirements": [
+        "R2",
+        "R7"
+      ],
+      "truth_id": "OPP-DYNAMIC"
+    },
+    {
+      "code": "RECALL_MISS",
+      "detail": "No candidate-owned detection maps to this latent target.",
+      "detection_id": null,
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": "OPP-EXPRESSED"
+    },
+    {
+      "code": "RECALL_MISS",
+      "detail": "No candidate-owned detection maps to this latent target.",
+      "detection_id": null,
+      "requirements": [
+        "R6"
+      ],
+      "truth_id": "OPP-POLICY"
+    },
+    {
+      "code": "RECIPROCAL_DISCLOSURE_MISSING",
+      "detail": "Reciprocal disclosure F-RECIP-OFFER-DETAIL is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RECIPROCAL_DISCLOSURE_MISSING",
+      "detail": "Reciprocal disclosure F-RECIP-SEEK-DETAIL is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RECIPROCAL_PROBE_MISSING",
+      "detail": "Required reciprocal probe receipt is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RELATION_HANDOFF_MISSING",
+      "detail": "Discovered opportunity did not enter relation constitution.",
+      "detection_id": null,
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-EXPRESSED"
+    },
+    {
+      "code": "RELATION_HANDOFF_MISSING",
+      "detail": "Discovered opportunity did not enter relation constitution.",
+      "detection_id": "cmb-pair-reciprocal-unknown-004",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RELATION_HANDOFF_MISSING",
+      "detail": "Discovered opportunity did not enter relation constitution.",
+      "detection_id": "cmb-pair-data-cleaning-unknown-005",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-PROBE-COMPLETE.",
+      "detection_id": "cmb-pair-reciprocal-unknown-004",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "STATE_MISMATCH",
+      "detail": "Expected DISCOVERED, received UNKNOWN.",
+      "detection_id": "cmb-pair-reciprocal-unknown-004",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "STATE_MISMATCH",
+      "detail": "Expected DISCOVERED, received UNKNOWN.",
+      "detection_id": "cmb-pair-data-cleaning-unknown-005",
+      "requirements": [
+        "R1",
+        "R3",
+        "R7"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "UNEXPECTED_DETECTION",
+      "detail": "Observable signature does not map to any frozen latent target.",
+      "detection_id": "cmb-claim-dynamic-offer-006",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": null
+    },
+    {
+      "code": "UNEXPECTED_RELATION_HANDOFF",
+      "detail": "Handoff references an unmapped detection.",
+      "detection_id": "cmb-handoff-data-cleaning-008",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": null
+    },
+    {
+      "code": "UNEXPECTED_RELATION_HANDOFF",
+      "detail": "Handoff references an unmapped detection.",
+      "detection_id": "cmb-handoff-reciprocal-007",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": null
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Unknown evidence: F-RECIP-OFFER-DETAIL, F-RECIP-SEEK-DETAIL, POL-RECIP-OFFER, POL-RECIP-SEEK.",
+      "detection_id": "cmb-pair-reciprocal-unknown-004",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    }
+  ],
+  "evidence_boundary": "This score validates one local synthetic receipt against hidden frozen truth. The calibration fixture is not a candidate result.",
+  "metrics": {
+    "correctly_discovered_opportunities": 0,
+    "disclosure_event_count": 2,
+    "discoverable_opportunities": 3,
+    "exact_state_decisions": 3,
+    "false_wakeup_count": 0,
+    "frozen_items": 8,
+    "mapped_latent_items": 5,
+    "opportunity_recall": 0.0,
+    "unique_recipients_by_origin_fact": {
+      "F-UNEXP-OFFER-PROJECTION": [
+        "P-COORDINATOR"
+      ],
+      "F-UNEXP-SEEK-PROJECTION": [
+        "P-COORDINATOR"
+      ]
+    }
+  },
+  "requirement_results": {
+    "R1": {
+      "description": "Recover an unexpressed opportunity without requiring a prebuilt public card.",
+      "failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "status": "FAIL"
+    },
+    "R2": {
+      "description": "Invalidate stale discovery after the dynamic state flip.",
+      "failure_codes": [
+        "RECALL_MISS"
+      ],
+      "status": "FAIL"
+    },
+    "R3": {
+      "description": "Use task-relative projections rather than raw or full-world disclosure.",
+      "failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "status": "FAIL"
+    },
+    "R4": {
+      "description": "Respect receiver, purpose, retention, depth, onward, and cumulative disclosure limits.",
+      "failure_codes": [
+        "RECIPROCAL_DISCLOSURE_MISSING",
+        "RECIPROCAL_PROBE_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R5": {
+      "description": "Keep UNKNOWN, REFUSE, and ABSENT distinct.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R6": {
+      "description": "Report a real but policy-unfindable opportunity honestly.",
+      "failure_codes": [
+        "RECALL_MISS"
+      ],
+      "status": "FAIL"
+    },
+    "R7": {
+      "description": "Avoid SEEK/SEEK false wakeups and structural misses.",
+      "failure_codes": [
+        "RECALL_MISS",
+        "RECIPROCAL_DISCLOSURE_MISSING",
+        "RECIPROCAL_PROBE_MISSING",
+        "REQUIRED_EVIDENCE_MISSING",
+        "STATE_MISMATCH",
+        "UNEXPECTED_DETECTION",
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R8": {
+      "description": "Handoff discoveries to relation constitution without inventing commitment.",
+      "failure_codes": [
+        "RELATION_HANDOFF_MISSING",
+        "UNEXPECTED_RELATION_HANDOFF"
+      ],
+      "status": "FAIL"
+    }
+  },
+  "schema_version": "1.1",
+  "status": "FAIL",
+  "submission_sha256": "75fd08774297706ae392f18697de065ebed3e773b157b455eadb8e33aa6f5641",
+  "world_id": "T1-HW-20260728-A"
+}

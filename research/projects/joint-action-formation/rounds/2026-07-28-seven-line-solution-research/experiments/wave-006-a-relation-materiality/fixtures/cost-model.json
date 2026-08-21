@@ -1,0 +1,18 @@
+{
+  "schema": "towow.relation-materiality-cost-model.v1",
+  "accepted_initial_task_value": 40,
+  "accepted_reuse_task_value": 20,
+  "disclosure_unit_cost": 1,
+  "coordination_operation_cost": 1,
+  "clarification_cost": 3,
+  "recovery_step_cost": 1,
+  "false_relation_loss": 15,
+  "stale_reuse_loss": 20,
+  "withdrawal_residual_loss": 15,
+  "missed_valid_action_loss": 10,
+  "selection_rule": [
+    "Reject any strategy with false relation constitution, stale reuse, withdrawal residual or missed valid action.",
+    "Among remaining strategies, maximize net_task_value.",
+    "On equal net value, prefer fewer relation concepts and lower disclosure."
+  ]
+}

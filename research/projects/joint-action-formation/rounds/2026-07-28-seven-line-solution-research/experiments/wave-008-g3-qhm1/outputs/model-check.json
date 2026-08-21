@@ -1,0 +1,809 @@
+[
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 1,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "348bdb9ad0c84651578726ead2ba0005f92b3cf4b54e3a6d8e707df855b16dcd",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "75c218e2fd62d4673219b2da920d10e8c933e840fd379366f9d8b9c6caf50ede",
+    "layers": [
+      {
+        "executable_model_fingerprint": "06d783bab96b9351fc0eeec10cf1d890bddcbb178003357c622c15edc0a29114",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "06d783bab96b9351fc0eeec10cf1d890bddcbb178003357c622c15edc0a29114",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "c81bc3866e5fd96a37d9d2b8c58ec198ab58f0c51804396d4c43e956c63a47dc",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "06d783bab96b9351fc0eeec10cf1d890bddcbb178003357c622c15edc0a29114",
+        "explored_edges": 250,
+        "explored_states": 36,
+        "final_state_digest": "3658a0098ae29cce5ad78ad7a4b5d1ce360a8bd643c05c4d3c72b37b88d1ab89",
+        "max_layer": 1,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "SIGN_COMMITMENT",
+          "ISSUE_AUTHORIZATION",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 6
+      },
+      {
+        "executable_model_fingerprint": "06d783bab96b9351fc0eeec10cf1d890bddcbb178003357c622c15edc0a29114",
+        "explored_edges": 300,
+        "explored_states": 36,
+        "final_state_digest": "3658a0098ae29cce5ad78ad7a4b5d1ce360a8bd643c05c4d3c72b37b88d1ab89",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "SIGN_COMMITMENT",
+          "ISSUE_AUTHORIZATION",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 6
+      }
+    ],
+    "public_trial_id": "trial-22872216e17a",
+    "truth_id": "commit"
+  },
+  {
+    "closure_status": "UNSAT",
+    "declared_layer_depth": null,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "e30f95d3c70cef28c5dfa90fb8d021e154e0a1b21eeef6b44f65677be0e4414c",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "ad71c2ad91feb7cb28d3f6b79782f7db473d6b1533cfaf8892dcbee7ba375e5a",
+    "layers": [
+      {
+        "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+        "explored_edges": 76,
+        "explored_states": 19,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+          "explored_edges": 76,
+          "explored_states": 19,
+          "frontier_exhausted": true,
+          "frontier_hash": "2baa746c858d9dd75739f8b9b9a27668d605147bbfa7b441c60cdf7d29605bdf",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+        "explored_edges": 380,
+        "explored_states": 38,
+        "final_state_digest": null,
+        "max_layer": 1,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+          "explored_edges": 380,
+          "explored_states": 38,
+          "frontier_exhausted": true,
+          "frontier_hash": "88270f7591da30c58f3d37663e8aee5d8544e41ffc49f45755236e1656015553",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 1,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+        "explored_edges": 456,
+        "explored_states": 38,
+        "final_state_digest": null,
+        "max_layer": 2,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "6acc429e241e825bd4d8721f184ddfc4355dee3c341b3e2fa49faf14806196b1",
+          "explored_edges": 456,
+          "explored_states": 38,
+          "frontier_exhausted": true,
+          "frontier_hash": "88270f7591da30c58f3d37663e8aee5d8544e41ffc49f45755236e1656015553",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 2,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      }
+    ],
+    "public_trial_id": "trial-3063c232aea8",
+    "truth_id": "drift"
+  },
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 1,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "cdab0627bfe01b29fef954bbde583962a9b7f73fb3c936cecfa7821099d58e21",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "422b4634ba103fb4274e700135e23f43edaeb4dc63de7f721c64c526d8490176",
+    "layers": [
+      {
+        "executable_model_fingerprint": "83da1165da0e6f88d2502d9944e98c03f4fcdcb49cf769c528a6f9c5aa9f7a26",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "83da1165da0e6f88d2502d9944e98c03f4fcdcb49cf769c528a6f9c5aa9f7a26",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "a068d1010e51d5cbf58a5c6c068c144e70b7711c77c77ab7a90c72045109e927",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "83da1165da0e6f88d2502d9944e98c03f4fcdcb49cf769c528a6f9c5aa9f7a26",
+        "explored_edges": 250,
+        "explored_states": 36,
+        "final_state_digest": "644181de2b49de7cd16ed17d8f3bd05a0c05dc4f5689f824c1b88631cdea7ed9",
+        "max_layer": 1,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "BUILD_KNOWN_ADAPTER",
+          "INSTALL_KNOWN_ADAPTER",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 6
+      },
+      {
+        "executable_model_fingerprint": "83da1165da0e6f88d2502d9944e98c03f4fcdcb49cf769c528a6f9c5aa9f7a26",
+        "explored_edges": 300,
+        "explored_states": 36,
+        "final_state_digest": "644181de2b49de7cd16ed17d8f3bd05a0c05dc4f5689f824c1b88631cdea7ed9",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "BUILD_KNOWN_ADAPTER",
+          "INSTALL_KNOWN_ADAPTER",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 6
+      }
+    ],
+    "public_trial_id": "trial-476cdc0361c4",
+    "truth_id": "build-known"
+  },
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 1,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "8c7d7ae72f8ebe053ddd9d6ba94f5a13c6f698db7d4738b041e5f22ca957d585",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "e1d33866b1b27157ffc7e0d7d9fd147860f645967bfbc377a90a407f31f13d5b",
+    "layers": [
+      {
+        "executable_model_fingerprint": "f9ada8c850b6083a706f8ef7d6354e334a7d62887ed214388a2627e808b1187c",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "f9ada8c850b6083a706f8ef7d6354e334a7d62887ed214388a2627e808b1187c",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "d5252e565ca319db38024ece7caf7aaa036487e320522b33fb1f9144b4524abe",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "f9ada8c850b6083a706f8ef7d6354e334a7d62887ed214388a2627e808b1187c",
+        "explored_edges": 550,
+        "explored_states": 66,
+        "final_state_digest": "c9b24657f0038a23e2fb074cdd14d7e0f169b40f180271431dcfa94ba52c5ebb",
+        "max_layer": 1,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "ENABLE_ENDPOINT",
+          "SIGN_COMMITMENT",
+          "ISSUE_AUTHORIZATION",
+          "BUILD_KNOWN_ADAPTER",
+          "INSTALL_KNOWN_ADAPTER",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 9
+      },
+      {
+        "executable_model_fingerprint": "f9ada8c850b6083a706f8ef7d6354e334a7d62887ed214388a2627e808b1187c",
+        "explored_edges": 660,
+        "explored_states": 66,
+        "final_state_digest": "c9b24657f0038a23e2fb074cdd14d7e0f169b40f180271431dcfa94ba52c5ebb",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "ENABLE_ENDPOINT",
+          "SIGN_COMMITMENT",
+          "ISSUE_AUTHORIZATION",
+          "BUILD_KNOWN_ADAPTER",
+          "INSTALL_KNOWN_ADAPTER",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 9
+      }
+    ],
+    "public_trial_id": "trial-7e848eee5505",
+    "truth_id": "combo"
+  },
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 2,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "3e32a43e17de7077815b97f82e131aa58bfecaa746d8e550d1e07a81149cf7cc",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "87e198dd223f81f6ac098f058b9491d1404a24a60b826a088bc4823deed94b39",
+    "layers": [
+      {
+        "executable_model_fingerprint": "ccebde1581c0f585f16920102fe61b0475e3cffffb04b2f02269b95f6ccc98bf",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "ccebde1581c0f585f16920102fe61b0475e3cffffb04b2f02269b95f6ccc98bf",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "a068d1010e51d5cbf58a5c6c068c144e70b7711c77c77ab7a90c72045109e927",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "ccebde1581c0f585f16920102fe61b0475e3cffffb04b2f02269b95f6ccc98bf",
+        "explored_edges": 20,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 1,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "ccebde1581c0f585f16920102fe61b0475e3cffffb04b2f02269b95f6ccc98bf",
+          "explored_edges": 20,
+          "explored_states": 2,
+          "frontier_exhausted": true,
+          "frontier_hash": "da4d188cf0f4104e84692b20e81025218ddd917025bfad9c466c79ef31872cf7",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 1,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "ccebde1581c0f585f16920102fe61b0475e3cffffb04b2f02269b95f6ccc98bf",
+        "explored_edges": 300,
+        "explored_states": 36,
+        "final_state_digest": "70d959902ccfaaa1dfb4487a1ce2555c0d3bc3fe396a3e743d41c2b449fffcae",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "PROPOSE_NEW_OPERATOR",
+          "REGISTER_NEW_OPERATOR",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 6
+      }
+    ],
+    "public_trial_id": "trial-9232626680c3",
+    "truth_id": "extend"
+  },
+  {
+    "closure_status": "UNKNOWN",
+    "declared_layer_depth": null,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "b0efbd6147c57549cfb7c16dbe1878b753bf300892924809ade6565986116439",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "3876026d679f3cf1d20212c21323d14f755df4de246b5ac9ec69d72d5a55a3e1",
+    "layers": [
+      {
+        "executable_model_fingerprint": "b1c9f305c49295341344345130a602996bd04de1432980f5c60115ac1b38b7d5",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": "ACTION_INVENTORY_DECLARED_INCOMPLETE; exhausted declared edges cannot certify bounded UNSAT",
+        "unsat_certificate": null,
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "b1c9f305c49295341344345130a602996bd04de1432980f5c60115ac1b38b7d5",
+        "explored_edges": 20,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 1,
+        "sat": false,
+        "unresolved_reason": "ACTION_INVENTORY_DECLARED_INCOMPLETE; exhausted declared edges cannot certify bounded UNSAT",
+        "unsat_certificate": null,
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "b1c9f305c49295341344345130a602996bd04de1432980f5c60115ac1b38b7d5",
+        "explored_edges": 24,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 2,
+        "sat": false,
+        "unresolved_reason": "ACTION_INVENTORY_DECLARED_INCOMPLETE; exhausted declared edges cannot certify bounded UNSAT",
+        "unsat_certificate": null,
+        "witness": [],
+        "witness_cost": null
+      }
+    ],
+    "public_trial_id": "trial-a23d1de1bd21",
+    "truth_id": "open-invent"
+  },
+  {
+    "closure_status": "UNSAT",
+    "declared_layer_depth": null,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "5a106e7ee2ed73266c9448f22548bd7dc0be3ab5d864815f4df21e6d657b029f",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "80c2c30d9aa28bb4901fb0528dd91ea8dd1e30a82b96d08cf7aab00461084a2b",
+    "layers": [
+      {
+        "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "d5252e565ca319db38024ece7caf7aaa036487e320522b33fb1f9144b4524abe",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+        "explored_edges": 20,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 1,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+          "explored_edges": 20,
+          "explored_states": 2,
+          "frontier_exhausted": true,
+          "frontier_hash": "f5554db1048967fdadc61e5ca376e13696114e1d98d8b6b7f2c782f66fc77fd8",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 1,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+        "explored_edges": 24,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 2,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "24f0e30bed9e450cdfd05a21c785391ed30ab7042ac344e7bbfa27458503ef87",
+          "explored_edges": 24,
+          "explored_states": 2,
+          "frontier_exhausted": true,
+          "frontier_hash": "f5554db1048967fdadc61e5ca376e13696114e1d98d8b6b7f2c782f66fc77fd8",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 2,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      }
+    ],
+    "public_trial_id": "trial-bb8da8352618",
+    "truth_id": "unsat"
+  },
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 1,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "a922e1c78e02b8efcba264002522d8eebfff32428f73d448d6da729ab0f87704",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "34e5d3bc29bcf92ca722a02aa0a697d680983e4ee926afd9bcb63b1c41d2667c",
+    "layers": [
+      {
+        "executable_model_fingerprint": "8bf30a244b0a46e52bcb2bedf414abb34c141f0cad7c111e04975445c5de83fa",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "8bf30a244b0a46e52bcb2bedf414abb34c141f0cad7c111e04975445c5de83fa",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "46aa5e1773956202d3c19ca283d0b766ba34020c84a7708828e40e406818f05c",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "8bf30a244b0a46e52bcb2bedf414abb34c141f0cad7c111e04975445c5de83fa",
+        "explored_edges": 230,
+        "explored_states": 34,
+        "final_state_digest": "9df29934c04ed144089fa1640e94ceb70899c05fea2984f9d55a38e91cbf862b",
+        "max_layer": 1,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "ENABLE_ENDPOINT",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 5
+      },
+      {
+        "executable_model_fingerprint": "8bf30a244b0a46e52bcb2bedf414abb34c141f0cad7c111e04975445c5de83fa",
+        "explored_edges": 276,
+        "explored_states": 34,
+        "final_state_digest": "9df29934c04ed144089fa1640e94ceb70899c05fea2984f9d55a38e91cbf862b",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "ENABLE_ENDPOINT",
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 5
+      }
+    ],
+    "public_trial_id": "trial-e784194feaeb",
+    "truth_id": "enable"
+  },
+  {
+    "closure_status": "UNSAT",
+    "declared_layer_depth": null,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "206a9e18df9f786b6fa768b10a809c91047ea7565dfc68d82f6c1e2a383323e5",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "0c1d5631a7c17cf1043123df240a76080c1489fc4393057f2db0e7f2c1c3941e",
+    "layers": [
+      {
+        "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+        "explored_edges": 4,
+        "explored_states": 1,
+        "final_state_digest": null,
+        "max_layer": 0,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+          "explored_edges": 4,
+          "explored_states": 1,
+          "frontier_exhausted": true,
+          "frontier_hash": "c81bc3866e5fd96a37d9d2b8c58ec198ab58f0c51804396d4c43e956c63a47dc",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 0,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+        "explored_edges": 20,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 1,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+          "explored_edges": 20,
+          "explored_states": 2,
+          "frontier_exhausted": true,
+          "frontier_hash": "176c30bdedf6012ddd5b84cfad0eb0d5199cabaff70c5a246c0678d60f98fe43",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 1,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      },
+      {
+        "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+        "explored_edges": 24,
+        "explored_states": 2,
+        "final_state_digest": null,
+        "max_layer": 2,
+        "sat": false,
+        "unresolved_reason": null,
+        "unsat_certificate": {
+          "action_model_fingerprint": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+          "completeness_scope": "finite declared QHM1 state variables, scripted principal policies, actions with layer<=max_layer, horizon and cost bound",
+          "executable_model_fingerprint": "fc23181b189e5f89331aa3702aa756722ba06c6245a47284a8dfe7da1418dfaf",
+          "explored_edges": 24,
+          "explored_states": 2,
+          "frontier_exhausted": true,
+          "frontier_hash": "176c30bdedf6012ddd5b84cfad0eb0d5199cabaff70c5a246c0678d60f98fe43",
+          "horizon": 10,
+          "max_cost": 10,
+          "max_layer": 2,
+          "max_privacy_cost": 2,
+          "task_fingerprint": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+        },
+        "witness": [],
+        "witness_cost": null
+      }
+    ],
+    "public_trial_id": "trial-ec4e571ba703",
+    "truth_id": "substitute"
+  },
+  {
+    "closure_status": "SAT",
+    "declared_layer_depth": 0,
+    "depth_interpretation": "relative to the frozen QHM1 L0/L1/L2 representation; not an ontology",
+    "fingerprints": {
+      "action_model": "30b6b07080b88002b24a91606225fd9b3920794e73a9855a1642c231f2ee6dd0",
+      "authority_map": "f7330f9d2430eab59931423925d9e466b8d637eb9edd1e179bfaf42e70e0407b",
+      "principal_policies": "4ed92e3f156953859a441cf24f085f903c6e47affa72f68ed800b47a74a9597a",
+      "resource_account": "c7b2973b678392cc9da45ff6f40fdba1f57f38576faec6a61045022733bfa79d",
+      "task": "367f94409e20520974a79f7b30b86c215ca2bca63d694b6ec252a8043909fa3b"
+    },
+    "frozen_package_fingerprint": "a4269f8ae93f650ff5d93e1835b65846234781b51a64b7634b14ebc80852001d",
+    "layers": [
+      {
+        "executable_model_fingerprint": "b26ad1fee504adbd4bad3e113de8c2564861d992e0c7fe2c7fa6fd6e65df3880",
+        "explored_edges": 52,
+        "explored_states": 18,
+        "final_state_digest": "06303a1ab5b8206abaf1542dfea4a9aa8519e0c49841f8c59f9fb6b188be1b28",
+        "max_layer": 0,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 4
+      },
+      {
+        "executable_model_fingerprint": "b26ad1fee504adbd4bad3e113de8c2564861d992e0c7fe2c7fa6fd6e65df3880",
+        "explored_edges": 190,
+        "explored_states": 31,
+        "final_state_digest": "06303a1ab5b8206abaf1542dfea4a9aa8519e0c49841f8c59f9fb6b188be1b28",
+        "max_layer": 1,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 4
+      },
+      {
+        "executable_model_fingerprint": "b26ad1fee504adbd4bad3e113de8c2564861d992e0c7fe2c7fa6fd6e65df3880",
+        "explored_edges": 228,
+        "explored_states": 31,
+        "final_state_digest": "06303a1ab5b8206abaf1542dfea4a9aa8519e0c49841f8c59f9fb6b188be1b28",
+        "max_layer": 2,
+        "sat": true,
+        "unresolved_reason": null,
+        "unsat_certificate": null,
+        "witness": [
+          "TRANSFER",
+          "PROJECT",
+          "ACCEPT",
+          "READBACK"
+        ],
+        "witness_cost": 4
+      }
+    ],
+    "public_trial_id": "trial-fb6c2c1c2082",
+    "truth_id": "discover"
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "artifact_hash_semantics": "CANONICAL_JSON_SHA256_AFTER_REMOVING_TWIN_ARTIFACT_SHA256_FIELD",
+  "authority_process": {
+    "exitcode": 0,
+    "process_id": 86882
+  },
+  "authority_public_key_hex": "08b6dc4237e2320964f7998dfb26deae614e9dd751a6998576dd4bfbb0f831a2",
+  "authority_store": {
+    "path": "authority-native.sqlite3",
+    "sha256": "be657463d5ce61ad039bf598828517d295af1936064113b68caab7b2a1525878"
+  },
+  "authority_timing": {
+    "R": "TARGET_ACKED_MATCHING_REVOCATION_BEFORE_INGRESS",
+    "S": "COMPLETED_BEFORE_AUTHORITY_REVOCATION_RECORD",
+    "U": "AUTHORITY_REVOCATION_EXISTS_TARGET_NOT_ACKED_NOT_SCORED",
+    "revocation_head_sha256": "759bd640cbf62833bf29ef5f8f48e64d953766356b31bcf8d42c931b7288ea85",
+    "s_target_receipt_sha256": "e11d7ad96bd4f41ee068fc357b7fa48e20ebf07339e53ae284cfc2b7f3611765"
+  },
+  "candidate_artifact_sha256": "29b05cb8bff10e510b1e4243449487b6bff7267d9e180bc35f2f7012e4b9a5c9",
+  "candidate_payload_sha256": "65ef9b3767cbaf82d6f83612de9e3b41d19b2f1277c74502adf5a7de4a1403ab",
+  "claim_boundary": {
+    "explicit_not_tested": [
+      "CL-024-GLOBAL-AUTHORITY-CURRENTNESS",
+      "TARGET_PROCESS_RESTART_PERSISTENCE",
+      "HOSTILE_SAME_UID_BLINDNESS_AND_WRITE_RESISTANCE",
+      "EXTERNAL_APPEND_ONLY_ROOT_ANCHOR"
+    ],
+    "not_claimed": [
+      "LEGAL_AUTHORITY",
+      "PHYSICAL_EFFECT",
+      "HOSTILE_SAME_USER_RESISTANCE",
+      "PRODUCTION_RELIABILITY",
+      "A1_A5_COMPARISON_OR_WINNER",
+      "V1_V2_COMPLETE_SOLUTION"
+    ],
+    "pending_independent_evaluation": [
+      "CL-024-TARGET-CONSUMED-AUTHORITY-FENCE",
+      "CL-024-EXACTLY-ONCE-RECOVERY",
+      "CL-024-NATIVE-POSTCONDITIONS",
+      "CL-024-ISOMORPHIC-BLINDNESS"
+    ]
+  },
+  "initial_authority": {
+    "actor_id": "CANDIDATE-A4-MATURE-COMPOSITION",
+    "authority_head_sha256": "671e50820b766be0037d00a302f4639a3f59c790aa35da0ed880e41e76f9095f",
+    "delegation_id": "delegation-ce001-authority-epoch-twin",
+    "epoch": 1,
+    "issuer_process_id": 86882,
+    "object_id": "PowerOccurrence:VenueV:CircuitC7",
+    "operation": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+    "prev_authority_head_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "principal_id": "Principal:VenueV",
+    "q_sha256": "147777a266918704428b3229965c40806ffa33d088e6c6d42fdadba231337a80",
+    "schema": "AUTHORITY_DELEGATION_V1",
+    "signature_hex": "4bba25650da464ec33b2e59cd95bed765b6234fdae7cc270ee97bb78cd81258c70eb603926ba26079d5d5f2010389ecd9b5f8354448f09523559bd2fc8c13101",
+    "status": "CURRENT",
+    "target_id": "VenueV:CircuitC7",
+    "valid_from_logical_minute": 0,
+    "valid_until_logical_minute": 90
+  },
+  "lab_registry_process": {
+    "exitcode": 0,
+    "process_id": 86919
+  },
+  "lab_registry_store": {
+    "path": "lab-key-registry.sqlite3",
+    "sha256": "fdd57923989c5b3ae3cbed29c76ba9f814bf9d77e52bb3afda390b2d5fb66c60"
+  },
+  "lab_root_public_key_hex": "9325d550e405405d0553fe4a43d1e2ce2767d0e148dbb80f6efa12a7d5bc3a27",
+  "pre_response_isomorphism": {
+    "candidate_payload_raw_equal": true,
+    "first_candidate_visible_lawful_divergence": "TARGET_STATUS_READBACK_AFTER_ACK_LOSS",
+    "hostile_same_user_enumeration_resistance": "NOT_ESTABLISHED",
+    "recorded_candidate_startup_surface_equal_s_r": true,
+    "recorded_candidate_startup_surface_equal_s_r_u": true,
+    "request_raw_equal": true
+  },
+  "question": "QUESTION.md",
+  "request_sha256": "9baead515b4e9650cac75b7a2bc8434d4e72b89779822e08e785d16d0e51cb54",
+  "results": {
+    "R": {
+      "acceptance_count": 0,
+      "authority_rejection_count": 1,
+      "decision": "REJECTED_STALE_EPOCH",
+      "effect_count": 0,
+      "finality_count": 0,
+      "retry_effect_count": 0
+    },
+    "S": {
+      "acceptance_count": 2,
+      "decision": "COMMITTED",
+      "effect_count": 1,
+      "finality_count": 1,
+      "retry_effect_count": 0
+    },
+    "U": {
+      "authority_revoke_record_exists": true,
+      "effect_count_not_used_for_s_or_r_inference": 1,
+      "scoring_status": "CONCURRENT_OR_UNORDERED/NOT_SCORED",
+      "target_consumed_matching_fence_before_ingress": false,
+      "target_matching_fence_ack_exists": false,
+      "target_raw_decision": "COMMITTED"
+    }
+  },
+  "revocation": {
+    "actor_id": "CANDIDATE-A4-MATURE-COMPOSITION",
+    "authority_head_sha256": "759bd640cbf62833bf29ef5f8f48e64d953766356b31bcf8d42c931b7288ea85",
+    "delegation_id": "delegation-ce001-authority-epoch-twin",
+    "epoch": 2,
+    "experiment_predecessor_s_target_receipt_sha256": "e11d7ad96bd4f41ee068fc357b7fa48e20ebf07339e53ae284cfc2b7f3611765",
+    "issuer_process_id": 86882,
+    "object_id": "PowerOccurrence:VenueV:CircuitC7",
+    "operation": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+    "prev_authority_head_sha256": "671e50820b766be0037d00a302f4639a3f59c790aa35da0ed880e41e76f9095f",
+    "principal_id": "Principal:VenueV",
+    "q_sha256": "147777a266918704428b3229965c40806ffa33d088e6c6d42fdadba231337a80",
+    "reason": "PRINCIPAL_REVOKED_BEFORE_TARGET_INGRESS",
+    "schema": "AUTHORITY_HEAD_V1",
+    "signature_hex": "f0a7507751de168c3c03aab17d6a0501df19b23138f11fc6ac1384f770099a3d91c35f952abec1c25d2566f2d5b23b9a3ce0d767ccdab6adcf12ab4e951da609",
+    "status": "REVOKED",
+    "target_id": "VenueV:CircuitC7"
+  },
+  "run_dir": "artifacts/twin-6184157568564a38831c4b7c4ad737f5",
+  "schema": "WAVE024_AUTHORITY_EPOCH_TWIN_ARTIFACT_V1",
+  "status": "RUN_COMPLETED_PENDING_INDEPENDENT_EVALUATION",
+  "twin_artifact_sha256": "b57ae3e4ef105b4a09d9ac99a405c5ed9daa8ee111844f21cb45001e6067e02a",
+  "world_artifact_sha256": {
+    "R": "c11d15ee8905eb41a99b4d61e0b472ccfe25a4d00574c6d6b9fc05d432c9f62c",
+    "S": "307d6a29e12eda5a02d740cb98ee562c6b6f1e2087d3adae639aaf29e77ca0bb",
+    "U": "e54e202ddb8f3d7c21730c6dd76afde513de5effaaa46a1ba0bff9d201e6adfd"
+  },
+  "worlds": {
+    "R": "world-r/WORLD-ARTIFACT.json",
+    "S": "world-s/WORLD-ARTIFACT.json",
+    "U": "world-u/WORLD-ARTIFACT.json"
+  }
+}

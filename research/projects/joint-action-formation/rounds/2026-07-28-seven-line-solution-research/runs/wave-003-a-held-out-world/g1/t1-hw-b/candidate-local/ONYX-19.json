@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "packet_sha256": "83b8e53dd1cdde6f4d6638f76b9abd83ff8a9e077d3b65bf6907df46669b45c0",
+  "recipient": "ONYX-19",
+  "claim_observation": {
+    "claim_key": "matching_offer_at_frozen_cohort_snapshot",
+    "subject": "ONYX-19",
+    "state": "ABSENT",
+    "evidence_refs": [
+      "W-HWB-CLOSED-ONYX-NEG"
+    ]
+  },
+  "authorized_projections": [],
+  "projection_updates": [],
+  "refusals": [
+    {
+      "action": "EMIT_TASK_RELATIVE_PROJECTION",
+      "state": "REFUSE",
+      "reason": "No authorized projection payload is present; raw local facts are not disclosable.",
+      "evidence_refs": [
+        "W-HWB-CLOSED-ONYX-NEG"
+      ]
+    },
+    {
+      "action": "HANDOFF_RELATION_CANDIDATE",
+      "state": "REFUSE",
+      "reason": "The authorized observation is ABSENT; no pair, commitment, authority, or execution may be inferred.",
+      "evidence_refs": [
+        "W-HWB-CLOSED-ONYX-NEG"
+      ]
+    }
+  ],
+  "probe_offers": [],
+  "evidence_refs": [
+    "W-HWB-CLOSED-ONYX-NEG"
+  ]
+}

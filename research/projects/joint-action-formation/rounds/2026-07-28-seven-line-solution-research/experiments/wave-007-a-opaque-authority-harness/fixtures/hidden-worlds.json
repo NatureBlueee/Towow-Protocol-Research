@@ -1,0 +1,136 @@
+{
+  "schema": "towow.wave007.hidden-worlds.v1",
+  "note": "Loaded by the harness and evaluator, never passed to candidate strategy.",
+  "worlds": {
+    "X7-A03": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "holder-active"
+    },
+    "X7-A91": {
+      "holder_seek": "REVOKED",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "REFUSE",
+      "display_truth_label": "holder-revoked"
+    },
+    "X7-B17": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "recipient-active"
+    },
+    "X7-B64": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "WITHDRAWN",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "REFUSE",
+      "display_truth_label": "recipient-withdrawn"
+    },
+    "X7-C28": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "beneficiary-accepts"
+    },
+    "X7-C73": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "REFUSE",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "REFUSE",
+      "display_truth_label": "beneficiary-refuses"
+    },
+    "X7-D11": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "BASELINE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "exact-replay"
+    },
+    "X7-D82": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "BASELINE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "material-command-change"
+    },
+    "X7-E05": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "BASELINE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "schema-alias"
+    },
+    "X7-E96": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "BASELINE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "semantic-drift"
+    },
+    "X7-F39": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "ACCEPTED",
+      "display_truth_label": "anchor-healthy"
+    },
+    "X7-F88": {
+      "holder_seek": "ACTIVE",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "EQUIVOCATED",
+      "preload": "NONE",
+      "expected_terminal": "UNKNOWN",
+      "display_truth_label": "anchor-equivocated"
+    },
+    "X7-G52": {
+      "holder_seek": "ABSENT",
+      "holder_offer": "ACTIVE",
+      "recipient": "ACTIVE",
+      "beneficiary": "ACCEPT",
+      "anchor": "HEALTHY",
+      "preload": "NONE",
+      "expected_terminal": "ABSENT",
+      "display_truth_label": "closed-population-holder-absent"
+    }
+  }
+}

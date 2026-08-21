@@ -1,0 +1,325 @@
+{
+  "schema_version": "1.0",
+  "kind": "CONTROLLER_ONLY_PACKET_SOURCE",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "query": {
+    "intent": "Find currently valid complementary joint-action opportunities without asserting commitment, authority, or execution.",
+    "allowed_terminal_states": [
+      "DISCOVERED",
+      "INVALIDATED",
+      "UNFINDABLE_UNDER_POLICY",
+      "UNKNOWN",
+      "REFUSE",
+      "ABSENT"
+    ],
+    "required_direction": "SEEK_TO_OFFER",
+    "compatibility_rule": "A candidate pair requires equal task-relative compatibility_key values as well as complementary direction."
+  },
+  "public_view": {
+    "signals": [
+      {
+        "signature_id": "SIG-HWB-COLD-SEEK-V2",
+        "witness_id": "W-HWB-COLD-SEEK-V2",
+        "party": "AURORA-17",
+        "direction": "SEEK",
+        "facet": "cold-chain-gap-audit",
+        "compatibility_key": "cold-chain-gap-audit@2",
+        "version": 2
+      },
+      {
+        "signature_id": "SIG-HWB-COLD-OFFER-V5",
+        "witness_id": "W-HWB-COLD-OFFER-V5",
+        "party": "BASALT-04",
+        "direction": "OFFER",
+        "facet": "cold-chain-gap-audit",
+        "compatibility_key": "cold-chain-gap-audit@2",
+        "version": 5
+      },
+      {
+        "signature_id": "SIG-HWB-COLD-SEEK-DECOY-V1",
+        "witness_id": "W-HWB-COLD-SEEK-DECOY-V1",
+        "party": "CIRRUS-21",
+        "direction": "SEEK",
+        "facet": "cold-chain-gap-audit",
+        "compatibility_key": "cold-chain-gap-audit@1",
+        "version": 1
+      },
+      {
+        "signature_id": "SIG-HWB-MOBILE-SEEK-V7",
+        "witness_id": "W-HWB-MOBILE-SEEK-V7",
+        "party": "ECHO-31",
+        "direction": "SEEK",
+        "facet": "mobile-lab-slot",
+        "compatibility_key": "enzyme-lot-qc@4",
+        "version": 7
+      },
+      {
+        "signature_id": "SIG-HWB-MOBILE-OFFER-V4",
+        "witness_id": "W-HWB-MOBILE-OFFER-V4",
+        "party": "DELTA-09",
+        "direction": "OFFER",
+        "facet": "mobile-lab-slot",
+        "compatibility_key": "enzyme-lot-qc@4",
+        "version": 4,
+        "published_at_step": 0
+      },
+      {
+        "signature_id": "SIG-HWB-POLICY-SEEK-V3",
+        "witness_id": "W-HWB-POLICY-SEEK-V3",
+        "party": "FJORD-12",
+        "direction": "SEEK",
+        "facet": "heritage-map-redaction",
+        "compatibility_key": "heritage-map-redaction@3",
+        "version": 3
+      },
+      {
+        "signature_id": "SIG-HWB-POLICY-HOLDER-V2",
+        "witness_id": "W-HWB-POLICY-HOLDER-V2",
+        "party": "GLASS-08",
+        "direction": "PROBEABLE_HOLDER",
+        "facet": "heritage-map-redaction",
+        "version": 2
+      }
+    ],
+    "claims_to_resolve": [
+      {
+        "claim_key": "capability:quiet-node:marine-acoustic-tagging",
+        "subject": "LUMEN-03",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:sealed-node:geology-core-review",
+        "subject": "MESA-27",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:closed-cohort:orbital-etch-repair",
+        "subject": "POP-ORBITAL-ETCH-COHORT",
+        "question": "Does any eligible member currently offer the requested capability?"
+      }
+    ],
+    "closed_population_notice": {
+      "witness_id": "W-HWB-CLOSED-COHORT-V4",
+      "claim_key": "capability:closed-cohort:orbital-etch-repair",
+      "eligible_parties": [
+        "NOVA-02",
+        "ONYX-19",
+        "PULSE-33",
+        "QUARTZ-11"
+      ],
+      "snapshot": "orbital-etch-cohort-v4"
+    }
+  },
+  "local_execution_views": [
+    {
+      "holder": "HELIOS-44",
+      "delivery_scope": "LOCAL_ONLY:HELIOS-44",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWB-HELIOS-WORKLOAD",
+          "summary": "A private workload could use a bounded microgrid replay counterpart.",
+          "permitted_projection": {
+            "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+            "direction": "SEEK",
+            "facet": "grid-replay-window",
+            "compatibility_key": "microgrid-anomaly-replay@6",
+            "witness_ref": "W-HWB-HELIOS-PROJECTION"
+          },
+          "permitted_recipient": "NODE-COPPER-ROUTER",
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "max_depth": 1,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "ION-06",
+      "delivery_scope": "LOCAL_ONLY:ION-06",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWB-ION-CAPABILITY",
+          "summary": "A private capability can satisfy a bounded microgrid replay need.",
+          "permitted_projection": {
+            "fact_id": "F-HWB-ION-TASK-PROJECTION",
+            "direction": "OFFER",
+            "facet": "grid-replay-window",
+            "compatibility_key": "microgrid-anomaly-replay@6",
+            "witness_ref": "W-HWB-ION-PROJECTION"
+          },
+          "permitted_recipient": "NODE-SILVER-RELAY",
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "max_depth": 1,
+          "onward_route": {
+            "sender": "NODE-SILVER-RELAY",
+            "recipient": "NODE-COPPER-ROUTER",
+            "purpose": "scoped-topology-screen",
+            "retention": "PT3M",
+            "max_depth": 1,
+            "derived_receipt_required": true
+          }
+        }
+      ]
+    },
+    {
+      "holder": "JUNIPER-28",
+      "delivery_scope": "LOCAL_ONLY:JUNIPER-28",
+      "observations": [
+        {
+          "local_fact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+          "summary": "A task-relative detail may be disclosed only in a two-sided direct exchange.",
+          "direction": "SEEK",
+          "facet": "sterile-route-simulation",
+          "compatibility_key": "sterile-route-simulation@8",
+          "policy_ref": "POL-HWB-JUNIPER-RECIP",
+          "counterparty": "KITE-15",
+          "requested_counterfact_id": "F-HWB-KITE-RECIP-DETAIL",
+          "purpose": "two-sided-route-probe",
+          "retention": "PT7M",
+          "max_depth": 1,
+          "onward_disclosure": false,
+          "completion_witness_ref": "W-HWB-RECIPROCAL-RECEIPT"
+        }
+      ]
+    },
+    {
+      "holder": "KITE-15",
+      "delivery_scope": "LOCAL_ONLY:KITE-15",
+      "observations": [
+        {
+          "local_fact_id": "F-HWB-KITE-RECIP-DETAIL",
+          "summary": "A task-relative detail may be disclosed only in a two-sided direct exchange.",
+          "direction": "OFFER",
+          "facet": "sterile-route-simulation",
+          "compatibility_key": "sterile-route-simulation@8",
+          "policy_ref": "POL-HWB-KITE-RECIP",
+          "counterparty": "JUNIPER-28",
+          "requested_counterfact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+          "purpose": "two-sided-route-probe",
+          "retention": "PT7M",
+          "max_depth": 1,
+          "onward_disclosure": false,
+          "completion_witness_ref": "W-HWB-RECIPROCAL-RECEIPT"
+        }
+      ]
+    },
+    {
+      "holder": "GLASS-08",
+      "delivery_scope": "LOCAL_ONLY:GLASS-08",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWB-GLASS-POLICY-OFFER",
+          "summary": "A mandatory authority gate refuses every discovery projection for this facet at the frozen step.",
+          "direction": "OFFER",
+          "facet": "heritage-map-redaction",
+          "compatibility_key": "heritage-map-redaction@3",
+          "required_response": "REFUSE",
+          "permitted_response_witness": "W-HWB-POLICY-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "DELTA-09",
+      "delivery_scope": "LOCAL_ONLY:DELTA-09",
+      "observations": [
+        {
+          "local_fact_id": "HWB-DELTA-DYNAMIC-STATE",
+          "summary": "A previously public offer no longer has its published direction or compatibility at step 2.",
+          "invalidates_public_signature": "SIG-HWB-MOBILE-OFFER-V4",
+          "permitted_update_witness": "W-HWB-MOBILE-VERSION-FLIP",
+          "from_version": 4,
+          "to_version": 5,
+          "step": 2,
+          "current_direction": "SEEK",
+          "current_compatibility_key": "enzyme-lot-qc@5"
+        }
+      ]
+    },
+    {
+      "holder": "LUMEN-03",
+      "delivery_scope": "LOCAL_ONLY:LUMEN-03",
+      "observations": [
+        {
+          "local_fact_id": "HWB-LUMEN-WINDOW-STATE",
+          "summary": "No response is available inside the frozen evaluation window.",
+          "permitted_witness": "W-HWB-NO-RESPONSE"
+        }
+      ]
+    },
+    {
+      "holder": "MESA-27",
+      "delivery_scope": "LOCAL_ONLY:MESA-27",
+      "observations": [
+        {
+          "local_fact_id": "HWB-MESA-REFUSAL-STATE",
+          "summary": "The relevant authority explicitly refuses to answer this claim.",
+          "permitted_witness": "W-HWB-EXPLICIT-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "NOVA-02",
+      "delivery_scope": "LOCAL_ONLY:NOVA-02",
+      "observations": [
+        {
+          "local_fact_id": "HWB-CLOSED-NEG-NOVA",
+          "summary": "No matching offer exists at the frozen cohort snapshot.",
+          "permitted_witness": "W-HWB-CLOSED-NOVA-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "ONYX-19",
+      "delivery_scope": "LOCAL_ONLY:ONYX-19",
+      "observations": [
+        {
+          "local_fact_id": "HWB-CLOSED-NEG-ONYX",
+          "summary": "No matching offer exists at the frozen cohort snapshot.",
+          "permitted_witness": "W-HWB-CLOSED-ONYX-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "PULSE-33",
+      "delivery_scope": "LOCAL_ONLY:PULSE-33",
+      "observations": [
+        {
+          "local_fact_id": "HWB-CLOSED-NEG-PULSE",
+          "summary": "No matching offer exists at the frozen cohort snapshot.",
+          "permitted_witness": "W-HWB-CLOSED-PULSE-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "QUARTZ-11",
+      "delivery_scope": "LOCAL_ONLY:QUARTZ-11",
+      "observations": [
+        {
+          "local_fact_id": "HWB-CLOSED-NEG-QUARTZ",
+          "summary": "No matching offer exists at the frozen cohort snapshot.",
+          "permitted_witness": "W-HWB-CLOSED-QUARTZ-NEG"
+        }
+      ]
+    }
+  ],
+  "available_actions": [
+    "EMIT_TASK_RELATIVE_PROJECTION",
+    "ROUTE_AUTHORIZED_PROJECTION",
+    "PROPOSE_RECIPROCAL_PROBE",
+    "REFUSE",
+    "ABSTAIN_AS_UNKNOWN",
+    "EMIT_VERSION_INVALIDATION",
+    "HANDOFF_RELATION_CANDIDATE"
+  ],
+  "execution_contract": {
+    "source_is_method_visible": false,
+    "packet_builder_required": true,
+    "central_aggregation_of_local_views": false,
+    "raw_local_fact_disclosure": false,
+    "commitment_or_execution_authority_granted": false,
+    "all_disclosures_require_receipts": true,
+    "packet_fields_are_semantically_compatible_with_hw_a": true
+  }
+}

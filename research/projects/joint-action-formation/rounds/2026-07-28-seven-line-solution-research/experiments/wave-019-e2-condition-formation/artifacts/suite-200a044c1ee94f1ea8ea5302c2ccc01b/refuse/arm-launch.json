@@ -1,0 +1,270 @@
+{
+  "exit_code": 0,
+  "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; HOSTILE_SAME_OS_USER_AND_UNRELATED_CONCURRENT_SPAWN_NOT_COVERED",
+  "private_material_absent": true,
+  "process_start_method": "spawn",
+  "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+  "status": "CHILD_VISIBLE_SURFACE_RECORDED",
+  "visible_surface": {
+    "argv": [
+      "wave015-blind-child",
+      "--opaque"
+    ],
+    "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-ilso4qs5",
+    "cwd_entries": [],
+    "environment": {
+      "LANG": "C.UTF-8",
+      "PATH": "/usr/bin:/bin",
+      "PYTHONHASHSEED": "0"
+    },
+    "inherited_file_descriptors": [
+      "0",
+      "1",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "64",
+      "65",
+      "7",
+      "70",
+      "71",
+      "8",
+      "81",
+      "82",
+      "88",
+      "9"
+    ],
+    "process_name": "arm-worker-b60f1a1415012c52",
+    "view": {
+      "arm_binding_token": "arm-bind-8047bac9e4602c276377bdd93575e648a3c0b0a90a57e4db73d7535f113b2d19",
+      "arm_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "broker_surface": {
+        "capabilities": [
+          "ACCEPTANCE",
+          "FORMATION_MATERIALIZE",
+          "FORMATION_PROPOSE",
+          "TARGET_EXECUTE"
+        ],
+        "endpoint_handle": "eebd4abd679383cf894114a75de9abc8",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-7b5ce1f2556dd1ab42f37a38394648e3",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-dfe149b86d5c8826068c2574f26ba501",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-a5b36371960b9c3e8bcc2db44b39b4fa",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "view_bytes": "{\"arm_binding_token\":\"arm-bind-8047bac9e4602c276377bdd93575e648a3c0b0a90a57e4db73d7535f113b2d19\",\"arm_id\":\"MATURE-WORKFLOW-HITL-FORMATION\",\"broker_surface\":{\"capabilities\":[\"ACCEPTANCE\",\"FORMATION_MATERIALIZE\",\"FORMATION_PROPOSE\",\"TARGET_EXECUTE\"],\"endpoint_handle\":\"eebd4abd679383cf894114a75de9abc8\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-7b5ce1f2556dd1ab42f37a38394648e3\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-dfe149b86d5c8826068c2574f26ba501\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-a5b36371960b9c3e8bcc2db44b39b4fa\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+  },
+  "visible_surface_sha256": "b19aa8c03248cffcbb46d371d4ff33bdb784675bf4fe73230f9f2fa17802240b",
+  "worker_result": {
+    "disposition": "BOUNDED_REFUSAL_OWNER_SIGNED",
+    "owner_responses": [
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "75d24ed86157b43b062a2ac06178c11a187ec3c14c37fa2f712184e1f17c9c65",
+        "owner_id": "owner-o_q-6fb15b6a4a6a480bb9922faf7bd8b9ac",
+        "owner_public_key_hex": "7e347d74fb230e14c40e454ec4897a220e3507492b1a2272a4188d4cf0c38fe6",
+        "owner_role": "O_Q",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_REQUESTER_Q",
+        "process_id": 54804,
+        "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+        "request_nonce": "nonce-2ee5b9c75f2940e06e81c3576a4c7568",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+        "signature_hex": "d8a3b9e847feac036d5cfcede114f8c3daaade6acc369e79d8ab568fca8646783b2d9abf0596d5025e36227c4635015925a7dcd86d73b47cdcba5ed659a3f40d"
+      },
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "b8463723d877108139d912c93fe7fdba2a2de31e7f6899836127fd2d1e982d99",
+        "owner_id": "owner-o_v-6df26202e0314c59987778080b124352",
+        "owner_public_key_hex": "30fd6b16497fdca2fc445d4152475e626751b3f36e1aaf419fa279c7f07d1440",
+        "owner_role": "O_V",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_VENUE_V",
+        "process_id": 54805,
+        "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+        "request_nonce": "nonce-6024c9e9b5a6ddbb7f341b3be69c3dcc",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+        "signature_hex": "0e663bab3e2697d558b60812291d5b6b894c857e2e5410f8dcac871170ad9a8061eb0e1292edefd1ee12c1f4125426c9938f04a21b8cdbca423a5e4f9e40f905"
+      },
+      {
+        "counter": null,
+        "decision": "REFUSE",
+        "expiry_minute": 90,
+        "owner_head": "30f0ce77fdb0d238aed6cf82ed39caf70e750833e3fe0f3d30e4cc62b6a2d854",
+        "owner_id": "owner-o_r-112d6ff32b8e43599ff3e08196d291e1",
+        "owner_public_key_hex": "ec5d0d9f7af8fa8e5b4d326e62305bca0800fd322f5685a0a63d420be7271bad",
+        "owner_role": "O_R",
+        "policy_head": "d50f33b91d87ca76c59e860e8be4b1c65fbed3022aee321d58ae31ba2bbeaf63",
+        "principal_id": "PRINCIPAL_RESOURCE_R",
+        "process_id": 54806,
+        "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+        "request_nonce": "nonce-c230df5eb9b35bceb1796fdc01c9bbc1",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+        "signature_hex": "1bb4738c4ded90df47440110b0130c6122a03f78ab23186356478dd0f1fea64df0a004115ea71680959e36120b2b9203a599c263bf3b976ca98ae0e21d8aac04"
+      },
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "87e4882bd4afca209af53466b0773276530047cae77a604f10d4de21ec2a033f",
+        "owner_id": "owner-o_s-4eccf29cd5d84e5287a02e1f39c0e4d8",
+        "owner_public_key_hex": "a865765ddaa673bdf08f620d28592066208b9c74e7c02e4c97c446f12d5c85b5",
+        "owner_role": "O_S",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_SAFETY_S",
+        "process_id": 54807,
+        "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+        "request_nonce": "nonce-a8e4cbd5ea9d6055009a795b5667080a",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+        "signature_hex": "afaf45b58200d3deb0919c960a94a90b8bb4134111509a7431ae8a674f5cec24a3849d2b2a919295ae480a8f551c523f97727dad25f9a76f4709d42e4ce36b0b"
+      }
+    ],
+    "proposal": {
+      "deadline_minute": 90,
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-dfe149b86d5c8826068c2574f26ba501",
+      "owner_request_nonces": {
+        "O_Q": "nonce-2ee5b9c75f2940e06e81c3576a4c7568",
+        "O_R": "nonce-c230df5eb9b35bceb1796fdc01c9bbc1",
+        "O_S": "nonce-a8e4cbd5ea9d6055009a795b5667080a",
+        "O_V": "nonce-6024c9e9b5a6ddbb7f341b3be69c3dcc"
+      },
+      "public_run_id": "run-a5b36371960b9c3e8bcc2db44b39b4fa",
+      "purpose": "TEMPORARY_C7_3KW_45MIN",
+      "q_version": "Q@v1",
+      "requested_expiry_minute": 90,
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "E2_EXACT_FORMATION_PROPOSAL_V1",
+      "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+      "target_id": "VenueV:CircuitC7",
+      "terms": {
+        "delegation_scope": "VenueV:CircuitC7",
+        "relation_duration": "ONE_OPERATION_ONLY",
+        "resource": {
+          "duration_minutes": 45,
+          "power_kw": 3.0
+        },
+        "safety_profile": "LOCAL_SYNTHETIC_C7_PROFILE_V1"
+      },
+      "world_id": "episode-7b5ce1f2556dd1ab42f37a38394648e3"
+    },
+    "proposal_bytes": "{\"deadline_minute\":90,\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-dfe149b86d5c8826068c2574f26ba501\",\"owner_request_nonces\":{\"O_Q\":\"nonce-2ee5b9c75f2940e06e81c3576a4c7568\",\"O_R\":\"nonce-c230df5eb9b35bceb1796fdc01c9bbc1\",\"O_S\":\"nonce-a8e4cbd5ea9d6055009a795b5667080a\",\"O_V\":\"nonce-6024c9e9b5a6ddbb7f341b3be69c3dcc\"},\"public_run_id\":\"run-a5b36371960b9c3e8bcc2db44b39b4fa\",\"purpose\":\"TEMPORARY_C7_3KW_45MIN\",\"q_version\":\"Q@v1\",\"requested_expiry_minute\":90,\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"E2_EXACT_FORMATION_PROPOSAL_V1\",\"scope_sha256\":\"bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273\",\"target_id\":\"VenueV:CircuitC7\",\"terms\":{\"delegation_scope\":\"VenueV:CircuitC7\",\"relation_duration\":\"ONE_OPERATION_ONLY\",\"resource\":{\"duration_minutes\":45,\"power_kw\":3.0},\"safety_profile\":\"LOCAL_SYNTHETIC_C7_PROFILE_V1\"},\"world_id\":\"episode-7b5ce1f2556dd1ab42f37a38394648e3\"}",
+    "proposal_sent": true,
+    "schema": "E2_ARM_RESULT_V1",
+    "target_submit_sent": false,
+    "transcript": [
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "proposal_bytes": "{\"deadline_minute\":90,\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-dfe149b86d5c8826068c2574f26ba501\",\"owner_request_nonces\":{\"O_Q\":\"nonce-2ee5b9c75f2940e06e81c3576a4c7568\",\"O_R\":\"nonce-c230df5eb9b35bceb1796fdc01c9bbc1\",\"O_S\":\"nonce-a8e4cbd5ea9d6055009a795b5667080a\",\"O_V\":\"nonce-6024c9e9b5a6ddbb7f341b3be69c3dcc\"},\"public_run_id\":\"run-a5b36371960b9c3e8bcc2db44b39b4fa\",\"purpose\":\"TEMPORARY_C7_3KW_45MIN\",\"q_version\":\"Q@v1\",\"requested_expiry_minute\":90,\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"E2_EXACT_FORMATION_PROPOSAL_V1\",\"scope_sha256\":\"bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273\",\"target_id\":\"VenueV:CircuitC7\",\"terms\":{\"delegation_scope\":\"VenueV:CircuitC7\",\"relation_duration\":\"ONE_OPERATION_ONLY\",\"resource\":{\"duration_minutes\":45,\"power_kw\":3.0},\"safety_profile\":\"LOCAL_SYNTHETIC_C7_PROFILE_V1\"},\"world_id\":\"episode-7b5ce1f2556dd1ab42f37a38394648e3\"}",
+          "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+          "schema": "E2_BROKER_PROPOSAL_REQUEST_V1"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "owner_responses": [
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "75d24ed86157b43b062a2ac06178c11a187ec3c14c37fa2f712184e1f17c9c65",
+              "owner_id": "owner-o_q-6fb15b6a4a6a480bb9922faf7bd8b9ac",
+              "owner_public_key_hex": "7e347d74fb230e14c40e454ec4897a220e3507492b1a2272a4188d4cf0c38fe6",
+              "owner_role": "O_Q",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_REQUESTER_Q",
+              "process_id": 54804,
+              "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+              "request_nonce": "nonce-2ee5b9c75f2940e06e81c3576a4c7568",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+              "signature_hex": "d8a3b9e847feac036d5cfcede114f8c3daaade6acc369e79d8ab568fca8646783b2d9abf0596d5025e36227c4635015925a7dcd86d73b47cdcba5ed659a3f40d"
+            },
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "b8463723d877108139d912c93fe7fdba2a2de31e7f6899836127fd2d1e982d99",
+              "owner_id": "owner-o_v-6df26202e0314c59987778080b124352",
+              "owner_public_key_hex": "30fd6b16497fdca2fc445d4152475e626751b3f36e1aaf419fa279c7f07d1440",
+              "owner_role": "O_V",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_VENUE_V",
+              "process_id": 54805,
+              "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+              "request_nonce": "nonce-6024c9e9b5a6ddbb7f341b3be69c3dcc",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+              "signature_hex": "0e663bab3e2697d558b60812291d5b6b894c857e2e5410f8dcac871170ad9a8061eb0e1292edefd1ee12c1f4125426c9938f04a21b8cdbca423a5e4f9e40f905"
+            },
+            {
+              "counter": null,
+              "decision": "REFUSE",
+              "expiry_minute": 90,
+              "owner_head": "30f0ce77fdb0d238aed6cf82ed39caf70e750833e3fe0f3d30e4cc62b6a2d854",
+              "owner_id": "owner-o_r-112d6ff32b8e43599ff3e08196d291e1",
+              "owner_public_key_hex": "ec5d0d9f7af8fa8e5b4d326e62305bca0800fd322f5685a0a63d420be7271bad",
+              "owner_role": "O_R",
+              "policy_head": "d50f33b91d87ca76c59e860e8be4b1c65fbed3022aee321d58ae31ba2bbeaf63",
+              "principal_id": "PRINCIPAL_RESOURCE_R",
+              "process_id": 54806,
+              "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+              "request_nonce": "nonce-c230df5eb9b35bceb1796fdc01c9bbc1",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+              "signature_hex": "1bb4738c4ded90df47440110b0130c6122a03f78ab23186356478dd0f1fea64df0a004115ea71680959e36120b2b9203a599c263bf3b976ca98ae0e21d8aac04"
+            },
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "87e4882bd4afca209af53466b0773276530047cae77a604f10d4de21ec2a033f",
+              "owner_id": "owner-o_s-4eccf29cd5d84e5287a02e1f39c0e4d8",
+              "owner_public_key_hex": "a865765ddaa673bdf08f620d28592066208b9c74e7c02e4c97c446f12d5c85b5",
+              "owner_role": "O_S",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_SAFETY_S",
+              "process_id": 54807,
+              "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+              "request_nonce": "nonce-a8e4cbd5ea9d6055009a795b5667080a",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "bbbcb999e40986e9b4b19200000c366250622973831d94660158e7b2f6988273",
+              "signature_hex": "afaf45b58200d3deb0919c960a94a90b8bb4134111509a7431ae8a674f5cec24a3849d2b2a919295ae480a8f551c523f97727dad25f9a76f4709d42e4ce36b0b"
+            }
+          ],
+          "proposal_sha256": "82f29814018018c2639401b3ff74417594849dffa9770f66e1e4a993ed67f466",
+          "schema": "E2_BROKER_PROPOSAL_RESULT_V1"
+        }
+      }
+    ],
+    "transcript_sha256": "c000afa067fea9f29309d56182915215bb0160c952a13b527e61179e6dc152f3"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "shared_task": {
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "bound_results": {
+    "wave_006_a": {
+      "path": "../wave-006-a-relation-materiality/outputs/result-summary.json",
+      "sha256": "2f8c2315dacfee16c414b8310cad2a18146f5c334c2b41a42a746a64fc8a214f"
+    },
+    "wave_006_b": {
+      "path": "../wave-006-b-capability-reliance/results/baseline.json",
+      "sha256": "2bac5fe9dbda16cc82cb7117ef6d1c68b385b97d52ebfd776801295e03ad1862"
+    },
+    "wave_006_c": {
+      "path": "../wave-006-c-effect-reopen/results.json",
+      "sha256": "c5176fdfcee3015429a8aec1645d3f0114b96cab0a67293e73b9aae7ae1dd4a0"
+    }
+  },
+  "fixed": {
+    "accepted_task_value": 20.0
+  },
+  "baseline_weights": {
+    "failure_loss": 18.0,
+    "missed_opportunity_value": 0.0,
+    "evidence_multiplier": 1.0,
+    "disclosure_unit_cost": 1.0,
+    "coordination_operation_cost": 0.5,
+    "recovery_step_cost": 2.0
+  },
+  "scan_ranges": {
+    "failure_loss": [0.0, 5.0, 10.0, 18.0, 30.0, 50.0],
+    "missed_opportunity_value": [0.0, 2.0, 5.0, 10.0, 20.0],
+    "evidence_multiplier": [0.5, 1.0, 2.0],
+    "disclosure_unit_cost": [0.0, 0.5, 1.0, 2.0],
+    "coordination_operation_cost": [0.0, 0.25, 0.5, 1.0, 2.0],
+    "recovery_step_cost": [0.0, 1.0, 2.0, 5.0]
+  },
+  "no_conclusion_margin": 1.0
+}

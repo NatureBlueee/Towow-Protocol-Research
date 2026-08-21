@@ -1,0 +1,103 @@
+{
+  "claim_boundary": {
+    "authority_status": "NOT_INFERRED",
+    "commitment_status": "NOT_CREATED",
+    "real_world_effect": "NOT_CLAIMED",
+    "relation_status": "NOT_ESTABLISHED"
+  },
+  "controller_result": {
+    "execution_receipt": {
+      "authoritative_event_sha256": "07338d065be742a0962df08ff6b3b6f27c0929a41ddc4a4a80049a5ee5c12322",
+      "authoritative_state_root": "de41bcab693cd8026b4e2da3d6a24fc1225e4b0242bfa28eb3bb177c3bf606eb",
+      "code": "EXECUTED",
+      "contract_sha256": "2f4fb6ab15762a79b6d99e45d657f8fab6a1848e63097f046cc2592aab9ba4e8",
+      "decision": "EXECUTED",
+      "idempotency_key": "hwb:2:helios-direct",
+      "input_sha256": "caeb82bfedb431628e7ec36bddec6ce4af15bf804109a317867fb1f0eaf62874",
+      "issuer": "LOCAL-CONTROLLER-W4A",
+      "output_sha256": "8c09d5fa9b36ff37b2b153020d12a947f0cc050db36eefa1f8ce1f85ddd74736",
+      "policy_snapshot_sha256": "02eb18605ee2d99d8ec47a3ad3f3a845235d5a259bcb33667f39b80b88d3ad47",
+      "prior_event_sha256": null,
+      "prior_state_sha256": "8b0ecff77c951fd1946b89bebc693aaa630dda8de6eb213d7be6c16f333799b5",
+      "readback_sha256": "e57414cb19535f0decc3e82be36382f155bf10ebd2e6aaf7b85ffa2a93fa8e36",
+      "receipt_sha256": "c7a31d0d00810ab456967186b4ebec998aec91612289a39848393f37d4f0a2a5",
+      "schema": "towow.controller-execution-receipt.v1",
+      "sequence": 1,
+      "trusted_holder_envelopes_sha256": "d3a03e7a0431e4863cb2a17fef4d99e1cff172ec14382d00be9961adfdc3b80f"
+    },
+    "outcome": {
+      "authority_evidence": {
+        "authoritative_state_root": "de41bcab693cd8026b4e2da3d6a24fc1225e4b0242bfa28eb3bb177c3bf606eb",
+        "readback": {
+          "all_postconditions_observed": true,
+          "authoritative_event_sha256": "07338d065be742a0962df08ff6b3b6f27c0929a41ddc4a4a80049a5ee5c12322",
+          "authoritative_state_root": "de41bcab693cd8026b4e2da3d6a24fc1225e4b0242bfa28eb3bb177c3bf606eb",
+          "delivery_count": 1,
+          "delivery_event_ids": [
+            "disclosure-217943fea56905ca488b562f"
+          ],
+          "recipient_store_observations": [
+            {
+              "delivery_event_id": "disclosure-217943fea56905ca488b562f",
+              "delivery_sha256": "c47b332a0708e5f2f9fcaf975bb2688f5cb073d1dfaf1e1298c25cd2965f5d83",
+              "recipient": "NODE-COPPER-ROUTER"
+            }
+          ],
+          "schema": "towow.recipient-delivery-readback.v1",
+          "transaction_id": "delivery-transaction-0ca44228841365388b200ce6"
+        },
+        "readback_sha256": "e57414cb19535f0decc3e82be36382f155bf10ebd2e6aaf7b85ffa2a93fa8e36",
+        "recipient_delivery_event_sha256": "07338d065be742a0962df08ff6b3b6f27c0929a41ddc4a4a80049a5ee5c12322"
+      },
+      "authority_status": "NOT_INFERRED",
+      "commitment_status": "NOT_CREATED",
+      "derived_authorizations": [],
+      "disclosures": [
+        {
+          "depth": 0,
+          "event_id": "disclosure-217943fea56905ca488b562f",
+          "from": "HELIOS-44",
+          "projection": {
+            "compatibility_key": "microgrid-anomaly-replay@6",
+            "direction": "SEEK",
+            "facet": "grid-replay-window",
+            "fact_id": "F-HWB-HELIOS-TASK-PROJECTION"
+          },
+          "purpose": "scoped-topology-screen",
+          "retention": "PT3M",
+          "source_holder_receipt_sha256": "98c1bf6b717283373e7fc6385dcd06dfa8971466febc521f63bc733e9464ea1a",
+          "status": "PERFORMED",
+          "to": "NODE-COPPER-ROUTER"
+        }
+      ],
+      "reciprocal_exchange": null,
+      "relation_status": "NOT_ESTABLISHED",
+      "route_type": "DIRECT_PROJECTION",
+      "status": "EXECUTED"
+    },
+    "replay": "FIRST_ATTEMPT",
+    "state_changed": true
+  },
+  "coordinator_visible": {
+    "disclosures": [
+      {
+        "depth": 0,
+        "event_id": "disclosure-217943fea56905ca488b562f",
+        "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+        "origin_party": "HELIOS-44",
+        "purpose": "scoped-topology-screen",
+        "recipient": "NODE-COPPER-ROUTER",
+        "retention": "PT3M",
+        "sender": "HELIOS-44"
+      }
+    ]
+  },
+  "development_label": "DEVELOPMENT_POST_FEEDBACK_NOT_BLIND",
+  "generated_from": {
+    "controller_execution_receipt_sha256": "c7a31d0d00810ab456967186b4ebec998aec91612289a39848393f37d4f0a2a5",
+    "controller_output_sha256": "e083303cc7ffbbf1e6c0843ec9ea16e61ce9a07ef255e72509ad501f4f6ce4bb",
+    "path": "experiments/wave-004-b-hwb-controller-development/outputs/helios-direct.json",
+    "source_file_sha256": "c0994eda408cd0cb72231d8399c688f80c21d75cd5ba98c61ab9f982c12418a3"
+  },
+  "schema": "towow.hwb-controller-export.v1"
+}

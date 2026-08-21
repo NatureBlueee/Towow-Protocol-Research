@@ -1,0 +1,2766 @@
+{
+  "exit_code": 0,
+  "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; HOSTILE_SAME_OS_USER_AND_UNRELATED_CONCURRENT_SPAWN_NOT_COVERED",
+  "private_material_absent": true,
+  "process_start_method": "spawn",
+  "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+  "status": "CHILD_VISIBLE_SURFACE_RECORDED",
+  "visible_surface": {
+    "argv": [
+      "wave015-blind-child",
+      "--opaque"
+    ],
+    "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-8uoamwo1",
+    "cwd_entries": [],
+    "environment": {
+      "LANG": "C.UTF-8",
+      "PATH": "/usr/bin:/bin",
+      "PYTHONHASHSEED": "0"
+    },
+    "inherited_file_descriptors": [
+      "0",
+      "1",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "64",
+      "65",
+      "7",
+      "70",
+      "71",
+      "8",
+      "81",
+      "82",
+      "88",
+      "9"
+    ],
+    "process_name": "arm-worker-55d12159efc2e930",
+    "view": {
+      "arm_binding_token": "arm-bind-4d92288b5f47c5407f5eff41410c90e5c15ff6f76e3dbb688df2d6e6868db9d6",
+      "arm_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "broker_surface": {
+        "capabilities": [
+          "ACCEPTANCE",
+          "FORMATION_MATERIALIZE",
+          "FORMATION_PROPOSE",
+          "TARGET_EXECUTE"
+        ],
+        "endpoint_handle": "b5ea5e92d2c9c03fae87e38df17f00e7",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-7dba3882c50d2c67e06823d8206560da",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "view_bytes": "{\"arm_binding_token\":\"arm-bind-4d92288b5f47c5407f5eff41410c90e5c15ff6f76e3dbb688df2d6e6868db9d6\",\"arm_id\":\"MATURE-WORKFLOW-HITL-FORMATION\",\"broker_surface\":{\"capabilities\":[\"ACCEPTANCE\",\"FORMATION_MATERIALIZE\",\"FORMATION_PROPOSE\",\"TARGET_EXECUTE\"],\"endpoint_handle\":\"b5ea5e92d2c9c03fae87e38df17f00e7\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-7dba3882c50d2c67e06823d8206560da\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-92463f34cbe09ff4389bc3950eb6e31b\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-3bd0b1a9e8e409cf1487f810159da76d\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+  },
+  "visible_surface_sha256": "af34cc84f96601d55621aab19c46617cdbd3924fee8f1cc3e126ff1e8b121f99",
+  "worker_result": {
+    "acceptances": [
+      {
+        "owner_head": "e3410b446b796280a95b93c9e35f2f9f36924913af7f376fbc5495c49fcbe379",
+        "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+        "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+        "owner_role": "O_Q",
+        "principal_id": "PRINCIPAL_REQUESTER_Q",
+        "process_id": 73321,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+        "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+        "schema": "E2_OWNER_ACCEPTANCE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "c2fea90dfd10f3fddf5717edd03ffcb332de5d17745e189178adab2cc7bbea385425ca29fdf67e2447aeb333b8e8869330dc6adee27afa01682a4b76a687fa0d",
+        "status": "ACCEPTED"
+      },
+      {
+        "owner_head": "73ef6b2af58830c131488f1cde03aaacd22283276d1cf58fc6d67ee7a1c0cd36",
+        "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+        "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+        "owner_role": "O_V",
+        "principal_id": "PRINCIPAL_VENUE_V",
+        "process_id": 73322,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+        "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+        "schema": "E2_OWNER_ACCEPTANCE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "62fb0cd43792bcb5d6a33d45565d0a524c4eaeae2bfe2af1515f7a7ee46234f23f313e3b888dcf4f5ec3f23b4517eae65a044ee0266dc0b58ed22a2adb5cf50a",
+        "status": "ACCEPTED"
+      }
+    ],
+    "commit_revalidations": [
+      {
+        "execute_minute": 5,
+        "owner_head": "45331e64350de01c820502420b31e05ab449a173acf37a581e8fbce9c367c2f4",
+        "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+        "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+        "owner_role": "O_Q",
+        "principal_id": "PRINCIPAL_REQUESTER_Q",
+        "process_id": 73321,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "required_fact_kinds": [
+          "PURPOSE_TOKEN"
+        ],
+        "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "e468c06e21e2e54d037eeb86c7e00cac9da078df5515e221e649c92dad8acf1d385bb3bc5b5be901bf810773003a0d5ff1841d753cf20c461694abe84373b40e",
+        "status": "CURRENT"
+      },
+      {
+        "execute_minute": 5,
+        "owner_head": "31b0461d507b43e2f89cf15031f67ff929fb004bb5c33a80aeb3b98836b9616d",
+        "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+        "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+        "owner_role": "O_V",
+        "principal_id": "PRINCIPAL_VENUE_V",
+        "process_id": 73322,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "required_fact_kinds": [
+          "C7_SHORT_DELEGATION"
+        ],
+        "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "bfdf41c77fcfd822e0c3d4fa5d6f64c9b9dc9437ae8a2352fd8298dd0bde6a77719a17ce51bf19d6b831107c17e8f8fc0313aefa32ce4570abd376dadd399209",
+        "status": "CURRENT"
+      },
+      {
+        "execute_minute": 5,
+        "owner_head": "72256e6e7bcb19f248e05f72ab4ad9d9ac881da313bf1041307febb78f767214",
+        "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+        "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+        "owner_role": "O_R",
+        "principal_id": "PRINCIPAL_RESOURCE_R",
+        "process_id": 73324,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "required_fact_kinds": [
+          "RESOURCE_COMMITMENT",
+          "RESOURCE_RESERVATION"
+        ],
+        "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "07b0b5e3b0b2ff4a9cdab571119c48b98323c02db0601be6db3d498e7e50eefdc19dff14e76820df5a5e7eb58d87c9b8a609de7c6d66cbb51c91b47a13983b04",
+        "status": "CURRENT"
+      },
+      {
+        "execute_minute": 5,
+        "owner_head": "bafcc13a7766f4cf2c08262e010b57df20e5031c4cf7f5f24ebb456330b85318",
+        "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+        "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+        "owner_role": "O_S",
+        "principal_id": "PRINCIPAL_SAFETY_S",
+        "process_id": 73325,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "required_fact_kinds": [
+          "SAFETY_APPROVAL"
+        ],
+        "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "a1d1f0b08242ed9fc168acf4422ea03a6a30d86c2c003ae1c2385e72ce7833d9d6430d44fd8df3573d7fc85e5b8ff03b26f21b12bb245aadfad0b0ee9e15ff04",
+        "status": "CURRENT"
+      }
+    ],
+    "disposition": "SUCCEEDED_AFTER_FORMATION",
+    "finality": {
+      "acceptance_sha256": "ba93e7dfa8dbe63aebca10e66590b9ce143ceefdd58d0745e00db5e6f1604ad9",
+      "owner_head": "281832b43fc9bfad82112aac7a1fbb61ead4a7eb7792142d39bbe531b8f0722a",
+      "owner_id": "owner-o_p-e9e41aba12b941ad839ab023e86a865f",
+      "owner_public_key_hex": "bab34657bc0c4e48304e08dbe916d470346258be4dfb37699ecae88923e91da8",
+      "owner_role": "O_P",
+      "principal_id": "PRINCIPAL_SETTLEMENT_P",
+      "process_id": 73326,
+      "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+      "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+      "schema": "E2_OWNER_FINALITY_V1",
+      "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+      "signature_hex": "00a467a9a47031693175f686ff7c0c1fe0771d20c1dfdb966e62d6a8c21c71f1bebbe2e1bf94930440f452db7b80d8001d167b41fbf528ffec5ecc1b9553b801",
+      "status": "FINAL"
+    },
+    "owner_acts": [
+      {
+        "created_fact_kinds": [
+          "PURPOSE_TOKEN"
+        ],
+        "expiry_minute": 90,
+        "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+        "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+        "owner_role": "O_Q",
+        "post_head": "45331e64350de01c820502420b31e05ab449a173acf37a581e8fbce9c367c2f4",
+        "pre_head": "7b6af1bbacd5c92a5048dd239dfeb2f880d4e1678c0a7abb88877b8a03f4ff55",
+        "principal_id": "PRINCIPAL_REQUESTER_Q",
+        "process_id": 73321,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "response_sha256": "52d977cb2c97faa9d8ed20e912edf6733429dacb9bed5ce970e409d46c765529",
+        "schema": "E2_OWNER_FORMATION_ACT_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "dbaf6d5a9fa508a56717d8aed490842571252c7c374a168fa8e4be852a55f84e7b7e6ed1c2801c8e4c66aa8b265c579611a91012316d03bf52fb63f186ef2606"
+      },
+      {
+        "created_fact_kinds": [
+          "C7_SHORT_DELEGATION"
+        ],
+        "expiry_minute": 90,
+        "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+        "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+        "owner_role": "O_V",
+        "post_head": "31b0461d507b43e2f89cf15031f67ff929fb004bb5c33a80aeb3b98836b9616d",
+        "pre_head": "2b6ac19b83036718fa4fbbfb77b681bcbda2aa15b7da96ca0cf9865ca5bc480d",
+        "principal_id": "PRINCIPAL_VENUE_V",
+        "process_id": 73322,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "response_sha256": "b240dd5503e0084cac148c0ca99d6da5004b7b00aceba285636661ebc3794753",
+        "schema": "E2_OWNER_FORMATION_ACT_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "7debc8126ae893a3da17b49a756db3164487f3d3fff93582ec9d03ed0ce8bbdb9c198c7fc78097ab93a9e6c8702cbc233e0fa9192623f21bbadfb6986b965101"
+      },
+      {
+        "created_fact_kinds": [
+          "RESOURCE_COMMITMENT",
+          "RESOURCE_RESERVATION"
+        ],
+        "expiry_minute": 85,
+        "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+        "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+        "owner_role": "O_R",
+        "post_head": "72256e6e7bcb19f248e05f72ab4ad9d9ac881da313bf1041307febb78f767214",
+        "pre_head": "bf5a8fb1671138f75453d7df580d79758c18554ab092fc5b8143d5e49bb4375b",
+        "principal_id": "PRINCIPAL_RESOURCE_R",
+        "process_id": 73324,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "response_sha256": "f6f846602f2044f2bbf23d0362c6ef6a5dbf60585f4639d0944ee1ff4b2e9e5d",
+        "schema": "E2_OWNER_FORMATION_ACT_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "5ffd603e9fea25c076509d08005786edadbd9641284ae7b40d894d87ca7c2130889bcd135c5d64329d1766bfb4607fd4122d900b82b89e5f3c42e0187053ef05"
+      },
+      {
+        "created_fact_kinds": [
+          "SAFETY_APPROVAL"
+        ],
+        "expiry_minute": 90,
+        "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+        "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+        "owner_role": "O_S",
+        "post_head": "bafcc13a7766f4cf2c08262e010b57df20e5031c4cf7f5f24ebb456330b85318",
+        "pre_head": "29782d11b9a09971ea5fc5baf27b4e03b1d822acf6bd2a06f9e045c83da22b9a",
+        "principal_id": "PRINCIPAL_SAFETY_S",
+        "process_id": 73325,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "response_sha256": "ffd9f204a0350fbd996970ba7bb412e91b2731b31f0ef19f41d7535f0a55e600",
+        "schema": "E2_OWNER_FORMATION_ACT_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "2cd065d879899f6b56949d38cdcc2b626f19c370343bca63c3f1a57919a8888c5f7d0ed9d1708bfd2724f2792dce49e21859b030ccea50e07d34ebc8d8a45105"
+      }
+    ],
+    "owner_responses": [
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "7b6af1bbacd5c92a5048dd239dfeb2f880d4e1678c0a7abb88877b8a03f4ff55",
+        "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+        "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+        "owner_role": "O_Q",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_REQUESTER_Q",
+        "process_id": 73321,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "request_nonce": "nonce-fbaf70cfef522a15ccf71f47e9a9f645",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "4b9ca5e65a5b1ef9a90a24f432cff31a763c3271fef3b18ac8f8810cffaa28d90bbbc64e7558abfb25c847b57ab88c027e8e18c4b00ff4c93537ee4c9023fe0d"
+      },
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "2b6ac19b83036718fa4fbbfb77b681bcbda2aa15b7da96ca0cf9865ca5bc480d",
+        "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+        "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+        "owner_role": "O_V",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_VENUE_V",
+        "process_id": 73322,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "request_nonce": "nonce-713e5c2e73a1d809f0f7324b4cb693b7",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "67b5474e093b85d6bf5677177d74391e69261a815fb18038cb85fee81063c293f0a0dba511e3198986dbf5045fcbf7e7932bc515a8720f056932e8b7e90e9403"
+      },
+      {
+        "counter": {
+          "effective_expiry_minute": 85,
+          "resource_window_end_minute": 50,
+          "resource_window_start_minute": 5
+        },
+        "decision": "COUNTER",
+        "expiry_minute": 90,
+        "owner_head": "bf5a8fb1671138f75453d7df580d79758c18554ab092fc5b8143d5e49bb4375b",
+        "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+        "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+        "owner_role": "O_R",
+        "policy_head": "6fe5827e184e9e914cf3990ba3ff96cbf5b4c9303d4dca58eceb6a3851a4c14d",
+        "principal_id": "PRINCIPAL_RESOURCE_R",
+        "process_id": 73324,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "request_nonce": "nonce-e70015d538167f7f8ea3c4fde716ddef",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "29c56eec3271704a763effc8fc8a1732e54b6d8273cb9ffab7fe94098973c1a71d87ce866caf200cc1a9e6c42505b16fccb74487de9cc855122c817479cf580d"
+      },
+      {
+        "counter": null,
+        "decision": "APPROVE",
+        "expiry_minute": 90,
+        "owner_head": "29782d11b9a09971ea5fc5baf27b4e03b1d822acf6bd2a06f9e045c83da22b9a",
+        "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+        "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+        "owner_role": "O_S",
+        "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+        "principal_id": "PRINCIPAL_SAFETY_S",
+        "process_id": 73325,
+        "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+        "request_nonce": "nonce-09c416c02878759fe4ac674ed7218333",
+        "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+        "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+        "signature_hex": "1783d31c6c25e97e445673130bb3d990a9ff42a07691589fa093d63924650afeec122fe1df4b960f7b010b1257c35659e1714701fbd63ce0ac105f0c7e24be0f"
+      }
+    ],
+    "proposal": {
+      "deadline_minute": 90,
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+      "owner_request_nonces": {
+        "O_Q": "nonce-fbaf70cfef522a15ccf71f47e9a9f645",
+        "O_R": "nonce-e70015d538167f7f8ea3c4fde716ddef",
+        "O_S": "nonce-09c416c02878759fe4ac674ed7218333",
+        "O_V": "nonce-713e5c2e73a1d809f0f7324b4cb693b7"
+      },
+      "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+      "purpose": "TEMPORARY_C7_3KW_45MIN",
+      "q_version": "Q@v1",
+      "requested_expiry_minute": 90,
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "E2_EXACT_FORMATION_PROPOSAL_V1",
+      "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+      "target_id": "VenueV:CircuitC7",
+      "terms": {
+        "delegation_scope": "VenueV:CircuitC7",
+        "relation_duration": "ONE_OPERATION_ONLY",
+        "resource": {
+          "duration_minutes": 45,
+          "power_kw": 3.0
+        },
+        "safety_profile": "LOCAL_SYNTHETIC_C7_PROFILE_V1"
+      },
+      "world_id": "episode-7dba3882c50d2c67e06823d8206560da"
+    },
+    "proposal_bytes": "{\"deadline_minute\":90,\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-92463f34cbe09ff4389bc3950eb6e31b\",\"owner_request_nonces\":{\"O_Q\":\"nonce-fbaf70cfef522a15ccf71f47e9a9f645\",\"O_R\":\"nonce-e70015d538167f7f8ea3c4fde716ddef\",\"O_S\":\"nonce-09c416c02878759fe4ac674ed7218333\",\"O_V\":\"nonce-713e5c2e73a1d809f0f7324b4cb693b7\"},\"public_run_id\":\"run-3bd0b1a9e8e409cf1487f810159da76d\",\"purpose\":\"TEMPORARY_C7_3KW_45MIN\",\"q_version\":\"Q@v1\",\"requested_expiry_minute\":90,\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"E2_EXACT_FORMATION_PROPOSAL_V1\",\"scope_sha256\":\"cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9\",\"target_id\":\"VenueV:CircuitC7\",\"terms\":{\"delegation_scope\":\"VenueV:CircuitC7\",\"relation_duration\":\"ONE_OPERATION_ONLY\",\"resource\":{\"duration_minutes\":45,\"power_kw\":3.0},\"safety_profile\":\"LOCAL_SYNTHETIC_C7_PROFILE_V1\"},\"world_id\":\"episode-7dba3882c50d2c67e06823d8206560da\"}",
+    "proposal_sent": true,
+    "readback": {
+      "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "attached_to_receipt_commit": true,
+      "capability_id": "e2-capability-baseline_counter_success-7786c2c4f23244ca95a21c1cc438ba68",
+      "ledger_id": "e2-target-baseline_counter_success-7c23d1d48dcd4df0ad2c7353af3c4bbd",
+      "observed_commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "observed_commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+      "observed_state": {
+        "occurrences": [
+          {
+            "deadline_minute": 90,
+            "duration_minutes": 45,
+            "effect_end_minute": 50,
+            "effect_start_minute": 5,
+            "object_id": "VenueV:CircuitC7",
+            "occurrence_id": "occurrence-7b6384462b8da5061e60dcfe94292af2",
+            "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+            "other_circuits_energized": [],
+            "power_max_kw": 3.15,
+            "power_min_kw": 2.85,
+            "power_tolerance_percent": 5,
+            "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+            "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+            "q_version": "Q@v1",
+            "required_power_kw": 3.0,
+            "samples": [
+              {
+                "noise_ok": true,
+                "observed_at_minute": 5,
+                "offset_minute": 0,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 6,
+                "offset_minute": 1,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 7,
+                "offset_minute": 2,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 8,
+                "offset_minute": 3,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 9,
+                "offset_minute": 4,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 10,
+                "offset_minute": 5,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 11,
+                "offset_minute": 6,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 12,
+                "offset_minute": 7,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 13,
+                "offset_minute": 8,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 14,
+                "offset_minute": 9,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 15,
+                "offset_minute": 10,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 16,
+                "offset_minute": 11,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 17,
+                "offset_minute": 12,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 18,
+                "offset_minute": 13,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 19,
+                "offset_minute": 14,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 20,
+                "offset_minute": 15,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 21,
+                "offset_minute": 16,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 22,
+                "offset_minute": 17,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 23,
+                "offset_minute": 18,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 24,
+                "offset_minute": 19,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 25,
+                "offset_minute": 20,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 26,
+                "offset_minute": 21,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 27,
+                "offset_minute": 22,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 28,
+                "offset_minute": 23,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 29,
+                "offset_minute": 24,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 30,
+                "offset_minute": 25,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 31,
+                "offset_minute": 26,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 32,
+                "offset_minute": 27,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 33,
+                "offset_minute": 28,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 34,
+                "offset_minute": 29,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 35,
+                "offset_minute": 30,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 36,
+                "offset_minute": 31,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 37,
+                "offset_minute": 32,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 38,
+                "offset_minute": 33,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 39,
+                "offset_minute": 34,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 40,
+                "offset_minute": 35,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 41,
+                "offset_minute": 36,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 42,
+                "offset_minute": 37,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 43,
+                "offset_minute": 38,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 44,
+                "offset_minute": 39,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 45,
+                "offset_minute": 40,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 46,
+                "offset_minute": 41,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 47,
+                "offset_minute": 42,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 48,
+                "offset_minute": 43,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 49,
+                "offset_minute": 44,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 50,
+                "offset_minute": 45,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              }
+            ],
+            "synthetic": true,
+            "target_id": "VenueV:CircuitC7",
+            "world_id": "episode-7dba3882c50d2c67e06823d8206560da"
+          }
+        ]
+      },
+      "observed_state_sha256": "7bb32a7b3885da488f0174fc5428aefa75d6894971a17c8b8a05aed8ec817847",
+      "observed_version": 1,
+      "readback_auth_hex": "95f34d6c23a147ac3569ddf9109c3f6832d2da546cc61a1fad68669494fe5ef0",
+      "readback_id": "readback-3c36702ea6ff4f82b411315866171ead",
+      "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+      "receipt_commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+      "receipt_decision": "COMMITTED",
+      "receipt_id": "receipt-2363818c39b34bd0b6d44ad0ae8f0f28",
+      "receipt_mutation_applied": true,
+      "receipt_post_version": 1,
+      "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+      "request_id": "target-7b6384462b8da5061e60dcfe94292af2",
+      "request_sha256": "7438aacd524f23b0ea4161a6747fb354aec4f811a89a539116c4a9a01f4dcb93",
+      "schema": "TARGET_READBACK_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "receipt": {
+      "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "capability_id": "e2-capability-baseline_counter_success-7786c2c4f23244ca95a21c1cc438ba68",
+      "commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+      "commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+      "decision": "COMMITTED",
+      "expected_version": 0,
+      "ledger_id": "e2-target-baseline_counter_success-7c23d1d48dcd4df0ad2c7353af3c4bbd",
+      "mutation_applied": true,
+      "operation": "SET_STATE",
+      "post_state": {
+        "occurrences": [
+          {
+            "deadline_minute": 90,
+            "duration_minutes": 45,
+            "effect_end_minute": 50,
+            "effect_start_minute": 5,
+            "object_id": "VenueV:CircuitC7",
+            "occurrence_id": "occurrence-7b6384462b8da5061e60dcfe94292af2",
+            "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+            "other_circuits_energized": [],
+            "power_max_kw": 3.15,
+            "power_min_kw": 2.85,
+            "power_tolerance_percent": 5,
+            "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+            "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+            "q_version": "Q@v1",
+            "required_power_kw": 3.0,
+            "samples": [
+              {
+                "noise_ok": true,
+                "observed_at_minute": 5,
+                "offset_minute": 0,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 6,
+                "offset_minute": 1,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 7,
+                "offset_minute": 2,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 8,
+                "offset_minute": 3,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 9,
+                "offset_minute": 4,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 10,
+                "offset_minute": 5,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 11,
+                "offset_minute": 6,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 12,
+                "offset_minute": 7,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 13,
+                "offset_minute": 8,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 14,
+                "offset_minute": 9,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 15,
+                "offset_minute": 10,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 16,
+                "offset_minute": 11,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 17,
+                "offset_minute": 12,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 18,
+                "offset_minute": 13,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 19,
+                "offset_minute": 14,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 20,
+                "offset_minute": 15,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 21,
+                "offset_minute": 16,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 22,
+                "offset_minute": 17,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 23,
+                "offset_minute": 18,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 24,
+                "offset_minute": 19,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 25,
+                "offset_minute": 20,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 26,
+                "offset_minute": 21,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 27,
+                "offset_minute": 22,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 28,
+                "offset_minute": 23,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 29,
+                "offset_minute": 24,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 30,
+                "offset_minute": 25,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 31,
+                "offset_minute": 26,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 32,
+                "offset_minute": 27,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 33,
+                "offset_minute": 28,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 34,
+                "offset_minute": 29,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 35,
+                "offset_minute": 30,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 36,
+                "offset_minute": 31,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 37,
+                "offset_minute": 32,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 38,
+                "offset_minute": 33,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 39,
+                "offset_minute": 34,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 40,
+                "offset_minute": 35,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 41,
+                "offset_minute": 36,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 42,
+                "offset_minute": 37,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 43,
+                "offset_minute": 38,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 44,
+                "offset_minute": 39,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 45,
+                "offset_minute": 40,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 46,
+                "offset_minute": 41,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 47,
+                "offset_minute": 42,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 48,
+                "offset_minute": 43,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 49,
+                "offset_minute": 44,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              },
+              {
+                "noise_ok": true,
+                "observed_at_minute": 50,
+                "offset_minute": 45,
+                "other_circuits_energized": [],
+                "power_kw": 3.0,
+                "safety_ok": true,
+                "source": "LOCAL_SYNTHETIC",
+                "target_id": "VenueV:CircuitC7"
+              }
+            ],
+            "synthetic": true,
+            "target_id": "VenueV:CircuitC7",
+            "world_id": "episode-7dba3882c50d2c67e06823d8206560da"
+          }
+        ]
+      },
+      "post_state_sha256": "7bb32a7b3885da488f0174fc5428aefa75d6894971a17c8b8a05aed8ec817847",
+      "post_version": 1,
+      "pre_state": {
+        "occurrences": []
+      },
+      "pre_state_sha256": "8f0874b12e7e2a5bafc59eaaaf6438bee0195a7199624c3e280ded986315993c",
+      "pre_version": 0,
+      "reason": "TARGET_MUTATION_COMMITTED",
+      "receipt_auth_hex": "3a898e3419c53fa45b601cdf9e070043d17d9ebc8d229bc9b4bfa5efc91fa259",
+      "receipt_id": "receipt-2363818c39b34bd0b6d44ad0ae8f0f28",
+      "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+      "request_id": "target-7b6384462b8da5061e60dcfe94292af2",
+      "request_sha256": "7438aacd524f23b0ea4161a6747fb354aec4f811a89a539116c4a9a01f4dcb93",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "schema": "E2_ARM_RESULT_V1",
+    "target_submit_sent": true,
+    "transcript": [
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "proposal_bytes": "{\"deadline_minute\":90,\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-92463f34cbe09ff4389bc3950eb6e31b\",\"owner_request_nonces\":{\"O_Q\":\"nonce-fbaf70cfef522a15ccf71f47e9a9f645\",\"O_R\":\"nonce-e70015d538167f7f8ea3c4fde716ddef\",\"O_S\":\"nonce-09c416c02878759fe4ac674ed7218333\",\"O_V\":\"nonce-713e5c2e73a1d809f0f7324b4cb693b7\"},\"public_run_id\":\"run-3bd0b1a9e8e409cf1487f810159da76d\",\"purpose\":\"TEMPORARY_C7_3KW_45MIN\",\"q_version\":\"Q@v1\",\"requested_expiry_minute\":90,\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"E2_EXACT_FORMATION_PROPOSAL_V1\",\"scope_sha256\":\"cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9\",\"target_id\":\"VenueV:CircuitC7\",\"terms\":{\"delegation_scope\":\"VenueV:CircuitC7\",\"relation_duration\":\"ONE_OPERATION_ONLY\",\"resource\":{\"duration_minutes\":45,\"power_kw\":3.0},\"safety_profile\":\"LOCAL_SYNTHETIC_C7_PROFILE_V1\"},\"world_id\":\"episode-7dba3882c50d2c67e06823d8206560da\"}",
+          "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+          "schema": "E2_BROKER_PROPOSAL_REQUEST_V1"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "owner_responses": [
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "7b6af1bbacd5c92a5048dd239dfeb2f880d4e1678c0a7abb88877b8a03f4ff55",
+              "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+              "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+              "owner_role": "O_Q",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_REQUESTER_Q",
+              "process_id": 73321,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "request_nonce": "nonce-fbaf70cfef522a15ccf71f47e9a9f645",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "4b9ca5e65a5b1ef9a90a24f432cff31a763c3271fef3b18ac8f8810cffaa28d90bbbc64e7558abfb25c847b57ab88c027e8e18c4b00ff4c93537ee4c9023fe0d"
+            },
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "2b6ac19b83036718fa4fbbfb77b681bcbda2aa15b7da96ca0cf9865ca5bc480d",
+              "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+              "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+              "owner_role": "O_V",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_VENUE_V",
+              "process_id": 73322,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "request_nonce": "nonce-713e5c2e73a1d809f0f7324b4cb693b7",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "67b5474e093b85d6bf5677177d74391e69261a815fb18038cb85fee81063c293f0a0dba511e3198986dbf5045fcbf7e7932bc515a8720f056932e8b7e90e9403"
+            },
+            {
+              "counter": {
+                "effective_expiry_minute": 85,
+                "resource_window_end_minute": 50,
+                "resource_window_start_minute": 5
+              },
+              "decision": "COUNTER",
+              "expiry_minute": 90,
+              "owner_head": "bf5a8fb1671138f75453d7df580d79758c18554ab092fc5b8143d5e49bb4375b",
+              "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+              "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+              "owner_role": "O_R",
+              "policy_head": "6fe5827e184e9e914cf3990ba3ff96cbf5b4c9303d4dca58eceb6a3851a4c14d",
+              "principal_id": "PRINCIPAL_RESOURCE_R",
+              "process_id": 73324,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "request_nonce": "nonce-e70015d538167f7f8ea3c4fde716ddef",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "29c56eec3271704a763effc8fc8a1732e54b6d8273cb9ffab7fe94098973c1a71d87ce866caf200cc1a9e6c42505b16fccb74487de9cc855122c817479cf580d"
+            },
+            {
+              "counter": null,
+              "decision": "APPROVE",
+              "expiry_minute": 90,
+              "owner_head": "29782d11b9a09971ea5fc5baf27b4e03b1d822acf6bd2a06f9e045c83da22b9a",
+              "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+              "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+              "owner_role": "O_S",
+              "policy_head": "9434b6bf081d7c4ddfca9e42723978c8a720387a76e54d590cb2d1c058d23fde",
+              "principal_id": "PRINCIPAL_SAFETY_S",
+              "process_id": 73325,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "request_nonce": "nonce-09c416c02878759fe4ac674ed7218333",
+              "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "1783d31c6c25e97e445673130bb3d990a9ff42a07691589fa093d63924650afeec122fe1df4b960f7b010b1257c35659e1714701fbd63ce0ac105f0c7e24be0f"
+            }
+          ],
+          "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+          "schema": "E2_BROKER_PROPOSAL_RESULT_V1"
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "accepted_counter_roles": [
+            "O_R"
+          ],
+          "accepted_response_sha256": {
+            "O_Q": "52d977cb2c97faa9d8ed20e912edf6733429dacb9bed5ce970e409d46c765529",
+            "O_R": "f6f846602f2044f2bbf23d0362c6ef6a5dbf60585f4639d0944ee1ff4b2e9e5d",
+            "O_S": "ffd9f204a0350fbd996970ba7bb412e91b2731b31f0ef19f41d7535f0a55e600",
+            "O_V": "b240dd5503e0084cac148c0ca99d6da5004b7b00aceba285636661ebc3794753"
+          },
+          "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+          "schema": "E2_BROKER_MATERIALIZE_REQUEST_V1",
+          "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "owner_acts": [
+            {
+              "created_fact_kinds": [
+                "PURPOSE_TOKEN"
+              ],
+              "expiry_minute": 90,
+              "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+              "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+              "owner_role": "O_Q",
+              "post_head": "45331e64350de01c820502420b31e05ab449a173acf37a581e8fbce9c367c2f4",
+              "pre_head": "7b6af1bbacd5c92a5048dd239dfeb2f880d4e1678c0a7abb88877b8a03f4ff55",
+              "principal_id": "PRINCIPAL_REQUESTER_Q",
+              "process_id": 73321,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "response_sha256": "52d977cb2c97faa9d8ed20e912edf6733429dacb9bed5ce970e409d46c765529",
+              "schema": "E2_OWNER_FORMATION_ACT_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "dbaf6d5a9fa508a56717d8aed490842571252c7c374a168fa8e4be852a55f84e7b7e6ed1c2801c8e4c66aa8b265c579611a91012316d03bf52fb63f186ef2606"
+            },
+            {
+              "created_fact_kinds": [
+                "C7_SHORT_DELEGATION"
+              ],
+              "expiry_minute": 90,
+              "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+              "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+              "owner_role": "O_V",
+              "post_head": "31b0461d507b43e2f89cf15031f67ff929fb004bb5c33a80aeb3b98836b9616d",
+              "pre_head": "2b6ac19b83036718fa4fbbfb77b681bcbda2aa15b7da96ca0cf9865ca5bc480d",
+              "principal_id": "PRINCIPAL_VENUE_V",
+              "process_id": 73322,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "response_sha256": "b240dd5503e0084cac148c0ca99d6da5004b7b00aceba285636661ebc3794753",
+              "schema": "E2_OWNER_FORMATION_ACT_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "7debc8126ae893a3da17b49a756db3164487f3d3fff93582ec9d03ed0ce8bbdb9c198c7fc78097ab93a9e6c8702cbc233e0fa9192623f21bbadfb6986b965101"
+            },
+            {
+              "created_fact_kinds": [
+                "RESOURCE_COMMITMENT",
+                "RESOURCE_RESERVATION"
+              ],
+              "expiry_minute": 85,
+              "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+              "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+              "owner_role": "O_R",
+              "post_head": "72256e6e7bcb19f248e05f72ab4ad9d9ac881da313bf1041307febb78f767214",
+              "pre_head": "bf5a8fb1671138f75453d7df580d79758c18554ab092fc5b8143d5e49bb4375b",
+              "principal_id": "PRINCIPAL_RESOURCE_R",
+              "process_id": 73324,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "response_sha256": "f6f846602f2044f2bbf23d0362c6ef6a5dbf60585f4639d0944ee1ff4b2e9e5d",
+              "schema": "E2_OWNER_FORMATION_ACT_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "5ffd603e9fea25c076509d08005786edadbd9641284ae7b40d894d87ca7c2130889bcd135c5d64329d1766bfb4607fd4122d900b82b89e5f3c42e0187053ef05"
+            },
+            {
+              "created_fact_kinds": [
+                "SAFETY_APPROVAL"
+              ],
+              "expiry_minute": 90,
+              "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+              "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+              "owner_role": "O_S",
+              "post_head": "bafcc13a7766f4cf2c08262e010b57df20e5031c4cf7f5f24ebb456330b85318",
+              "pre_head": "29782d11b9a09971ea5fc5baf27b4e03b1d822acf6bd2a06f9e045c83da22b9a",
+              "principal_id": "PRINCIPAL_SAFETY_S",
+              "process_id": 73325,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "response_sha256": "ffd9f204a0350fbd996970ba7bb412e91b2731b31f0ef19f41d7535f0a55e600",
+              "schema": "E2_OWNER_FORMATION_ACT_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "2cd065d879899f6b56949d38cdcc2b626f19c370343bca63c3f1a57919a8888c5f7d0ed9d1708bfd2724f2792dce49e21859b030ccea50e07d34ebc8d8a45105"
+            }
+          ],
+          "schema": "E2_BROKER_MATERIALIZE_RESULT_V1"
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "execute_minute": 5,
+          "owner_act_sha256": {
+            "O_Q": "534747c1a70777a14ddbbc1244dd5ba231b91ac3bd69afbeda3d3455f260b608",
+            "O_R": "7ef53c1b5c4f86419a6c3acb31bcacd17968d7e088e11535b9e9dd2f5f3a7e6a",
+            "O_S": "07229aca5ed12e03206b813dcbcb9c0e8000ff68ec959c3abdf80ec1cb29df88",
+            "O_V": "8bbe737fe3f570cb8862439697bd4ee3b64403544f05993b91bf4ce5c565789f"
+          },
+          "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+          "schema": "E2_BROKER_TARGET_EXECUTE_REQUEST_V1",
+          "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "commit_revalidations": [
+            {
+              "execute_minute": 5,
+              "owner_head": "45331e64350de01c820502420b31e05ab449a173acf37a581e8fbce9c367c2f4",
+              "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+              "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+              "owner_role": "O_Q",
+              "principal_id": "PRINCIPAL_REQUESTER_Q",
+              "process_id": 73321,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "required_fact_kinds": [
+                "PURPOSE_TOKEN"
+              ],
+              "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "e468c06e21e2e54d037eeb86c7e00cac9da078df5515e221e649c92dad8acf1d385bb3bc5b5be901bf810773003a0d5ff1841d753cf20c461694abe84373b40e",
+              "status": "CURRENT"
+            },
+            {
+              "execute_minute": 5,
+              "owner_head": "31b0461d507b43e2f89cf15031f67ff929fb004bb5c33a80aeb3b98836b9616d",
+              "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+              "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+              "owner_role": "O_V",
+              "principal_id": "PRINCIPAL_VENUE_V",
+              "process_id": 73322,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "required_fact_kinds": [
+                "C7_SHORT_DELEGATION"
+              ],
+              "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "bfdf41c77fcfd822e0c3d4fa5d6f64c9b9dc9437ae8a2352fd8298dd0bde6a77719a17ce51bf19d6b831107c17e8f8fc0313aefa32ce4570abd376dadd399209",
+              "status": "CURRENT"
+            },
+            {
+              "execute_minute": 5,
+              "owner_head": "72256e6e7bcb19f248e05f72ab4ad9d9ac881da313bf1041307febb78f767214",
+              "owner_id": "owner-o_r-f2a03c407a5a43eeafd3e4b9be1e54bd",
+              "owner_public_key_hex": "3dea24ed8e99fdf1460a19e4d02548e16321bc65027d005ab45ac7c0ea9e960e",
+              "owner_role": "O_R",
+              "principal_id": "PRINCIPAL_RESOURCE_R",
+              "process_id": 73324,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "required_fact_kinds": [
+                "RESOURCE_COMMITMENT",
+                "RESOURCE_RESERVATION"
+              ],
+              "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "07b0b5e3b0b2ff4a9cdab571119c48b98323c02db0601be6db3d498e7e50eefdc19dff14e76820df5a5e7eb58d87c9b8a609de7c6d66cbb51c91b47a13983b04",
+              "status": "CURRENT"
+            },
+            {
+              "execute_minute": 5,
+              "owner_head": "bafcc13a7766f4cf2c08262e010b57df20e5031c4cf7f5f24ebb456330b85318",
+              "owner_id": "owner-o_s-277c5474e142492398b3baa651937540",
+              "owner_public_key_hex": "1ff5f2d2b7fe7c29c4ed306f2a07f4c42c4dc63ea68eb9e8115524e1d81a8cf8",
+              "owner_role": "O_S",
+              "principal_id": "PRINCIPAL_SAFETY_S",
+              "process_id": 73325,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "required_fact_kinds": [
+                "SAFETY_APPROVAL"
+              ],
+              "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "a1d1f0b08242ed9fc168acf4422ea03a6a30d86c2c003ae1c2385e72ce7833d9d6430d44fd8df3573d7fc85e5b8ff03b26f21b12bb245aadfad0b0ee9e15ff04",
+              "status": "CURRENT"
+            }
+          ],
+          "readback": {
+            "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+            "attached_to_receipt_commit": true,
+            "capability_id": "e2-capability-baseline_counter_success-7786c2c4f23244ca95a21c1cc438ba68",
+            "ledger_id": "e2-target-baseline_counter_success-7c23d1d48dcd4df0ad2c7353af3c4bbd",
+            "observed_commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+            "observed_commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+            "observed_state": {
+              "occurrences": [
+                {
+                  "deadline_minute": 90,
+                  "duration_minutes": 45,
+                  "effect_end_minute": 50,
+                  "effect_start_minute": 5,
+                  "object_id": "VenueV:CircuitC7",
+                  "occurrence_id": "occurrence-7b6384462b8da5061e60dcfe94292af2",
+                  "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+                  "other_circuits_energized": [],
+                  "power_max_kw": 3.15,
+                  "power_min_kw": 2.85,
+                  "power_tolerance_percent": 5,
+                  "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+                  "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+                  "q_version": "Q@v1",
+                  "required_power_kw": 3.0,
+                  "samples": [
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 5,
+                      "offset_minute": 0,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 6,
+                      "offset_minute": 1,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 7,
+                      "offset_minute": 2,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 8,
+                      "offset_minute": 3,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 9,
+                      "offset_minute": 4,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 10,
+                      "offset_minute": 5,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 11,
+                      "offset_minute": 6,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 12,
+                      "offset_minute": 7,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 13,
+                      "offset_minute": 8,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 14,
+                      "offset_minute": 9,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 15,
+                      "offset_minute": 10,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 16,
+                      "offset_minute": 11,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 17,
+                      "offset_minute": 12,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 18,
+                      "offset_minute": 13,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 19,
+                      "offset_minute": 14,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 20,
+                      "offset_minute": 15,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 21,
+                      "offset_minute": 16,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 22,
+                      "offset_minute": 17,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 23,
+                      "offset_minute": 18,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 24,
+                      "offset_minute": 19,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 25,
+                      "offset_minute": 20,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 26,
+                      "offset_minute": 21,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 27,
+                      "offset_minute": 22,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 28,
+                      "offset_minute": 23,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 29,
+                      "offset_minute": 24,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 30,
+                      "offset_minute": 25,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 31,
+                      "offset_minute": 26,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 32,
+                      "offset_minute": 27,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 33,
+                      "offset_minute": 28,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 34,
+                      "offset_minute": 29,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 35,
+                      "offset_minute": 30,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 36,
+                      "offset_minute": 31,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 37,
+                      "offset_minute": 32,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 38,
+                      "offset_minute": 33,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 39,
+                      "offset_minute": 34,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 40,
+                      "offset_minute": 35,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 41,
+                      "offset_minute": 36,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 42,
+                      "offset_minute": 37,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 43,
+                      "offset_minute": 38,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 44,
+                      "offset_minute": 39,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 45,
+                      "offset_minute": 40,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 46,
+                      "offset_minute": 41,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 47,
+                      "offset_minute": 42,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 48,
+                      "offset_minute": 43,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 49,
+                      "offset_minute": 44,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 50,
+                      "offset_minute": 45,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    }
+                  ],
+                  "synthetic": true,
+                  "target_id": "VenueV:CircuitC7",
+                  "world_id": "episode-7dba3882c50d2c67e06823d8206560da"
+                }
+              ]
+            },
+            "observed_state_sha256": "7bb32a7b3885da488f0174fc5428aefa75d6894971a17c8b8a05aed8ec817847",
+            "observed_version": 1,
+            "readback_auth_hex": "95f34d6c23a147ac3569ddf9109c3f6832d2da546cc61a1fad68669494fe5ef0",
+            "readback_id": "readback-3c36702ea6ff4f82b411315866171ead",
+            "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+            "receipt_commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+            "receipt_decision": "COMMITTED",
+            "receipt_id": "receipt-2363818c39b34bd0b6d44ad0ae8f0f28",
+            "receipt_mutation_applied": true,
+            "receipt_post_version": 1,
+            "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+            "request_id": "target-7b6384462b8da5061e60dcfe94292af2",
+            "request_sha256": "7438aacd524f23b0ea4161a6747fb354aec4f811a89a539116c4a9a01f4dcb93",
+            "schema": "TARGET_READBACK_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "receipt": {
+            "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+            "capability_id": "e2-capability-baseline_counter_success-7786c2c4f23244ca95a21c1cc438ba68",
+            "commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+            "commit_id": "commit-0302e84c338a462cac4becaf7a1981f2",
+            "decision": "COMMITTED",
+            "expected_version": 0,
+            "ledger_id": "e2-target-baseline_counter_success-7c23d1d48dcd4df0ad2c7353af3c4bbd",
+            "mutation_applied": true,
+            "operation": "SET_STATE",
+            "post_state": {
+              "occurrences": [
+                {
+                  "deadline_minute": 90,
+                  "duration_minutes": 45,
+                  "effect_end_minute": 50,
+                  "effect_start_minute": 5,
+                  "object_id": "VenueV:CircuitC7",
+                  "occurrence_id": "occurrence-7b6384462b8da5061e60dcfe94292af2",
+                  "operation_id": "operation-92463f34cbe09ff4389bc3950eb6e31b",
+                  "other_circuits_energized": [],
+                  "power_max_kw": 3.15,
+                  "power_min_kw": 2.85,
+                  "power_tolerance_percent": 5,
+                  "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+                  "public_run_id": "run-3bd0b1a9e8e409cf1487f810159da76d",
+                  "q_version": "Q@v1",
+                  "required_power_kw": 3.0,
+                  "samples": [
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 5,
+                      "offset_minute": 0,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 6,
+                      "offset_minute": 1,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 7,
+                      "offset_minute": 2,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 8,
+                      "offset_minute": 3,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 9,
+                      "offset_minute": 4,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 10,
+                      "offset_minute": 5,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 11,
+                      "offset_minute": 6,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 12,
+                      "offset_minute": 7,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 13,
+                      "offset_minute": 8,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 14,
+                      "offset_minute": 9,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 15,
+                      "offset_minute": 10,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 16,
+                      "offset_minute": 11,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 17,
+                      "offset_minute": 12,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 18,
+                      "offset_minute": 13,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 19,
+                      "offset_minute": 14,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 20,
+                      "offset_minute": 15,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 21,
+                      "offset_minute": 16,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 22,
+                      "offset_minute": 17,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 23,
+                      "offset_minute": 18,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 24,
+                      "offset_minute": 19,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 25,
+                      "offset_minute": 20,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 26,
+                      "offset_minute": 21,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 27,
+                      "offset_minute": 22,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 28,
+                      "offset_minute": 23,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 29,
+                      "offset_minute": 24,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 30,
+                      "offset_minute": 25,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 31,
+                      "offset_minute": 26,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 32,
+                      "offset_minute": 27,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 33,
+                      "offset_minute": 28,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 34,
+                      "offset_minute": 29,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 35,
+                      "offset_minute": 30,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 36,
+                      "offset_minute": 31,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 37,
+                      "offset_minute": 32,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 38,
+                      "offset_minute": 33,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 39,
+                      "offset_minute": 34,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 40,
+                      "offset_minute": 35,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 41,
+                      "offset_minute": 36,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 42,
+                      "offset_minute": 37,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 43,
+                      "offset_minute": 38,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 44,
+                      "offset_minute": 39,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 45,
+                      "offset_minute": 40,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 46,
+                      "offset_minute": 41,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 47,
+                      "offset_minute": 42,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 48,
+                      "offset_minute": 43,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 49,
+                      "offset_minute": 44,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    },
+                    {
+                      "noise_ok": true,
+                      "observed_at_minute": 50,
+                      "offset_minute": 45,
+                      "other_circuits_energized": [],
+                      "power_kw": 3.0,
+                      "safety_ok": true,
+                      "source": "LOCAL_SYNTHETIC",
+                      "target_id": "VenueV:CircuitC7"
+                    }
+                  ],
+                  "synthetic": true,
+                  "target_id": "VenueV:CircuitC7",
+                  "world_id": "episode-7dba3882c50d2c67e06823d8206560da"
+                }
+              ]
+            },
+            "post_state_sha256": "7bb32a7b3885da488f0174fc5428aefa75d6894971a17c8b8a05aed8ec817847",
+            "post_version": 1,
+            "pre_state": {
+              "occurrences": []
+            },
+            "pre_state_sha256": "8f0874b12e7e2a5bafc59eaaaf6438bee0195a7199624c3e280ded986315993c",
+            "pre_version": 0,
+            "reason": "TARGET_MUTATION_COMMITTED",
+            "receipt_auth_hex": "3a898e3419c53fa45b601cdf9e070043d17d9ebc8d229bc9b4bfa5efc91fa259",
+            "receipt_id": "receipt-2363818c39b34bd0b6d44ad0ae8f0f28",
+            "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+            "request_id": "target-7b6384462b8da5061e60dcfe94292af2",
+            "request_sha256": "7438aacd524f23b0ea4161a6747fb354aec4f811a89a539116c4a9a01f4dcb93",
+            "schema": "TARGET_MUTATION_RECEIPT_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "schema": "E2_BROKER_TARGET_EXECUTE_RESULT_V1"
+        }
+      },
+      {
+        "direction": "ARM_TO_BROKER",
+        "message": {
+          "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+          "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+          "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+          "schema": "E2_BROKER_ACCEPTANCE_REQUEST_V1",
+          "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9"
+        }
+      },
+      {
+        "direction": "BROKER_TO_ARM",
+        "message": {
+          "acceptances": [
+            {
+              "owner_head": "e3410b446b796280a95b93c9e35f2f9f36924913af7f376fbc5495c49fcbe379",
+              "owner_id": "owner-o_q-3a086ba7fbd0414da3ce3558e632c68c",
+              "owner_public_key_hex": "9b2f1d543e2329f9d538b821e2e42fab86b368b5531f1f4530c0f10ff2663e19",
+              "owner_role": "O_Q",
+              "principal_id": "PRINCIPAL_REQUESTER_Q",
+              "process_id": 73321,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+              "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+              "schema": "E2_OWNER_ACCEPTANCE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "c2fea90dfd10f3fddf5717edd03ffcb332de5d17745e189178adab2cc7bbea385425ca29fdf67e2447aeb333b8e8869330dc6adee27afa01682a4b76a687fa0d",
+              "status": "ACCEPTED"
+            },
+            {
+              "owner_head": "73ef6b2af58830c131488f1cde03aaacd22283276d1cf58fc6d67ee7a1c0cd36",
+              "owner_id": "owner-o_v-64cb0b31bba046a4b04c628f8bb6f183",
+              "owner_public_key_hex": "8066acad15a5f1dd58e4587692e7d4c2649e7647e11dede7521061e390bb908b",
+              "owner_role": "O_V",
+              "principal_id": "PRINCIPAL_VENUE_V",
+              "process_id": 73322,
+              "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+              "readback_sha256": "55f72c24ad367a0676ae9bf76fa2c807b86efe70d65af8ccfa5db0348e732980",
+              "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+              "schema": "E2_OWNER_ACCEPTANCE_V1",
+              "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+              "signature_hex": "62fb0cd43792bcb5d6a33d45565d0a524c4eaeae2bfe2af1515f7a7ee46234f23f313e3b888dcf4f5ec3f23b4517eae65a044ee0266dc0b58ed22a2adb5cf50a",
+              "status": "ACCEPTED"
+            }
+          ],
+          "finality": {
+            "acceptance_sha256": "ba93e7dfa8dbe63aebca10e66590b9ce143ceefdd58d0745e00db5e6f1604ad9",
+            "owner_head": "281832b43fc9bfad82112aac7a1fbb61ead4a7eb7792142d39bbe531b8f0722a",
+            "owner_id": "owner-o_p-e9e41aba12b941ad839ab023e86a865f",
+            "owner_public_key_hex": "bab34657bc0c4e48304e08dbe916d470346258be4dfb37699ecae88923e91da8",
+            "owner_role": "O_P",
+            "principal_id": "PRINCIPAL_SETTLEMENT_P",
+            "process_id": 73326,
+            "proposal_sha256": "7b6384462b8da5061e60dcfe94292af289bb407e8b14129aaa09add805de154a",
+            "receipt_sha256": "fd266b2414381f0b2d8f2fc6ce9531fe841ef7eaca37b089a8b99450e375645f",
+            "schema": "E2_OWNER_FINALITY_V1",
+            "scope_sha256": "cfef999fdd4cbca9e170b93efb90d6c8ed8f72cd85266c047c42d2600ed030b9",
+            "signature_hex": "00a467a9a47031693175f686ff7c0c1fe0771d20c1dfdb966e62d6a8c21c71f1bebbe2e1bf94930440f452db7b80d8001d167b41fbf528ffec5ecc1b9553b801",
+            "status": "FINAL"
+          },
+          "schema": "E2_BROKER_ACCEPTANCE_RESULT_V1"
+        }
+      }
+    ],
+    "transcript_sha256": "f3dad03a4bfc225d9c88558ea29396d48ec1c94df2cebbd54ab03640436ca5d5"
+  }
+}

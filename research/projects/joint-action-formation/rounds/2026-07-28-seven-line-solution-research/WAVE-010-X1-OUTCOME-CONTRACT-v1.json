@@ -1,0 +1,730 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "contract_id": "WAVE-010-X1-OUTCOME-CONTRACT",
+  "contract_version": "1",
+  "status": "CANDIDATE_NOT_RUN",
+  "purpose": "Lossless, fail-closed X1 to X2 outcome handoff with embedded G3 evidence. This contract does not create an X1 result or authorize an X2 attempt.",
+  "canonicalization": {
+    "format": "UTF-8 JSON",
+    "object_keys": "lexicographic",
+    "arrays": "order-significant",
+    "whitespace": "none",
+    "numbers": "JSON canonical decimal form"
+  },
+  "category_registry": [
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE",
+    "REJECT",
+    "DEFER",
+    "UNKNOWN",
+    "INVALID",
+    "REVOKED",
+    "EXPIRED",
+    "ACTUAL_POLICY_MISS",
+    "AUTHORIZED_NEW_EPISODE",
+    "INVALID_SUBSTITUTION",
+    "BOUNDED_UNREACHABLE",
+    "SAFE_EXIT",
+    "UNRESOLVED_SCHEMA"
+  ],
+  "reason_registry_version": "x1-reason-registry-v2",
+  "reason_registry": {
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE": [
+      "ALL_LINE_OUTPUTS_ACCEPTED_AND_TRANSITIONS_CURRENT"
+    ],
+    "REJECT": [
+      "PRINCIPAL_REJECTED",
+      "G1_UNWILLING_TO_DISCLOSE",
+      "G2_RELATION_REJECTED",
+      "G5_DENY",
+      "G5_RESERVATION_CONFLICT",
+      "G5_STANDING_CHALLENGE_REJECTED",
+      "G5_PROGRAM_COORDINATOR_STANCE_REJECTED",
+      "G5_DELTA_CALIBRATION_STANCE_REJECTED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_REJECTED",
+      "G5_SITE_DATA_STEWARD_STANCE_REJECTED",
+      "G5_DELTA_RESOURCE_RESERVATION_CONFLICT"
+    ],
+    "DEFER": [
+      "PRINCIPAL_DEFERRED",
+      "G2_RELATION_PENDING",
+      "G5_REQUIRE_APPROVAL",
+      "G5_RESERVATION_REQUIRED",
+      "G5_STANDING_CHALLENGE_PENDING",
+      "G5_PROGRAM_COORDINATOR_STANCE_DEFERRED",
+      "G5_DELTA_CALIBRATION_STANCE_DEFERRED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_DEFERRED",
+      "G5_SITE_DATA_STEWARD_STANCE_DEFERRED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_NOT_YET_CREATED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_NOT_YET_CREATED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_NOT_YET_CREATED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_NOT_YET_CREATED",
+      "G5_DELTA_RESERVATION_NOT_YET_CREATED"
+    ],
+    "UNKNOWN": [
+      "G1_UNEXPRESSED",
+      "G1_UNKNOWN",
+      "G1_POLICY_UNDISCOVERABLE",
+      "G2_SEMANTICS_UNKNOWN",
+      "G3_REACHABILITY_UNKNOWN",
+      "G5_AUTHORITY_UNKNOWN",
+      "G5_PROGRAM_COORDINATOR_STANCE_UNKNOWN",
+      "G5_DELTA_CALIBRATION_STANCE_UNKNOWN",
+      "G5_INDEPENDENT_VALIDATION_STANCE_UNKNOWN",
+      "G5_SITE_DATA_STEWARD_STANCE_UNKNOWN",
+      "G5_PROGRAM_COORDINATOR_HEAD_READBACK_UNKNOWN",
+      "G5_DELTA_CALIBRATION_HEAD_READBACK_UNKNOWN",
+      "G5_INDEPENDENT_VALIDATION_HEAD_READBACK_UNKNOWN",
+      "G5_SITE_DATA_STEWARD_HEAD_READBACK_UNKNOWN",
+      "G5_DELTA_RESOURCE_HEAD_READBACK_UNKNOWN"
+    ],
+    "INVALID": [
+      "INVALID_INPUT_BINDING",
+      "INVALID_LINE_RECEIPT",
+      "INVALID_TRANSITION_BINDING",
+      "INVALID_PRINCIPAL_CLOSURE",
+      "G2_STALE_RELATION_VERSION",
+      "G3_MUTATE_PROBLEM",
+      "G5_STALE_VERSION",
+      "G5_CONTROLLER_SUBSTITUTION",
+      "G5_STANDING_VIOLATION",
+      "G5_RELATION_COORDINATE_MISMATCH",
+      "G5_G2_FORMED_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_STANCE_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_HEAD_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_INVALID",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_INVALID",
+      "G5_CROSS_DOMAIN_SIGNER_SUBSTITUTION",
+      "G5_SINGLE_COMMITMENT_FALSE_CLOSURE"
+    ],
+    "REVOKED": [
+      "G1_EVIDENCE_REVOKED",
+      "G2_RELATION_REVOKED",
+      "G5_MANDATE_REVOKED",
+      "G5_COMMITMENT_REVOKED",
+      "G5_RESERVATION_REVOKED",
+      "G5_PROGRAM_COORDINATOR_MANDATE_REVOKED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_REVOKED",
+      "G5_DELTA_CALIBRATION_MANDATE_REVOKED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_REVOKED",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_REVOKED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_REVOKED",
+      "G5_SITE_DATA_STEWARD_MANDATE_REVOKED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_REVOKED",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_REVOKED"
+    ],
+    "EXPIRED": [
+      "G1_EVIDENCE_EXPIRED",
+      "G2_STANCE_EXPIRED",
+      "G5_MANDATE_EXPIRED",
+      "G5_COMMITMENT_EXPIRED",
+      "G5_RESERVATION_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_MANDATE_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_STANCE_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_EXPIRED",
+      "G5_DELTA_CALIBRATION_MANDATE_EXPIRED",
+      "G5_DELTA_CALIBRATION_STANCE_EXPIRED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_EXPIRED",
+      "G5_SITE_DATA_STEWARD_MANDATE_EXPIRED",
+      "G5_SITE_DATA_STEWARD_STANCE_EXPIRED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_EXPIRED",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_EXPIRED"
+    ],
+    "BOUNDED_UNREACHABLE": [
+      "G3_BOUNDED_UNREACHABLE"
+    ],
+    "SAFE_EXIT": [
+      "PRINCIPAL_SAFE_EXIT",
+      "G1_SAFE_EXIT",
+      "G2_SAFE_EXIT",
+      "G3_SAFE_EXIT",
+      "G5_SAFE_EXIT",
+      "POLICY_BOUNDARY_SAFE_EXIT"
+    ],
+    "UNRESOLVED_SCHEMA": [
+      "UNKNOWN_SCHEMA_VERSION",
+      "SCHEMA_HASH_MISMATCH",
+      "REASON_REGISTRY_HASH_MISMATCH",
+      "UNREGISTERED_CATEGORY",
+      "UNREGISTERED_REASON_CODE",
+      "UNREGISTERED_CATEGORY_REASON_PAIR",
+      "MISSING_REQUIRED_RECEIPT",
+      "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_STANCE_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_HEAD_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_MISSING",
+      "G5_DELTA_RESERVATION_REQUIRED_RECEIPT_MISSING"
+    ],
+    "ACTUAL_POLICY_MISS": [
+      "G3_MEASURABLE_PATH_EXISTS_ACTUAL_POLICY_MISS"
+    ],
+    "AUTHORIZED_NEW_EPISODE": [
+      "G3_OWNER_AUTHORIZED_MATERIAL_GOAL_CHANGE"
+    ],
+    "INVALID_SUBSTITUTION": [
+      "G3_CONTROLLER_INVALID_SUBSTITUTION"
+    ]
+  },
+  "outcome_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "schema_sha256",
+      "reason_registry_version",
+      "reason_registry_sha256",
+      "x1_run_id",
+      "x1_world_id",
+      "x1_arm_id",
+      "raw_method_return_bytes_sha256",
+      "category",
+      "reason_code",
+      "line_receipt_refs",
+      "transition_receipt_refs",
+      "g3_receipt"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "1"
+      },
+      "schema_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "reason_registry_version": {
+        "const": "x1-reason-registry-v2"
+      },
+      "reason_registry_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "x1_run_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "x1_world_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "x1_arm_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "raw_method_return_bytes_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "category": {
+        "enum": [
+          "AUTHORITY_VALID_FRONT_HALF_CANDIDATE",
+          "REJECT",
+          "DEFER",
+          "UNKNOWN",
+          "INVALID",
+          "REVOKED",
+          "EXPIRED",
+          "ACTUAL_POLICY_MISS",
+          "AUTHORIZED_NEW_EPISODE",
+          "INVALID_SUBSTITUTION",
+          "BOUNDED_UNREACHABLE",
+          "SAFE_EXIT",
+          "UNRESOLVED_SCHEMA"
+        ]
+      },
+      "reason_code": {
+        "type": "string",
+        "minLength": 1
+      },
+      "line_receipt_refs": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "G1",
+          "G2",
+          "G3",
+          "G5"
+        ],
+        "properties": {
+          "G1": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G2": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G3": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G5": {
+            "$ref": "#/$defs/receipt_ref"
+          }
+        }
+      },
+      "transition_receipt_refs": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "T_G1_TO_G2",
+          "T_G2_TO_G3",
+          "T_G3_TO_G5",
+          "T_G5_TO_X2"
+        ],
+        "properties": {
+          "T_G1_TO_G2": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G2_TO_G3": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G3_TO_G5": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G5_TO_X2": {
+            "$ref": "#/$defs/receipt_ref"
+          }
+        }
+      },
+      "g3_receipt": {
+        "$ref": "#/$defs/g3_receipt"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "receipt_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "raw_bytes_sha256",
+        "owner_key_id",
+        "receipt_version",
+        "status"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "raw_bytes_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "owner_key_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "receipt_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "g3_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_ref",
+        "body_sha256",
+        "body"
+      ],
+      "properties": {
+        "receipt_ref": {
+          "$ref": "#/$defs/receipt_ref"
+        },
+        "body_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "body": {
+          "$ref": "#/$defs/g3_receipt_body"
+        }
+      }
+    },
+    "g3_receipt_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "C",
+        "N",
+        "E",
+        "T",
+        "V",
+        "R",
+        "inventory_completeness",
+        "counterfactual",
+        "task_diff"
+      ],
+      "properties": {
+        "C": {
+          "enum": [
+            "SAT",
+            "UNSAT",
+            "UNKNOWN"
+          ]
+        },
+        "N": {
+          "enum": [
+            "NONE",
+            "EXTANT_ACTIVATED",
+            "NEW_TOKEN",
+            "UNKNOWN"
+          ]
+        },
+        "E": {
+          "enum": [
+            "SAME",
+            "CHANGED",
+            "UNKNOWN"
+          ]
+        },
+        "T": {
+          "enum": [
+            "INVARIANT",
+            "OWNER_AUTHORIZED_NEW_EPISODE",
+            "CONTROLLER_SUBSTITUTION",
+            "UNKNOWN"
+          ]
+        },
+        "V": {
+          "enum": [
+            "VALID",
+            "INVALID",
+            "UNKNOWN",
+            "NO_QUALIFIED_EFFECT"
+          ]
+        },
+        "R": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "R_physical_exists",
+            "R_measurable_exists",
+            "R_actual",
+            "R_effect_robust",
+            "R_safe_robust",
+            "R_terminal_robust"
+          ],
+          "properties": {
+            "R_physical_exists": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            },
+            "R_measurable_exists": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            },
+            "R_actual": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            },
+            "R_effect_robust": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            },
+            "R_safe_robust": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            },
+            "R_terminal_robust": {
+              "enum": [
+                "TRUE",
+                "FALSE",
+                "UNKNOWN"
+              ]
+            }
+          }
+        },
+        "inventory_completeness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action_inventory",
+            "response_family",
+            "observation_kernel",
+            "transition_semantics",
+            "search_bound_frozen",
+            "horizon",
+            "unresolved_items",
+            "evidence_sha256"
+          ],
+          "properties": {
+            "action_inventory": {
+              "enum": [
+                "COMPLETE",
+                "INCOMPLETE",
+                "UNKNOWN"
+              ]
+            },
+            "response_family": {
+              "enum": [
+                "COMPLETE",
+                "INCOMPLETE",
+                "UNKNOWN"
+              ]
+            },
+            "observation_kernel": {
+              "enum": [
+                "COMPLETE",
+                "INCOMPLETE",
+                "UNKNOWN"
+              ]
+            },
+            "transition_semantics": {
+              "enum": [
+                "COMPLETE",
+                "INCOMPLETE",
+                "UNKNOWN"
+              ]
+            },
+            "search_bound_frozen": {
+              "type": "boolean"
+            },
+            "horizon": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unresolved_items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "evidence_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "counterfactual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "operator_ids",
+            "remove_result",
+            "reverse_result",
+            "block_result",
+            "evidence_sha256"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "APPLICABLE",
+                "NOT_APPLICABLE",
+                "UNKNOWN"
+              ]
+            },
+            "operator_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "remove_result": {
+              "enum": [
+                "SAT",
+                "UNSAT",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reverse_result": {
+              "enum": [
+                "SAT",
+                "UNSAT",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "block_result": {
+              "enum": [
+                "SAT",
+                "UNSAT",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "evidence_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "task_diff": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "classification",
+            "original_task_sha256",
+            "result_task_sha256",
+            "material_fields",
+            "changes",
+            "owner_authorization_receipts",
+            "controller_claim_refs"
+          ],
+          "properties": {
+            "classification": {
+              "enum": [
+                "UNCHANGED",
+                "OWNER_AUTHORIZED_NEW_EPISODE",
+                "CONTROLLER_SUBSTITUTION",
+                "UNKNOWN"
+              ]
+            },
+            "original_task_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "result_task_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "material_fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "changes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "before_value",
+                  "after_value"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "before_value": {},
+                  "after_value": {}
+                }
+              }
+            },
+            "owner_authorization_receipts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/receipt_ref"
+              }
+            },
+            "controller_claim_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/receipt_ref"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "hash_binding_rules": {
+    "schema_sha256": {
+      "algorithm": "SHA-256",
+      "preimage": "canonical JSON bytes of the exact object {\"$defs\": <RFC6901 /$defs>, \"category_registry\": <RFC6901 /category_registry>, \"outcome_schema\": <RFC6901 /outcome_schema>}",
+      "current_preimage_sha256": "09add52e3576fa19e6bfd663ff6b477b75ef00a7c8729f05391eb620f5af70c7",
+      "instance_field": "schema_sha256",
+      "mismatch_result": "UNRESOLVED_SCHEMA/SCHEMA_HASH_MISMATCH"
+    },
+    "reason_registry_sha256": {
+      "algorithm": "SHA-256",
+      "preimage": "canonical JSON bytes of the exact object {\"reason_registry\": <RFC6901 /reason_registry>, \"reason_registry_version\": <RFC6901 /reason_registry_version>}",
+      "current_preimage_sha256": "e32b2d9960853b5ca126656c02b9c84082a7fc441afd55306742e27b742c8b48",
+      "instance_field": "reason_registry_sha256",
+      "mismatch_result": "UNRESOLVED_SCHEMA/REASON_REGISTRY_HASH_MISMATCH"
+    }
+  },
+  "validation_rules": [
+    "category MUST be registered in category_registry",
+    "reason_code MUST be registered under the exact category in reason_registry",
+    "unregistered category, reason_code, or category/reason pair MUST fail closed as UNRESOLVED_SCHEMA and MUST NOT be normalized to UNKNOWN or INVALID",
+    "the unresolved wrapper MUST preserve the attempted raw bytes SHA-256 and the schema or registry failure reason",
+    "all four line receipt refs and all four transition receipt refs are mandatory; a non-reached line or transition MUST supply an owner-signed typed NOT_REACHED receipt rather than null",
+    "every receipt MUST resolve to the same x1_run_id, x1_world_id, x1_arm_id, episode anchor, and finalized output",
+    "reason_code MUST preserve the exact blocking reason proven by the raw receipt; generic G5_DENY or G5_BLOCKED normalization is forbidden when the receipt proves REQUIRE_APPROVAL, STALE_VERSION, RESERVATION_REQUIRED, RESERVATION_CONFLICT, REVOKED, or EXPIRED",
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE is valid only with ALL_LINE_OUTPUTS_ACCEPTED_AND_TRANSITIONS_CURRENT and current owner-issued receipts",
+    "G5 success requires current owner receipts for mandate, stance, commitment, and heads from all four authority domains plus the delta resource-owner reservation receipt; one aggregate or single-domain commitment cannot satisfy the gate",
+    "G5 non-success MUST emit exactly one registered category/reason pair proven by the blocking receipt; composite reason buckets are forbidden and an unregistered pair fails closed as UNRESOLVED_SCHEMA/UNREGISTERED_CATEGORY_REASON_PAIR",
+    "schema and reason-registry hashes are recomputed from this exact contract version at every X1 finalize and X2 ingress",
+    "this outcome is an X1 front-half handoff only and MUST NOT imply execution permission, Effect, Adoption, Acceptance, Settlement, or Q_episode satisfaction",
+    "g3_receipt.receipt_ref MUST equal line_receipt_refs.G3 byte-for-byte",
+    "g3_receipt.body_sha256 MUST equal SHA-256 of canonical g3_receipt.body bytes",
+    "the G3 body MUST preserve C/N/E/T/V, all six R coordinates, inventory completeness, counterfactual, and task diff; a ref/hash-only G3 receipt is invalid under v1",
+    "ACTUAL_POLICY_MISS requires R_measurable_exists=TRUE and R_actual=FALSE and MUST NOT be normalized to BOUNDED_UNREACHABLE",
+    "BOUNDED_UNREACHABLE requires C=UNSAT, R_measurable_exists=FALSE, a frozen search bound, and COMPLETE action inventory, response family, observation kernel, and transition semantics",
+    "AUTHORIZED_NEW_EPISODE requires an owner-authorized material task diff, distinct original/result task hashes, and at least one owner receipt; it is not success on the original episode",
+    "INVALID_SUBSTITUTION requires a controller-substitution task diff, distinct original/result task hashes, and MUST NOT carry owner authorization receipts",
+    "contract status remains CANDIDATE_NOT_RUN; schema validation or conformance tests do not create a run, score, or formal evidence status"
+  ],
+  "base_contract": {
+    "path": "WAVE-010-X1-OUTCOME-CONTRACT-v0.json",
+    "raw_sha256": "4492aeb31048044a2aacd54de72b2f86a4317236f36f788125014da9c9ba5b88",
+    "migration": "ADDITIVE_EXCEPT_FOR_THREE_INTENTIONAL_G3_SEMANTIC_BREAKS"
+  },
+  "compatibility": {
+    "v0_unchanged": true,
+    "v0_instances_accepted_when": "They are re-finalized under v1 with a complete g3_receipt and do not use a retired category/reason pair.",
+    "intentional_breaks": [
+      {
+        "v0": "BOUNDED_UNREACHABLE/G3_NO_ACTUAL_POLICY_PATH",
+        "v1": "ACTUAL_POLICY_MISS/G3_MEASURABLE_PATH_EXISTS_ACTUAL_POLICY_MISS when R_measurable_exists=TRUE and R_actual=FALSE"
+      },
+      {
+        "v0": "INVALID/G3_INVALID_SUBSTITUTION",
+        "v1": "AUTHORIZED_NEW_EPISODE/G3_OWNER_AUTHORIZED_MATERIAL_GOAL_CHANGE or INVALID_SUBSTITUTION/G3_CONTROLLER_INVALID_SUBSTITUTION"
+      },
+      {
+        "v0": "G3 line receipt ref/hash only",
+        "v1": "mandatory hash-bound G3 body with C/N/E/T/V, all R coordinates, inventory completeness, counterfactual, and task diff"
+      }
+    ],
+    "no_status_promotion": true
+  }
+}

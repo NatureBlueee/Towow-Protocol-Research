@@ -1,0 +1,114 @@
+{
+  "execution_receipt": {
+    "authoritative_event_sha256": "85db2229b1741942e7a1d3363307461e182d20d60585714a6b06349b28d5598d",
+    "authoritative_state_root": "7c1d9a7518b741cce4da1c09f3e3bfd22a2aa097974c50c578688a9142ecac1c",
+    "code": "EXECUTED",
+    "contract_sha256": "2f4fb6ab15762a79b6d99e45d657f8fab6a1848e63097f046cc2592aab9ba4e8",
+    "decision": "EXECUTED",
+    "idempotency_key": "hwb:2:ion-derived",
+    "input_sha256": "065b686b8d3ea1dd8441d4f741a73b8e736c7def6afdad14b8bb10d0c4f0076c",
+    "issuer": "LOCAL-CONTROLLER-W4A",
+    "output_sha256": "369c3c0a1d5c9ccd6bd397e468ceb96a44e3694df38a46373aaa0d3e76f96faf",
+    "policy_snapshot_sha256": "7e614b346a15b35d9869ccbb81a739775af295eada9571e74a794ef207a61bf3",
+    "prior_event_sha256": "22428321c1705ff47b2e84bcc37b4066fa433719c76d9809b0da7d34af1f7acd",
+    "prior_state_sha256": "b411855a3d046cfd9a16e123da2f5925fa5183e0c7f22af46ae03f6b8fa1ce44",
+    "readback_sha256": "9d64238bd68e18b7204637fcb2f80befb9748f34432837c405d2f425e12e90a1",
+    "receipt_sha256": "924e2c48eb0ebaf5c876716188e56c168a0e208cf2bdde8fe9d008bc4f78e6c3",
+    "schema": "towow.controller-execution-receipt.v1",
+    "sequence": 2,
+    "trusted_holder_envelopes_sha256": "29847371660a00d25886cee04003a9ff742fdfa43a60ffcf5156e58fc1a76b4f"
+  },
+  "outcome": {
+    "authority_evidence": {
+      "authoritative_state_root": "7c1d9a7518b741cce4da1c09f3e3bfd22a2aa097974c50c578688a9142ecac1c",
+      "readback": {
+        "all_postconditions_observed": true,
+        "authoritative_event_sha256": "85db2229b1741942e7a1d3363307461e182d20d60585714a6b06349b28d5598d",
+        "authoritative_state_root": "7c1d9a7518b741cce4da1c09f3e3bfd22a2aa097974c50c578688a9142ecac1c",
+        "delivery_count": 2,
+        "delivery_event_ids": [
+          "disclosure-44aa951fda1d0527c99523d7",
+          "disclosure-303e29f90bb7aa53c53b6b63"
+        ],
+        "recipient_store_observations": [
+          {
+            "delivery_event_id": "disclosure-44aa951fda1d0527c99523d7",
+            "delivery_sha256": "2d0059bf7f8c513c27cea972a79c35b726759995df6dc6fb6773ed399ff2313d",
+            "recipient": "NODE-SILVER-RELAY"
+          },
+          {
+            "delivery_event_id": "disclosure-303e29f90bb7aa53c53b6b63",
+            "delivery_sha256": "a840454e42e4755f607f4060669fe4c5b3cf53aa520bc51e75c0d5d21dd25d11",
+            "recipient": "NODE-COPPER-ROUTER"
+          }
+        ],
+        "schema": "towow.recipient-delivery-readback.v1",
+        "transaction_id": "delivery-transaction-3ae8a0a243be2d630c6ea972"
+      },
+      "readback_sha256": "9d64238bd68e18b7204637fcb2f80befb9748f34432837c405d2f425e12e90a1",
+      "recipient_delivery_event_sha256": "85db2229b1741942e7a1d3363307461e182d20d60585714a6b06349b28d5598d"
+    },
+    "authority_status": "NOT_INFERRED",
+    "commitment_status": "NOT_CREATED",
+    "derived_authorizations": [
+      {
+        "depth": 1,
+        "from": "NODE-SILVER-RELAY",
+        "issuer": "LOCAL-CONTROLLER-W4A",
+        "parent_disclosure_event_id": "disclosure-44aa951fda1d0527c99523d7",
+        "projection": {
+          "compatibility_key": "microgrid-anomaly-replay@6",
+          "direction": "OFFER",
+          "facet": "grid-replay-window",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION"
+        },
+        "purpose": "scoped-topology-screen",
+        "receipt_sha256": "4e5ef87d4c8445274bc86791879f740edb90ca43fe617fe7979ae0dd2f8ef74e",
+        "retention": "PT3M",
+        "schema": "towow.derived-onward-authorization.v1",
+        "source_holder_receipt_sha256": "94444dd068af022d233a8a8019ea7bfc90afc70499646fdd4c11b4d05c6873d5",
+        "to": "NODE-COPPER-ROUTER"
+      }
+    ],
+    "disclosures": [
+      {
+        "depth": 0,
+        "event_id": "disclosure-44aa951fda1d0527c99523d7",
+        "from": "ION-06",
+        "projection": {
+          "compatibility_key": "microgrid-anomaly-replay@6",
+          "direction": "OFFER",
+          "facet": "grid-replay-window",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION"
+        },
+        "purpose": "scoped-topology-screen",
+        "retention": "PT3M",
+        "source_holder_receipt_sha256": "94444dd068af022d233a8a8019ea7bfc90afc70499646fdd4c11b4d05c6873d5",
+        "status": "PERFORMED",
+        "to": "NODE-SILVER-RELAY"
+      },
+      {
+        "depth": 1,
+        "derived_authorization_sha256": "4e5ef87d4c8445274bc86791879f740edb90ca43fe617fe7979ae0dd2f8ef74e",
+        "event_id": "disclosure-303e29f90bb7aa53c53b6b63",
+        "from": "NODE-SILVER-RELAY",
+        "projection": {
+          "compatibility_key": "microgrid-anomaly-replay@6",
+          "direction": "OFFER",
+          "facet": "grid-replay-window",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION"
+        },
+        "purpose": "scoped-topology-screen",
+        "retention": "PT3M",
+        "status": "PERFORMED",
+        "to": "NODE-COPPER-ROUTER"
+      }
+    ],
+    "reciprocal_exchange": null,
+    "relation_status": "NOT_ESTABLISHED",
+    "route_type": "DERIVED_ONWARD",
+    "status": "EXECUTED"
+  },
+  "replay": "FIRST_ATTEMPT",
+  "state_changed": true
+}

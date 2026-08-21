@@ -1,0 +1,968 @@
+{
+  "cases": {
+    "anchor_fork": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "ANCHOR_FORK"
+        ],
+        "highest_level": 0,
+        "highest_name": "ATTEMPT",
+        "levels_valid": [
+          "ATTEMPT"
+        ],
+        "terminal_state": "UNKNOWN"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "beneficiary_refusal": {
+      "best_strategy": "SAFE_REJECTION",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "BENEFICIARY_REFUSED"
+        ],
+        "highest_level": 3,
+        "highest_name": "DOMAIN_POSTCONDITION",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION"
+        ],
+        "terminal_state": "REFUSE"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 3,
+          "current_terminal_state": "REFUSE",
+          "disclosure_units": 0,
+          "errors": [
+            "BENEFICIARY_REFUSED"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 3,
+          "lost_valid_effect": 0,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 3,
+          "current_terminal_state": "REFUSE",
+          "disclosure_units": 0,
+          "errors": [
+            "BENEFICIARY_REFUSED"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 3,
+          "lost_valid_effect": 0,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 3,
+          "current_terminal_state": "REFUSE",
+          "disclosure_units": 0,
+          "errors": [
+            "BENEFICIARY_REFUSED"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 3,
+          "lost_valid_effect": 0,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "contract_change": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "delayed_ack": {
+      "best_strategy": "IMMUTABLE_REPLAY",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "ACK_MISSING"
+        ],
+        "highest_level": 1,
+        "highest_name": "DELIVERY",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY"
+        ],
+        "terminal_state": "UNKNOWN"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 3,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 1,
+          "lost_valid_effect": 0,
+          "net_task_value": 88,
+          "recovery_time_steps": 3,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 4,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 1,
+          "lost_valid_effect": 0,
+          "net_task_value": 84,
+          "recovery_time_steps": 4,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 1,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "exact_replay": {
+      "best_strategy": "IMMUTABLE_REPLAY",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 100,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 96,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "holder_revocation": {
+      "best_strategy": "SAFE_REJECTION",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "DELIVERY_MISSING"
+        ],
+        "highest_level": 0,
+        "highest_name": "ATTEMPT",
+        "levels_valid": [
+          "ATTEMPT"
+        ],
+        "terminal_state": "UNKNOWN"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 0,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "ATTEMPT_ONLY",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 0,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "ATTEMPT_ONLY",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 0,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "ATTEMPT_ONLY",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "key_rotation": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "material_semantic_change": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "partial_recovery": {
+      "best_strategy": "IMMUTABLE_REPLAY",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "POSTCONDITION_MISSING"
+        ],
+        "highest_level": 2,
+        "highest_name": "RECIPIENT_ACK",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK"
+        ],
+        "terminal_state": "UNKNOWN"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 2,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 2,
+          "lost_valid_effect": 0,
+          "net_task_value": 92,
+          "recovery_time_steps": 2,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 3,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 2,
+          "lost_valid_effect": 0,
+          "net_task_value": 88,
+          "recovery_time_steps": 3,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 2,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "recipient_withdrawal": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "HISTORICAL_ONLY_NO_CURRENT_EFFECT",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": -1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "CONTRACT_HASH_MISMATCH"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "HISTORICAL_ONLY_NO_CURRENT_EFFECT",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "OLD_EVIDENCE_ARCHIVED_NEW_EFFECT_ISOLATED",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "schema_alias": {
+      "best_strategy": "MIGRATION_ADAPTER",
+      "historical_evidence": {
+        "current_accepted": true,
+        "errors": [],
+        "highest_level": 4,
+        "highest_name": "BENEFICIARY_ACCEPTANCE",
+        "levels_valid": [
+          "ATTEMPT",
+          "DELIVERY",
+          "RECIPIENT_ACK",
+          "DOMAIN_POSTCONDITION",
+          "BENEFICIARY_ACCEPTANCE"
+        ],
+        "terminal_state": "ACCEPTED"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 1,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "ACK_MISSING"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 0,
+          "errors": [],
+          "evidence_coordination_operations": 1,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 96,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 4,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    },
+    "single_side_partial": {
+      "best_strategy": "REAUTHORIZE",
+      "historical_evidence": {
+        "current_accepted": false,
+        "errors": [
+          "DELIVERY_SET_INCOMPLETE"
+        ],
+        "highest_level": 0,
+        "highest_name": "ATTEMPT",
+        "levels_valid": [
+          "ATTEMPT"
+        ],
+        "terminal_state": "UNKNOWN"
+      },
+      "strategies": {
+        "IMMUTABLE_REPLAY": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 0,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "DELIVERY_SET_INCOMPLETE"
+          ],
+          "evidence_coordination_operations": 0,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 1,
+          "net_task_value": 0,
+          "recovery_time_steps": 0,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "MIGRATION_ADAPTER": {
+          "accepted_task_value": 0,
+          "current_accepted": false,
+          "current_highest_level": 0,
+          "current_terminal_state": "UNKNOWN",
+          "disclosure_units": 0,
+          "errors": [
+            "DELIVERY_SET_INCOMPLETE"
+          ],
+          "evidence_coordination_operations": 1,
+          "false_negative": 1,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 1,
+          "net_task_value": -4,
+          "recovery_time_steps": 1,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        },
+        "REAUTHORIZE": {
+          "accepted_task_value": 100,
+          "current_accepted": true,
+          "current_highest_level": 4,
+          "current_terminal_state": "ACCEPTED",
+          "disclosure_units": 2,
+          "errors": [],
+          "evidence_coordination_operations": 5,
+          "false_negative": 0,
+          "false_positive": 0,
+          "false_promotion": 0,
+          "historical_highest_level": 0,
+          "lost_valid_effect": 0,
+          "net_task_value": 76,
+          "recovery_time_steps": 5,
+          "residual_state_after_withdrawal": "NONE",
+          "stale_reuse": 0
+        }
+      }
+    }
+  },
+  "promotion_mutations": [
+    {
+      "accepted_level": 0,
+      "attempted_level": 1,
+      "errors": [
+        "SIGNATURE_INVALID"
+      ],
+      "false_promotion": 0,
+      "mutation_id": "PREDECESSOR_SELF_PROMOTION-0-TO-1",
+      "predecessor_level": 0
+    },
+    {
+      "accepted_level": 1,
+      "attempted_level": 2,
+      "errors": [
+        "SIGNATURE_INVALID"
+      ],
+      "false_promotion": 0,
+      "mutation_id": "PREDECESSOR_SELF_PROMOTION-1-TO-2",
+      "predecessor_level": 1
+    },
+    {
+      "accepted_level": 2,
+      "attempted_level": 3,
+      "errors": [
+        "SIGNATURE_INVALID"
+      ],
+      "false_promotion": 0,
+      "mutation_id": "PREDECESSOR_SELF_PROMOTION-2-TO-3",
+      "predecessor_level": 2
+    },
+    {
+      "accepted_level": 3,
+      "attempted_level": 4,
+      "errors": [
+        "SIGNATURE_INVALID"
+      ],
+      "false_promotion": 0,
+      "mutation_id": "PREDECESSOR_SELF_PROMOTION-3-TO-4",
+      "predecessor_level": 3
+    }
+  ],
+  "schema": "towow.effect-reopen-comparison.v1",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "summary": {
+    "false_promotions": 0,
+    "mutation_count": 4,
+    "novel_protocol_required_in_frozen_scope": false,
+    "solution_class": "EXISTING_COMPOSED_WORKFLOW_EVENT_SOURCING_AND_STRONG_CENTRAL_COORDINATION",
+    "stale_reuse_total": 0
+  },
+  "terminal_states_preserved": [
+    "UNKNOWN",
+    "REFUSE",
+    "ABSENT"
+  ]
+}

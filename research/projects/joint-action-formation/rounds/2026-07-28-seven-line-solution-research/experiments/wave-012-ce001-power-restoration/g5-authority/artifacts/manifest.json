@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "input": {
+      "path": "artifacts/input.json",
+      "sha256": "209c876cb0baf1b75b44e597c3857a8d240830bb00f67f8b4cf8652375a61270"
+    },
+    "process_inventory": {
+      "path": "artifacts/process-inventory.json",
+      "sha256": "3e9a853c50f3ce3a866b2cc5a25b97e863cdec2e557175329f05482fd2791a08"
+    },
+    "public_keys": {
+      "path": "artifacts/public-keys.json",
+      "sha256": "b00ba89ca279e2beebbc3e6e9b930578e90d285c3e5f58a82142229958016d8e"
+    },
+    "raw_trace": {
+      "path": "artifacts/raw-trace.jsonl",
+      "sha256": "df1575260a5bc885e7e10e123e782585ff8d31780b286058fce04d3a3794cc5c"
+    },
+    "results": {
+      "path": "artifacts/results.json",
+      "sha256": "f922cad009f566f07d11f80d781847e729ff311bc1910bd7e6be8a3c763027a1"
+    }
+  },
+  "formal_state_changes": [],
+  "product_execution_truth": {
+    "CROSS_FAILURE_DOMAIN_MIGRATION": "NOT_RUN",
+    "Cedar": "NOT_RUN",
+    "LOCAL_OWNER_AUTHORITY_SERVICE": "RUN",
+    "LOCAL_SIGNED_AUTHORITY_CHANNEL": "RUN",
+    "LOCAL_TARGET_NATIVE_GATE": "RUN",
+    "OPA": "NOT_RUN",
+    "OpenFGA": "NOT_RUN",
+    "XACML": "NOT_RUN"
+  },
+  "result_status": "COMPLETE_LOCAL_COMPONENT_MODEL",
+  "schema": "ce001.g5.run-manifest.v1",
+  "source_files": [
+    {
+      "path": "FAILURE_HISTORY.md",
+      "sha256": "e9351798585fccf6ac8c20986ebebe6234c8ee3098bff66a8afbdf05b3823860"
+    },
+    {
+      "path": "README.md",
+      "sha256": "d40ca810516e34275543c75b13b022cf4a4d6d7fdc44d57ce247606b3a143f41"
+    },
+    {
+      "path": "ce001_g5/__init__.py",
+      "sha256": "2bb887644509e8c77157cb12703058d59904e19f32d0c775c784317dadda64db"
+    },
+    {
+      "path": "ce001_g5/common.py",
+      "sha256": "26fef91e33af49968cd94bd545ab37af9ec9299b7641c8654581694cc54a8323"
+    },
+    {
+      "path": "ce001_g5/harness.py",
+      "sha256": "45df19540625004b06a7b71b8957e703015b9e0cdcbdf683b0690f0b4aed709d"
+    },
+    {
+      "path": "ce001_g5/model.py",
+      "sha256": "7c41b07b73c6600a4e71c2f69c2f596f6d66011be8919380579ad6a071c2a258"
+    },
+    {
+      "path": "ce001_g5/process.py",
+      "sha256": "c4d66f251746051cc125f8af10ec65915ea4019552a3006754681465fc3cfd03"
+    },
+    {
+      "path": "runner.py",
+      "sha256": "85f88ca0959afdf038e84f8b5c9d443ad02f4e76978c10f4cc0a7b36ec5b8356"
+    },
+    {
+      "path": "tests/test_g5_authority.py",
+      "sha256": "66ead3a5bda7fba30c4e871c636fd92cdc6e860565ca9255e7d8fd58e130fd8e"
+    },
+    {
+      "path": "workers/authority_channel.py",
+      "sha256": "9aeec60179096b1c36dc8445dd7f593391d9c75a330fbdd8f1e024082b6c6e70"
+    },
+    {
+      "path": "workers/owner_service.py",
+      "sha256": "98a56a8ffaed174e0a7a838c0acddb32b5b3f347004de8fc5ba4e0147d023cde"
+    },
+    {
+      "path": "workers/target_service.py",
+      "sha256": "5423a4169b3db796f18dbb0afc404165a6ad6f0ef354f29e7e5100f54dfd808b"
+    }
+  ]
+}

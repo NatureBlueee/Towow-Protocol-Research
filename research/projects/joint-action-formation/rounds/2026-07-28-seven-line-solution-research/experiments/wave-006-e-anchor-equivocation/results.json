@@ -1,0 +1,155 @@
+{
+  "evidence_boundary": "LOCAL_SYNTHETIC_ONLY",
+  "formal_boundary": {
+    "indistinguishability_statement": "For each client transcript Ti containing one valid signed branch, there exists an honest single-branch execution with the same Ti. Therefore a detector using only Ti cannot soundly distinguish equivocation.",
+    "quorum_intersection": {
+      "condition": "2q > n",
+      "holds": true,
+      "quorum_q": 2,
+      "witnesses_n": 3
+    },
+    "single_view_impossibility": true
+  },
+  "metrics": {
+    "CLIENT_GOSSIP": {
+      "accepted_branch_count": 2,
+      "conflicting_acceptances": 1,
+      "cost_score": 6,
+      "detection_during_partition": 0,
+      "equivocation_detection": 1,
+      "evidence_cost": 2,
+      "false_rejection": 0,
+      "message_cost": 2,
+      "missed_valid_action": 0,
+      "partition_rejoin_recovery_steps": 2
+    },
+    "INDEPENDENT_WITNESS_QUORUM": {
+      "accepted_branch_count": 1,
+      "conflicting_acceptances": 0,
+      "cost_score": 16,
+      "detection_during_partition": 1,
+      "equivocation_detection": 1,
+      "evidence_cost": 4,
+      "false_rejection": 0,
+      "message_cost": 8,
+      "missed_valid_action": 1,
+      "partition_rejoin_recovery_steps": 1
+    },
+    "SINGLE_PINNED_VIEW": {
+      "accepted_branch_count": 2,
+      "conflicting_acceptances": 1,
+      "cost_score": 7,
+      "detection_during_partition": 0,
+      "equivocation_detection": 0,
+      "evidence_cost": 2,
+      "false_rejection": 0,
+      "message_cost": 0,
+      "missed_valid_action": 0,
+      "partition_rejoin_recovery_steps": null
+    }
+  },
+  "objectives": {
+    "DETECT_IF_CLIENTS_EVENTUALLY_REJOIN": {
+      "reason": "Gossip adds exactly the missing cross-view bit at lower cost than an always-on witness quorum.",
+      "recommended": "CLIENT_GOSSIP",
+      "required": [
+        "post-partition conflicting-head detection"
+      ]
+    },
+    "LOCAL_INTEGRITY_ONLY_NO_EQUIVOCATION_THREAT": {
+      "reason": "No cross-view fact is required; the cheapest existing verifier is sufficient.",
+      "recommended": "SINGLE_PINNED_VIEW",
+      "required": [
+        "signature verification",
+        "local hash-chain continuity"
+      ]
+    },
+    "PREVENT_TWO_ACCEPTED_HEADS_DURING_CLIENT_PARTITION": {
+      "reason": "A 2-of-3 quorum intersects; an honest witness refuses the second head, but witness partition can delay valid work.",
+      "recommended": "INDEPENDENT_WITNESS_QUORUM",
+      "required": [
+        "detection before second conflicting acceptance",
+        "quorum intersection"
+      ]
+    }
+  },
+  "schema": "towow.anchor-equivocation-evaluation.v1",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "simulation": {
+    "contract_sha256": "ca09f3bfa98d78b399e2a7458e4b835d7db4d15c56998bc047f18a3c9263ba9d",
+    "equivocation": {
+      "both_locally_valid": true,
+      "branch_a_sha256": "8282e2b3bc6adb6e3d2368ef6930197829a7370a802d24d360a2965163552642",
+      "branch_b_sha256": "c5ac585ead02e07d7eed0e693472b1685cb61fc43b44e29cec62c709930d5092",
+      "conflict": true
+    },
+    "honest_checkpoint_sha256": "8282e2b3bc6adb6e3d2368ef6930197829a7370a802d24d360a2965163552642",
+    "impossibility_counterexample": {
+      "conclusion": "No verifier limited to one signed branch can distinguish honest-single-branch from same-key equivocation.",
+      "each_observation_is_compatible_with_an_honest_single_branch_anchor": true,
+      "observation_a": "8282e2b3bc6adb6e3d2368ef6930197829a7370a802d24d360a2965163552642",
+      "observation_b": "c5ac585ead02e07d7eed0e693472b1685cb61fc43b44e29cec62c709930d5092",
+      "single_client_transcript_contains_cross_view_bit": false
+    },
+    "schema": "towow.anchor-equivocation-simulation.v1",
+    "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+    "strategies": {
+      "CLIENT_GOSSIP": {
+        "accepted_branch_count": 2,
+        "conflicting_acceptances": 1,
+        "detected_after_rejoin": true,
+        "detected_during_partition": false,
+        "evidence_cost": 2,
+        "false_rejection_honest": 0,
+        "local_validation_a": true,
+        "local_validation_b": true,
+        "message_cost": 2,
+        "partition_rejoin_recovery_steps": 2,
+        "recovery_status": "CONTESTED_CHECKPOINTS_QUARANTINED_REOPEN_REQUIRED",
+        "strategy": "CLIENT_GOSSIP"
+      },
+      "INDEPENDENT_WITNESS_QUORUM": {
+        "accepted_branch_count": 1,
+        "branch_a_quorum": true,
+        "branch_b_quorum": false,
+        "conflicting_acceptances": 0,
+        "detected_after_rejoin": true,
+        "detected_during_partition": true,
+        "equivocation_proof_count": 1,
+        "evidence_cost": 4,
+        "false_rejection_honest": 0,
+        "message_cost": 8,
+        "missed_valid_action_under_witness_partition": 1,
+        "partition_rejoin_recovery_steps": 1,
+        "partition_terminal_state": "UNKNOWN_DEFERRED",
+        "recovery_status": "FETCH_QUORUM_BRANCH_AND_RESUME",
+        "strategy": "INDEPENDENT_WITNESS_QUORUM"
+      },
+      "SINGLE_PINNED_VIEW": {
+        "accepted_branch_count": 2,
+        "conflicting_acceptances": 1,
+        "detected_after_rejoin": false,
+        "detected_during_partition": false,
+        "evidence_cost": 2,
+        "false_rejection_honest": 0,
+        "local_validation_a": true,
+        "local_validation_b": true,
+        "message_cost": 0,
+        "partition_rejoin_recovery_steps": null,
+        "recovery_status": "UNAVAILABLE_WITHOUT_NEW_CROSS_VIEW_INPUT",
+        "strategy": "SINGLE_PINNED_VIEW"
+      }
+    }
+  },
+  "solution_result": {
+    "existing_components": [
+      "pinned signed checkpoints",
+      "client checkpoint gossip",
+      "standard intersecting witness quorum"
+    ],
+    "new_protocol_required": false,
+    "selection_depends_on_threat_objective": true
+  }
+}

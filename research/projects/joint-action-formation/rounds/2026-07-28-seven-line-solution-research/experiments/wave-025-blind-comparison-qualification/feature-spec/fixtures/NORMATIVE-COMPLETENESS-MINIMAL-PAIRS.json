@@ -1,0 +1,395 @@
+{
+  "schema": "WAVE025_NORMATIVE_COMPLETENESS_MINIMAL_PAIRS_V1",
+  "status": "AUDIT_FIXTURE_NON_NORMATIVE_DO_NOT_USE_AS_FEATURE_SPEC",
+  "source_bindings": {
+    "feature_spec_sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a",
+    "reference_extractor_sha256": "710602d7e259c0cdab151979ab2aeb439279faae270eda40357f24726beb5bf5",
+    "reference_extractor_tests_sha256": "dd5c3f093700b67748d7ff3fd1e0ab3a55129536e8f3df09fb23979b4ddeddf0",
+    "selected_profile_sha256": "64a4e366a67ec2c12b1194d6fb01fab5b633529035a16f20b22acbf83346e5a7"
+  },
+  "f_receipt_activation": {
+    "receipt_count": 12,
+    "string_scalar_count": 5732,
+    "float_scalar_count": 24,
+    "array_count": 264,
+    "multi_element_array_count": 160,
+    "maximum_string_utf8_bytes": 305,
+    "non_ascii_string_count": 0,
+    "over_4096_byte_string_count": 0
+  },
+  "cases": [
+    {
+      "id": "NC01_OUTPUT_CONTAINER_AND_KEY_GRAMMAR",
+      "input_pair": [
+        {
+          "family": "F02_ARGV_ENV_CWD",
+          "context": "/cwd",
+          "numeric_value": 7
+        },
+        {
+          "family": "F02_ARGV_ENV_CWD",
+          "context": "/argv/@0000",
+          "numeric_value": 7
+        }
+      ],
+      "interpretation_a": {
+        "description": "flat numeric object with pipe-delimited UTF-8 keys",
+        "example": {
+          "F02_ARGV_ENV_CWD|/cwd|value": 7
+        }
+      },
+      "interpretation_b": {
+        "description": "nested family/context/stat objects under features.numeric",
+        "example": {
+          "F02_ARGV_ENV_CWD": {
+            "/cwd": {
+              "value": 7
+            }
+          }
+        }
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_IN_EVERY_F_RECEIPT"
+    },
+    {
+      "id": "NC02_CATEGORY_STRING_VS_CANONICAL_SCALAR_BYTES",
+      "input_pair": [
+        {
+          "json_type": "string",
+          "value": "1"
+        },
+        {
+          "json_type": "number",
+          "value": 1
+        }
+      ],
+      "fixed_example_prefix_utf8": "WAVE025_CATEGORY_V1\\0F02_ARGV_ENV_CWD\\0/c\\0",
+      "interpretation_a": {
+        "description": "decoded string uses raw UTF-8; other scalars use compact JSON",
+        "string_suffix_hex": "31",
+        "number_suffix_hex": "31",
+        "string_sha256": "f84d20325403f40b151ff3269c9dfde73fe5c30e52595dad917fbe8d9e1596a9",
+        "number_sha256": "f84d20325403f40b151ff3269c9dfde73fe5c30e52595dad917fbe8d9e1596a9",
+        "type_collision": true
+      },
+      "interpretation_b": {
+        "description": "every scalar uses compact JSON bytes",
+        "string_suffix_hex": "223122",
+        "number_suffix_hex": "31",
+        "string_sha256": "e27ddd48398797a5dab72065a1098d5efad476f7ae961a8e5fe76b083bfabe23",
+        "number_sha256": "f84d20325403f40b151ff3269c9dfde73fe5c30e52595dad917fbe8d9e1596a9",
+        "type_collision": false
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_STRING_AND_NUMERIC_CATEGORIES_IN_F"
+    },
+    {
+      "id": "NC03_CATEGORY_DOMAIN_AND_FRAMING",
+      "input_pair": [
+        {
+          "family": "F02_ARGV_ENV_CWD",
+          "context": "/c",
+          "value": "x"
+        },
+        {
+          "family": "F02_ARGV_ENV_CWD",
+          "context": "/d",
+          "value": "x"
+        }
+      ],
+      "interpretation_a": {
+        "description": "WAVE025_CATEGORY_V1 NUL family NUL context NUL canonical-scalar",
+        "first_sha256": "36d0f3cc40e64e1d42864c18cf27332d2bba07d7a3afc40ba819e5890e311173"
+      },
+      "interpretation_b": {
+        "description": "WAVE025_CATEGORY_V1 NUL canonical JSON tuple [family,context,value]",
+        "first_sha256": "7c04981c78e3bcf3cd1ceda3bbe7ddf0b403700064029ef3452d2baa668332d8"
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_IN_EVERY_F_RECEIPT"
+    },
+    {
+      "id": "NC04_ORDERED_CONTEXT_INDEX_ENCODING",
+      "input_pair": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "B",
+          "A"
+        ]
+      ],
+      "interpretation_a": {
+        "description": "zero-padded ordered marker",
+        "left_contexts": [
+          "/argv/@0000",
+          "/argv/@0001"
+        ]
+      },
+      "interpretation_b": {
+        "description": "ordinary JSON Pointer indices",
+        "left_contexts": [
+          "/argv/0",
+          "/argv/1"
+        ]
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_ARGV_CMDLINE_TIMING_AND_ERROR_ARRAYS_IN_F"
+    },
+    {
+      "id": "NC05_RECORD_BAG_ATOMICITY",
+      "input_pair": [
+        [
+          {
+            "k": "A",
+            "v": "1"
+          },
+          {
+            "k": "B",
+            "v": "2"
+          }
+        ],
+        [
+          {
+            "k": "A",
+            "v": "2"
+          },
+          {
+            "k": "B",
+            "v": "1"
+          }
+        ]
+      ],
+      "interpretation_a": {
+        "description": "one category per canonical whole record plus multiplicity",
+        "left_record_sha256": [
+          "c24c3147b49e0ca5915956a86508536b01b45305a80221965f68ee1aac349fa2",
+          "a8e29f113ab44550d6fd900d08f4a95cabb732b069161bd57c0970b246056848"
+        ],
+        "right_record_sha256": [
+          "aa263c08cc78abd89fa747b76e670722743cb6b87c4022680cf9e5e31e4f2e9c",
+          "81005d1c62cd2c66440fdc909e0a0c818a3c6a23b5e2bc2ed4f3ffc0d47a7316"
+        ],
+        "pair_distinguished": true
+      },
+      "interpretation_b": {
+        "description": "bag each field value independently without preserving within-record association",
+        "left_k_bag": [
+          "A",
+          "B"
+        ],
+        "left_v_bag": [
+          "1",
+          "2"
+        ],
+        "right_k_bag": [
+          "A",
+          "B"
+        ],
+        "right_v_bag": [
+          "1",
+          "2"
+        ],
+        "pair_distinguished": false
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_ENVIRONMENT_TREE_PROCESS_CANARY_RECORDS_IN_F"
+    },
+    {
+      "id": "NC06_LIST_LENGTH_REPRESENTATION",
+      "input_pair": [
+        [],
+        [
+          null
+        ]
+      ],
+      "interpretation_a": {
+        "description": "emit a numeric list_length feature for every list",
+        "left": {
+          "list_length": 0
+        },
+        "right": {
+          "list_length": 1
+        }
+      },
+      "interpretation_b": {
+        "description": "record-bag multiplicity only; no separate list_length key",
+        "left": [],
+        "right": [
+          "NULL_CATEGORY_COUNT_1"
+        ]
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_IN_F_BUT_LIST_LENGTH_IS_NOT_NAMED_BY_SPEC"
+    },
+    {
+      "id": "NC07_NUMERIC_SINGLETON_AND_SERIES",
+      "input_pair": [
+        [
+          7
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "interpretation_a": {
+        "description": "singleton collapses to an unlisted value key; length two emits summaries",
+        "left": {
+          "value": 7
+        },
+        "right": {
+          "count": 2,
+          "first": 7,
+          "last": 8,
+          "lower_middle": 7,
+          "upper_middle": 8,
+          "adjacent_absolute_delta_max": 1
+        }
+      },
+      "interpretation_b": {
+        "description": "all numeric series including singleton emit the registered series keys",
+        "left": {
+          "count": 1,
+          "sum": 7,
+          "min": 7,
+          "max": 7,
+          "first": 7,
+          "last": 7,
+          "lower_middle": 7,
+          "upper_middle": 7,
+          "adjacent_absolute_delta_sum": 0,
+          "adjacent_absolute_delta_max": 0,
+          "positive_step_count": 0,
+          "negative_step_count": 0,
+          "zero_step_count": 0
+        }
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_SINGLETONS_AND_32_SAMPLE_SERIES_IN_F"
+    },
+    {
+      "id": "NC08_NGRAM_PREIMAGE_AND_BUCKET",
+      "input_pair": [
+        "ab",
+        "ba"
+      ],
+      "n": 2,
+      "interpretation_a": {
+        "description": "SHA256(domain NUL one-byte-n gram), first four digest bytes big-endian modulo 4096",
+        "left_digest": "556c1e08a3bfd442e49ac8ef30188c0750549c6969c3ca5ef3ec8ba6491142ab",
+        "left_bucket": 3592,
+        "right_digest": "467019194634e086dc7f063f1bb9d2ca0a1c55e1d14f0299c0b937687f89adb1",
+        "right_bucket": 2329
+      },
+      "interpretation_b": {
+        "description": "SHA256(domain NUL decimal-n NUL gram), whole digest big-endian modulo 4096",
+        "left_digest": "fbac70e5e6bb4cfafc2ae38385e653b0a1ca3401bb66ad3412b30b9b4d37e8af",
+        "left_bucket": 2223,
+        "right_digest": "b92b3c469621b7afa1755cfa2f175944e98b85a1648d0f3866027ff3fc361d0d",
+        "right_bucket": 3341
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_ASCII_STRINGS_IN_F"
+    },
+    {
+      "id": "NC09_UTF8_NON_ASCII_AND_NGRAM_UNIT",
+      "input_pair": [
+        "é",
+        "éé"
+      ],
+      "interpretation_a": {
+        "description": "non_ascii counts UTF-8 bytes and n-grams are byte windows",
+        "non_ascii_counts": [
+          2,
+          4
+        ],
+        "n1_gram_counts": [
+          2,
+          4
+        ]
+      },
+      "interpretation_b": {
+        "description": "non_ascii counts Unicode code points and n-grams are code-point windows encoded to UTF-8",
+        "non_ascii_counts": [
+          1,
+          2
+        ],
+        "n1_gram_counts": [
+          1,
+          2
+        ]
+      },
+      "outputs_differ": true,
+      "formal_effect": "NOT_TRIGGERED_BY_F_ALL_5732_STRINGS_ASCII_CONDITIONAL_BLOCKER_WITHOUT_ASCII_ADMISSION_GATE"
+    },
+    {
+      "id": "NC10_QUANTILE_AND_IQR_INTERPOLATION",
+      "input_pair": [
+        [
+          0,
+          10,
+          20,
+          30
+        ],
+        [
+          0,
+          10,
+          20,
+          40
+        ]
+      ],
+      "interpretation_a": {
+        "description": "linear type-7 q25/q75",
+        "left_q25": 7.5,
+        "left_q75": 22.5,
+        "left_iqr": 15.0,
+        "left_scale_iqr_div_1_349": 11.11934766493699
+      },
+      "interpretation_b": {
+        "description": "Tukey hinges as medians of lower and upper halves",
+        "left_q25": 5.0,
+        "left_q75": 25.0,
+        "left_iqr": 20.0,
+        "left_scale_iqr_div_1_349": 14.825796886582655
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_EVEN_SIZED_CALIBRATION_AND_NUMERIC_PREPROCESSING"
+    },
+    {
+      "id": "NC11_SIGNED_CATEGORICAL_HASHING",
+      "input_pair": [
+        {
+          "family": "F",
+          "context": "C",
+          "value_sha256": "0202020202020202020202020202020202020202020202020202020202020202",
+          "count": 1
+        },
+        {
+          "family": "F",
+          "context": "C",
+          "value_sha256": "0202020202020202020202020202020202020202020202020202020202020202",
+          "count": 3
+        }
+      ],
+      "interpretation_a": {
+        "description": "hash domain/family/context/ASCII-hex identity without count; first four bytes big-endian bucket; fifth-byte high bit sign",
+        "digest_for_both_counts": "aad093f8f805811cba1f433de8facdfc4e119a6504364a66d55cac045306609d",
+        "bucket_for_both_counts": 5112,
+        "sign_for_both_counts": -1
+      },
+      "interpretation_b": {
+        "description": "hash canonical record including count; whole digest big-endian bucket; final low bit sign",
+        "count_1_digest": "f947aecd8c5bad57b899d6e749a4798274eaa1c2fe7541b5d88c0122546ad7fe",
+        "count_1_bucket": 6142,
+        "count_1_sign": 1,
+        "count_3_digest": "42dbe5e94cc6ce714574195e497c307f1a43c6cdf6771fc3ee73d8f6df4985a6",
+        "count_3_bucket": 1446,
+        "count_3_sign": 1
+      },
+      "outputs_differ": true,
+      "formal_effect": "ACTIVE_CATEGORICAL_PREPROCESSING_FOR_C02_TO_C05"
+    }
+  ]
+}

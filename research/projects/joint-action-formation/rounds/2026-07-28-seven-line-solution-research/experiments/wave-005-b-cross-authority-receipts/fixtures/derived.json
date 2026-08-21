@@ -1,0 +1,41 @@
+{
+  "schema": "towow.cross-authority-request-template.v1",
+  "world_id": "WAVE-005-B-SYNTHETIC-WORLD",
+  "evaluation_step": 7,
+  "idempotency_key": "W5B-DERIVED-001",
+  "route_type": "DERIVED",
+  "holder_authorities": [
+    "HOLDER-BETA"
+  ],
+  "authorization_bodies": [
+    {
+      "authorization_id": "W5B-AUTH-DERIVED-BETA-001",
+      "holder_authority": "HOLDER-BETA",
+      "world_id": "WAVE-005-B-SYNTHETIC-WORLD",
+      "evaluation_step": 7,
+      "route_type": "DERIVED",
+      "route_policy": {
+        "first_recipient": "RECIPIENT-A",
+        "purpose": "bounded-anomaly-review",
+        "retention": "transaction-only",
+        "projection": {
+          "facet": "microgrid-anomaly",
+          "direction": "SEEK",
+          "version": 6
+        },
+        "max_depth": 1
+      }
+    }
+  ],
+  "route": {
+    "first_recipient": "RECIPIENT-A",
+    "onward_recipient": "RECIPIENT-B",
+    "purpose": "bounded-anomaly-review",
+    "retention": "transaction-only",
+    "projection": {
+      "facet": "microgrid-anomaly",
+      "direction": "SEEK",
+      "version": 6
+    }
+  }
+}

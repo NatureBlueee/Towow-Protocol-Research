@@ -1,0 +1,71 @@
+{
+  "startup_view": {
+    "arm_binding_token": "arm-bind-e6bdd231904c2149452ec74b39f97ad61ba1f2adfd58a7ca08e20fbb41017ed3",
+    "arm_id": "A4-MATURE-ACK-RECONCILIATION",
+    "broker_surface": {
+      "capabilities": [
+        "DISCOVER",
+        "REQUEST",
+        "STATUS"
+      ],
+      "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+      "surface_version": 1
+    },
+    "deadline_minute": 90,
+    "episode_instance_id": "episode-e30d1950cf3cae207500ee00948df803",
+    "object_id": "VenueV:CircuitC7",
+    "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+    "power_tolerance_percent": 5,
+    "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+    "q_version": "Q@v1",
+    "required_duration_minutes": 45,
+    "required_power_kw": 3.0,
+    "schema": "CE001_ARM_VIEW_V1",
+    "target_id": "VenueV:CircuitC7"
+  },
+  "transcript": [
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "desired_state": {
+          "energized": true,
+          "power_kw": 3.0
+        },
+        "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+        "expected_version": 0,
+        "object_id": "VenueV:CircuitC7",
+        "operation": "SET_STATE",
+        "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+        "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+        "q_version": "Q@v1",
+        "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+        "schema": "BROKER_SUBMIT_REQUEST_V1",
+        "target_id": "VenueV:CircuitC7",
+        "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+      }
+    },
+    {
+      "direction": "BROKER_TO_ARM",
+      "message": {
+        "operation_handle": "handle-f2c732139cc2ecc18c2d5b75fda7e308",
+        "schema": "BROKER_SUBMIT_RESULT_V1",
+        "status": "OUTCOME_UNCONFIRMED"
+      }
+    },
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "endpoint_handle": "1ef841faaf9f6b445a039a5b6d90ba28",
+        "object_id": "VenueV:CircuitC7",
+        "operation_handle": "handle-f2c732139cc2ecc18c2d5b75fda7e308",
+        "operation_id": "operation-45e6c9f2a431b13cca374c5ee72e8777",
+        "public_run_id": "run-fa9de56aa6ee77d9c63cbeedcedc9835",
+        "q_version": "Q@v1",
+        "request_id": "request-4d6f84cb5ead94c21d6056a51c0bda18",
+        "schema": "BROKER_EXACT_STATUS_QUERY_V1",
+        "target_id": "VenueV:CircuitC7",
+        "world_id": "episode-e30d1950cf3cae207500ee00948df803"
+      }
+    }
+  ]
+}

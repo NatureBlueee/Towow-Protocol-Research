@@ -346,3 +346,440 @@ v1.2 原始档案继续留在当前只读共享目录，不复制进 Git 或每�
 本决定只改变 `PRB-JOINT-ACTION-FORMATION / v2` 的正式问题状态。V1 继续作为不可覆写的
 历史候选快照保留；NAC 研究线仍为 `DRAFT`，没有机制场景、现实 Effect、稳定主张或部署被
 同时授权。
+
+## 2026-07-28 — 立即激活 NAC E-H1′ 研究线
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-NAC-H1-LINE",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_RESEARCH_LINE"
+  ],
+  "target": {
+    "kind": "LineContract",
+    "id": "LINE-01-NAC",
+    "version": "v1",
+    "source_path": "research/projects/joint-action-formation/lines/01-nac.json",
+    "source_sha256": "f74001c4a58dda86efe3b720422199cc9f054a504bbc35f52b07f8e4ed586d0a"
+  },
+  "does_not_authorize": [
+    "VALIDATE_SCOPED_MECHANISM",
+    "REBASE_SCOPED_MECHANISM",
+    "REFUTE_SCOPED_MECHANISM",
+    "SUPERSEDE_SCOPED_MECHANISM",
+    "UPDATE_SCOPED_MECHANISM_EVIDENCE",
+    "ACTIVATE_REAL_SCENARIO",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户发现上一轮实际活跃研究线为 0 后明确纠正：现在应该启动，并要求多条工作流同时开启研究。按当前唯一具备 V2 LineContract、机制 profile、scoped claim、历史失败门和已解决现成方案检查的 LINE-01-NAC 精确快照，登记为 ACTIVE；激活后的同轮一手来源复核已把 vec2vec 的公平条件从错误的 same-K 修正为原生信息条件加完整资源账。只启动 E-H1′ → MC-NAC-ANCHOR，不顺带激活 H2–H8 或其他母线。"
+}
+```
+<!-- research-decision:end -->
+
+这项决定把 `LINE-01-NAC / v1` 从研究准备状态迁入正式研究执行状态。激活只表示允许开始
+构造输入、基线、反例和实验；它不改变 `MEC-NAC` 的证据状态，也不把工具、合成夹具或
+并行 Agent 数量计为机制证据。
+
+## 2026-07-28 — 激活 NAC E-H1′ 本地判别沙箱
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-NAC-H1-SCENARIO",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_SCENARIO"
+  ],
+  "target": {
+    "kind": "ScenarioContract",
+    "id": "SCN-NAC-H1-PRECOMPUTED-EMBEDDINGS",
+    "version": "v1",
+    "source_path": "research/projects/joint-action-formation/scenarios/nac-h1-precomputed-embeddings-v1.json",
+    "source_sha256": "1ecff6d315d64d668b987c3b0c177e1ecb1c5779c97bba982242d0917fc82440"
+  },
+  "does_not_authorize": [
+    "ACTIVATE_REAL_SCENARIO",
+    "CONTACT_REAL_PARTICIPANTS",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "SEND_PATENT_DISCLOSURE_TEXT",
+    "CREATE_PAID_RESOURCES",
+    "VALIDATE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户要求现在就实际启动，并要求多条线同时研究。本决定只激活本地可逆的 E-H1′ 机制沙箱：并行推进预计算 embedding evaluator、数据/标签盘点和公开强基线复核；不接触真人、生产或付费资源，不把工具测试和文献判断写成机制结果。"
+}
+```
+<!-- research-decision:end -->
+
+本场景是 `LOCAL_SANDBOX / MECHANISM`，而非真人或生产场景。真实五模型运行、外部私密材料、
+现实 Effect 和任何主张晋升仍需要各自满足输入、披露、证据和用户决定边界。
+
+## 2026-07-28 — 以原生信息条件修正 NAC E-H1′ 沙箱
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-NAC-H1-SCENARIO-V1-1",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_SCENARIO"
+  ],
+  "target": {
+    "kind": "ScenarioContract",
+    "id": "SCN-NAC-H1-PRECOMPUTED-EMBEDDINGS",
+    "version": "v1.1",
+    "source_path": "research/projects/joint-action-formation/scenarios/nac-h1-precomputed-embeddings-v1.1.json",
+    "source_sha256": "879ed1b85adc2b706e109551ca8856f567b32aa168d50ef4019f566a472ee861"
+  },
+  "does_not_authorize": [
+    "ACTIVATE_REAL_SCENARIO",
+    "CONTACT_REAL_PARTICIPANTS",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "SEND_PATENT_DISCLOSURE_TEXT",
+    "CREATE_PAID_RESOURCES",
+    "VALIDATE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户明确要求现在启动并让多条工作流同时研究。启动后的一手来源复核发现 v1 错误要求 vec2vec 与 NAC 使用相同 shared semantic samples；本决定在相同本地、可逆、非现实授权范围内激活修正版 v1.1，让各方案使用原生信息条件并统一核算完整资源。v1 保留为未实际开 batch 的历史快照，不被悄悄改写。"
+}
+```
+<!-- research-decision:end -->
+
+v1.1 是当前执行场景。它只修正实验公平性，不扩大参与者、数据、网络、生产或机制结论权限。
+
+## 2026-07-28 — 允许向第三方研究服务发送内部概念与问题框架
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ALLOW-THIRD-PARTY-RESEARCH-QUERY",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "SEND_RESEARCH_QUERY_TO_THIRD_PARTY"
+  ],
+  "target": {
+    "kind": "DisclosureClass",
+    "id": "TOWOW-INTERNAL-RESEARCH-CONCEPTS",
+    "version": "v1",
+    "allowed_content": [
+      "通爻内部研究概念名称",
+      "有界问题框架",
+      "待核验机制描述",
+      "用于查找公开一手方案的反例与比较问题"
+    ]
+  },
+  "does_not_authorize": [
+    "SEND_CREDENTIALS",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "SEND_PATENT_DISCLOSURE_TEXT",
+    "SEND_COMPLETE_PRIVATE_ARCHIVE",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "在第三方研究检索因内部 Boundary Oracle/BIC 概念与问题框架被披露保护拦截后，用户明确回复“我觉得完全可以发送给第三方的”。本决定允许为了公开一手来源核验发送该类研究查询，但不扩大到凭据、真人私密数据、专利原文、完整私有档案或现实动作。"
+}
+```
+<!-- research-decision:end -->
+
+本轮随后尝试恢复 AgentKey 查询，但服务返回月度额度已耗尽，未取得外部研究结果。这个基础
+设施失败不构成现成方案不存在的证据；相关外部核验保持待补。
+
+## 2026-07-28 — 激活七母线的九条 V2 有界研究线
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-FULL-LINE-RESEARCH",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_RESEARCH_LINES"
+  ],
+  "target": {
+    "kind": "LineActivationBundle",
+    "id": "FULL-LINE-V2-STARTUP",
+    "version": "v1",
+    "lines": [
+      {
+        "id": "LINE-01-BOUNDARY-SUFFICIENCY-V2",
+        "path": "research/projects/joint-action-formation/lines/01-boundary-sufficiency-v2.json",
+        "sha256": "d6b27e662d16833e28cb93bafb74a9417737e183e0512fcaf3bc01b090a24a42"
+      },
+      {
+        "id": "LINE-02-RELATION-MATERIALITY-V2",
+        "path": "research/projects/joint-action-formation/lines/02-relation-materiality-v2.json",
+        "sha256": "7b6d3a165d51acbeb8abb162ee096c995187e08780d077e7fd20a9a76da23944"
+      },
+      {
+        "id": "LINE-02-PRIVATE-COLUMN-V2",
+        "path": "research/projects/joint-action-formation/lines/02-private-column-v2.json",
+        "sha256": "566fda9f389568f2f923296132ea5248b3196680ccc8290a5bb506a1202a6570"
+      },
+      {
+        "id": "LINE-03-CONDITION-FORMATION-V2",
+        "path": "research/projects/joint-action-formation/lines/03-condition-formation-v2.json",
+        "sha256": "b3abef4554816186a9b320e6f82b6bdb1c1303176d727b00308c51e7f63d9267"
+      },
+      {
+        "id": "LINE-03-TYPED-UNKNOWN-V2",
+        "path": "research/projects/joint-action-formation/lines/03-typed-unknown-v2.json",
+        "sha256": "60e1ec792a7097d637e24aef289ed8ad52308c967a34aacab2260ce606197fcf"
+      },
+      {
+        "id": "LINE-04-CAPABILITY-REALIZATION-V2",
+        "path": "research/projects/joint-action-formation/lines/04-capability-realization-v2.json",
+        "sha256": "f8f30b7c060f7cac6abadc2674092b29024287d04730ab74b9aad3eae9cdb123"
+      },
+      {
+        "id": "LINE-05-AUTHORITY-ADAPTER-V2",
+        "path": "research/projects/joint-action-formation/lines/05-authority-adapter-v2.json",
+        "sha256": "04ecd72b5b1b2fb6a4a50060b16de789ca47cfcec81860da12a67d94d27de42d"
+      },
+      {
+        "id": "LINE-06-EFFECT-AUTHORITY-GATE-V2",
+        "path": "research/projects/joint-action-formation/lines/06-effect-authority-gate-v2.json",
+        "sha256": "dbcd5f05b3f716c8483d2d18fa6854e6d0ea5643bd8ea0a15fbd280b64c58e4b"
+      },
+      {
+        "id": "LINE-07-SCOPED-REOPEN-V2",
+        "path": "research/projects/joint-action-formation/lines/07-scoped-reopen-v2.json",
+        "sha256": "756dc4cef4373ee8f2859805ca83d583c555e1bf10a3576ef062886b11a72345"
+      }
+    ]
+  },
+  "does_not_authorize": [
+    "REGISTER_SCOPED_MECHANISM",
+    "VALIDATE_SCOPED_MECHANISM",
+    "REBASE_SCOPED_MECHANISM",
+    "REFUTE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "ACTIVATE_REAL_SCENARIO",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户明确给自己设立持续 Goal“全线研究启动”。七母线启动审计与一手强基线复核已经完成，并把异质能力拆成九条与 Problem v2 精确绑定的 scoped LineContract。激活只允许本地可逆的理论、来源、数据、合成反例和工程门禁研究；真人、现实、生产和正式机制状态仍各自受限。"
+}
+```
+<!-- research-decision:end -->
+
+本决定与已激活的 `LINE-01-NAC` 合并后，使 Problem v2 拥有十条正式 ACTIVE scoped lines。
+它不迁移 v0 的七条历史 `ACTIVE` 标签，也不把九条线注册成九个新机制。
+
+## 2026-07-28 — 激活全线本地研究沙箱
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-ACTIVATE-FULL-LINE-SCENARIO",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ACTIVATE_SCENARIO"
+  ],
+  "target": {
+    "kind": "ScenarioContract",
+    "id": "SCN-FULL-LINE-LOCAL-STARTUP",
+    "version": "v1",
+    "source_path": "research/projects/joint-action-formation/scenarios/full-line-local-startup-v1.json",
+    "source_sha256": "25d471e15c59edc3f120829aec3824c66c22b7cc4fb723ce59213edc69c0e6cd"
+  },
+  "does_not_authorize": [
+    "ACTIVATE_REAL_SCENARIO",
+    "CONTACT_REAL_PARTICIPANTS",
+    "SEND_CREDENTIALS",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "SEND_PATENT_DISCLOSURE_TEXT",
+    "CREATE_PAID_RESOURCES",
+    "REGISTER_SCOPED_MECHANISM",
+    "VALIDATE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户持续 Goal 要求全线研究启动。本场景为十条 V2 scoped lines 提供统一的本地、可逆、无真人、无生产研究边界，并明确强标准/平台/中心/人类流程基线、负结果和跨线不可晋升规则。"
+}
+```
+<!-- research-decision:end -->
+
+本场景取代 NAC 专用场景成为 NOW 的当前执行入口；NAC v1/v1.1 场景继续作为精确历史快照
+保留，不被覆写。
+
+## 2026-07-28 — 采用“现有技术优先、非独占导向”的研究方向
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-EXISTING-TECH-FIRST",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "ADOPT_RESEARCH_DIRECTION"
+  ],
+  "target": {
+    "kind": "ResearchDirection",
+    "id": "EXISTING-TECH-FIRST-NON-EXCLUSIVITY",
+    "version": "v1",
+    "source_path": "research/projects/joint-action-formation/studies/existing-technology-first-2026-07-28.md",
+    "source_sha256": "0b19925d3d5770dd935811340aea7a64074bcebe75276f3a6c3d12afb69b5ebe"
+  },
+  "required_rules": [
+    "DO_NOT_OPTIMIZE_FOR_TOWOW_ORIGINALITY_EXCLUSIVITY_OR_SPECIALNESS",
+    "ADOPT_EXISTING_SOLUTIONS_WHEN_THEY_FULLY_SATISFY_THE_ORIGINAL_NEED",
+    "BUILD_THE_STRONGEST_FAIR_EXISTING_TECHNOLOGY_COMPOSITION_BASELINE",
+    "LOCATE_THE_FIRST_REPRODUCIBLE_RESPONSIBILITY_BREAK_BEFORE_PROPOSING_AN_EXTENSION",
+    "DISTINGUISH_TECHNICAL_COMPOSITION_IMPLEMENTATION_ECONOMIC_INSTITUTIONAL_ADOPTION_AND_NON_DELEGABLE_GAPS",
+    "CLOSE_OR_DOWNGRADE_TOWOW_CLAIMS_WHEN_EXISTING_COMPOSITIONS_ARE_EQUIVALENT_OR_BETTER",
+    "COMPARE_END_TO_END_LIFECYCLE_NET_VALUE"
+  ],
+  "does_not_authorize": [
+    "CLAIM_EXISTING_TECHNOLOGIES_DO_NOT_SOLVE_THE_PROBLEM_WITHOUT_A_FAIR_COMPOSITION_TEST",
+    "CLAIM_TOWOW_IS_NECESSARY_OR_UNIQUE",
+    "REGISTER_SCOPED_MECHANISM",
+    "VALIDATE_SCOPED_MECHANISM",
+    "PROMOTE_STABLE_CLAIM",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户明确校正：通爻独占不重要，能够用现有技术实现就可以；真正承重的问题是既然这些能力都存在，为什么它们仍没有解决原始问题。后续研究因此以最强现有组合、责任闭环和端到端净价值为基线，不再以证明通爻特别为目标。"
+}
+```
+<!-- research-decision:end -->
+
+本决定改变的是研究评价标准，不预先判断存在通爻缺口。若最强现有组合完整解决原始问题，
+应直接采用并关闭相应新机制主张；只有可复现的剩余责任断点才允许提出最小扩展。
+
+## 2026-07-28 — 校正为“解决方案优先，组合成果属于通爻”
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-SOLUTION-FIRST-COMPOSITION",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "CORRECT_RESEARCH_VALUE_FUNCTION",
+    "ADOPT_SOLUTION_FIRST_COMPOSITION_METHOD"
+  ],
+  "target": {
+    "kind": "ResearchDirection",
+    "id": "SOLUTION-FIRST-COMPOSITION-AS-TOWOW",
+    "version": "v2",
+    "source_path": "research/projects/joint-action-formation/studies/solution-first-composition-method-correction-2026-07-28.md",
+    "source_sha256": "f3e216e33a66d9bede78ba5662dd3a4eaab3dd004d1a624ca8f61e666c3a5098",
+    "corrects": [
+      "DEC-2026-07-28-EXISTING-TECH-FIRST"
+    ]
+  },
+  "required_rules": [
+    "SOLUTION_OF_THE_V1_V2_PROBLEM_IS_THE_PRIMARY_VALUE",
+    "GENERAL_MODEL_CENTRAL_SYSTEM_EXISTING_TECHNOLOGY_OR_COMPOSITION_SUCCESS_IS_A_POSITIVE_TOWOW_RESULT",
+    "ADOPTED_COMPONENTS_AND_THEIR_REPRODUCIBLE_COMPOSITION_BECOME_PART_OF_THE_TOWOW_SOLUTION",
+    "ONLY_THE_NEED_TO_INVENT_A_DUPLICATE_MECHANISM_MAY_CLOSE_NOT_THE_SOLUTION_VALUE",
+    "READ_V1_V2_CONDITIONS_BEFORE_ASSIGNING_ANY_TECHNOLOGY_TO_A_LINE",
+    "DO_NOT_TREAT_RAG_A2A_ARD_OR_ANY_POPULAR_TECHNOLOGY_AS_A_DEFAULT_ANSWER",
+    "EACH_MOTHER_LINE_REQUIRES_ITS_OWN_MULTI_AGENT_RESEARCH_SYSTEM",
+    "GROUND_THEORY_METHODS_AND_SIMULATION_IN_ACTUAL_TASKS_AND_MEASURE_SINGLE_AND_COMBINED_COVERAGE",
+    "DISCOVERY_AND_CONSTRUCTION_PRECEDE_FORMALIZATION_IN_EARLY_RESEARCH",
+    "RECORD_PRIOR_ERRORS_CAUSES_SIGNALS_AND_NON_RECURRENCE_GATES"
+  ],
+  "does_not_authorize": [
+    "START_NEXT_RESEARCH_ROUND",
+    "PROMOTE_STABLE_CLAIM",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户指出上一版仍把强中心、通用模型或现有组合解决问题当成通爻增量为零、方案降级或失败，这是错误评价函数。只要某种技术或组合在 V1/V2 条件下解决问题，并能准确复现、复用、迁移和泛化，它本身就是通爻协议的成果。新机制必要性可以被关闭，但采用的能力、组合方法、条件、接口、复现和迁移体系应进入通爻解决方案。用户同时要求每条母线建立自己的多 Agent 研究体系、由实际任务持续牵引、前期奖励发现与构造，并记录历史错误及防复发门。"
+}
+```
+<!-- research-decision:end -->
+
+本决定保留上一版“不要追求原创或独占”的正确部分，但纠正其价值含义：`ADOPT`、
+`COMPOSE`、强中心、通用模型、adapter 或最小创新组合完整解决原问题，都是通爻的正向成果。
+它们只可能取消重复造新机制的必要性，不能被描述为“通爻价值为零”或从解决方案中移除。
+
+## 2026-07-28 — 启动七母线解题研究
+
+<!-- research-decision:start -->
+```json
+{
+  "decision_id": "DEC-2026-07-28-START-SEVEN-LINE-SOLUTION-RESEARCH",
+  "status": "APPROVED",
+  "decided_by": "USER",
+  "actions": [
+    "START_RESEARCH_PROGRAM",
+    "START_ALL_SEVEN_MOTHER_LINES",
+    "USE_PER_LINE_MULTI_AGENT_RESEARCH",
+    "CONTINUE_THEORY_METHOD_IMPLEMENTATION_SIMULATION_AND_SYNTHESIS"
+  ],
+  "target": {
+    "kind": "ResearchProgram",
+    "id": "SEVEN-LINE-SOLUTION-RESEARCH",
+    "version": "2026-07-28",
+    "source_path": "research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/PROGRAM.md",
+    "source_sha256": "580938c57cc054973758e414ca21330f870ad916e842b516c773afe23cbd077b"
+  },
+  "bound_inputs": [
+    {
+      "role": "AGENT_MARKDOWN",
+      "path": "AGENTS.md",
+      "sha256": "9cca9b2166aa9de0415d57f0e60d2d2b118a00760634a251623db9b91e2f9611"
+    },
+    {
+      "role": "NAC_SEVEN_ARCHIVE_CLOSURE",
+      "path": "research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/nac-seven-archive-manifest.json",
+      "sha256": "a3c7af91664db01f7e6fe35b4e4d158b8fea28c441409b3ee6654c6754c80d5c"
+    }
+  ],
+  "seven_goals": [
+    "G1-DISCOVERY-BEFORE-SEARCH",
+    "G2-RELATION-FROM-TASK",
+    "G3-FORM-REACHABILITY",
+    "G4-CAPABILITY-TO-RELIANCE",
+    "G5-AUTHORITY-COMPOSITION",
+    "G6-EFFECT-THAT-COUNTS",
+    "G7-REUSE-AND-SAFE-REOPEN"
+  ],
+  "required_rules": [
+    "AGENT_MARKDOWN_MEANS_THE_ROOT_AGENTS_MD_INSTRUCTION_CARRIER_NOT_AGENTOS",
+    "SOLVING_V1_V2_WITH_EXISTING_OR_COMPOSED_TECHNOLOGY_IS_A_POSITIVE_TOWOW_RESULT",
+    "INDEXING_AND_RETRIEVAL_DO_NOT_SOLVE_PRE_QUERY_UNDECLARED_OR_DISCLOSURE_FRONTIER_PROBLEMS",
+    "EACH_MOTHER_LINE_USES_DISTINCT_PROBLEM_DISCOVERY_CONSTRUCTION_ATTACK_EXPERIMENT_AND_SYNTHESIS_DUTIES",
+    "SINGLE_AND_COMBINED_SOLUTIONS_USE_THE_SAME_FROZEN_TASK_DENOMINATOR",
+    "EXTERNAL_TECHNOLOGY_REQUIRES_LIFECYCLE_FORMAT_SECURITY_LOCK_IN_MIGRATION_AND_SELF_HOST_AUDIT",
+    "WHEN_INNOVATION_IS_NEEDED_SOLVE_THE_BOUNDED_GAP_COMPLETELY",
+    "HISTORICAL_ERRORS_REQUIRE_CAUSE_SIGNAL_AND_BLOCKING_ACTION",
+    "REAL_WORLD_RESOURCE_LIMITS_DO_NOT_STOP_THEORY_METHOD_IMPLEMENTATION_OR_SIMULATION"
+  ],
+  "does_not_authorize": [
+    "SEND_PATENT_DISCLOSURE_TEXT",
+    "SEND_PRIVATE_PARTICIPANT_DATA",
+    "CONTACT_REAL_PARTICIPANTS",
+    "EXECUTE_REAL_EFFECT",
+    "PROMOTE_STABLE_CLAIM",
+    "REGISTER_OR_VALIDATE_MECHANISM",
+    "DEPLOY_OR_PUBLISH"
+  ],
+  "rationale": "用户明确要求在准备当前问题、五件激活包、继承审计、Agent Markdown 与 NAC 七档案后，立即启动七条母线并持续深入理论、方法验证、实现、模拟、反例和综合；同时逐字校正此前误听：这里是 agent.markdown/Agent Markdown，不是 AgentOS。"
+}
+```
+<!-- research-decision:end -->
+
+本决定启动的是本地、可逆、可持续的研究纲领。六个共同任务含档案任务设计、高保真模拟、
+负控和漂移重放，证据级别已分别冻结；它们不能冒充真人事件或生产结果。专利交底书只作为
+本地 NAC 研究输入，不进入任何第三方 payload。

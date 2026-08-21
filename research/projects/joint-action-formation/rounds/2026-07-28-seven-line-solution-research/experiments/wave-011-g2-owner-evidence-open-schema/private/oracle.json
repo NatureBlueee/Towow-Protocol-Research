@@ -1,0 +1,161 @@
+{
+  "schema_version": "g2o1-private-v1",
+  "experiment_id": "G2-O1",
+  "access": "EVALUATOR_AND_ACTOR_ROUTER_ONLY",
+  "worlds": {
+    "G2O1-T2-01": {
+      "local_views": {
+        "BUYER-DATA": {"visible_facts": {"data_location": "BUYER_DOMAIN", "training": false, "retention_days": 7}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "BUYER-BUSINESS": {"visible_facts": {"acceptance": "BUYER_READBACK", "purpose": "READ_ONLY_PILOT"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-TECH": {"visible_facts": {"executor": "BUYER_EXECUTOR", "actions": ["DEPLOY_CODE_TO_BUYER", "READ_ONLY_ANALYSIS"]}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["BUYER_EXECUTOR", "DEPLOY_CODE_TO_BUYER", "READ_ONLY_ANALYSIS", "BUYER_READBACK", "NO_TRAINING_ATTESTATION"], "removed_ids": ["EXPORT_DATA", "TRAIN_MODEL", "VENDOR_REPORT"]}, "source_owners": {"data_boundary": "BUYER-DATA", "acceptance": "BUYER-BUSINESS", "execution": "VENDOR-TECH"}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "comprehension_required": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "required_digest": "CANDIDATE", "required_constraint_ids": ["DATA_STAYS_IN_BUYER_DOMAIN"]},
+      "authority_facts": {"action": "DEPLOY_CODE_TO_BUYER", "decision": "AUTHORIZE", "locus": "BUYER-DATA", "scope": "R2", "current": true, "revoked": false},
+      "activation_facts": {"target_owner": "BUYER-BUSINESS", "decision": "ACTIVATE", "readback": "PILOT_READY"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": true, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 58}}
+    },
+    "G2O1-T2-02": {
+      "local_views": {
+        "BUYER-DATA": {"visible_facts": {"data_location": "BUYER_DOMAIN", "training": false}, "comprehension_model": "OMITS_DERIVATIVE_USE", "stance_policy": "REFUSE_UNTIL_CLARIFIED"},
+        "BUYER-BUSINESS": {"visible_facts": {"acceptance": "BUYER_READBACK", "purpose": "READ_ONLY_PILOT"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-TECH": {"visible_facts": {"executor": "BUYER_EXECUTOR", "derivative_log": true}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["BUYER_EXECUTOR", "DERIVATIVE_USE_LOG", "DERIVATIVES_NOT_FOR_TRAINING"], "removed_ids": ["EXPORT_DATA", "TRAIN_MODEL", "VENDOR_REPORT"]}, "misunderstanding_probe": {"principal_id": "BUYER-DATA", "question_id": "Q-DERIVATIVE-USE", "expected_answer": "DERIVATIVES_MAY_NOT_TRAIN"}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "comprehension_required": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "required_digest": "CANDIDATE", "required_constraint_ids": ["DERIVATIVES_NOT_FOR_TRAINING"]},
+      "authority_facts": {"action": "DEPLOY_CODE_TO_BUYER", "decision": "AUTHORIZE", "locus": "BUYER-DATA", "scope": "R6", "current": true, "revoked": false},
+      "activation_facts": {"target_owner": "BUYER-BUSINESS", "decision": "BLOCK", "readback": "NOT_READY"},
+      "expected": {"axes": {"constituted": false, "understood": false, "claimed": false, "authorized": true, "activated": false}, "diagnostics": {"schema_change": true, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 61}}
+    },
+    "G2O1-T2-03": {
+      "local_views": {
+        "BUYER-DATA": {"visible_facts": {"retention_days": 5}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "BUYER-BUSINESS": {"visible_facts": {"price": 17600, "acceptance": "BUYER_READBACK"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-TECH": {"visible_facts": {"actions": ["DEPLOY_CODE_TO_BUYER", "READ_ONLY_ANALYSIS"]}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": [], "removed_ids": [], "presentation_rewrite": true}, "source_owners": {"retention_days": "BUYER-DATA", "price": "BUYER-BUSINESS"}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "comprehension_required": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "READ_ONLY_ANALYSIS", "decision": "AUTHORIZE", "locus": "BUYER-DATA", "scope": "R9-amendment", "current": true, "revoked": false},
+      "activation_facts": {"target_owner": "BUYER-BUSINESS", "decision": "ACTIVATE", "readback": "PILOT_READY"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": false, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 43}}
+    },
+    "G2O1-T2-04": {
+      "local_views": {
+        "BUYER-DATA": {"visible_facts": {"data_location": "BUYER_DOMAIN", "version_seen": "R13"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_BASE_ONLY"},
+        "BUYER-BUSINESS": {"visible_facts": {"acceptance": "BUYER_READBACK", "version_seen": "R13"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-TECH": {"visible_facts": {"executor": "BUYER_EXECUTOR", "version_seen": "R13"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["BUYER_EXECUTOR", "DEPLOY_CODE_TO_BUYER", "READ_ONLY_ANALYSIS", "BUYER_READBACK"], "removed_ids": ["EXPORT_AGGREGATES", "VENDOR_REPORT"]}, "prior_stance": {"principal_id": "BUYER-DATA", "relation_version": "R12", "status": "ACCEPT"}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "comprehension_required": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "DEPLOY_CODE_TO_BUYER", "decision": "DENY_REVOKED_OR_STALE", "locus": "BUYER-DATA", "scope": "R13", "current": false, "revoked": true},
+      "activation_facts": {"target_owner": "BUYER-BUSINESS", "decision": "BLOCK", "readback": "MISSING_CURRENT_DATA_STANCE"},
+      "expected": {"axes": {"constituted": false, "understood": true, "claimed": false, "authorized": false, "activated": false}, "diagnostics": {"schema_change": true, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 58}}
+    },
+    "G2O1-T4-01": {
+      "local_views": {
+        "BID-LEAD": {"visible_facts": {"budget_cap": 360000, "missing_capability": "FIELD-INSTALL"}, "comprehension_model": "CORRECT", "stance_policy": "DEFER_IF_NO_COLUMN"},
+        "FIELD-PARTNER": {"visible_facts": {"query": "FIELD-INSTALL"}, "comprehension_model": "CORRECT", "stance_policy": "RETURN_NO_COLUMN"},
+        "ASSURANCE-PARTNER": {"visible_facts": {"assurance_ready": true}, "comprehension_model": "CORRECT", "stance_policy": "SILENCE"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["FIELD", "ASSURANCE", "RESERVE_CAPACITY", "LOCAL_COLUMN_RECEIPT"], "removed_ids": []}, "feasibility": {"joint_path_exists": false}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "comprehension_required": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "SUBMIT_BID", "decision": "DENY_NO_FEASIBLE_PATH", "locus": "BID-LEAD", "scope": "B1", "current": true, "revoked": false, "reservation": {"resource": "FIELD-SLOT", "decision": "NONE", "duplicate_attempt": false}},
+      "activation_facts": {"target_owner": "BID-LEAD", "decision": "BLOCK", "readback": "NO_BID"},
+      "expected": {"axes": {"constituted": false, "understood": true, "claimed": false, "authorized": false, "activated": false}, "diagnostics": {"schema_change": true, "private_column_state": "ABSENT", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 66}}
+    },
+    "G2O1-T4-02": {
+      "local_views": {
+        "BID-LEAD": {"visible_facts": {"budget_cap": 350000, "missing_capability": "FIELD-INSTALL"}, "comprehension_model": "CORRECT", "stance_policy": "DEFER_IF_NO_COLUMN"},
+        "FIELD-PARTNER": {"visible_facts": {"query": "FIELD-INSTALL", "disclosure_policy": "NO_BID_DISCLOSURE_THIS_WEEK"}, "comprehension_model": "CORRECT", "stance_policy": "WITHHOLD"},
+        "ASSURANCE-PARTNER": {"visible_facts": {"assurance_ready": true}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_IF_FEASIBLE"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["FIELD", "ASSURANCE", "RESERVE_CAPACITY", "LOCAL_COLUMN_RECEIPT"], "removed_ids": []}, "feasibility": {"joint_path_exists": true, "legally_observable_now": false}},
+      "column_case": {"availability": "EXISTS", "policy": "WITHHOLD", "columns": [{"column_id": "COL-FIELD-7", "minimal_fields": ["capability", "price_bound", "time_window"], "price": 82000}]},
+      "constitution_rules": {"required_principals": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "comprehension_required": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "SUBMIT_BID", "decision": "DENY_UNDISCOVERABLE_PATH", "locus": "BID-LEAD", "scope": "B5", "current": true, "revoked": false, "reservation": {"resource": "FIELD-SLOT", "decision": "NONE", "duplicate_attempt": false}},
+      "activation_facts": {"target_owner": "BID-LEAD", "decision": "BLOCK", "readback": "DEFERRED"},
+      "expected": {"axes": {"constituted": false, "understood": true, "claimed": false, "authorized": false, "activated": false}, "diagnostics": {"schema_change": true, "private_column_state": "WITHHELD", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 69}}
+    },
+    "G2O1-T4-03": {
+      "local_views": {
+        "BID-LEAD": {"visible_facts": {"budget_cap": 365000, "risk_owner": "ASSURANCE-PARTNER"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "FIELD-PARTNER": {"visible_facts": {"capacity": 2, "responsibility": "FIELD-INSTALL"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "ASSURANCE-PARTNER": {"visible_facts": {"objection": "UNBOUNDED_DEFECT_LIABILITY", "acceptable_scope": "AUDIT_ONLY"}, "comprehension_model": "CORRECT", "stance_policy": "OBJECT_SCOPE"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["ASSURANCE", "RESERVE_CAPACITY", "ASSURANCE_ATTESTATION"], "removed_ids": []}, "scoped_opposition": {"principal_id": "ASSURANCE-PARTNER", "scope": "DEFECT_LIABILITY", "source": "LOCAL_RISK_POLICY"}},
+      "column_case": {"availability": "EXISTS", "policy": "RELEASABLE", "columns": [{"column_id": "COL-FIELD-9", "minimal_fields": ["capability", "price_bound", "time_window"], "price": 76000}]},
+      "constitution_rules": {"required_principals": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "comprehension_required": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "required_digest": "CANDIDATE", "required_constraint_ids": [], "unresolved_scope_blocks": ["DEFECT_LIABILITY"]},
+      "authority_facts": {"action": "SUBMIT_BID", "decision": "DENY_DUPLICATE_RESERVATION", "locus": "BID-LEAD", "scope": "B9", "current": true, "revoked": false, "reservation_required": true, "reservation": {"resource": "FIELD-SLOT", "decision": "REJECT_DUPLICATE", "duplicate_attempt": true}},
+      "activation_facts": {"target_owner": "BID-LEAD", "decision": "BLOCK", "readback": "UNRESOLVED_SCOPE"},
+      "expected": {"axes": {"constituted": false, "understood": true, "claimed": false, "authorized": false, "activated": false}, "diagnostics": {"schema_change": true, "private_column_state": "FOUND", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 75}}
+    },
+    "G2O1-T4-04": {
+      "local_views": {
+        "BID-LEAD": {"visible_facts": {"lead_price": 170000, "budget_cap": 355000}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "FIELD-PARTNER": {"visible_facts": {"field_price": 92000, "capacity_reserved": true}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "ASSURANCE-PARTNER": {"visible_facts": {"assurance_price": 74000, "risk_cover": true, "schema_delta_proposal": {"id": "C-JOINT-BUDGET-RISK", "kind": "RELATION_LEVEL_CONSTRAINT", "requires": ["FIELD_CAPACITY", "RISK_COVER", "JOINT_PRICE_CAP"]}}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["RESERVE_CAPACITY", "LOCAL_COLUMN_RECEIPT", "C-JOINT-BUDGET-RISK"], "removed_ids": []}, "coupled_assignments": {"prices": {"lead": 170000, "field": 92000, "assurance": 74000}, "facts": {"field_capacity": true, "risk_cover": true}}},
+      "column_case": {"availability": "EXISTS", "policy": "RELEASABLE", "columns": [{"column_id": "COL-COUPLED-4", "minimal_fields": ["price_bound", "capacity_window", "risk_cover"], "price": 166000}]},
+      "constitution_rules": {"required_principals": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "comprehension_required": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"], "required_digest": "CANDIDATE", "required_constraint_ids": ["C-JOINT-BUDGET-RISK"], "held_out_constraints": [{"id": "C-JOINT-BUDGET-RISK", "operator": "ALL_TRUE", "paths": ["facts.field_capacity", "facts.risk_cover"]}, {"id": "C-JOINT-PRICE", "operator": "SUM_LTE", "paths": ["prices.lead", "prices.field", "prices.assurance"], "limit": 355000}]},
+      "authority_facts": {"action": "SUBMIT_BID", "decision": "AUTHORIZE", "locus": "BID-LEAD", "scope": "B13", "current": true, "revoked": false, "reservation_required": true, "reservation": {"resource": "FIELD-SLOT", "decision": "RESERVE", "lease": "LEASE-44", "duplicate_attempt": false}},
+      "activation_facts": {"target_owner": "BID-LEAD", "decision": "ACTIVATE", "readback": "BID_ACCEPTED_FOR_SUBMISSION"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": true, "private_column_state": "FOUND", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "cost_ceiling": 81}}
+    },
+    "G2O1-T5-01": {
+      "local_views": {
+        "PURCHASER": {"visible_facts": {"plan": "TEAM", "seats": 8, "terms_version": "TERMS-7"}, "comprehension_model": "CORRECT", "stance_policy": "PLATFORM_CONFIRM"},
+        "PLATFORM": {"visible_facts": {"catalog_status": "LISTED", "inventory": "AVAILABLE"}, "comprehension_model": "PRECOMPILED", "stance_policy": "PLATFORM_FULFILL"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": [], "removed_ids": []}, "platform_truth": {"direct_path": true, "second_fact_source_forbidden": true}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["PURCHASER", "PLATFORM"], "comprehension_required": ["PURCHASER"], "required_digest": "CANDIDATE", "required_constraint_ids": [], "platform_bypass": true},
+      "authority_facts": {"action": "PURCHASE_STANDARD_PLAN", "decision": "AUTHORIZE", "locus": "PURCHASER", "scope": "TERMS-7", "current": true, "revoked": false},
+      "activation_facts": {"target_owner": "PLATFORM", "decision": "ACTIVATE", "readback": "TEAM_PLAN_ACTIVE"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": false, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "platform_direct": true, "cost_ceiling": 8}}
+    },
+    "G2O1-T5-02": {
+      "local_views": {
+        "PAYER": {"visible_facts": {"amount": 420, "invoice_status": "OPEN"}, "comprehension_model": "CORRECT", "stance_policy": "PLATFORM_DECLINE"},
+        "PAYMENT-PLATFORM": {"visible_facts": {"route_status": "AVAILABLE"}, "comprehension_model": "PRECOMPILED", "stance_policy": "PLATFORM_CLOSE"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": [], "removed_ids": []}, "platform_truth": {"direct_path": true, "decline_is_valid_outcome": true, "second_fact_source_forbidden": true}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["PAYER", "PAYMENT-PLATFORM"], "comprehension_required": ["PAYER"], "required_digest": "CANDIDATE", "required_constraint_ids": [], "platform_bypass": true},
+      "authority_facts": {"action": "PAY_STANDARD_INVOICE", "decision": "AUTHORIZE", "locus": "PAYER", "scope": "PAY-4", "current": true, "revoked": false},
+      "activation_facts": {"target_owner": "PAYMENT-PLATFORM", "decision": "BLOCK", "readback": "DECLINED_BY_PAYER"},
+      "expected": {"axes": {"constituted": false, "understood": true, "claimed": false, "authorized": true, "activated": false}, "diagnostics": {"schema_change": false, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "partition_recovered": false, "platform_direct": true, "cost_ceiling": 7}}
+    },
+    "G2O1-AUTH-01": {
+      "local_views": {
+        "SERVICE-OWNER": {"visible_facts": {"target_version": "I2", "service_state": "DEGRADED"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "SECURITY-OWNER": {"visible_facts": {"target_version": "I2", "patch_scope": "PRODUCTION", "ttl_minutes": 20}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-RESPONDER": {"visible_facts": {"target_version": "I2", "patch_digest": "PATCH-27"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["APPLY_SIGNED_PATCH", "PATCH_ATTESTATION", "ROLLBACK_PATCH"], "removed_ids": []}, "topology": {"authority_domains": 1, "shared_institution": true, "fault": "EQUIVOCATION", "state_placement_is_method_variable": true}, "fault_trace": {"heads": ["I2-A", "I2-B"], "authoritative_head_after_recovery": "I2-A"}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["SERVICE-OWNER", "SECURITY-OWNER", "VENDOR-RESPONDER"], "comprehension_required": ["SERVICE-OWNER", "SECURITY-OWNER", "VENDOR-RESPONDER"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "APPLY_SIGNED_PATCH", "decision": "AUTHORIZE", "locus": "SECURITY-OWNER", "scope": "I2", "current": true, "revoked": false, "recovery_rule": "INSTITUTIONAL_HEAD_READBACK"},
+      "activation_facts": {"target_owner": "SERVICE-OWNER", "decision": "ACTIVATE_AFTER_RECOVERY", "readback": "SERVICE_RECOVERED"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": true, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "equivocation_detected": true, "partition_recovered": true, "max_divergent_heads_after_recovery": 1, "cost_ceiling": 88}}
+    },
+    "G2O1-AUTH-02": {
+      "local_views": {
+        "SERVICE-OWNER": {"visible_facts": {"target_version": "J2", "service_state": "DEGRADED", "authority_domain": "SERVICE-DOMAIN"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "DATA-OWNER": {"visible_facts": {"target_version": "J2", "log_scope": "REDACTED", "authority_domain": "DATA-DOMAIN"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"},
+        "VENDOR-RESPONDER": {"visible_facts": {"target_version": "J2", "patch_digest": "PATCH-31", "authority_domain": "VENDOR-DOMAIN"}, "comprehension_model": "CORRECT", "stance_policy": "CLAIM_CURRENT"}
+      },
+      "private_facts": {"schema_observation": {"added_ids": ["APPLY_SIGNED_PATCH", "PATCH_ATTESTATION", "ROLLBACK_PATCH"], "removed_ids": []}, "topology": {"authority_domains": 3, "shared_institution": false, "mutual_recognition": true, "fault": "PARTITION", "state_placement_is_method_variable": true}, "fault_trace": {"partitioned_domains": ["DATA-DOMAIN", "VENDOR-DOMAIN"], "signed_events_survive": true}},
+      "column_case": {"availability": "ABSENT", "policy": "RELEASABLE", "columns": []},
+      "constitution_rules": {"required_principals": ["SERVICE-OWNER", "DATA-OWNER", "VENDOR-RESPONDER"], "comprehension_required": ["SERVICE-OWNER", "DATA-OWNER", "VENDOR-RESPONDER"], "required_digest": "CANDIDATE", "required_constraint_ids": []},
+      "authority_facts": {"action": "APPLY_SIGNED_PATCH", "decision": "AUTHORIZE", "locus": "SERVICE-OWNER+DATA-OWNER", "scope": "J2", "current": true, "revoked": false, "recovery_rule": "MUTUALLY_RECOGNIZED_SIGNED_HEADS"},
+      "activation_facts": {"target_owner": "SERVICE-OWNER", "decision": "ACTIVATE_AFTER_RECOVERY", "readback": "SERVICE_RECOVERED"},
+      "expected": {"axes": {"constituted": true, "understood": true, "claimed": true, "authorized": true, "activated": true}, "diagnostics": {"schema_change": true, "private_column_state": "NOT_APPLICABLE", "provenance_opposition_roundtrip": true, "stale_stance_blocked": true, "revoke_blocked": true, "duplicate_reservation_blocked": true, "equivocation_detected": false, "partition_recovered": true, "max_divergent_heads_after_recovery": 1, "cost_ceiling": 96}}
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "fragment_version": "x1-g1-truth-v0",
+  "status": "CANDIDATE_UNSEALED_NOT_RUN",
+  "owner_domain": "G1",
+  "owner_key_id": "g1-line-evaluator-key-v0",
+  "pair_id": "x1-m01-pair-0001",
+  "truth_domain_owners": {
+    "directory_index_owner": {
+      "owner_id": "estuary-capability-directory",
+      "owner_key_id": "estuary-capability-directory-index-key-v0",
+      "owns_only": [
+        "current index snapshot",
+        "projection presence in that snapshot",
+        "directory response provenance and freshness"
+      ]
+    },
+    "local_projection_owner": {
+      "owner_id": "delta-field-calibration-cooperative",
+      "owner_key_id": "delta-field-calibration-local-projection-key-v0",
+      "owns_only": [
+        "local capability fact",
+        "local expression state",
+        "purpose recipient retention and onward-use policy",
+        "local projection response"
+      ]
+    },
+    "g1_line_evaluator": {
+      "owner_key_id": "g1-line-evaluator-key-v0",
+      "may_only": [
+        "verify owner receipts",
+        "evaluate D_actual and lawful handoff semantics"
+      ],
+      "may_not": [
+        "write the directory snapshot",
+        "write or disclose the local capability fact",
+        "change the local expression policy",
+        "sign for either truth owner"
+      ]
+    }
+  },
+  "source_boundary": {
+    "read_inputs": [
+      "public/common-coordinate.json",
+      "public/episode-765f0698.json",
+      "public/episode-d952741e.json",
+      "g1-api/directory-request-765f0698.json",
+      "g1-api/directory-request-d952741e.json",
+      "g1-api/directory-response-765f0698.json",
+      "g1-api/directory-response-d952741e.json",
+      "g1-api/local-projection-request-765f0698.json",
+      "g1-api/local-projection-request-d952741e.json",
+      "g1-api/local-projection-response-765f0698.json",
+      "g1-api/local-projection-response-d952741e.json",
+      "g1-api/candidate-projection.json"
+    ],
+    "does_not_read": [
+      "G2 private truth",
+      "G3 private truth",
+      "G5 private truth",
+      "method implementation or output"
+    ]
+  },
+  "assessment_boundary": {
+    "starts_at": "INTENT_AT_COORDINATION_INTERFACE",
+    "ends_at": "LAWFUL_CANDIDATE_SEMANTIC_HANDOFF",
+    "does_not_assess": [
+      "relation formation",
+      "causal reachability after handoff",
+      "Mandate Commitment Reservation or Standing",
+      "execution or external postcondition"
+    ]
+  },
+  "api_fixture_bindings": {
+    "directory_requests": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "g1-api/directory-request-765f0698.json",
+        "raw_sha256": "8ff1a7ecea03cf6b31664ec1a743708f0573f84e1980c1f545275e0fd68bdb6e"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "g1-api/directory-request-d952741e.json",
+        "raw_sha256": "856b8aad6e27ca9e814736e6eed179667bb19c72ee49e9c2b01081f545da6162"
+      }
+    },
+    "directory_responses": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "g1-api/directory-response-765f0698.json",
+        "raw_sha256": "a5c8c2a3bf7aa83af9859281de4953696afee8ebc4dfb1cf2ea2809b9bb96725",
+        "raw_size_bytes": 666
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "g1-api/directory-response-d952741e.json",
+        "raw_sha256": "268138f28e4779656aa643b38fd4de72ce8bdb431be332760c7f30f255fd9990",
+        "raw_size_bytes": 666
+      }
+    },
+    "local_projection_requests": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "g1-api/local-projection-request-765f0698.json",
+        "raw_sha256": "93d6823f277199ef2f94a09acc8502f9c313c7e74bfd5c26da310632ef9ea1d8"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "g1-api/local-projection-request-d952741e.json",
+        "raw_sha256": "64ec5a1a933e3ef806cbba4472f6073889e605fa2346580a483085b75399d8e6"
+      }
+    },
+    "local_projection_responses": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "g1-api/local-projection-response-765f0698.json",
+        "raw_sha256": "02d8686218b2341821dc5646960486051ea485361cd90e335666bdb1b097c16c",
+        "raw_size_bytes": 685
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "g1-api/local-projection-response-d952741e.json",
+        "raw_sha256": "13fcb9656b8a80e94463cb98604a30f76aa202a4afe9fcbc68f41e1de14072ee",
+        "raw_size_bytes": 685
+      }
+    },
+    "candidate_projection_payload": {
+      "path": "g1-api/candidate-projection.json",
+      "raw_sha256": "86b64a07b88cad013a10c6b7c3da918964b35fbb67673fa2edc2020212fbbc9c"
+    }
+  },
+  "shared_latent_candidate": {
+    "truth_owner_key_id": "delta-field-calibration-local-projection-key-v0",
+    "candidate_semantic_id": "candidate-calibration-consortium-role-filler-0007",
+    "role": "calibration_operator",
+    "capability_projection": [
+      "field-calibration-capability",
+      "response-within-18-hours",
+      "signed-calibration-evidence"
+    ],
+    "expression_policy": {
+      "purpose": "estuary-sensor-calibration-joint-bid",
+      "allowed_recipient_class": "verified-tender-coordinator",
+      "retention_hours": 72,
+      "onward_use": "forbidden"
+    }
+  },
+  "shared_fixed_witness_candidate": {
+    "source": "INTENT_AT_COORDINATION_INTERFACE",
+    "role": "independent_validation_witness",
+    "entity_id": "independent-estuary-validation-lab",
+    "status": "PREQUALIFIED_IDENTITY_NOT_COMMITTED"
+  },
+  "branches": {
+    "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+      "local_expression_state": "LOCAL_PROJECTION_AVAILABLE_PURPOSE_BOUND",
+      "directory_snapshot_presence": "PRESENT_CURRENT",
+      "current_directory_query": {
+        "truth_owner_key_id": "estuary-capability-directory-index-key-v0",
+        "exact_response_ref": "g1-api/directory-response-765f0698.json",
+        "status": "MATCH",
+        "returns_semantic_candidate": true
+      },
+      "purpose_bound_local_projection": {
+        "truth_owner_key_id": "delta-field-calibration-local-projection-key-v0",
+        "exact_response_ref": "g1-api/local-projection-response-765f0698.json",
+        "status": "AVAILABLE",
+        "returns_semantic_candidate": true
+      },
+      "D_actual": [
+        "candidate-calibration-consortium-role-filler-0007"
+      ],
+      "handoff_semantics_if_lawfully_reached": {
+        "status": "CANDIDATE_NOT_COMMITMENT",
+        "calibration_candidate": "candidate-calibration-consortium-role-filler-0007",
+        "fixed_witness_candidate": "independent-estuary-validation-lab"
+      }
+    },
+    "d952741e-11f8-44db-a98d-7a34c12e6801": {
+      "local_expression_state": "LOCAL_PROJECTION_AVAILABLE_PURPOSE_BOUND",
+      "directory_snapshot_presence": "ABSENT_CURRENT",
+      "current_directory_query": {
+        "truth_owner_key_id": "estuary-capability-directory-index-key-v0",
+        "exact_response_ref": "g1-api/directory-response-d952741e.json",
+        "status": "NO_MATCH_CURRENT",
+        "returns_semantic_candidate": false
+      },
+      "purpose_bound_local_projection": {
+        "truth_owner_key_id": "delta-field-calibration-local-projection-key-v0",
+        "exact_response_ref": "g1-api/local-projection-response-d952741e.json",
+        "status": "AVAILABLE",
+        "returns_semantic_candidate": true
+      },
+      "D_actual": [
+        "candidate-calibration-consortium-role-filler-0007"
+      ],
+      "handoff_semantics_if_lawfully_reached": {
+        "status": "CANDIDATE_NOT_COMMITMENT",
+        "calibration_candidate": "candidate-calibration-consortium-role-filler-0007",
+        "fixed_witness_candidate": "independent-estuary-validation-lab"
+      }
+    }
+  },
+  "bearing_claim": {
+    "primitive_delta": "current directory projection exists versus local lawful projection not yet indexed",
+    "affected_line_set": [
+      "G1"
+    ],
+    "expected_semantic_output_relation": "INVARIANT",
+    "expected_transcript_relation": "DIFFERENT_LAWFUL_DISCOVERY_PATH"
+  },
+  "method_output_boundary": {
+    "expected_method_return": null,
+    "prejudged_method_result": false,
+    "rule": "The evaluator may compare a future frozen method transcript with this truth. This fragment does not manufacture a handoff or a method result."
+  },
+  "ledger": {
+    "genesis": {
+      "candidate_id": "g1-ledger-genesis:wave010-x1-m01:v0",
+      "event_type": "G1_FRAGMENT_FREEZE_CANDIDATE_CREATED",
+      "owner_key_id": "g1-line-evaluator-key-v0",
+      "status": "UNSIGNED_CANDIDATE_NOT_RUN"
+    },
+    "root_candidate": {
+      "algorithm": "SHA-256",
+      "preimage_rule": "canonical JSON bytes of this fragment excluding ledger.root_candidate.sha256",
+      "sha256": "c71ce9542cbd74e1570eaf49ce2a018e3343e873c9069daa658b1d6bb7b8e3a1",
+      "status": "COMPUTED_UNSIGNED_CANDIDATE_NOT_RUN"
+    }
+  },
+  "evidence_boundary": {
+    "truth_frozen_by_signature": false,
+    "runner_implemented": false,
+    "method_run": false,
+    "evaluator_run": false,
+    "coverage_available": false,
+    "formal_promotion": "NONE"
+  },
+  "not_claimed": [
+    "real-world frequency",
+    "hostile-process secrecy",
+    "X1 solved",
+    "Q_episode satisfied"
+  ]
+}

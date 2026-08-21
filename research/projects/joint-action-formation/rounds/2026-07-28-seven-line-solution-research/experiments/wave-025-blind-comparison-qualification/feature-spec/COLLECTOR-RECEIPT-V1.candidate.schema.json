@@ -1,0 +1,1233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.invalid/schemas/wave025/collector-receipt-v1.candidate.schema.json",
+  "title": "Wave 025 leak-only collector V1 receipt candidate schema",
+  "description": "Closed structural acceptance schema for WAVE025_LEAK_ONLY_FEATURES_V1 receipts. This schema fixes the collector container shape only; it does not define feature routing, predictor bytes, or scientific validity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "argv",
+    "collection_window",
+    "collector_version",
+    "contract",
+    "cwd",
+    "directory_trees",
+    "environment",
+    "hostname",
+    "identity",
+    "input_contract",
+    "process_view",
+    "schema",
+    "subject_input",
+    "timing",
+    "visible_canaries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "WAVE025_LEAK_ONLY_FEATURES_V1"
+    },
+    "collector_version": {
+      "const": "1.0.0"
+    },
+    "contract": {
+      "$ref": "#/$defs/collectorContract"
+    },
+    "input_contract": {
+      "$ref": "#/$defs/inputContract"
+    },
+    "subject_input": {
+      "$ref": "#/$defs/subjectInput"
+    },
+    "argv": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/boundedString"
+      }
+    },
+    "environment": {
+      "type": "array",
+      "maxItems": 4096,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/environmentEntry"
+      }
+    },
+    "cwd": {
+      "$ref": "#/$defs/boundedString"
+    },
+    "hostname": {
+      "$ref": "#/$defs/hostname"
+    },
+    "identity": {
+      "$ref": "#/$defs/identity"
+    },
+    "directory_trees": {
+      "$ref": "#/$defs/directoryTrees"
+    },
+    "process_view": {
+      "$ref": "#/$defs/processView"
+    },
+    "visible_canaries": {
+      "type": "array",
+      "maxItems": 65536,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/visibleCanary"
+      }
+    },
+    "timing": {
+      "$ref": "#/$defs/timing"
+    },
+    "collection_window": {
+      "$ref": "#/$defs/collectionWindow"
+    }
+  },
+  "$defs": {
+    "boundedString": {
+      "type": "string",
+      "maxLength": 1048576
+    },
+    "nonEmptyBoundedString": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1048576
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "unsignedDecimalString": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "maxLength": 80
+    },
+    "signedDecimalString": {
+      "type": "string",
+      "pattern": "^-?(0|[1-9][0-9]*)$",
+      "maxLength": 81
+    },
+    "safeNonnegativeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "nullableBoundedString": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/boundedString"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "normalizedError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "code",
+        "errno",
+        "syscall",
+        "path",
+        "message"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyBoundedString"
+        },
+        "code": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "errno": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "syscall": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "path": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "message": {
+          "$ref": "#/$defs/boundedString"
+        }
+      }
+    },
+    "collectorContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "lawful_truth_api_calls",
+        "network_calls",
+        "accepted_input_fields",
+        "prohibited_control_fields",
+        "does_not_score_leakage",
+        "does_not_rank_treatments"
+      ],
+      "properties": {
+        "mode": {
+          "const": "LEAK_ONLY_FEATURE_COLLECTION"
+        },
+        "lawful_truth_api_calls": {
+          "const": 0
+        },
+        "network_calls": {
+          "const": 0
+        },
+        "accepted_input_fields": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": "schema"
+            }
+          ],
+          "items": false,
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "prohibited_control_fields": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": "expected"
+            },
+            {
+              "const": "order"
+            },
+            {
+              "const": "role"
+            },
+            {
+              "const": "seed"
+            }
+          ],
+          "items": false,
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "does_not_score_leakage": {
+          "const": true
+        },
+        "does_not_rank_treatments": {
+          "const": true
+        }
+      }
+    },
+    "inputContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parsed",
+        "byte_length",
+        "sha256"
+      ],
+      "properties": {
+        "parsed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "schema"
+          ],
+          "properties": {
+            "schema": {
+              "const": "WAVE025_LEAK_ONLY_COLLECTOR_INPUT_V1"
+            }
+          }
+        },
+        "byte_length": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "subjectInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "byte_length",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "const": "$CHALLENGE/input.bin"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "environmentEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "value_byte_length",
+        "value_sha256"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32768
+        },
+        "value_byte_length": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "value_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "hostname": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os_hostname",
+        "etc_hostname"
+      ],
+      "properties": {
+        "os_hostname": {
+          "$ref": "#/$defs/stringCapture"
+        },
+        "etc_hostname": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/boundedString"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "error"
+              ],
+              "properties": {
+                "error": {
+                  "$ref": "#/$defs/normalizedError"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "stringCapture": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ok",
+            "value",
+            "error"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "value": {
+              "$ref": "#/$defs/boundedString"
+            },
+            "error": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ok",
+            "value",
+            "error"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "value": {
+              "type": "null"
+            },
+            "error": {
+              "$ref": "#/$defs/normalizedError"
+            }
+          }
+        }
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pid",
+        "ppid",
+        "uid",
+        "euid",
+        "gid",
+        "egid",
+        "groups",
+        "user_info"
+      ],
+      "properties": {
+        "pid": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "ppid": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "uid": {
+          "$ref": "#/$defs/nullableNonnegativeInteger"
+        },
+        "euid": {
+          "$ref": "#/$defs/nullableNonnegativeInteger"
+        },
+        "gid": {
+          "$ref": "#/$defs/nullableNonnegativeInteger"
+        },
+        "egid": {
+          "$ref": "#/$defs/nullableNonnegativeInteger"
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 65536,
+          "items": {
+            "$ref": "#/$defs/safeNonnegativeInteger"
+          }
+        },
+        "user_info": {
+          "$ref": "#/$defs/userInfo"
+        }
+      }
+    },
+    "nullableNonnegativeInteger": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "userInfo": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "username",
+            "uid",
+            "gid",
+            "homedir",
+            "shell"
+          ],
+          "properties": {
+            "username": {
+              "$ref": "#/$defs/boundedString"
+            },
+            "uid": {
+              "$ref": "#/$defs/safeNonnegativeInteger"
+            },
+            "gid": {
+              "$ref": "#/$defs/safeNonnegativeInteger"
+            },
+            "homedir": {
+              "$ref": "#/$defs/boundedString"
+            },
+            "shell": {
+              "$ref": "#/$defs/boundedString"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "$ref": "#/$defs/normalizedError"
+            }
+          }
+        }
+      ]
+    },
+    "directoryTrees": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "challenge",
+        "cwd",
+        "out",
+        "tmp",
+        "self-fd"
+      ],
+      "properties": {
+        "challenge": {
+          "$ref": "#/$defs/treeCapture"
+        },
+        "cwd": {
+          "$ref": "#/$defs/treeCapture"
+        },
+        "out": {
+          "$ref": "#/$defs/treeCapture"
+        },
+        "tmp": {
+          "$ref": "#/$defs/treeCapture"
+        },
+        "self-fd": {
+          "$ref": "#/$defs/treeCapture"
+        }
+      }
+    },
+    "treeCapture": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/treeCaptureAvailable"
+        },
+        {
+          "$ref": "#/$defs/treeCaptureUnavailable"
+        }
+      ]
+    },
+    "treeCaptureAvailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "entries",
+        "errors",
+        "truncated"
+      ],
+      "properties": {
+        "available": {
+          "const": true
+        },
+        "entries": {
+          "type": "array",
+          "maxItems": 2048,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/treeEntry"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "maxItems": 8192,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/treeError"
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "treeCaptureUnavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "entries",
+        "errors",
+        "truncated"
+      ],
+      "properties": {
+        "available": {
+          "const": false
+        },
+        "entries": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "errors": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "truncated": {
+          "const": false
+        }
+      }
+    },
+    "treeEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/nonSymlinkTreeEntry"
+        },
+        {
+          "$ref": "#/$defs/symlinkTreeEntry"
+        }
+      ]
+    },
+    "nonSymlinkTreeEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "type",
+        "mode_octal",
+        "uid",
+        "gid",
+        "size_bytes",
+        "inode",
+        "device",
+        "nlink",
+        "mtime_ns",
+        "ctime_ns"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "type": {
+          "enum": [
+            "directory",
+            "file",
+            "socket",
+            "fifo",
+            "character-device",
+            "block-device",
+            "other"
+          ]
+        },
+        "mode_octal": {
+          "type": "string",
+          "pattern": "^0o[0-7]{4}$"
+        },
+        "uid": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "gid": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "size_bytes": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "inode": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "device": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "nlink": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "mtime_ns": {
+          "$ref": "#/$defs/signedDecimalString"
+        },
+        "ctime_ns": {
+          "$ref": "#/$defs/signedDecimalString"
+        }
+      }
+    },
+    "symlinkTreeEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "type",
+        "mode_octal",
+        "uid",
+        "gid",
+        "size_bytes",
+        "inode",
+        "device",
+        "nlink",
+        "mtime_ns",
+        "ctime_ns",
+        "symlink_target"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "type": {
+          "const": "symlink"
+        },
+        "mode_octal": {
+          "type": "string",
+          "pattern": "^0o[0-7]{4}$"
+        },
+        "uid": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "gid": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "size_bytes": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "inode": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "device": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "nlink": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "mtime_ns": {
+          "$ref": "#/$defs/signedDecimalString"
+        },
+        "ctime_ns": {
+          "$ref": "#/$defs/signedDecimalString"
+        },
+        "symlink_target": {
+          "$ref": "#/$defs/nullableBoundedString"
+        }
+      }
+    },
+    "treeError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "error"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "error": {
+          "$ref": "#/$defs/normalizedError"
+        }
+      }
+    },
+    "processView": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/processViewAvailable"
+        },
+        {
+          "$ref": "#/$defs/processViewUnavailable"
+        },
+        {
+          "$ref": "#/$defs/processViewReadError"
+        }
+      ]
+    },
+    "processViewAvailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "processes",
+        "self",
+        "truncated"
+      ],
+      "properties": {
+        "available": {
+          "const": true
+        },
+        "processes": {
+          "type": "array",
+          "maxItems": 256,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/processEntry"
+          }
+        },
+        "self": {
+          "$ref": "#/$defs/processSelf"
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "processViewUnavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "processes",
+        "self",
+        "truncated"
+      ],
+      "properties": {
+        "available": {
+          "const": false
+        },
+        "processes": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "self": {
+          "type": "null"
+        },
+        "truncated": {
+          "const": false
+        }
+      }
+    },
+    "processViewReadError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "processes",
+        "self",
+        "truncated",
+        "error"
+      ],
+      "properties": {
+        "available": {
+          "const": false
+        },
+        "processes": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "self": {
+          "type": "null"
+        },
+        "truncated": {
+          "const": false
+        },
+        "error": {
+          "$ref": "#/$defs/normalizedError"
+        }
+      }
+    },
+    "processEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/processSuccess"
+        },
+        {
+          "$ref": "#/$defs/processError"
+        }
+      ]
+    },
+    "processSuccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pid",
+        "cmdline",
+        "cmdline_byte_length",
+        "cmdline_sha256",
+        "status",
+        "pid_namespace",
+        "mount_namespace"
+      ],
+      "properties": {
+        "pid": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "cmdline": {
+          "type": "array",
+          "maxItems": 65536,
+          "items": {
+            "$ref": "#/$defs/boundedString"
+          }
+        },
+        "cmdline_byte_length": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65536
+        },
+        "cmdline_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "status": {
+          "$ref": "#/$defs/processStatus"
+        },
+        "pid_namespace": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "mount_namespace": {
+          "$ref": "#/$defs/nullableBoundedString"
+        }
+      }
+    },
+    "processError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pid",
+        "error"
+      ],
+      "properties": {
+        "pid": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "error": {
+          "$ref": "#/$defs/normalizedError"
+        }
+      }
+    },
+    "processStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 0,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "state": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "ppid": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "uid": {
+          "$ref": "#/$defs/fourIdVector"
+        },
+        "gid": {
+          "$ref": "#/$defs/fourIdVector"
+        },
+        "threads": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        }
+      }
+    },
+    "fourIdVector": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\t(0|[1-9][0-9]*)\\t(0|[1-9][0-9]*)\\t(0|[1-9][0-9]*)$",
+      "maxLength": 323
+    },
+    "processSelf": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cgroup",
+        "mountinfo",
+        "status",
+        "pid_namespace",
+        "mount_namespace"
+      ],
+      "properties": {
+        "cgroup": {
+          "$ref": "#/$defs/fileDigestCapture"
+        },
+        "mountinfo": {
+          "$ref": "#/$defs/fileDigestCapture"
+        },
+        "status": {
+          "$ref": "#/$defs/fileDigestCapture"
+        },
+        "pid_namespace": {
+          "$ref": "#/$defs/nullableBoundedString"
+        },
+        "mount_namespace": {
+          "$ref": "#/$defs/nullableBoundedString"
+        }
+      }
+    },
+    "fileDigestCapture": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "byte_length",
+            "sha256"
+          ],
+          "properties": {
+            "byte_length": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 65536
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "error"
+          ],
+          "properties": {
+            "error": {
+              "$ref": "#/$defs/normalizedError"
+            }
+          }
+        }
+      ]
+    },
+    "visibleCanary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "location",
+        "token_byte_length",
+        "token_sha256"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "environment-value",
+            "environment-key",
+            "challenge-entry-name",
+            "challenge-symlink-target",
+            "challenge-file-content"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/boundedString"
+        },
+        "token_byte_length": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 111
+        },
+        "token_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wall_clock_start_ms",
+        "wall_clock_end_ms",
+        "monotonic_start_ns",
+        "monotonic_end_ns",
+        "process_uptime_seconds",
+        "os_uptime_seconds",
+        "immediate_delta_ns",
+        "input_stat_elapsed_ns",
+        "error_shape_probes"
+      ],
+      "properties": {
+        "wall_clock_start_ms": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "wall_clock_end_ms": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "monotonic_start_ns": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "monotonic_end_ns": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        },
+        "process_uptime_seconds": {
+          "$ref": "#/$defs/numberCapture"
+        },
+        "os_uptime_seconds": {
+          "$ref": "#/$defs/numberCapture"
+        },
+        "immediate_delta_ns": {
+          "$ref": "#/$defs/timingSampleVector"
+        },
+        "input_stat_elapsed_ns": {
+          "$ref": "#/$defs/timingSampleVector"
+        },
+        "error_shape_probes": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/timingProbe"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "read-fixed-missing-file"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/timingProbe"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "stat-fixed-missing-proc"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/timingProbe"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "read-challenge-directory-as-file"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3
+        }
+      }
+    },
+    "timingSampleVector": {
+      "type": "array",
+      "minItems": 32,
+      "maxItems": 32,
+      "items": {
+        "$ref": "#/$defs/unsignedDecimalString"
+      }
+    },
+    "numberCapture": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ok",
+            "value",
+            "error"
+          ],
+          "properties": {
+            "ok": {
+              "const": true
+            },
+            "value": {
+              "type": "number",
+              "minimum": 0
+            },
+            "error": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ok",
+            "value",
+            "error"
+          ],
+          "properties": {
+            "ok": {
+              "const": false
+            },
+            "value": {
+              "type": "null"
+            },
+            "error": {
+              "$ref": "#/$defs/normalizedError"
+            }
+          }
+        }
+      ]
+    },
+    "timingProbe": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "ok",
+            "elapsed_ns",
+            "error"
+          ],
+          "properties": {
+            "name": {
+              "enum": [
+                "read-fixed-missing-file",
+                "stat-fixed-missing-proc",
+                "read-challenge-directory-as-file"
+              ]
+            },
+            "ok": {
+              "const": true
+            },
+            "elapsed_ns": {
+              "$ref": "#/$defs/unsignedDecimalString"
+            },
+            "error": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "ok",
+            "elapsed_ns",
+            "error"
+          ],
+          "properties": {
+            "name": {
+              "enum": [
+                "read-fixed-missing-file",
+                "stat-fixed-missing-proc",
+                "read-challenge-directory-as-file"
+              ]
+            },
+            "ok": {
+              "const": false
+            },
+            "elapsed_ns": {
+              "$ref": "#/$defs/unsignedDecimalString"
+            },
+            "error": {
+              "$ref": "#/$defs/normalizedError"
+            }
+          }
+        }
+      ]
+    },
+    "collectionWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/collectionPoint"
+        },
+        "end": {
+          "$ref": "#/$defs/collectionPoint"
+        }
+      }
+    },
+    "collectionPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wall_clock_ms",
+        "monotonic_ns"
+      ],
+      "properties": {
+        "wall_clock_ms": {
+          "$ref": "#/$defs/safeNonnegativeInteger"
+        },
+        "monotonic_ns": {
+          "$ref": "#/$defs/unsignedDecimalString"
+        }
+      }
+    }
+  }
+}

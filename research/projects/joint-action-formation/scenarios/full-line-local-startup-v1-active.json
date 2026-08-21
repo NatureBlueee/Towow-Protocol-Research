@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "kind": "ScenarioContract",
+  "id": "SCN-FULL-LINE-LOCAL-STARTUP",
+  "version": "v1",
+  "status": "ACTIVE",
+  "scenario_class": "LOCAL_SANDBOX",
+  "study_mode": "MECHANISM",
+  "title": "七母线 V2 有界研究启动沙箱",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "participants": [
+    {
+      "entity_id": "ENT-RESEARCH-OWNER",
+      "entity_type": "RESEARCH_PRINCIPAL",
+      "principal": "研究用户",
+      "authority_root": "用户明确设立持续 Goal：全线研究启动",
+      "authority_scope": "逐线建立并启动本地可逆的理论、来源、数据、合成反例与工程门禁研究；不授权真人、生产、付费资源、现实 Effect 或机制结论晋升"
+    },
+    {
+      "entity_id": "ENT-FULL-LINE-LOCAL-RUNTIME",
+      "entity_type": "AGENT_EXECUTION_ENVIRONMENT",
+      "principal": "用户授权的本地研究执行环境",
+      "authority_root": "DEC-2026-07-28-ACTIVATE-FULL-LINE-RESEARCH",
+      "authority_scope": "运行与 Problem v2 精确绑定的 scoped LineContract；保存负结果、Unknown、Blocked 与 Deferred 状态"
+    }
+  ],
+  "initial_state": "Problem v2 已激活；NAC E-H1′ 是首条 V2 ACTIVE 机制线。七条 v0 母线仍为历史问题定义契约，不能冒充 V2 已启动。全线启动审计已经完成，并把七母线收敛为九个不互相吞并的 V2 scoped targets。",
+  "unknowns": [
+    "成熟标准、平台、中心服务与人类流程的最小组合是否已经无损覆盖各 scoped target",
+    "哪些历史能力应保持独立机制身份，哪些应降为 adapter、provider、派生视图或运行 Gate",
+    "本地合成判别门能否在不外推现实频率的情况下暴露关键误晋升、旁路和作用域泄漏",
+    "哪些子主张因缺少真人、真实数据、现实目标域或长期运行条件必须保持 BLOCKED 或 DEFERRED"
+  ],
+  "allowed_actions": [
+    "读取各线白名单内的本地正典、审计材料和公开一手来源",
+    "建立有界 LineContract、输入 manifest、合成反例、评分器和强基线",
+    "在本地沙箱运行不接触真人或生产的判别实验与工程门禁",
+    "记录支持、反向、Unknown、Blocked、Deferred、现成方案覆盖和不可支持结论",
+    "比较标准、成熟平台、强中心、人类流程与更小 adapter 组合"
+  ],
+  "prohibited_actions": [
+    "接触真人参与者、私有账户、生产服务、现实目标域或付费资源",
+    "发送凭据、真人私密数据、专利交底原文或完整私有档案",
+    "用工具绿灯、合成夹具、文献作者报告或 Agent 数量冒充机制证据",
+    "让单线结果改变未冻结的 scoped claims、其他母线、Problem v1 历史或 Problem v2 共同底座",
+    "自动注册新机制、晋升稳定主张、执行现实 Effect、部署或公开发布"
+  ],
+  "disclosure_boundary": "公开研究查询可以包含用户明确允许外发的通爻内部概念名称与有界问题框架；仍不得包含凭据、真人私密数据、专利交底原文或完整私有档案。任何模型/服务外发继续受精确 disclosure manifest 与既有授权边界约束。",
+  "cost_and_reversibility": {
+    "cost_limit": "每条 scoped 线每轮最多 45 分钟、两次尝试和 2 MiB 产物；默认不下载大模型、不创建付费资源、不执行生产调用。",
+    "reversibility": "新产物位于本地 LineContract、study、fixture、tool 或 test 候选区；历史源包、V1 快照和正式机制证据状态不被修改。",
+    "stop_rule": "两次运行只重复已知结论、输入不足以支持判别、比较基线被削弱、出现披露/权限/现实副作用越界或无法定位结果作用域时停止该子线并登记原因。"
+  },
+  "effect_witness": {
+    "kind": "RESEARCH_ARTIFACT",
+    "target_domain": "本地全线研究候选区",
+    "witness": "九份与 Problem v2 精确绑定的 scoped LineContract、七母线启动审计、强基线、可证伪门、原始结果与状态矩阵",
+    "success_observation": "每条当前应研究的主线均可被准确读回为 ACTIVE、BLOCKED、DEFERRED 或 CLOSED，并能指出其输入、证据、负结果、不可影响主张和下一行动。",
+    "failure_observation": "只迁移旧 ACTIVE 标签、生成宽泛文档或把所有能力塞进一个机制，仍不能判定各线实际状态和失败边界。"
+  },
+  "domain_adoption": {
+    "authority": "本地研究工作区",
+    "required_receipt": "文件 SHA-256、用户全线激活决定、promotion receipt、strict governance、全量测试与 NOW 结构化读回；这不是现实 Domain Adoption。"
+  },
+  "acceptance": {
+    "authority": "研究用户",
+    "required_evidence": "用户后续审阅每线的真实结果与 Blocked/Deferred 条件；本场景激活不等于接受任何机制结论。"
+  },
+  "outcome_semantics": {
+    "success": "全部母线获得互不熔平的 V2 scoped 启动状态与可执行接续点，不表示通爻、任一机制或组合现实有效。",
+    "failure": "某线被现成方案完整覆盖、没有独立判别力，或无法形成可审计输入；应 REUSE、缩窄、DEFER 或关闭，而不是制造新机制。",
+    "unknown": "有界问题和装置成立但缺少真人、真实数据、现实目标域、长期运行或外部一手材料；保留明确 Blocked/Deferred，不修改正式机制证据。"
+  },
+  "strongest_credible_baseline": {
+    "id": "BASE-MATURE-COMPOSITION-WITH-HUMAN-GOVERNANCE",
+    "description": "针对每线采用已核验的标准、成熟平台、强中心服务、确定性工作流、人类审批/验收与最小 adapter 组合，不预设通爻新对象或联邦拓扑有独立价值。",
+    "fairness_requirements": [
+      "每条候选与强基线获得相同输入、权限、失败注入、恢复机会、现实边界和生命周期成本口径",
+      "现成方案按其原生信息、状态与部署条件运行，不用削弱版替代品制造缺口",
+      "能力、授权、承诺、执行、Effect、Adoption、Acceptance 和连续性不得跨线自动晋升",
+      "关键失败、Unknown、拒绝、真人/现实 Blocked 与强基线胜出必须保留"
+    ]
+  },
+  "activation": {
+    "requires_user_approval": true,
+    "approval_decision_id": "DEC-2026-07-28-ACTIVATE-FULL-LINE-SCENARIO"
+  },
+  "cannot_support": [
+    "不能仅凭全线契约和本地夹具证明任何机制成立",
+    "不能把 v0 历史 ACTIVE 标签迁移成 V2 实验结果",
+    "不能证明真人理解、自由认领、合法授权、现实 Effect、Acceptance 或商业净价值",
+    "不能自动注册、rebase、refute、supersede 机制或晋升稳定主张"
+  ],
+  "source_refs": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/studies/full-line-startup/01-discovery-boundary-audit-2026-07-28.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/scenarios/full-line-local-startup-v1.md"
+}

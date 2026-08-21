@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "kind": "NACH1E0FieldMapping",
+  "fixture_id": "NAC-H1-E0-R7-FICTIONAL-001",
+  "materialization_policy": "SOURCE_REFERENCED_NO_PRIVATE_BODY_COPY",
+  "roles": [
+    {
+      "record_id": "E0-R7-SEEK-001",
+      "direction": "SEEK",
+      "source_participant_ids": [
+        "buyer_business",
+        "buyer_data"
+      ],
+      "source_roles": [
+        "demand and budget authority",
+        "data and security authority"
+      ],
+      "permitted_future_projection_paths": [
+        "intake.shareable_projections",
+        "mandate.scope.may_disclose"
+      ],
+      "excluded_source_paths": [
+        "intake.private_facts_not_shareable",
+        "all source fields not explicitly allowed above",
+        "full source document body"
+      ]
+    },
+    {
+      "record_id": "E0-R7-OFFER-001",
+      "direction": "OFFER",
+      "source_participant_ids": [
+        "provider_business",
+        "provider_tech"
+      ],
+      "source_roles": [
+        "service and commercial authority",
+        "technical execution authority"
+      ],
+      "permitted_future_projection_paths": [
+        "intake.shareable_projections",
+        "mandate.scope.may_disclose"
+      ],
+      "excluded_source_paths": [
+        "intake.private_facts_not_shareable",
+        "all source fields not explicitly allowed above",
+        "full source document body"
+      ]
+    }
+  ],
+  "fields_not_materialized_in_e0": [
+    "text",
+    "hard constraints",
+    "acceptable outcomes",
+    "resources actually available",
+    "mandate scope",
+    "relevance label",
+    "observed outcome"
+  ],
+  "future_materialization_gate": {
+    "requires_new_fixture_version": true,
+    "requires_source_and_disclosure_review": true,
+    "requires_content_hashes": true,
+    "in_place_upgrade_forbidden": true
+  }
+}

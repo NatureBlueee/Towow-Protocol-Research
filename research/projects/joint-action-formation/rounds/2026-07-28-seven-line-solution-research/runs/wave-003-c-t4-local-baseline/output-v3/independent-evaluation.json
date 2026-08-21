@@ -1,0 +1,355 @@
+{
+  "schema_version": "1.0",
+  "evaluation_id": "T4-LOCAL-BASELINE-INDEPENDENT-EVALUATION-20260729-01",
+  "evaluation_mode": "SAME_MODEL_DIFFERENT_CONTEXT_STATIC_RETURN_REVIEW",
+  "method_id": "T4-LOCAL-DETERMINISTIC-AUTHORITY-WORKFLOW-V1",
+  "run_id": "T4-LOCAL-BASELINE-20260728-001",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "submission_hash": "b7b9fc972b3c051841a37cc3af6a80f80459e0faf7458c57bffdb63737f2fd5a",
+  "input_hash": "d11bb54f75c70ffdd08ac63a261bb464e0a1c21e20495ef8dbb017004eb2830a",
+  "evaluator_hash": "69e8e53d5318c2cc3f449798223948e9cc95ec2160d68e69fca2c664128e9c70",
+  "controller_history_hash": "6640d2f0783f308c43b6c5797a6517ffe1bfea52c00d2b2fd5a4f2a94145662d",
+  "hidden_input_hashes": {
+    "oracle_truth": "bc62a81e02f64757794221eafdd52ab3365425f4695c13e21ac1d166822e55ac",
+    "migration_variant": "a2ad05072825c6bfdaa13e4c326ed9450f2c034027cb98e411705adfc1eabe29",
+    "negative_mutations": "f801bb06e0f4307ecf8c40ca82bebce376ebeb1a4f29dba3952fe1813af54bb7",
+    "controller_state": "b2bdc8552979dbe326789a509fa5a39745fac0b7c16d0d92faa07dab50721458",
+    "disclosure_summary": "350ae3f141b90665ff2296d0fd8d6109de8b870f89df95a0e3270d78d621e4cc"
+  },
+  "integrity_and_admissibility": {
+    "candidate_sha256_matches_expected": true,
+    "candidate_schema_valid": true,
+    "oracle_leakage_observed": false,
+    "fabricated_or_cross_run_receipts_observed": false,
+    "receipt_binding": {
+      "candidate_receipt_count": 31,
+      "controller_receipt_count": 31,
+      "exact_receipt_sequence_and_binding_match": true,
+      "checked_fields": [
+        "receipt_id",
+        "receipt_hash",
+        "authority_id",
+        "request_id",
+        "response_type",
+        "disclosed_fields"
+      ]
+    },
+    "controller_history_hash_matches": true,
+    "method_and_run_identity_match": true,
+    "base_artifact_validation": "PASS",
+    "controller_and_evaluation_isolation_tests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "admissible_for_scoring": true
+  },
+  "requirement_results": [
+    {
+      "requirement_id": "R2-TASK-RELATION",
+      "critical": true,
+      "weight": 20,
+      "grade": "PARTIAL",
+      "grade_value": 0.5,
+      "weighted_points": 10,
+      "supported": [
+        "The return binds CITY-RFC-17-V2 and ADD-DATA-LOCAL-02 rather than relying on the initial brief.",
+        "It preserves the 12-site, 24-hour, local-raw-data and independent-verification value floor and keeps PRIME, FIELD and ASSURE distinct.",
+        "It records current Unknowns and does not claim signature, submission, adoption, acceptance, effect or settlement."
+      ],
+      "shortfalls": [
+        "The candidate relation does not itself enumerate exact roles, responsibilities, exit terms and dependency satisfaction for all three principals; several of these are only inferable from price scopes and conditional stance text.",
+        "No explicit SAFE_EXIT or authority-owned counterproposal transition is returned.",
+        "The statement ALL_DISCLOSED_CONDITIONS_SATISFIED is not supported for at least DEPLOYMENT_RISK_ALLOCATED and AUDIT_SCOPE_FROZEN_BEFORE_IMPLEMENTATION_FREEZE."
+      ],
+      "closure_effect": "The unsupported readiness assessment is a pre-submission closure risk, but it does not promote a frozen external outcome."
+    },
+    {
+      "requirement_id": "R3-FORM-REACHABILITY",
+      "critical": false,
+      "weight": 10,
+      "grade": "PARTIAL",
+      "grade_value": 0.5,
+      "weighted_points": 5,
+      "supported": [
+        "The two-round trace demonstrates prerequisite DEFER followed by exact probe and owner-controlled reservations.",
+        "The phase order places the exact probe before commitment and separates reservation, signature, submission and external outcomes.",
+        "Same-run controller-query replay is declared to reuse a receipt without creating a second disclosure or reservation."
+      ],
+      "shortfalls": [
+        "The return is a phase list rather than a complete executable transition table with guards and failure exits.",
+        "Idempotency is stated for controller queries, but not for duplicate external portal submission of the same payload.",
+        "Signer withdrawal and budget loss have no returned blocking or recovery transition."
+      ]
+    },
+    {
+      "requirement_id": "R4-CAPABILITY-QUALIFICATION",
+      "critical": true,
+      "weight": 18,
+      "grade": "PARTIAL",
+      "grade_value": 0.5,
+      "weighted_points": 9,
+      "supported": [
+        "Generic capability is separated from LOCAL-CAPTURE-SYNC-ACCEPT-V2 qualification.",
+        "The qualification binds executor, PRIME 2.3.1, FIELD 4.2, CITY_SANDBOX_LOCAL_TENANT, bounded probe permission, 12-site resource, current tender and raw-data boundary.",
+        "The probe is prospective and precedes commitment; its return is scoped as synthetic and not general production capability or target Effect."
+      ],
+      "shortfalls": [
+        "The frozen return does not explicitly state the transition for an exact probe result of FAIL.",
+        "Version-change reopen is defined, but failed-probe invalidation and post-repair requalification are not defined as a complete dependency rule."
+      ]
+    },
+    {
+      "requirement_id": "R5-AUTHORITY-RESERVATION",
+      "critical": true,
+      "weight": 20,
+      "grade": "PARTIAL",
+      "grade_value": 0.5,
+      "weighted_points": 10,
+      "supported": [
+        "Commercial, technical, field-operations, audit-independence, budget and target-readback facts are obtained from seven scoped authorities.",
+        "Availability, conditional stance, reservation, final signature and commitment are kept distinct.",
+        "All three reservations have owner authority, relation version, TTL, revocation authority and receipt binding.",
+        "The three prices total CNY 335000 and are independently comparable with the CITY ceiling of CNY 360000."
+      ],
+      "shortfalls": [
+        "The return treats all disclosed conditions as satisfied without an authority-backed record that FIELD risk counterconditions were allocated and ASSURE audit scope was frozen.",
+        "The returned reopen policy has no explicit rule for a reduced budget ceiling or withdrawal of a signing stance.",
+        "Reservation TTL is recorded, but no absolute expiry or current-time validity witness is returned."
+      ]
+    },
+    {
+      "requirement_id": "R6-OUTCOME-READBACK",
+      "critical": true,
+      "weight": 20,
+      "grade": "PASS",
+      "grade_value": 1.0,
+      "weighted_points": 20,
+      "supported": [
+        "Submission, eligibility, adoption, acceptance, target Effect and settlement are separate and all current external states remain NOT_OCCURRED.",
+        "Portal receipt, shortlist, award and CITY-OPERATIONS readback have distinct witness semantics.",
+        "The target readback binds accepted bid version, site reporting, observed offline hours, reconciliation and independent audit hash.",
+        "The synthetic probe is explicitly denied the meanings REAL_BID_SUBMISSION, PRODUCTION_EXECUTION and CITY_EFFECT."
+      ],
+      "residual_risk": "The action_attempt slot is used for a synthetic interoperability probe rather than a real operational attempt. This is a typing ambiguity, but the explicit negative meanings prevent external-outcome uplift in this return."
+    },
+    {
+      "requirement_id": "R7-REOPEN-REUSE-MIGRATION",
+      "critical": true,
+      "weight": 12,
+      "grade": "PARTIAL",
+      "grade_value": 0.5,
+      "weighted_points": 6,
+      "supported": [
+        "Tender/addendum change, technical version change, reservation revocation or expiry, and ASSURE conflict each have a scoped invalidate/preserve rule.",
+        "Unchanged price, authority and historical receipt evidence is preserved where the returned rules identify it as unaffected.",
+        "The migration plan names abstract invariants and explicitly refuses to reuse current entity identifiers."
+      ],
+      "shortfalls": [
+        "There is no explicit reopen rule for budget change, probe-result failure, signer withdrawal, hidden mandate expiry or duplicate portal submission.",
+        "Tender mutation handling does not explicitly require a new relation version or invalidate the changed acceptance plan.",
+        "The migration is PLAN_ONLY_NOT_RUN, so cross-domain rediscovery and preserved guarantees are unverified."
+      ]
+    }
+  ],
+  "critical_failures": [],
+  "critical_shortfalls": [
+    "R2-TASK-RELATION is only PARTIAL because exact relation obligations and safe exit are incomplete and readiness is overclaimed.",
+    "R4-CAPABILITY-QUALIFICATION is only PARTIAL because failed-probe invalidation and requalification are not explicitly returned.",
+    "R5-AUTHORITY-RESERVATION is only PARTIAL because some stance conditions lack authority-backed satisfaction and material authority changes lack reopen rules.",
+    "R7-REOPEN-REUSE-MIGRATION is only PARTIAL because mutation coverage is incomplete and migration was not run."
+  ],
+  "false_closures": [],
+  "closure_risks": [
+    {
+      "id": "UNSUPPORTED-SIGNATURE-READINESS",
+      "claim": "ALL_DISCLOSED_CONDITIONS_SATISFIED and candidate_ready_to_request_final_signatures=true",
+      "why_not_supported": [
+        "No receipt establishes that DEPLOYMENT_RISK_ALLOCATED has occurred.",
+        "No receipt establishes that AUDIT_SCOPE_FROZEN_BEFORE_IMPLEMENTATION_FREEZE has occurred."
+      ],
+      "scope": "PRE_SUBMISSION_READINESS_ONLY",
+      "triggers_false_closure_cap": false,
+      "reason_cap_not_triggered": "The return still says commitment, real submission, adoption, acceptance, Effect and settlement have not occurred."
+    }
+  ],
+  "mutation_results": [
+    {
+      "mutation_id": "MUT-TENDER-ADDENDUM-AFTER-STANCE",
+      "critical": true,
+      "tests": [
+        "R2-TASK-RELATION",
+        "R4-CAPABILITY-QUALIFICATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "PARTIAL",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "The returned rule invalidates task reconstruction, all stances and an affected probe, but does not explicitly create a new relation version or invalidate the changed acceptance plan."
+    },
+    {
+      "mutation_id": "MUT-FIELD-RESERVATION-REVOKED",
+      "critical": true,
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "PASS",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "The returned rule invalidates the revoked reservation and dependent signing readiness while preserving unaffected authority facts and probe evidence."
+    },
+    {
+      "mutation_id": "MUT-BUDGET-CEILING-REDUCED",
+      "critical": true,
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "UNKNOWN",
+      "assessment_mode": "NOT_REPLAYED_AND_NO_EXPLICIT_RULE",
+      "finding": "No returned dependency rule invalidates budget qualification or requires authority-owned counterproposal or SAFE_EXIT after a ceiling change."
+    },
+    {
+      "mutation_id": "MUT-INTEROP-PROBE-FAILS",
+      "critical": true,
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R4-CAPABILITY-QUALIFICATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "PARTIAL",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "The phase order requires qualification before commitment, but the return has no explicit failed-probe invalidation and post-repair requalification rule."
+    },
+    {
+      "mutation_id": "MUT-ASSURE-INDEPENDENCE-CONFLICT",
+      "critical": true,
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R6-OUTCOME-READBACK"
+      ],
+      "grade": "PARTIAL",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "The returned rule invalidates independence stance, audit reservation and acceptance plan, but does not return the required replacement-authority or SAFE_EXIT branch."
+    },
+    {
+      "mutation_id": "MUT-SIGNER-WITHDRAWS",
+      "critical": true,
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "UNKNOWN",
+      "assessment_mode": "NOT_REPLAYED_AND_NO_EXPLICIT_RULE",
+      "finding": "No returned rule preserves PRIME-TECH evidence while invalidating PRIME-BID stance and submission readiness or obtaining new signer authority."
+    },
+    {
+      "mutation_id": "MUT-DUPLICATE-PORTAL-RECEIPT",
+      "critical": true,
+      "tests": [
+        "R3-FORM-REACHABILITY",
+        "R6-OUTCOME-READBACK"
+      ],
+      "grade": "PARTIAL",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "Outcome separation prevents receipt uplift, but the replay rule only covers controller queries and does not define portal-payload idempotency."
+    },
+    {
+      "mutation_id": "MUT-PROVIDER-LOG-WITHOUT-CITY-READBACK",
+      "critical": true,
+      "tests": [
+        "R4-CAPABILITY-QUALIFICATION",
+        "R6-OUTCOME-READBACK"
+      ],
+      "grade": "PASS",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "The return requires CITY-OPERATIONS readback and explicitly prevents performer or probe evidence from establishing CITY Effect."
+    },
+    {
+      "mutation_id": "MUT-SHORTLIST-WITHOUT-AWARD",
+      "critical": true,
+      "tests": [
+        "R6-OUTCOME-READBACK"
+      ],
+      "grade": "PASS",
+      "assessment_mode": "STATIC_DECLARED_POLICY_NOT_REPLAYED",
+      "finding": "Shortlist and exact-version award witnesses are explicitly distinct, so Adoption does not establish Acceptance."
+    },
+    {
+      "mutation_id": "MUT-HIDDEN-DEPENDENCY-UNKNOWN",
+      "critical": false,
+      "tests": [
+        "R2-TASK-RELATION",
+        "R5-AUTHORITY-RESERVATION",
+        "R7-REOPEN-REUSE-MIGRATION"
+      ],
+      "grade": "UNKNOWN",
+      "assessment_mode": "NOT_REPLAYED_AND_NO_EXPLICIT_RULE",
+      "finding": "The return preserves general signature Unknowns, but it has no mandate-expiry dependency, deadline guard, Defer path or SAFE_EXIT for this injected condition."
+    }
+  ],
+  "mutation_summary": {
+    "cases": 10,
+    "pass": 3,
+    "partial": 4,
+    "fail": 0,
+    "unknown": 3,
+    "critical_cases": 9,
+    "critical_pass": 3,
+    "all_critical_correctly_blocked": false,
+    "at_least_80_percent_fully_correct": false,
+    "negative_mutation_full_pass": false,
+    "included_in_numeric_requirement_score": false
+  },
+  "migration_result": {
+    "variant_id": "T4-MIGRATION-MUSEUM-V1",
+    "grade": "UNKNOWN",
+    "execution_status": "NOT_RUN",
+    "finding": "The return provides domain-neutral invariants and fields to rediscover, but it explicitly reports PLAN_ONLY_NOT_RUN. It therefore does not establish that the method can rediscover the museum request, exact repository operation, split authorities, reservations, outcome witnesses, target readback and ownership-claim exit condition.",
+    "hardcoded_current_answer_observed_in_plan": false,
+    "migration_full_pass": false,
+    "included_in_numeric_requirement_score": false
+  },
+  "cost_and_exposure_metrics": {
+    "query_rounds": 2,
+    "unique_queries": 28,
+    "receipt_events": 31,
+    "replays": 0,
+    "refusals": 0,
+    "deferrals": 3,
+    "disclosed_field_occurrences": 97,
+    "unique_authority_field_pairs_disclosed": 91,
+    "private_fields_disclosed": "NOT_SEPARATELY_CLASSIFIED_BY_RECEIPT_METADATA",
+    "retention_scopes": {
+      "RUN_ONLY": 31
+    },
+    "authority_count": 7,
+    "human_judgments": "NOT_REPORTED",
+    "coordination_steps": "NOT_NORMALIZED",
+    "correctness_shortcut_used": false,
+    "interpretation_limit": "The 97 field occurrences include all disclosed field names; the artifacts do not label which are private versus public, so they cannot support a precise private-field count."
+  },
+  "score_calculation": {
+    "applicable_weight": 100,
+    "weighted_points": 60,
+    "raw_score": 0.6,
+    "critical_fail_cap_applied": false,
+    "critical_unknown_cap_applied": false,
+    "false_closure_cap_applied": false,
+    "final_score": 0.6
+  },
+  "overall_score": 0.6,
+  "overall_grade": "PARTIAL",
+  "full_credit": false,
+  "evidence_limitations": [
+    "This is a same-model, different-context evaluation; it is not model-diverse or organizationally independent evidence.",
+    "Mutation results are static assessments of the frozen return. No mutation was injected into and replayed through the candidate method, so UNKNOWN is retained where the return contains no explicit dependency response.",
+    "The migration variant was not run; a plan cannot establish migration performance.",
+    "The task, authorities, controller and reservations are high-fidelity synthetic artifacts. This evaluation does not establish real-world capability, willingness, authorization, bid formation, adoption, acceptance, Effect or settlement.",
+    "Receipt and controller integrity checks establish consistency within the frozen artifact set, not resistance to a malicious process with write access to the same local directory.",
+    "The score evaluates this frozen method return, not all possible implementations of a deterministic central broker or standards-only workflow composition."
+  ],
+  "evaluator_conclusion": "The local deterministic authority workflow produces a valid, receipt-bound and substantively useful candidate. Its strongest result is exact scoped qualification plus strict external-outcome separation. It does not yet close the frozen problem because the relation readiness claim outruns authority-backed satisfaction, several material-change paths lack explicit blocking and safe exit, negative mutations were not replayed, and migration remains unrun."
+}

@@ -1,0 +1,84 @@
+{
+  "claims": {
+    "CL-024-EXACTLY-ONCE-RECOVERY": {
+      "evidence": "All source processes end by SIGTERM after proxy-owned ACK drop; new recovery processes verify signed status/readback with zero ACK and zero execute retry.",
+      "status": "SUPPORT_SCOPED"
+    },
+    "CL-024-GLOBAL-AUTHORITY-CURRENTNESS": {
+      "evidence": "U contains an Authority revoke without a Target-consumed matching fence and is explicitly not scored.",
+      "status": "NOT_TESTED"
+    },
+    "CL-024-ISOMORPHIC-BLINDNESS": {
+      "evidence": "Recorded payload/startup surfaces are equal, but fixed S→R→U execution order and shared same-UID filesystem/process visibility leave path/order/timing side channels. The full frozen claim is not established.",
+      "status": "FAIL"
+    },
+    "CL-024-NATIVE-POSTCONDITIONS": {
+      "evidence": "S and unscored U have independently signed O_Q/O_V Acceptance rows and O_P finality for their Target-local commit; R has no owner postconditions for its native refusal.",
+      "status": "SUPPORT_SCOPED"
+    },
+    "CL-024-TARGET-CONSUMED-AUTHORITY-FENCE": {
+      "evidence": "R Target-native FENCE_ADVANCED precedes ingress and produces one signed stale refusal with zero Effect; S retains current fence and commits one exact Effect.",
+      "status": "SUPPORT_SCOPED"
+    }
+  },
+  "limitations": [
+    "LOCAL_SYNTHETIC_AUTHORITY_ONLY",
+    "TARGET_PROCESS_RESTART_PERSISTENCE_NOT_TESTED",
+    "HOSTILE_SAME_UID_BLINDNESS_AND_WRITE_RESISTANCE_NOT_ESTABLISHED",
+    "EXTERNAL_APPEND_ONLY_ROOT_ANCHOR_NOT_TESTED",
+    "NO_LEGAL_AUTHORITY_OR_PHYSICAL_EFFECT_OR_PRODUCTION_CLAIM",
+    "NO_A1_A5_COMPARISON_OR_WINNER"
+  ],
+  "root_evidence": {
+    "all_world_native_file_hashes_verified": true,
+    "authority_and_registry_physical_hashes_verified": true,
+    "external_append_only_anchor": "NOT_TESTED",
+    "twin_artifact_sha256": "b57ae3e4ef105b4a09d9ac99a405c5ed9daa8ee111844f21cb45001e6067e02a",
+    "twin_self_hash_verified": true,
+    "world_self_hashes_verified": true
+  },
+  "run_dir": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-024-authority-epoch-twin/artifacts/twin-6184157568564a38831c4b7c4ad737f5",
+  "schema": "WAVE024_INDEPENDENT_EVALUATION_V1",
+  "status": "EVALUATED_MIXED_SCOPED_LOCAL_SYNTHETIC_DISCRIMINATOR",
+  "worlds": {
+    "R": {
+      "acceptance_count": 0,
+      "ack_received_count": 0,
+      "decision": "REJECTED_STALE_EPOCH",
+      "effect_count": 0,
+      "finality_count": 0,
+      "refusal_count": 1,
+      "retry_execute_count": 0,
+      "role": "R",
+      "source_phase": "RECOVERED_REVOKED_NO_RETRY",
+      "target_db_sha256": "691a12d495f0ed5157b7b527d06f8194b6e926a0950265471a27632c700a4947",
+      "world_artifact_sha256": "c11d15ee8905eb41a99b4d61e0b472ccfe25a4d00574c6d6b9fc05d432c9f62c"
+    },
+    "S": {
+      "acceptance_count": 2,
+      "ack_received_count": 0,
+      "decision": "COMMITTED",
+      "effect_count": 1,
+      "finality_count": 1,
+      "refusal_count": 0,
+      "retry_execute_count": 0,
+      "role": "S",
+      "source_phase": "RECOVERED_COMMITTED_NO_REPLAY",
+      "target_db_sha256": "7d0b3edaf8ec52ac861bbb9eb01bab07c4b1f54d4861cfebb7473c6974b66cbb",
+      "world_artifact_sha256": "307d6a29e12eda5a02d740cb98ee562c6b6f1e2087d3adae639aaf29e77ca0bb"
+    },
+    "U": {
+      "acceptance_count": 2,
+      "ack_received_count": 0,
+      "decision": "COMMITTED",
+      "effect_count": 1,
+      "finality_count": 1,
+      "refusal_count": 0,
+      "retry_execute_count": 0,
+      "role": "U",
+      "source_phase": "RECOVERED_COMMITTED_NO_REPLAY",
+      "target_db_sha256": "b09b024ed9a308bd35fe820421205f7c8bc606433ce84e4f75fed1a096120d6f",
+      "world_artifact_sha256": "e54e202ddb8f3d7c21730c6dd76afde513de5effaaa46a1ba0bff9d201e6adfd"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "wave_id": "WAVE-003-C",
+  "status": "TASK_TRUTH_V1",
+  "owner_scope": "TASK_ORACLE_EVALUATOR",
+  "candidate_method_implemented": false,
+  "solution_neutrality": "Mature standards, strong-center, expert-human and other method-neutral compositions are equally eligible if they satisfy the frozen requirements.",
+  "solver_allowlist": [
+    "blind/input.json",
+    "evaluator/spec.json",
+    "schemas/query-batch.schema.json",
+    "schemas/final-submission.schema.json"
+  ],
+  "controller_entrypoint": "controller.py",
+  "validation_commands": [
+    "python3 validate_task.py",
+    "python3 -m unittest discover -s tests -v"
+  ],
+  "manifest_self_hash_policy": "manifest.json is intentionally excluded from its own artifact map; validate_task.py checks the exact non-manifest artifact closure.",
+  "artifacts": {
+    "README.md": {
+      "visibility": "ORCHESTRATOR",
+      "bytes": 3289,
+      "sha256": "fb6af128229a0ee320ea47f5cdece015b719d7964e46aefa0a556edafe0aa1f0"
+    },
+    "blind/input.json": {
+      "visibility": "SOLVER",
+      "bytes": 14797,
+      "sha256": "d11bb54f75c70ffdd08ac63a261bb464e0a1c21e20495ef8dbb017004eb2830a"
+    },
+    "controller.py": {
+      "visibility": "CONTROLLER",
+      "bytes": 18375,
+      "sha256": "d5d5d8c566a0f88808b1ded27397c34aebf9b7acfd3f4c2bc3fdfbf2f1d91e35"
+    },
+    "evaluator/spec.json": {
+      "visibility": "SOLVER_AND_EVALUATOR",
+      "bytes": 9941,
+      "sha256": "69e8e53d5318c2cc3f449798223948e9cc95ec2160d68e69fca2c664128e9c70"
+    },
+    "mutations/negative_mutations.json": {
+      "visibility": "EVALUATOR",
+      "bytes": 6566,
+      "sha256": "f801bb06e0f4307ecf8c40ca82bebce376ebeb1a4f29dba3952fe1813af54bb7"
+    },
+    "oracle/migration_variant.json": {
+      "visibility": "EVALUATOR",
+      "bytes": 3859,
+      "sha256": "a2ad05072825c6bfdaa13e4c326ed9450f2c034027cb98e411705adfc1eabe29"
+    },
+    "oracle/truth.json": {
+      "visibility": "CONTROLLER_AND_EVALUATOR",
+      "bytes": 19581,
+      "sha256": "bc62a81e02f64757794221eafdd52ab3365425f4695c13e21ac1d166822e55ac"
+    },
+    "schemas/final-submission.schema.json": {
+      "visibility": "SOLVER",
+      "bytes": 3519,
+      "sha256": "fd215652b9315b09d58b74a2cf7ea004179d0ef779a99514a14aec948661690c"
+    },
+    "schemas/query-batch.schema.json": {
+      "visibility": "SOLVER",
+      "bytes": 1578,
+      "sha256": "c232def377c88c9b8e422ba28393be0920770b0fba232847693a12ec9258054d"
+    },
+    "tests/test_controller.py": {
+      "visibility": "EVALUATOR",
+      "bytes": 9263,
+      "sha256": "1c0cddee5b0af6a46220c085090974720fe4af0dcd477eb43ad755fb9ec03c34"
+    },
+    "validate_task.py": {
+      "visibility": "EVALUATOR",
+      "bytes": 9853,
+      "sha256": "b9fb6967336be40bdbe06c26509187b5867da30cc51e0ec82d2675de88ff4fe9"
+    }
+  }
+}

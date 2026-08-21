@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "WAVE-006-D-COST-SENSITIVITY",
+  "status": "PARAMETER_SCAN_AND_ANALYTIC_DOMINANCE_COMPLETE",
+  "shared_task_binding": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "bound_results": {
+    "wave_006_a": {
+      "path": "../wave-006-a-relation-materiality/outputs/result-summary.json",
+      "sha256": "2f8c2315dacfee16c414b8310cad2a18146f5c334c2b41a42a746a64fc8a214f"
+    },
+    "wave_006_b": {
+      "path": "../wave-006-b-capability-reliance/results/baseline.json",
+      "sha256": "2bac5fe9dbda16cc82cb7117ef6d1c68b385b97d52ebfd776801295e03ad1862"
+    },
+    "wave_006_c": {
+      "path": "../wave-006-c-effect-reopen/results.json",
+      "sha256": "c5176fdfcee3015429a8aec1645d3f0114b96cab0a67293e73b9aae7ae1dd4a0"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "da1c8e8f60a1fee7787d18f9465ee69e6ab6dbfb9d8bb9bfe3dc6e4f13ad1304"
+    },
+    {
+      "path": "config.json",
+      "sha256": "144ec592679910c767faa6e3025a5ac623cbb1c7464ce9dcd8474cd2b348905b"
+    },
+    {
+      "path": "analyzer.py",
+      "sha256": "bfbabc132c349a6d7a242b595af24f314494b7c852744a979b989919a79ce259"
+    },
+    {
+      "path": "results/sensitivity.json",
+      "sha256": "3b5a49ec675ab70d210044341211abd17bc6b6d126826dac7ed2675a53462863"
+    },
+    {
+      "path": "tests/test_cost_sensitivity.py",
+      "sha256": "c2366202eff1fa9fd35615fbdf7c4ec6dba40abf8fba806dd672b14e7e1439c7"
+    }
+  ],
+  "scan": {
+    "grid_point_count": 7200,
+    "parameters": [
+      "failure_loss",
+      "missed_opportunity_value",
+      "evidence_multiplier",
+      "disclosure_unit_cost",
+      "coordination_operation_cost",
+      "recovery_step_cost"
+    ],
+    "accepted_task_value_fixed": 20.0
+  },
+  "scoped_results": {
+    "g2_relation": {
+      "claim": "A weakly dominates B and C on the nonnegative sampled cost range",
+      "a_unique_winner_count": 5760,
+      "tie_count": 1440,
+      "b_unique_winner_count": 0,
+      "c_unique_winner_count": 0
+    },
+    "g4_reliance": {
+      "claim": "Baseline SLA winner is condition-dependent, not universal",
+      "sla_unique_winner_count": 4547,
+      "declaration_unique_winner_count": 2421,
+      "latest_probe_unique_winner_count": 170,
+      "receipt_history_unique_winner_count": 0,
+      "tie_count": 62,
+      "near_tie_or_no_conclusion_count": 75
+    }
+  },
+  "claims": {
+    "baseline_winner_promoted_to_universal_winner": false,
+    "grid_share_claimed_as_real_world_probability": false,
+    "simple_solution_winning_is_positive_result": true,
+    "wave_006_c_rescored": false
+  }
+}

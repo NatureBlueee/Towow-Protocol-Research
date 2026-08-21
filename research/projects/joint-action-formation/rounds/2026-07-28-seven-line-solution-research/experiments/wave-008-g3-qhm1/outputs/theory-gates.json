@@ -1,0 +1,88 @@
+{
+  "KNOWLEDGE-PROVENANCE": {
+    "passed": true
+  },
+  "META-REFACTOR": {
+    "depth_changed": true,
+    "encoding_a": {
+      "declared_layer_depth": 2,
+      "final_state_digest": "70d959902ccfaaa1dfb4487a1ce2555c0d3bc3fe396a3e743d41c2b449fffcae",
+      "operator_spelling": "register_new_operator",
+      "witness": [
+        "PROPOSE_NEW_OPERATOR",
+        "REGISTER_NEW_OPERATOR",
+        "TRANSFER",
+        "PROJECT",
+        "ACCEPT",
+        "READBACK"
+      ]
+    },
+    "encoding_b": {
+      "declared_layer_depth": 1,
+      "final_state_digest": "70d959902ccfaaa1dfb4487a1ce2555c0d3bc3fe396a3e743d41c2b449fffcae",
+      "operator_spelling": "install(spec)",
+      "witness": [
+        "PROPOSE_SPEC",
+        "INSTALL(spec)",
+        "TRANSFER",
+        "PROJECT",
+        "ACCEPT",
+        "READBACK"
+      ]
+    },
+    "interpretation": "depth is representation-relative; operative/material deltas do not change under this semantic-preserving refactor",
+    "material_vector_a": {
+      "E": "CHANGED",
+      "N": "NEW_TOKEN",
+      "T": "INVARIANT",
+      "V": "VALID"
+    },
+    "material_vector_b": {
+      "E": "CHANGED",
+      "N": "NEW_TOKEN",
+      "T": "INVARIANT",
+      "V": "VALID"
+    },
+    "passed": true,
+    "same_material_transition_result": true
+  },
+  "OPEN-INVENT": {
+    "closure_status": "UNKNOWN",
+    "passed": true,
+    "run_outcomes": [
+      "UNRESOLVED_MODEL"
+    ]
+  },
+  "TOKEN-COMMIT": {
+    "authority_bound_receipts_verified": true,
+    "expected": {
+      "C": "SAT",
+      "E": "SAME",
+      "N": "NEW_TOKEN"
+    },
+    "observed": [
+      {
+        "C": "SAT",
+        "E": "SAME",
+        "N": "NEW_TOKEN",
+        "T": "INVARIANT",
+        "V": "VALID"
+      },
+      {
+        "C": "SAT",
+        "E": "SAME",
+        "N": "NEW_TOKEN",
+        "T": "INVARIANT",
+        "V": "VALID"
+      },
+      {
+        "C": "SAT",
+        "E": "SAME",
+        "N": "NEW_TOKEN",
+        "T": "INVARIANT",
+        "V": "VALID"
+      }
+    ],
+    "passed": true
+  }
+}

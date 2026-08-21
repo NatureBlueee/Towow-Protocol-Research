@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.1",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "method_id": "local-projection-routing-reciprocal-probe-v1",
+  "decisions": [
+    {
+      "detection_id": "DET-HWB-PUBLIC-COLD-AURORA-BASALT",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "AURORA-17",
+      "provider": "BASALT-04",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "SIG-HWB-COLD-SEEK-V2",
+        "SIG-HWB-COLD-OFFER-V5",
+        "W-HWB-COLD-SEEK-V2",
+        "W-HWB-COLD-OFFER-V5"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-HIDDEN-GRID-HELIOS-ION",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "HELIOS-44",
+      "provider": "ION-06",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "F-HWB-HELIOS-TASK-PROJECTION",
+        "F-HWB-ION-TASK-PROJECTION",
+        "W-HWB-HELIOS-PROJECTION",
+        "W-HWB-ION-PROJECTION",
+        "EV-HWB-ION-SILVER-TO-COPPER"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-RECIP-JUNIPER-KITE",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "JUNIPER-28",
+      "provider": "KITE-15",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "PROBE-HWB-JUNIPER-KITE",
+        "W-HWB-RECIPROCAL-RECEIPT",
+        "EV-HWB-JUNIPER-TO-KITE",
+        "EV-HWB-KITE-TO-JUNIPER"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-MOBILE-ECHO-DELTA",
+      "kind": "PAIR",
+      "state": "INVALIDATED",
+      "seeker": "ECHO-31",
+      "provider": "DELTA-09",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "SIG-HWB-MOBILE-SEEK-V7",
+        "SIG-HWB-MOBILE-OFFER-V4",
+        "W-HWB-MOBILE-VERSION-FLIP"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-POLICY-FJORD-GLASS",
+      "kind": "PAIR",
+      "state": "UNFINDABLE_UNDER_POLICY",
+      "seeker": "FJORD-12",
+      "provider": "GLASS-08",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "SIG-HWB-POLICY-SEEK-V3",
+        "SIG-HWB-POLICY-HOLDER-V2",
+        "W-HWB-POLICY-SEEK-V3",
+        "W-HWB-POLICY-HOLDER-V2",
+        "W-HWB-POLICY-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-CLAIM-LUMEN-QUIET-NODE",
+      "kind": "CLAIM",
+      "state": "UNKNOWN",
+      "claim_key": "capability:quiet-node:marine-acoustic-tagging",
+      "subject": "LUMEN-03",
+      "evidence_refs": [
+        "W-HWB-NO-RESPONSE"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-CLAIM-MESA-SEALED-NODE",
+      "kind": "CLAIM",
+      "state": "REFUSE",
+      "claim_key": "capability:sealed-node:geology-core-review",
+      "subject": "MESA-27",
+      "evidence_refs": [
+        "W-HWB-EXPLICIT-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-CLAIM-CLOSED-ORBITAL-COHORT",
+      "kind": "CLAIM",
+      "state": "ABSENT",
+      "claim_key": "capability:closed-cohort:orbital-etch-repair",
+      "subject": "POP-ORBITAL-ETCH-COHORT",
+      "evidence_refs": [
+        "W-HWB-CLOSED-COHORT-V4",
+        "W-HWB-CLOSED-NOVA-NEG",
+        "W-HWB-CLOSED-ONYX-NEG",
+        "W-HWB-CLOSED-PULSE-NEG",
+        "W-HWB-CLOSED-QUARTZ-NEG"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "PROBE-HWB-JUNIPER-KITE",
+      "requester": "JUNIPER-28",
+      "responder": "KITE-15",
+      "requested_fact": "F-HWB-KITE-RECIP-DETAIL",
+      "offered_fact": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "status": "COMPLETED_RECIPROCAL_RECEIPT",
+      "evidence_refs": [
+        "W-HWB-RECIPROCAL-RECEIPT",
+        "EV-HWB-JUNIPER-TO-KITE",
+        "EV-HWB-KITE-TO-JUNIPER"
+      ]
+    }
+  ],
+  "disclosures": [
+    {
+      "event_id": "EV-HWB-HELIOS-TO-COPPER",
+      "origin_party": "HELIOS-44",
+      "sender": "HELIOS-44",
+      "recipient": "NODE-COPPER-ROUTER",
+      "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+      "depth": 0,
+      "purpose": "scoped-topology-screen",
+      "retention": "PT3M"
+    },
+    {
+      "event_id": "EV-HWB-ION-TO-SILVER",
+      "origin_party": "ION-06",
+      "sender": "ION-06",
+      "recipient": "NODE-SILVER-RELAY",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION",
+      "depth": 0,
+      "purpose": "scoped-topology-screen",
+      "retention": "PT3M"
+    },
+    {
+      "event_id": "EV-HWB-ION-SILVER-TO-COPPER",
+      "origin_party": "ION-06",
+      "sender": "NODE-SILVER-RELAY",
+      "recipient": "NODE-COPPER-ROUTER",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION",
+      "depth": 1,
+      "purpose": "scoped-topology-screen",
+      "retention": "PT3M",
+      "derived_from_event_id": "EV-HWB-ION-TO-SILVER"
+    },
+    {
+      "event_id": "EV-HWB-JUNIPER-TO-KITE",
+      "origin_party": "JUNIPER-28",
+      "sender": "JUNIPER-28",
+      "recipient": "KITE-15",
+      "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "depth": 0,
+      "purpose": "two-sided-route-probe",
+      "retention": "PT7M"
+    },
+    {
+      "event_id": "EV-HWB-KITE-TO-JUNIPER",
+      "origin_party": "KITE-15",
+      "sender": "KITE-15",
+      "recipient": "JUNIPER-28",
+      "fact_id": "F-HWB-KITE-RECIP-DETAIL",
+      "depth": 0,
+      "purpose": "two-sided-route-probe",
+      "retention": "PT7M"
+    }
+  ],
+  "projection_updates": [
+    {
+      "party": "DELTA-09",
+      "from_version": 4,
+      "to_version": 5,
+      "step": 2,
+      "evidence_ref": "W-HWB-MOBILE-VERSION-FLIP"
+    }
+  ],
+  "relation_handoffs": [
+    {
+      "detection_id": "DET-HWB-PUBLIC-COLD-AURORA-BASALT",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "AURORA-17",
+      "provider": "BASALT-04",
+      "evidence_refs": [
+        "W-HWB-COLD-SEEK-V2",
+        "W-HWB-COLD-OFFER-V5"
+      ],
+      "open_questions": [
+        "Current capacity, authority, terms and executable operation remain unqualified."
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-HIDDEN-GRID-HELIOS-ION",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "HELIOS-44",
+      "provider": "ION-06",
+      "evidence_refs": [
+        "W-HWB-HELIOS-PROJECTION",
+        "W-HWB-ION-PROJECTION",
+        "EV-HWB-ION-SILVER-TO-COPPER"
+      ],
+      "open_questions": [
+        "The exact operation, current authority, willingness and execution conditions remain unqualified."
+      ]
+    },
+    {
+      "detection_id": "DET-HWB-RECIP-JUNIPER-KITE",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "JUNIPER-28",
+      "provider": "KITE-15",
+      "evidence_refs": [
+        "PROBE-HWB-JUNIPER-KITE",
+        "W-HWB-RECIPROCAL-RECEIPT"
+      ],
+      "open_questions": [
+        "Reciprocal discovery does not establish mandate, commitment, authority or execution."
+      ]
+    }
+  ]
+}

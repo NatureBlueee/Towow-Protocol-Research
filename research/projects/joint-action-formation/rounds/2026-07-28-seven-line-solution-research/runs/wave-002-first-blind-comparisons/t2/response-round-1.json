@@ -1,0 +1,87 @@
+{
+  "controller_behavior_version": "T2-DISCLOSURE-CONTROLLER-V1",
+  "history_hash": "6c1fcff7e52d3ab19d6ea814009bc86ff5424fe389874d2ee42d5795938a2cc9",
+  "input_hash": "96af5439c11c43d222d698f54c415b2ad08cb5fb133db1977cf52ebd14961932",
+  "method_id": "t2-ab-strong-composition",
+  "previous_round_hash": null,
+  "results": [
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "conditions": [
+          "原始数据不离开采购方权限域",
+          "只允许明确批准的聚合查询和只读执行",
+          "不允许训练或持久记忆",
+          "Effect 必须由采购方审计回执见证"
+        ]
+      },
+      "query_index": 0,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "BUYER-DATA",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "conditions"
+        ],
+        "purpose": "确定数据权威拒绝 REL-T2-V1 的最小可披露反条件，以判断是否存在保持 V0-DATA、V0-AUTHORITY 与 V0-EVIDENCE 的新版本空间；不将反条件视为授权。",
+        "query_index": 0,
+        "reason_code": null,
+        "receipt_hash": "0e36ba3d83cbbd9f0034d0a5058464b96c64d6d4381a86bf519992a3ed46e967",
+        "receipt_id": "RCPT-15bc400cf7de3eea573f7fc3",
+        "relation_version_ref": "REL-T2-V1",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-11a6068bbe5a6cc6db16",
+        "request_type": "REQUEST_MINIMAL_COUNTERCONDITION",
+        "response_hash": "791141e44d25b2118c8be23e23506358ba4d7d41a0567aba3d1d3f49aa3cbfb5",
+        "response_type": "COUNTERCONDITION",
+        "retention_scope": "RUN_ONLY",
+        "round": 1
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-11a6068bbe5a6cc6db16",
+      "response_hash": "791141e44d25b2118c8be23e23506358ba4d7d41a0567aba3d1d3f49aa3cbfb5",
+      "response_type": "COUNTERCONDITION"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "candidate": "固定分析容器可能在采购方 sandbox 内运行",
+        "qualified": false,
+        "reason": "从未在该采购方环境运行"
+      },
+      "query_index": 1,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-TECH",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "candidate",
+          "qualified",
+          "reason"
+        ],
+        "purpose": "确定服务方是否能指出不同于 REL-T2-V1 标准云端路径的候选执行方式及其待验证边界，以判断是否值得后续请求受限 probe；不据此推断 capability、permission 或 commitment。",
+        "query_index": 1,
+        "reason_code": null,
+        "receipt_hash": "0f13b81596f4ab11ad3f476f1d8027681b7279918d2b60655b6ed87b280f2a30",
+        "receipt_id": "RCPT-f35ab68e05d4dae093c89c1c",
+        "relation_version_ref": "REL-T2-V1",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-4f532bcdce91671b707a",
+        "request_type": "REQUEST_ALTERNATIVE_PATH",
+        "response_hash": "4a098c850e5925f6e57eaeb4375e7bae38ba8b7447fc2ed734bc32aeb6de268a",
+        "response_type": "UNKNOWN",
+        "retention_scope": "RUN_ONLY",
+        "round": 1
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-4f532bcdce91671b707a",
+      "response_hash": "4a098c850e5925f6e57eaeb4375e7bae38ba8b7447fc2ed734bc32aeb6de268a",
+      "response_type": "UNKNOWN"
+    }
+  ],
+  "round": 1,
+  "round_hash": "605398200a4b0dcc6a03c5b3bad74585c25ce296a3763a3c1e82437eb71d1f70",
+  "run_id": "T2-AB-RUN-001",
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1"
+}

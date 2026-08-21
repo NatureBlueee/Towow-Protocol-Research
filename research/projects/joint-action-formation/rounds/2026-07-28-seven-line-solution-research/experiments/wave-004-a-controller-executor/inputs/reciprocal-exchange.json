@@ -1,0 +1,99 @@
+{
+  "schema": "towow.controller-request.v1",
+  "request_id": "REQ-RECIPROCAL-001",
+  "idempotency_key": "idem-reciprocal-001",
+  "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+  "evaluation_step": 7,
+  "route_type": "RECIPROCAL_EXCHANGE",
+  "authorizations": [
+    {
+      "declared_sha256": "31bd21895857c2ec4dfa69c162e2754653cf5c408f4f7281d121cc14cb1260c0",
+      "payload": {
+        "schema": "towow.holder-authorization.v1",
+        "receipt_id": "AUTH-RECIP-GAMMA-001",
+        "issuer": "HOLDER-GAMMA",
+        "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+        "evaluation_step": 7,
+        "valid_from_step": 7,
+        "valid_through_step": 7,
+        "status": "AUTHORIZED",
+        "revoked": false,
+        "authorization_type": "RECIPROCAL_OFFER",
+        "projection": {
+          "direction": "SEEK",
+          "facet": "compute-demand",
+          "compatibility_key": "gpu-window-42"
+        },
+        "counterparty_contract": {
+          "allowed_counterparties": [
+            "HOLDER-DELTA"
+          ]
+        },
+        "policy": {
+          "recipient": "RECIPROCAL-CONTROLLER",
+          "purpose": "reciprocal-projection-exchange",
+          "retention": "exchange-only",
+          "max_depth": 0,
+          "onward_allowed": false,
+          "budget_units": 1
+        }
+      }
+    },
+    {
+      "declared_sha256": "3a2f09ac91fda21f009ff8e0e5892f9a12ae5dfc7dd8f0a9542f18bad022cf01",
+      "payload": {
+        "schema": "towow.holder-authorization.v1",
+        "receipt_id": "AUTH-RECIP-DELTA-001",
+        "issuer": "HOLDER-DELTA",
+        "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+        "evaluation_step": 7,
+        "valid_from_step": 7,
+        "valid_through_step": 7,
+        "status": "AUTHORIZED",
+        "revoked": false,
+        "authorization_type": "RECIPROCAL_OFFER",
+        "projection": {
+          "direction": "OFFER",
+          "facet": "compute-supply",
+          "compatibility_key": "gpu-window-42"
+        },
+        "counterparty_contract": {
+          "allowed_counterparties": [
+            "HOLDER-GAMMA"
+          ]
+        },
+        "policy": {
+          "recipient": "RECIPROCAL-CONTROLLER",
+          "purpose": "reciprocal-projection-exchange",
+          "retention": "exchange-only",
+          "max_depth": 0,
+          "onward_allowed": false,
+          "budget_units": 1
+        }
+      }
+    }
+  ],
+  "route": {
+    "recipient": "RECIPROCAL-CONTROLLER",
+    "purpose": "reciprocal-projection-exchange",
+    "retention": "exchange-only",
+    "depth": 0,
+    "budget_units_each": 1,
+    "sides": [
+      {
+        "receipt_id": "AUTH-RECIP-GAMMA-001",
+        "direction": "SEEK",
+        "facet": "compute-demand",
+        "compatibility_key": "gpu-window-42",
+        "counterparty": "HOLDER-DELTA"
+      },
+      {
+        "receipt_id": "AUTH-RECIP-DELTA-001",
+        "direction": "OFFER",
+        "facet": "compute-supply",
+        "compatibility_key": "gpu-window-42",
+        "counterparty": "HOLDER-GAMMA"
+      }
+    ]
+  }
+}

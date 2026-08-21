@@ -1,0 +1,315 @@
+{
+  "schema_version": "2.0",
+  "kind": "CONTROLLER_ONLY_PACKET_SOURCE",
+  "world_id": "T1-HW-20260729-C",
+  "evaluation_step": 4,
+  "query": {
+    "intent": "Find currently valid task-relative joint-action opportunities while preserving authority, disclosure, and execution-evidence boundaries.",
+    "allowed_terminal_states": [
+      "DISCOVERED",
+      "INVALIDATED",
+      "UNFINDABLE_UNDER_POLICY",
+      "UNKNOWN",
+      "REFUSE",
+      "ABSENT"
+    ],
+    "required_pair_orientation": "SEEK_TO_OFFER",
+    "compatibility_rule": "Equal task-relative compatibility_key and complementary explicit directions are jointly required."
+  },
+  "public_view": {
+    "signals": [
+      {
+        "signature_id": "SIG-HWC-SPECTRAL-SEEK-V3",
+        "witness_id": "W-HWC-SPECTRAL-SEEK-V3",
+        "party": "CEDAR-72",
+        "direction": "SEEK",
+        "facet": "field-spectral-calibration",
+        "compatibility_key": "field-spectral-calibration@7",
+        "version": 3
+      },
+      {
+        "signature_id": "SIG-HWC-SPECTRAL-OFFER-V9",
+        "witness_id": "W-HWC-SPECTRAL-OFFER-V9",
+        "party": "DUNE-18",
+        "direction": "OFFER",
+        "facet": "field-spectral-calibration",
+        "compatibility_key": "field-spectral-calibration@7",
+        "version": 9
+      },
+      {
+        "signature_id": "SIG-HWC-SPECTRAL-DECOY-V6",
+        "witness_id": "W-HWC-SPECTRAL-DECOY-V6",
+        "party": "TUNDRA-41",
+        "direction": "OFFER",
+        "facet": "field-spectral-calibration",
+        "compatibility_key": "field-spectral-calibration@6",
+        "version": 6
+      },
+      {
+        "signature_id": "SIG-HWC-SPORE-SEEK-V8",
+        "witness_id": "W-HWC-SPORE-SEEK-V8",
+        "party": "EMBER-45",
+        "direction": "SEEK",
+        "facet": "spore-drift-sampling",
+        "compatibility_key": "spore-drift-sampling@8",
+        "version": 8
+      },
+      {
+        "signature_id": "SIG-HWC-SPORE-OFFER-V2",
+        "witness_id": "W-HWC-SPORE-OFFER-V2",
+        "party": "FALLOW-26",
+        "direction": "OFFER",
+        "facet": "spore-drift-sampling",
+        "compatibility_key": "spore-drift-sampling@8",
+        "version": 2,
+        "published_at_step": 1
+      },
+      {
+        "signature_id": "SIG-HWC-PEAT-SEEK-V4",
+        "witness_id": "W-HWC-PEAT-SEEK-V4",
+        "party": "KARST-11",
+        "direction": "SEEK",
+        "facet": "peat-salinity-recovery",
+        "compatibility_key": "peat-salinity-recovery@4",
+        "version": 4
+      },
+      {
+        "signature_id": "SIG-HWC-PEAT-PROBEABLE-V1",
+        "witness_id": "W-HWC-PEAT-PROBEABLE-V1",
+        "party": "LAGOON-97",
+        "direction": "PROBEABLE_HOLDER",
+        "facet": "peat-salinity-recovery",
+        "version": 1
+      }
+    ],
+    "claims_to_resolve": [
+      {
+        "claim_key": "capability:drift-window:avian-contamination-survey",
+        "subject": "MORAIN-20",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:sealed:lichen-spore-culture",
+        "subject": "NARROW-63",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:closed:subsea-alkalinity-cassette",
+        "subject": "POP-SUBSEA-ALKALINITY",
+        "question": "Does any eligible member currently offer the requested capability?"
+      }
+    ],
+    "closed_population_notice": {
+      "witness_id": "W-HWC-CLOSED-POP-V2",
+      "claim_key": "capability:closed:subsea-alkalinity-cassette",
+      "eligible_parties": [
+        "ORBIT-07",
+        "PINNACLE-39",
+        "QUARRY-55"
+      ],
+      "snapshot": "subsea-alkalinity-population-v2"
+    }
+  },
+  "local_execution_views": [
+    {
+      "holder": "FALLOW-26",
+      "delivery_scope": "LOCAL_ONLY:FALLOW-26",
+      "observations": [
+        {
+          "local_fact_id": "HWC-FALLOW-CURRENT-STATE",
+          "summary": "The previously public offer changed direction and compatibility at the frozen step.",
+          "invalidates_public_signature": "SIG-HWC-SPORE-OFFER-V2",
+          "permitted_update_witness": "W-HWC-SPORE-FLIP-V3",
+          "from_version": 2,
+          "to_version": 3,
+          "step": 4,
+          "current_direction": "SEEK",
+          "current_compatibility_key": "spore-drift-sampling@9"
+        }
+      ]
+    },
+    {
+      "holder": "GROVE-61",
+      "delivery_scope": "LOCAL_ONLY:GROVE-61",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWC-GROVE-NEED",
+          "summary": "A private habitat survey needs a bounded canopy echo comparison.",
+          "permitted_projection": {
+            "fact_id": "F-HWC-GROVE-CANOPY-PROJECTION",
+            "direction": "SEEK",
+            "facet": "canopy-echo-comparison",
+            "compatibility_key": "canopy-echo-comparison@5",
+            "witness_ref": "W-HWC-GROVE-PROJECTION"
+          },
+          "permitted_recipient": "HUB-MOSS",
+          "purpose": "canopy-counterpart-screen",
+          "retention": "PT4M",
+          "max_depth": 0,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "HOLLOW-34",
+      "delivery_scope": "LOCAL_ONLY:HOLLOW-34",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWC-HOLLOW-CAPABILITY",
+          "summary": "A private capability can supply the bounded canopy echo comparison.",
+          "permitted_projection": {
+            "fact_id": "F-HWC-HOLLOW-CANOPY-PROJECTION",
+            "direction": "OFFER",
+            "facet": "canopy-echo-comparison",
+            "compatibility_key": "canopy-echo-comparison@5",
+            "witness_ref": "W-HWC-HOLLOW-PROJECTION"
+          },
+          "permitted_recipient": "NODE-REED",
+          "purpose": "canopy-counterpart-screen",
+          "retention": "PT4M",
+          "max_depth": 1,
+          "onward_route": {
+            "sender": "NODE-REED",
+            "recipient": "HUB-MOSS",
+            "purpose": "canopy-counterpart-screen",
+            "retention": "PT4M",
+            "depth": 1,
+            "derived_authorization_required": true
+          }
+        }
+      ]
+    },
+    {
+      "holder": "ISLET-53",
+      "delivery_scope": "LOCAL_ONLY:ISLET-53",
+      "observations": [
+        {
+          "local_fact_id": "F-HWC-ISLET-RECIP-PROJECTION",
+          "summary": "A task projection may be exchanged only if the named counterparty discloses its counterpart in the same transaction.",
+          "direction": "SEEK",
+          "facet": "tidal-sensor-replay",
+          "compatibility_key": "tidal-sensor-replay@3",
+          "policy_ref": "POL-HWC-ISLET-RECIP",
+          "counterparty": "JUNCTION-88",
+          "requested_counterfact_id": "F-HWC-JUNCTION-RECIP-PROJECTION",
+          "purpose": "symmetric-tidal-probe",
+          "retention": "PT6M",
+          "max_depth": 0,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "JUNCTION-88",
+      "delivery_scope": "LOCAL_ONLY:JUNCTION-88",
+      "observations": [
+        {
+          "local_fact_id": "F-HWC-JUNCTION-RECIP-PROJECTION",
+          "summary": "A task projection may be exchanged only if the named counterparty discloses its counterpart in the same transaction.",
+          "direction": "OFFER",
+          "facet": "tidal-sensor-replay",
+          "compatibility_key": "tidal-sensor-replay@3",
+          "policy_ref": "POL-HWC-JUNCTION-RECIP",
+          "counterparty": "ISLET-53",
+          "requested_counterfact_id": "F-HWC-ISLET-RECIP-PROJECTION",
+          "purpose": "symmetric-tidal-probe",
+          "retention": "PT6M",
+          "max_depth": 0,
+          "onward_disclosure": false
+        }
+      ]
+    },
+    {
+      "holder": "LAGOON-97",
+      "delivery_scope": "LOCAL_ONLY:LAGOON-97",
+      "observations": [
+        {
+          "local_fact_id": "RAW-HWC-LAGOON-PEAT-OFFER",
+          "summary": "The capability is present, but the responsible Authority refuses every discovery projection at this step.",
+          "direction": "OFFER",
+          "facet": "peat-salinity-recovery",
+          "compatibility_key": "peat-salinity-recovery@4",
+          "required_response": "REFUSE",
+          "permitted_response_witness": "W-HWC-PEAT-POLICY-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "MORAIN-20",
+      "delivery_scope": "LOCAL_ONLY:MORAIN-20",
+      "observations": [
+        {
+          "local_fact_id": "HWC-MORAIN-WINDOW",
+          "summary": "No response arrived within the frozen open-population evaluation window.",
+          "permitted_witness": "W-HWC-NO-RESPONSE"
+        }
+      ]
+    },
+    {
+      "holder": "NARROW-63",
+      "delivery_scope": "LOCAL_ONLY:NARROW-63",
+      "observations": [
+        {
+          "local_fact_id": "HWC-NARROW-REFUSAL",
+          "summary": "The responsible Authority explicitly refuses to answer the capability claim.",
+          "permitted_witness": "W-HWC-EXPLICIT-REFUSAL"
+        }
+      ]
+    },
+    {
+      "holder": "ORBIT-07",
+      "delivery_scope": "LOCAL_ONLY:ORBIT-07",
+      "observations": [
+        {
+          "local_fact_id": "HWC-CLOSED-NEG-ORBIT",
+          "summary": "No matching offer exists at the frozen closed-population snapshot.",
+          "permitted_witness": "W-HWC-CLOSED-ORBIT-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "PINNACLE-39",
+      "delivery_scope": "LOCAL_ONLY:PINNACLE-39",
+      "observations": [
+        {
+          "local_fact_id": "HWC-CLOSED-NEG-PINNACLE",
+          "summary": "No matching offer exists at the frozen closed-population snapshot.",
+          "permitted_witness": "W-HWC-CLOSED-PINNACLE-NEG"
+        }
+      ]
+    },
+    {
+      "holder": "QUARRY-55",
+      "delivery_scope": "LOCAL_ONLY:QUARRY-55",
+      "observations": [
+        {
+          "local_fact_id": "HWC-CLOSED-NEG-QUARRY",
+          "summary": "No matching offer exists at the frozen closed-population snapshot.",
+          "permitted_witness": "W-HWC-CLOSED-QUARRY-NEG"
+        }
+      ]
+    }
+  ],
+  "available_actions": [
+    "EMIT_TASK_RELATIVE_PROJECTION",
+    "ROUTE_AUTHORIZED_PROJECTION",
+    "EXECUTE_DERIVED_ONWARD",
+    "EXECUTE_RECIPROCAL_EXCHANGE",
+    "VERIFY_RECIPIENT_ACK_SET",
+    "VERIFY_EXTERNAL_ANCHOR",
+    "REFUSE",
+    "ABSTAIN_AS_UNKNOWN",
+    "EMIT_VERSION_INVALIDATION",
+    "HANDOFF_RELATION_CANDIDATE"
+  ],
+  "execution_contract": {
+    "source_is_method_visible": false,
+    "packet_builder_required": true,
+    "central_aggregation_of_local_views": false,
+    "raw_local_fact_disclosure": false,
+    "commitment_or_business_authority_granted": false,
+    "execution_claim_requires_controller_receipt": true,
+    "execution_claim_requires_all_recipient_acks": true,
+    "execution_claim_requires_external_anchor": true
+  }
+}

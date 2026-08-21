@@ -1,0 +1,46 @@
+{
+  "schema": "towow.controller-contract.v1",
+  "contract_id": "W4A-CONTROLLER-CONTRACT-001",
+  "controller_id": "LOCAL-CONTROLLER-W4A",
+  "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+  "evaluation_step": 7,
+  "max_disclosure_units": 20,
+  "compatible_facet_pairs": [
+    [
+      "compute-demand",
+      "compute-supply"
+    ]
+  ],
+  "trusted_holder_receipts": [
+    {
+      "receipt_id": "AUTH-DIRECT-ALPHA-001",
+      "issuer": "HOLDER-ALPHA",
+      "sha256": "4d759d3ab8495debda6cd52394c8d144d39f9a3b62994170db7389b9c233aa01"
+    },
+    {
+      "receipt_id": "AUTH-ONWARD-BETA-001",
+      "issuer": "HOLDER-BETA",
+      "sha256": "015296ddb354172a6145eab91df0fdf90b2371f470c1fe6dda83146739060701"
+    },
+    {
+      "receipt_id": "AUTH-RECIP-GAMMA-001",
+      "issuer": "HOLDER-GAMMA",
+      "sha256": "31bd21895857c2ec4dfa69c162e2754653cf5c408f4f7281d121cc14cb1260c0"
+    },
+    {
+      "receipt_id": "AUTH-RECIP-DELTA-001",
+      "issuer": "HOLDER-DELTA",
+      "sha256": "3a2f09ac91fda21f009ff8e0e5892f9a12ae5dfc7dd8f0a9542f18bad022cf01"
+    }
+  ],
+  "source_authentication": {
+    "mode": "FROZEN_TRUSTED_CONTRACT_REGISTRY_SIMULATION",
+    "claim": "Canonical holder payload hashes are matched to a frozen local registry.",
+    "not_claimed": [
+      "holder cryptographic signature",
+      "malicious same-directory process resistance",
+      "external append-only anchoring",
+      "recipient-side independent acknowledgement"
+    ]
+  }
+}

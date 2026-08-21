@@ -1,0 +1,202 @@
+{
+  "schema_version": "wave011-private-oracle-v1",
+  "separation": "NOT_METHOD_VISIBLE",
+  "oracle_defaults": {
+    "target": "restore_service_without_lowering_security",
+    "q_version": "Q-G1-v1",
+    "necessary_principals": [
+      "product-owner",
+      "dependency-owner"
+    ],
+    "min_unique_sources": 1,
+    "operators": {},
+    "evidence_truth": {}
+  },
+  "worlds": [
+    {
+      "world_id": "CASE-001",
+      "l_benchmark": true,
+      "d_actual": true,
+      "fact_existed_at_t0": true,
+      "evidence_truth": {
+        "E01-OWNER-PUBLIC": {
+          "world_binding": "CASE-001",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 0,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "PUBLIC_INDEX"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-002",
+      "l_benchmark": true,
+      "d_actual": true,
+      "fact_existed_at_t0": true,
+      "evidence_truth": {
+        "E02-OWNER-PRIVATE": {
+          "world_binding": "CASE-002",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 0,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "T0_LEGAL_OWNER_QUERY"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-003",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": false,
+      "operators": {
+        "OP03-CAPABILITY": "CAPABILITY",
+        "OP03-REVERSE": "CAPABILITY"
+      },
+      "evidence_truth": {
+        "E03-T1-RECEIPT": {
+          "world_binding": "CASE-003",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 1,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "OPERATOR_CREATED_QUALIFICATION"
+        },
+        "E03-REVOKED": {
+          "world_binding": "CASE-003",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 1,
+          "disclosure_allowed": true,
+          "supports_qualification": false,
+          "revoked": true,
+          "candidate_source": "OPERATOR_REVERSAL"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-004",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": true,
+      "evidence_truth": {
+        "E04-COORDINATOR": {
+          "world_binding": "CASE-004",
+          "issuer": "coordinator",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "coordinator-log",
+          "issued_at": 0,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "PUBLIC_INDEX"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-005",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": true,
+      "evidence_truth": {
+        "E05-FORBIDDEN": {
+          "world_binding": "CASE-005",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 0,
+          "disclosure_allowed": false,
+          "supports_qualification": true,
+          "candidate_source": "FORBIDDEN_OWNER_QUERY"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-006",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": true
+    },
+    {
+      "world_id": "CASE-007",
+      "l_benchmark": false,
+      "d_actual": false,
+      "fact_existed_at_t0": false
+    },
+    {
+      "world_id": "CASE-008",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": true
+    },
+    {
+      "world_id": "CASE-009",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": false,
+      "operators": {
+        "OP09-TERMS": "TERMS",
+        "OP09-REVERSE": "TERMS"
+      },
+      "evidence_truth": {
+        "E09-T1-TERMS": {
+          "world_binding": "CASE-009",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 1,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "OPERATOR_CREATED_QUALIFICATION"
+        },
+        "E09-REVOKED": {
+          "world_binding": "CASE-009",
+          "issuer": "dependency-owner",
+          "expected_issuer": "dependency-owner",
+          "canonical_source": "dependency-owner-ledger",
+          "issued_at": 1,
+          "disclosure_allowed": true,
+          "supports_qualification": false,
+          "revoked": true,
+          "candidate_source": "OPERATOR_REVERSAL"
+        }
+      }
+    },
+    {
+      "world_id": "CASE-010",
+      "l_benchmark": true,
+      "d_actual": false,
+      "fact_existed_at_t0": true,
+      "min_unique_sources": 2,
+      "evidence_truth": {
+        "E10-ALIAS-A": {
+          "world_binding": "CASE-010",
+          "issuer": "attestor-alias-a",
+          "expected_issuer": "attestor-alias-a",
+          "canonical_source": "single-attestor-root",
+          "issued_at": 0,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "PUBLIC_INDEX"
+        },
+        "E10-ALIAS-B": {
+          "world_binding": "CASE-010",
+          "issuer": "attestor-alias-b",
+          "expected_issuer": "attestor-alias-b",
+          "canonical_source": "single-attestor-root",
+          "issued_at": 0,
+          "disclosure_allowed": true,
+          "supports_qualification": true,
+          "candidate_source": "PUBLIC_INDEX"
+        }
+      }
+    }
+  ]
+}

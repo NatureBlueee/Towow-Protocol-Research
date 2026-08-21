@@ -1,0 +1,215 @@
+{
+  "authority": {
+    "adoption_required": true,
+    "changes_current_contracts_or_profile": false,
+    "closes_external_binding": false,
+    "is_private_registry_instance": false
+  },
+  "c01_detectability_prediction": {
+    "calibration_per_role": 50,
+    "candidate_rule": "SINGLE_EXACT_CATEGORICAL_TOKEN_PRESENCE_ON_REGISTERED_CWD_MARKER_PATH",
+    "class_tail_alpha": 0.025,
+    "conditional_bonferroni_classwise_cp_lower_if_50_of_50": 0.9288782635,
+    "expected_calibration_balanced_accuracy_if_mechanism_exact": 1.0,
+    "expected_holdout_balanced_accuracy_if_mechanism_exact": 1.0,
+    "fresh_holdout_per_role": 50,
+    "minimum_per_predicted_class_support": 5,
+    "minimum_total_calibration_support": 10,
+    "primary_rule_source_required": {
+      "feature_family_id": "F04_DIRECTORY_AND_SHARED_STATE",
+      "receipt_path_pattern": "/directory_trees/cwd/entries/*/path",
+      "transform": "path_exact_category"
+    },
+    "result_state": "DESIGN_PREDICTION_NOT_RUN",
+    "secondary_detector_can_rescue_failed_primary": false
+  },
+  "candidate_receipt_expectation": {
+    "directory_trees": {
+      "cwd": {
+        "available": true,
+        "errors": [],
+        "marker_count_exact": 1,
+        "marker_entry": {
+          "mode_octal": "0o0400",
+          "path": "d0-residue-v1-<PRIVATE_32_LOWERCASE_HEX_ROLE_TAG>",
+          "size_bytes": "0",
+          "type": "file"
+        },
+        "truncated": false
+      }
+    },
+    "visible_canaries": [],
+    "why_visible_canaries_empty": "COLLECTOR_SCANS_CANARY_CONTENT_ONLY_UNDER_CHALLENGE_ROOT_AND_ENVIRONMENT_NOT_CWD"
+  },
+  "challenge": "D0-HOST-LEAK",
+  "control_kind": "SACRIFICIAL_PREDECESSOR_SHARED_STATE_CONTAMINATION",
+  "family_id": "D0_RESIDUE_OPAQUE_BASENAME_V1",
+  "family_registration_candidate": {
+    "calibration_population_by_role": 50,
+    "challenge": "D0-HOST-LEAK",
+    "expected_collector_feature_family": "F04_DIRECTORY_AND_SHARED_STATE",
+    "family_id": "D0_RESIDUE_OPAQUE_BASENAME_V1",
+    "holdout_population_by_role": 50,
+    "injection_surface": "SACRIFICIAL_PREDECESSOR_CREATED_EXACT_BASENAME_IN_READONLY_SHARED_RESIDUE_CWD",
+    "primary_detector_id_from_C01_TO_C05": "C01_EXACT_CATEGORICAL_SCAN"
+  },
+  "fail_closed": [
+    "PRIVATE_REGISTRY_NOT_FROZEN_AND_BOUND_BEFORE_EXTERNAL_ANCHOR",
+    "ROLE_TAG_DIFFERS_BETWEEN_CALIBRATION_AND_HOLDOUT",
+    "RESIDUE_NOT_EMPTY_BEFORE_PREDECESSOR",
+    "RESIDUE_NOT_EXACTLY_ONE_ZERO_BYTE_REGULAR_MARKER_AFTER_PREDECESSOR",
+    "MARKER_NOT_PROVEN_PREDECESSOR_CREATED_WITHIN_TRUSTED_HOST_DAEMON_BOUNDARY",
+    "ACTUAL_BASENAME_NOT_IN_PRIVATE_REGISTRY",
+    "ROLE_CODED_SOURCE_PATH_CONTAINER_NAME_ENV_ARGV_OR_PUBLIC_PLAN",
+    "CWD_TREE_MISSING_TRUNCATED_OR_ERROR",
+    "PRIMARY_C01_RULE_NOT_ATTRIBUTED_TO_REGISTERED_EXACT_PATH",
+    "PRIMARY_C01_HOLDOUT_THRESHOLD_NOT_MET",
+    "RESIDUE_SOURCE_REUSED_ACROSS_SLOTS",
+    "ANY_D0_MOUNT_PREDECESSOR_MARKER_OR_CATEGORY_IN_T",
+    "IMPLEMENTATION_REQUIRES_UNADOPTED_CONTRACT_PROFILE_FEATURE_SPEC_OR_COLLECTOR_CHANGE"
+  ],
+  "mechanism": {
+    "candidate": {
+      "cwd": "/shared-residue",
+      "environment_role_free": true,
+      "mount_destination": "/shared-residue",
+      "mount_readonly": true,
+      "reads_signal_via_existing_collector_tree_walk": true,
+      "user": "65534:65534"
+    },
+    "cleanup": {
+      "after_candidate_post_inspect_and_slot_freeze": true,
+      "failure_action": "QUARANTINE_NEVER_REUSE",
+      "per_slot_unique_root": true
+    },
+    "marker": {
+      "basename_format": "d0-residue-v1-<32-lowercase-hex>",
+      "content_byte_length": 0,
+      "entry_count_in_residue": 1,
+      "is_symlink": false,
+      "mode_octal": "0o0400",
+      "role_signal_location": "BASENAME_ONLY",
+      "same_length_and_character_class_for_both_roles": true
+    },
+    "predecessor": {
+      "creates_marker_exclusively": true,
+      "final_directory_mode_octal": "0o0555",
+      "mount_writable_only_for_predecessor": true,
+      "must_exit_before_candidate_start": true,
+      "other_entries_forbidden": true,
+      "user": "65534:65534"
+    },
+    "source_path": {
+      "derivation": "OPAQUE_SLOT_ID_ONLY",
+      "forbidden_inputs": [
+        "role",
+        "phase",
+        "block",
+        "execution_order"
+      ]
+    }
+  },
+  "non_target_surface_audit": [
+    {
+      "audit": "ATTRIBUTE_AND_ABLATE_ALL_NGRAM_SHAPE_AND_TREE_RECORD_FEATURES_DERIVED_FROM_MARKER_PATH",
+      "id": "A01_MARKER_DERIVED_SECONDARY_ENCODINGS",
+      "surface": "PATH_NGRAM_PATH_SHAPE_AND_TREE_RECORD"
+    },
+    {
+      "audit": "FREEZE_CONTROLLABLE_FIELDS_THEN_RUN_ROLE_ORDER_PERMUTATION_HOLM_AND_MARKER_PATH_ABLATION",
+      "id": "A02_FILESYSTEM_METADATA",
+      "surface": "INODE_DEVICE_CTIME_MTIME_DIRECTORY_SIZE_NLINK"
+    },
+    {
+      "audit": "REQUIRE_IDENTICAL_WITHIN_D0_ROLES_AND_ZERO_EXISTENCE_IN_T_ACTUAL_INSPECT_AND_RECEIPTS",
+      "id": "A03_MOUNT_AND_CWD_ENVELOPE",
+      "surface": "SHARED_RESIDUE_MOUNT_AND_CWD"
+    },
+    {
+      "audit": "EQUAL_LENGTH_ZERO_BYTE_SAME_CODE_PATH_PLUS_F05_F06_ROLE_ORDER_AUDIT_AND_ROLE_NULL_PLACEBO",
+      "id": "A04_PREDECESSOR_RUNTIME_SIDE_EFFECT",
+      "surface": "CPU_IO_CACHE_DAEMON_EVENTS_AND_TIMING"
+    },
+    {
+      "audit": "DERIVE_FROM_INDEPENDENT_OPAQUE_SLOT_ID_ONLY_EXCLUDE_HOST_FIELDS_FROM_PREDICTORS_AND_MUTATION_TEST",
+      "id": "A05_HOST_IDENTIFIERS",
+      "surface": "HOST_SOURCE_PATH_CONTAINER_NAME_AND_OPAQUE_SLOT_ID"
+    },
+    {
+      "audit": "EXTRACT_FEATURES_BEFORE_REVEAL_JOIN_AND_REQUIRE_FULL_SCALAR_LEAF_PARTITION_WITH_FORBIDDEN_SOURCE_MUTATION_TEST",
+      "id": "A06_PRIVATE_PROVENANCE_MATERIAL",
+      "surface": "ACTUAL_TAG_MAPPING_AND_PREDECESSOR_COMMAND_IN_HOST_RECEIPTS"
+    },
+    {
+      "audit": "PER_SLOT_SOURCE_OWNERSHIP_GRAPH_QUARANTINE_ON_CLEANUP_FAILURE_AND_T_ZERO_INGRESS_SENTINEL",
+      "id": "A07_STALE_RESIDUE",
+      "surface": "CROSS_SLOT_OR_T_RESIDUE_REUSE"
+    }
+  ],
+  "not_claimed": [
+    "IMPLEMENTED",
+    "PROFILE_ADOPTED",
+    "PRIVATE_REGISTRY_BOUND",
+    "SMOKE_RUN",
+    "PREFORMAL_REHEARSAL_RUN",
+    "FORMAL_RUN",
+    "C01_SENSITIVITY_VALIDATED",
+    "T_ISOLATION_VALIDATED",
+    "REPRESENTATIVE_OF_ALL_REAL_SHARED_STATE_LEAKS"
+  ],
+  "preformal_causal_audits": [
+    "ROLE_NULL_PLACEBO_PREDECESSOR",
+    "PRIVATE_TAG_TO_ROLE_MAPPING_INVERSION_IN_SEPARATE_REHEARSAL",
+    "ALL_MARKER_DERIVED_FEATURE_ABLATION",
+    "D0_THEN_T_INGRESS_SENTINEL"
+  ],
+  "private_registry_instance_requirements": {
+    "actual_role_labels": "PRIVATE_UNTIL_CLOSE_REVEAL",
+    "actual_tag_bytes_or_hashes_in_public_plan": false,
+    "binding_target_if_adopted": "EXECUTABLE_ATTACK_PROFILE.external_bindings.D0_private_family_registry_sha256",
+    "generation": "TWO_DISTINCT_INDEPENDENT_OS_CSPRNG_16_BYTE_TAGS",
+    "mapping_stability": "ONE_TAG_PER_ROLE_REUSED_ACROSS_ALL_CALIBRATION_AND_HOLDOUT_SLOTS_IN_THIS_FAMILY",
+    "registry_bytes_frozen_before_external_anchor": true,
+    "registry_never_mounted_or_sent_to_candidate": true,
+    "registry_usage": "REVEALED_SUBGROUP_SELECTOR_AND_EXPECTED_SIGNAL_AUDIT_ONLY_NEVER_PREDICTOR"
+  },
+  "public_plan_boundary": {
+    "allowed_role_free_fields": [
+      "family_id",
+      "sacrificial_predecessor_exists",
+      "shared_residue_destination_and_cwd",
+      "per_slot_unique_source_derived_from_opaque_slot_id_only",
+      "one_empty_regular_marker",
+      "generic_equal_length_basename_grammar",
+      "candidate_readonly_mount",
+      "cleanup_boundary",
+      "T_has_no_D0_surface"
+    ],
+    "forbidden": [
+      "actual_tag_bytes",
+      "actual_tag_hashes",
+      "tag_to_role_mapping",
+      "registry_seed",
+      "slot_role",
+      "execution_order",
+      "actual_predecessor_command_containing_tag"
+    ]
+  },
+  "schema": "WAVE025_D0_CONTROL_FAMILY_DESIGN_CANDIDATE_V1",
+  "source_bindings": {
+    "batch_evidence_contract_sha256": "d194f56add3739b66e8056ca1c1fd7297b8bf381b1a27ca6bbb2ee419f62cbbf",
+    "collector_source_sha256": "bc18911c65815da3747755eae44b8f77398d034f9c7c67b54430893c5a1ad699",
+    "feature_spec_sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a",
+    "qualification_contract_sha256": "7a382b8c91af6819b4e66b69691fd250b6b52c77a7f5229a077698790de0c670",
+    "selected_attack_profile_sha256": "64a4e366a67ec2c12b1194d6fb01fab5b633529035a16f20b22acbf83346e5a7"
+  },
+  "status": "DESIGN_CANDIDATE_NOT_IMPLEMENTED_NOT_BOUND",
+  "t_zero_ingress_requirements": [
+    "NO_SHARED_RESIDUE_MOUNT_OR_DESTINATION_IN_ACTUAL_T_INSPECT",
+    "NO_D0_PREDECESSOR_COMMAND_RECEIPT_CONTAINER_OR_SESSION_FOR_T",
+    "NO_PRIVATE_BASENAME_BYTES_OR_EXACT_CATEGORY_IN_ANY_T_CANDIDATE_VISIBLE_RECEIPT_AFTER_REVEAL",
+    "NO_D0_SOURCE_PATH_REUSE_BY_T",
+    "PREFORMAL_D0_THEN_T_SENTINEL_MUST_SHOW_ZERO_INGRESS"
+  ],
+  "version": "0.1.0"
+}

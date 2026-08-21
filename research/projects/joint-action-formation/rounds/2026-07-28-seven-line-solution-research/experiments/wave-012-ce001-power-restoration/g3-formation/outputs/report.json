@@ -1,0 +1,1087 @@
+{
+  "body": {
+    "schema_version": "ce001-g3-line-envelope-v2",
+    "namespace": "G3",
+    "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+    "evidence_level": "LOCAL_SYNTHETIC_COMPONENT_MODEL",
+    "product_run_status": "NOT_RUN",
+    "public_packet_sha256": "dc296108a660836e3c7c73a1844181e73e9005e1e753e356623c58fe1aed4ab7",
+    "private_grader_input_sha256": "c3847e18cec2a2f7942e91e3bc7436583e09e2b6c89142539508de10ea2dc148",
+    "case_result_count": 11,
+    "raw_run_count": 16,
+    "line_evidence": [
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NONE",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "e9fb4b9e68b4c95cee2a0c79bc5d42b944885430e678f9e1dfd272ed25ca2136",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "650e9d46e46e815b7a5347e66afb76057cf5461fc4d128f38a76f897e3832f91",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "a249b33463f3b4dd734261b3f89649942615596a46fb8762b0fcf68e32181acf"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H001",
+          "episode_handle": "P001",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "DIRECT_PATH",
+          "post_revoke_observation": {
+            "alternative_resource_id": "BAT-V-NATIVE",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E0-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E0-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "650e9d46e46e815b7a5347e66afb76057cf5461fc4d128f38a76f897e3832f91",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "a7d80bc7ff93f3bf110d8d995951fcfa30a2eae9e15ffc7ffd5e987e4ab68920",
+        "process_boundary": {
+          "grader_pid": 29719,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "e59669a25bdc0c0e72c73608fde6785fb4f64a151094f73d72e44ec0c837df4b",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "EXTANT_ACTIVATED",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "d2b584c298c7565498a55d058c6b3ba215ecb50183e7501975a67f60872b60bc",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "d119106f4162b347e9391c435ec3d13183c7e87b5cc927c35750e7a7ca210a51",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "bc95f646f8def955ab21cdb63310fb3d22cf8b2c4da350d697b39e4414b12ad9"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H002",
+          "episode_handle": "P002",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OLD_FULL_POLICY_CLOSURE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "BAT-R1",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E1-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E1-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "d119106f4162b347e9391c435ec3d13183c7e87b5cc927c35750e7a7ca210a51",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "986ef728317a2b9a999ae9a56fd7c1b16df0e96c17c4b23ef581ff9c00adc31e",
+        "process_boundary": {
+          "grader_pid": 29759,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "110ede259c1d4dde6fb86d2737fef4fb7a44c1242bf11a86220bbf4cbb68b781",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NEW_TOKEN",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "ec5342adbe49e00976a6413f7582abe9a0d6c615911da3ea4f6b8d6f2111e9af",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "1d5278a270c11dbe7070f32e2216a78dad2c2eb03145f0a70a61761ba0666db9"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H003",
+          "episode_handle": "P003",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": true,
+            "runs": [
+              {
+                "closed_registry_observation": {
+                  "executable_registry_sha256": "a607f789da0f7e9a593ffd48851c880246423b489513fe553cc71226acb03b1a",
+                  "frozen_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "intervention_delta_sha256": "b98c05b5e246330150d45e5ed4efb63b2a0747e35a1f724d561dcef67cb023d0",
+                  "matching_action_operator_ids": [],
+                  "proposal_count": 0,
+                  "sign_request_count": 0,
+                  "target_submit_count": 0,
+                  "token_formed_count": 0
+                },
+                "exact_s0_replay": true,
+                "formation_action_actually_removed": true,
+                "frozen_coordinate_observed": false,
+                "intervention": "REMOVE_FORMATION_OPERATOR",
+                "intervention_delta": {
+                  "intervention": "REMOVE_FORMATION_OPERATOR",
+                  "owner_response_override": null,
+                  "removed_actions": [
+                    "REQUEST_PURPOSE_DELEGATION"
+                  ]
+                },
+                "s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+                "trace_sha256": "bf76744c86e46f5d6a093f70d301578cc85663a763edf0d457af6c4e9d4f3b62"
+              },
+              {
+                "closed_registry_observation": {
+                  "executable_registry_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                  "frozen_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "intervention_delta_sha256": "d176668d52436659286296798bf9930e700428e06daaff822581b398000f1d26",
+                  "matching_action_operator_ids": [],
+                  "proposal_count": 0,
+                  "sign_request_count": 0,
+                  "target_submit_count": 0,
+                  "token_formed_count": 0
+                },
+                "exact_s0_replay": true,
+                "formation_action_actually_removed": false,
+                "frozen_coordinate_observed": false,
+                "intervention": "REVERSE_OWNER_DECISION@read",
+                "intervention_delta": {
+                  "intervention": "REVERSE_OWNER_DECISION@read",
+                  "owner_response_override": {
+                    "mode": "REVERSED_REFUSAL",
+                    "phase": "read"
+                  },
+                  "removed_actions": []
+                },
+                "s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+                "trace_sha256": "c19933508db1c016b4a95d1bd14e325f933d1a044e910029d1eb138c1ee0360f"
+              },
+              {
+                "closed_registry_observation": {
+                  "executable_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "frozen_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "intervention_delta_sha256": "68fa3fd6294088591d97f73e0253f39ca3cbde5c70320941a42c110e3baef82f",
+                  "matching_action_operator_ids": [
+                    "REQUEST_PURPOSE_DELEGATION"
+                  ],
+                  "proposal_count": 1,
+                  "sign_request_count": 1,
+                  "target_submit_count": 0,
+                  "token_formed_count": 0
+                },
+                "exact_s0_replay": true,
+                "formation_action_actually_removed": false,
+                "frozen_coordinate_observed": false,
+                "intervention": "REVERSE_OWNER_DECISION@sign",
+                "intervention_delta": {
+                  "intervention": "REVERSE_OWNER_DECISION@sign",
+                  "owner_response_override": {
+                    "mode": "REVERSED_REFUSAL",
+                    "phase": "sign"
+                  },
+                  "removed_actions": []
+                },
+                "s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+                "trace_sha256": "99e0a998d365778f11480cc8222115f60f125f4ea9a37e43e783bf4db9e209bb"
+              },
+              {
+                "closed_registry_observation": {
+                  "executable_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "frozen_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "intervention_delta_sha256": "ccd5013675ed4c1f8c68f05155244a6d6702a179af46413b9d2eff534e6c4912",
+                  "matching_action_operator_ids": [
+                    "REQUEST_PURPOSE_DELEGATION"
+                  ],
+                  "proposal_count": 1,
+                  "sign_request_count": 1,
+                  "target_submit_count": 0,
+                  "token_formed_count": 1
+                },
+                "exact_s0_replay": true,
+                "formation_action_actually_removed": false,
+                "frozen_coordinate_observed": false,
+                "intervention": "REVERSE_OWNER_DECISION@reserve",
+                "intervention_delta": {
+                  "intervention": "REVERSE_OWNER_DECISION@reserve",
+                  "owner_response_override": {
+                    "mode": "REVERSED_REFUSAL",
+                    "phase": "reserve"
+                  },
+                  "removed_actions": []
+                },
+                "s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+                "trace_sha256": "8142183747662e097dcfeb62e5a4368771667fe0459835b39321041718d81193"
+              },
+              {
+                "closed_registry_observation": {
+                  "executable_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "frozen_registry_sha256": "f126e941e3771d2be8db27af69d43ef53106d8d561437764aea69c38848465ba",
+                  "intervention_delta_sha256": "b55504f72de72bb5ff1eb589b64fbae9d615aa505f80d617fb5a8669885012aa",
+                  "matching_action_operator_ids": [
+                    "REQUEST_PURPOSE_DELEGATION"
+                  ],
+                  "proposal_count": 1,
+                  "sign_request_count": 1,
+                  "target_submit_count": 0,
+                  "token_formed_count": 1
+                },
+                "exact_s0_replay": true,
+                "formation_action_actually_removed": false,
+                "frozen_coordinate_observed": false,
+                "intervention": "REVERSE_OWNER_DECISION@execute",
+                "intervention_delta": {
+                  "intervention": "REVERSE_OWNER_DECISION@execute",
+                  "owner_response_override": {
+                    "mode": "REVERSED_REFUSAL",
+                    "phase": "execute"
+                  },
+                  "removed_actions": []
+                },
+                "s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+                "trace_sha256": "3cd45c26a93cdaf73d7e2ebd3d453a13be44d16fa1cf3fb1d44854d1d3f6af63"
+              }
+            ]
+          },
+          "path_class": "OLD_FULL_POLICY_NEW_TOKEN",
+          "post_revoke_observation": {
+            "alternative_resource_id": "GEN-R2",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E2-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E2-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "ec5342adbe49e00976a6413f7582abe9a0d6c615911da3ea4f6b8d6f2111e9af",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "1e244965d55707d3617f27a67669205161a18a2e37317cfc3b930aa0491700fd",
+        "process_boundary": {
+          "grader_pid": 29929,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "f6e1a1c687c0754e7ff0649352ca66d32dc9ac7f439761a768b15d8c4b29bb4b",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NONE",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "0c6f4004a9823abc8aff05e116a35e8c45803f7fe4f97a4386a7941597d08687",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "1f6258b34426f78b5dd5c1c94a2770e65522947cfc0f66c073a54b782df0bbdf",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "a44d354cfd7df28f9c495f7028fea7a2a53351794c2fab6bb7499db659ee6577"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H004",
+          "episode_handle": "P004",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OLD_FULL_POLICY_CLOSURE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "BAT-E3",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E3-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E3-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "1f6258b34426f78b5dd5c1c94a2770e65522947cfc0f66c073a54b782df0bbdf",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "0b1562ce8dbbb8f61fed7d09b0db40cd78b35cd1fc5804b50cc13894d5b191a1",
+        "process_boundary": {
+          "grader_pid": 29957,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "52fddcfe08a8f97112127a2a408cde1780f6c844a3358cf017a5c33b8454a758",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NONE",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "5fae18c56b02ed6b059709e75e56c2266f23764cbf2f23afab62c59ce880769d",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "4f7795bce95b2dc72b4cf952aa7fc2f5343f7a7aa68ab12942f8fdf5be5ff181",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "d95311897a81301cf40113d1b6f225ff7ad646adbe46de01f576c88c359a88c2"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H005",
+          "episode_handle": "P005",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OLD_FULL_POLICY_CLOSURE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "BAT-E3",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E3-C7",
+              "OP-E3-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E3-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "4f7795bce95b2dc72b4cf952aa7fc2f5343f7a7aa68ab12942f8fdf5be5ff181",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "8a707b0e37236f3fdbfa547680f50297da611041458c8aba918af93679ff4a5c",
+        "process_boundary": {
+          "grader_pid": 29981,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "a8b491870c0291de8912f96e50de440cb2832c4a130c525795acde782ef2b806",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NEW_TOKEN",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "05ca36eddc7972729539bdc839d4c14f1a99ddecdad74700011990459b169348",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "02256a3b14ffc9c81f1ad82b356ace5207857fbad6e8d551d8685ba132fd38ed",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "ed980a6417852f4c613e7255680597877b77bb34a1a8a021a687d965eff9739d"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H006",
+          "episode_handle": "P006",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OLD_FULL_POLICY_NEW_TOKEN",
+          "post_revoke_observation": {
+            "alternative_resource_id": "GEN-R3-ALT",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E4-ALT-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": true,
+            "readback_operation_id": "OP-E4-ALT-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": true,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": true
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "02256a3b14ffc9c81f1ad82b356ace5207857fbad6e8d551d8685ba132fd38ed",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "38d5273341fc073d17e7bb8c4f8880c1dd802a4a4f79ba07a39202847d6d34cb",
+        "process_boundary": {
+          "grader_pid": 30001,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "649d1f331d83cce7dc1597e7a3490ea3c9ea148d7b30faa7da36d36a2de00c00",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "UNSAT",
+          "E": "SAME",
+          "N": "NONE",
+          "R": {
+            "R_actual": "FALSE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "FALSE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "c3ca2c75332e8b2df3039395985a24740f8e14143349fc38a82d8d01a2adb68b",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "652f7a06ee49eac62e60ed0d8e3bf705670c7a9b98056b529c30df3a501c0787",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "ec854d1bf77eae730d85b4077530be0f451a8d12339a610751be3a68c2f929c5"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": false,
+            "target_readback_observed": false,
+            "terminal_observation": "NO_EXECUTABLE_RESOURCE",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H007",
+          "episode_handle": "P007",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "BOUNDED_UNREACHABLE",
+          "post_revoke_observation": {
+            "alternative_resource_id": null,
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [],
+            "owner_outcome_response_owners": [],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": null,
+            "readback_timestamp_min": null,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": null,
+              "other_circuits_energized": null,
+              "safety_compliant": null
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "FALSE",
+            "measurable": "FALSE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "652f7a06ee49eac62e60ed0d8e3bf705670c7a9b98056b529c30df3a501c0787",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "a6c26c8a25adf2707eb5531b26d24acce9f41a7cc43098fad7ccfbdee2b026a1",
+        "process_boundary": {
+          "grader_pid": 30038,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "4f92e8ff952ed31f6387fcdf46e4a29f2df019300de9e69fdc7f377cbbd3cf27",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "NONE",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "25fb351897f919ab68537e9b7a8044899305e61ff49c08113b48f09c4f73e5cb",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "7c631e48780936adf493fc310173e374cbb6e64f505defafc1922bc204059a8f",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "fbfae9aaea06224531124db26948f923562c5be6b8b5e9c4ba2a23c0e8aefeef"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H008",
+          "episode_handle": "P008",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OLD_FULL_POLICY_CLOSURE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "BAT-E6",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E6-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E6-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "7c631e48780936adf493fc310173e374cbb6e64f505defafc1922bc204059a8f",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "819c91746cbe4eee3e23bd4b4ede0c2ddf96bf3202206ae542daed288e17bbb2",
+        "process_boundary": {
+          "grader_pid": 30072,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "5bf50be30620bd112f52bfba8ad9d5e650f8bbf523cde65794970aa897b117c8",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "UNKNOWN",
+          "E": "SAME",
+          "N": "UNKNOWN",
+          "R": {
+            "R_actual": "FALSE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "UNKNOWN",
+            "R_physical_exists": "UNKNOWN",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "f21610131b2c0819a27ae00b164ae006da9349b20ab94355d59cde463301b534",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "e14ae540550b859d1d047837532b80a887d6fb84b4cb1a46061022bb23d3d4a1",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "e1ac0c636de30b84092b6e37b66dac3077e8eec1af90c5c62f9b0b6b1e938b08"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": false,
+            "target_readback_observed": false,
+            "terminal_observation": "DEFER",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H009",
+          "episode_handle": "P009",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "OPEN_INVENTORY_UNKNOWN",
+          "post_revoke_observation": {
+            "alternative_resource_id": null,
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [],
+            "owner_outcome_response_owners": [],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": null,
+            "readback_timestamp_min": null,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": null,
+              "other_circuits_energized": null,
+              "safety_compliant": null
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "FALSE",
+            "measurable": "UNKNOWN",
+            "physical": "UNKNOWN",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "e14ae540550b859d1d047837532b80a887d6fb84b4cb1a46061022bb23d3d4a1",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "7b53d0461d76456f24d821ae3ccb4789f71028ad3770f01330e2e6811d287af1",
+        "process_boundary": {
+          "grader_pid": 30126,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "545237359748647b552c450da1037254dae51ce94121f75c169e9523f5083e1a",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "UNSAT",
+          "E": "CHANGED",
+          "N": "NEW_TOKEN",
+          "R": {
+            "R_actual": "TRUE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "INVARIANT",
+          "V": "VALID",
+          "bindings": {
+            "frozen_s0_sha256": "32a73b6a86b5cec1ba90ee84d8c15f55d99776c8679768481dd6fdb7ed43ecb0",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "388829b7c1654085451bca5ec3161877516e898a9b5e2d87f8b280e36bbb108a",
+            "result_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "trace_sha256": "9d4cf99ee4e930b98751dc16b39c1a37aa5dcf901c4647f07f59be23cebb4bf4"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": true,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": true
+          },
+          "case_handle": "H010",
+          "episode_handle": "P010",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "MODEL_KERNEL_CHANGE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "GEN-KERNEL",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-G3-KERNEL-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-G3-KERNEL-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "TRUE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "388829b7c1654085451bca5ec3161877516e898a9b5e2d87f8b280e36bbb108a",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "a5649ab7b496ebd28f9ca6957a202c497d326f7587e25188c53a101d20f04ede",
+        "process_boundary": {
+          "grader_pid": 30153,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "cb8f316835ea459e765182c4c58465e69d3f29fd866aaba9ba15d996aea35904",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      },
+      {
+        "body": {
+          "C": "SAT",
+          "E": "SAME",
+          "N": "UNKNOWN",
+          "R": {
+            "R_actual": "FALSE",
+            "R_branch_robust": "UNKNOWN",
+            "R_measurable_exists": "TRUE",
+            "R_physical_exists": "TRUE",
+            "R_safety_robust": "UNKNOWN",
+            "R_terminal_robust": "UNKNOWN"
+          },
+          "T": "CONTROLLER_SUBSTITUTION",
+          "V": "INVALID",
+          "bindings": {
+            "frozen_s0_sha256": "f78750d0edea872ba8cb76dad6831c1a9dec190d6c2e9822f2207b1bd5db2912",
+            "frozen_task_sha256": "ee0a15924bf1a6af4ecf37c42ed3d66e13dc549f789dfe5b054a25b66f9f30be",
+            "response_family_sha256": "ec5342adbe49e00976a6413f7582abe9a0d6c615911da3ea4f6b8d6f2111e9af",
+            "result_task_sha256": "d9b0818fc87b7803b66b9c5f0979565a693cf2794d531c22336a29c5922c6f60",
+            "trace_sha256": "1848c965aeb4a03a0f38a5c80811c98bd78201fb5b2c7f00f6367d1c148b190e"
+          },
+          "bounded_reachability_witness": {
+            "frozen_coordinate_observed": false,
+            "target_readback_observed": true,
+            "terminal_observation": "TARGET_READBACK_OBSERVED",
+            "trace_binding_valid": false
+          },
+          "case_handle": "H003",
+          "episode_handle": "P003",
+          "intervention_trace": {
+            "removal_blocks_bounded_witness": false,
+            "runs": []
+          },
+          "path_class": "TASK_CHANGE",
+          "post_revoke_observation": {
+            "alternative_resource_id": "GEN-R2",
+            "deadline": "T0+90min",
+            "future_contract_evaluator_required": true,
+            "operation_ids_observed": [
+              "OP-E2-C7"
+            ],
+            "owner_outcome_response_owners": [
+              "O_Q",
+              "O_V"
+            ],
+            "post_revoke_rediscovery_observed": false,
+            "readback_operation_id": "OP-E2-C7",
+            "readback_timestamp_min": 60,
+            "revocation_observed": false,
+            "safety_observation": {
+              "noise_compliant": true,
+              "other_circuits_energized": [],
+              "safety_compliant": true
+            },
+            "trace_complete_for_frozen_coordinates": false
+          },
+          "reachability": {
+            "actual": "FALSE",
+            "measurable": "TRUE",
+            "physical": "TRUE",
+            "robust": "UNKNOWN",
+            "robust_summary_semantics": "ALIAS_OF_R_BRANCH_ROBUST_NOT_A_REPLACEMENT_FOR_R_VECTOR"
+          },
+          "robust_denominator": {
+            "allowed_branch_population": null,
+            "allowed_branch_population_sha256": null,
+            "counterfactuals_are_not_robust_denominator": true,
+            "coverage_proof": null,
+            "scripted_response_family_sha256": "ec5342adbe49e00976a6413f7582abe9a0d6c615911da3ea4f6b8d6f2111e9af",
+            "scripted_response_family_status": "SCRIPTED_OBSERVED_FAMILY_NOT_COMPLETE",
+            "status": "UNKNOWN_UNFROZEN_COMPLETE_RESPONSE_TREE"
+          }
+        },
+        "body_sha256": "5a743f9dd47ef99e30fb8a32f5301e76937fd60b1c541fa677db256c439e28ca",
+        "process_boundary": {
+          "grader_pid": 30182,
+          "runner_pid": 29650,
+          "transcript_frozen_before_grading": true,
+          "transcript_frozen_sha256": "b4852941f171bd57bd6d073031528b9d6fc3e0d4473069388ef1c0092adaf696",
+          "grader_output_cannot_reenter_worker_or_owner": true,
+          "worker_terminated_before_grader_start": true,
+          "owner_endpoint_terminated_before_grader_start": true
+        }
+      }
+    ],
+    "separation": {
+      "worker_private_input_observed": false,
+      "public_packet_contains_expected_label": false,
+      "public_packet_contains_operator_proposal": false,
+      "public_packet_uses_opaque_case_handles": true,
+      "owner_worker_grader_process_boundary": true,
+      "grader_runs_after_transcript_freeze": true,
+      "arm_comparison_implemented": false
+    }
+  },
+  "body_sha256": "445b016aac078be71458b71e6749387697c3203e958433cc7184f925735dfabf"
+}

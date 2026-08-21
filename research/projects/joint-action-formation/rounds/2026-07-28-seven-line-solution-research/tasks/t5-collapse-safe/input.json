@@ -1,0 +1,79 @@
+{
+  "schema_version": "3.0",
+  "task_id": "T5-COLLAPSE-SAFE-SAAS-V3",
+  "evidence_level": "NEGATIVE_CONTROL_SYNTHETIC",
+  "request": {
+    "buyer": "BUYER-TEAM",
+    "buyer_account": "BUYER-ACCOUNT-1",
+    "sku": "SKU-CRM-STD-M",
+    "seat_count": 5,
+    "billing_period": "MONTHLY",
+    "budget_ceiling_cny": 1000
+  },
+  "platform": {
+    "id": "STANDARD-SAAS-PLATFORM",
+    "unit_price_cny": 120,
+    "total_price_cny": 600,
+    "success_postcondition": {
+      "subscription_status": "ACTIVE",
+      "seat_count": 5,
+      "invoice_status": "ISSUED"
+    }
+  },
+  "authority": {
+    "buyer_approver": "BUYER-APPROVER-1",
+    "platform_is_authoritative_for": [
+      "catalog",
+      "order",
+      "payment",
+      "provisioning",
+      "invoice",
+      "subscription_status"
+    ]
+  },
+  "required_operations": [
+    "READ_CATALOG",
+    "REQUEST_BUYER_APPROVAL",
+    "CREATE_ORDER",
+    "AUTHORIZE_PAYMENT",
+    "READ_PROVISIONING",
+    "READ_INVOICE"
+  ],
+  "minimal_disclosures": [
+    {
+      "recipient": "STANDARD-SAAS-PLATFORM",
+      "purpose": "PURCHASE_EXECUTION",
+      "retention": "ACCOUNT_POLICY",
+      "fields": [
+        "sku",
+        "seat_count",
+        "billing_period",
+        "buyer_account",
+        "payment_token_reference"
+      ]
+    },
+    {
+      "recipient": "BUYER-APPROVER-1",
+      "purpose": "PURCHASE_APPROVAL",
+      "retention": "RUN_ONLY",
+      "fields": [
+        "sku",
+        "seat_count",
+        "total_price_cny"
+      ]
+    }
+  ],
+  "failure_branches": {
+    "ORDER_REJECTED": "READ_PLATFORM_STATE_AND_STOP",
+    "PAYMENT_FAILED": "READ_PLATFORM_STATE_AND_STOP",
+    "PROVISIONING_FAILED": "READ_PLATFORM_STATE_AND_STOP",
+    "CANCELLED": "READ_PLATFORM_STATE_AND_STOP"
+  },
+  "baseline_cost_ceiling": {
+    "external_wait_units": 2,
+    "human_decisions": 1,
+    "cognitive_units": 6,
+    "governance_objects": 0,
+    "extra_recovery_systems": 0
+  }
+}

@@ -1,0 +1,3678 @@
+{
+  "case_results": [
+    {
+      "calibration_row_count": 40,
+      "case_id": "D01_AND",
+      "expected_relation": "S iff and-a and and-b are both present",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 6,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 243,
+            "canonical_sha256_without_binding": "beb2aecd26c0e342a543b69f9e2f236e8851ee9f1d5cd1191a70294c44ae314c",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "and-a",
+              "and-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "beb2aecd26c0e342a543b69f9e2f236e8851ee9f1d5cd1191a70294c44ae314c",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 6,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 8,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 253,
+            "canonical_sha256_without_binding": "5c295582ae799c4935ed5d067f8e4a88fea8d04328d1c5dc100e487695163fa2",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "and-a",
+              "and-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "5c295582ae799c4935ed5d067f8e4a88fea8d04328d1c5dc100e487695163fa2",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 6,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 270,
+            "canonical_sha256_without_binding": "a7898029467276643f788ac3ab711b1349ea0787b75efa67ccc6d11375bf8db7",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "01": "R",
+              "10": "R",
+              "11": "S"
+            },
+            "pair": [
+              "and-a",
+              "and-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "a7898029467276643f788ac3ab711b1349ea0787b75efa67ccc6d11375bf8db7",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Can the family recover a positive two-token conjunction?",
+      "registered_pair": [
+        "and-a",
+        "and-b"
+      ],
+      "tags": [
+        "AND",
+        "positive-pattern"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "and-a",
+            "and-b"
+          ]
+        ],
+        "row_presence_support": {
+          "and-a": 26,
+          "and-b": 26
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "and-a",
+          "and-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D02_NEGATED_SIGNED_PATTERN",
+      "expected_relation": "S iff neg-a is present and neg-b is absent",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.65,
+              "denominator": 20,
+              "numerator": 13
+            },
+            "predicted_class_support": {
+              "R": 6,
+              "S": 34
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.3,
+                "denominator": 10,
+                "numerator": 3
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 20,
+              "11": 6
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.65,
+              "denominator": 20,
+              "numerator": 13
+            },
+            "predicted_class_support": {
+              "R": 6,
+              "S": 34
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.3,
+                "denominator": 10,
+                "numerator": 3
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 243,
+            "canonical_sha256_without_binding": "03e608893b376280728ab3da5913dea6b8a0f29ed8af60ceef3307b3e2496bdb",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "neg-a",
+              "neg-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "03e608893b376280728ab3da5913dea6b8a0f29ed8af60ceef3307b3e2496bdb",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 20,
+              "11": 6
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 8,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 253,
+            "canonical_sha256_without_binding": "af271b99d9d718fd92b1cd17c37e3ae332f0f4ca4aef14429769b0321046a554",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "neg-a",
+              "neg-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "10",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "af271b99d9d718fd92b1cd17c37e3ae332f0f4ca4aef14429769b0321046a554",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 8,
+              "01": 6,
+              "10": 20,
+              "11": 6
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 270,
+            "canonical_sha256_without_binding": "bed627e303eb7505de5a2d1f262b46b3a5f09aa0ed7f815abdfae8e87e10ea99",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "01": "R",
+              "10": "S",
+              "11": "R"
+            },
+            "pair": [
+              "neg-a",
+              "neg-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "bed627e303eb7505de5a2d1f262b46b3a5f09aa0ed7f815abdfae8e87e10ea99",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Does one present and one absent token require a signed literal?",
+      "registered_pair": [
+        "neg-a",
+        "neg-b"
+      ],
+      "tags": [
+        "negated-signed-pattern",
+        "absence"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "neg-a",
+            "neg-b"
+          ]
+        ],
+        "row_presence_support": {
+          "neg-a": 26,
+          "neg-b": 12
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "neg-a",
+          "neg-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D03_XOR",
+      "expected_relation": "S iff exactly one of xor-a and xor-b is present",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.75,
+              "denominator": 4,
+              "numerator": 3
+            },
+            "predicted_class_support": {
+              "R": 10,
+              "S": 30
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 10,
+              "01": 10,
+              "10": 10,
+              "11": 10
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.75,
+              "denominator": 4,
+              "numerator": 3
+            },
+            "predicted_class_support": {
+              "R": 10,
+              "S": 30
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 243,
+            "canonical_sha256_without_binding": "59e53cadd2cc512faac28ceb3ddaa9d4a3080ee92177b6c5731f0ee7b896ee18",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "xor-a",
+              "xor-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "59e53cadd2cc512faac28ceb3ddaa9d4a3080ee92177b6c5731f0ee7b896ee18",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.75,
+              "denominator": 4,
+              "numerator": 3
+            },
+            "predicted_class_support": {
+              "R": 10,
+              "S": 30
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 10,
+              "01": 10,
+              "10": 10,
+              "11": 10
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 8,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.75,
+              "denominator": 4,
+              "numerator": 3
+            },
+            "predicted_class_support": {
+              "R": 10,
+              "S": 30
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 4,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 253,
+            "canonical_sha256_without_binding": "979beac6346d286a014bd1e5de7dc88d36e3b2074116684e9bd6bb6b02ddb60b",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "xor-a",
+              "xor-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "979beac6346d286a014bd1e5de7dc88d36e3b2074116684e9bd6bb6b02ddb60b",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 10,
+              "01": 10,
+              "10": 10,
+              "11": 10
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 270,
+            "canonical_sha256_without_binding": "50da1e2b04f36a8efd109a882682285a22be90dcb1599d8e6c3e18e5bb58ab8e",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "01": "S",
+              "10": "S",
+              "11": "R"
+            },
+            "pair": [
+              "xor-a",
+              "xor-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "50da1e2b04f36a8efd109a882682285a22be90dcb1599d8e6c3e18e5bb58ab8e",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Can one pair assign two disjoint states to the same class?",
+      "registered_pair": [
+        "xor-a",
+        "xor-b"
+      ],
+      "tags": [
+        "XOR",
+        "arbitrary-2-bit-mapping"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "xor-a",
+            "xor-b"
+          ]
+        ],
+        "row_presence_support": {
+          "xor-a": 20,
+          "xor-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "xor-a",
+          "xor-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D04_SPURIOUS_PAIR_TIE",
+      "expected_relation": "Only z-true-a plus z-true-b persists; a-spur-a plus a-spur-b is calibration-only",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 12,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 12,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 12,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": true,
+          "pair_recovery": "WRONG_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 6,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 249,
+            "canonical_sha256_without_binding": "a4270858e040bd28afe42ae2330316f725822189b56af80c94dbdb1697a3af98",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "a-spur-a",
+              "a-spur-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "a4270858e040bd28afe42ae2330316f725822189b56af80c94dbdb1697a3af98",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 48,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 24,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 48,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": true,
+          "pair_recovery": "WRONG_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 12,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 259,
+            "canonical_sha256_without_binding": "638c232160e89d2b4083af4ab1378948fdba4d69d5bf571ce28ed8b5853ea9dc",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "a-spur-a",
+              "a-spur-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "638c232160e89d2b4083af4ab1378948fdba4d69d5bf571ce28ed8b5853ea9dc",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 96,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 6,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 6,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": true,
+          "pair_recovery": "WRONG_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 6,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 258,
+            "canonical_sha256_without_binding": "7f911025c153abfbee9a8cac5dfa29184521dff62c4d99a616d5cea8c38712af",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "a-spur-a",
+              "a-spur-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "7f911025c153abfbee9a8cac5dfa29184521dff62c4d99a616d5cea8c38712af",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "When a spurious and a persistent pair tie on calibration, which pair is frozen?",
+      "registered_pair": [
+        "z-true-a",
+        "z-true-b"
+      ],
+      "tags": [
+        "spurious-pair",
+        "tie",
+        "misselection"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "a-spur-a",
+            "a-spur-b"
+          ],
+          [
+            "a-spur-a",
+            "z-true-a"
+          ],
+          [
+            "a-spur-a",
+            "z-true-b"
+          ],
+          [
+            "a-spur-b",
+            "z-true-a"
+          ],
+          [
+            "a-spur-b",
+            "z-true-b"
+          ],
+          [
+            "z-true-a",
+            "z-true-b"
+          ]
+        ],
+        "row_presence_support": {
+          "a-spur-a": 20,
+          "a-spur-b": 20,
+          "z-true-a": 20,
+          "z-true-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "a-spur-a",
+          "a-spur-b",
+          "z-true-a",
+          "z-true-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D05_LOW_SUPPORT_BELOW_5",
+      "expected_relation": "Only four S rows carry the pair; the remaining states are label-indistinguishable",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": null,
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": null,
+            "holdout_unseen_pair_state_row_count": null
+          },
+          "eligible_candidate_count": 0,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_RULE",
+          "score_complexity_tie_count_before_canonical_bytes": 0,
+          "selected_rule": null,
+          "selected_rule_sha256": null,
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": null,
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": null,
+            "holdout_unseen_pair_state_row_count": null
+          },
+          "eligible_candidate_count": 0,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_RULE",
+          "score_complexity_tie_count_before_canonical_bytes": 0,
+          "selected_rule": null,
+          "selected_rule_sha256": null,
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": null,
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": null,
+            "holdout_unseen_pair_state_row_count": null
+          },
+          "eligible_candidate_count": 0,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_RULE",
+          "score_complexity_tie_count_before_canonical_bytes": 0,
+          "selected_rule": null,
+          "selected_rule_sha256": null,
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Does the historical predicted-class support floor reject a four-row minority branch?",
+      "registered_pair": [
+        "low-a",
+        "low-b"
+      ],
+      "tags": [
+        "low-support",
+        "support-rejection"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "low-a",
+            "low-b"
+          ]
+        ],
+        "row_presence_support": {
+          "low-a": 4,
+          "low-b": 4
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "low-a",
+          "low-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D06_LOW_SUPPORT_EDGE_SPURIOUS",
+      "expected_relation": "No persistent relation; the five-row pair vanishes in holdout",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.625,
+              "denominator": 8,
+              "numerator": 5
+            },
+            "predicted_class_support": {
+              "R": 35,
+              "S": 5
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.25,
+                "denominator": 4,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 35,
+              "01": 0,
+              "10": 0,
+              "11": 5
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 245,
+            "canonical_sha256_without_binding": "fda26983ac9503018e5cf8110355ac1e08f21f7f9fc44fa4a32088dab62317a6",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "edge-a",
+              "edge-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "fda26983ac9503018e5cf8110355ac1e08f21f7f9fc44fa4a32088dab62317a6",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.625,
+              "denominator": 8,
+              "numerator": 5
+            },
+            "predicted_class_support": {
+              "R": 35,
+              "S": 5
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.25,
+                "denominator": 4,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 35,
+              "01": 0,
+              "10": 0,
+              "11": 5
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 4,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 2,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 255,
+            "canonical_sha256_without_binding": "08391d5214801e72deb9ccf7e7ff70a51a0c886553566aeb5bd56a517b3aed13",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "edge-a",
+              "edge-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "08391d5214801e72deb9ccf7e7ff70a51a0c886553566aeb5bd56a517b3aed13",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 0.625,
+              "denominator": 8,
+              "numerator": 5
+            },
+            "predicted_class_support": {
+              "R": 35,
+              "S": 5
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.25,
+                "denominator": 4,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 35,
+              "01": 0,
+              "10": 0,
+              "11": 5
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 254,
+            "canonical_sha256_without_binding": "c7a6d027aa9c1e79de105cc845172088ebe2d4c25edc96d4711472ee108c7290",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "edge-a",
+              "edge-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "c7a6d027aa9c1e79de105cc845172088ebe2d4c25edc96d4711472ee108c7290",
+          "selected_spurious_pattern": true,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Does the five-row boundary admit a calibration-only pattern?",
+      "registered_pair": null,
+      "tags": [
+        "low-support",
+        "support-boundary",
+        "spurious-pair"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "edge-a",
+            "edge-b"
+          ]
+        ],
+        "row_presence_support": {
+          "edge-a": 5,
+          "edge-b": 5
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "edge-a",
+          "edge-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D07_HOLDOUT_UNSEEN_STATE_IS_R",
+      "expected_relation": "Calibration observes 00=R and 11=S; holdout adds 01=R",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 247,
+            "canonical_sha256_without_binding": "fd92a7951ce5b9c51f78f2ca227d8ff738c67d12d0306a2108a080da99d73ca2",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "fd92a7951ce5b9c51f78f2ca227d8ff738c67d12d0306a2108a080da99d73ca2",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 4,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 0,
+              "S": 40
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 2,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 257,
+            "canonical_sha256_without_binding": "c526d11c7c57731ae985393ad7621be8ed99057595109267c9724434411d2282",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "c526d11c7c57731ae985393ad7621be8ed99057595109267c9724434411d2282",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 256,
+            "canonical_sha256_without_binding": "56c596bc03959bb08fabc301dcfe0a16c807f0f5a1d7af537bec4be4cdcfa12c",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "56c596bc03959bb08fabc301dcfe0a16c807f0f5a1d7af537bec4be4cdcfa12c",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "What happens when a new pair state appears and its class agrees with fallback R?",
+      "registered_pair": [
+        "state-a",
+        "state-b"
+      ],
+      "tags": [
+        "holdout-unseen-state",
+        "fallback-compatible"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "state-a",
+            "state-b"
+          ]
+        ],
+        "row_presence_support": {
+          "state-a": 20,
+          "state-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "state-a",
+          "state-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D08_HOLDOUT_UNSEEN_STATE_IS_S",
+      "expected_relation": "The calibration bytes match D07, but holdout adds 01=S",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 247,
+            "canonical_sha256_without_binding": "fd92a7951ce5b9c51f78f2ca227d8ff738c67d12d0306a2108a080da99d73ca2",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "fd92a7951ce5b9c51f78f2ca227d8ff738c67d12d0306a2108a080da99d73ca2",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 4,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 2,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 257,
+            "canonical_sha256_without_binding": "c526d11c7c57731ae985393ad7621be8ed99057595109267c9724434411d2282",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "c526d11c7c57731ae985393ad7621be8ed99057595109267c9724434411d2282",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": true
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 20
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 256,
+            "canonical_sha256_without_binding": "56c596bc03959bb08fabc301dcfe0a16c807f0f5a1d7af537bec4be4cdcfa12c",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "state-a",
+              "state-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "56c596bc03959bb08fabc301dcfe0a16c807f0f5a1d7af537bec4be4cdcfa12c",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Can the same calibration determine that an unseen pair state should be S?",
+      "registered_pair": [
+        "state-a",
+        "state-b"
+      ],
+      "tags": [
+        "holdout-unseen-state",
+        "fallback-incompatible",
+        "underdetermination"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "state-a",
+            "state-b"
+          ]
+        ],
+        "row_presence_support": {
+          "state-a": 20,
+          "state-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "state-a",
+          "state-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D09_HOLDOUT_OOV_TOKENS",
+      "expected_relation": "Calibration atoms do not recur; holdout has only fresh OOV atoms",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 0.0,
+              "denominator": 1,
+              "numerator": 0
+            },
+            "holdout_oov_row_count": 40,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 247,
+            "canonical_sha256_without_binding": "f525425a32b5322b8116201d54b521aa4e7112ef1fbc8dc42fd0f4488ab63661",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "known-a",
+              "known-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "f525425a32b5322b8116201d54b521aa4e7112ef1fbc8dc42fd0f4488ab63661",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 0.0,
+              "denominator": 1,
+              "numerator": 0
+            },
+            "holdout_oov_row_count": 40,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 4,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 2,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 257,
+            "canonical_sha256_without_binding": "1e7f347548e735ca9fd868aff5f8c7f3c0657fc33f82d8a34f12d0a7f43ef154",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "known-a",
+              "known-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "1e7f347548e735ca9fd868aff5f8c7f3c0657fc33f82d8a34f12d0a7f43ef154",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 0.0,
+              "denominator": 1,
+              "numerator": 0
+            },
+            "holdout_oov_row_count": 40,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 40,
+              "S": 0
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.0,
+                "denominator": 1,
+                "numerator": 0
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "MATCHED_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 256,
+            "canonical_sha256_without_binding": "aad976093f8d6918d33a9f31ac0f83a0d9f24de454c62ad52d4cae1dfdba0691",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "known-a",
+              "known-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "aad976093f8d6918d33a9f31ac0f83a0d9f24de454c62ad52d4cae1dfdba0691",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Does a fresh-token holdout preserve a relation learned on a frozen pair?",
+      "registered_pair": [
+        "known-a",
+        "known-b"
+      ],
+      "tags": [
+        "OOV",
+        "frozen-universe"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "known-a",
+            "known-b"
+          ]
+        ],
+        "row_presence_support": {
+          "known-a": 20,
+          "known-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "known-a",
+          "known-b"
+        ]
+      }
+    },
+    {
+      "calibration_row_count": 40,
+      "case_id": "D10_ROLE_NULL_TRANSFER",
+      "expected_relation": "Holdout state is independent of class and should remain at chance",
+      "family_results": [
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 2,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 2,
+          "family": "STRICT_POSITIVE_AND",
+          "generated_candidate_count": 2,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 245,
+            "canonical_sha256_without_binding": "6842829d7d666ddda4cb97e1a1c065e2502c9180486fbe4d6b2adf1d80fed50a",
+            "complexity_units": 3,
+            "family": "STRICT_POSITIVE_AND",
+            "match_class": "S",
+            "nonmatch_class": "R",
+            "pair": [
+              "null-a",
+              "null-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "11",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "6842829d7d666ddda4cb97e1a1c065e2502c9180486fbe4d6b2adf1d80fed50a",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 8,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 4,
+          "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+          "generated_candidate_count": 8,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 2,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 255,
+            "canonical_sha256_without_binding": "82f271a9f674dc212defbc181aa2d8a2a8341d0368d41dc175c20094be7bed56",
+            "complexity_units": 3,
+            "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+            "match_class": "R",
+            "nonmatch_class": "S",
+            "pair": [
+              "null-a",
+              "null-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "target_state": "00",
+            "unseen_state_behavior": "TOTAL_MATCH_VS_NONMATCH_NO_SPECIAL_FALLBACK"
+          },
+          "selected_rule_sha256": "82f271a9f674dc212defbc181aa2d8a2a8341d0368d41dc175c20094be7bed56",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        },
+        {
+          "calibration": {
+            "balanced_accuracy": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 1.0,
+                "denominator": 1,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "conceptual_total_2bit_labeling_rule_space": 16,
+          "coverage": {
+            "calibration_selected_pair_state_support": {
+              "00": 20,
+              "01": 0,
+              "10": 0,
+              "11": 20
+            },
+            "holdout_known_token_occurrence_coverage": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_oov_row_count": 0,
+            "holdout_pair_state_seen_in_calibration": {
+              "decimal": 1.0,
+              "denominator": 1,
+              "numerator": 1
+            },
+            "holdout_unseen_pair_state_row_count": 0
+          },
+          "eligible_candidate_count": 1,
+          "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+          "generated_candidate_count": 1,
+          "holdout": {
+            "balanced_accuracy": {
+              "decimal": 0.5,
+              "denominator": 2,
+              "numerator": 1
+            },
+            "predicted_class_support": {
+              "R": 20,
+              "S": 20
+            },
+            "recall_by_class": {
+              "R": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              },
+              "S": {
+                "decimal": 0.5,
+                "denominator": 2,
+                "numerator": 1
+              }
+            },
+            "true_class_support": {
+              "R": 20,
+              "S": 20
+            }
+          },
+          "misselected_registered_pair": false,
+          "pair_recovery": "NO_REGISTERED_PAIR",
+          "score_complexity_tie_count_before_canonical_bytes": 1,
+          "selected_rule": {
+            "canonical_byte_length_without_binding": 254,
+            "canonical_sha256_without_binding": "01aeff957188fefa9926806a8dcd5253e108873ff20633836f4ee34ab1e5350f",
+            "complexity_units": 6,
+            "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+            "mapping": {
+              "00": "R",
+              "11": "S"
+            },
+            "pair": [
+              "null-a",
+              "null-b"
+            ],
+            "schema": "WAVE025_F4_DUEL_RULE_V1",
+            "unseen_state_behavior": "PREDICT_R_WITHOUT_RESELECTION",
+            "unseen_state_fallback_class": "R"
+          },
+          "selected_rule_sha256": "01aeff957188fefa9926806a8dcd5253e108873ff20633836f4ee34ab1e5350f",
+          "selected_spurious_pattern": false,
+          "stable_recovery_calibration_and_holdout_exact_both_classes": false
+        }
+      ],
+      "holdout_row_count": 40,
+      "question": "Does a calibration control relation survive when holdout features are role-null?",
+      "registered_pair": null,
+      "tags": [
+        "role-null",
+        "placebo",
+        "false-recovery"
+      ],
+      "universe": {
+        "pairs": [
+          [
+            "null-a",
+            "null-b"
+          ]
+        ],
+        "row_presence_support": {
+          "null-a": 20,
+          "null-b": 20
+        },
+        "top_token_limit": 256,
+        "top_tokens": [
+          "null-a",
+          "null-b"
+        ]
+      }
+    }
+  ],
+  "conclusion_boundary": {
+    "actual_d0_d1_and_role_null_receipts_are_required_for_decision": true,
+    "no_f4_allocation_remains_live": true,
+    "spurious_and_unseen_state_counterexamples_prevent_unconditional_winner_claim": true,
+    "synthetic_coverage_order_is_not_a_canon_decision": true
+  },
+  "family_summaries": [
+    {
+      "case_count": 10,
+      "family": "STRICT_POSITIVE_AND",
+      "holdout_exact_case_ids": [
+        "D01_AND",
+        "D07_HOLDOUT_UNSEEN_STATE_IS_R"
+      ],
+      "mean_calibration_balanced_accuracy": {
+        "decimal": 0.8525,
+        "denominator": 400,
+        "numerator": 341
+      },
+      "mean_holdout_balanced_accuracy": {
+        "decimal": 0.64,
+        "denominator": 25,
+        "numerator": 16
+      },
+      "misselection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE"
+      ],
+      "pair_recovery_counts": {
+        "MATCHED_REGISTERED_PAIR": 6,
+        "NO_REGISTERED_PAIR": 2,
+        "NO_RULE": 1,
+        "WRONG_PAIR": 1
+      },
+      "role_null_false_recovery_at_ba_ge_0_90": false,
+      "role_null_holdout_balanced_accuracy": {
+        "decimal": 0.5,
+        "denominator": 2,
+        "numerator": 1
+      },
+      "spurious_selection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE",
+        "D06_LOW_SUPPORT_EDGE_SPURIOUS"
+      ],
+      "stable_recovery_case_ids": [
+        "D01_AND",
+        "D07_HOLDOUT_UNSEEN_STATE_IS_R"
+      ],
+      "total_conceptual_rule_space": 30,
+      "total_eligible_candidates": 28,
+      "total_generated_candidates": 30,
+      "total_holdout_oov_rows": 40,
+      "total_holdout_unseen_pair_state_rows_where_rule_selected": 40
+    },
+    {
+      "case_count": 10,
+      "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+      "holdout_exact_case_ids": [
+        "D01_AND",
+        "D02_NEGATED_SIGNED_PATTERN",
+        "D08_HOLDOUT_UNSEEN_STATE_IS_S"
+      ],
+      "mean_calibration_balanced_accuracy": {
+        "decimal": 0.8875,
+        "denominator": 80,
+        "numerator": 71
+      },
+      "mean_holdout_balanced_accuracy": {
+        "decimal": 0.675,
+        "denominator": 40,
+        "numerator": 27
+      },
+      "misselection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE"
+      ],
+      "pair_recovery_counts": {
+        "MATCHED_REGISTERED_PAIR": 6,
+        "NO_REGISTERED_PAIR": 2,
+        "NO_RULE": 1,
+        "WRONG_PAIR": 1
+      },
+      "role_null_false_recovery_at_ba_ge_0_90": false,
+      "role_null_holdout_balanced_accuracy": {
+        "decimal": 0.5,
+        "denominator": 2,
+        "numerator": 1
+      },
+      "spurious_selection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE",
+        "D06_LOW_SUPPORT_EDGE_SPURIOUS"
+      ],
+      "stable_recovery_case_ids": [
+        "D01_AND",
+        "D02_NEGATED_SIGNED_PATTERN",
+        "D08_HOLDOUT_UNSEEN_STATE_IS_S"
+      ],
+      "total_conceptual_rule_space": 120,
+      "total_eligible_candidates": 68,
+      "total_generated_candidates": 120,
+      "total_holdout_oov_rows": 40,
+      "total_holdout_unseen_pair_state_rows_where_rule_selected": 40
+    },
+    {
+      "case_count": 10,
+      "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+      "holdout_exact_case_ids": [
+        "D01_AND",
+        "D02_NEGATED_SIGNED_PATTERN",
+        "D03_XOR",
+        "D07_HOLDOUT_UNSEEN_STATE_IS_R"
+      ],
+      "mean_calibration_balanced_accuracy": {
+        "decimal": 0.9125,
+        "denominator": 80,
+        "numerator": 73
+      },
+      "mean_holdout_balanced_accuracy": {
+        "decimal": 0.7,
+        "denominator": 10,
+        "numerator": 7
+      },
+      "misselection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE"
+      ],
+      "pair_recovery_counts": {
+        "MATCHED_REGISTERED_PAIR": 6,
+        "NO_REGISTERED_PAIR": 2,
+        "NO_RULE": 1,
+        "WRONG_PAIR": 1
+      },
+      "role_null_false_recovery_at_ba_ge_0_90": false,
+      "role_null_holdout_balanced_accuracy": {
+        "decimal": 0.5,
+        "denominator": 2,
+        "numerator": 1
+      },
+      "spurious_selection_case_ids": [
+        "D04_SPURIOUS_PAIR_TIE",
+        "D06_LOW_SUPPORT_EDGE_SPURIOUS"
+      ],
+      "stable_recovery_case_ids": [
+        "D01_AND",
+        "D02_NEGATED_SIGNED_PATTERN",
+        "D03_XOR",
+        "D07_HOLDOUT_UNSEEN_STATE_IS_R"
+      ],
+      "total_conceptual_rule_space": 240,
+      "total_eligible_candidates": 14,
+      "total_generated_candidates": 15,
+      "total_holdout_oov_rows": 40,
+      "total_holdout_unseen_pair_state_rows_where_rule_selected": 40
+    }
+  ],
+  "question": "Which bounded meaning, if any, should the historical C01 F4 name denote?",
+  "responsibility_allocation_comparison": {
+    "allocation": "NO_F4_IN_C01__C04_OWNS_INTERACTIONS",
+    "c01_f4_conceptual_rule_space": 0,
+    "c01_f4_generated_candidates": 0,
+    "candidate_surface_removed_relative_to_each_f4_semantics": {
+      "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK": {
+        "conceptual_pair_labelings_removed_on_these_fixtures": 240,
+        "generated_candidates_removed_on_these_fixtures": 15
+      },
+      "SIGNED_LITERAL_SINGLE_PATTERN": {
+        "conceptual_pair_labelings_removed_on_these_fixtures": 120,
+        "generated_candidates_removed_on_these_fixtures": 120
+      },
+      "STRICT_POSITIVE_AND": {
+        "conceptual_pair_labelings_removed_on_these_fixtures": 30,
+        "generated_candidates_removed_on_these_fixtures": 30
+      }
+    },
+    "could_reduce": [
+      "C01 pair enumeration and canonical tie surface",
+      "calibration-only pair misselection",
+      "low-support pair admission",
+      "duplicate interaction ownership between C01 and C04"
+    ],
+    "current_holdout_predictions": null,
+    "current_reason": "C04 machine semantics and its model-input bytes are not closed or executed by this duel",
+    "d0_d1_primary_boundary": {
+      "D0_dependency_on_F4": "NONE_IF_BOUND_DESIGN_PREMISES_HOLD__ACTUAL_D0_NOT_RUN",
+      "D0_design_candidate_rule": "single exact categorical token presence",
+      "D1_dependency_on_F4": "NONE_IF_ONE_ROLE_ATOM_IS_CROSS_PHASE_STABLE__THAT_PREMISE_IS_NOT_PUBLICLY_BOUND_AND_ACTUAL_D1_NOT_RUN",
+      "public_registration_currently_names_C01_for_D0_and_D1": true,
+      "secondary_detector_can_rescue_failed_primary": false
+    },
+    "delegation_preconditions": [
+      "C04 exact machine semantics, input matrix, support, tie, OOV and convergence/failure behavior are frozen",
+      "the relevant interaction attack is pre-registered to C04 rather than silently rescued by a secondary detector",
+      "holdout selection remains frozen and role-null plus spurious-pair attacks are retained",
+      "SECURITY_REVIEW_REQUIRED for any real isolation, zero-ingress, capability or attack-surface claim"
+    ],
+    "status": "RESPONSIBILITY_ALLOCATION_CANDIDATE_NOT_EXECUTED",
+    "two_bit_representation_upper_bound_only": [
+      {
+        "case_id": "D01_AND",
+        "learned_or_holdout_validated_by_this_duel": false,
+        "minimum_binary_tree_depth": 2,
+        "representable_within_registered_C04_maximum_depth_3": true
+      },
+      {
+        "case_id": "D02_NEGATED_SIGNED_PATTERN",
+        "learned_or_holdout_validated_by_this_duel": false,
+        "minimum_binary_tree_depth": 2,
+        "representable_within_registered_C04_maximum_depth_3": true
+      },
+      {
+        "case_id": "D03_XOR",
+        "learned_or_holdout_validated_by_this_duel": false,
+        "minimum_binary_tree_depth": 2,
+        "representable_within_registered_C04_maximum_depth_3": true
+      }
+    ],
+    "would_miss_in_c01": [
+      "positive AND interactions not reducible to F1/F2/F3",
+      "negated signed patterns not reducible to F1/F2/F3",
+      "XOR or other multi-state pair mappings"
+    ]
+  },
+  "schema": "WAVE025_F4_SEMANTICS_DUEL_RESULTS_V1",
+  "scope": {
+    "evidence_kind": "deterministic local synthetic semantic discriminator",
+    "holdout_prediction_reads": [
+      "frozen selected rule",
+      "holdout feature tokens"
+    ],
+    "holdout_scoring_reads_after_prediction_freeze": [
+      "holdout labels"
+    ],
+    "not_claimed": [
+      "MODEL-INPUT canon",
+      "actual D0 or D1 sensitivity",
+      "C04 execution",
+      "G qualification",
+      "formal 3200 population result",
+      "real-world frequency of any truth table"
+    ],
+    "security_boundary": "NO_NETWORK_CONTAINER_REAL_PERMISSION_OR_ISOLATION_BYPASS_WORK__EXTERNAL_SECURITY_DEPENDENCIES_ARE_SECURITY_REVIEW_REQUIRED",
+    "selection_reads": [
+      "calibration feature tokens",
+      "calibration labels"
+    ]
+  },
+  "selection": {
+    "minimum_predicted_support_each_class": 5,
+    "minimum_total_calibration_support": 10,
+    "no_eligible_rule": "predict R for every row",
+    "order": [
+      "maximum calibration balanced accuracy",
+      "minimum family-local complexity units",
+      "lexicographically minimum canonical UTF-8 JSON rule bytes"
+    ]
+  },
+  "semantics": [
+    {
+      "family": "STRICT_POSITIVE_AND",
+      "meaning": "one positive A AND B predicate; match predicts one class and all other states the other",
+      "rules_per_pair": 2,
+      "unseen_state_behavior": "all states are defined by match versus nonmatch"
+    },
+    {
+      "family": "SIGNED_LITERAL_SINGLE_PATTERN",
+      "meaning": "one of 00,01,10,11 is a signed two-literal pattern; that state predicts one class and the other three the other",
+      "rules_per_pair": 8,
+      "unseen_state_behavior": "all states are defined by match versus nonmatch"
+    },
+    {
+      "conceptual_labelings_per_pair_when_all_states_observed": 16,
+      "family": "FULL_2BIT_OBSERVED_MAPPING_R_FALLBACK",
+      "generated_candidates_per_pair": 1,
+      "meaning": "each observed state maps to its calibration majority class (tie R); an unobserved state freezes to R",
+      "unseen_state_behavior": "R without reselection"
+    }
+  ],
+  "source_bindings": {
+    "c01_minisuite_redteam": {
+      "byte_length": 13354,
+      "path_relative_to_wave025": "feature-spec/model-input-c01-minisuite/INDEPENDENT-REDTEAM.md",
+      "sha256": "05105bcbdb256510da6dd8ca77765b39603ef884352c04a5befb4aed9edcb56b"
+    },
+    "c01_v3_contract": {
+      "byte_length": 3200,
+      "path_relative_to_wave025": "feature-spec/model-input-c01-minisuite/C01-MINISUITE-CONTRACT.candidate.json",
+      "sha256": "ef20eaf74307ea3e224a4fa4ff29d051d2be377245615acb760a535e4619c8c5"
+    },
+    "c01_v3_results": {
+      "byte_length": 55162,
+      "path_relative_to_wave025": "feature-spec/model-input-c01-minisuite/RESULTS.candidate.json",
+      "sha256": "7974ab22da00bde913ab7482606aa1eb9d1b76777acd38eaf1678e2fc002599a"
+    },
+    "d0_control_design": {
+      "byte_length": 8706,
+      "path_relative_to_wave025": "control-registries/D0-CONTROL-DESIGN.candidate.json",
+      "sha256": "36df6dca526eac8e8d23871b00ad6abefa3ccfe286448943586c7e95e969758d"
+    },
+    "duel_fixtures": {
+      "byte_length": 8179,
+      "path_relative_to_duel": "FIXTURES.json",
+      "sha256": "eae5696ac10e8c8025195cba649d51f793e9b28211b29e5211db0777ec32a02c"
+    },
+    "duel_implementation": {
+      "byte_length": 29099,
+      "path_relative_to_duel": "f4_semantics_duel.py",
+      "sha256": "c8d021800c5c3114e8dfa6c4d3a86924fa1f6b3c1c2aac9e824957d36d3cced1"
+    },
+    "duel_tests": {
+      "byte_length": 5186,
+      "path_relative_to_duel": "tests/test_f4_semantics_duel.py",
+      "sha256": "795d55e89794a9530365fd0a667f625ad21dfee1c393f8da18c285a4a895bcc4"
+    },
+    "feature_spec": {
+      "byte_length": 22559,
+      "path_relative_to_wave025": "feature-spec/FEATURE-SPEC.json",
+      "sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a"
+    },
+    "model_input_redteam": {
+      "byte_length": 27177,
+      "path_relative_to_wave025": "feature-spec/MODEL-INPUT-V2S-PROPOSAL-A-REDTEAM.md",
+      "sha256": "8f9f98b42bd5562983bb97f25eef72e1352233a765d7dde087068b6d68f3f017"
+    },
+    "public_control_registration": {
+      "byte_length": 1160,
+      "path_relative_to_wave025": "control-registries/PUBLIC-CONTROL-FAMILY-REGISTRATION.preformal-candidate.json",
+      "sha256": "aafe698ef0a70097e74a81d41e8fbe64d7e9a581766719f2cb2360da1ba1a21a"
+    }
+  },
+  "status": "SYNTHETIC_SEMANTIC_DUEL_NOT_C01_CANON_NOT_ACTUAL_D0_D1_EVIDENCE"
+}

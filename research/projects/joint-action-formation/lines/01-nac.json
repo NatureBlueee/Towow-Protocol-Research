@@ -3,7 +3,7 @@
   "kind": "LineContract",
   "id": "LINE-01-NAC",
   "version": "v1",
-  "status": "DRAFT",
+  "status": "ACTIVE",
   "native_line": "DISCOVERY_BOUNDARY",
   "title": "NAC E-H1′ 跨模型坐标基底",
   "problem_ref": {
@@ -13,10 +13,10 @@
   "capability_ids": [
     "CAP-DISC-003"
   ],
-  "local_question": "在固定有向 Intent—画像标注集、五种以上异构模型和相同预算下，NAC 公共锚点坐标能否达到历史 E-H1′ 的跨厂商判别门槛，并相对 vec2vec 与新增强基线保留独立价值？",
+  "local_question": "在固定有向 Intent—画像标注集、五种以上异构模型、允许各方案使用原生信息条件并统一核算总资源的条件下，NAC 公共锚点坐标能否达到历史 E-H1′ 的跨厂商判别门槛，并相对 vec2vec 与新增强基线保留独立价值？",
   "blocked_decision": "决定当前 NAC 锚点坐标基底应继续实现、进入 REBASE_REQUIRED 候选，还是被作用域内反驳；本线不决定其他可迁移能力。",
-  "reverse_result": "E-H1′ 完成原定锚点数、选择策略、前缀长度与聚合函数扫描后，若到饱和仍未达到跨厂商 top-100 召回为同厂商 80% 的原门槛，或同预算显著低于 vec2vec，可以反驳当前 NAC 坐标基底这一 identity-core 主张；SEEK/OFFER、自描述、provenance 和多分辨率信号等 portable capabilities 仍须分别判断能否迁移。其他反向结果只缩窄实际受检验的 scoped claim，不自动降级发现与边界母线。",
-  "minimum_discriminator": "按原预注册 E-H1′ 扫描锚点数、选择策略、前缀长度与聚合函数，比较跨厂商 top-100 召回与同厂商 80% 门槛，并设置同预算 vec2vec 对照；自然语言加稳定 Schema 只能作为标明来源的 V2 新增臂。本线不测试 H2–H8。",
+  "reverse_result": "E-H1′ 完成原定锚点数、选择策略、前缀长度与聚合函数扫描后，若到饱和仍未达到跨厂商 top-100 召回为同厂商 80% 的原门槛，或在原生信息条件与完整资源账下显著低于 vec2vec，可以反驳当前 NAC 坐标基底这一 identity-core 主张；SEEK/OFFER、自描述、provenance 和多分辨率信号等 portable capabilities 仍须分别判断能否迁移。其他反向结果只缩窄实际受检验的 scoped claim，不自动降级发现与边界母线。",
+  "minimum_discriminator": "按原预注册 E-H1′ 扫描锚点数、选择策略、前缀长度与聚合函数，比较跨厂商 top-100 召回与同厂商 80% 门槛，并设置允许使用原生信息条件、统一核算总资源的 vec2vec 对照；自然语言加稳定 Schema 只能作为标明来源的 V2 新增臂。本线不测试 H2–H8。",
   "source_allowlist": [
     "research/projects/joint-action-formation/problem/v2-candidate.json",
     "research/projects/joint-action-formation/mechanisms/nac.json",
@@ -26,7 +26,8 @@
     "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/4c/4c91d0ed8c8ae7d8600f97e02e8c06847cec4c8050efcdc42ad7919b9ababa8c.md",
     "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/2b/2b8e039b222ef710247f5db108ba7611ebe77351ae4d7c774af7c2f14fb032ce.md",
     "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/5a/5a52813b628188b1e75137b8b922935e4d4ddbe0049ecf5421d382d6ee2dc5b8.md",
-    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md"
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+    "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md"
   ],
   "budget": {
     "max_minutes": 30,
@@ -35,7 +36,7 @@
   },
   "stop_conditions": [
     "开始把 Intent 相关性当作 Principal 授权、承诺或接受",
-    "比较方案没有获得相同 schema、版本、provenance、方向性和预算条件",
+    "比较方案没有获得相同 test truth、schema、版本、provenance 和方向性条件，或没有冻结各自原生信息条件与统一的总资源账",
     "结果不能定位到具体 scoped claim、前提与未受影响主张",
     "两次运行没有产生新的判别信息或只是重复纸面设计"
   ],
@@ -83,9 +84,18 @@
       "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/2b/2b8e039b222ef710247f5db108ba7611ebe77351ae4d7c774af7c2f14fb032ce.md",
       "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/5a/5a52813b628188b1e75137b8b922935e4d4ddbe0049ecf5421d382d6ee2dc5b8.md"
     ],
-    "checked_existing_solution_refs": [],
-    "disposition": "UNRESOLVED",
-    "uncovered_requirement": "尚未运行 E-H1′ 来判定公共锚点坐标在相同标注集、模型、扫描范围和预算下能否达到 80% 原门槛、是否显著落后于 vec2vec，以及新增自然语言稳定 Schema 臂是否无损覆盖该坐标问题。"
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "Relative Representations 已覆盖锚点相似度作为跨空间相对坐标的技术内核；仍需在同一有向 Intent—画像标注集、至少五种异构模型、跨语言和最坏模型对下，允许 NAC、vec2vec、Procrustes 与共享参考编码器使用各自原生信息条件，并统一核算语料或对应样本、encoder 调用、训练与 seed、存储、onboarding 和迁移总资源，判定 NAC 能否达到原 80% 门槛并保留可归因的部署价值。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "现成相对表示与跨空间对齐方法没有直接关闭通爻有向 Intent—画像、五模型、跨语言最坏切片和多模型生命周期成本的联合判别问题。"
+      }
+    ]
   },
   "outcome_policy": {
     "supported_effect": "支持结果只能提升 MC-NAC-ANCHOR 的候选证据状态，并记录数据集、模型、语言切片、扫描范围、预算和基线；不能提升 H2–H8。",

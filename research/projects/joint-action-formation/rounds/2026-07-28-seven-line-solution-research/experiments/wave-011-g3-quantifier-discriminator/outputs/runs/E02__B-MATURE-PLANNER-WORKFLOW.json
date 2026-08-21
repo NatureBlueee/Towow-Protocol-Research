@@ -1,0 +1,369 @@
+{
+  "actual_policy_transcript": {
+    "actual_response": "NO_RESPONSE_REQUIRED",
+    "execution": {
+      "final_facts": [
+        "adapter_ready",
+        "effect",
+        "operator_authorized"
+      ],
+      "goal_reached": true,
+      "response": "NO_RESPONSE_REQUIRED",
+      "steps": [
+        {
+          "action_id": "install_adapter",
+          "after": [
+            "adapter_ready",
+            "operator_authorized"
+          ],
+          "applied": true,
+          "before": [
+            "operator_authorized"
+          ],
+          "index": 0,
+          "reason": "APPLIED"
+        },
+        {
+          "action_id": "execute_adapter",
+          "after": [
+            "adapter_ready",
+            "effect",
+            "operator_authorized"
+          ],
+          "applied": true,
+          "before": [
+            "adapter_ready",
+            "operator_authorized"
+          ],
+          "index": 1,
+          "reason": "APPLIED"
+        }
+      ],
+      "terminal_safe": true,
+      "valid": true
+    },
+    "frozen_before_scoring": true,
+    "method_return": {
+      "action_ids": [
+        "install_adapter",
+        "execute_adapter"
+      ],
+      "arm_id": "B-MATURE-PLANNER-WORKFLOW",
+      "authority_binding": {
+        "grants": [
+          "PUBLIC_EPISODE_ENDPOINTS"
+        ],
+        "principal_impersonation_used": false,
+        "selected_action_endpoints": [
+          {
+            "action_id": "install_adapter",
+            "authority_endpoint": "workflow_admin"
+          },
+          {
+            "action_id": "execute_adapter",
+            "authority_endpoint": "executor"
+          }
+        ]
+      },
+      "authority_mode": "INDEPENDENT_ENDPOINTS",
+      "baseline_implementation": "bounded_workflow_rule",
+      "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+      "environment_variant": "EQUAL_ENVELOPE",
+      "formation_witness_proposal": {
+        "claimed_operator_ids": [
+          "install_adapter"
+        ],
+        "claims_oracle_verdict": false,
+        "source": "PUBLIC_PACKET_AND_SELECTED_ACTIONS_ONLY",
+        "task_change_claim": null
+      },
+      "lawful_inputs_used": {
+        "available_action_ids": [
+          "execute_adapter"
+        ],
+        "operator_proposal_id": "install_adapter",
+        "s0_observations": [
+          "operator_authorized",
+          "owner_task_current"
+        ]
+      },
+      "worker": "blind-actual-policy-v1",
+      "world_id": "E02"
+    },
+    "policy_sha256": "291ee14b7e883cece20ab4a8f77e4de651e481bb947c25ec65a77be57c364679"
+  },
+  "arm_id": "B-MATURE-PLANNER-WORKFLOW",
+  "category": "QUALIFIED_CONDITION_FORMATION",
+  "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+  "environment_variant": "EQUAL_ENVELOPE",
+  "evidence_binding": {
+    "actual_policy_transcript_sha256": "f8a9a41747303efbd4be1d864f41e1c383d6b24171e3833482cf822da5a6c91b",
+    "binding_sha256": "dbf6fb51f1a061647a10617fc13c5708aa92cf14e84f8cff36e1f417e484b14f",
+    "exact_task_diff_sha256": "ce2190e35aa71063c2a75a602d32b52cb1554c36a8970ae7704839d85a13b679",
+    "g3_body_sha256": "cb7feeb962454092b75ae8fd90b830f995192c145ca8ed7b493f51f538fe39ab",
+    "oracle_receipts_sha256": "76e9bf060444ee4c7510c9fb0ac215dea1d0e6d3c35224dd0b5a8ff8a80c873f"
+  },
+  "exact_task_diff": {
+    "changes": [],
+    "classification": "UNCHANGED",
+    "controller_claim_refs": [],
+    "material_fields": [],
+    "original_task_sha256": "ab2a133e12d0cca04849713e107995d510f6ebcdf3a807fb4b2a3958e12fea90",
+    "owner_authorization_receipts": [],
+    "result_task_sha256": "ab2a133e12d0cca04849713e107995d510f6ebcdf3a807fb4b2a3958e12fea90"
+  },
+  "g3_receipt": {
+    "body": {
+      "C": "UNSAT",
+      "E": "CHANGED",
+      "N": "NEW_TOKEN",
+      "R": {
+        "R_actual": "TRUE",
+        "R_effect_robust": "TRUE",
+        "R_measurable_exists": "TRUE",
+        "R_physical_exists": "TRUE",
+        "R_safe_robust": "TRUE",
+        "R_terminal_robust": "TRUE"
+      },
+      "T": "INVARIANT",
+      "V": "VALID",
+      "counterfactual": {
+        "block_result": "UNSAT",
+        "evidence_sha256": "e3fa883016dbbef7355c2bd8098fbfe0cd5e9501ce93a33d1a0f3adae439e6fd",
+        "operator_ids": [
+          "install_adapter"
+        ],
+        "remove_result": "UNSAT",
+        "reverse_result": "UNSAT",
+        "status": "APPLICABLE"
+      },
+      "inventory_completeness": {
+        "action_inventory": "COMPLETE",
+        "evidence_sha256": "bda05ad4027d79c2199f106163c245d1f2446ec5216d4115ac3e17de6c63833a",
+        "horizon": 4,
+        "observation_kernel": "COMPLETE",
+        "response_family": "COMPLETE",
+        "search_bound_frozen": true,
+        "transition_semantics": "COMPLETE",
+        "unresolved_items": []
+      },
+      "task_diff": {
+        "changes": [],
+        "classification": "UNCHANGED",
+        "controller_claim_refs": [],
+        "material_fields": [],
+        "original_task_sha256": "ab2a133e12d0cca04849713e107995d510f6ebcdf3a807fb4b2a3958e12fea90",
+        "owner_authorization_receipts": [],
+        "result_task_sha256": "ab2a133e12d0cca04849713e107995d510f6ebcdf3a807fb4b2a3958e12fea90"
+      }
+    },
+    "body_sha256": "cb7feeb962454092b75ae8fd90b830f995192c145ca8ed7b493f51f538fe39ab",
+    "receipt_ref": {
+      "owner_key_id": "wave011-g3-evaluator",
+      "raw_bytes_sha256": "21539b0c6eb2763c852be8193d95b317e2c450083d2449db05ebc4dc48f055a6",
+      "receipt_version": "1",
+      "ref": "receipt:E02:B-MATURE-PLANNER-WORKFLOW:g3",
+      "status": "FINAL"
+    }
+  },
+  "oracle_receipts": {
+    "closure": {
+      "extended_closure": {
+        "branches": [
+          {
+            "response": "NO_RESPONSE_REQUIRED",
+            "result": "SAT",
+            "trace": [
+              "install_adapter",
+              "execute_adapter"
+            ],
+            "visited_states": 3
+          }
+        ],
+        "quantifier": "EXISTS_LAWFUL_RESPONSE_BRANCH",
+        "result": "SAT"
+      },
+      "old_closure": {
+        "branches": [
+          {
+            "response": "NO_RESPONSE_REQUIRED",
+            "result": "UNSAT",
+            "trace": [],
+            "visited_states": 1
+          }
+        ],
+        "quantifier": "EXISTS_LAWFUL_RESPONSE_BRANCH",
+        "result": "UNSAT"
+      },
+      "worker": "closure-oracle-v1"
+    },
+    "counterfactual": {
+      "block": {
+        "replay": {
+          "final_facts": [
+            "operator_authorized"
+          ],
+          "goal_reached": false,
+          "steps": [
+            {
+              "action_id": "install_adapter",
+              "after": [
+                "operator_authorized"
+              ],
+              "applied": false,
+              "before": [
+                "operator_authorized"
+              ],
+              "index": 0,
+              "reason": "BLOCKED_BY_COUNTERFACTUAL"
+            }
+          ],
+          "terminal_safe": false,
+          "valid": false
+        },
+        "result": "UNSAT"
+      },
+      "derived_effect_graph_valid": true,
+      "derived_effect_reset_verified": true,
+      "derived_effects_consumed": {
+        "install_adapter": [
+          "adapter_ready",
+          "effect"
+        ]
+      },
+      "expected_derived_effects_from_frozen_trace": {
+        "install_adapter": [
+          "adapter_ready",
+          "effect"
+        ]
+      },
+      "operator_ids": [
+        "install_adapter"
+      ],
+      "remove": {
+        "replay": {
+          "final_facts": [
+            "operator_authorized"
+          ],
+          "goal_reached": false,
+          "steps": [
+            {
+              "action_id": "install_adapter",
+              "after": [
+                "operator_authorized"
+              ],
+              "applied": false,
+              "before": [
+                "operator_authorized"
+              ],
+              "index": 0,
+              "reason": "BLOCKED_BY_COUNTERFACTUAL"
+            }
+          ],
+          "terminal_safe": false,
+          "valid": false
+        },
+        "result": "UNSAT"
+      },
+      "reset_semantics": "RESET_TO_PRIVATE_S0_AND_DISCARD_DERIVED_EFFECTS",
+      "reverse": {
+        "replay": {
+          "final_facts": [
+            "operator_authorized"
+          ],
+          "goal_reached": false,
+          "steps": [
+            {
+              "action_id": "execute_adapter",
+              "after": [
+                "operator_authorized"
+              ],
+              "applied": false,
+              "before": [
+                "operator_authorized"
+              ],
+              "index": 0,
+              "reason": "PRECONDITION_FALSE"
+            }
+          ],
+          "terminal_safe": false,
+          "valid": false
+        },
+        "result": "UNSAT"
+      },
+      "worker": "frozen-trace-counterfactual-v1"
+    },
+    "measurable": {
+      "branches": [
+        {
+          "response": "NO_RESPONSE_REQUIRED",
+          "result": "SAT",
+          "trace": [
+            "install_adapter",
+            "execute_adapter"
+          ],
+          "visited_states": 3
+        }
+      ],
+      "quantifier": "EXISTS_OBSERVATION_MEASURABLE_POLICY_AND_LAWFUL_RESPONSE_BRANCH",
+      "reason": "FROZEN_OBSERVATION_POLICY_SEARCH",
+      "result": "SAT",
+      "trace": [
+        "install_adapter",
+        "execute_adapter"
+      ],
+      "worker": "measurable-oracle-v1"
+    },
+    "robust": {
+      "branches": [
+        {
+          "final_facts": [
+            "adapter_ready",
+            "effect",
+            "operator_authorized"
+          ],
+          "goal_reached": true,
+          "response": "NO_RESPONSE_REQUIRED",
+          "steps": [
+            {
+              "action_id": "install_adapter",
+              "after": [
+                "adapter_ready",
+                "operator_authorized"
+              ],
+              "applied": true,
+              "before": [
+                "operator_authorized"
+              ],
+              "index": 0,
+              "reason": "APPLIED"
+            },
+            {
+              "action_id": "execute_adapter",
+              "after": [
+                "adapter_ready",
+                "effect",
+                "operator_authorized"
+              ],
+              "applied": true,
+              "before": [
+                "adapter_ready",
+                "operator_authorized"
+              ],
+              "index": 1,
+              "reason": "APPLIED"
+            }
+          ],
+          "terminal_safe": true,
+          "valid": true
+        }
+      ],
+      "effect_robust": true,
+      "safe_robust": true,
+      "terminal_robust": true,
+      "worker": "robust-tree-checker-v1"
+    }
+  },
+  "reason_code": "G3_COMPLETE_OLD_CLOSURE_UNSAT_LEGAL_EXTENSION_SAT",
+  "world_id": "E02"
+}

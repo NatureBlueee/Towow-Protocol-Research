@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "base_fixture": "../fixtures/scorer_conformance_receipt.json",
+  "mutations": [
+    {
+      "mutation_id": "HWB-M1-UNKNOWN-AS-ABSENT",
+      "purpose": "Reject no response collapsed into verified absence.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-B-CLAIM-006",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R5"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M2-STALE-VERSION-WAKEUP",
+      "purpose": "Reject revival of the old offer after version and direction changed.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-B-PAIR-005",
+          "state": "DISCOVERED"
+        },
+        {
+          "action": "REMOVE_PROJECTION_UPDATE",
+          "party": "DELTA-09"
+        }
+      ],
+      "expected_failure_codes": [
+        "DYNAMIC_UPDATE_MISSING",
+        "DIRECTION_VIOLATION",
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R2",
+        "R7"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M3-VERSION-DECOY-WAKEUP",
+      "purpose": "Reject facet-only matching across incompatible task-relative versions.",
+      "actions": [
+        {
+          "action": "APPEND_DECISION",
+          "value": {
+            "detection_id": "MUT-B-VERSION-DECOY",
+            "kind": "PAIR",
+            "state": "DISCOVERED",
+            "seeker": "CIRRUS-21",
+            "provider": "BASALT-04",
+            "direction": "SEEK_TO_OFFER",
+            "evidence_refs": [
+              "W-HWB-COLD-SEEK-DECOY-V1",
+              "W-HWB-COLD-OFFER-V5"
+            ]
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "FALSE_WAKEUP",
+        "UNEXPECTED_DETECTION",
+        "VERSION_DECOY_WAKEUP"
+      ],
+      "expected_failed_requirements": [
+        "R7"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M4-ROUTE-BUDGET-LEAK",
+      "purpose": "Reject a third recipient beyond the authorized relay route.",
+      "actions": [
+        {
+          "action": "APPEND_DISCLOSURE",
+          "value": {
+            "event_id": "MUT-B-ION-LEAK",
+            "origin_party": "ION-06",
+            "sender": "NODE-COPPER-ROUTER",
+            "recipient": "NODE-UNLISTED",
+            "fact_id": "F-HWB-ION-TASK-PROJECTION",
+            "depth": 1,
+            "purpose": "scoped-topology-screen",
+            "retention": "PT3M",
+            "derived_from_event_id": "CAL-B-DISC-ION-002"
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "DISCLOSURE_CUMULATIVE_DEPTH_EXCEEDED",
+        "DISCLOSURE_RECIPIENT_BUDGET_EXCEEDED",
+        "DISCLOSURE_RECIPIENT_FORBIDDEN"
+      ],
+      "expected_failed_requirements": [
+        "R4"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M5-POLICY-UNFINDABLE-AS-ABSENT",
+      "purpose": "Reject absence inferred from mandatory disclosure refusal.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-B-PAIR-004",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R6"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M6-RAW-LOCAL-FACT-EXPOSURE",
+      "purpose": "Reject raw local fact replacing a task projection.",
+      "actions": [
+        {
+          "action": "APPEND_DISCLOSURE",
+          "value": {
+            "event_id": "MUT-B-RAW-HELIOS",
+            "origin_party": "HELIOS-44",
+            "sender": "HELIOS-44",
+            "recipient": "NODE-COPPER-ROUTER",
+            "fact_id": "RAW-HWB-HELIOS-WORKLOAD",
+            "depth": 1,
+            "purpose": "scoped-topology-screen",
+            "retention": "PT3M"
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "DISCLOSURE_POLICY_MISSING",
+        "RAW_FACT_EXPOSED"
+      ],
+      "expected_failed_requirements": [
+        "R3",
+        "R4"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M7-DISCOVERY-WITHOUT-HANDOFF",
+      "purpose": "Reject a search result that never enters relation constitution.",
+      "actions": [
+        {
+          "action": "REMOVE_RELATION_HANDOFF",
+          "detection_id": "CAL-B-PAIR-002"
+        }
+      ],
+      "expected_failure_codes": [
+        "RELATION_HANDOFF_MISSING"
+      ],
+      "expected_failed_requirements": [
+        "R8"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M8-ONE-SIDED-RECIPROCAL",
+      "purpose": "Reject reciprocal completion when only one detail was disclosed.",
+      "actions": [
+        {
+          "action": "REMOVE_DISCLOSURE",
+          "event_id": "CAL-B-DISC-JUNIPER-001"
+        }
+      ],
+      "expected_failure_codes": [
+        "RECIPROCAL_DISCLOSURE_MISSING"
+      ],
+      "expected_failed_requirements": [
+        "R4",
+        "R7"
+      ]
+    },
+    {
+      "mutation_id": "HWB-M9-INVENTED-COMMITMENT",
+      "purpose": "Reject promotion of discovery into commitment.",
+      "actions": [
+        {
+          "action": "SET_HANDOFF_FIELD",
+          "detection_id": "CAL-B-PAIR-003",
+          "field": "commitment",
+          "value": true
+        }
+      ],
+      "expected_failure_codes": [
+        "COMMITMENT_INVENTED"
+      ],
+      "expected_failed_requirements": [
+        "R8"
+      ]
+    }
+  ]
+}

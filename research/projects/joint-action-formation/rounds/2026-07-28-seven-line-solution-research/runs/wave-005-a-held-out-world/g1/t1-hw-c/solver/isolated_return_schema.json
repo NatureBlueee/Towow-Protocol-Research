@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "party",
+    "source_sha256",
+    "disposition",
+    "authorized_returns",
+    "projection_updates",
+    "execution_permissions",
+    "terminal_claims",
+    "evidence_refs",
+    "non_claims"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "party": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "disposition": {
+      "enum": [
+        "AUTHORIZED_RETURN",
+        "REFUSE",
+        "ABSENT",
+        "UNKNOWN",
+        "VERSION_UPDATE",
+        "MULTIPLE"
+      ]
+    },
+    "authorized_returns": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "projection_updates": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "execution_permissions": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "terminal_claims": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}

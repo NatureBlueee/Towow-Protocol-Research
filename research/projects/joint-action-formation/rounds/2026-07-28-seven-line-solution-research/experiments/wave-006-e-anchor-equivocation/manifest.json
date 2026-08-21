@@ -1,0 +1,139 @@
+{
+  "schema": "towow.wave006-anchor-equivocation-manifest.v1",
+  "experiment_id": "WAVE-006-E-ANCHOR-EQUIVOCATION",
+  "status": "LOCAL_SYNTHETIC_THREAT_CONDITIONAL_RESULT",
+  "date": "2026-07-29",
+  "shared_task": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "protected_denominator": [
+    "RUN-STERILE-ROUTE-SIM-v1 operation",
+    "frozen shared-task truth",
+    "client-visible anchor checkpoint format",
+    "anchor signing key",
+    "beneficiary acceptance semantics"
+  ],
+  "strategies": [
+    "SINGLE_PINNED_VIEW",
+    "CLIENT_GOSSIP",
+    "INDEPENDENT_WITNESS_QUORUM"
+  ],
+  "equivocation_fixture": {
+    "anchor_uses_correct_key": true,
+    "clients": 2,
+    "conflicting_slot": {
+      "sequence": 1,
+      "previous_head": null
+    },
+    "both_branches_locally_valid": true
+  },
+  "results": {
+    "SINGLE_PINNED_VIEW": {
+      "equivocation_detection": 0,
+      "detection_during_partition": 0,
+      "conflicting_acceptances": 1,
+      "false_rejection": 0,
+      "message_cost": 0,
+      "evidence_cost": 2,
+      "recovery": "UNAVAILABLE_WITHOUT_NEW_CROSS_VIEW_INPUT"
+    },
+    "CLIENT_GOSSIP": {
+      "equivocation_detection": 1,
+      "detection_during_partition": 0,
+      "conflicting_acceptances": 1,
+      "false_rejection": 0,
+      "message_cost": 2,
+      "evidence_cost": 2,
+      "recovery_steps": 2
+    },
+    "INDEPENDENT_WITNESS_QUORUM": {
+      "equivocation_detection": 1,
+      "detection_during_partition": 1,
+      "conflicting_acceptances": 0,
+      "false_rejection": 0,
+      "message_cost": 8,
+      "evidence_cost": 4,
+      "recovery_steps": 1,
+      "missed_valid_action_under_witness_partition": 1
+    }
+  },
+  "formal_boundary": {
+    "single_view_impossibility": "Each one-branch client transcript is identical to a possible honest single-branch world; no single-transcript verifier has a cross-view distinguishing bit.",
+    "quorum_intersection": {
+      "n": 3,
+      "q": 2,
+      "condition": "2q > n",
+      "depends_on": "At least one intersecting witness does not double-sign."
+    }
+  },
+  "threat_conditional_selection": {
+    "local_integrity_only": "SINGLE_PINNED_VIEW",
+    "eventual_detection_after_rejoin": "CLIENT_GOSSIP",
+    "prevent_second_accepted_head_during_partition": "INDEPENDENT_WITNESS_QUORUM"
+  },
+  "solution_result": {
+    "new_protocol_required": false,
+    "existing_components": [
+      "pinned signed checkpoints",
+      "client checkpoint gossip",
+      "standard intersecting witness quorum"
+    ],
+    "transparency_log_not_added": "Current fixtures are already discriminated by gossip and quorum; a fourth mechanism would not change the scoped result."
+  },
+  "evidence_boundary": {
+    "environment": "LOCAL_SYNTHETIC_ONLY",
+    "not_claimed": [
+      "real attack frequency",
+      "production reliability",
+      "hardware-backed key custody",
+      "all witnesses honest",
+      "Byzantine consensus",
+      "multi-region network behavior",
+      "real beneficiary acceptance"
+    ]
+  },
+  "validation": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave006-anchor-pycache python3 -m unittest discover -s tests -v",
+    "tests_run": 13,
+    "failures": 0,
+    "errors": 0,
+    "additional_checks": [
+      "python3 -m py_compile simulator.py evaluator.py",
+      "git diff --check for experiment path",
+      "artifact SHA-256 verification",
+      "shared task SHA-256 verification"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "a214230f1b125c2f32245d855d78b598e20f9b7702bdebf32988fa3aea404aa0"
+    },
+    {
+      "path": "simulator.py",
+      "sha256": "0fe80c92d4d7280f181c246e935486ea83b5ff93fd612f03c4a159c3e757a1f3"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "be2290a5e5f401bc0d9ca620272900fda1c23d2ac814ab35d0bbd5ecb1274be2"
+    },
+    {
+      "path": "fixtures/experiment-spec.json",
+      "sha256": "9d275bf90a419cb1b4fa89475da03ec7c89f02eeae575abe28683edf60ee7ff7"
+    },
+    {
+      "path": "fixtures/scenarios.json",
+      "sha256": "0759e36dcb06b342766b44b89b7e146156dcfd2a05cfae7c026cb09aee41ccb6"
+    },
+    {
+      "path": "tests/test_anchor_equivocation.py",
+      "sha256": "28779dc44cebd50b213d083ca8f2126ba1da3ec3a2b912262a6900ac15232a85"
+    },
+    {
+      "path": "results.json",
+      "sha256": "d59b82091d5eb989b7e2affe795421f18cdade8000ae367899a7768c6997da10"
+    }
+  ]
+}

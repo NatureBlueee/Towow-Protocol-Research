@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T4 Joint Bid method-neutral final submission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "method_id",
+    "run_id",
+    "input_hash",
+    "evaluator_hash",
+    "controller_history_hash",
+    "method_components",
+    "queries_and_disclosures",
+    "task_reconstruction",
+    "relation_versions",
+    "capability_qualifications",
+    "authority_state",
+    "reservations",
+    "workflow",
+    "outcomes",
+    "reopen_plan",
+    "migration_plan",
+    "unknowns",
+    "refusals",
+    "cannot_support"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "task_id": {"const": "T4-JOINT-BID-BLIND-V1"},
+    "method_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "input_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evaluator_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "controller_history_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "method_components": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "queries_and_disclosures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "request_id",
+          "receipt_id",
+          "receipt_hash",
+          "authority_id",
+          "request_type",
+          "purpose",
+          "relation_version_ref",
+          "response_type",
+          "disclosed_fields",
+          "retention_scope"
+        ],
+        "properties": {
+          "request_id": {"type": "string"},
+          "receipt_id": {"type": "string"},
+          "receipt_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "authority_id": {"type": "string"},
+          "request_type": {"type": "string"},
+          "purpose": {"type": "string"},
+          "relation_version_ref": {"type": "string"},
+          "response_type": {"type": "string"},
+          "disclosed_fields": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "retention_scope": {"enum": ["EPHEMERAL", "RUN_ONLY"]}
+        }
+      }
+    },
+    "task_reconstruction": {"type": "object"},
+    "relation_versions": {
+      "type": "array",
+      "items": {"type": "object"},
+      "minItems": 1
+    },
+    "capability_qualifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operation",
+          "executor",
+          "environment",
+          "version",
+          "permission",
+          "resource",
+          "recovery",
+          "status",
+          "evidence_available_at_claim_time",
+          "asserted_before_commitment"
+        ]
+      }
+    },
+    "authority_state": {"type": "array", "items": {"type": "object"}},
+    "reservations": {"type": "array", "items": {"type": "object"}},
+    "workflow": {"type": "object"},
+    "outcomes": {
+      "type": "object",
+      "required": [
+        "submission",
+        "receipt_or_eligibility",
+        "adoption",
+        "acceptance",
+        "action_attempt",
+        "effect",
+        "settlement"
+      ]
+    },
+    "reopen_plan": {"type": "object"},
+    "migration_plan": {"type": "object"},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "refusals": {"type": "array", "items": {"type": "object"}},
+    "cannot_support": {"type": "array", "items": {"type": "string"}}
+  }
+}

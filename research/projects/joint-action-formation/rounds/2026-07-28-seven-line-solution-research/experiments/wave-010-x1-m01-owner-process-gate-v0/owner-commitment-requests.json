@@ -1,0 +1,210 @@
+{
+  "schema": "X1OwnerCommitmentRequestSet-v0",
+  "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+  "status": "CANDIDATE_UNSIGNED_NOT_RUN",
+  "canonicalization": "UTF-8 JSON with sorted keys and separators(',', ':'); no insignificant whitespace",
+  "signature_profile": {
+    "algorithm": "Ed25519",
+    "signed_object": "canonical bytes of decision_body",
+    "decision_body_fields": [
+      "gate_id",
+      "request_id",
+      "authority_domain_id",
+      "owner_key_id",
+      "decision",
+      "authorization_payload_sha256",
+      "decided_at",
+      "expires_at",
+      "refusal_reason"
+    ],
+    "allowed_decisions": [
+      "AUTHORIZE_EXACT_CANDIDATE",
+      "REFUSE"
+    ],
+    "missing_or_invalid_signature_semantics": "NOT_AUTHORIZED",
+    "key_resolution": "EXTERNAL_OWNER_CONTROLLED_PUBLIC_KEY_REGISTRY_REQUIRED"
+  },
+  "research_controller": {
+    "principal_id": "wave010-research-controller",
+    "may_prepare_requests": true,
+    "may_verify_signatures": true,
+    "may_sign_for_any_owner": false,
+    "may_relabel_its_signature_as_owner_signature": false,
+    "may_convert_missing_or_refused_owner_decision_to_authorized": false
+  },
+  "composition_rule": {
+    "authorization_candidate_requires": "four current valid AUTHORIZE_EXACT_CANDIDATE decisions over the four exact request payload hashes",
+    "any_owner_refusal": "BLOCKED_BY_OWNER_REFUSAL",
+    "missing_expired_invalid_or_unknown_owner_decision": "NOT_AUTHORIZED",
+    "controller_override": "FORBIDDEN",
+    "automatic_activation_or_promotion": false,
+    "next_gate_after_four_authorizations": "EXPLICIT_USER_DECISION_ON_EXACT SIGNED SET AND ENFORCED PROCESS ALLOWLIST"
+  },
+  "requests": [
+    {
+      "request_id": "owner-commitment-program-coordinator-v0",
+      "authority_domain_id": "program-coordinator-domain",
+      "owner": {
+        "principal_id": "estuary-monitoring-program",
+        "controller_id": "estuary-program-authority-board",
+        "agent_entity_id": "estuary-joint-bid-coordinator-agent",
+        "owner_key_id": "program-coordinator-domain:owner-key:v1"
+      },
+      "authorization_payload": {
+        "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+        "request_id": "owner-commitment-program-coordinator-v0",
+        "authority_domain_id": "program-coordinator-domain",
+        "owner_key_id": "program-coordinator-domain:owner-key:v1",
+        "freeze_bundle_id": "wave010-x1-m01-freeze-bundle-v0",
+        "freeze_bundle_raw_sha256": "6d34bfdf6764ed58c0d183bbf3e467299767cf50d3870ca213bc6116f94f5bc7",
+        "freeze_content_root_sha256": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+        "accepted_audit_raw_sha256": "a1ad68ef9bee75958376529a1047ed6ef3e6cf038222f162274a7b6a0857b37b",
+        "owner_domain_raw_sha256": "eb50b90fab3c4b22e552eb56a55ba1467bc5449602c5371e386a6edcc2778805",
+        "owner_ledger_head": "d42bca7c014e440e6b7103b625334fe642a712ba64895ea0acb52385a4fdec00",
+        "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+        "purpose": "Permit only this exact frozen pair to proceed to isolated method implementation and later run-candidate review; do not authorize a run, commitment, reservation, formal relation, score writeback, activation, or promotion.",
+        "scope": [
+          "program mandate",
+          "program relation stance",
+          "program front-half commitment"
+        ],
+        "issued_at": "2026-07-29T00:00:00Z",
+        "not_before": "2026-07-29T00:00:00Z",
+        "expires_at": "2026-08-05T00:00:00Z",
+        "current_head": {
+          "bundle_content_root": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+          "owner_ledger_root_candidate": "d42bca7c014e440e6b7103b625334fe642a712ba64895ea0acb52385a4fdec00"
+        },
+        "controller_proxy_signature_forbidden": true,
+        "automatic_activation_or_promotion": false
+      },
+      "authorization_payload_sha256": "24ba4f715563bc9df5eb384291cfbba3947e3d30adf2092594376f2fcf594126",
+      "decision_status": "PENDING_OWNER_DECISION",
+      "decision_envelope": null
+    },
+    {
+      "request_id": "owner-commitment-delta-calibration-v0",
+      "authority_domain_id": "delta-calibration-domain",
+      "owner": {
+        "principal_id": "delta-field-calibration-cooperative",
+        "controller_id": "delta-calibration-operations-board",
+        "agent_entity_id": "delta-calibration-service-agent",
+        "owner_key_id": "delta-calibration-domain:owner-key:v1"
+      },
+      "authorization_payload": {
+        "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+        "request_id": "owner-commitment-delta-calibration-v0",
+        "authority_domain_id": "delta-calibration-domain",
+        "owner_key_id": "delta-calibration-domain:owner-key:v1",
+        "freeze_bundle_id": "wave010-x1-m01-freeze-bundle-v0",
+        "freeze_bundle_raw_sha256": "6d34bfdf6764ed58c0d183bbf3e467299767cf50d3870ca213bc6116f94f5bc7",
+        "freeze_content_root_sha256": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+        "accepted_audit_raw_sha256": "a1ad68ef9bee75958376529a1047ed6ef3e6cf038222f162274a7b6a0857b37b",
+        "owner_domain_raw_sha256": "6cc45e9330c6ae24974656ab7bf1629472ea25ecebd25f5a9fb7dc5b241fd330",
+        "owner_ledger_head": "4907b0c00291c0ec78035c9ca026844adbd74a2f8e6f5b0ecb7f8ef957cad471",
+        "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+        "purpose": "Permit only this exact frozen pair to proceed to isolated method implementation and later run-candidate review; do not authorize a run, commitment, reservation, formal relation, score writeback, activation, or promotion.",
+        "scope": [
+          "delta mandate",
+          "delta calibration-role stance",
+          "delta calibration commitment",
+          "delta-owned field-service reservation"
+        ],
+        "issued_at": "2026-07-29T00:00:00Z",
+        "not_before": "2026-07-29T00:00:00Z",
+        "expires_at": "2026-08-05T00:00:00Z",
+        "current_head": {
+          "bundle_content_root": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+          "owner_ledger_root_candidate": "4907b0c00291c0ec78035c9ca026844adbd74a2f8e6f5b0ecb7f8ef957cad471"
+        },
+        "controller_proxy_signature_forbidden": true,
+        "automatic_activation_or_promotion": false
+      },
+      "authorization_payload_sha256": "85bcf601694b60bd2848dc7fa5925db8847ccaf5a91c1b1c778d2beddf637691",
+      "decision_status": "PENDING_OWNER_DECISION",
+      "decision_envelope": null
+    },
+    {
+      "request_id": "owner-commitment-independent-validation-v0",
+      "authority_domain_id": "independent-validation-domain",
+      "owner": {
+        "principal_id": "independent-estuary-validation-lab",
+        "controller_id": "independent-validation-governance-board",
+        "agent_entity_id": "independent-validation-witness-agent",
+        "owner_key_id": "independent-validation-domain:owner-key:v1"
+      },
+      "authorization_payload": {
+        "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+        "request_id": "owner-commitment-independent-validation-v0",
+        "authority_domain_id": "independent-validation-domain",
+        "owner_key_id": "independent-validation-domain:owner-key:v1",
+        "freeze_bundle_id": "wave010-x1-m01-freeze-bundle-v0",
+        "freeze_bundle_raw_sha256": "6d34bfdf6764ed58c0d183bbf3e467299767cf50d3870ca213bc6116f94f5bc7",
+        "freeze_content_root_sha256": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+        "accepted_audit_raw_sha256": "a1ad68ef9bee75958376529a1047ed6ef3e6cf038222f162274a7b6a0857b37b",
+        "owner_domain_raw_sha256": "47f32527c4fb1d0b7ed7f1d5782a4bdf5bd8cfb3b3039d262b6d751d59ac56ed",
+        "owner_ledger_head": "85af09cf9381386c31d791f275c84103bbc7f53c6de35b927414c08d49e3ee35",
+        "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+        "purpose": "Permit only this exact frozen pair to proceed to isolated method implementation and later run-candidate review; do not authorize a run, commitment, reservation, formal relation, score writeback, activation, or promotion.",
+        "scope": [
+          "validation mandate",
+          "independent witness stance",
+          "independent validation commitment"
+        ],
+        "issued_at": "2026-07-29T00:00:00Z",
+        "not_before": "2026-07-29T00:00:00Z",
+        "expires_at": "2026-08-05T00:00:00Z",
+        "current_head": {
+          "bundle_content_root": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+          "owner_ledger_root_candidate": "85af09cf9381386c31d791f275c84103bbc7f53c6de35b927414c08d49e3ee35"
+        },
+        "controller_proxy_signature_forbidden": true,
+        "automatic_activation_or_promotion": false
+      },
+      "authorization_payload_sha256": "b77115126acc4485c3277375a7bbe83032f731f1ef5bf382d07faa943065cd0b",
+      "decision_status": "PENDING_OWNER_DECISION",
+      "decision_envelope": null
+    },
+    {
+      "request_id": "owner-commitment-site-data-steward-v0",
+      "authority_domain_id": "site-data-steward-domain",
+      "owner": {
+        "principal_id": "estuary-site-data-steward",
+        "controller_id": "estuary-site-data-governance-board",
+        "agent_entity_id": "estuary-site-disclosure-policy-agent",
+        "owner_key_id": "site-data-steward-domain:owner-key:v1"
+      },
+      "authorization_payload": {
+        "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+        "request_id": "owner-commitment-site-data-steward-v0",
+        "authority_domain_id": "site-data-steward-domain",
+        "owner_key_id": "site-data-steward-domain:owner-key:v1",
+        "freeze_bundle_id": "wave010-x1-m01-freeze-bundle-v0",
+        "freeze_bundle_raw_sha256": "6d34bfdf6764ed58c0d183bbf3e467299767cf50d3870ca213bc6116f94f5bc7",
+        "freeze_content_root_sha256": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+        "accepted_audit_raw_sha256": "a1ad68ef9bee75958376529a1047ed6ef3e6cf038222f162274a7b6a0857b37b",
+        "owner_domain_raw_sha256": "79512b5f53c904abac2ff49055d66552b3e2e75d9f8c40bbb09661db028aecb0",
+        "owner_ledger_head": "b53a5289b716be73247e5875dcaefe47985acef9d9f24c966d64aea10604f22f",
+        "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+        "purpose": "Permit only this exact frozen pair to proceed to isolated method implementation and later run-candidate review; do not authorize a run, commitment, reservation, formal relation, score writeback, activation, or promotion.",
+        "scope": [
+          "site-data mandate",
+          "purpose-bound disclosure stance",
+          "site-data handling commitment"
+        ],
+        "issued_at": "2026-07-29T00:00:00Z",
+        "not_before": "2026-07-29T00:00:00Z",
+        "expires_at": "2026-08-05T00:00:00Z",
+        "current_head": {
+          "bundle_content_root": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+          "owner_ledger_root_candidate": "b53a5289b716be73247e5875dcaefe47985acef9d9f24c966d64aea10604f22f"
+        },
+        "controller_proxy_signature_forbidden": true,
+        "automatic_activation_or_promotion": false
+      },
+      "authorization_payload_sha256": "1dcc5809c7fcd30f32584d67022aca89e87ec659ec8afe218d6ebdb4a65fce3c",
+      "decision_status": "PENDING_OWNER_DECISION",
+      "decision_envelope": null
+    }
+  ]
+}

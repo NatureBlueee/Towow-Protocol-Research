@@ -1,0 +1,490 @@
+{
+  "$schema": "./EXECUTABLE-ATTACK-PROFILE.schema.json",
+  "schema": "WAVE025_EXECUTABLE_ATTACK_PROFILE_FULL_V1",
+  "profile_id": "WAVE025-EXECUTABLE-ATTACK-PROFILE-FULL-V1",
+  "version": "1.0.0",
+  "status": "ROOT_ADOPTED_PREFORMAL_BLOCKED_NOT_EXECUTED",
+  "authority": {
+    "classification": "ROOT_ADOPTED_SHARED_PREFORMAL_PROFILE",
+    "may_change_evaluator": false,
+    "may_change_runner": false,
+    "may_change_contract": false,
+    "may_produce_qualification_verdict": false,
+    "may_rank_treatments": false,
+    "formal_use_while_blocking_nonempty": "FORBIDDEN",
+    "promotion_requires_separate_adoption_and_external_anchor": true
+  },
+  "feature_spec_binding": {
+    "path_from_profile": "feature-spec/FEATURE-SPEC.json",
+    "raw_byte_length": 22559,
+    "raw_bytes_sha256": "8398fb773dca1f7da1edd9a5dcef742f27db7ee954fc9f90de8de56713f1236a",
+    "expected_schema": "WAVE025_FEATURE_CLASSIFIER_SPEC_V1",
+    "expected_spec_version": "1.0.0",
+    "load_rule": "READ_EXACT_BYTES_VERIFY_LENGTH_AND_SHA256_THEN_PARSE_JSON_THEN_RESOLVE_POINTERS",
+    "semantic_authority": "FEATURE_SPEC_BYTES_NOT_REFERENCE_EXTRACTOR_CODE",
+    "reference_extractor_role": "NONAUTHORITATIVE_COMPARISON_IMPLEMENTATION_ONLY",
+    "duplicate_definition_policy": "FORBIDDEN_EXCEPT_EXPLICIT_OVERRIDE_VALUES",
+    "override_pointer_allowlist": [
+      "/formal_population",
+      "/permutation_plan/label_permutation"
+    ],
+    "resolved_sections": [
+      {
+        "id": "SCOPE",
+        "json_pointer": "/scope",
+        "canonical_json_sha256": "9025348351b69a15a571ea38b9fd7a68cddcc67719cd83b5d82adbe2b8acc5fc"
+      },
+      {
+        "id": "INPUT_BOUNDARY",
+        "json_pointer": "/input_boundary",
+        "canonical_json_sha256": "eb3e61e9db2f7d9e59a3e166e897be8e1715ebbe93a7cd9c8e606156174f19ee"
+      },
+      {
+        "id": "PREDICTOR_OUTPUT",
+        "json_pointer": "/predictor_output",
+        "canonical_json_sha256": "3182a215dd8abcda81b2b58cda6c529eeb7b6743db2393c9c7923fc9d07f5bd8"
+      },
+      {
+        "id": "FEATURE_FAMILIES_F01_TO_F07",
+        "json_pointer": "/feature_families",
+        "canonical_json_sha256": "5741dd9b01bc32b3d460a427a8c03361e4f866ef0f9f49721ecabbe138201ffe"
+      },
+      {
+        "id": "EXCLUDED_CANDIDATE_RECEIPT_FIELDS",
+        "json_pointer": "/excluded_candidate_receipt_fields",
+        "canonical_json_sha256": "d627630400b0c51ad2b2a9492f291c421de03c4946bdb38d168ce0ea39e0361d"
+      },
+      {
+        "id": "STRING_TRANSFORM",
+        "json_pointer": "/string_transform",
+        "canonical_json_sha256": "f4744dc65e350b246afb6355593091b955c320f9d4f3f0f5f70284188be982e5"
+      },
+      {
+        "id": "NUMERIC_TRANSFORM",
+        "json_pointer": "/numeric_transform",
+        "canonical_json_sha256": "c88f8a97bd7abd887f839633fa7e928b360c558e9f9346232899208832db250c"
+      },
+      {
+        "id": "MODEL_PREPROCESSING",
+        "json_pointer": "/model_preprocessing",
+        "canonical_json_sha256": "634a6d0dd397be155f7cbda199f38514ac00d66b7a9b638a19a7e3fa400611ad"
+      },
+      {
+        "id": "CLASSIFIERS_C01_TO_C05",
+        "json_pointer": "/classifier_plan",
+        "canonical_json_sha256": "778867340d0a6ed949bcb42464f0971bcb057fca8c37c902ea526e8ae35bdfea"
+      },
+      {
+        "id": "CONTROL_EVALUATION",
+        "json_pointer": "/control_evaluation",
+        "canonical_json_sha256": "ae33d180e6b70853794d2c57ac898ac510717e2a90748496a8f008b7dd4056a6"
+      },
+      {
+        "id": "CLASSWISE_CONFIDENCE_INTERVALS",
+        "json_pointer": "/confidence_intervals",
+        "canonical_json_sha256": "1ba5ac470edc0009bc1b48a53a23cf9b04dbedbce32daf9863973cbba87b494d"
+      },
+      {
+        "id": "PERMUTATION_BASE",
+        "json_pointer": "/permutation_plan",
+        "canonical_json_sha256": "d7396089ac28bb23597ba22e18fe544f8abc7ca5f798cd37a7ba5f36cb4bc530"
+      },
+      {
+        "id": "HOLM_MULTIPLICITY",
+        "json_pointer": "/multiplicity",
+        "canonical_json_sha256": "8a2a6bc9d5c98ee5a2695317a61066d469242575b1da7393e2a9586df3e09121"
+      },
+      {
+        "id": "TIE_AND_FAILURE_RULES",
+        "json_pointer": "/deterministic_tie_and_failure_rules",
+        "canonical_json_sha256": "f0e78bd2f40e16823ebe3935253e58eb07053c52900afce67c3084f3c4584a1e"
+      },
+      {
+        "id": "FULL_LEAF_AUDIT",
+        "json_pointer": "/excluded_field_audit",
+        "canonical_json_sha256": "26d11ac028384e6f1c3621726d382fcec5316049852e3499eafb7008c9aebec3"
+      },
+      {
+        "id": "FALSE_GREEN_RISKS",
+        "json_pointer": "/false_green_risks",
+        "canonical_json_sha256": "729befe04e52714f89c3963a67e13eb3fd5645b8416c9545f55bb030924f20b9"
+      },
+      {
+        "id": "FALSE_FAIL_RISKS",
+        "json_pointer": "/false_fail_risks",
+        "canonical_json_sha256": "e4f0ca99c0cbbf10b586d881a15824698a8f937701bf39e35c321627783f5041"
+      },
+      {
+        "id": "INHERITED_NOT_TESTED",
+        "json_pointer": "/not_tested",
+        "canonical_json_sha256": "915cd6e1e098ee3a0f2e2c05262d25125a9e9764c6e7b4a65f532fceddaac5a5"
+      }
+    ]
+  },
+  "formal_population_override": {
+    "supersedes_json_pointer": "/formal_population",
+    "reason_code": "FIVE_ATTACK_UNION_BOUND_POWER_REPAIR_WITHOUT_CHANGING_FEATURE_OR_ATTACK_SEMANTICS",
+    "power_basis": {
+      "T_holdout_per_role": 1200,
+      "single_attack_pass_probability_lower_bound": 0.982255,
+      "five_attack_union_bound_pass_probability_lower_bound": 0.911276,
+      "attack_count": 5,
+      "decision_ci": "INHERIT_CLASSWISE_CLOPPER_PEARSON_FROM_FEATURE_SPEC",
+      "state": "DESIGN_INPUT_NOT_EXECUTION_RESULT"
+    },
+    "D0-HOST-LEAK": {
+      "calibration": 100,
+      "fresh_holdout": 100,
+      "calibration_per_role": 50,
+      "holdout_per_role": 50,
+      "block_size": 20,
+      "calibration_blocks": 5,
+      "holdout_blocks": 5,
+      "total": 200
+    },
+    "D1-OCI-CANARY": {
+      "calibration": 100,
+      "fresh_holdout": 100,
+      "calibration_per_role": 50,
+      "holdout_per_role": 50,
+      "block_size": 20,
+      "calibration_blocks": 5,
+      "holdout_blocks": 5,
+      "total": 200
+    },
+    "T-OCI-ISOLATED": {
+      "calibration": 400,
+      "fresh_holdout": 2400,
+      "calibration_per_role": 200,
+      "holdout_per_role": 1200,
+      "block_size": 20,
+      "calibration_blocks": 20,
+      "holdout_blocks": 120,
+      "total": 2800
+    },
+    "total_slots": 3200,
+    "total_blocks": 160,
+    "role_balance": "EXACT_WITHIN_EACH_CHALLENGE_PHASE_BLOCK",
+    "post_return_extension": "FORBIDDEN"
+  },
+  "inherited_attack_surface": {
+    "feature_family_ids": [
+      "F01_PUBLIC_INPUT_BYTES",
+      "F02_ARGV_ENV_CWD",
+      "F03_HOSTNAME_IDENTITY",
+      "F04_DIRECTORY_AND_SHARED_STATE",
+      "F05_PROCESS_NAMESPACE_FD",
+      "F06_TIMING_AND_ERRORS",
+      "F07_VISIBLE_CANARY"
+    ],
+    "classifier_ids": [
+      "C01_EXACT_CATEGORICAL_SCAN",
+      "C02_L2_LOGISTIC",
+      "C03_DECISION_STUMP",
+      "C04_BOUNDED_TREE",
+      "C05_KNN_11"
+    ],
+    "leaf_partition": "INHERIT_EXACTLY_FROM_BOUND_FULL_LEAF_AUDIT_AND_EXCLUDED_FIELDS",
+    "candidate_visible_leaf_cap": "NONE",
+    "numeric_path_cap": "NONE",
+    "categorical_bucket_reduction": "FORBIDDEN",
+    "ngram_bucket_reduction": "FORBIDDEN",
+    "unknown_or_unclassified_leaf": "NOT_QUALIFIED",
+    "extract_from_raw_receipts_independently": true,
+    "runner_supplied_vectors_are_authoritative": false
+  },
+  "control_primary_mapping": {
+    "mapping_scope": "EVERY_REGISTERED_PRIVATE_FAMILY_WITHIN_CHALLENGE",
+    "D0-HOST-LEAK": {
+      "expected_feature_family_id": "F04_DIRECTORY_AND_SHARED_STATE",
+      "primary_classifier_id": "C01_EXACT_CATEGORICAL_SCAN",
+      "secondary_detector_can_rescue_failed_primary": false
+    },
+    "D1-OCI-CANARY": {
+      "expected_feature_family_id": "F07_VISIBLE_CANARY",
+      "primary_classifier_id": "C01_EXACT_CATEGORICAL_SCAN",
+      "secondary_detector_can_rescue_failed_primary": false
+    },
+    "pool_D0_and_D1": false,
+    "registry_binding_required_before_external_anchor": true
+  },
+  "permutation_override": {
+    "supersedes_json_pointer": "/permutation_plan/label_permutation",
+    "replicates": 9999,
+    "population": "FRESH_HOLDOUT_ONLY",
+    "predictions": "FROZEN_BEFORE_HOLDOUT_LABEL_JOIN",
+    "label_permutation": "PERMUTE_REVEALED_ROLE_WITHIN_CHALLENGE_PHASE_BLOCK_AND_RESCORE_FROZEN_HOLDOUT_PREDICTIONS",
+    "block_keys": [
+      "challenge",
+      "phase",
+      "block"
+    ],
+    "retrain_or_reselect_per_replicate": false,
+    "seed_rule_json_pointer": "/permutation_plan/seed",
+    "permutation_order_json_pointer": "/permutation_plan/permutation_order",
+    "p_value_json_pointer": "/permutation_plan/p_value",
+    "nonrejection_is_equivalence": false,
+    "profile_reduction_after_holdout_read": "FORBIDDEN"
+  },
+  "host_only_holm": {
+    "host_statistics_json_pointer": "/permutation_plan/host_only_association_statistics",
+    "role_order_permutation_json_pointer": "/permutation_plan/role_order_permutation",
+    "multiplicity_json_pointer": "/multiplicity",
+    "family_id": "T_HOST_ONLY_ROLE_ORDER_ASSOCIATIONS",
+    "replicates": 9999,
+    "predictor_matrix_import": "FORBIDDEN",
+    "inventory_must_be_frozen_before_anchor": true
+  },
+  "execution_provider": {
+    "provider_id": "WAVE025_NUMPY_2_0_2_FLOAT64_EINSUM_ARM64_V1",
+    "python": {
+      "implementation": "CPython",
+      "version": "3.9.6",
+      "executable_sha256": "bdea59019a38eb6600cc9e71e984a97fedadc406448431281e7657030f54987e"
+    },
+    "numpy": {
+      "distribution": "numpy",
+      "version": "2.0.2",
+      "distribution_record_sha256": "ef53c7f11d1d73e20f3a461d3d31aa13a1d2b55d6ce7db65c7e20b99c2e0bd0c",
+      "blas_lapack_backend": "ACCELERATE_SYSTEM",
+      "build_machine": "DARWIN_AARCH64",
+      "baseline_simd": [
+        "NEON",
+        "NEON_FP16",
+        "NEON_VFPV4",
+        "ASIMD"
+      ]
+    },
+    "platform": {
+      "os": "macOS-26.6",
+      "machine": "arm64",
+      "byte_order": "little"
+    },
+    "numeric_semantics": {
+      "dtype": "float64",
+      "array_order": "C_CONTIGUOUS",
+      "einsum_optimize": false,
+      "C02_dot_provider": "NUMPY_EINSUM_OPTIMIZE_FALSE",
+      "C05_dot_provider": "NUMPY_EINSUM_OPTIMIZE_FALSE",
+      "float32": "FORBIDDEN",
+      "numpy_matmul_or_at_operator": "FORBIDDEN_FOR_C02_AND_C05",
+      "warning_policy": "ERROR_AND_NOT_QUALIFIED",
+      "nonfinite_policy": "NOT_QUALIFIED",
+      "nondeterministic_reduction_policy": "NOT_QUALIFIED"
+    },
+    "single_thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "provider_must_be_bound_before_numpy_import": true,
+    "installed_distribution_record_must_match": true
+  },
+  "deterministic_replay": {
+    "independent_runs": 2,
+    "hash_algorithm": "SHA256",
+    "canonical_json": "UTF8_RECURSIVE_KEY_SORT_COMPACT_ONE_LF",
+    "required_hash_classes": [
+      "RAW_RECEIPT_MANIFEST",
+      "INCLUDED_EXCLUDED_LEAF_AUDIT",
+      "NUMERIC_FEATURE_MATRIX",
+      "CATEGORICAL_FEATURE_MATRIX",
+      "CALIBRATION_MODEL_ARTIFACTS_C01_TO_C05",
+      "FROZEN_HOLDOUT_PREDICTIONS_C01_TO_C05",
+      "CLASSWISE_CI_STATISTICS",
+      "BLOCK_PERMUTATION_STATISTICS",
+      "HOST_ONLY_HOLM_STATISTICS",
+      "EVALUATION_OUTPUT_BYTES"
+    ],
+    "allowed_byte_differences": 0,
+    "allowed_prediction_differences": 0,
+    "allowed_statistic_differences": 0,
+    "warning_count_required": 0,
+    "nonfinite_count_required": 0,
+    "hash_manifest_external_binding": "REQUIRED_BEFORE_FORMAL_USE"
+  },
+  "cost_ceiling": {
+    "scope": "FULL_3200_SLOT_EVALUATOR_ATTACK_PHASE_AFTER_EVIDENCE_INTEGRITY",
+    "candidate_visible_leaf_cap": "NONE",
+    "maximum_resident_memory_bytes": 4294967296,
+    "maximum_temporary_derived_cache_bytes": 2147483648,
+    "maximum_formal_evaluation_output_bytes": 209715200,
+    "maximum_feature_extraction_wall_seconds": 1200,
+    "maximum_model_ci_and_permutation_wall_seconds": 1800,
+    "maximum_total_attack_phase_wall_seconds": 3600,
+    "maximum_frozen_prediction_permutation_wall_seconds": 600,
+    "ceiling_exceeded_action": "NOT_QUALIFIED_NO_AUTOMATIC_PROFILE_REDUCTION",
+    "preformal_rehearsal_population": 3200,
+    "preformal_rehearsal_must_use_actual_shape_receipts": true,
+    "preformal_rehearsal_must_include_max_size_fixtures": true,
+    "ceiling_pass_is_qualification_evidence": false
+  },
+  "deferred_challenge": {
+    "id": "MODEL-SELECTION-RANDOMIZATION",
+    "status": "NOT_TESTED",
+    "omitted_operation": "RETRAIN_AND_RESCORE_C01_TO_C05_FOR_EACH_OF_9999_BLOCK_PRESERVING_LABEL_PERMUTATIONS",
+    "not_claimed_by_this_profile": "UNCONDITIONAL_RANDOMIZATION_CALIBRATION_OF_CALIBRATION_STAGE_MODEL_SELECTION_AND_FITTING",
+    "strongest_remaining_false_green": "LABEL_OR_HOLDOUT_DEPENDENT_EXTRACTION_SELECTION_TUNING_OR_PRIMARY_DETECTOR_CHOICE_CAN_SURVIVE_FROZEN_PREDICTION_PERMUTATION",
+    "applicability_preconditions": [
+      {
+        "id": "RAW_EXTRACTION_PRECEDES_ALL_LABEL_JOINS",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "FEATURE_SPEC_TRANSFORMS_AND_HASH_DOMAINS_ARE_PRECOMMITTED",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "CLASSIFIER_HYPERPARAMETERS_AND_CONTROL_PRIMARY_MAPPING_ARE_PRECOMMITTED",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "HOLDOUT_FEATURES_AND_LABELS_DO_NOT_AFFECT_CALIBRATION_SELECTION_OR_FIT",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "HOLDOUT_PREDICTIONS_ARE_FROZEN_AND_HASH_ANCHORED_BEFORE_HOLDOUT_LABEL_JOIN",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "NO_MANUAL_OR_AUTOMATIC_POST_HOLDOUT_ATTACK_SELECTION",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      },
+      {
+        "id": "ALL_FIVE_PREDICTIVE_TESTS_ENTER_THE_PRECOMMITTED_HOLM_FAMILY",
+        "required_state": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+      }
+    ],
+    "precondition_failure_action": "NOT_QUALIFIED_DO_NOT_USE_FROZEN_PREDICTION_SHORTCUT",
+    "later_challenge_may_reuse_formal_holdout": false
+  },
+  "evidence_states": {
+    "profile_adoption": "ROOT_SELECTED_PREFORMAL_EXTERNAL_ANCHOR_PENDING",
+    "full_leaf_extraction": "NOT_TESTED",
+    "F01_TO_F07_coverage": "NOT_TESTED",
+    "C01_TO_C05_execution": "NOT_TESTED",
+    "D0_primary_sensitivity": "NOT_TESTED",
+    "D1_primary_sensitivity": "NOT_TESTED",
+    "T_classwise_equivalence": "NOT_TESTED",
+    "block_permutation": "NOT_TESTED",
+    "host_only_holm": "NOT_TESTED",
+    "provider_determinism": "NOT_TESTED",
+    "cost_ceiling": "NOT_TESTED",
+    "deterministic_replay": "NOT_TESTED",
+    "model_selection_randomization": "NOT_TESTED",
+    "inherited_not_tested_json_pointer": "/not_tested",
+    "state_rule": "EVERY_SCIENTIFIC_RESULT_REMAINS_NOT_TESTED_UNTIL_SEPARATELY_ANCHORED_EXECUTION"
+  },
+  "external_bindings": {
+    "profile_adoption_receipt_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "external_profile_anchor_receipt_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "independent_full_evaluator_source_manifest_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "D0_private_family_registry_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "D1_private_family_registry_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "formal_3200_slot_manifest_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "precommit_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "host_only_test_inventory_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "frozen_prediction_applicability_audit_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "preformal_3200_cost_rehearsal_receipt_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    },
+    "deterministic_replay_hash_manifest_sha256": {
+      "state": "BLOCKING_UNBOUND",
+      "sha256": null
+    }
+  },
+  "blocking": [
+    {
+      "id": "B01_PROFILE_ADOPTION_UNBOUND",
+      "external_binding": "profile_adoption_receipt_sha256",
+      "required_before": "FORMAL_USE"
+    },
+    {
+      "id": "B02_EXTERNAL_PROFILE_BYTES_ANCHOR_UNBOUND",
+      "external_binding": "external_profile_anchor_receipt_sha256",
+      "required_before": "FORMAL_USE"
+    },
+    {
+      "id": "B03_FULL_EVALUATOR_IMPLEMENTATION_UNBOUND",
+      "external_binding": "independent_full_evaluator_source_manifest_sha256",
+      "required_before": "PREFORMAL_REHEARSAL"
+    },
+    {
+      "id": "B04_D0_PRIVATE_FAMILY_REGISTRY_UNBOUND",
+      "external_binding": "D0_private_family_registry_sha256",
+      "required_before": "EXTERNAL_PROFILE_ANCHOR"
+    },
+    {
+      "id": "B05_D1_PRIVATE_FAMILY_REGISTRY_UNBOUND",
+      "external_binding": "D1_private_family_registry_sha256",
+      "required_before": "EXTERNAL_PROFILE_ANCHOR"
+    },
+    {
+      "id": "B06_FORMAL_3200_SLOT_MANIFEST_UNBOUND",
+      "external_binding": "formal_3200_slot_manifest_sha256",
+      "required_before": "PRECOMMIT"
+    },
+    {
+      "id": "B07_PRECOMMIT_AND_PERMUTATION_SEED_UNBOUND",
+      "external_binding": "precommit_sha256",
+      "required_before": "FORMAL_USE"
+    },
+    {
+      "id": "B08_HOST_ONLY_TEST_INVENTORY_UNBOUND",
+      "external_binding": "host_only_test_inventory_sha256",
+      "required_before": "EXTERNAL_PROFILE_ANCHOR"
+    },
+    {
+      "id": "B09_FROZEN_PREDICTION_APPLICABILITY_AUDIT_UNBOUND",
+      "external_binding": "frozen_prediction_applicability_audit_sha256",
+      "required_before": "FORMAL_USE"
+    },
+    {
+      "id": "B10_PREFORMAL_3200_COST_REHEARSAL_UNRUN",
+      "external_binding": "preformal_3200_cost_rehearsal_receipt_sha256",
+      "required_before": "FORMAL_USE"
+    },
+    {
+      "id": "B11_DETERMINISTIC_REPLAY_HASH_MANIFEST_UNBOUND",
+      "external_binding": "deterministic_replay_hash_manifest_sha256",
+      "required_before": "FORMAL_USE"
+    }
+  ],
+  "output_prohibitions": {
+    "qualification_verdict": "PROHIBITED",
+    "treatment_score_or_ranking": "PROHIBITED",
+    "shared_contract_promotion": "SELECTED_PREFORMAL_FORMAL_USE_REMAINS_BLOCKED_BY_BLOCKING_LIST",
+    "unknown_leak_absence_claim": "PROHIBITED",
+    "claim_full_feature_spec_permutation_compatibility": "PROHIBITED_MODEL_SELECTION_RANDOMIZATION_NOT_TESTED"
+  }
+}

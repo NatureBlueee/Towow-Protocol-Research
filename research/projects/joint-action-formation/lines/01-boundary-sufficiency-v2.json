@@ -1,0 +1,117 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-01-BOUNDARY-SUFFICIENCY-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "DISCOVERY_BOUNDARY",
+  "title": "任务相关边界充分性与类型化本地响应",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-DISC-001",
+    "CAP-DISC-004",
+    "CAP-DISC-005",
+    "CAP-DISC-006",
+    "CAP-DISC-007"
+  ],
+  "local_question": "在本地世界不能完整公开且任务条件逐步显现时，任务相关投影与类型化本地响应能否在更少披露下达到与完整表单或强模型自由问答相同的可行性判断，并可靠区分充分、Unknown、拒绝与局部反例？",
+  "blocked_decision": "决定 BIC、Boundary Oracle 与任务相关投影应保留为独立运行机制、编译进 Context Compiler，还是降为普通查询工具与强模型的可替换策略。",
+  "reverse_result": "若稳定 Schema 加强模型自由问答和本地工具在相同 probe、披露、错误与生命周期预算下持续不劣于类型化 Oracle 和充分性停止规则，则独立 BIC/Boundary Oracle 应降为策略或 provider；该结果不改变 NAC、关系构成、授权或现实效力主张。",
+  "minimum_discriminator": "冻结带隐藏局部约束、可行 witness、不可行 cut、Unknown 与拒绝的任务族，在相同公开 Schema、probe 上限和披露成本下比较静态表单、强模型自由问答加本地工具、类型化 Boundary Oracle 加充分性停止规则，并分别报告误闭合、漏配、拒绝旁路、披露量和总成本。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/joint-action-formation/studies/full-line-startup/01-discovery-boundary-audit-2026-07-28.md",
+    "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md",
+    "research/projects/joint-action-formation/studies/nac-h1-data-and-labels-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 45,
+    "max_attempts": 2,
+    "max_output_bytes": 2097152
+  },
+  "stop_conditions": [
+    "开始要求披露完整本地世界或未经授权材料",
+    "把 Unknown、Refuse、局部 witness 或 cut 提升成 Principal 授权或全局事实",
+    "比较臂没有获得相同任务、probe 上限、披露成本和错误会计",
+    "合成任务结果被描述成现实频率或机制净价值"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "不得读取其他母线的候选结论来把发现成功扩张成关系形成或现实效力",
+    "必须给稳定 Schema 加强模型自由问答和本地工具完整基线机会",
+    "外部现成方案未完成一手核验前不得登记 GAP_CONFIRMED",
+    "必须分别报告任务投影、typed response 与充分性停止规则的消融"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-DISC-BOUNDARY-SUFFICIENCY"
+    ],
+    "hypothesis_ids": [
+      "DISC-H-BOUNDARY-SUFFICIENCY"
+    ],
+    "applicable_assumptions": [
+      "WORLD-INTENT-INGRESS",
+      "WORLD-NETWORK-SCALE",
+      "WORLD-OPEN-ACTION-SPACE"
+    ],
+    "non_claims": [
+      "不研究 NAC 锚点坐标能否达到跨模型 Recall 门槛",
+      "不建立 Principal 授权、承诺或接受",
+      "不证明关系已经构成或新的可能性已经形成",
+      "不证明现实 Effect、Adoption、Acceptance 或商业净价值"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/01_discovery_and_boundary.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md",
+      "research/projects/joint-action-formation/studies/full-line-startup/01-discovery-boundary-audit-2026-07-28.md"
+    ],
+    "disposition": "COMPOSE",
+    "uncovered_requirement": "现有 NAC、共享参考编码器、稳定 Schema 与强模型查询只覆盖坐标或检索部分；仍需判定 typed local response、任务相关充分性、披露预算与拒绝权是否必须共同成为可执行边界。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "该核验覆盖跨空间发现和强中心检索基线，没有覆盖交互式充分性与 typed local authority response。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/01-discovery-boundary-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "XACML、GNAP、VC/SD-JWT、active information gathering 与 DCOP 分别覆盖 typed decision、渐进交互、选择性披露和信息价值，但尚未证明其最小组合覆盖 local witness/cut、拒绝与任务充分性闭包。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能把 SC-DISC-BOUNDARY-SUFFICIENCY 提升为候选证据，并冻结具体任务族、响应类型、披露预算、基线和失败切片；不能证明现实价值。",
+    "negative_effect": "负结果只会把 BIC、Boundary Oracle、任务投影或其组合降为策略、provider 或 Context Compiler 规则，不否定发现母线和其他未受检验能力。",
+    "unaffected_claim_ids": [
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有在相同前提下重放 typed response、局部权威、拒绝、Unknown、渐进披露的正例与移除失败，现成方案或更小组合才能被登记为无损替代。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/01-boundary-sufficiency-v2.md"
+}

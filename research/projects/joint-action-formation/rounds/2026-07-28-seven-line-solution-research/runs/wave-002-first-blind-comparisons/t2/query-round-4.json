@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "method_id": "t2-ab-strong-composition",
+  "run_id": "T2-AB-RUN-001",
+  "round": 4,
+  "previous_round_hash": "78e6d7b76b69ee50a6e0232d84ab141f1f123597b6621ba6e497f8d2c46a1455",
+  "queries": [
+    {
+      "authority_id": "BUYER-DATA",
+      "request_type": "REQUEST_DATA_PURPOSE_BOUNDARY",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方数据权威声明正式两周试点中获批聚合只读查询、派生结果、审计回执的精确允许用途、禁止用途、保存、披露和再次运行边界；若边界不能确定则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PROVIDER-TECH",
+      "request_type": "REQUEST_CAPABILITY_EVIDENCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求服务方技术权威声明固定分析容器在 buyer_controlled_sandbox 中针对精确 executor、environment、version、permission、resource 与 recovery 条件是否已有可在承诺前使用的前瞻能力证据；若 probe 未运行、证据不足或只能返回 Unknown，则原样保留 Unknown，不暗示 probe 已运行或 capability 已资格化。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "REQUEST_PILOT_BUDGET_STANCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方业务权威声明对精确两周固定试点、9800 元价格及其排除项的当前预算 Stance，并区分预算可用、预算保留与最终支出承诺；若不能声明则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "BUYER-BUSINESS",
+      "request_type": "REQUEST_ADOPTION_STANCE",
+      "purpose": "为 REL-T2-V2-CANDIDATE 请求采购方业务权威声明：若采购方独立见证的结果达到既定门槛，是否以及在何种精确条件下愿意把至少三条结论纳入真实客服 backlog，并将该工作系统状态变更与 Effect、试点 Acceptance、生产上线和未来采购分开；若不能声明则保留 Unknown。该信息披露不视为授权、能力、承诺、Effect、Adoption 或 Acceptance。",
+      "relation_version_ref": "REL-T2-V2-CANDIDATE",
+      "retention_scope": "RUN_ONLY"
+    }
+  ]
+}

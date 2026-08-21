@@ -1,0 +1,71 @@
+{
+  "schema": "towow.local-controller-experiment-manifest.v1",
+  "experiment_id": "WAVE-004-A-CONTROLLER-EXECUTOR",
+  "status": "LOCAL_SYNTHETIC_EXECUTOR_IMPLEMENTED",
+  "date": "2026-07-28",
+  "source_problem": "G1-HWB-FIRST-RUN.md / BLOCKED_BY_MISSING_CONTROLLER",
+  "scope": [
+    "direct projection route",
+    "derived onward route",
+    "central reciprocal collection distinguished from two-sided counterparty exchange",
+    "atomic recipient delivery store commit",
+    "independent disk readback before success receipt",
+    "hash-chained persistent controller state",
+    "contract- and store-integrity-checked idempotent replay and pending recovery",
+    "zero-state-change rejection branches"
+  ],
+  "excluded_inputs": [
+    "HW-B oracle",
+    "HW-B scorer",
+    "HW-B controller-index"
+  ],
+  "evidence_boundary": {
+    "source_authentication": "FROZEN_TRUSTED_CONTRACT_REGISTRY_SIMULATION",
+    "controller": "TRUSTED_LOCAL_PROCESS",
+    "recipient_readback": "SAME_CONTROLLER_DIFFERENT_DISK_READ_PATH",
+    "not_claimed": [
+      "holder cryptographic signatures",
+      "recipient-signed acknowledgement",
+      "resistance to a malicious same-directory writer",
+      "external append-only anchoring",
+      "real relation formation",
+      "real commitment, authority, effect, adoption, acceptance or settlement"
+    ]
+  },
+  "validation": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "bf0e3c68e7333505e508bdbc36737566b9684743a81bed4bbcd01edb64cd7096"
+    },
+    {
+      "path": "contract.json",
+      "sha256": "9aa35afbdb60e508c9f8b86605224b1880280dc7274db7c3c781fbe2c512cb14"
+    },
+    {
+      "path": "executor.py",
+      "sha256": "e298755a6e39958e0006557e766c259aa857c91127febafac7e7a56e86784fc7"
+    },
+    {
+      "path": "inputs/direct-projection.json",
+      "sha256": "507bfb6fe065b2843479624251ab32d35af399d835a2b3824b3c954de5e59ee5"
+    },
+    {
+      "path": "inputs/derived-onward.json",
+      "sha256": "855d62513d699a2fe245ecdab34d3ce4a263981dfb89607332813c41ce38b21c"
+    },
+    {
+      "path": "inputs/reciprocal-exchange.json",
+      "sha256": "9ad174f6edf4daef1607f9d9f4d1da6ab8671a12752e0fa6b59f3cb808521ef4"
+    },
+    {
+      "path": "tests/test_executor.py",
+      "sha256": "04639e855e9e196023375248b27f7fd764711afd4da973f663cbeb6c25c7f154"
+    }
+  ]
+}

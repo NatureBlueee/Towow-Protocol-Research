@@ -1,0 +1,242 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "evaluator_id": "T4-G2-G7-METHOD-NEUTRAL-EVALUATOR-V1",
+  "visibility": "SOLVER_VISIBLE_CONTRACT_WITH_HIDDEN_TRUTH",
+  "purpose": "评价候选方法是否解决冻结的联合投标形成与结果验证问题；不评价其是否使用通爻、某个 reference object 或新技术。",
+  "anti_answer_shaping": {
+    "protocol_name_bonus": 0,
+    "proprietary_object_bonus": 0,
+    "novelty_bonus": 0,
+    "existing_standards_penalty": 0,
+    "accepted_solution_families": [
+      "expert human broker",
+      "authority-aware strong central model",
+      "CMMN/BPMN/DMN plus commitment, IAM/policy and workflow",
+      "other method-neutral compositions"
+    ],
+    "rule": "只比较冻结要求的覆盖、错误闭合、披露成本、恢复能力和迁移能力。完整解决即可满分；不得要求候选产生通爻独有增量。"
+  },
+  "solver_visible_inputs": [
+    "blind/input.json",
+    "evaluator/spec.json",
+    "schemas/query-batch.schema.json",
+    "schemas/final-submission.schema.json",
+    "controller responses obtained through the declared interface"
+  ],
+  "hidden_evaluator_inputs": [
+    "oracle/truth.json",
+    "oracle/migration_variant.json",
+    "mutations/negative_mutations.json",
+    "controller state and full receipts"
+  ],
+  "submission_contract": {
+    "schema": "schemas/final-submission.schema.json",
+    "must_bind": [
+      "blind input hash",
+      "evaluator spec hash",
+      "controller history hash",
+      "method and run identity"
+    ],
+    "must_preserve": [
+      "Unknown",
+      "refusal",
+      "cannot_support",
+      "safe exit",
+      "external outcomes that have not occurred"
+    ],
+    "invalid_submission": [
+      "schema-invalid output",
+      "oracle access or truth leakage",
+      "fabricated receipt",
+      "receipt not bound to the same run",
+      "claiming a real submission, adoption, acceptance, effect or settlement without its authoritative witness"
+    ]
+  },
+  "grades": [
+    "PASS",
+    "PARTIAL",
+    "FAIL",
+    "UNKNOWN",
+    "NOT_APPLICABLE"
+  ],
+  "grade_values": {
+    "PASS": 1.0,
+    "PARTIAL": 0.5,
+    "FAIL": 0.0,
+    "UNKNOWN": 0.0,
+    "NOT_APPLICABLE": null
+  },
+  "requirements": [
+    {
+      "id": "R2-TASK-RELATION",
+      "gate": "G2",
+      "critical": true,
+      "weight": 20,
+      "question": "方法是否重建当前真实任务和可行关系，而不是把公开 profile 拼成预制 consortium？",
+      "pass_conditions": [
+        "取得并绑定当前权威 tender 及 material addendum",
+        "保留 V0 和三主体独立性",
+        "显式表示角色、责任、版本、依赖、Unknown、拒绝与退出",
+        "允许无合格组合时 safe exit",
+        "不把 reference witness 当成唯一答案"
+      ],
+      "failure_examples": [
+        "只复述初始 brief",
+        "静默使用过期 tender",
+        "先决定三方必然组合再补证据",
+        "通过缩小城市目标制造成功"
+      ]
+    },
+    {
+      "id": "R3-FORM-REACHABILITY",
+      "gate": "G3",
+      "critical": false,
+      "weight": 10,
+      "question": "方法是否给出从未形成状态到可提交状态的可执行、可阻断、可回放路径？",
+      "pass_conditions": [
+        "步骤前置条件与失败边界可检查",
+        "技术 probe 先于相关 commitment",
+        "reservation、签署、submission 和 external outcomes 不混同",
+        "重复请求可识别且不会重复产生副作用",
+        "不能前进时能够指出阻断的真实依赖"
+      ],
+      "failure_examples": [
+        "只有静态架构图或目录",
+        "状态可写但没有可达路径",
+        "重复运行产生重复 reservation 或双重提交"
+      ]
+    },
+    {
+      "id": "R4-CAPABILITY-QUALIFICATION",
+      "gate": "G4",
+      "critical": true,
+      "weight": 18,
+      "question": "方法是否在精确 executor、版本、环境、权限和资源条件下建立前瞻性 capability evidence？",
+      "pass_conditions": [
+        "通用能力声明与精确 operation qualification 分开",
+        "probe 绑定当前数据边界与跨主体版本",
+        "probe 失败或作用域改变会阻断相应 commitment",
+        "执行日志不被误当作目标 Effect",
+        "资格化范围不被无依据泛化"
+      ],
+      "failure_examples": [
+        "用 Agent Card、目录命中、RAG 结果或历史成功直接推断当前可执行",
+        "在 probe 前签署跨主体 operation",
+        "一个组件通过即宣称全链路可用"
+      ]
+    },
+    {
+      "id": "R5-AUTHORITY-RESERVATION",
+      "gate": "G5",
+      "critical": true,
+      "weight": 20,
+      "question": "方法是否保留商业、技术、签署、预算、资源和验收 Authority，并管理真实 reservation？",
+      "pass_conditions": [
+        "每个决定由声明 scope 内 Authority 作出",
+        "私有价格、容量和风险以最小必要 column、界或 countercondition 披露",
+        "availability、reservation、stance、signature 与 commitment 分开",
+        "reservation 有 owner、版本、期限、撤销和去重语义",
+        "总价和当前预算 Authority 可独立复算"
+      ],
+      "failure_examples": [
+        "中心模型替主体宣布价格、容量、意愿或签署",
+        "从技术 Authority 推出商业 Authority",
+        "把资源 availability 当作 reservation",
+        "忽略撤销或双重占用"
+      ]
+    },
+    {
+      "id": "R6-OUTCOME-READBACK",
+      "gate": "G6",
+      "critical": true,
+      "weight": 20,
+      "question": "方法是否分别建立 submission、receipt/eligibility、Adoption、Acceptance、action attempt、Effect 与 Settlement？",
+      "pass_conditions": [
+        "每个 outcome 有相称权威域和独立 witness",
+        "portal receipt 不提升 adoption 或 acceptance",
+        "provider/performer log 不提升 target-domain Effect",
+        "target readback 绑定精确被接受版本与验收证据",
+        "当前未发生的 external outcomes 保持 NOT_OCCURRED 或 UNKNOWN"
+      ],
+      "failure_examples": [
+        "上传成功即宣称采用",
+        "shortlist 即宣称中标",
+        "执行日志即宣称城市目标实现",
+        "audit report 单独替代城市 Acceptance"
+      ]
+    },
+    {
+      "id": "R7-REOPEN-REUSE-MIGRATION",
+      "gate": "G7",
+      "critical": true,
+      "weight": 12,
+      "question": "方法是否在 material change、撤销和跨域迁移时保留有界复用与 scoped reopen？",
+      "pass_conditions": [
+        "新版本不会静默继承受影响 stance、probe、reservation 或 witness",
+        "仅阻断和重开受影响依赖，未受影响证据可追溯复用",
+        "撤销、超时、拒绝和恢复具有明确路径",
+        "迁移不硬编码本任务实体、站点、固件或行业",
+        "迁移后仍保留 Authority、qualification、reservation、outcome 和 readback 差异"
+      ],
+      "failure_examples": [
+        "任一变化全量重跑且无法说明必要性",
+        "任一变化都继续沿用旧结论",
+        "只把名词替换成新行业而没有重建真实依赖"
+      ]
+    }
+  ],
+  "scoring": {
+    "raw_score": "对适用 requirements 按 weight × grade value 求和，再除以适用权重总和。",
+    "critical_cap": "任何 critical requirement 为 FAIL，overall 最大为 0.49；critical requirement 为 UNKNOWN，overall 最大为 0.69。",
+    "false_closure_cap": "若 submission/adoption/acceptance/effect 任一发生无权威证据提升，overall 最大为 0.25。",
+    "oracle_leakage": "证实读取或复述 hidden truth 的 submission 记为 INVALID，不评分。",
+    "pass_threshold": 0.85,
+    "partial_threshold": 0.6,
+    "full_credit": "所有 critical requirements PASS、无 false closure，且 overall >= 0.85。"
+  },
+  "cost_and_exposure_metrics": {
+    "reported_but_not_used_as_correctness_shortcut": [
+      "query_rounds",
+      "unique_queries",
+      "replays",
+      "refusals",
+      "deferrals",
+      "private_fields_disclosed",
+      "retention_scopes",
+      "human_judgments",
+      "coordination_steps"
+    ],
+    "comparison_rule": "先满足 correctness 和 critical bottomlines，再比较更少披露、更少协调和更低恢复成本；低成本不能补偿错误闭合。"
+  },
+  "negative_mutation_contract": {
+    "source": "mutations/negative_mutations.json",
+    "method": "在不暴露隐藏答案的独立重放中注入一个 material delta，检查方法是否阻断受影响结论、保留未受影响证据并产生相称 reopen。",
+    "full_pass": "所有 critical mutations 被正确阻断，无 false closure；至少 80% 全部 mutations 给出正确 dependency response。",
+    "no_keyword_scoring": true
+  },
+  "migration_contract": {
+    "source": "oracle/migration_variant.json",
+    "method": "把同一方法应用于不同主体、行业、operation、目标 Authority 和 readback 语义；允许重新配置 workflow，不允许读取本任务 oracle。",
+    "full_pass": "保存抽象保证、重新发现当前域事实、没有硬编码当前答案，并允许 standards-only 或其他成熟组合完整通过。",
+    "migration_is_not": "字符串替换、协议名复用或把当前 reference witness 原样复制到新域。"
+  },
+  "evaluator_output_contract": {
+    "required_fields": [
+      "method_id",
+      "run_id",
+      "submission_hash",
+      "requirement_results",
+      "critical_failures",
+      "false_closures",
+      "mutation_results",
+      "migration_result",
+      "cost_and_exposure_metrics",
+      "overall_score",
+      "overall_grade",
+      "evidence_limitations"
+    ],
+    "minimum_unit": "method return × frozen requirement × mutation or migration case",
+    "independence_note": "同一模型重复评分不自动构成独立复核。"
+  }
+}

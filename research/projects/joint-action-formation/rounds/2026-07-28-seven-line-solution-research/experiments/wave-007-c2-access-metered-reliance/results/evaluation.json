@@ -1,0 +1,2139 @@
+{
+  "claims": {
+    "authority_status_bound_to_trusted_head_epoch_contract": true,
+    "candidate_claimed_identity_is_authoritative": false,
+    "candidate_process_can_access_parent_raw_log": false,
+    "cost_reconstructed_from_parent_broker_log": true,
+    "implementation_self_check_is_independent_evidence": false,
+    "universal_winner_claimed": false
+  },
+  "cost_model": {
+    "byte_cost": 5e-05,
+    "disclosure_unit_cost": 1.0,
+    "latency_ms_cost": 0.01,
+    "operation_cost": 0.1,
+    "retry_cost": 0.5
+  },
+  "direct_mutations": {
+    "audit_failure_1_authority_active_replay": {
+      "candidate_forged_context_rely": false,
+      "old_active_replay_rejected_by_all": true,
+      "parent_trusted_context_cannot_be_overridden": true,
+      "replayed_authority_head": "bc036d6efa6b1e1aa89b8add0604c44efc746193e719ab586c6a344f74e9ddce",
+      "source_world": "w7c-50de71",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "authority_head_validation_failed": true,
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "authority_head_validation_failed": true,
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "authority_head_validation_failed": true,
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "authority_head_validation_failed": true,
+          "decision_state": "UNKNOWN",
+          "rely": false
+        }
+      },
+      "target_revoked_world": "w7c-a76e20",
+      "target_trusted_authority_head": "eca585f1b266f20b5090b6efa214dabc9d824966aaf9ddf516382ff5089fabe0"
+    },
+    "audit_failure_2_candidate_log_clear": {
+      "candidate_attempt": {
+        "broker_clear_blocked": true,
+        "local_clear_blocked": true
+      },
+      "candidate_cleared_parent_log": false,
+      "decision_rely_unchanged": true,
+      "denied_control_rpc_count": 1,
+      "parent_cost": {
+        "api_operations": 10,
+        "bytes": 2907,
+        "disclosure_units": 0.3,
+        "latency_ms": 10.906,
+        "retries": 0,
+        "total_evidence_cost": 1.55441
+      },
+      "parent_log_operation_count": 10
+    },
+    "audit_failure_3_identity_spoof": {
+      "candidate_claimed_identity": "IMPL_SLA_RECOVERY",
+      "candidate_identity_used_for_grouping": false,
+      "evaluator_group_identity": "IMPL_DECLARATION",
+      "registry_owner_identity": "IMPL_DECLARATION"
+    },
+    "authority_status_deletion": {
+      "IMPL_DECLARATION": {
+        "decision_state": "UNKNOWN",
+        "rely": false
+      },
+      "IMPL_LATEST_PROBE": {
+        "decision_state": "UNKNOWN",
+        "rely": false
+      },
+      "IMPL_RECEIPT_WINDOW": {
+        "decision_state": "UNKNOWN",
+        "rely": false
+      },
+      "IMPL_SLA_RECOVERY": {
+        "decision_state": "UNKNOWN",
+        "rely": false
+      }
+    },
+    "bytes_binding": {
+      "command_hash": {
+        "IMPL_DECLARATION": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        }
+      },
+      "environment": {
+        "IMPL_DECLARATION": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        }
+      },
+      "key_id": {
+        "IMPL_DECLARATION": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        }
+      },
+      "purpose": {
+        "IMPL_DECLARATION": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "decision_state": "UNKNOWN",
+          "rely": false
+        }
+      }
+    },
+    "candidate_private_state_read": {
+      "private_state_sent_over_rpc": false,
+      "read_blocked": true,
+      "runtime_guard": "Python audit hook denies candidate-time file reads, imports, process expansion, and network operations."
+    },
+    "duplicate_receipt": {
+      "decision_state": "UNKNOWN",
+      "rely": false
+    },
+    "label_only_rename": {
+      "decisions_and_cost_invariant": true
+    },
+    "missing_conflicting_observations": {
+      "all_three_remain_distinct": true,
+      "candidate_outputs_by_hidden_observation": {
+        "ABSENT": [
+          "ABSENT"
+        ],
+        "REFUSE": [
+          "REFUSE"
+        ],
+        "UNKNOWN": [
+          "UNKNOWN"
+        ]
+      }
+    },
+    "opaque_rename": {
+      "decisions_and_cost_invariant": true,
+      "same_length_tokens": true
+    },
+    "operation_log_recompute": {
+      "baseline": {
+        "api_operations": 5,
+        "bytes": 1656,
+        "disclosure_units": 0.1,
+        "latency_ms": 5.642667,
+        "retries": 0,
+        "total_evidence_cost": 0.739227
+      },
+      "candidate_cost_field_used": false,
+      "one_added": {
+        "api_operations": 6,
+        "bytes": 1656,
+        "disclosure_units": 0.1,
+        "latency_ms": 5.892667,
+        "retries": 0,
+        "total_evidence_cost": 0.841727
+      },
+      "one_deleted": {
+        "api_operations": 4,
+        "bytes": 1656,
+        "disclosure_units": 0.1,
+        "latency_ms": 5.392667,
+        "retries": 0,
+        "total_evidence_cost": 0.636727
+      },
+      "reordered": {
+        "api_operations": 5,
+        "bytes": 1656,
+        "disclosure_units": 0.1,
+        "latency_ms": 5.642667,
+        "retries": 0,
+        "total_evidence_cost": 0.739227
+      }
+    },
+    "primary_evidence_deletion": {
+      "IMPL_DECLARATION": {
+        "deleted_evidence_type": "declaration",
+        "relied_count": 0,
+        "unknown_count": 15
+      },
+      "IMPL_LATEST_PROBE": {
+        "deleted_evidence_type": "probe",
+        "relied_count": 0,
+        "unknown_count": 15
+      },
+      "IMPL_RECEIPT_WINDOW": {
+        "deleted_evidence_type": "receipt_history",
+        "relied_count": 0,
+        "unknown_count": 15
+      },
+      "IMPL_SLA_RECOVERY": {
+        "deleted_evidence_type": "sla",
+        "relied_count": 0,
+        "unknown_count": 15
+      }
+    },
+    "probe_freshness_deletion": {
+      "decision_state": "UNKNOWN",
+      "rely": false
+    },
+    "recovery_receipt_deletion": {
+      "decision_state": "UNKNOWN",
+      "rely": false
+    },
+    "repeated_access_billing": {
+      "cost": {
+        "api_operations": 7,
+        "bytes": 3038,
+        "disclosure_units": 0.4,
+        "latency_ms": 9.615333,
+        "retries": 0,
+        "total_evidence_cost": 1.348053
+      },
+      "operation_counts": {
+        "READ_EVIDENCE": 2,
+        "VALIDATE_FRESHNESS": 2,
+        "VERIFY_SIGNATURE": 2
+      },
+      "semantics": "No implicit cache. Each repeated read, verification, and freshness check reaches the parent broker and is billed."
+    },
+    "self_report_injection": {
+      "ignored_fields": [
+        "accepted",
+        "false_positive",
+        "net_value"
+      ],
+      "independent_metrics_invariant": true
+    },
+    "truth_label_flip": {
+      "candidate_decisions_and_logs_invariant": true,
+      "flipped_metrics": {
+        "IMPL_DECLARATION": {
+          "business_effect_when_relied": 8,
+          "confusion": {
+            "FN": 4,
+            "FP": 9,
+            "TN": 0,
+            "TP": 1,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 115,
+            "bytes": 37032,
+            "disclosure_units": 3.7,
+            "latency_ms": 139.083335,
+            "retries": 0,
+            "total_evidence_cost": 18.442435
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 3,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 2,
+                "FP": 3,
+                "TN": 0,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 2,
+                "FP": 6,
+                "TN": 0,
+                "TP": 1,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 2
+          },
+          "operation_success_when_relied": 9,
+          "recovery_time_steps": 1
+        },
+        "IMPL_LATEST_PROBE": {
+          "business_effect_when_relied": 7,
+          "confusion": {
+            "FN": 5,
+            "FP": 8,
+            "TN": 1,
+            "TP": 0,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 115,
+            "bytes": 36744,
+            "disclosure_units": 6.1,
+            "latency_ms": 138.987335,
+            "retries": 0,
+            "total_evidence_cost": 20.827075
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 3,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 2,
+                "FP": 3,
+                "TN": 0,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 3,
+                "FP": 5,
+                "TN": 1,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 2
+          },
+          "operation_success_when_relied": 8,
+          "recovery_time_steps": 1
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "business_effect_when_relied": 7,
+          "confusion": {
+            "FN": 4,
+            "FP": 8,
+            "TN": 1,
+            "TP": 1,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 234,
+            "bytes": 82658,
+            "disclosure_units": 14.9,
+            "latency_ms": 270.364671,
+            "retries": 0,
+            "total_evidence_cost": 45.136551
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 2,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 2,
+                "FP": 3,
+                "TN": 0,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 2,
+                "FP": 5,
+                "TN": 1,
+                "TP": 1,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 3
+          },
+          "operation_success_when_relied": 8,
+          "recovery_time_steps": 1
+        },
+        "IMPL_SLA_RECOVERY": {
+          "business_effect_when_relied": 6,
+          "confusion": {
+            "FN": 5,
+            "FP": 7,
+            "TN": 2,
+            "TP": 0,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 197,
+            "bytes": 62710,
+            "disclosure_units": 10.85,
+            "latency_ms": 239.392668,
+            "retries": 1,
+            "total_evidence_cost": 36.579428
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 2,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 2,
+                "FP": 3,
+                "TN": 0,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 3,
+                "FP": 4,
+                "TN": 2,
+                "TP": 0,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 3
+          },
+          "operation_success_when_relied": 7,
+          "recovery_time_steps": 1
+        }
+      },
+      "original_metrics": {
+        "IMPL_DECLARATION": {
+          "business_effect_when_relied": 8,
+          "confusion": {
+            "FN": 0,
+            "FP": 1,
+            "TN": 4,
+            "TP": 9,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 115,
+            "bytes": 37032,
+            "disclosure_units": 3.7,
+            "latency_ms": 139.083335,
+            "retries": 0,
+            "total_evidence_cost": 18.442435
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 1,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 0,
+                "FP": 0,
+                "TN": 2,
+                "TP": 3,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 0,
+                "FP": 1,
+                "TN": 2,
+                "TP": 6,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 2
+          },
+          "operation_success_when_relied": 9,
+          "recovery_time_steps": 0
+        },
+        "IMPL_LATEST_PROBE": {
+          "business_effect_when_relied": 7,
+          "confusion": {
+            "FN": 1,
+            "FP": 0,
+            "TN": 5,
+            "TP": 8,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 115,
+            "bytes": 36744,
+            "disclosure_units": 6.1,
+            "latency_ms": 138.987335,
+            "retries": 0,
+            "total_evidence_cost": 20.827075
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 1,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 0,
+                "FP": 0,
+                "TN": 2,
+                "TP": 3,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 1,
+                "FP": 0,
+                "TN": 3,
+                "TP": 5,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 2
+          },
+          "operation_success_when_relied": 8,
+          "recovery_time_steps": 0
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "business_effect_when_relied": 7,
+          "confusion": {
+            "FN": 1,
+            "FP": 1,
+            "TN": 4,
+            "TP": 8,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 234,
+            "bytes": 82658,
+            "disclosure_units": 14.9,
+            "latency_ms": 270.364671,
+            "retries": 0,
+            "total_evidence_cost": 45.136551
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 2,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 0,
+                "FP": 0,
+                "TN": 2,
+                "TP": 3,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 1,
+                "FP": 1,
+                "TN": 2,
+                "TP": 5,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 3
+          },
+          "operation_success_when_relied": 8,
+          "recovery_time_steps": 0
+        },
+        "IMPL_SLA_RECOVERY": {
+          "business_effect_when_relied": 6,
+          "confusion": {
+            "FN": 2,
+            "FP": 0,
+            "TN": 5,
+            "TP": 7,
+            "UNKNOWN_TRUTH": 1
+          },
+          "cost": {
+            "api_operations": 197,
+            "bytes": 62710,
+            "disclosure_units": 10.85,
+            "latency_ms": 239.392668,
+            "retries": 1,
+            "total_evidence_cost": 36.579428
+          },
+          "distribution_shift": {
+            "error_delta_shift_minus_in_distribution": 2,
+            "per_split_confusion": {
+              "IN_DISTRIBUTION": {
+                "FN": 0,
+                "FP": 0,
+                "TN": 2,
+                "TP": 3,
+                "UNKNOWN_TRUTH": 0
+              },
+              "SHIFTED": {
+                "FN": 2,
+                "FP": 0,
+                "TN": 3,
+                "TP": 4,
+                "UNKNOWN_TRUTH": 1
+              }
+            }
+          },
+          "epistemic_output_counts": {
+            "ABSENT": 1,
+            "REFUSE": 2,
+            "UNKNOWN": 3
+          },
+          "operation_success_when_relied": 7,
+          "recovery_time_steps": 0
+        }
+      }
+    },
+    "unauthorized_signature": {
+      "IMPL_DECLARATION": {
+        "rely": false,
+        "signature_failure_count": 1
+      },
+      "IMPL_LATEST_PROBE": {
+        "rely": false,
+        "signature_failure_count": 1
+      },
+      "IMPL_RECEIPT_WINDOW": {
+        "rely": false,
+        "signature_failure_count": 1
+      },
+      "IMPL_SLA_RECOVERY": {
+        "rely": false,
+        "signature_failure_count": 1
+      }
+    }
+  },
+  "distribution_shift": {
+    "IMPL_DECLARATION": {
+      "error_delta_shift_minus_in_distribution": 1,
+      "per_split_confusion": {
+        "IN_DISTRIBUTION": {
+          "FN": 0,
+          "FP": 0,
+          "TN": 2,
+          "TP": 3,
+          "UNKNOWN_TRUTH": 0
+        },
+        "SHIFTED": {
+          "FN": 0,
+          "FP": 1,
+          "TN": 2,
+          "TP": 6,
+          "UNKNOWN_TRUTH": 1
+        }
+      }
+    },
+    "IMPL_LATEST_PROBE": {
+      "error_delta_shift_minus_in_distribution": 1,
+      "per_split_confusion": {
+        "IN_DISTRIBUTION": {
+          "FN": 0,
+          "FP": 0,
+          "TN": 2,
+          "TP": 3,
+          "UNKNOWN_TRUTH": 0
+        },
+        "SHIFTED": {
+          "FN": 1,
+          "FP": 0,
+          "TN": 3,
+          "TP": 5,
+          "UNKNOWN_TRUTH": 1
+        }
+      }
+    },
+    "IMPL_RECEIPT_WINDOW": {
+      "error_delta_shift_minus_in_distribution": 2,
+      "per_split_confusion": {
+        "IN_DISTRIBUTION": {
+          "FN": 0,
+          "FP": 0,
+          "TN": 2,
+          "TP": 3,
+          "UNKNOWN_TRUTH": 0
+        },
+        "SHIFTED": {
+          "FN": 1,
+          "FP": 1,
+          "TN": 2,
+          "TP": 5,
+          "UNKNOWN_TRUTH": 1
+        }
+      }
+    },
+    "IMPL_SLA_RECOVERY": {
+      "error_delta_shift_minus_in_distribution": 2,
+      "per_split_confusion": {
+        "IN_DISTRIBUTION": {
+          "FN": 0,
+          "FP": 0,
+          "TN": 2,
+          "TP": 3,
+          "UNKNOWN_TRUTH": 0
+        },
+        "SHIFTED": {
+          "FN": 2,
+          "FP": 0,
+          "TN": 3,
+          "TP": 4,
+          "UNKNOWN_TRUTH": 1
+        }
+      }
+    }
+  },
+  "frequency_and_cost_regions": {
+    "interpretation": "Counterfactual frequency and cost regions, not real-world frequencies or a universal recommendation.",
+    "points_per_profile": 27,
+    "profiles": {
+      "CURRENT_FAILURE_HEAVY": {
+        "no_conclusion_or_margin_le_1_count": 0,
+        "weighted_vectors": {
+          "IMPL_DECLARATION": {
+            "FN": 0.0,
+            "FP": 8.0,
+            "TP": 9.0,
+            "cost": 28.599855
+          },
+          "IMPL_LATEST_PROBE": {
+            "FN": 1.0,
+            "FP": 0.0,
+            "TP": 8.0,
+            "cost": 32.375535
+          },
+          "IMPL_RECEIPT_WINDOW": {
+            "FN": 1.0,
+            "FP": 8.0,
+            "TP": 8.0,
+            "cost": 75.23611
+          },
+          "IMPL_SLA_RECOVERY": {
+            "FN": 2.0,
+            "FP": 0.0,
+            "TP": 7.0,
+            "cost": 58.443277
+          }
+        },
+        "winner_counts_including_ties": {
+          "IMPL_DECLARATION": 10,
+          "IMPL_LATEST_PROBE": 17,
+          "IMPL_RECEIPT_WINDOW": 0,
+          "IMPL_SLA_RECOVERY": 0
+        }
+      },
+      "RECOVERY_HEAVY": {
+        "no_conclusion_or_margin_le_1_count": 1,
+        "weighted_vectors": {
+          "IMPL_DECLARATION": {
+            "FN": 0.0,
+            "FP": 1.0,
+            "TP": 23.0,
+            "cost": 38.757275
+          },
+          "IMPL_LATEST_PROBE": {
+            "FN": 1.0,
+            "FP": 0.0,
+            "TP": 22.0,
+            "cost": 43.923995
+          },
+          "IMPL_RECEIPT_WINDOW": {
+            "FN": 1.0,
+            "FP": 1.0,
+            "TP": 22.0,
+            "cost": 105.335669
+          },
+          "IMPL_SLA_RECOVERY": {
+            "FN": 9.0,
+            "FP": 0.0,
+            "TP": 14.0,
+            "cost": 95.461139
+          }
+        },
+        "winner_counts_including_ties": {
+          "IMPL_DECLARATION": 22,
+          "IMPL_LATEST_PROBE": 5,
+          "IMPL_RECEIPT_WINDOW": 0,
+          "IMPL_SLA_RECOVERY": 0
+        }
+      },
+      "SHIFTED_HEAVY": {
+        "no_conclusion_or_margin_le_1_count": 0,
+        "weighted_vectors": {
+          "IMPL_DECLARATION": {
+            "FN": 0.0,
+            "FP": 5.0,
+            "TP": 33.0,
+            "cost": 66.037879
+          },
+          "IMPL_LATEST_PROBE": {
+            "FN": 5.0,
+            "FP": 0.0,
+            "TP": 28.0,
+            "cost": 74.781559
+          },
+          "IMPL_RECEIPT_WINDOW": {
+            "FN": 5.0,
+            "FP": 5.0,
+            "TP": 28.0,
+            "cost": 161.603175
+          },
+          "IMPL_SLA_RECOVERY": {
+            "FN": 10.0,
+            "FP": 0.0,
+            "TP": 23.0,
+            "cost": 135.425672
+          }
+        },
+        "winner_counts_including_ties": {
+          "IMPL_DECLARATION": 21,
+          "IMPL_LATEST_PROBE": 6,
+          "IMPL_RECEIPT_WINDOW": 0,
+          "IMPL_SLA_RECOVERY": 0
+        }
+      },
+      "UNIFORM": {
+        "no_conclusion_or_margin_le_1_count": 0,
+        "weighted_vectors": {
+          "IMPL_DECLARATION": {
+            "FN": 0.0,
+            "FP": 1.0,
+            "TP": 9.0,
+            "cost": 18.442435
+          },
+          "IMPL_LATEST_PROBE": {
+            "FN": 1.0,
+            "FP": 0.0,
+            "TP": 8.0,
+            "cost": 20.827075
+          },
+          "IMPL_RECEIPT_WINDOW": {
+            "FN": 1.0,
+            "FP": 1.0,
+            "TP": 8.0,
+            "cost": 45.136551
+          },
+          "IMPL_SLA_RECOVERY": {
+            "FN": 2.0,
+            "FP": 0.0,
+            "TP": 7.0,
+            "cost": 36.579428
+          }
+        },
+        "winner_counts_including_ties": {
+          "IMPL_DECLARATION": 21,
+          "IMPL_LATEST_PROBE": 6,
+          "IMPL_RECEIPT_WINDOW": 0,
+          "IMPL_SLA_RECOVERY": 0
+        }
+      }
+    }
+  },
+  "hidden_truth_sha256": "ed31d16cb889549ef2d987f895346f61e1995c3872a20e7f4398ec3b112dbcf2",
+  "pareto": {
+    "dominated_by": {
+      "IMPL_RECEIPT_WINDOW": [
+        "IMPL_DECLARATION",
+        "IMPL_LATEST_PROBE"
+      ],
+      "IMPL_SLA_RECOVERY": [
+        "IMPL_LATEST_PROBE"
+      ]
+    },
+    "frontier": [
+      "IMPL_DECLARATION",
+      "IMPL_LATEST_PROBE"
+    ],
+    "objectives": [
+      "maximize_TP",
+      "minimize_FP",
+      "minimize_FN",
+      "minimize_actual_evidence_cost",
+      "minimize_recovery_time"
+    ]
+  },
+  "per_scenario": {
+    "authority-response::REFUSE": {
+      "business_accepted": false,
+      "operation_success": false,
+      "safe_to_rely": false,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "authority::ACTIVE": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "IN_DISTRIBUTION",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    },
+    "authority::REVOKED_AFTER_SUCCESS": {
+      "business_accepted": false,
+      "operation_success": false,
+      "safe_to_rely": false,
+      "split": "IN_DISTRIBUTION",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2862,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806667,
+            "retries": 0,
+            "total_evidence_cost": 1.451167
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2838,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798667,
+            "retries": 0,
+            "total_evidence_cost": 1.649887
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 4273,
+            "disclosure_units": 1.15,
+            "latency_ms": 11.720667,
+            "retries": 0,
+            "total_evidence_cost": 2.380857
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2986,
+            "disclosure_units": 0.6,
+            "latency_ms": 10.848,
+            "retries": 0,
+            "total_evidence_cost": 1.75778
+          },
+          "decision_state": "REFUSE",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "beneficiary::REFUSES_AFTER_OPERATION": {
+      "business_accepted": false,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    },
+    "contract::LAPSED_SLA_OPERATION_VALID": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "FN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2982,
+            "disclosure_units": 0.6,
+            "latency_ms": 10.846667,
+            "retries": 0,
+            "total_evidence_cost": 1.757567
+          },
+          "decision_state": "OBSERVED_CONSTRAINT",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "environment::DRIFT": {
+      "business_accepted": false,
+      "operation_success": false,
+      "safe_to_rely": false,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 4,
+            "bytes": 1757,
+            "disclosure_units": 0.2,
+            "latency_ms": 5.676667,
+            "retries": 0,
+            "total_evidence_cost": 0.744617
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 4,
+            "bytes": 1733,
+            "disclosure_units": 0.4,
+            "latency_ms": 5.668667,
+            "retries": 0,
+            "total_evidence_cost": 0.943337
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 4,
+            "bytes": 3168,
+            "disclosure_units": 1.05,
+            "latency_ms": 6.590667,
+            "retries": 0,
+            "total_evidence_cost": 1.674307
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 4,
+            "bytes": 1881,
+            "disclosure_units": 0.5,
+            "latency_ms": 5.718,
+            "retries": 0,
+            "total_evidence_cost": 1.05123
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "environment::STABLE": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "IN_DISTRIBUTION",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    },
+    "history::VALID_COLD_START": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "FN",
+          "cost": {
+            "api_operations": 2,
+            "bytes": 1177,
+            "disclosure_units": 0.35,
+            "latency_ms": 3.705333,
+            "retries": 0,
+            "total_evidence_cost": 0.645903
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    },
+    "open-world::UNKNOWN": {
+      "business_accepted": null,
+      "operation_success": null,
+      "safe_to_rely": null,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "UNKNOWN_TRUTH",
+          "cost": {
+            "api_operations": 2,
+            "bytes": 501,
+            "disclosure_units": 0.0,
+            "latency_ms": 3.254667,
+            "retries": 0,
+            "total_evidence_cost": 0.257597
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "UNKNOWN_TRUTH",
+          "cost": {
+            "api_operations": 2,
+            "bytes": 501,
+            "disclosure_units": 0.0,
+            "latency_ms": 3.254667,
+            "retries": 0,
+            "total_evidence_cost": 0.257597
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "UNKNOWN_TRUTH",
+          "cost": {
+            "api_operations": 2,
+            "bytes": 501,
+            "disclosure_units": 0.0,
+            "latency_ms": 3.254667,
+            "retries": 0,
+            "total_evidence_cost": 0.257597
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "UNKNOWN_TRUTH",
+          "cost": {
+            "api_operations": 2,
+            "bytes": 501,
+            "disclosure_units": 0.0,
+            "latency_ms": 3.254667,
+            "retries": 0,
+            "total_evidence_cost": 0.257597
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "recent-operation::CURRENT_FAILURE": {
+      "business_accepted": false,
+      "operation_success": false,
+      "safe_to_rely": false,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "FP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "OBSERVED_FAILURE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "FP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5384,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.420667,
+            "retries": 0,
+            "total_evidence_cost": 3.123407
+          },
+          "decision_state": "OBSERVED_FAILURE",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "recent-operation::TRANSIENT_PROBE_FAILURE": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "FN",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "OBSERVED_FAILURE",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    },
+    "recovery::RECOVERY_EVIDENCE_MISSING": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "FN",
+          "cost": {
+            "api_operations": 19,
+            "bytes": 5446,
+            "disclosure_units": 0.95,
+            "latency_ms": 24.458,
+            "retries": 1,
+            "total_evidence_cost": 3.86688
+          },
+          "decision_state": "UNKNOWN",
+          "recovery": {
+            "censored_without_reliance": true,
+            "delay_steps": null
+          },
+          "rely": false
+        }
+      }
+    },
+    "recovery::VALID_RECOVERY": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "SHIFTED",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 25,
+            "bytes": 7890,
+            "disclosure_units": 1.35,
+            "latency_ms": 30.029333,
+            "retries": 0,
+            "total_evidence_cost": 4.544793
+          },
+          "decision_state": "RELY",
+          "recovery": {
+            "censored_without_reliance": false,
+            "delay_steps": 0
+          },
+          "rely": true
+        }
+      }
+    },
+    "static::ABSENT": {
+      "business_accepted": false,
+      "operation_success": false,
+      "safe_to_rely": false,
+      "split": "IN_DISTRIBUTION",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "ABSENT",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "ABSENT",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "ABSENT",
+          "recovery": null,
+          "rely": false
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TN",
+          "cost": {
+            "api_operations": 5,
+            "bytes": 1656,
+            "disclosure_units": 0.1,
+            "latency_ms": 5.642667,
+            "retries": 0,
+            "total_evidence_cost": 0.739227
+          },
+          "decision_state": "ABSENT",
+          "recovery": null,
+          "rely": false
+        }
+      }
+    },
+    "static::VALID": {
+      "business_accepted": true,
+      "operation_success": true,
+      "safe_to_rely": true,
+      "split": "IN_DISTRIBUTION",
+      "strategies": {
+        "IMPL_DECLARATION": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2860,
+            "disclosure_units": 0.3,
+            "latency_ms": 10.806,
+            "retries": 0,
+            "total_evidence_cost": 1.45106
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_LATEST_PROBE": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 9,
+            "bytes": 2836,
+            "disclosure_units": 0.5,
+            "latency_ms": 10.798,
+            "retries": 0,
+            "total_evidence_cost": 1.64978
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_RECEIPT_WINDOW": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 23,
+            "bytes": 7803,
+            "disclosure_units": 1.35,
+            "latency_ms": 25.978667,
+            "retries": 0,
+            "total_evidence_cost": 4.299937
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        },
+        "IMPL_SLA_RECOVERY": {
+          "confusion_cell": "TP",
+          "cost": {
+            "api_operations": 17,
+            "bytes": 5388,
+            "disclosure_units": 0.95,
+            "latency_ms": 20.422,
+            "retries": 0,
+            "total_evidence_cost": 3.12362
+          },
+          "decision_state": "RELY",
+          "recovery": null,
+          "rely": true
+        }
+      }
+    }
+  },
+  "per_strategy": {
+    "IMPL_DECLARATION": {
+      "business_effect_when_relied": 8,
+      "confusion": {
+        "FN": 0,
+        "FP": 1,
+        "TN": 4,
+        "TP": 9,
+        "UNKNOWN_TRUTH": 1
+      },
+      "cost": {
+        "api_operations": 115,
+        "bytes": 37032,
+        "disclosure_units": 3.7,
+        "latency_ms": 139.083335,
+        "retries": 0,
+        "total_evidence_cost": 18.442435
+      },
+      "distribution_shift": {
+        "error_delta_shift_minus_in_distribution": 1,
+        "per_split_confusion": {
+          "IN_DISTRIBUTION": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 2,
+            "TP": 3,
+            "UNKNOWN_TRUTH": 0
+          },
+          "SHIFTED": {
+            "FN": 0,
+            "FP": 1,
+            "TN": 2,
+            "TP": 6,
+            "UNKNOWN_TRUTH": 1
+          }
+        }
+      },
+      "epistemic_output_counts": {
+        "ABSENT": 1,
+        "REFUSE": 2,
+        "UNKNOWN": 2
+      },
+      "operation_success_when_relied": 9,
+      "recovery_time_steps": 0
+    },
+    "IMPL_LATEST_PROBE": {
+      "business_effect_when_relied": 7,
+      "confusion": {
+        "FN": 1,
+        "FP": 0,
+        "TN": 5,
+        "TP": 8,
+        "UNKNOWN_TRUTH": 1
+      },
+      "cost": {
+        "api_operations": 115,
+        "bytes": 36744,
+        "disclosure_units": 6.1,
+        "latency_ms": 138.987335,
+        "retries": 0,
+        "total_evidence_cost": 20.827075
+      },
+      "distribution_shift": {
+        "error_delta_shift_minus_in_distribution": 1,
+        "per_split_confusion": {
+          "IN_DISTRIBUTION": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 2,
+            "TP": 3,
+            "UNKNOWN_TRUTH": 0
+          },
+          "SHIFTED": {
+            "FN": 1,
+            "FP": 0,
+            "TN": 3,
+            "TP": 5,
+            "UNKNOWN_TRUTH": 1
+          }
+        }
+      },
+      "epistemic_output_counts": {
+        "ABSENT": 1,
+        "REFUSE": 2,
+        "UNKNOWN": 2
+      },
+      "operation_success_when_relied": 8,
+      "recovery_time_steps": 0
+    },
+    "IMPL_RECEIPT_WINDOW": {
+      "business_effect_when_relied": 7,
+      "confusion": {
+        "FN": 1,
+        "FP": 1,
+        "TN": 4,
+        "TP": 8,
+        "UNKNOWN_TRUTH": 1
+      },
+      "cost": {
+        "api_operations": 234,
+        "bytes": 82658,
+        "disclosure_units": 14.9,
+        "latency_ms": 270.364671,
+        "retries": 0,
+        "total_evidence_cost": 45.136551
+      },
+      "distribution_shift": {
+        "error_delta_shift_minus_in_distribution": 2,
+        "per_split_confusion": {
+          "IN_DISTRIBUTION": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 2,
+            "TP": 3,
+            "UNKNOWN_TRUTH": 0
+          },
+          "SHIFTED": {
+            "FN": 1,
+            "FP": 1,
+            "TN": 2,
+            "TP": 5,
+            "UNKNOWN_TRUTH": 1
+          }
+        }
+      },
+      "epistemic_output_counts": {
+        "ABSENT": 1,
+        "REFUSE": 2,
+        "UNKNOWN": 3
+      },
+      "operation_success_when_relied": 8,
+      "recovery_time_steps": 0
+    },
+    "IMPL_SLA_RECOVERY": {
+      "business_effect_when_relied": 6,
+      "confusion": {
+        "FN": 2,
+        "FP": 0,
+        "TN": 5,
+        "TP": 7,
+        "UNKNOWN_TRUTH": 1
+      },
+      "cost": {
+        "api_operations": 197,
+        "bytes": 62710,
+        "disclosure_units": 10.85,
+        "latency_ms": 239.392668,
+        "retries": 1,
+        "total_evidence_cost": 36.579428
+      },
+      "distribution_shift": {
+        "error_delta_shift_minus_in_distribution": 2,
+        "per_split_confusion": {
+          "IN_DISTRIBUTION": {
+            "FN": 0,
+            "FP": 0,
+            "TN": 2,
+            "TP": 3,
+            "UNKNOWN_TRUTH": 0
+          },
+          "SHIFTED": {
+            "FN": 2,
+            "FP": 0,
+            "TN": 3,
+            "TP": 4,
+            "UNKNOWN_TRUTH": 1
+          }
+        }
+      },
+      "epistemic_output_counts": {
+        "ABSENT": 1,
+        "REFUSE": 2,
+        "UNKNOWN": 3
+      },
+      "operation_success_when_relied": 7,
+      "recovery_time_steps": 0
+    }
+  },
+  "public_fixture_sha256": "ee5af0eb366253bd5d1fe2e654f4e7ae6a8070e209d4d047083f601bd4e91479",
+  "schema_version": "2.0",
+  "sensitivity": {
+    "no_conclusion_or_margin_le_1_count": 1,
+    "point_count": 48,
+    "ranges": {
+      "evidence_multiplier": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ],
+      "failure_loss": [
+        0.0,
+        5.0,
+        20.0,
+        50.0
+      ],
+      "missed_opportunity_value": [
+        0.0,
+        5.0,
+        20.0
+      ]
+    },
+    "representative_winner_regions": {
+      "IMPL_DECLARATION": {
+        "scores": {
+          "IMPL_DECLARATION": 150.778783,
+          "IMPL_LATEST_PROBE": 129.586463,
+          "IMPL_RECEIPT_WINDOW": 117.431725,
+          "IMPL_SLA_RECOVERY": 101.710286
+        },
+        "weights": {
+          "evidence_multiplier": 0.5,
+          "failure_loss": 0.0,
+          "missed_opportunity_value": 0.0
+        }
+      },
+      "IMPL_LATEST_PROBE": {
+        "scores": {
+          "IMPL_DECLARATION": 100.778783,
+          "IMPL_LATEST_PROBE": 129.586463,
+          "IMPL_RECEIPT_WINDOW": 67.431725,
+          "IMPL_SLA_RECOVERY": 101.710286
+        },
+        "weights": {
+          "evidence_multiplier": 0.5,
+          "failure_loss": 50.0,
+          "missed_opportunity_value": 0.0
+        }
+      }
+    },
+    "unique_winner_counts": {
+      "IMPL_DECLARATION": 36,
+      "IMPL_LATEST_PROBE": 12,
+      "IMPL_RECEIPT_WINDOW": 0,
+      "IMPL_SLA_RECOVERY": 0
+    },
+    "winner_counts_including_ties": {
+      "IMPL_DECLARATION": 36,
+      "IMPL_LATEST_PROBE": 12,
+      "IMPL_RECEIPT_WINDOW": 0,
+      "IMPL_SLA_RECOVERY": 0
+    }
+  },
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+}

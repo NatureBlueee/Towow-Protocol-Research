@@ -1,0 +1,265 @@
+{
+  "controller_behavior_version": "T2-DISCLOSURE-CONTROLLER-V1",
+  "history_hash": "fa080696d0af35e692a085e7b9727265c258a83bcc0527c5748961493b932cdf",
+  "input_hash": "29436253976c915326effd7ca02c0fdb1b4a21519a4e945daeaa3c0318ef75a6",
+  "method_id": "t2-ab-strong-composition",
+  "previous_round_hash": "f8e36d2f5ec68423cdc94f0e3175593e295a2abaa2bec2a72db3130e6f50f31a",
+  "results": [
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "provider_log_role": "corroborating_only",
+        "required": [
+          "buyer_audit_receipt",
+          "output_hash",
+          "raw_row_export_count"
+        ]
+      },
+      "query_index": 0,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "BUYER-DATA",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "provider_log_role",
+          "required"
+        ],
+        "purpose": "为 REL-T2-V2-CANDIDATE 确定可由采购方独立建立目标域 Effect 的最小审计见证：见证来源、必备字段、读回主体、与获批聚合查询及零原始行导出的绑定方式，以及何种证据最多只能证明 ActionAttempt；不把 probe 成功判据、服务方日志或报告视为已产生 Effect、Adoption 或 Acceptance。",
+        "query_index": 0,
+        "reason_code": null,
+        "receipt_hash": "926e1d1c2d2d6146185607429db4344b235d29ee72e8bb9080bb5d4b85d48c8b",
+        "receipt_id": "RCPT-d150167076858b82bff2a094",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-5deb89933afd78a8b371",
+        "request_type": "REQUEST_ACCEPTABLE_WITNESS",
+        "response_hash": "b0e4b8dab6fbc42b6c3ab86b74fb82f3ab5d537f1f0a63d9c0ec08596e4fb309",
+        "response_type": "WITNESS",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-5deb89933afd78a8b371",
+      "response_hash": "b0e4b8dab6fbc42b6c3ab86b74fb82f3ab5d537f1f0a63d9c0ec08596e4fb309",
+      "response_type": "WITNESS"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "required_action": "stop_and_scoped_reopen",
+        "triggers": [
+          "credential_revoked",
+          "data_rule_changed",
+          "approved_query_scope_changed",
+          "audit_witness_missing_or_invalid"
+        ]
+      },
+      "query_index": 1,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "BUYER-DATA",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "required_action",
+          "triggers"
+        ],
+        "purpose": "确定从有界 probe 转入任何正式试点以及失败后重试时适用的最小撤销规则：触发条件、受影响的 credential、permission、执行与证据依赖、停止时点、审计记录、恢复前必须重新取得或读回的当前状态；不把第2轮测试授权延伸为正式试点或重复运行授权。",
+        "query_index": 1,
+        "reason_code": null,
+        "receipt_hash": "1d421a9a472f40fc250c8a7651d1227c4b0562cf116003daf3701c05dc164876",
+        "receipt_id": "RCPT-1e0cd66e02bdfebf2c611b30",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-1a73de05e2791668c67c",
+        "request_type": "REQUEST_REVOCATION_RULE",
+        "response_hash": "6d2e73b45b700e042c3a20edea907816e7aa94b443f85401516456f755ffb50c",
+        "response_type": "FACT",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-1a73de05e2791668c67c",
+      "response_hash": "6d2e73b45b700e042c3a20edea907816e7aa94b443f85401516456f755ffb50c",
+      "response_type": "FACT"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "on_credential_revocation": "stop_and_do_not_retry_without_new_authorization",
+        "on_environment_mismatch": "stop_without_delivery_commitment",
+        "on_probe_failure": "retain_unknown_and_return_diagnostics"
+      },
+      "query_index": 2,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-TECH",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "on_credential_revocation",
+          "on_environment_mismatch",
+          "on_probe_failure"
+        ],
+        "purpose": "补齐固定分析容器候选在 buyer_controlled_sandbox 中执行获批聚合只读查询时的失败停止、清理、幂等性、credential 撤销响应、恢复和重试边界，并明确每次重试必须重新核验的 executor、environment、version、permission 与 resource；仅形成待 probe 验证的技术条件，不声明 probe 已运行或 capability 已资格化。",
+        "query_index": 2,
+        "reason_code": null,
+        "receipt_hash": "427e33263cdd36797a70730898434496afb6dd9a77803bfb232d7bc7ee28fc37",
+        "receipt_id": "RCPT-a9348d469443b22a09dec821",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-84a78c0f1fbe69ac65c9",
+        "request_type": "REQUEST_FAILURE_AND_RECOVERY",
+        "response_hash": "c15f0140f17c7ffe904e27f6bbf38ac57c9f45e71e1f9e3246f2574a617823f1",
+        "response_type": "FACT",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-84a78c0f1fbe69ac65c9",
+      "response_hash": "c15f0140f17c7ffe904e27f6bbf38ac57c9f45e71e1f9e3246f2574a617823f1",
+      "response_type": "FACT"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "acceptance_floor": "至少 3 条可进入真实客服 backlog 的结论",
+        "acceptance_scope": "只接受试点有用，不等于生产上线或未来采购"
+      },
+      "query_index": 3,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "BUYER-BUSINESS",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "acceptance_floor",
+          "acceptance_scope"
+        ],
+        "purpose": "确定两周分析试点的最小业务判定语义和门槛：哪些采购方可独立检查的结果足以影响续费问题处理，Effect、实际工作系统变更所构成的 Adoption、以及对精确试点版本的 Acceptance 如何分别判定，失败或信息不足时如何记录；不请求生产采购承诺，也不从数据授权、probe 或报告生成推断业务接受。",
+        "query_index": 3,
+        "reason_code": null,
+        "receipt_hash": "6f3353d56ef0640fe45c40e7021dd946e9e9a1cbb8a67ed3b785a72985c12f88",
+        "receipt_id": "RCPT-ccbd98f473524c13aac4d2a9",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-e5d8d7dce233e6cba41f",
+        "request_type": "CLARIFY_ACCEPTANCE",
+        "response_hash": "f82ef94679f3bdf5c83503a56b11c9ae92ac0242f0b8bfa3cea3cca7fcaa617e",
+        "response_type": "FACT",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-e5d8d7dce233e6cba41f",
+      "response_hash": "f82ef94679f3bdf5c83503a56b11c9ae92ac0242f0b8bfa3cea3cca7fcaa617e",
+      "response_type": "FACT"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "material_change_requires_new_stance": true,
+        "production_integration": false,
+        "scope": "fixed_two_week_pilot"
+      },
+      "query_index": 4,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-BUSINESS",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "material_change_requires_new_stance",
+          "production_integration",
+          "scope"
+        ],
+        "purpose": "确定若采用采购方权限域内的固定容器、仅执行获批聚合只读查询、禁止训练和持久记忆、并以采购方审计见证结果，服务方可考虑认领的精确两周试点交付范围、排除项、资源责任和成果边界；仅请求范围条件，不把候选技术规格或测试授权视为交付承诺。",
+        "query_index": 4,
+        "reason_code": null,
+        "receipt_hash": "eca680247ba1f8cf4acd3da5e401959bcd02acca2975f590b472cc73b882077f",
+        "receipt_id": "RCPT-377a4ef8f94e98add1530543",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-05900cb0c401d021c2a2",
+        "request_type": "REQUEST_SCOPE_STANCE",
+        "response_hash": "336be47e2d3fc2d1a81bec61b8facf9cebfc054aa63610d0e8773212420adbc5",
+        "response_type": "CONDITIONAL",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-05900cb0c401d021c2a2",
+      "response_hash": "336be47e2d3fc2d1a81bec61b8facf9cebfc054aa63610d0e8773212420adbc5",
+      "response_type": "CONDITIONAL"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "condition": "固定 reference v2 试点范围，不含生产集成",
+        "price_cny": 9800
+      },
+      "query_index": 5,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-BUSINESS",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "condition",
+          "price_cny"
+        ],
+        "purpose": "针对上述候选范围，确定服务方价格条件是否可保持在 9800 元以内，以及该价格覆盖与不覆盖的项目、会触发重新定价的 material change；不从采购方预算上限或技术候选推断服务方价格承诺。",
+        "query_index": 5,
+        "reason_code": null,
+        "receipt_hash": "c90d6c13b35db2f6d405014c1245132c3f486351ae28f0544569091d2282980b",
+        "receipt_id": "RCPT-44046f4228ef79ee24b7106d",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-bb1a6bbb355bbad8f4da",
+        "request_type": "REQUEST_PRICE_STANCE",
+        "response_hash": "fc0a0fd14f2a53e4e6f6c71e15cbcd4b724c7d1adf145dd3474e06094a292a09",
+        "response_type": "CONDITIONAL",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-bb1a6bbb355bbad8f4da",
+      "response_hash": "fc0a0fd14f2a53e4e6f6c71e15cbcd4b724c7d1adf145dd3474e06094a292a09",
+      "response_type": "CONDITIONAL"
+    },
+    {
+      "decision": "DISCLOSE",
+      "disclosed_fields": {
+        "condition": "probe 通过且必要 Mandate 生效",
+        "deadline_days": 14
+      },
+      "query_index": 6,
+      "reason_code": null,
+      "receipt": {
+        "authority_id": "PROVIDER-BUSINESS",
+        "decision": "DISCLOSE",
+        "disclosed_fields": [
+          "condition",
+          "deadline_days"
+        ],
+        "purpose": "针对上述候选范围，确定服务方可考虑认领的 14 天进度条件、起算前置条件、关键依赖、资源保留边界及会导致暂停或重新确认的漂移；不把有界 probe 时长、测试资源或候选路径视为正式排期承诺。",
+        "query_index": 6,
+        "reason_code": null,
+        "receipt_hash": "18191711fb762c049f48e15dd2898a51b2749a0528c73f2f7d7f376b81559609",
+        "receipt_id": "RCPT-4abd4cb277be5f80a76a765a",
+        "relation_version_ref": "REL-T2-V2-CANDIDATE",
+        "replay_of_receipt_id": null,
+        "request_id": "REQ-085022438eda0160d873",
+        "request_type": "REQUEST_SCHEDULE_STANCE",
+        "response_hash": "5e4f7042affc3e2e3b67268861a53929a0b0129a51beb77c5b8cbba952247daa",
+        "response_type": "CONDITIONAL",
+        "retention_scope": "RUN_ONLY",
+        "round": 3
+      },
+      "replay_of_receipt_id": null,
+      "request_id": "REQ-085022438eda0160d873",
+      "response_hash": "5e4f7042affc3e2e3b67268861a53929a0b0129a51beb77c5b8cbba952247daa",
+      "response_type": "CONDITIONAL"
+    }
+  ],
+  "round": 3,
+  "round_hash": "78e6d7b76b69ee50a6e0232d84ab141f1f123597b6621ba6e497f8d2c46a1455",
+  "run_id": "T2-AB-RUN-001",
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1"
+}

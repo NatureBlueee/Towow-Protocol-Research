@@ -1,0 +1,111 @@
+{
+  "schema": "towow.cross-authority-contract.v1",
+  "contract_id": "WAVE-005-B-CONTRACT-001",
+  "world_id": "WAVE-005-B-SYNTHETIC-WORLD",
+  "evaluation_step": 7,
+  "controller_authority": "CONTROLLER-W5B",
+  "anchor_authority": "ANCHOR-W5B",
+  "verification_keys": [
+    {
+      "issuer": "HOLDER-ALPHA",
+      "key_id": "v1",
+      "role": "HOLDER",
+      "public_key_hex": "5c31449fe2b4c5b7c2f28aaff85d05d9cefba677572ae252d769a086a83dcc5e",
+      "valid_from_step": 1,
+      "valid_through_step": 5
+    },
+    {
+      "issuer": "HOLDER-ALPHA",
+      "key_id": "v2",
+      "role": "HOLDER",
+      "public_key_hex": "9cb43e2a7ddb73168a00ccd8cb7b53f6c952cc974bb056f257bbcf612896ecb8",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "HOLDER-BETA",
+      "key_id": "v2",
+      "role": "HOLDER",
+      "public_key_hex": "aa506fbd7dc6a3926729678d4de316ebe992ff5bc2b365e54a8a5325415b9bbe",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "HOLDER-GAMMA",
+      "key_id": "v2",
+      "role": "HOLDER",
+      "public_key_hex": "b96b7a030a47274a990c2dbe0573e131b8cf55f97f4984e741ec48094648859a",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "HOLDER-DELTA",
+      "key_id": "v2",
+      "role": "HOLDER",
+      "public_key_hex": "5c2b5f2375ca87ec031d1247d0f061eec0b21ea86a261a403d117038889e4650",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "RECIPIENT-A",
+      "key_id": "v2",
+      "role": "RECIPIENT",
+      "public_key_hex": "c90e4fef7f2630ad77f5911ec815affb9233324d5b105fda3796c87cfcad0b7b",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "RECIPIENT-B",
+      "key_id": "v2",
+      "role": "RECIPIENT",
+      "public_key_hex": "d47e223625168e285d04610fe5df076b4f224f4a5bf844ab22bead2c9ece33fc",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "RECIPIENT-GAMMA",
+      "key_id": "v2",
+      "role": "RECIPIENT",
+      "public_key_hex": "bd43f4b154ba20813713fc0cb965937bb8728c47574d5f29ddd1d48dccd19127",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "RECIPIENT-DELTA",
+      "key_id": "v2",
+      "role": "RECIPIENT",
+      "public_key_hex": "249d3098866e998638cabe932300131d49875413f34b9409408045df9e7be365",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "CONTROLLER-W5B",
+      "key_id": "v2",
+      "role": "CONTROLLER",
+      "public_key_hex": "b10bfd2fe854559942d0ec5eae9bd16862db427bb5a5ec873c3a4625d8969869",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    },
+    {
+      "issuer": "ANCHOR-W5B",
+      "key_id": "v2",
+      "role": "EXTERNAL_ANCHOR",
+      "public_key_hex": "ae576cc17ec95942840522f39bbd2eda3973fecba188fbf41c41c5f3de825796",
+      "valid_from_step": 6,
+      "valid_through_step": 20
+    }
+  ],
+  "evidence_boundary": {
+    "domain_isolation": "SEPARATE_DURABLE_STATE_AND_SIGNING_SERVICE_OBJECTS",
+    "signature": "ED25519_WITH_SYNTHETIC_TEST_KEYS",
+    "anchor": "INDEPENDENT_SIGNED_APPEND_ONLY_HASH_CHAIN_SIMULATION",
+    "not_claimed": [
+      "operating-system process isolation",
+      "hardware-backed key custody",
+      "Byzantine consensus",
+      "multi-observer anchor equivocation detection",
+      "production security",
+      "real-world relation, commitment, effect, adoption, acceptance or settlement"
+    ]
+  }
+}

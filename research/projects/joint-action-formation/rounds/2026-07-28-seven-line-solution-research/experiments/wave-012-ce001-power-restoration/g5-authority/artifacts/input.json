@@ -1,0 +1,208 @@
+{
+  "cross_failure_domain_migration": "NOT_RUN",
+  "migration_runtime_scope": "SHARED_DURABLE_STORE_PROCESS_RESTART",
+  "operations": {
+    "D": {
+      "authority": {
+        "delegatee": "C_COORDINATOR",
+        "mode": "EXACT_DELEGATED_ACT",
+        "required_owners": [
+          "O_Q",
+          "O_V",
+          "O_R",
+          "O_S"
+        ],
+        "stratum": "D",
+        "stratum_name": "EXACT_DELEGATION"
+      },
+      "episode_id": "CE-001",
+      "expiry": 1900000000,
+      "material_closure_sha256": "a3543e3103b66fc25f72f52d111ea022dd14fb2dd8eb3cf7f0cf5169d7bd64d1",
+      "materiality_rule_version": "CE001-MATERIALITY@1",
+      "object_id": "Venue-V/Circuit-C7",
+      "object_revision": "C7@rev5",
+      "operation_id": "CE-001-C7-ENERGIZE-D",
+      "q_id": "CE-001-Q",
+      "q_version": "Q@v1",
+      "resource": {
+        "reservation_slot": "CE-001/T0..T0+90m",
+        "resource_id": "BATTERY-R17",
+        "resource_version": "R17@4"
+      },
+      "scope": {
+        "compensation": "DEENERGIZE_ON_AUTHORITY_LOSS",
+        "forbid_other_circuits": true,
+        "minimum_minutes": 45,
+        "noise_limit_dba": 55,
+        "power_kw": 3.0,
+        "safety_policy_version": "O_S/policy@17",
+        "target": "Venue-V/Circuit-C7",
+        "tolerance_percent": 5
+      },
+      "standing": {
+        "jurisdiction": "Venue-V",
+        "snapshot_id": "STANDING-CE001@3",
+        "status": "ADJUDICATED_CURRENT"
+      }
+    },
+    "P": {
+      "authority": {
+        "delegatee": null,
+        "mode": "DIRECT_OWNER_ACT",
+        "required_owners": [
+          "O_Q",
+          "O_V",
+          "O_R",
+          "O_S"
+        ],
+        "stratum": "P",
+        "stratum_name": "PLURAL_INDEPENDENT"
+      },
+      "episode_id": "CE-001",
+      "expiry": 1900000000,
+      "material_closure_sha256": "e6230e7d4ac5e3225c2b333bd2bc97ccdd0d3f179a5b73705ebfca2dd094eb33",
+      "materiality_rule_version": "CE001-MATERIALITY@1",
+      "object_id": "Venue-V/Circuit-C7",
+      "object_revision": "C7@rev5",
+      "operation_id": "CE-001-C7-ENERGIZE-P",
+      "q_id": "CE-001-Q",
+      "q_version": "Q@v1",
+      "resource": {
+        "reservation_slot": "CE-001/T0..T0+90m",
+        "resource_id": "BATTERY-R17",
+        "resource_version": "R17@4"
+      },
+      "scope": {
+        "compensation": "DEENERGIZE_ON_AUTHORITY_LOSS",
+        "forbid_other_circuits": true,
+        "minimum_minutes": 45,
+        "noise_limit_dba": 55,
+        "power_kw": 3.0,
+        "safety_policy_version": "O_S/policy@17",
+        "target": "Venue-V/Circuit-C7",
+        "tolerance_percent": 5
+      },
+      "standing": {
+        "jurisdiction": "Venue-V",
+        "snapshot_id": "STANDING-CE001@3",
+        "status": "ADJUDICATED_CURRENT"
+      }
+    },
+    "U": {
+      "authority": {
+        "delegatee": "C_COORDINATOR",
+        "mode": "UNIFIED_PRINCIPAL_ACT",
+        "required_owners": [
+          "O_UNIFIED"
+        ],
+        "stratum": "U",
+        "stratum_name": "LAWFULLY_UNIFIED"
+      },
+      "episode_id": "CE-001",
+      "expiry": 1900000000,
+      "material_closure_sha256": "2cabfe5b744bcb9a5ff0893ad84be01e0874100e0e46ad551a56238df220d752",
+      "materiality_rule_version": "CE001-MATERIALITY@1",
+      "object_id": "Venue-V/Circuit-C7",
+      "object_revision": "C7@rev5",
+      "operation_id": "CE-001-C7-ENERGIZE-U",
+      "q_id": "CE-001-Q",
+      "q_version": "Q@v1",
+      "resource": {
+        "reservation_slot": "CE-001/T0..T0+90m",
+        "resource_id": "BATTERY-R17",
+        "resource_version": "R17@4"
+      },
+      "scope": {
+        "compensation": "DEENERGIZE_ON_AUTHORITY_LOSS",
+        "forbid_other_circuits": true,
+        "minimum_minutes": 45,
+        "noise_limit_dba": 55,
+        "power_kw": 3.0,
+        "safety_policy_version": "O_S/policy@17",
+        "target": "Venue-V/Circuit-C7",
+        "tolerance_percent": 5
+      },
+      "standing": {
+        "jurisdiction": "Venue-V",
+        "snapshot_id": "STANDING-CE001@3",
+        "status": "ADJUDICATED_CURRENT"
+      }
+    }
+  },
+  "schema": "ce001.g5.frozen-run-input.v1",
+  "target_gate_attack_ids": [
+    "NO_OWNER_RECEIPTS",
+    "NAKED_FENCE_INJECTION",
+    "POST_CHECK_REVOKE",
+    "WRONG_OWNER",
+    "STALE_HEAD",
+    "CHANGED_Q",
+    "CHANGED_OBJECT_ID",
+    "CHANGED_OBJECT_REVISION",
+    "CHANGED_SCOPE",
+    "CHANGED_EXPIRY",
+    "RUNTIME_EXPIRED",
+    "RELABELED_TOPOLOGY",
+    "FORGED_RECEIPT",
+    "ACTIVE_SNAPSHOT_COMPENSATION"
+  ],
+  "trusted_topology_closures": {
+    "D": {
+      "closure_kind": "EXACT_DELEGATED_ACT",
+      "delegatee": "C_COORDINATOR",
+      "derived_stratum": "D",
+      "required_owners": [
+        "O_Q",
+        "O_V",
+        "O_R",
+        "O_S"
+      ],
+      "role_owners": {
+        "Q": "O_Q",
+        "RESOURCE": "O_R",
+        "SAFETY": "O_S",
+        "VENUE": "O_V"
+      },
+      "schema": "ce001.g5.authority-topology.v2",
+      "topology_closure_sha256": "b436d4eefecd6c1dc2e0060f3aea146688a5b1fb3ee6198be93ae75b4a27ef00",
+      "topology_id": "CE001-AUTHORITY-D@1"
+    },
+    "P": {
+      "closure_kind": "DIRECT_OWNER_ACT",
+      "delegatee": null,
+      "derived_stratum": "P",
+      "required_owners": [
+        "O_Q",
+        "O_V",
+        "O_R",
+        "O_S"
+      ],
+      "role_owners": {
+        "Q": "O_Q",
+        "RESOURCE": "O_R",
+        "SAFETY": "O_S",
+        "VENUE": "O_V"
+      },
+      "schema": "ce001.g5.authority-topology.v2",
+      "topology_closure_sha256": "7593c86b86d8edc4a00717721eb58e7f91c073891c9ad26e47045eab9dbf7acb",
+      "topology_id": "CE001-AUTHORITY-P@1"
+    },
+    "U": {
+      "closure_kind": "UNIFIED_PRINCIPAL_ACT",
+      "delegatee": "C_COORDINATOR",
+      "derived_stratum": "U",
+      "required_owners": [
+        "O_UNIFIED"
+      ],
+      "role_owners": {
+        "Q": "O_UNIFIED",
+        "RESOURCE": "O_UNIFIED",
+        "SAFETY": "O_UNIFIED",
+        "VENUE": "O_UNIFIED"
+      },
+      "schema": "ce001.g5.authority-topology.v2",
+      "topology_closure_sha256": "c216b82810e997f523327db7291bdfefde8ddda35df96212d1781a36f9ed64cc",
+      "topology_id": "CE001-AUTHORITY-U@1"
+    }
+  }
+}

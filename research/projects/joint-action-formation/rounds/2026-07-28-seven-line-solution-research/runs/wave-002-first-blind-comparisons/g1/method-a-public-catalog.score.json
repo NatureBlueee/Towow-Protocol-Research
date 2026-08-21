@@ -1,0 +1,308 @@
+{
+  "coverage": {
+    "ratio": 0.0,
+    "requirements_passed": 0,
+    "requirements_total": 8
+  },
+  "critical_failures": [
+    {
+      "code": "DYNAMIC_UPDATE_MISSING",
+      "detail": "The step-1 revocation and version transition are not recorded.",
+      "detection_id": null,
+      "requirements": [
+        "R2"
+      ],
+      "truth_id": "OPP-DYNAMIC"
+    },
+    {
+      "code": "FALSE_WAKEUP",
+      "detail": "An unmatched observable signature was marked DISCOVERED.",
+      "detection_id": "A-PAIR-TRANSLATION-002",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": null
+    },
+    {
+      "code": "RECALL_MISS",
+      "detail": "No candidate-owned detection maps to this latent target.",
+      "detection_id": null,
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RECALL_MISS",
+      "detail": "No candidate-owned detection maps to this latent target.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R7"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "RECIPROCAL_DISCLOSURE_MISSING",
+      "detail": "Reciprocal disclosure F-RECIP-OFFER-DETAIL is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RECIPROCAL_DISCLOSURE_MISSING",
+      "detail": "Reciprocal disclosure F-RECIP-SEEK-DETAIL is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RECIPROCAL_PROBE_MISSING",
+      "detail": "Required reciprocal probe receipt is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RELATION_HANDOFF_FORBIDDEN",
+      "detail": "A non-discoverable item cannot enter relation constitution.",
+      "detection_id": "A-PAIR-GPU-BURST-001",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-DYNAMIC"
+    },
+    {
+      "code": "RELATION_HANDOFF_MISSING",
+      "detail": "Discovered opportunity did not enter relation constitution.",
+      "detection_id": null,
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-RECIPROCAL"
+    },
+    {
+      "code": "RELATION_HANDOFF_MISSING",
+      "detail": "Discovered opportunity did not enter relation constitution.",
+      "detection_id": null,
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-CLOSED-P1-NEG, W-CLOSED-P2-NEG, W-CLOSED-P3-NEG.",
+      "detection_id": "A-CLAIM-CLOSED-RARE-001",
+      "requirements": [
+        "R5"
+      ],
+      "truth_id": "CLAIM-ABSENT"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-EXPLICIT-REFUSAL.",
+      "detection_id": "A-CLAIM-REFUSAL-DOC-001",
+      "requirements": [
+        "R5"
+      ],
+      "truth_id": "CLAIM-REFUSE"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-OFFLINE-NO-RESPONSE.",
+      "detection_id": "A-CLAIM-OFFLINE-AUDIO-001",
+      "requirements": [
+        "R5"
+      ],
+      "truth_id": "CLAIM-UNKNOWN"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-DYN-REVOKE.",
+      "detection_id": "A-PAIR-GPU-BURST-001",
+      "requirements": [
+        "R2",
+        "R7"
+      ],
+      "truth_id": "OPP-DYNAMIC"
+    },
+    {
+      "code": "REQUIRED_EVIDENCE_MISSING",
+      "detail": "Missing evidence: W-POLICY-REFUSAL.",
+      "detection_id": "A-PAIR-SENSITIVE-EXPORT-001",
+      "requirements": [
+        "R6"
+      ],
+      "truth_id": "OPP-POLICY"
+    },
+    {
+      "code": "STATE_MISMATCH",
+      "detail": "Expected REFUSE, received UNKNOWN.",
+      "detection_id": "A-CLAIM-REFUSAL-DOC-001",
+      "requirements": [
+        "R5"
+      ],
+      "truth_id": "CLAIM-REFUSE"
+    },
+    {
+      "code": "STATE_MISMATCH",
+      "detail": "Expected INVALIDATED, received DISCOVERED.",
+      "detection_id": "A-PAIR-GPU-BURST-001",
+      "requirements": [
+        "R2",
+        "R7"
+      ],
+      "truth_id": "OPP-DYNAMIC"
+    },
+    {
+      "code": "STATE_MISMATCH",
+      "detail": "Expected UNFINDABLE_UNDER_POLICY, received UNKNOWN.",
+      "detection_id": "A-PAIR-SENSITIVE-EXPORT-001",
+      "requirements": [
+        "R6"
+      ],
+      "truth_id": "OPP-POLICY"
+    },
+    {
+      "code": "TASK_PROJECTION_DISCLOSURE_MISSING",
+      "detail": "Required task-relative projection F-UNEXP-OFFER-PROJECTION is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "TASK_PROJECTION_DISCLOSURE_MISSING",
+      "detail": "Required task-relative projection F-UNEXP-SEEK-PROJECTION is missing.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "truth_id": "OPP-UNEXPRESSED"
+    },
+    {
+      "code": "UNEXPECTED_DETECTION",
+      "detail": "Observable signature does not map to any frozen latent target.",
+      "detection_id": "A-PAIR-TRANSLATION-002",
+      "requirements": [
+        "R7"
+      ],
+      "truth_id": null
+    },
+    {
+      "code": "UNEXPECTED_RELATION_HANDOFF",
+      "detail": "Handoff references an unmapped detection.",
+      "detection_id": "A-PAIR-TRANSLATION-002",
+      "requirements": [
+        "R8"
+      ],
+      "truth_id": null
+    }
+  ],
+  "evidence_boundary": "This score validates one local synthetic receipt against hidden frozen truth. The calibration fixture is not a candidate result.",
+  "metrics": {
+    "correctly_discovered_opportunities": 1,
+    "disclosure_event_count": 0,
+    "discoverable_opportunities": 3,
+    "exact_state_decisions": 3,
+    "false_wakeup_count": 1,
+    "frozen_items": 8,
+    "mapped_latent_items": 6,
+    "opportunity_recall": 0.3333333333333333,
+    "unique_recipients_by_origin_fact": {}
+  },
+  "requirement_results": {
+    "R1": {
+      "description": "Recover an unexpressed opportunity without requiring a prebuilt public card.",
+      "failure_codes": [
+        "RECALL_MISS",
+        "TASK_PROJECTION_DISCLOSURE_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R2": {
+      "description": "Invalidate stale discovery after the dynamic state flip.",
+      "failure_codes": [
+        "DYNAMIC_UPDATE_MISSING",
+        "REQUIRED_EVIDENCE_MISSING",
+        "STATE_MISMATCH"
+      ],
+      "status": "FAIL"
+    },
+    "R3": {
+      "description": "Use task-relative projections rather than raw or full-world disclosure.",
+      "failure_codes": [
+        "RECALL_MISS",
+        "TASK_PROJECTION_DISCLOSURE_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R4": {
+      "description": "Respect receiver, purpose, retention, depth, onward, and cumulative disclosure limits.",
+      "failure_codes": [
+        "RECIPROCAL_DISCLOSURE_MISSING",
+        "RECIPROCAL_PROBE_MISSING",
+        "TASK_PROJECTION_DISCLOSURE_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R5": {
+      "description": "Keep UNKNOWN, REFUSE, and ABSENT distinct.",
+      "failure_codes": [
+        "REQUIRED_EVIDENCE_MISSING",
+        "STATE_MISMATCH"
+      ],
+      "status": "FAIL"
+    },
+    "R6": {
+      "description": "Report a real but policy-unfindable opportunity honestly.",
+      "failure_codes": [
+        "REQUIRED_EVIDENCE_MISSING",
+        "STATE_MISMATCH"
+      ],
+      "status": "FAIL"
+    },
+    "R7": {
+      "description": "Avoid SEEK/SEEK false wakeups and structural misses.",
+      "failure_codes": [
+        "FALSE_WAKEUP",
+        "RECALL_MISS",
+        "RECIPROCAL_DISCLOSURE_MISSING",
+        "RECIPROCAL_PROBE_MISSING",
+        "REQUIRED_EVIDENCE_MISSING",
+        "STATE_MISMATCH",
+        "UNEXPECTED_DETECTION"
+      ],
+      "status": "FAIL"
+    },
+    "R8": {
+      "description": "Handoff discoveries to relation constitution without inventing commitment.",
+      "failure_codes": [
+        "RELATION_HANDOFF_FORBIDDEN",
+        "RELATION_HANDOFF_MISSING",
+        "UNEXPECTED_RELATION_HANDOFF"
+      ],
+      "status": "FAIL"
+    }
+  },
+  "schema_version": "1.1",
+  "status": "FAIL",
+  "submission_sha256": "9d48cbd6c5bc3a6d63137cff7cf527b8f901d26ab8cfe13701fc08f8275ba5d5",
+  "world_id": "T1-HW-20260728-A"
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "kind": "ScenarioContract",
+  "id": "SCN-NAC-H1-PRECOMPUTED-EMBEDDINGS",
+  "version": "v1",
+  "status": "ACTIVE",
+  "scenario_class": "LOCAL_SANDBOX",
+  "study_mode": "MECHANISM",
+  "title": "NAC E-H1′ 预计算嵌入与强基线判别沙箱",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "participants": [
+    {
+      "entity_id": "ENT-RESEARCH-OWNER",
+      "entity_type": "RESEARCH_PRINCIPAL",
+      "principal": "研究用户",
+      "authority_root": "本轮明确要求立即启动多条并行研究工作流",
+      "authority_scope": "激活 LINE-01-NAC 与本地机制沙箱，但不授权机制结论晋升或现实动作"
+    },
+    {
+      "entity_id": "ENT-NAC-H1-LOCAL-RUNTIME",
+      "entity_type": "AGENT_EXECUTION_ENVIRONMENT",
+      "principal": "用户授权的本地研究执行环境",
+      "authority_root": "DEC-2026-07-28-ACTIVATE-NAC-H1-LINE",
+      "authority_scope": "构造候选数据契约、评测器、强基线和反例；结果只进入研究候选区"
+    }
+  ],
+  "initial_state": "Problem v2 已激活，MEC-NAC 处于 ACTIVE_RESEARCH；E-H1′ 有历史失败门但尚未运行，当前没有冻结的五模型 embedding receipt、可审计标签集或公平强基线结果。",
+  "unknowns": [
+    "公共锚点相对坐标在五种以上异构模型和最坏语言切片上能否达到同厂商 Recall@100 的 80%",
+    "vec2vec、Procrustes 或共享参考编码器在同一共享样本和生命周期预算下是否完全覆盖 NAC",
+    "真实与合成 Intent—画像数据是否足以形成独立于受测模型的 ground truth",
+    "NAC 的多模型 onboarding 与版本成本优势是否足以补偿任何 Recall 损失"
+  ],
+  "allowed_actions": [
+    "读取 LINE-01-NAC 白名单内的本地历史材料和公开一手来源",
+    "构造只消费预计算 embedding 的输入 manifest、evaluator 和合成回归夹具",
+    "盘点可恢复的真实或合成 Intent—画像数据与标签来源",
+    "实现并公平描述 vec2vec、Procrustes、共享参考编码器和 stable-Schema 基线",
+    "保存失败、Unknown、反例、预算会计和不可支持结论"
+  ],
+  "prohibited_actions": [
+    "接触真人参与者、私有账户、生产服务或付费资源",
+    "把专利交底材料、私密参与者数据、凭据或完整私有档案发送给外部模型",
+    "用合成夹具、工具测试或文献结果冒充 E-H1′ 已运行",
+    "把 Recall 结果外推为授权、关系形成、Effect、Adoption 或 Acceptance",
+    "自动把 MEC-NAC 改为 VALIDATED_SCOPED、REFUTED_SCOPED 或 REBASE_REQUIRED"
+  ],
+  "disclosure_boundary": "本地工作流可读取已白名单材料；任何外部检索只使用公开查询，任何模型外发必须经过冻结 disclosure manifest 且排除凭据、真人数据、专利原文和完整私有档案。",
+  "cost_and_reversibility": {
+    "cost_limit": "三条并行工作流各最多 30 分钟；不创建付费资源，不下载五模型大包，不执行生产调用。",
+    "reversibility": "所有新产物位于本地研究候选、工具或测试目录；不修改原始档案和机制证据状态。",
+    "stop_rule": "出现来源、隐私、预算或作用域越界立即停止；没有冻结输入时不得生成机制支持或反驳结论。"
+  },
+  "effect_witness": {
+    "kind": "RESEARCH_ARTIFACT",
+    "target_domain": "本地 NAC E-H1′ 研究候选区",
+    "witness": "带输入哈希、模型有序对、切片、分母和预算字段的 evaluator/manifest，以及通过的定向测试和来源核验",
+    "success_observation": "三条工作流产生可检查产物，并使下一次真实运行能够在开始前拒绝不公平或不可归因输入。",
+    "failure_observation": "只产生文档口号、模拟绿灯或平均 Recall，仍不能冻结模型对、标签、强基线和预算。"
+  },
+  "domain_adoption": {
+    "authority": "本地候选研究区",
+    "required_receipt": "文件 SHA-256、定向测试输出与 research governance 读回；这不是现实 Domain Adoption。"
+  },
+  "acceptance": {
+    "authority": "研究用户",
+    "required_evidence": "用户审阅并决定是否允许绑定真实或公开数据与五模型 receipt 开跑 E-H1′。"
+  },
+  "outcome_semantics": {
+    "success": "形成可运行且能拒绝不可归因输入的 E-H1′ 研究装置，不表示 NAC 主张得到支持。",
+    "failure": "现成方案已完整覆盖、数据无法形成可审计标签，或评测设计无法区分竞争解释。",
+    "unknown": "装置成立但缺少真实数据、模型 receipt、基线实现或足够预算，保持机制证据状态不变。"
+  },
+  "strongest_credible_baseline": {
+    "id": "BASE-SHARED-ENCODER-AND-PAIRWISE-ALIGNMENT",
+    "description": "stable Schema 加共享参考编码器，以及获得相同共享样本预算的 vec2vec/Procrustes 成对或 hub 对齐。",
+    "fairness_requirements": [
+      "所有方案使用相同 test 标签、候选池、语言切片和 Recall@100 定义",
+      "NAC 锚点数与对齐方法共享样本数按相同预算冻结",
+      "同时报告 onboarding、每条编码、存储、映射数量和版本迁移成本",
+      "关键有序模型对失败不得被宏平均隐藏"
+    ]
+  },
+  "activation": {
+    "requires_user_approval": true,
+    "approval_decision_id": "DEC-2026-07-28-ACTIVATE-NAC-H1-SCENARIO"
+  },
+  "cannot_support": [
+    "不能仅凭 evaluator 或合成夹具证明 MC-NAC-ANCHOR",
+    "不能测试或改变 H2–H8 与未受影响 scoped claims",
+    "不能证明完整 Agent 关系、授权、现实效力或商业净价值",
+    "不能自动修改 MEC-NAC 的正式证据或 adverse 状态"
+  ],
+  "source_refs": [
+    "research/projects/joint-action-formation/lines/01-nac.json",
+    "research/projects/joint-action-formation/studies/nac-h1-activation-readiness-2026-07-28.md",
+    "research/projects/joint-action-formation/prior-art/nac-h1-existing-solutions-2026-07-28.md"
+  ],
+  "companion_markdown": "research/projects/joint-action-formation/scenarios/nac-h1-precomputed-embeddings-v1.md"
+}

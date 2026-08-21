@@ -1,0 +1,370 @@
+{
+  "arm_transcript": {
+    "arm_id": "A0-OPAQUE-NATIVE",
+    "native_request": {
+      "authority_grant": {
+        "authority_mode": "DIRECT_AUTHORITY_REMOVED",
+        "decision": "DENY",
+        "expires_at_minute": 90,
+        "grant_sha256": "ec78d05c4b84de423129de40f3e2a05025b875964917a6dbd161febcbf128a57",
+        "granted_actions": [],
+        "grantee_id": "VenueV:NativeOperationsPlatform",
+        "issued_at_minute": 0,
+        "issuer": "O_V",
+        "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+        "principal_id": "VenueV",
+        "q_version": "Q@v1",
+        "resource_id": "VenueV:Battery:B7",
+        "schema": "VENUE_DIRECT_AUTHORITY_GRANT_V1",
+        "signature_hex": "40f8e77c9f0bd67b5162d95dc912f895e752863021a1fb4b8f3dbf7f3f884e342b96d590bf61717bb6aa2b1d52dfab30ee49e9281a5435c2d511bc9189f0a307",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+      "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+      "schema": "PLATFORM_NATIVE_REQUEST_V1",
+      "task": {
+        "deadline_minute": 90,
+        "noise_required": true,
+        "other_circuits_energized": [],
+        "power_tolerance_percent": 5,
+        "q_version": "Q@v1",
+        "requester_acceptance_required": true,
+        "required_duration_minutes": 45,
+        "required_power_kw": 3.0,
+        "safety_required": true,
+        "schema": "CE001_EXACT_TASK_V1",
+        "target_id": "VenueV:CircuitC7",
+        "venue_acceptance_required": true
+      }
+    },
+    "native_response": {
+      "decision": "POLICY_DENIED",
+      "effect_occurred": false,
+      "finality": "NO_EXTERNAL_TRANSFER_DUE",
+      "reason": "POLICY_MISMATCH:decision",
+      "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+      "schema": "PLATFORM_NATIVE_RESPONSE_V1"
+    },
+    "platform_native_call_count": 1,
+    "process_id": 48334,
+    "schema": "BLIND_NATIVE_ARM_TRANSCRIPT_V1",
+    "visibility": {
+      "argv": [
+        "opaque-native-worker"
+      ],
+      "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/opaque-worker-7317d0a2b47e076b",
+      "cwd_entries": [],
+      "environment": {
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+        "PYTHONHASHSEED": "0",
+        "__CF_USER_TEXT_ENCODING": "0x1F5:0x19:0x34"
+      },
+      "process_id": 48334,
+      "process_name": "opaque-native-worker",
+      "schema": "BLIND_ARM_VISIBILITY_V1",
+      "start_method": "spawn",
+      "start_payload_sha256": "773a23831f0e8d8011123c99f433b0d5c9a1c39bffb88bb0216400b7eafb904f",
+      "visible_fields": [
+        "authority_grant",
+        "available_native_interface",
+        "operation_id",
+        "request_id",
+        "run_id",
+        "schema",
+        "task"
+      ]
+    }
+  },
+  "artifact_sha256": "d9e284dc66992e545572f41179564a3f7ea553fec82b5e95f48990532db1b2a6",
+  "blindness_receipt": {
+    "arm_pid": 48334,
+    "child_environments_exact": true,
+    "controller_pid": 48322,
+    "distinct_processes": true,
+    "private_canary_absent": true,
+    "private_fields_absent_from_payload": true,
+    "sanitized_child_environment": {
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+      "PYTHONHASHSEED": "0",
+      "__CF_USER_TEXT_ENCODING": "0x1F5:0x19:0x34"
+    },
+    "semantic_case_label_present": false,
+    "service_pid": 48332,
+    "spawn_start_method": "spawn"
+  },
+  "cost": {
+    "boundary": "LOCAL_SYNTHETIC_PLATFORM_DIRECT",
+    "child_process_count": 2,
+    "cold_integration_cost": "PLATFORM_POLICY_IAM_RESOURCE_LOCK_TARGET_LEDGER_ADAPTER",
+    "external_delegation_events": 0,
+    "external_discovery_calls": 0,
+    "external_relation_events": 0,
+    "external_transfer_count": 0,
+    "human_minutes": 0,
+    "internal_resource_lock_ops": 0,
+    "maintenance_cost_not_measured": true,
+    "model_calls": 0,
+    "platform_native_calls": 1,
+    "policy_checks": 1,
+    "repeat_cost": "ONE_PLATFORM_NATIVE_CALL_PLUS_TARGET_COMMIT",
+    "target_mutation_attempts": 0,
+    "wall_seconds": 0.428346
+  },
+  "database_artifacts": {
+    "platform_native_file": "platform-native.sqlite3",
+    "platform_native_sha256": "35bbd5f472c286f8d90e0c2f461b97ff8401699631dc56a2ba2c692e8faa8ad0",
+    "platform_native_snapshot": {
+      "checkpoint": "TRUNCATE",
+      "journal_mode": "delete",
+      "residual_shm_present_but_not_required": true,
+      "schema": "FROZEN_SQLITE_SNAPSHOT_V1",
+      "standalone_file": true,
+      "wal_checkpointed_frames_before_truncate": 0,
+      "wal_log_frames_before_truncate": 0
+    },
+    "target_ledger_file": "target-ledger.sqlite3",
+    "target_ledger_sha256": "cc91ac96f6c66784deb807498deaefc21b685468a0a30bb0b08b77d770bc101c",
+    "target_ledger_snapshot": {
+      "checkpoint": "TRUNCATE",
+      "journal_mode": "delete",
+      "residual_shm_present_but_not_required": true,
+      "schema": "FROZEN_SQLITE_SNAPSHOT_V1",
+      "standalone_file": true,
+      "wal_checkpointed_frames_before_truncate": 0,
+      "wal_log_frames_before_truncate": 0
+    }
+  },
+  "evaluation": {
+    "CorrectResolution": true,
+    "EffectAttributableToPlatform": false,
+    "EffectAttributionScope": "DIRECT_DIGITAL_TARGET_COMMIT_ONLY",
+    "ExternalDelegationEvents": 0,
+    "ExternalDiscoveryCalls": 0,
+    "ExternalRelationEvents": 0,
+    "ExternalTransferCount": 0,
+    "FrozenInputValid": true,
+    "ResourceLocked": false,
+    "SafeHandling": true,
+    "SignedAuthorityStatus": "REMOVED",
+    "TargetVersion": 0,
+    "TaskOutcomeSatisfied": false,
+    "UnnecessaryFormation": false,
+    "evidence_boundary": "LOCAL_SYNTHETIC_DIRECT_AUTHORITY_REMOVAL_COUNTEREXAMPLE",
+    "schema": "E0_PLATFORM_DIRECT_EVALUATION_V2"
+  },
+  "frozen_input": {
+    "available_native_interface": "PROVISION_EXACT_TASK",
+    "frozen_input_sha256": "f8999f4647cc9de46a602ecba40ab36d4bc9989c67b6f0b89271b566be0775e8",
+    "initial_target_state": {
+      "duration_minutes": 0,
+      "energized": false,
+      "noise_ok": true,
+      "other_circuits_energized": [],
+      "power_kw": 0.0,
+      "power_samples": [],
+      "safety_ok": true,
+      "target_id": "VenueV:CircuitC7"
+    },
+    "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+    "pair_id": "opaque-pair-4db4e6b7dbe54d4f978bcdd9c7435c10",
+    "platform_id": "VenueV:NativeOperationsPlatform",
+    "platform_service_public_key_hex": "78ddec9d8d78f91fafb52a03d8aa925071e00608ceb2cb2e7d35546c188971d0",
+    "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+    "resource": {
+      "max_power_kw": 3.0,
+      "owner_id": "VenueV",
+      "resource_id": "VenueV:Battery:B7"
+    },
+    "schema": "E0_PLATFORM_DIRECT_FROZEN_INPUT_V1",
+    "target_authentication_key_sha256": "219ed1ab8550cea1d338eda03222ab28edfb0be98e1aa1fc8a821538fc52da51",
+    "target_genesis_commit_id": "genesis-29fccfaf63614a748e48e43b5ce43fc3",
+    "target_ledger_id": "target-ledger-b58972fa9e8441deb18f5589de10f318",
+    "task": {
+      "deadline_minute": 90,
+      "noise_required": true,
+      "other_circuits_energized": [],
+      "power_tolerance_percent": 5,
+      "q_version": "Q@v1",
+      "requester_acceptance_required": true,
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "safety_required": true,
+      "schema": "CE001_EXACT_TASK_V1",
+      "target_id": "VenueV:CircuitC7",
+      "venue_acceptance_required": true
+    },
+    "venue_authority_public_key_hex": "122909fd48d4e94733690bd63c8ba2247cbdc92a9b45b59cf8c0c97ebbf23e8b"
+  },
+  "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+  "platform_native_service_log": {
+    "acceptances": [],
+    "event_ledger": {
+      "event_count": 3,
+      "events": [
+        {
+          "event_type": "PLATFORM_NATIVE_REQUEST",
+          "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+          "payload_sha256": "1d1c38587b29352d52aa872bde957ee932b989832087a1b48868d3a170783e01",
+          "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+          "sequence": 1
+        },
+        {
+          "event_type": "POLICY_DENY",
+          "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+          "payload_sha256": "1219cf361081a94a7dbadd144a22702bf07f7905cf2890c37fbe13a8fadf1bef",
+          "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+          "sequence": 2
+        },
+        {
+          "event_type": "POLICY_DENIED_NO_EFFECT",
+          "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+          "payload_sha256": "b398a9fab47a94d7ce188d80d05926ba0a3cf3ad7bef22413a01b47cb0901d0f",
+          "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+          "sequence": 3
+        }
+      ],
+      "evidence_boundary": "COUNTS_RECORDED_PLATFORM_SERVICE_EVENTS; NOT_OS_LEVEL_NETWORK_NONINTERFERENCE",
+      "external_activity": {
+        "delegation_events": 0,
+        "discovery_calls": 0,
+        "external_transfer_count": 0,
+        "relation_events": 0
+      },
+      "external_event_type_registry": {
+        "EXTERNAL_DELEGATION_EVENT": "delegation_events",
+        "EXTERNAL_DISCOVERY_CALL": "discovery_calls",
+        "EXTERNAL_RELATION_EVENT": "relation_events",
+        "EXTERNAL_TRANSFER": "external_transfer_count"
+      },
+      "schema": "PLATFORM_EVENT_LEDGER_SNAPSHOT_V1"
+    },
+    "external_activity": {
+      "delegation_events": 0,
+      "discovery_calls": 0,
+      "external_transfer_count": 0,
+      "relation_events": 0
+    },
+    "finality": [],
+    "policy_checks": [
+      {
+        "decision": "DENY",
+        "grant_sha256": "ec78d05c4b84de423129de40f3e2a05025b875964917a6dbd161febcbf128a57",
+        "reason": "POLICY_MISMATCH:decision",
+        "request_id": "request-4c45e7074c494fc1a45bc8654c380309"
+      }
+    ],
+    "process_id": 48332,
+    "requests": [
+      {
+        "authority_grant": {
+          "authority_mode": "DIRECT_AUTHORITY_REMOVED",
+          "decision": "DENY",
+          "expires_at_minute": 90,
+          "grant_sha256": "ec78d05c4b84de423129de40f3e2a05025b875964917a6dbd161febcbf128a57",
+          "granted_actions": [],
+          "grantee_id": "VenueV:NativeOperationsPlatform",
+          "issued_at_minute": 0,
+          "issuer": "O_V",
+          "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+          "principal_id": "VenueV",
+          "q_version": "Q@v1",
+          "resource_id": "VenueV:Battery:B7",
+          "schema": "VENUE_DIRECT_AUTHORITY_GRANT_V1",
+          "signature_hex": "40f8e77c9f0bd67b5162d95dc912f895e752863021a1fb4b8f3dbf7f3f884e342b96d590bf61717bb6aa2b1d52dfab30ee49e9281a5435c2d511bc9189f0a307",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "operation_id": "operation-cb6b71cbe0f6409a95f49716c9a0c4cd",
+        "request_id": "request-4c45e7074c494fc1a45bc8654c380309",
+        "schema": "PLATFORM_NATIVE_REQUEST_V1",
+        "task": {
+          "deadline_minute": 90,
+          "noise_required": true,
+          "other_circuits_energized": [],
+          "power_tolerance_percent": 5,
+          "q_version": "Q@v1",
+          "requester_acceptance_required": true,
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "safety_required": true,
+          "schema": "CE001_EXACT_TASK_V1",
+          "target_id": "VenueV:CircuitC7",
+          "venue_acceptance_required": true
+        }
+      }
+    ],
+    "resource_locks": [],
+    "schema": "PLATFORM_NATIVE_SERVICE_LOG_V1",
+    "target_readbacks": [],
+    "target_receipts": []
+  },
+  "platform_native_service_start": {
+    "argv": [
+      "run.py"
+    ],
+    "cwd": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-017-e0-platform-direct",
+    "environment": {
+      "LANG": "C",
+      "LC_ALL": "C",
+      "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+      "PYTHONHASHSEED": "0",
+      "__CF_USER_TEXT_ENCODING": "0x1F5:0x19:0x34"
+    },
+    "process_id": 48332,
+    "public_key_hex": "78ddec9d8d78f91fafb52a03d8aa925071e00608ceb2cb2e7d35546c188971d0",
+    "start_method": "spawn"
+  },
+  "private_world_reveal": {
+    "counterfactual_arm": "DIRECT_AUTHORITY_REMOVED",
+    "private_canary_sha256": "1371c1bb8eb4f4fed57643421b16db0e44c3821f508be459e18d168ec544de4e"
+  },
+  "resource_final_state": {
+    "locked_by_operation_id": null,
+    "max_power_kw": 3.0,
+    "owner_id": "VenueV",
+    "platform_id": "VenueV:NativeOperationsPlatform",
+    "resource_id": "VenueV:Battery:B7"
+  },
+  "run_id": "opaque-pair-4db4e6b7dbe54d4f978bcdd9c7435c10",
+  "schema": "E0_PLATFORM_DIRECT_RUN_ARTIFACT_V1",
+  "target_authenticity": {
+    "readback_valid": [],
+    "receipt_valid": []
+  },
+  "target_final_state": {
+    "last_commit_actor_id": "SYSTEM_GENESIS",
+    "last_commit_id": "genesis-29fccfaf63614a748e48e43b5ce43fc3",
+    "last_request_sha256": null,
+    "state": {
+      "duration_minutes": 0,
+      "energized": false,
+      "noise_ok": true,
+      "other_circuits_energized": [],
+      "power_kw": 0.0,
+      "power_samples": [],
+      "safety_ok": true,
+      "target_id": "VenueV:CircuitC7"
+    },
+    "state_sha256": "dc87eb8a7247966bad18ee19fd021a1f85e5289332ff738cc4f35d0639689376",
+    "target_id": "VenueV:CircuitC7",
+    "version": 0
+  },
+  "task": {
+    "deadline_minute": 90,
+    "noise_required": true,
+    "other_circuits_energized": [],
+    "power_tolerance_percent": 5,
+    "q_version": "Q@v1",
+    "requester_acceptance_required": true,
+    "required_duration_minutes": 45,
+    "required_power_kw": 3.0,
+    "safety_required": true,
+    "schema": "CE001_EXACT_TASK_V1",
+    "target_id": "VenueV:CircuitC7",
+    "venue_acceptance_required": true
+  },
+  "task_sha256": "6505f9598201f124f254de25c4eff0ce102656e23c8b57bac9ad7763b6965da3"
+}

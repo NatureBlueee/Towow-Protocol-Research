@@ -1,0 +1,62 @@
+{
+  "schema": "X1OwnerProcessGateCandidateManifest-v0",
+  "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+  "status": "STRUCTURAL_CANDIDATE_UNSIGNED_IDENTITIES_UNRESOLVED_NOT_RUN",
+  "source_freeze": {
+    "bundle_id": "wave010-x1-m01-freeze-bundle-v0",
+    "bundle_raw_sha256": "6d34bfdf6764ed58c0d183bbf3e467299767cf50d3870ca213bc6116f94f5bc7",
+    "content_root_sha256": "c3df52b88c272a056f4d783a394be44194d32a071dba55e3d4caf1c7c45aecf8",
+    "accepted_audit_raw_sha256": "a1ad68ef9bee75958376529a1047ed6ef3e6cf038222f162274a7b6a0857b37b",
+    "accepted_only_as": "SCOREABLE_PAIR_FREEZE_CANDIDATE"
+  },
+  "artifacts": [
+    {
+      "path": "owner-commitment-requests.json",
+      "raw_sha256": "1d1c0369626dd39a5e43d1d30fc59db80ac0f51d8c197f8730ad181a909bfdb2"
+    },
+    {
+      "path": "process-allowlist-candidate.json",
+      "raw_sha256": "90608582a2a6baa0e8cf82f72ce98bbbc78bd6acf0fea80a151d1c5e0a2a5a23"
+    },
+    {
+      "path": "validate_candidate.py",
+      "raw_sha256": "ecd7a79b28afcc5ade541dcfff51725725965075a4c34bef0596a3a9e19ff7d2"
+    }
+  ],
+  "structurally_tested": [
+    "four exact owner-domain requests bind freeze bundle bytes, content root, accepted audit, owner-domain bytes, owner ledger head, relation coordinate, purpose, scope, current head, and expiry",
+    "each owner can independently sign AUTHORIZE_EXACT_CANDIDATE or REFUSE",
+    "a controller-signed owner decision is rejected",
+    "tampering with bundle bytes, current head, purpose, or expiry invalidates the request",
+    "four valid owner authorizations can reach only READY_FOR_EXPLICIT_USER_DECISION",
+    "method roles deny private truth, certificates, owner decisions, and other arm output",
+    "owner signers have disjoint private reads and disjoint decision writes"
+  ],
+  "not_satisfied": {
+    "real_owner_public_keys": 0,
+    "real_owner_signatures": 0,
+    "real_owner_refusals_demonstrated": 0,
+    "resolved_executable_identities": 0,
+    "os_enforcement_profiles": 0,
+    "runner_implemented": false,
+    "runs_completed": 0,
+    "scoreable_episode_candidates": 0,
+    "accepted_scoreable_pairs": 0,
+    "methods_implemented": 0,
+    "formal_status_changed": false
+  },
+  "threat_model": {
+    "current": "cooperative structural candidate in one research workspace",
+    "detects": [
+      "ordinary bytes, hash, head, purpose, expiry, signer, and path-scope drift",
+      "controller proxy-signature attempts at the decision verifier",
+      "declared read/write overlap in the candidate allowlist"
+    ],
+    "does_not_prevent": [
+      "same-UID malicious processes reading or rewriting files",
+      "symlink, TOCTOU, inherited file descriptor, dynamic import, or network bypass",
+      "key theft, malicious owner software, compromised OS, or public-key-registry substitution"
+    ]
+  },
+  "next_gate": "Obtain four real owner-controlled public keys and decisions, resolve exact executable identities and OS enforcement profiles, independently audit both, then present the exact signed/enforced set for explicit user decision. Do not start a runner from this candidate."
+}

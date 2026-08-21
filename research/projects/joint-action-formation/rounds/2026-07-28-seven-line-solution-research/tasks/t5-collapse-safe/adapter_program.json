@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "runtime": "T5_BOUNDED_JSON_TRANSDUCER_V1",
+  "operation_mapping": "IDENTITY",
+  "input_projection": "IDENTITY",
+  "authority_projection": "PRESERVE",
+  "disclosure_projection": "IDENTITY",
+  "persistence": "NONE",
+  "cache": "NONE",
+  "semantic_transform": "NONE",
+  "allowed_recipients": [
+    "BUYER-APPROVER-1",
+    "STANDARD-SAAS-PLATFORM"
+  ],
+  "added_wait_units": 0,
+  "added_approvals": 0,
+  "added_governance_objects": 0,
+  "added_recovery_systems": 0,
+  "failure_policy": "PASS_AUTHORITATIVE_TERMINAL_NO_RETRY"
+}

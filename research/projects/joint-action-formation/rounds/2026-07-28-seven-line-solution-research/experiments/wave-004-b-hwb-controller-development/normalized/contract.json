@@ -1,0 +1,59 @@
+{
+  "compatible_facet_pairs": [
+    [
+      "reciprocal-detail-demand",
+      "reciprocal-detail-supply"
+    ]
+  ],
+  "contract_id": "W4B-HWB-DEVELOPMENT-CONTRACT-001",
+  "controller_id": "LOCAL-CONTROLLER-W4A",
+  "derived_onward_execution_authority": {
+    "mode": "TRUSTED_CONTROLLER_DELEGATION_SIMULATION",
+    "not_claimed": [
+      "NODE-SILVER-RELAY independent action",
+      "NODE-SILVER-RELAY signed delegation",
+      "recipient independent acknowledgement"
+    ],
+    "scope": "The controller may perform the ION-authorized second hop on behalf of NODE-SILVER-RELAY after binding it to the first hop."
+  },
+  "evaluation_step": 2,
+  "max_disclosure_units": 10,
+  "schema": "towow.controller-contract.v1",
+  "source_authentication": {
+    "claim": "Normalized payload hashes are frozen and every payload embeds the exact source file byte hash.",
+    "mode": "FROZEN_TRUSTED_CONTRACT_REGISTRY_SIMULATION",
+    "not_claimed": [
+      "holder cryptographic signature",
+      "recipient-side independent acknowledgement",
+      "malicious same-directory process resistance",
+      "blind evaluation"
+    ]
+  },
+  "trusted_holder_receipts": [
+    {
+      "issuer": "HELIOS-44",
+      "receipt_id": "HWB-AUTH-HELIOS-44",
+      "sha256": "98c1bf6b717283373e7fc6385dcd06dfa8971466febc521f63bc733e9464ea1a",
+      "source_file_sha256": "283be89a5de49c9e023318f4ffdfe32e553409498fde8f28c7fe0ea603d08941"
+    },
+    {
+      "issuer": "ION-06",
+      "receipt_id": "HWB-AUTH-ION-06",
+      "sha256": "94444dd068af022d233a8a8019ea7bfc90afc70499646fdd4c11b4d05c6873d5",
+      "source_file_sha256": "7d21eb56c0724dd22b03981a6daab032a4905b539ae36dbc8febd0cd7e50ef39"
+    },
+    {
+      "issuer": "JUNIPER-28",
+      "receipt_id": "HWB-AUTH-JUNIPER-28",
+      "sha256": "2d17bf5611b88f2cddf5f8db84f8c3a5f949bd14e6c2ff9cdaa6438920eff0f6",
+      "source_file_sha256": "d53836004fd003320fba6bb0f28c83e95a66594d122845ff38f3eaad26884083"
+    },
+    {
+      "issuer": "KITE-15",
+      "receipt_id": "HWB-AUTH-KITE-15",
+      "sha256": "342b1afbc05402ffe17864fd63cba1d0e9abe74bf9f665b34d2b6236a8c68911",
+      "source_file_sha256": "c31ea346b59a5372e0c4295f5dc65da694faa4ae9ace32702e0280e5871f87d1"
+    }
+  ],
+  "world_id": "T1-HW-20260728-B"
+}

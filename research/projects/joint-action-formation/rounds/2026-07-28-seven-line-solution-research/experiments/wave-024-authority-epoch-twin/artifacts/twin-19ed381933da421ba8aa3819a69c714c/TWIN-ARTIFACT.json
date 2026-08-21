@@ -1,0 +1,123 @@
+{
+  "authority_process": {
+    "exitcode": 0,
+    "process_id": 21555
+  },
+  "authority_public_key_hex": "3134032674d31696749c65d999acf186607ae4ff5c3822b53e2c194b8e89ac1e",
+  "authority_store": {
+    "path": "authority-native.sqlite3",
+    "sha256": "f4d9956f3ca5751fd471ef7588dd908af65725816343f874e4d66c3bc30c2f06"
+  },
+  "candidate_artifact_sha256": "4119783d11d5b7c9de6f27b0d09968946fc54ebf9206c15361f55c9e92c56f5f",
+  "candidate_payload_sha256": "7386be5035daa98c2993224c08e7648cc9eadc4bc39812710d9c39e7d17f7126",
+  "claim_boundary": {
+    "explicit_not_tested": [
+      "CL-024-GLOBAL-AUTHORITY-CURRENTNESS",
+      "TARGET_PROCESS_RESTART_PERSISTENCE",
+      "HOSTILE_SAME_UID_BLINDNESS_AND_WRITE_RESISTANCE",
+      "EXTERNAL_APPEND_ONLY_ROOT_ANCHOR"
+    ],
+    "not_claimed": [
+      "LEGAL_AUTHORITY",
+      "PHYSICAL_EFFECT",
+      "HOSTILE_SAME_USER_RESISTANCE",
+      "PRODUCTION_RELIABILITY",
+      "A1_A5_COMPARISON_OR_WINNER",
+      "V1_V2_COMPLETE_SOLUTION"
+    ],
+    "pending_independent_evaluation": [
+      "CL-024-TARGET-CONSUMED-AUTHORITY-FENCE",
+      "CL-024-EXACTLY-ONCE-RECOVERY",
+      "CL-024-NATIVE-POSTCONDITIONS",
+      "CL-024-ISOMORPHIC-BLINDNESS"
+    ]
+  },
+  "initial_authority": {
+    "actor_id": "CANDIDATE-A4-MATURE-COMPOSITION",
+    "authority_head_sha256": "d7c0ca95bbfdadb43689b37a4ed98fde46fb032eb17d893221c8b47c3cdd0c27",
+    "delegation_id": "delegation-ce001-authority-epoch-twin",
+    "epoch": 1,
+    "issuer_process_id": 21555,
+    "object_id": "PowerOccurrence:VenueV:CircuitC7",
+    "operation": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+    "prev_authority_head_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "principal_id": "Principal:VenueV",
+    "q_sha256": "147777a266918704428b3229965c40806ffa33d088e6c6d42fdadba231337a80",
+    "schema": "AUTHORITY_DELEGATION_V1",
+    "signature_hex": "b0f72e99eb17fcd3014e4b789cee760b20350220911af5ee83f9de52be87ae0bc959e62e14f492624f6a7448222dc6fc0565e67f071c85de96e4ce69a86e4e02",
+    "status": "CURRENT",
+    "target_id": "VenueV:CircuitC7",
+    "valid_from_logical_minute": 0,
+    "valid_until_logical_minute": 90
+  },
+  "lab_registry_process": {
+    "exitcode": 0,
+    "process_id": 21560
+  },
+  "lab_registry_store": {
+    "path": "lab-key-registry.sqlite3",
+    "sha256": "8e228a5b8b0681e29181944bec5daf12f171dc66f61c26d970a089b92b61ec6f"
+  },
+  "lab_root_public_key_hex": "0e755a007759a34137df30e5021c98bd4be655e9e1084ee53897892de7ba05a9",
+  "pre_response_isomorphism": {
+    "candidate_payload_raw_equal": true,
+    "first_candidate_visible_lawful_divergence": "TARGET_STATUS_READBACK_AFTER_ACK_LOSS",
+    "hostile_same_user_enumeration_resistance": "NOT_ESTABLISHED",
+    "recorded_candidate_startup_surface_equal_s_r": true,
+    "recorded_candidate_startup_surface_equal_s_r_u": true,
+    "request_raw_equal": true
+  },
+  "question": "QUESTION.md",
+  "request_sha256": "b5de846a66cbd139593855af03bf7e3f83bf7c6f8578fadbf4ceb835d4737a88",
+  "results": {
+    "R": {
+      "acceptance_count": 0,
+      "authority_rejection_count": 1,
+      "decision": "REJECTED_STALE_EPOCH",
+      "effect_count": 0,
+      "finality_count": 0,
+      "retry_effect_count": 0
+    },
+    "S": {
+      "acceptance_count": 2,
+      "decision": "COMMITTED",
+      "effect_count": 1,
+      "finality_count": 1,
+      "retry_effect_count": 0
+    },
+    "U": {
+      "authority_revoke_record_exists": true,
+      "effect_count_not_used_for_s_or_r_inference": 1,
+      "scoring_status": "CONCURRENT_OR_UNORDERED/NOT_SCORED",
+      "target_consumed_matching_fence_before_ingress": false,
+      "target_matching_fence_ack_exists": false,
+      "target_raw_decision": "COMMITTED"
+    }
+  },
+  "revocation": {
+    "actor_id": "CANDIDATE-A4-MATURE-COMPOSITION",
+    "authority_head_sha256": "0dbc67da3b5591cd2a4fe4d112d69f46eb67a4c9bd28d8c888b490a458d2a23f",
+    "delegation_id": "delegation-ce001-authority-epoch-twin",
+    "epoch": 2,
+    "issuer_process_id": 21555,
+    "object_id": "PowerOccurrence:VenueV:CircuitC7",
+    "operation": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+    "prev_authority_head_sha256": "d7c0ca95bbfdadb43689b37a4ed98fde46fb032eb17d893221c8b47c3cdd0c27",
+    "principal_id": "Principal:VenueV",
+    "q_sha256": "147777a266918704428b3229965c40806ffa33d088e6c6d42fdadba231337a80",
+    "reason": "PRINCIPAL_REVOKED_BEFORE_TARGET_INGRESS",
+    "schema": "AUTHORITY_HEAD_V1",
+    "signature_hex": "d1db0f534ac85ddde563f485eab49eed0e75ae1aee24e077c381ee6c307e7e67ff55bb7d0a42d6a7a646169d7154f5bfc8ce532511beb734b324ed97e28d7d08",
+    "status": "REVOKED",
+    "target_id": "VenueV:CircuitC7"
+  },
+  "run_dir": "artifacts/twin-19ed381933da421ba8aa3819a69c714c",
+  "schema": "WAVE024_AUTHORITY_EPOCH_TWIN_ARTIFACT_V1",
+  "status": "RUN_COMPLETED_PENDING_INDEPENDENT_EVALUATION",
+  "twin_artifact_sha256": "e1952913d1b93a09431077b90209f5206d78ec2db1c86399e5d7df5cc10f1d09",
+  "worlds": {
+    "R": "world-r/WORLD-ARTIFACT.json",
+    "S": "world-s/WORLD-ARTIFACT.json",
+    "U": "world-u/WORLD-ARTIFACT.json"
+  }
+}

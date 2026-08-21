@@ -1,0 +1,64 @@
+{
+  "coverage": {
+    "ratio": 1.0,
+    "requirements_passed": 8,
+    "requirements_total": 8
+  },
+  "critical_failures": [],
+  "evidence_boundary": "One synthetic held-out world only. A calibration fixture is not a candidate result and cannot establish real-world frequency or value.",
+  "metrics": {
+    "correctly_discovered_count": 3,
+    "disclosure_event_count": 5,
+    "discoverable_opportunity_count": 3,
+    "false_wakeup_count": 0,
+    "frozen_item_count": 8,
+    "mapped_item_count": 8,
+    "opportunity_recall": 1.0
+  },
+  "requirement_results": {
+    "R1": {
+      "description": "Recover an unexpressed opportunity without requiring a prebuilt public card.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R2": {
+      "description": "Invalidate stale discovery after the dynamic state flip.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R3": {
+      "description": "Use task-relative projections rather than raw or full-world disclosure.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R4": {
+      "description": "Respect receiver, purpose, retention, depth, onward, and cumulative disclosure limits.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R5": {
+      "description": "Keep UNKNOWN, REFUSE, and ABSENT distinct.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R6": {
+      "description": "Report a real but policy-unfindable opportunity honestly.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R7": {
+      "description": "Avoid direction/version false wakeups and structural misses.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R8": {
+      "description": "Handoff discoveries to relation constitution without inventing commitment.",
+      "failure_codes": [],
+      "status": "PASS"
+    }
+  },
+  "schema_version": "1.1",
+  "status": "PASS",
+  "submission_sha256": "eae2e2598eaa820c012746c4f8b530c986e5017c47bd87e2ec3f2b3d3759506f",
+  "world_id": "T1-HW-20260728-B"
+}

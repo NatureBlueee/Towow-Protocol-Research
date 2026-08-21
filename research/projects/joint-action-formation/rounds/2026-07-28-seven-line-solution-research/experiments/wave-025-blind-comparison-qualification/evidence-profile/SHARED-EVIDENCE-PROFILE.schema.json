@@ -1,0 +1,1093 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.example/schemas/wave025/shared-evidence-profile-candidate-v1.json",
+  "title": "Wave 025 shared evidence profile candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema",
+    "profile_id",
+    "status",
+    "scope",
+    "source_locks",
+    "serialization_registry",
+    "runner_owned_object_registry",
+    "command_receipt_profile",
+    "randomization_profile",
+    "control_registry",
+    "merkle_profile",
+    "feature_and_profile_bytes",
+    "post_cut_profile",
+    "conditional_hardening",
+    "blocking_issues"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./SHARED-EVIDENCE-PROFILE.schema.json"
+    },
+    "schema": {
+      "const": "WAVE025_SHARED_EVIDENCE_PROFILE_CANDIDATE_V1"
+    },
+    "profile_id": {
+      "const": "wave025-shared-evidence-profile-v1-candidate"
+    },
+    "status": {
+      "const": "CANDIDATE_WITH_BLOCKERS"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "source_locks": {
+      "$ref": "#/$defs/sourceLocks"
+    },
+    "serialization_registry": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "$ref": "#/$defs/serializationEntry"
+      }
+    },
+    "runner_owned_object_registry": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "#/$defs/objectRegistryEntry"
+      }
+    },
+    "command_receipt_profile": {
+      "$ref": "#/$defs/commandReceiptProfile"
+    },
+    "randomization_profile": {
+      "$ref": "#/$defs/randomizationProfile"
+    },
+    "control_registry": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/controlEntry"
+      }
+    },
+    "merkle_profile": {
+      "$ref": "#/$defs/merkleProfile"
+    },
+    "feature_and_profile_bytes": {
+      "$ref": "#/$defs/featureAndProfileBytes"
+    },
+    "post_cut_profile": {
+      "$ref": "#/$defs/postCutProfile"
+    },
+    "conditional_hardening": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/blockingIssue"
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/blockingIssue"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stringOrBoolean": {
+      "type": [
+        "string",
+        "boolean"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_mode_observed",
+        "evidence_batch",
+        "purpose",
+        "does_not_reclassify_f",
+        "does_not_modify_runner_contract_or_evaluator"
+      ],
+      "properties": {
+        "batch_mode_observed": {
+          "enum": [
+            "smoke",
+            "formal"
+          ]
+        },
+        "evidence_batch": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "does_not_reclassify_f": {
+          "const": true
+        },
+        "does_not_modify_runner_contract_or_evaluator": {
+          "const": true
+        }
+      }
+    },
+    "sourceLock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "fRootObjects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precommit.json",
+        "public-plan.json",
+        "runner-private-state.json",
+        "anchor-receipt.json",
+        "closed.json",
+        "reveal.json"
+      ],
+      "properties": {
+        "precommit.json": {
+          "$ref": "#/$defs/sha256"
+        },
+        "public-plan.json": {
+          "$ref": "#/$defs/sha256"
+        },
+        "runner-private-state.json": {
+          "$ref": "#/$defs/sha256"
+        },
+        "anchor-receipt.json": {
+          "$ref": "#/$defs/sha256"
+        },
+        "closed.json": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reveal.json": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "sourceLocks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runner",
+        "qualification_contract",
+        "batch_contract",
+        "collector_source",
+        "collector_dockerfile",
+        "f_root_objects"
+      ],
+      "properties": {
+        "runner": {
+          "$ref": "#/$defs/sourceLock"
+        },
+        "qualification_contract": {
+          "$ref": "#/$defs/sourceLock"
+        },
+        "batch_contract": {
+          "$ref": "#/$defs/sourceLock"
+        },
+        "collector_source": {
+          "$ref": "#/$defs/sourceLock"
+        },
+        "collector_dockerfile": {
+          "$ref": "#/$defs/sourceLock"
+        },
+        "f_root_objects": {
+          "$ref": "#/$defs/fRootObjects"
+        }
+      }
+    },
+    "serializationEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_class",
+        "path_patterns",
+        "producer",
+        "encoding",
+        "framing",
+        "canonicalization",
+        "schema_policy"
+      ],
+      "properties": {
+        "artifact_class": {
+          "type": "string"
+        },
+        "path_patterns": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "framing": {
+          "type": "string"
+        },
+        "canonicalization": {
+          "type": "string"
+        },
+        "schema_policy": {
+          "type": "string"
+        }
+      }
+    },
+    "objectRegistryEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "path_pattern",
+        "schema_ref",
+        "field_policy"
+      ],
+      "properties": {
+        "schema": {
+          "type": "string",
+          "pattern": "^WAVE025_"
+        },
+        "path_pattern": {
+          "type": "string"
+        },
+        "schema_ref": {
+          "type": "string",
+          "pattern": "^\\./RUNNER-EVIDENCE-OBJECTS\\.schema\\.json#/\\$defs/"
+        },
+        "field_policy": {
+          "const": "EXACT_RECURSIVE"
+        }
+      }
+    },
+    "byteChannels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stdout_base64",
+        "stderr_base64"
+      ],
+      "properties": {
+        "stdout_base64": {
+          "type": "string"
+        },
+        "stderr_base64": {
+          "type": "string"
+        }
+      }
+    },
+    "receiptOrdering": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "within_receipt",
+        "within_one_runner_invocation",
+        "across_invocations"
+      ],
+      "properties": {
+        "within_receipt": {
+          "type": "string"
+        },
+        "within_one_runner_invocation": {
+          "type": "string"
+        },
+        "across_invocations": {
+          "type": "string"
+        }
+      }
+    },
+    "commandReceiptProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "exact_fields",
+        "byte_channels",
+        "ordering",
+        "authoritative_locations",
+        "runtime_journal_status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "WAVE025_HOST_COMMAND_RECEIPT_V1"
+        },
+        "exact_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "byte_channels": {
+          "$ref": "#/$defs/byteChannels"
+        },
+        "ordering": {
+          "$ref": "#/$defs/receiptOrdering"
+        },
+        "authoritative_locations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "runtime_journal_status": {
+          "type": "string"
+        }
+      }
+    },
+    "byteConventions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "separator",
+        "counter",
+        "hex",
+        "sha256"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "separator": {
+          "type": "string"
+        },
+        "counter": {
+          "type": "string"
+        },
+        "hex": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      }
+    },
+    "randomDomain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "seed_bytes",
+        "nonce_bytes",
+        "uses"
+      ],
+      "properties": {
+        "name": {
+          "enum": [
+            "PRIVATE_ASSIGNMENT_ORDER",
+            "PUBLIC_ID",
+            "MEASUREMENT_PADDING"
+          ]
+        },
+        "seed_bytes": {
+          "const": 32
+        },
+        "nonce_bytes": {
+          "const": 32
+        },
+        "uses": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "commitmentProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formula",
+        "public_plan_bytes"
+      ],
+      "properties": {
+        "formula": {
+          "type": "string"
+        },
+        "public_plan_bytes": {
+          "type": "string"
+        }
+      }
+    },
+    "hmacStreamProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block_formula",
+        "counter_initial",
+        "blocks",
+        "randbelow"
+      ],
+      "properties": {
+        "block_formula": {
+          "type": "string"
+        },
+        "counter_initial": {
+          "const": 0
+        },
+        "blocks": {
+          "type": "string"
+        },
+        "randbelow": {
+          "type": "string"
+        }
+      }
+    },
+    "assignmentProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_roles",
+        "shuffle",
+        "block_label_bytes",
+        "block_iteration",
+        "formal_layout",
+        "smoke_layout"
+      ],
+      "properties": {
+        "base_roles": {
+          "type": "string"
+        },
+        "shuffle": {
+          "type": "string"
+        },
+        "block_label_bytes": {
+          "type": "string"
+        },
+        "block_iteration": {
+          "type": "string"
+        },
+        "formal_layout": {
+          "type": "string"
+        },
+        "smoke_layout": {
+          "type": "string"
+        }
+      }
+    },
+    "executionOrderProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input",
+        "shuffle_label",
+        "shuffle"
+      ],
+      "properties": {
+        "input": {
+          "type": "string"
+        },
+        "shuffle_label": {
+          "type": "string"
+        },
+        "shuffle": {
+          "type": "string"
+        }
+      }
+    },
+    "publicIdProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formula"
+      ],
+      "properties": {
+        "formula": {
+          "type": "string"
+        }
+      }
+    },
+    "paddingProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream_label_bytes",
+        "value"
+      ],
+      "properties": {
+        "stream_label_bytes": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tokenFamilies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY",
+        "T-OCI-ISOLATED"
+      ],
+      "properties": {
+        "D0-HOST-LEAK": {
+          "type": "string"
+        },
+        "D1-OCI-CANARY": {
+          "type": "string"
+        },
+        "T-OCI-ISOLATED": {
+          "type": "null"
+        }
+      }
+    },
+    "privateTokenProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "families",
+        "formula"
+      ],
+      "properties": {
+        "families": {
+          "$ref": "#/$defs/tokenFamilies"
+        },
+        "formula": {
+          "type": "string"
+        }
+      }
+    },
+    "randomizationProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "byte_conventions",
+        "domains",
+        "commitment",
+        "hmac_stream",
+        "assignment",
+        "execution_order",
+        "public_id",
+        "padding",
+        "private_token"
+      ],
+      "properties": {
+        "byte_conventions": {
+          "$ref": "#/$defs/byteConventions"
+        },
+        "domains": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/randomDomain"
+          }
+        },
+        "commitment": {
+          "$ref": "#/$defs/commitmentProfile"
+        },
+        "hmac_stream": {
+          "$ref": "#/$defs/hmacStreamProfile"
+        },
+        "assignment": {
+          "$ref": "#/$defs/assignmentProfile"
+        },
+        "execution_order": {
+          "$ref": "#/$defs/executionOrderProfile"
+        },
+        "public_id": {
+          "$ref": "#/$defs/publicIdProfile"
+        },
+        "padding": {
+          "$ref": "#/$defs/paddingProfile"
+        },
+        "private_token": {
+          "$ref": "#/$defs/privateTokenProfile"
+        }
+      }
+    },
+    "controlEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_id",
+        "authority_before_reveal",
+        "locations",
+        "public_before_reveal",
+        "candidate_visible",
+        "classifier_feature_eligible",
+        "notes"
+      ],
+      "properties": {
+        "control_id": {
+          "type": "string"
+        },
+        "authority_before_reveal": {
+          "type": "string"
+        },
+        "locations": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "public_before_reveal": {
+          "$ref": "#/$defs/stringOrBoolean"
+        },
+        "candidate_visible": {
+          "$ref": "#/$defs/stringOrBoolean"
+        },
+        "classifier_feature_eligible": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "merkleV1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm_label",
+        "leaf_order",
+        "leaf",
+        "node",
+        "odd_level",
+        "empty",
+        "domain_separation",
+        "evaluator_consumption",
+        "current_threat_model_attack_assessment",
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "algorithm_label": {
+          "type": "string"
+        },
+        "leaf_order": {
+          "type": "string"
+        },
+        "leaf": {
+          "type": "string"
+        },
+        "node": {
+          "type": "string"
+        },
+        "odd_level": {
+          "type": "string"
+        },
+        "empty": {
+          "type": "null"
+        },
+        "domain_separation": {
+          "const": false
+        },
+        "evaluator_consumption": {
+          "type": "string"
+        },
+        "current_threat_model_attack_assessment": {
+          "type": "string"
+        },
+        "status": {
+          "const": "ACCEPTABLE_FOR_F_FULL_SET_VERIFICATION_ONLY"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "merkleV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "leaf_order",
+        "leaf",
+        "node",
+        "tree_shape",
+        "empty",
+        "adoption"
+      ],
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "leaf_order": {
+          "type": "string"
+        },
+        "leaf": {
+          "type": "string"
+        },
+        "node": {
+          "type": "string"
+        },
+        "tree_shape": {
+          "type": "string"
+        },
+        "empty": {
+          "type": "string"
+        },
+        "adoption": {
+          "type": "string"
+        }
+      }
+    },
+    "merkleProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_v1",
+        "proposed_v2"
+      ],
+      "properties": {
+        "current_v1": {
+          "$ref": "#/$defs/merkleV1"
+        },
+        "proposed_v2": {
+          "$ref": "#/$defs/merkleV2"
+        }
+      }
+    },
+    "fullFeatureSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "binding",
+        "embedded_in_f_batch",
+        "status"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "embedded_in_f_batch": {
+          "const": false
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "collectorFeatureReceipts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path_pattern",
+        "binding",
+        "byte_equality",
+        "status"
+      ],
+      "properties": {
+        "path_pattern": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "byte_equality": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "postCutExtractionProfileBytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "location",
+        "canonical_subobject_sha256",
+        "binding",
+        "status"
+      ],
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "canonical_subobject_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "executableAttackProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_path",
+        "selected_sha256",
+        "candidate_path",
+        "candidate_sha256",
+        "precommit_binding",
+        "status"
+      ],
+      "properties": {
+        "selected_path": {
+          "type": "string"
+        },
+        "selected_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "candidate_path": {
+          "type": "string"
+        },
+        "candidate_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "precommit_binding": {
+          "type": "null"
+        },
+        "status": {
+          "const": "BLOCKING_NOT_PRECOMMITTED"
+        }
+      }
+    },
+    "featureAndProfileBytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "full_feature_spec",
+        "collector_feature_receipts",
+        "post_cut_extraction_profile",
+        "executable_attack_profile"
+      ],
+      "properties": {
+        "full_feature_spec": {
+          "$ref": "#/$defs/fullFeatureSpec"
+        },
+        "collector_feature_receipts": {
+          "$ref": "#/$defs/collectorFeatureReceipts"
+        },
+        "post_cut_extraction_profile": {
+          "$ref": "#/$defs/postCutExtractionProfileBytes"
+        },
+        "executable_attack_profile": {
+          "$ref": "#/$defs/executableAttackProfile"
+        }
+      }
+    },
+    "postCutRead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordinal",
+        "command_suffix",
+        "evidence_file"
+      ],
+      "properties": {
+        "ordinal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "command_suffix": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evidence_file": {
+          "type": "string"
+        }
+      }
+    },
+    "semanticPointers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "action",
+        "command_or_null",
+        "container_id",
+        "container_name",
+        "exec_id_or_null",
+        "exit_code_or_null",
+        "signal_or_null",
+        "time_nano"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "command_or_null": {
+          "type": "string"
+        },
+        "container_id": {
+          "type": "string"
+        },
+        "container_name": {
+          "type": "string"
+        },
+        "exec_id_or_null": {
+          "type": "string"
+        },
+        "exit_code_or_null": {
+          "type": "string"
+        },
+        "signal_or_null": {
+          "type": "string"
+        },
+        "time_nano": {
+          "type": "string"
+        }
+      }
+    },
+    "eventSemanticProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_ref",
+        "exact_fields",
+        "raw_json_pointers"
+      ],
+      "properties": {
+        "schema_ref": {
+          "type": "string",
+          "pattern": "^\\./RUNNER-EVIDENCE-OBJECTS\\.schema\\.json#/\\$defs/"
+        },
+        "exact_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "raw_json_pointers": {
+          "$ref": "#/$defs/semanticPointers"
+        }
+      }
+    },
+    "rawEventEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_ref",
+        "exact_top_level_fields",
+        "exact_actor_fields",
+        "consumed_attribute_fields",
+        "unconsumed_attribute_policy",
+        "current_threat_model_assessment",
+        "portability_status"
+      ],
+      "properties": {
+        "schema_ref": {
+          "type": "string",
+          "pattern": "^\\./RUNNER-EVIDENCE-OBJECTS\\.schema\\.json#/\\$defs/"
+        },
+        "exact_top_level_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "exact_actor_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "consumed_attribute_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "unconsumed_attribute_policy": {
+          "type": "string"
+        },
+        "current_threat_model_assessment": {
+          "type": "string"
+        },
+        "portability_status": {
+          "const": "NON_BLOCKING_OPEN_WORLD_RAW_WITH_FROZEN_PROJECTION"
+        }
+      }
+    },
+    "postCutProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ready_frame_utf8",
+        "ready_frame_sha256",
+        "pre_ready_allowed_host_commands",
+        "ordered_reads",
+        "termination_command_suffix",
+        "complete_event_action_sequence",
+        "event_semantic_projection",
+        "f_observed_raw_event_envelope",
+        "complete_slot_constraints"
+      ],
+      "properties": {
+        "ready_frame_utf8": {
+          "type": "string"
+        },
+        "ready_frame_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "pre_ready_allowed_host_commands": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "ordered_reads": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/postCutRead"
+          }
+        },
+        "termination_command_suffix": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "complete_event_action_sequence": {
+          "type": "array",
+          "minItems": 19,
+          "maxItems": 19,
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_semantic_projection": {
+          "$ref": "#/$defs/eventSemanticProjection"
+        },
+        "f_observed_raw_event_envelope": {
+          "$ref": "#/$defs/rawEventEnvelope"
+        },
+        "complete_slot_constraints": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "blockingIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "severity",
+        "scope",
+        "evidence",
+        "required_resolution"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "pattern": "^BLOCKING"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "required_resolution": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

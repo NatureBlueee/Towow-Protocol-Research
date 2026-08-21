@@ -1,0 +1,229 @@
+{
+  "certificate_version": "X1-BearingDeltaCertificate-v0",
+  "status": "CANDIDATE_UNSIGNED_NOT_RUN",
+  "pair_id": "x1-m01-pair-0001",
+  "motif": "M01_INDEXED_VS_LOCAL_UNEXPRESSED",
+  "episode_branch_map_private": {
+    "765f0698-edb8-459d-bba6-ceb0ae154e51": "INDEXED_CURRENT_PROJECTION",
+    "d952741e-11f8-44db-a98d-7a34c12e6801": "LOCAL_UNEXPRESSED_NOT_INDEXED"
+  },
+  "common_coordinate_bindings": {
+    "common_coordinate_raw_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+    "intent_subvalue_canonical_sha256": "5fd06de3fd9f2e8ac265bc321fa25f8428b299429f2d6a5d464289ef6cb8afb9",
+    "V0_subvalue_canonical_sha256": "c18acde708e8fe10a1957255286042a44679dfe16ed374dc8591a92a760cf2f5",
+    "BE0_subvalue_canonical_sha256": "88e138250e428326aafabcbcbca07c7fc216738b21db9d6194d1ef1999adc473",
+    "Q_episode_subvalue_canonical_sha256": "77c97c7b84747601ab8a93e26b0f103148f5f23fc4ef721d46219906b413cb0a",
+    "action_grammar_subvalue_canonical_sha256": "0f16181d176b4abb19f9ced54c74968d8902332794c63a04b7238867f422db0f",
+    "transition_bound_subvalue_canonical_sha256": "8a134831c9681dcc04649d13d0b5c0eb5ee1e45f8d60a2544560a25dbccedbd1"
+  },
+  "public_input_bindings": {
+    "interface_contract_raw_sha256": "a9930d63b887c611ad306c053406e6dd34c5b419724111031e9547633a89510c",
+    "episode_765f0698_raw_sha256": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c",
+    "episode_d952741e_raw_sha256": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de",
+    "normalized_public_packet_sha256_after_removing_episode_id": "ecf0d2815dd466d6fd6fe9f47e141626a1d926e30ab865b00660412c3a3bdd43",
+    "initial_semantic_equality": true,
+    "opaque_episode_ids_are_non_bearing_presentation_coordinates": true
+  },
+  "primitive_delta": {
+    "changed_truth_owner": "estuary-capability-directory",
+    "owner_key_id": "estuary-capability-directory-index-key-v0",
+    "changed_private_paths": [
+      "/branches/765f0698-edb8-459d-bba6-ceb0ae154e51/directory_snapshot_presence",
+      "/branches/765f0698-edb8-459d-bba6-ceb0ae154e51/current_directory_query",
+      "/branches/d952741e-11f8-44db-a98d-7a34c12e6801/directory_snapshot_presence",
+      "/branches/d952741e-11f8-44db-a98d-7a34c12e6801/current_directory_query"
+    ],
+    "event_index": {
+      "truth_coordinate": "S0",
+      "first_method_visible_event": "e1_current_directory_query_response"
+    },
+    "delta": "The current directory snapshot contains the lawful candidate projection in one episode and does not contain it in the other.",
+    "facts_that_must_not_change": [
+      "the local capability fact",
+      "the purpose-bound local projection policy and response",
+      "D_actual",
+      "candidate semantic capability",
+      "Intent V0 BE0 Q_episode action grammar bound and horizon",
+      "G2 relation semantics",
+      "G3 post-handoff path truth",
+      "G5 cross-authority transition truth"
+    ]
+  },
+  "exact_directory_response_closure": {
+    "requests": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "../private/g1-api/directory-request-765f0698.json",
+        "raw_sha256": "8ff1a7ecea03cf6b31664ec1a743708f0573f84e1980c1f545275e0fd68bdb6e"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "../private/g1-api/directory-request-d952741e.json",
+        "raw_sha256": "856b8aad6e27ca9e814736e6eed179667bb19c72ee49e9c2b01081f545da6162"
+      }
+    },
+    "responses": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "../private/g1-api/directory-response-765f0698.json",
+        "raw_sha256": "a5c8c2a3bf7aa83af9859281de4953696afee8ebc4dfb1cf2ea2809b9bb96725",
+        "raw_size_bytes": 666,
+        "owner_local_event_index": "didx:000042",
+        "parent_global_event_index": "e1_directory_response",
+        "effective_at": "T0_PLUS_1_LOGICAL_UNIT",
+        "current_head": "directory-head:idx:000042"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "../private/g1-api/directory-response-d952741e.json",
+        "raw_sha256": "268138f28e4779656aa643b38fd4de72ce8bdb431be332760c7f30f255fd9990",
+        "raw_size_bytes": 666,
+        "owner_local_event_index": "didx:000042",
+        "parent_global_event_index": "e1_directory_response",
+        "effective_at": "T0_PLUS_1_LOGICAL_UNIT",
+        "current_head": "directory-head:idx:000043"
+      }
+    },
+    "local_projection_requests": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "../private/g1-api/local-projection-request-765f0698.json",
+        "raw_sha256": "93d6823f277199ef2f94a09acc8502f9c313c7e74bfd5c26da310632ef9ea1d8"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "../private/g1-api/local-projection-request-d952741e.json",
+        "raw_sha256": "64ec5a1a933e3ef806cbba4472f6073889e605fa2346580a483085b75399d8e6"
+      }
+    },
+    "local_projection_responses": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "path": "../private/g1-api/local-projection-response-765f0698.json",
+        "raw_sha256": "02d8686218b2341821dc5646960486051ea485361cd90e335666bdb1b097c16c",
+        "raw_size_bytes": 685
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "path": "../private/g1-api/local-projection-response-d952741e.json",
+        "raw_sha256": "13fcb9656b8a80e94463cb98604a30f76aa202a4afe9fcbc68f41e1de14072ee",
+        "raw_size_bytes": 685
+      }
+    },
+    "closure_rule": "Each request is bound to its own opaque episode_id. The two directory responses have equal raw size. Their bearing semantic differences are limited to current_head, status_code, candidate_projection_ref, and payload_raw_sha256; request_raw_sha256 differs only because the bound opaque episode_id differs, and explicit non-semantic padding differs only to equalize the valid semantic status lengths. Both local-projection responses have equal raw size and identical semantic fields; only their episode-bound request_raw_sha256 differs."
+  },
+  "method_visible_equality_policy": {
+    "visibility": "PRIVATE_REVIEWER_CERTIFICATE_NOT_TRANSMITTED_TO_METHOD",
+    "generic_public_contract_ref": "../public/interface-contract.json",
+    "allowed_semantic_difference": [
+      "current-directory-query returns MATCH versus NO_MATCH_CURRENT",
+      "the MATCH response includes the lawful candidate projection and the NO_MATCH_CURRENT response does not"
+    ],
+    "required_semantic_equality": [
+      "initial packet after removing fresh opaque episode_id",
+      "purpose-bound-local-projection semantic response to each episode-bound lawful request",
+      "reciprocal probe after the same semantic candidate handoff",
+      "all G2 G3 and G5 owner-interface behavior at the same transition state"
+    ],
+    "forbidden_side_channels": [
+      "motif branch or base-family labels",
+      "identifier prefixes or lengths correlated with the branch",
+      "branch-specific field shapes outside the lawful directory response",
+      "non-semantic timing error-envelope signature-order padding-class or total-envelope-length differences; explicit padding bytes may differ only to compensate valid semantic status length"
+    ]
+  },
+  "affected_line_closure": {
+    "primitive_owner_set": [
+      "G1_DIRECTORY_INDEX"
+    ],
+    "directly_affected_lines": [
+      "G1"
+    ],
+    "allowed_downstream_propagation": [
+      "G1 evidence provenance records directory versus local projection",
+      "a method that stops after NO_MATCH_CURRENT may produce a lawful typed non-success but misses a viable D_actual candidate"
+    ],
+    "forbidden_downstream_truth_propagation": [
+      "directory provenance changes G2 relation semantics",
+      "directory provenance changes G3 post-handoff S0 path existence or causal class",
+      "directory provenance changes any G5 Principal Mandate Commitment Reservation Standing or current head"
+    ]
+  },
+  "scoring_mask": {
+    "mask_is_frozen_before_method_run": true,
+    "per_episode": {
+      "765f0698-edb8-459d-bba6-ceb0ae154e51": {
+        "G1": "SCORE_DELTA",
+        "G2": "SCORE_INVARIANCE",
+        "G3": "SCORE_INVARIANCE",
+        "G5": "SCORE_INVARIANCE",
+        "integration": "SCORE_PROPAGATED"
+      },
+      "d952741e-11f8-44db-a98d-7a34c12e6801": {
+        "G1": "SCORE_DELTA",
+        "G2": "SCORE_INVARIANCE",
+        "G3": "SCORE_INVARIANCE",
+        "G5": "SCORE_INVARIANCE",
+        "integration": "SCORE_PROPAGATED"
+      }
+    },
+    "not_reached_rule": "Every line and transition still emits an owner-signed NOT_REACHED receipt with the exact upstream reason. NOT_REACHED never removes the episode or arm from the frozen population; downstream line assessment is reported separately from the all-episode integration result.",
+    "integration_denominator": "ALL_FINALIZED_EPISODE_ARM_OUTPUTS",
+    "cost": "MERGE_ONLY_AFTER_CORRECTNESS_FREEZE",
+    "T5": "MASK_NOT_COMPARABLE"
+  },
+  "non_bearing_fragment_equality_proofs": {
+    "G2": {
+      "fragment_raw_sha256": "9a09aab1dc92ea22f83743e0c852595b1026498b7398446e4331f33b7a0f162d",
+      "canonical_branch_truth_projection_sha256_both": "0fcba4c64b15fba48a298f4cf2c1db06582c105f66b79832b186e54bb53e7f5f"
+    },
+    "G3": {
+      "fragment_raw_sha256": "b8af06d387dd14d28b1ed10f20419db2ba124b3de4146608b574ed786a36eb95",
+      "shared_projection_canonical_sha256_both": "fc320a1652480f66d3b588974bfc3695799c4e53c4917d9f642abf3c70cca84a"
+    },
+    "G5": {
+      "fragment_raw_sha256": "dc1ae4893c25a31c92e9bb6e32cc5bd1ee10fec09ebc534ea5871551818fac25",
+      "canonical_branch_projection_sha256_after_removing_episode_key_both": "0acfde90da2fe386974489ca3cdf6ef780ba5a17acf50e01329daab2766a2c86",
+      "domain_fragment_commitments": [
+        {
+          "authority_domain_id": "program-coordinator-domain",
+          "raw_sha256": "eb50b90fab3c4b22e552eb56a55ba1467bc5449602c5371e386a6edcc2778805",
+          "owner_root_candidate_sha256": "d42bca7c014e440e6b7103b625334fe642a712ba64895ea0acb52385a4fdec00"
+        },
+        {
+          "authority_domain_id": "delta-calibration-domain",
+          "raw_sha256": "6cc45e9330c6ae24974656ab7bf1629472ea25ecebd25f5a9fb7dc5b241fd330",
+          "owner_root_candidate_sha256": "4907b0c00291c0ec78035c9ca026844adbd74a2f8e6f5b0ecb7f8ef957cad471"
+        },
+        {
+          "authority_domain_id": "independent-validation-domain",
+          "raw_sha256": "47f32527c4fb1d0b7ed7f1d5782a4bdf5bd8cfb3b3039d262b6d751d59ac56ed",
+          "owner_root_candidate_sha256": "85af09cf9381386c31d791f275c84103bbc7f53c6de35b927414c08d49e3ee35"
+        },
+        {
+          "authority_domain_id": "site-data-steward-domain",
+          "raw_sha256": "79512b5f53c904abac2ff49055d66552b3e2e75d9f8c40bbb09661db028aecb0",
+          "owner_root_candidate_sha256": "b53a5289b716be73247e5875dcaefe47985acef9d9f24c966d64aea10604f22f"
+        }
+      ]
+    }
+  },
+  "transition_coordinate": {
+    "G1_candidate_semantic_id": "candidate-calibration-consortium-role-filler-0007",
+    "fixed_witness_candidate_from_intent": "independent-estuary-validation-lab",
+    "T_G1_TO_G2_handoff_semantic_key": "estuary-calibration-two-role-joint-bid-candidate-v0",
+    "G2_exact_relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+    "G3_assessment_entry": "POST_LAWFUL_G1_G2_HANDOFF",
+    "G5_relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+    "mapping_rule": "A lawful G1 owner receipt adds only the calibration candidate to the witness candidate already present in the Intent interface. The typed transition preserves both source receipts and does not make a relation, Principal stance, Mandate, Commitment, or Reservation.",
+    "typed_transition_contract_ref": "t-g1-to-g2.json",
+    "typed_transition_contract_raw_sha256": "9d954bd4e179f9cbe3c046a60aa014fbaf2f24e507411b31fc1b2f692e944b1c"
+  },
+  "fragment_commitments": {
+    "G1_raw_sha256": "57f7409d61cad62a13a2176622cae6a5e28a5a69c6093ddb2ba91d1a18794af6",
+    "G2_raw_sha256": "9a09aab1dc92ea22f83743e0c852595b1026498b7398446e4331f33b7a0f162d",
+    "G3_raw_sha256": "b8af06d387dd14d28b1ed10f20419db2ba124b3de4146608b574ed786a36eb95",
+    "G5_raw_sha256": "dc1ae4893c25a31c92e9bb6e32cc5bd1ee10fec09ebc534ea5871551818fac25"
+  },
+  "evidence_boundary": {
+    "owner_signatures_present": false,
+    "independent_review_complete": false,
+    "scoreable_pair_accepted": false,
+    "runner_implemented": false,
+    "method_run": false,
+    "coverage_available": false,
+    "formal_promotion": "NONE"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "research-b-race-fixture-v1",
+  "evidence_level": "LOCAL_SYNTHETIC",
+  "owners": [
+    "request_owner",
+    "budget_owner",
+    "supplier_owner",
+    "resource_owner"
+  ],
+  "strategies": [
+    "no_common_transaction",
+    "bounded_lease_confirm",
+    "two_phase_hold",
+    "saga_compensation",
+    "unified_center"
+  ],
+  "race_actions": [
+    "revoke",
+    "reject",
+    "outage",
+    "fork"
+  ],
+  "inject_after": [
+    "read:request_owner",
+    "read:budget_owner",
+    "read:supplier_owner",
+    "read:resource_owner",
+    "reread:request_owner",
+    "reread:budget_owner",
+    "reread:supplier_owner",
+    "reread:resource_owner",
+    "sign:request_owner",
+    "sign:budget_owner",
+    "sign:supplier_owner",
+    "sign:resource_owner",
+    "reserve:resource_owner",
+    "execute:target"
+  ],
+  "fence_modes": [
+    "enforce",
+    "ignore",
+    "restart_loss",
+    "cross_region_reorder"
+  ],
+  "truth_boundary": "Owner-native responses are method-visible; direct store snapshots are evaluator-only."
+}

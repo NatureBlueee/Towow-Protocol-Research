@@ -1,0 +1,1473 @@
+{
+  "schema_version": "wave011-g5-adversarial-corpus-v1",
+  "kind": "ADVERSARIAL_CORPUS_DRAFT",
+  "status": "DRAFT_NOT_RUN",
+  "evidence_boundary": {
+    "level": "LOCAL_SYNTHETIC_TEST_DESIGN",
+    "is_product_comparison": false,
+    "is_real_authority_evidence": false,
+    "can_support_if_run": [
+      "a listed false-closure trace is reproducible in the tested implementation",
+      "a tested arm preserves native outcomes and owner boundaries on this corpus",
+      "a tested migration has witnessed equivalence only for the executed source-target cases"
+    ],
+    "cannot_support": [
+      "general real-world G5 closure",
+      "legal sufficiency",
+      "product-wide OPA Cedar OpenFGA or XACML comparison",
+      "simultaneous cross-Authority atomicity",
+      "semantic equivalence outside the executed migration corpus",
+      "a canonical IR or new protocol requirement"
+    ]
+  },
+  "method_visibility": {
+    "method_may_read": [
+      "case.public_input",
+      "case.timeline event payloads exposed by lawful interfaces",
+      "native provider response bytes returned by those interfaces"
+    ],
+    "method_must_not_read": [
+      "case.oracle",
+      "case.attack_family",
+      "private owner state",
+      "truth labels",
+      "future timeline events",
+      "other arm outputs"
+    ],
+    "evaluator_may_read_after_return_seal": [
+      "case.oracle",
+      "sealed method return",
+      "sealed native provider transcript",
+      "owner ledgers",
+      "target readback"
+    ]
+  },
+  "decision_vocabulary": {
+    "business_decisions": [
+      "ALLOW",
+      "REJECT",
+      "UNKNOWN",
+      "DEFER",
+      "INVALID",
+      "COMPENSATE_RECONCILE"
+    ],
+    "rule": "A business decision is derived by a versioned task mapping from preserved native outcome, error, version, freshness, and authoritative negative facts. The corpus never supplies a precomputed business decision to a method."
+  },
+  "strong_center_strata": [
+    {
+      "id": "SC-U",
+      "name": "TRUE_UNIFIED_AUTHORITY",
+      "definition": "One Principal legally and operationally owns, or may validly receive delegation of, every required Authority; no relevant external non-delegable right, standing, separation-of-duties constraint, or external acceptance remains.",
+      "center_may_close": [
+        "policy",
+        "mandate",
+        "stance",
+        "reservation",
+        "commitment",
+        "execution fence"
+      ],
+      "external_effect_rule": "Every material side effect is enforced by the same consistency domain or by an explicitly tested target fence.",
+      "fair_win": "A strong center wins if it meets all safety and liveness gates and has lower measured lifecycle cost. This is a positive result."
+    },
+    {
+      "id": "SC-P",
+      "name": "SAME_TECHNICAL_PERMISSION_EXTERNAL_RIGHT",
+      "definition": "The center has byte-identical accounts, APIs, database privileges, keys available to its own services, and observations as SC-U, but one required right belongs to an external owner and is non-delegable.",
+      "center_may_close": [
+        "its own records",
+        "coordination",
+        "queries to the external owner"
+      ],
+      "center_must_not_close": [
+        "the external owner's stance",
+        "the external owner's commitment",
+        "the external owner's acceptance"
+      ],
+      "fair_win": "A strong center may still win by obtaining or waiting for owner-native evidence. Writing approved=true with administrator permission is false closure."
+    },
+    {
+      "id": "SC-E",
+      "name": "SINGLE_DOMAIN_TRANSACTION_EXTERNAL_EFFECT",
+      "definition": "Policy, mandate, reservation, commitment record, and outbox are atomically committed in one database, while the material effect occurs at an external device, portal, institution, or human process.",
+      "center_may_close": [
+        "the local transaction",
+        "intent and outbox durability"
+      ],
+      "center_must_not_claim": [
+        "atomic external Effect",
+        "exactly-once external Effect without target enforcement and readback",
+        "Acceptance from a local transaction"
+      ],
+      "fair_win": "A strong center wins only if idempotency, target-side monotonic fencing, readback, reconciliation, and compensation meet the same gates as other arms."
+    }
+  ],
+  "fairness_contract": {
+    "arms": [
+      "STRONG_CENTER",
+      "MATURE_COMPOSITION",
+      "CLM_HITL",
+      "HUMAN_RULES",
+      "CANDIDATE_ADAPTER"
+    ],
+    "equalized_inputs": [
+      "authoritative source APIs",
+      "technical permissions",
+      "network and clock distribution",
+      "policy and business rules",
+      "human reviewer pool",
+      "disclosure budget",
+      "retry and recovery budget",
+      "target enforcement interfaces"
+    ],
+    "critical_gates": [
+      "no controller substitution",
+      "no authoritative Reject or forbid promoted to Allow",
+      "no UNKNOWN or unmapped native error promoted to Allow",
+      "no stale or wrong material operation closure",
+      "no duplicate or stale target Effect",
+      "legal positive cases eventually progress within the liveness bound",
+      "native negative facts and provenance survive tested migration"
+    ],
+    "winner_rule": "First require every critical gate. Among correct arms compare p50/p95/p99 latency, human minutes, disclosure, availability product, abort and retry count, compensation, maintenance, restore, and migration cost.",
+    "positive_results": [
+      "STRONG_CENTER wins SC-U",
+      "MATURE_COMPOSITION closes SC-P with zero candidate increment",
+      "CLM_HITL or HUMAN_RULES wins a low-frequency high-consequence slice",
+      "a candidate residual disappears after adding an owner API, configuration fix, transaction constraint, or target fence",
+      "native outcomes plus a thin task adapter outperform a universal four-value wrapper"
+    ],
+    "invalid_comparisons": [
+      "granting the center fictional ownership of an external right",
+      "granting the candidate a hidden truth API",
+      "charging one arm for owner reads while giving another a free current registry",
+      "counting UNKNOWN as correct REJECT",
+      "counting a local ledger token as target enforcement",
+      "calling a simulated shape an actual product integration"
+    ]
+  },
+  "case_contract": {
+    "required_fields": [
+      "id",
+      "attack_family",
+      "stratum",
+      "public_input",
+      "timeline",
+      "oracle"
+    ],
+    "timeline_event_required_fields": [
+      "seq",
+      "boundary",
+      "actor",
+      "event",
+      "visibility"
+    ],
+    "oracle_required_fields": [
+      "expected_decision",
+      "required_observations",
+      "forbidden_success_claims"
+    ],
+    "boundary_enum": [
+      "SETUP",
+      "READ",
+      "RE_READ",
+      "SIGN",
+      "RESERVE",
+      "EXECUTE",
+      "TARGET_READBACK",
+      "MIGRATE",
+      "CHALLENGE",
+      "RECOVERY"
+    ]
+  },
+  "cases": [
+    {
+      "id": "REG-01-FORKED-HEADS",
+      "attack_family": "REGISTRY",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-reg-01",
+        "required_owner": "owner-external",
+        "cached_head": 18
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "READ",
+          "actor": "registry",
+          "event": "serve signed head=18 SUPPORT to verifier-A",
+          "visibility": "native_response_A"
+        },
+        {
+          "seq": 2,
+          "boundary": "READ",
+          "actor": "registry",
+          "event": "serve signed head=19 REVOKED to verifier-B",
+          "visibility": "native_response_B"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "UNKNOWN",
+        "required_observations": [
+          "both signatures are valid",
+          "owner head fork detected",
+          "no globally established current head"
+        ],
+        "forbidden_success_claims": [
+          "latest numeric head is authoritative without fork resolution",
+          "signed SUPPORT permits execution",
+          "registry is a free current-truth oracle"
+        ]
+      }
+    },
+    {
+      "id": "REG-02-DELAYED-PUBLICATION",
+      "attack_family": "REGISTRY",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-reg-02",
+        "observed_head": 20,
+        "freshness_sla_ms": 200
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SETUP",
+          "actor": "owner",
+          "event": "revocation effective_at=100 but publish_at=350",
+          "visibility": "private_until_publish"
+        },
+        {
+          "seq": 2,
+          "boundary": "READ",
+          "actor": "controller",
+          "event": "reads SUPPORT head=20 at t=250",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "UNKNOWN",
+        "required_observations": [
+          "freshness SLA exceeded relative to authoritative publication contract",
+          "effective time and publication time are distinct"
+        ],
+        "forbidden_success_claims": [
+          "head=20 is current merely because it is the latest readable head",
+          "eventual publication implies safe Allow"
+        ]
+      }
+    },
+    {
+      "id": "REG-03-BACKDATED-REVOCATION",
+      "attack_family": "REGISTRY",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-reg-03",
+        "commit_time": 500,
+        "execution_time": 600
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "owner",
+          "event": "sign SUPPORT at t=480",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "RE_READ",
+          "actor": "owner",
+          "event": "publish REVOKED at t=550 with effective_at=450",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "retroactive effect requires the owner-domain adjudication rule",
+          "historical cryptographic validity is not live permission"
+        ],
+        "forbidden_success_claims": [
+          "all history is automatically invalid",
+          "the old signature still authorizes execution"
+        ]
+      }
+    },
+    {
+      "id": "REG-04-OWNER-OUTAGE",
+      "attack_family": "REGISTRY",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-reg-04",
+        "cached_stance": "SUPPORT",
+        "cached_head": 31
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "RE_READ",
+          "actor": "owner-service",
+          "event": "timeout while current head is required",
+          "visibility": "native_timeout"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "UNKNOWN",
+        "required_observations": [
+          "outage is not an owner Reject",
+          "cached support does not establish currentness"
+        ],
+        "forbidden_success_claims": [
+          "REJECT precision credit",
+          "ALLOW from cache"
+        ]
+      }
+    },
+    {
+      "id": "REG-05-KEY-COMPROMISE",
+      "attack_family": "REGISTRY",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-reg-05",
+        "key_id": "owner-key-7",
+        "signature_valid": true
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SETUP",
+          "actor": "key-registry",
+          "event": "compromise window is [400, unknown_end]",
+          "visibility": "native_status"
+        },
+        {
+          "seq": 2,
+          "boundary": "SIGN",
+          "actor": "owner-key-7",
+          "event": "signature timestamp=450",
+          "visibility": "native_receipt"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "signature falls in compromise window",
+          "domain recovery or adjudication rule is required"
+        ],
+        "forbidden_success_claims": [
+          "cryptographic validity equals current Authority",
+          "all signatures before current time are automatically rejected"
+        ]
+      }
+    },
+    {
+      "id": "AUTH-01-TRUE-UNIFIED",
+      "attack_family": "AUTHORITY_STRATUM",
+      "stratum": "SC-U",
+      "public_input": {
+        "operation_ref": "op-auth-01",
+        "technical_permissions": "perm-set-X",
+        "required_rights": [
+          "budget",
+          "resource",
+          "commit",
+          "accept"
+        ]
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SETUP",
+          "actor": "principal-U",
+          "event": "owns every required right and concentration is permitted",
+          "visibility": "authoritative_record"
+        },
+        {
+          "seq": 2,
+          "boundary": "RESERVE",
+          "actor": "center",
+          "event": "single-domain serializable reservation and commit",
+          "visibility": "native_transaction"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "all required Authority belongs to principal-U",
+          "no external effect or right is omitted",
+          "positive liveness case completes"
+        ],
+        "forbidden_success_claims": [
+          "federal topology is necessary",
+          "a candidate adapter has value merely by existing"
+        ]
+      }
+    },
+    {
+      "id": "AUTH-02-SAME-PERMISSION-NONDELEGABLE",
+      "attack_family": "AUTHORITY_STRATUM",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-auth-02",
+        "technical_permissions": "perm-set-X",
+        "required_rights": [
+          "budget",
+          "resource",
+          "commit",
+          "accept"
+        ],
+        "external_right": "accept",
+        "delegable": false
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SETUP",
+          "actor": "center-admin",
+          "event": "has the same APIs accounts and database write privileges as AUTH-01",
+          "visibility": "public"
+        },
+        {
+          "seq": 2,
+          "boundary": "SIGN",
+          "actor": "center",
+          "event": "writes accepted=true without external owner action",
+          "visibility": "local_record"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "technical write permission is unchanged from AUTH-01",
+          "the accepting Authority belongs to an external Principal",
+          "the right is non-delegable"
+        ],
+        "forbidden_success_claims": [
+          "same administrator permissions imply unified Authority",
+          "a complete local audit trail repairs controller substitution"
+        ]
+      }
+    },
+    {
+      "id": "AUTH-03-EXTERNAL-OWNER-APPROVES",
+      "attack_family": "AUTHORITY_STRATUM",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-auth-03",
+        "technical_permissions": "perm-set-X",
+        "external_right": "accept"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "external-owner",
+          "event": "returns owner-native ACCEPT for exact material closure",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "RE_READ",
+          "actor": "center",
+          "event": "verifies current owner head and exact binding",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "center coordinated but did not substitute for owner",
+          "positive case progresses within liveness bound"
+        ],
+        "forbidden_success_claims": [
+          "external Authority was absorbed by the center",
+          "owner-native evidence is optional"
+        ]
+      }
+    },
+    {
+      "id": "AUTH-04-LOCAL-ACID-EXTERNAL-EFFECT",
+      "attack_family": "AUTHORITY_STRATUM",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-auth-04",
+        "local_transaction": "committed",
+        "outbox": "sent"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "RESERVE",
+          "actor": "center-db",
+          "event": "atomically writes reservation commitment-record and outbox",
+          "visibility": "native_transaction"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "external-target",
+          "event": "performs effect and loses reply",
+          "visibility": "target_private_until_readback"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "local transaction is committed",
+          "external Effect is initially uncertain",
+          "target readback is required before retry"
+        ],
+        "forbidden_success_claims": [
+          "one ACID transaction included the external Effect",
+          "retry is automatically exactly once"
+        ]
+      }
+    },
+    {
+      "id": "RACE-01-AFTER-READ",
+      "attack_family": "RACE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-race-01",
+        "injection_after": "READ"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "READ",
+          "actor": "controller",
+          "event": "reads owner-A head=10 SUPPORT",
+          "visibility": "native_response"
+        },
+        {
+          "seq": 2,
+          "boundary": "READ",
+          "actor": "owner-A",
+          "event": "revokes to head=11",
+          "visibility": "future_native_response"
+        },
+        {
+          "seq": 3,
+          "boundary": "EXECUTE",
+          "actor": "controller",
+          "event": "attempts using head=10",
+          "visibility": "method_action"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "head=10 is stale at execution",
+          "execution-time owner read or valid hold is absent"
+        ],
+        "forbidden_success_claims": [
+          "initial read closed TOCTOU"
+        ]
+      }
+    },
+    {
+      "id": "RACE-02-AFTER-RE-READ",
+      "attack_family": "RACE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-race-02",
+        "injection_after": "RE_READ"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "RE_READ",
+          "actor": "controller",
+          "event": "re-reads A=10 B=20",
+          "visibility": "native_response"
+        },
+        {
+          "seq": 2,
+          "boundary": "SIGN",
+          "actor": "owner-B",
+          "event": "changes to B=21 REVOKED before final signature",
+          "visibility": "future_native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "sequential re-read did not create a simultaneous snapshot",
+          "B changed after its last observation"
+        ],
+        "forbidden_success_claims": [
+          "two correct reads prove cross-Authority atomic currentness"
+        ]
+      }
+    },
+    {
+      "id": "RACE-03-AFTER-SIGN",
+      "attack_family": "RACE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-race-03",
+        "injection_after": "SIGN"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "owner-A",
+          "event": "signs exact closure at head=10",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "RESERVE",
+          "actor": "owner-A",
+          "event": "revokes before reservation",
+          "visibility": "future_native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "valid signature does not freeze independently revocable will",
+          "no owner hold covers the reservation boundary"
+        ],
+        "forbidden_success_claims": [
+          "signature validity equals live permission"
+        ]
+      }
+    },
+    {
+      "id": "RACE-04-AFTER-RESERVE",
+      "attack_family": "RACE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-race-04",
+        "injection_after": "RESERVE"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "RESERVE",
+          "actor": "resource-owner",
+          "event": "issues reservation token=41",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "mandate-owner",
+          "event": "revokes before target call",
+          "visibility": "future_native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "reservation does not imply Mandate",
+          "execution-time authority gate observes revocation"
+        ],
+        "forbidden_success_claims": [
+          "reservation token is an all-domain permit"
+        ]
+      }
+    },
+    {
+      "id": "RACE-05-AFTER-EXECUTE-BEFORE-READBACK",
+      "attack_family": "RACE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-race-05",
+        "injection_after": "EXECUTE"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "external-target",
+          "event": "effect occurs",
+          "visibility": "target_private_until_readback"
+        },
+        {
+          "seq": 2,
+          "boundary": "RECOVERY",
+          "actor": "controller",
+          "event": "crashes before receipt",
+          "visibility": "failure"
+        },
+        {
+          "seq": 3,
+          "boundary": "TARGET_READBACK",
+          "actor": "controller",
+          "event": "must reconcile before retry",
+          "visibility": "method_action"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "Effect and receipt are distinct",
+          "retry safety depends on target idempotency and readback"
+        ],
+        "forbidden_success_claims": [
+          "missing receipt means no Effect",
+          "workflow retry is safe by construction"
+        ]
+      }
+    },
+    {
+      "id": "OBJ-01-CANONICAL-EQUIVALENCE",
+      "attack_family": "MATERIAL_OPERATION_CLOSURE",
+      "stratum": "SC-U",
+      "public_input": {
+        "operation_ref": "op-obj-01",
+        "object_A": "json bytes with order A",
+        "object_B": "json bytes with order B",
+        "canonicalization_rule": "owner-approved-jcs-v1"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "owner",
+          "event": "approves canonical digest shared by A and B",
+          "visibility": "native_receipt"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "raw bytes differ",
+          "owner-approved canonical form is equal"
+        ],
+        "forbidden_success_claims": [
+          "different bytes always require a new authorization"
+        ]
+      }
+    },
+    {
+      "id": "OBJ-02-CANONICALIZATION-CONFUSION",
+      "attack_family": "MATERIAL_OPERATION_CLOSURE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-obj-02",
+        "canonicalization_rule": "ambiguous-number-normalization"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "controller",
+          "event": "normalizes 1.0 and 1 for a field whose domain distinguishes units",
+          "visibility": "method_transform"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "INVALID",
+        "required_observations": [
+          "canonicalization changed owner-domain meaning",
+          "the rule was not approved for this field"
+        ],
+        "forbidden_success_claims": [
+          "same canonical bytes imply semantic equivalence"
+        ]
+      }
+    },
+    {
+      "id": "OBJ-03-SIDECAR-DROPPED",
+      "attack_family": "MATERIAL_OPERATION_CLOSURE",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-obj-03",
+        "main_digest": "stable",
+        "sidecar": "no-training-purpose-v2"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "owner",
+          "event": "signs main object plus sidecar digest",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "controller",
+          "event": "executes main object without sidecar",
+          "visibility": "method_action"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "material sidecar is part of owner-approved closure",
+          "main digest alone is insufficient"
+        ],
+        "forbidden_success_claims": [
+          "exact main object closes all dependencies"
+        ]
+      }
+    },
+    {
+      "id": "OBJ-04-EXTERNAL-DEPENDENCY-DRIFT",
+      "attack_family": "MATERIAL_OPERATION_CLOSURE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-obj-04",
+        "artifact_digest": "A",
+        "external_dependency": "tariff-head-9"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "SIGN",
+          "actor": "owner",
+          "event": "approves artifact A with tariff head 9",
+          "visibility": "native_receipt"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "tariff-owner",
+          "event": "head changes to 10 and materially changes price",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "artifact bytes are unchanged",
+          "declared material external dependency changed"
+        ],
+        "forbidden_success_claims": [
+          "artifact digest stability is full causal closure"
+        ]
+      }
+    },
+    {
+      "id": "OBJ-05-NONMATERIAL-DEPENDENCY-DRIFT",
+      "attack_family": "MATERIAL_OPERATION_CLOSURE",
+      "stratum": "SC-U",
+      "public_input": {
+        "operation_ref": "op-obj-05",
+        "dependency_change": "logging-label",
+        "materiality_rule": "owner-rule-v3 excludes logging labels"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "controller",
+          "event": "logging label changes",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "change is within owner-approved nonmaterial range",
+          "liveness is not sacrificed by reauthorizing every byte"
+        ],
+        "forbidden_success_claims": [
+          "all dependency changes are material"
+        ]
+      }
+    },
+    {
+      "id": "FENCE-01-TARGET-ENFORCES",
+      "attack_family": "TARGET_FENCE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-fence-01",
+        "old_token": 42,
+        "current_token": 43
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "old-executor",
+          "event": "sends token=42",
+          "visibility": "target_request"
+        },
+        {
+          "seq": 2,
+          "boundary": "TARGET_READBACK",
+          "actor": "target",
+          "event": "rejects 42 because durable highest_seen=43",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "no stale Effect occurred",
+          "target persisted monotonic highest token"
+        ],
+        "forbidden_success_claims": [
+          "ledger issuance alone supplied fencing"
+        ]
+      }
+    },
+    {
+      "id": "FENCE-02-TARGET-IGNORES",
+      "attack_family": "TARGET_FENCE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-fence-02",
+        "old_token": 42,
+        "current_token": 43
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "old-executor",
+          "event": "sends token=42",
+          "visibility": "target_request"
+        },
+        {
+          "seq": 2,
+          "boundary": "TARGET_READBACK",
+          "actor": "target",
+          "event": "ignores token and produces stale Effect",
+          "visibility": "authoritative_readback"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "stale Effect occurred",
+          "enforcement coverage is absent at target"
+        ],
+        "forbidden_success_claims": [
+          "fence test passed because the ledger generated token 43"
+        ]
+      }
+    },
+    {
+      "id": "FENCE-03-RESTART-LOSS",
+      "attack_family": "TARGET_FENCE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-fence-03",
+        "old_token": 42,
+        "current_token": 43
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "RECOVERY",
+          "actor": "target",
+          "event": "restart loses non-durable highest_seen token",
+          "visibility": "target_state"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "old-executor",
+          "event": "token=42 accepted after restart",
+          "visibility": "authoritative_readback"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "target monotonic state was not durable",
+          "stale Effect occurred after restart"
+        ],
+        "forbidden_success_claims": [
+          "in-memory monotonicity is recovery-safe"
+        ]
+      }
+    },
+    {
+      "id": "FENCE-04-CROSS-REGION-REORDER",
+      "attack_family": "TARGET_FENCE",
+      "stratum": "SC-E",
+      "public_input": {
+        "operation_ref": "op-fence-04",
+        "region_A_token": 43,
+        "region_B_token": 42
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "region-A",
+          "event": "accepts token=43",
+          "visibility": "target_A"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "region-B",
+          "event": "before replication accepts token=42",
+          "visibility": "target_B"
+        },
+        {
+          "seq": 3,
+          "boundary": "TARGET_READBACK",
+          "actor": "global-readback",
+          "event": "observes both Effects",
+          "visibility": "authoritative_readback"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "per-region checks lacked global monotonic ordering",
+          "duplicate or stale Effect occurred"
+        ],
+        "forbidden_success_claims": [
+          "each region locally checked a token therefore the global fence passed"
+        ]
+      }
+    },
+    {
+      "id": "STAND-01-UNREGISTERED-STAKEHOLDER",
+      "attack_family": "STANDING",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-stand-01",
+        "registered_stakeholders": [
+          "buyer",
+          "supplier"
+        ]
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "controller",
+          "event": "executes using complete registered list",
+          "visibility": "method_action"
+        },
+        {
+          "seq": 2,
+          "boundary": "CHALLENGE",
+          "actor": "downstream-data-subject",
+          "event": "first appears and asserts standing",
+          "visibility": "native_case"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "registered-list completeness was not established",
+          "standing assertion requires adjudication",
+          "late-party reopen or compensation path exists"
+        ],
+        "forbidden_success_claims": [
+          "no registered challenge means no affected party",
+          "aggregate receipt proves complete representation"
+        ]
+      }
+    },
+    {
+      "id": "STAND-02-LATE-CHALLENGE-UPHELD",
+      "attack_family": "STANDING",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-stand-02",
+        "challenge_window": "post-execution"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "EXECUTE",
+          "actor": "target",
+          "event": "Effect occurs",
+          "visibility": "authoritative_readback"
+        },
+        {
+          "seq": 2,
+          "boundary": "CHALLENGE",
+          "actor": "adjudicator",
+          "event": "recognizes late standing and upholds challenge",
+          "visibility": "native_case"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "COMPENSATE_RECONCILE",
+        "required_observations": [
+          "history is not rewritten",
+          "future settlement or reuse is blocked as required",
+          "compensation and reopen are triggered"
+        ],
+        "forbidden_success_claims": [
+          "pre-execution green state made later challenge irrelevant"
+        ]
+      }
+    },
+    {
+      "id": "STAND-03-CONFLICTING-JURISDICTION",
+      "attack_family": "STANDING",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-stand-03",
+        "jurisdictions": [
+          "contract-v4",
+          "regulation-v9"
+        ]
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "CHALLENGE",
+          "actor": "contract-system",
+          "event": "challenge effect=NON_SUSPENSIVE",
+          "visibility": "native_response"
+        },
+        {
+          "seq": 2,
+          "boundary": "CHALLENGE",
+          "actor": "regulatory-system",
+          "event": "challenge effect=SUSPENSIVE",
+          "visibility": "native_response"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "both native jurisdictional outcomes are preserved",
+          "priority rule version or adjudicator is required"
+        ],
+        "forbidden_success_claims": [
+          "one generic challenge.effect field resolves the conflict",
+          "controller chooses the cheaper jurisdiction"
+        ]
+      }
+    },
+    {
+      "id": "STAND-04-MALICIOUS-BLOCKER",
+      "attack_family": "STANDING",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-stand-04",
+        "asserted_standing": true
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "CHALLENGE",
+          "actor": "claimant",
+          "event": "files repetitive unsupported challenge",
+          "visibility": "native_case"
+        },
+        {
+          "seq": 2,
+          "boundary": "CHALLENGE",
+          "actor": "adjudicator",
+          "event": "rejects standing and grounds within deadline",
+          "visibility": "native_case"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "challenge was processed",
+          "rejected challenge does not become a permanent veto",
+          "positive path resumes within liveness bound"
+        ],
+        "forbidden_success_claims": [
+          "all asserted standing permanently suspends execution",
+          "ignoring the challenge counts as coverage"
+        ]
+      }
+    },
+    {
+      "id": "STAND-05-PENDING-WITH-DEADLINE",
+      "attack_family": "STANDING",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-stand-05",
+        "effect": "SUSPENSIVE",
+        "adjudication_deadline": 900
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "CHALLENGE",
+          "actor": "qualified-challenger",
+          "event": "files before execution",
+          "visibility": "native_case"
+        },
+        {
+          "seq": 2,
+          "boundary": "EXECUTE",
+          "actor": "controller",
+          "event": "attempts while adjudication pending",
+          "visibility": "method_action"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "DEFER",
+        "required_observations": [
+          "challenge has current suspensive effect",
+          "resolver and deadline are known"
+        ],
+        "forbidden_success_claims": [
+          "pending means Reject forever",
+          "workflow green overrides the challenge"
+        ]
+      }
+    },
+    {
+      "id": "MIG-01-PRESERVE-NATIVE-UNKNOWN",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-mig-01",
+        "source_native": {
+          "engine": "SOURCE-PDP",
+          "outcome": "INDETERMINATE_MISSING_ATTRIBUTE",
+          "policy_version": "17",
+          "freshness": "current"
+        }
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "adapter",
+          "event": "maps source error to target no-permit",
+          "visibility": "mapping_trace"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "INVALID",
+        "required_observations": [
+          "source native error is preserved",
+          "target no-permit is not falsely described as source Reject",
+          "task mapping remains Unknown or unmapped"
+        ],
+        "forbidden_success_claims": [
+          "Deny equivalence",
+          "lossless migration"
+        ]
+      }
+    },
+    {
+      "id": "MIG-02-PRESERVE-FORBID",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-mig-02",
+        "source_native": {
+          "outcome": "EXPLICIT_FORBID",
+          "policy_version": "18"
+        }
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "adapter",
+          "event": "drops forbid and retains independent permit",
+          "visibility": "mapping_trace"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "REJECT",
+        "required_observations": [
+          "explicit negative fact is material",
+          "permit cannot override lost forbid"
+        ],
+        "forbidden_success_claims": [
+          "target Allow demonstrates source equivalence",
+          "negative facts are reconstructible from absence"
+        ]
+      }
+    },
+    {
+      "id": "MIG-03-PRESERVE-PROVENANCE",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-mig-03",
+        "source_owner": "external-owner",
+        "source_bytes_hash": "hash-source-03",
+        "mapping_version": "map-4"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "adapter",
+          "event": "copies decision but replaces owner and source bytes with controller-generated record",
+          "visibility": "mapping_trace"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "INVALID",
+        "required_observations": [
+          "decision value survived",
+          "owner and source provenance did not"
+        ],
+        "forbidden_success_claims": [
+          "behavioral agreement alone is semantic preservation",
+          "controller record is equivalent owner evidence"
+        ]
+      }
+    },
+    {
+      "id": "MIG-04-KNOWN-CORPUS-EQUIVALENT",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-U",
+      "public_input": {
+        "operation_ref": "op-mig-04",
+        "source_target_cases": [
+          "permit",
+          "deny",
+          "missing",
+          "forbid",
+          "time",
+          "delegation",
+          "obligation"
+        ],
+        "owner_approved_mapping": "map-5"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "shadow-runner",
+          "event": "all executed differential and round-trip cases agree",
+          "visibility": "sealed_results"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "ALLOW",
+        "required_observations": [
+          "claim is WITNESSED_EQUIVALENCE for named cases only",
+          "native outcomes and provenance remain available",
+          "unseen branches remain Unknown"
+        ],
+        "forbidden_success_claims": [
+          "general semantic equivalence",
+          "canonical target representation"
+        ]
+      }
+    },
+    {
+      "id": "MIG-05-HOLDOUT-DIVERGENCE",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-mig-05",
+        "mapping_version": "map-5",
+        "holdout": "obligation-failure-after-permit"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "shadow-runner",
+          "event": "source fails obligation while target executes permit",
+          "visibility": "sealed_results"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "INVALID",
+        "required_observations": [
+          "mapping version is automatically downgraded",
+          "affected prior witnessed-equivalence scope is reopened",
+          "source negative/error semantics are preserved"
+        ],
+        "forbidden_success_claims": [
+          "earlier green corpus proves current equivalence",
+          "holdout is ignored because the target parsed successfully"
+        ]
+      }
+    },
+    {
+      "id": "MIG-06-ROUNDTRIP-NONINJECTIVE",
+      "attack_family": "MIGRATION",
+      "stratum": "SC-P",
+      "public_input": {
+        "operation_ref": "op-mig-06",
+        "source_states": [
+          "REJECT_OWNER",
+          "REJECT_FORBID"
+        ],
+        "target_state": "DENY"
+      },
+      "timeline": [
+        {
+          "seq": 1,
+          "boundary": "MIGRATE",
+          "actor": "adapter",
+          "event": "two source states collapse to one target state",
+          "visibility": "mapping_trace"
+        },
+        {
+          "seq": 2,
+          "boundary": "MIGRATE",
+          "actor": "roundtrip",
+          "event": "cannot reconstruct which source negative fact existed",
+          "visibility": "sealed_results"
+        }
+      ],
+      "oracle": {
+        "expected_decision": "INVALID",
+        "required_observations": [
+          "non-injective mapping loses native negative provenance",
+          "loss manifest names the collision"
+        ],
+        "forbidden_success_claims": [
+          "same immediate business decision is lossless equivalence"
+        ]
+      }
+    }
+  ],
+  "coverage_index": {
+    "REGISTRY": [
+      "REG-01-FORKED-HEADS",
+      "REG-02-DELAYED-PUBLICATION",
+      "REG-03-BACKDATED-REVOCATION",
+      "REG-04-OWNER-OUTAGE",
+      "REG-05-KEY-COMPROMISE"
+    ],
+    "AUTHORITY_STRATUM": [
+      "AUTH-01-TRUE-UNIFIED",
+      "AUTH-02-SAME-PERMISSION-NONDELEGABLE",
+      "AUTH-03-EXTERNAL-OWNER-APPROVES",
+      "AUTH-04-LOCAL-ACID-EXTERNAL-EFFECT"
+    ],
+    "RACE": [
+      "RACE-01-AFTER-READ",
+      "RACE-02-AFTER-RE-READ",
+      "RACE-03-AFTER-SIGN",
+      "RACE-04-AFTER-RESERVE",
+      "RACE-05-AFTER-EXECUTE-BEFORE-READBACK"
+    ],
+    "MATERIAL_OPERATION_CLOSURE": [
+      "OBJ-01-CANONICAL-EQUIVALENCE",
+      "OBJ-02-CANONICALIZATION-CONFUSION",
+      "OBJ-03-SIDECAR-DROPPED",
+      "OBJ-04-EXTERNAL-DEPENDENCY-DRIFT",
+      "OBJ-05-NONMATERIAL-DEPENDENCY-DRIFT"
+    ],
+    "TARGET_FENCE": [
+      "FENCE-01-TARGET-ENFORCES",
+      "FENCE-02-TARGET-IGNORES",
+      "FENCE-03-RESTART-LOSS",
+      "FENCE-04-CROSS-REGION-REORDER"
+    ],
+    "STANDING": [
+      "STAND-01-UNREGISTERED-STAKEHOLDER",
+      "STAND-02-LATE-CHALLENGE-UPHELD",
+      "STAND-03-CONFLICTING-JURISDICTION",
+      "STAND-04-MALICIOUS-BLOCKER",
+      "STAND-05-PENDING-WITH-DEADLINE"
+    ],
+    "MIGRATION": [
+      "MIG-01-PRESERVE-NATIVE-UNKNOWN",
+      "MIG-02-PRESERVE-FORBID",
+      "MIG-03-PRESERVE-PROVENANCE",
+      "MIG-04-KNOWN-CORPUS-EQUIVALENT",
+      "MIG-05-HOLDOUT-DIVERGENCE",
+      "MIG-06-ROUNDTRIP-NONINJECTIVE"
+    ]
+  }
+}

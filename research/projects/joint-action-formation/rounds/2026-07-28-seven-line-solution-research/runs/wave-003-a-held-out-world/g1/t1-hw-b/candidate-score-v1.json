@@ -1,0 +1,169 @@
+{
+  "coverage": {
+    "ratio": 0.125,
+    "requirements_passed": 1,
+    "requirements_total": 8
+  },
+  "critical_failures": [
+    {
+      "code": "RECIPROCAL_PROBE_MISSING",
+      "detail": "No two-sided probe maps to the frozen reciprocal contract.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "target_signature_sha256": "33cf188cf956b0e38d44c6d350434d1d919ada83caf2dcd7cce90402eec516cf"
+    },
+    {
+      "code": "REQUIRED_DISCLOSURE_PATH_MISSING",
+      "detail": "A required authorized projection route is incomplete.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "target_signature_sha256": "d58a468de39bd6cc6b9154f6bc6e6b72451ff0de5344c21980ca70f3d241e8bf"
+    },
+    {
+      "code": "REQUIRED_DISCLOSURE_PATH_MISSING",
+      "detail": "A required authorized projection route is incomplete.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "target_signature_sha256": "d58a468de39bd6cc6b9154f6bc6e6b72451ff0de5344c21980ca70f3d241e8bf"
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Decision references evidence outside the frozen witness set.",
+      "detection_id": "DET-HWB-RECIP-JUNIPER-KITE",
+      "requirements": [
+        "R4",
+        "R7",
+        "R8"
+      ],
+      "target_signature_sha256": "33cf188cf956b0e38d44c6d350434d1d919ada83caf2dcd7cce90402eec516cf"
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Decision references evidence outside the frozen witness set.",
+      "detection_id": "DET-HWB-POLICY-FJORD-GLASS",
+      "requirements": [
+        "R6"
+      ],
+      "target_signature_sha256": "5d2dfb28e3c095bfcbcbf842a4e695ebed39102afc8a2d58b80fb37ff4a80130"
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Decision references evidence outside the frozen witness set.",
+      "detection_id": "DET-HWB-MOBILE-ECHO-DELTA",
+      "requirements": [
+        "R2",
+        "R7"
+      ],
+      "target_signature_sha256": "8c100672b034027493262c0ad69a4929555a72f9b886ff69437aae0ce10bc292"
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Decision references evidence outside the frozen witness set.",
+      "detection_id": "DET-HWB-PUBLIC-COLD-AURORA-BASALT",
+      "requirements": [
+        "R7",
+        "R8"
+      ],
+      "target_signature_sha256": "a5c3dce6d0a49906d2c4eac62070c4d0e782b5e0d91321bafef8c809eb3e6815"
+    },
+    {
+      "code": "UNKNOWN_EVIDENCE",
+      "detail": "Decision references evidence outside the frozen witness set.",
+      "detection_id": "DET-HWB-HIDDEN-GRID-HELIOS-ION",
+      "requirements": [
+        "R1",
+        "R3",
+        "R4",
+        "R7",
+        "R8"
+      ],
+      "target_signature_sha256": "d58a468de39bd6cc6b9154f6bc6e6b72451ff0de5344c21980ca70f3d241e8bf"
+    }
+  ],
+  "evidence_boundary": "One synthetic held-out world only. A calibration fixture is not a candidate result and cannot establish real-world frequency or value.",
+  "metrics": {
+    "correctly_discovered_count": 3,
+    "disclosure_event_count": 5,
+    "discoverable_opportunity_count": 3,
+    "false_wakeup_count": 0,
+    "frozen_item_count": 8,
+    "mapped_item_count": 8,
+    "opportunity_recall": 1.0
+  },
+  "requirement_results": {
+    "R1": {
+      "description": "Recover an unexpressed opportunity without requiring a prebuilt public card.",
+      "failure_codes": [
+        "REQUIRED_DISCLOSURE_PATH_MISSING",
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R2": {
+      "description": "Invalidate stale discovery after the dynamic state flip.",
+      "failure_codes": [
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R3": {
+      "description": "Use task-relative projections rather than raw or full-world disclosure.",
+      "failure_codes": [
+        "REQUIRED_DISCLOSURE_PATH_MISSING",
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R4": {
+      "description": "Respect receiver, purpose, retention, depth, onward, and cumulative disclosure limits.",
+      "failure_codes": [
+        "RECIPROCAL_PROBE_MISSING",
+        "REQUIRED_DISCLOSURE_PATH_MISSING",
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R5": {
+      "description": "Keep UNKNOWN, REFUSE, and ABSENT distinct.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R6": {
+      "description": "Report a real but policy-unfindable opportunity honestly.",
+      "failure_codes": [
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R7": {
+      "description": "Avoid direction/version false wakeups and structural misses.",
+      "failure_codes": [
+        "RECIPROCAL_PROBE_MISSING",
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    },
+    "R8": {
+      "description": "Handoff discoveries to relation constitution without inventing commitment.",
+      "failure_codes": [
+        "UNKNOWN_EVIDENCE"
+      ],
+      "status": "FAIL"
+    }
+  },
+  "schema_version": "1.1",
+  "status": "FAIL",
+  "submission_sha256": "ab9a8fb989b9b4f418e4f210e8e9fd608d3a02d8072b0c660b92cacb6032994d",
+  "world_id": "T1-HW-20260728-B"
+}

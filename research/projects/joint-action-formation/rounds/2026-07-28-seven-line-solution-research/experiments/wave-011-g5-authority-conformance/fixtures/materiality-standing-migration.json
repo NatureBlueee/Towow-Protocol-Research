@@ -1,0 +1,117 @@
+{
+  "schema": "mcb-g5-v2.materiality-standing-migration.v1",
+  "material_closure_cases": [
+    {
+      "case_id": "same-primary-digest-material-sidecar-changed",
+      "primary_digest_equal": true,
+      "canonical_semantics_equal": false,
+      "sidecar_changed": true,
+      "external_dependency_changed": false,
+      "materiality_rule": "sidecar.no_training is material",
+      "expected": "REAUTHORIZE"
+    },
+    {
+      "case_id": "different-bytes-owner-approved-canonical-equivalence",
+      "primary_digest_equal": false,
+      "canonical_semantics_equal": true,
+      "sidecar_changed": false,
+      "external_dependency_changed": false,
+      "materiality_rule": "whitespace and key order are immaterial",
+      "expected": "SAME_OPERATION_CLOSURE"
+    },
+    {
+      "case_id": "same-primary-external-dependency-head-changed",
+      "primary_digest_equal": true,
+      "canonical_semantics_equal": true,
+      "sidecar_changed": false,
+      "external_dependency_changed": true,
+      "materiality_rule": "permit register head is material",
+      "expected": "REAUTHORIZE"
+    },
+    {
+      "case_id": "unknown-materiality-rule-version",
+      "primary_digest_equal": true,
+      "canonical_semantics_equal": true,
+      "sidecar_changed": false,
+      "external_dependency_changed": false,
+      "materiality_rule": null,
+      "expected": "UNKNOWN"
+    }
+  ],
+  "standing_cases": [
+    {
+      "case_id": "known-suspensive-challenge",
+      "stakeholder_registered": true,
+      "standing": "ADJUDICATED",
+      "jurisdiction": "rule-v4",
+      "effect": "SUSPEND_EXECUTE",
+      "expected": "DEFER"
+    },
+    {
+      "case_id": "late-unregistered-stakeholder",
+      "stakeholder_registered": false,
+      "standing": "LATE_ADJUDICATED",
+      "jurisdiction": "rule-v4",
+      "effect": "REOPEN_AND_COMPENSATE",
+      "expected": "LATE_REOPEN"
+    },
+    {
+      "case_id": "conflicting-jurisdiction",
+      "stakeholder_registered": true,
+      "standing": "ASSERTED",
+      "jurisdiction": "CONFLICTING_RULES",
+      "effect": "UNKNOWN",
+      "expected": "DEFER"
+    },
+    {
+      "case_id": "malicious-blocking-challenge",
+      "stakeholder_registered": true,
+      "standing": "REJECTED",
+      "jurisdiction": "rule-v4",
+      "effect": "NON_SUSPENSIVE",
+      "expected": "CONTINUE_WITH_AUDIT"
+    }
+  ],
+  "migration_cases": [
+    {
+      "case_id": "permit-preserved",
+      "source": {
+        "native_outcome": "PERMIT",
+        "forbid": false,
+        "unknown": false,
+        "owner": "program-coordinator",
+        "source_bytes_hash": "sha256:permit"
+      }
+    },
+    {
+      "case_id": "forbid-preserved",
+      "source": {
+        "native_outcome": "FORBID",
+        "forbid": true,
+        "unknown": false,
+        "owner": "site-data-steward",
+        "source_bytes_hash": "sha256:forbid"
+      }
+    },
+    {
+      "case_id": "unknown-preserved",
+      "source": {
+        "native_outcome": "INDETERMINATE",
+        "forbid": false,
+        "unknown": true,
+        "owner": "independent-validation",
+        "source_bytes_hash": "sha256:unknown"
+      }
+    },
+    {
+      "case_id": "provenance-preserved",
+      "source": {
+        "native_outcome": "NOT_APPLICABLE",
+        "forbid": false,
+        "unknown": true,
+        "owner": "delta-calibration",
+        "source_bytes_hash": "sha256:provenance"
+      }
+    }
+  ]
+}

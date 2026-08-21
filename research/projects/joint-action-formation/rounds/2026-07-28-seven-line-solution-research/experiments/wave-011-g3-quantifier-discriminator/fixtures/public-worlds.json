@@ -1,0 +1,207 @@
+{
+  "schema_version": "wave011-public-worlds-v2",
+  "baseline_envelopes": {
+    "B-CENTER-EQUAL-ENVELOPE": {
+      "implementation": "deterministic_center_rule",
+      "environment_variant": "EQUAL_ENVELOPE",
+      "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+      "authority_mode": "INDEPENDENT_ENDPOINTS",
+      "grants": ["PUBLIC_EPISODE_ENDPOINTS"],
+      "may_impersonate_other_principals": false
+    },
+    "B-CENTER-LEGAL-CONTROL": {
+      "implementation": "deterministic_center_rule",
+      "environment_variant": "LEGITIMATELY_CENTRALIZED",
+      "comparison_scope": "DIFFERENT_ENVIRONMENT_CONSTRUCTIVE_COUNTEREXAMPLE",
+      "authority_mode": "OWNER_DECLARED_CENTRAL_CONTROL",
+      "grants": ["PUBLIC_EPISODE_ENDPOINTS", "OWNER_DECLARED_CENTRAL_ORCHESTRATION"],
+      "may_impersonate_other_principals": false
+    },
+    "B-MATURE-PLANNER-WORKFLOW": {
+      "implementation": "bounded_workflow_rule",
+      "environment_variant": "EQUAL_ENVELOPE",
+      "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+      "authority_mode": "INDEPENDENT_ENDPOINTS",
+      "grants": ["PUBLIC_EPISODE_ENDPOINTS"],
+      "may_impersonate_other_principals": false
+    },
+    "B-HUMAN-RULE": {
+      "implementation": "bounded_human_rule",
+      "environment_variant": "EQUAL_ENVELOPE",
+      "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+      "authority_mode": "INDEPENDENT_ENDPOINTS",
+      "grants": ["PUBLIC_EPISODE_ENDPOINTS"],
+      "may_impersonate_other_principals": false
+    },
+    "C-FORMATION": {
+      "implementation": "candidate_rule",
+      "environment_variant": "EQUAL_ENVELOPE",
+      "comparison_scope": "SAME_WORLD_SAME_ENVELOPE",
+      "authority_mode": "INDEPENDENT_ENDPOINTS",
+      "grants": ["PUBLIC_EPISODE_ENDPOINTS"],
+      "may_impersonate_other_principals": false
+    }
+  },
+  "worlds": [
+    {
+      "world_id": "E01",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor"],
+        "authority": {"execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["ready", "owner_task_current"],
+      "available_actions": [
+        {"id": "execute_direct", "kind": "EXECUTE", "authority_endpoint": "executor"}
+      ],
+      "inventory": {
+        "action_inventory": "COMPLETE",
+        "response_family": "COMPLETE",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "COMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 4,
+        "unresolved_items": []
+      },
+      "operator_proposal": null,
+      "task_change_proposal": null
+    },
+    {
+      "world_id": "E02",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor", "workflow_admin"],
+        "authority": {"extend_model": "workflow_admin", "execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["operator_authorized", "owner_task_current"],
+      "available_actions": [
+        {"id": "execute_adapter", "kind": "EXECUTE", "authority_endpoint": "executor"}
+      ],
+      "inventory": {
+        "action_inventory": "COMPLETE",
+        "response_family": "COMPLETE",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "COMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 4,
+        "unresolved_items": []
+      },
+      "operator_proposal": {
+        "id": "install_adapter",
+        "kind": "MODEL_EXTENSION",
+        "authority_endpoint": "workflow_admin",
+        "authorization_receipt": "public:workflow-admin:install-adapter"
+      },
+      "task_change_proposal": null
+    },
+    {
+      "world_id": "E03",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor", "holder"],
+        "authority": {"issue_token": "holder", "execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["holder_endpoint_current", "owner_task_current"],
+      "available_actions": [
+        {"id": "request_token", "kind": "REQUEST", "authority_endpoint": "holder"},
+        {"id": "holder_sign", "kind": "AUTHORITY_RESPONSE", "authority_endpoint": "holder"},
+        {"id": "execute_with_token", "kind": "EXECUTE", "authority_endpoint": "executor"}
+      ],
+      "inventory": {
+        "action_inventory": "COMPLETE",
+        "response_family": "COMPLETE",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "COMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 5,
+        "unresolved_items": []
+      },
+      "operator_proposal": null,
+      "task_change_proposal": null
+    },
+    {
+      "world_id": "E04",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor", "holder"],
+        "authority": {"issue_token": "holder", "execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["holder_endpoint_current", "owner_task_current", "stale_cache_says_ready"],
+      "available_actions": [
+        {"id": "request_token", "kind": "REQUEST", "authority_endpoint": "holder"},
+        {"id": "holder_sign", "kind": "AUTHORITY_RESPONSE", "authority_endpoint": "holder"},
+        {"id": "execute_with_token", "kind": "EXECUTE", "authority_endpoint": "executor"}
+      ],
+      "inventory": {
+        "action_inventory": "COMPLETE",
+        "response_family": "COMPLETE",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "COMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 5,
+        "unresolved_items": []
+      },
+      "operator_proposal": null,
+      "task_change_proposal": null
+    },
+    {
+      "world_id": "E05",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor"],
+        "authority": {"execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["owner_task_current", "known_actions_exhausted"],
+      "available_actions": [
+        {"id": "safe_exit", "kind": "SAFE_EXIT", "authority_endpoint": "executor"}
+      ],
+      "inventory": {
+        "action_inventory": "INCOMPLETE",
+        "response_family": "UNKNOWN",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "INCOMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 4,
+        "unresolved_items": ["tool_inventory", "partner_inventory", "task_representation_language"]
+      },
+      "operator_proposal": null,
+      "task_change_proposal": null
+    },
+    {
+      "world_id": "E06",
+      "episode": {
+        "q": "deliver signed manifest",
+        "v0": {"minimum_integrity": "signed"},
+        "principals": ["owner", "executor"],
+        "authority": {"change_task": "owner", "execute": "executor", "accept": "owner"}
+      },
+      "s0_observations": ["owner_change_endpoint_current"],
+      "available_actions": [
+        {"id": "request_owner_change", "kind": "OWNER_AMENDMENT", "authority_endpoint": "owner"},
+        {"id": "controller_rewrite", "kind": "CONTROLLER_REWRITE", "authority_endpoint": "controller"}
+      ],
+      "inventory": {
+        "action_inventory": "COMPLETE",
+        "response_family": "COMPLETE",
+        "observation_kernel": "COMPLETE",
+        "transition_semantics": "COMPLETE",
+        "search_bound_frozen": true,
+        "horizon": 4,
+        "unresolved_items": []
+      },
+      "operator_proposal": null,
+      "task_change_proposal": {
+        "changes": [
+          {"path": "/q", "before_value": "deliver signed manifest", "after_value": "deliver unsigned draft"},
+          {"path": "/v0/minimum_integrity", "before_value": "signed", "after_value": "draft"}
+        ],
+        "owner_endpoint": "owner"
+      }
+    }
+  ]
+}

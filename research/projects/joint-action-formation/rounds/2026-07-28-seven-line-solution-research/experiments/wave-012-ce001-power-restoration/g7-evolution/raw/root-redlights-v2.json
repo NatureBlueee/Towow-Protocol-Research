@@ -1,0 +1,116 @@
+{
+  "schema": "ce001.g7-agent-c.root-redlights.v2",
+  "recorded_at_utc": "2026-07-29T16:26:08Z",
+  "agent_identity": "/root/g7_c_v2",
+  "implementation_under_test": "G7 baseline before B-v2",
+  "baseline_git_head": "91bfe066675530483db11bdc0f015636afe24efc",
+  "test_file": "tests/test_root_redlights_v2.py",
+  "test_file_sha256": "e0b840a8757822e6643bdb136c781fe1fd9027ec5ab8251785a2590237612124",
+  "command": "PYTHONPYCACHEPREFIX=/tmp/g7c-v2-baseline-pycache python3 -m unittest tests.test_root_redlights_v2 -v",
+  "exit_code": 1,
+  "duration_seconds": 5.01919425,
+  "counts": {
+    "tests": 19,
+    "red_failures": 17,
+    "pass_controls": 2,
+    "errors": 0,
+    "skipped": 0
+  },
+  "red_tests": [
+    "test_capsule_hash_is_from_actual_transmitted_bytes_not_fixture_label",
+    "test_dispatch_has_no_controller_authority_boolean",
+    "test_duplicate_owner_and_response_transplant_do_not_create_finality",
+    "test_e6_has_distinct_runtime_process_and_durable_state_boundaries",
+    "test_fence_is_owned_by_external_process_and_persisted_bytes",
+    "test_g7_envelope_enters_current_integration_preflight",
+    "test_g7_namespaced_envelope_has_no_contract_passthrough",
+    "test_g7_results_do_not_emit_contract_conclusions",
+    "test_history_rewrite_attack_is_rejected_from_persisted_prefix_bytes",
+    "test_op_response_follows_exact_oq_ov_response_hashes",
+    "test_oq_ov_op_have_distinct_real_process_state_and_act_sources",
+    "test_owner_binding_attacks_reject_wrong_episode_q_effect_and_stale_response",
+    "test_source_was_terminated_target_started_and_old_runtime_restarted",
+    "test_state_history_owner_and_occurrence_hashes_recompute_from_bytes",
+    "test_target_consumption_is_from_exact_transmitted_receipt_set",
+    "test_unrun_and_unestablished_boundaries_remain_explicit",
+    "test_wrong_stale_and_tampered_authority_receipts_fail_closed"
+  ],
+  "pass_controls": [
+    "test_existing_e4_e6_risk_boundaries_are_not_weakened",
+    "test_field_loss_cost_adapter_and_hidden_pair_boundaries_stay_honest"
+  ],
+  "key_observations": [
+    {
+      "redlight": "CONTROLLER_AUTHORITY_INJECTION",
+      "observed": "EffectTarget.dispatch still accepts authority_allowed: bool",
+      "assertion": "authority_allowed unexpectedly present in the dispatch signature"
+    },
+    {
+      "redlight": "OWNER_RESPONSE_TRANSPLANT",
+      "observed": "An O_Q response relabelled as O_V and rehashed caused SettlementOwner to return SETTLED",
+      "assertion": "O_P accepted an O_Q response transplanted into the O_V label"
+    },
+    {
+      "redlight": "OWNER_PROCESS_STATE_ACT_SEPARATION",
+      "observed": "No top-level line-local evidence exists for distinct O_Q/O_V/O_P process, state, act, request bytes, or response bytes",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "TARGET_NATIVE_RECEIPT_CONSUMPTION",
+      "observed": "No transmitted current receipt set, target-native consumption event bytes, or wrong/stale/tampered receipt attack records exist",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "E6_REAL_MIGRATION_BOUNDARY",
+      "observed": "No source/target process ids, durable state paths, observed source termination, target start, or actual old-process restart evidence exists",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "EXTERNAL_DURABLE_FENCE",
+      "observed": "No external fence-owner process and persisted state-byte preimage exists",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "BYTE_PROVENANCE",
+      "observed": "No transmitted or persisted byte preimages exist for capsule, source state, target state, history prefix, owner evidence, or occurrence",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "HISTORY_REWRITE",
+      "observed": "No persisted-prefix byte comparison and rejected rewritten-candidate evidence exists",
+      "assertion": "top-level line-local evidence is missing"
+    },
+    {
+      "redlight": "CONTRACT_CONCLUSION_PASSTHROUGH",
+      "observed": "The result contained 35 forbidden contract-level or synonymous conclusion paths",
+      "sample_paths": [
+        "$.cases.E4.acceptance",
+        "$.cases.E4.settlement",
+        "$.cases.E4.ExactTaskSuccess",
+        "$.cases.E4.CorrectResolution",
+        "$.cases.E4.RecoveryToValue",
+        "$.cases.E6.acceptance",
+        "$.cases.E6.settlement",
+        "$.aggregate.exact_task_success",
+        "$.aggregate.correct_resolution",
+        "$.aggregate.recovery_to_value"
+      ]
+    },
+    {
+      "redlight": "INTEGRATION_ENVELOPE",
+      "observed": "The baseline produced no exact G7 QUALIFIED_COMPONENT_OUTPUT envelope to inject into the current E6 integration preflight",
+      "assertion": "G7 integration envelope evidence is missing"
+    }
+  ],
+  "preserved_boundaries": {
+    "e4_alternative_recovery_regression": "PASS_CONTROL_ONLY",
+    "e6_gap_reconciliation_regression": "PASS_CONTROL_ONLY",
+    "append_only_regression": "PASS_CONTROL_ONLY",
+    "field_loss_fail_closed": "PASS_CONTROL_ONLY",
+    "cold_repeat_full_lifecycle": "NOT_MEASURED",
+    "adapter_semantic_independence": "NOT_ESTABLISHED",
+    "hidden_pair": "NOT_CONSTRUCTED",
+    "safety_liveness_frontier": "NOT_RUN"
+  },
+  "interpretation": "This is the immutable pre-repair Agent C baseline. A later green run may close only these frozen attacks and must not erase the 17 RED history."
+}

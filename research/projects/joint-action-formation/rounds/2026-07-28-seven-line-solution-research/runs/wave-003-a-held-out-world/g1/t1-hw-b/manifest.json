@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "T1-HW-B-MANIFEST-20260728-A",
+  "world_id": "T1-HW-20260728-B",
+  "wave": "003-A",
+  "research_line": "G1-DISCOVERY-BEFORE-SEARCH",
+  "visibility": {
+    "method_visible": [
+      "method-visible/README.md",
+      "method-visible/submission_schema.json",
+      "exactly one delivery-packets recipient file per isolated solver"
+    ],
+    "controller_only": [
+      "controller_input.json",
+      "packet_builder.py",
+      "delivery-packets/controller-index.json",
+      "the complete delivery-packets directory"
+    ],
+    "scorer_only": [
+      "oracle_truth.json",
+      "scorer.py",
+      "fixtures/scorer_conformance_receipt.json",
+      "mutations/negative_mutations.json",
+      "tests/test_hwb.py"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "controller_and_scorer_runbook",
+      "sha256": "d75ac604ef2d7dc499033e05a5281d76a1dfb0cfea40ff7a0146bcb9e628932f"
+    },
+    {
+      "path": "controller_input.json",
+      "role": "controller_only_packet_source",
+      "sha256": "8b0195384da67fe7da5e7833e0a6b73001926e215cb6d08d34dda3f276a9804b"
+    },
+    {
+      "path": "oracle_truth.json",
+      "role": "scorer_only_latent_truth",
+      "sha256": "8e7999ccc0694611416bedbef556dcc52595e3e8e7d8b4282209744859edb0e8"
+    },
+    {
+      "path": "packet_builder.py",
+      "role": "deterministic_non_solving_router",
+      "sha256": "11f0c77053b49660bcd86fd382ee6000d9e06d6e911fd47a3c0371c7d420b0f0"
+    },
+    {
+      "path": "scorer.py",
+      "role": "deterministic_non_generative_scorer",
+      "sha256": "9ef6497cd15bf3b4ef0d965cecb1371a490c96bdd6b963806be98e74296c619e"
+    },
+    {
+      "path": "method-visible/README.md",
+      "role": "method_visible_compatibility_contract",
+      "sha256": "11e9f313995758160d9d1f5e54275f228ad16e8aac0d1c49ea7bc0492ef2ff1f"
+    },
+    {
+      "path": "method-visible/submission_schema.json",
+      "role": "method_visible_submission_contract",
+      "sha256": "314850839bc3d9394f9c1827f9b39990be7ff1a028ce6fdb61675c04fc5ed087"
+    },
+    {
+      "path": "fixtures/scorer_conformance_receipt.json",
+      "role": "manual_scorer_calibration_not_candidate",
+      "sha256": "291e44ca1d5be5c870061710cf01589f7ca22684aa58374c97bb5a7ceb8941fe"
+    },
+    {
+      "path": "mutations/negative_mutations.json",
+      "role": "negative_scorer_mutations",
+      "sha256": "56cde5171dea2259d1286f7250fd0fac52a723ac77303a660991ecdf4cdbdc10"
+    },
+    {
+      "path": "tests/test_hwb.py",
+      "role": "truth_separation_scorer_and_hash_tests",
+      "sha256": "50425cbdb91798afc0d56b5e11580efdb90b100cb633f2f762c77402290d6fd4"
+    },
+    {
+      "path": "delivery-packets/controller-index.json",
+      "role": "controller_only_packet_hash_closure",
+      "sha256": "57b01f678cc04d48d8eeb5cfa898b7a3ab7c2e268f87943e3bb3b92cc156efbc"
+    }
+  ],
+  "packet_closure": {
+    "index_path": "delivery-packets/controller-index.json",
+    "index_sha256": "57b01f678cc04d48d8eeb5cfa898b7a3ab7c2e268f87943e3bb3b92cc156efbc",
+    "packet_count": 13,
+    "delivery_rule": "Do not expose the index or complete packet directory to a candidate. Deliver one exact recipient packet per isolated execution domain."
+  },
+  "requirements": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8"
+  ],
+  "claims": {
+    "fixture_is_candidate_result": false,
+    "candidate_method_implemented": false,
+    "candidate_method_run": false,
+    "oracle_is_method_visible": false,
+    "real_world_validation": false,
+    "protocol_exclusive_value": false
+  },
+  "hash_algorithm": "sha256",
+  "manifest_self_hash": null
+}

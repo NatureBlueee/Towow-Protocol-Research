@@ -1,0 +1,217 @@
+{
+  "decisions": [
+    {
+      "detection_id": "DET-HWB-PUBLIC-COLD-AURORA-BASALT",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-HWB-COLD-SEEK-V2",
+        "W-HWB-COLD-OFFER-V5"
+      ],
+      "kind": "PAIR",
+      "provider": "BASALT-04",
+      "seeker": "AURORA-17",
+      "state": "DISCOVERED"
+    },
+    {
+      "detection_id": "DET-HWB-HIDDEN-GRID-HELIOS-ION",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-HWB-HELIOS-PROJECTION",
+        "W-HWB-ION-PROJECTION"
+      ],
+      "kind": "PAIR",
+      "provider": "ION-06",
+      "seeker": "HELIOS-44",
+      "state": "DISCOVERED"
+    },
+    {
+      "detection_id": "DET-HWB-RECIP-JUNIPER-KITE",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-HWB-RECIPROCAL-RECEIPT"
+      ],
+      "kind": "PAIR",
+      "provider": "KITE-15",
+      "seeker": "JUNIPER-28",
+      "state": "DISCOVERED"
+    },
+    {
+      "detection_id": "DET-HWB-MOBILE-ECHO-DELTA",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-HWB-MOBILE-VERSION-FLIP"
+      ],
+      "kind": "PAIR",
+      "provider": "DELTA-09",
+      "seeker": "ECHO-31",
+      "state": "INVALIDATED"
+    },
+    {
+      "detection_id": "DET-HWB-POLICY-FJORD-GLASS",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-HWB-POLICY-REFUSAL"
+      ],
+      "kind": "PAIR",
+      "provider": "GLASS-08",
+      "seeker": "FJORD-12",
+      "state": "UNFINDABLE_UNDER_POLICY"
+    },
+    {
+      "claim_key": "capability:quiet-node:marine-acoustic-tagging",
+      "detection_id": "DET-HWB-CLAIM-LUMEN-QUIET-NODE",
+      "evidence_refs": [
+        "W-HWB-NO-RESPONSE"
+      ],
+      "kind": "CLAIM",
+      "state": "UNKNOWN",
+      "subject": "LUMEN-03"
+    },
+    {
+      "claim_key": "capability:sealed-node:geology-core-review",
+      "detection_id": "DET-HWB-CLAIM-MESA-SEALED-NODE",
+      "evidence_refs": [
+        "W-HWB-EXPLICIT-REFUSAL"
+      ],
+      "kind": "CLAIM",
+      "state": "REFUSE",
+      "subject": "MESA-27"
+    },
+    {
+      "claim_key": "capability:closed-cohort:orbital-etch-repair",
+      "detection_id": "DET-HWB-CLAIM-CLOSED-ORBITAL-COHORT",
+      "evidence_refs": [
+        "W-HWB-CLOSED-COHORT-V4",
+        "W-HWB-CLOSED-NOVA-NEG",
+        "W-HWB-CLOSED-ONYX-NEG",
+        "W-HWB-CLOSED-PULSE-NEG",
+        "W-HWB-CLOSED-QUARTZ-NEG"
+      ],
+      "kind": "CLAIM",
+      "state": "ABSENT",
+      "subject": "POP-ORBITAL-ETCH-COHORT"
+    }
+  ],
+  "disclosures": [
+    {
+      "depth": 1,
+      "event_id": "disclosure-217943fea56905ca488b562f",
+      "fact_id": "F-HWB-HELIOS-TASK-PROJECTION",
+      "origin_party": "HELIOS-44",
+      "purpose": "scoped-topology-screen",
+      "recipient": "NODE-COPPER-ROUTER",
+      "retention": "PT3M",
+      "sender": "HELIOS-44"
+    },
+    {
+      "depth": 1,
+      "event_id": "disclosure-44aa951fda1d0527c99523d7",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION",
+      "origin_party": "ION-06",
+      "purpose": "scoped-topology-screen",
+      "recipient": "NODE-SILVER-RELAY",
+      "retention": "PT3M",
+      "sender": "ION-06"
+    },
+    {
+      "depth": 1,
+      "derived_from_event_id": "disclosure-44aa951fda1d0527c99523d7",
+      "event_id": "disclosure-303e29f90bb7aa53c53b6b63",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION",
+      "origin_party": "ION-06",
+      "purpose": "scoped-topology-screen",
+      "recipient": "NODE-COPPER-ROUTER",
+      "retention": "PT3M",
+      "sender": "NODE-SILVER-RELAY"
+    },
+    {
+      "depth": 1,
+      "event_id": "reciprocal-disclosure-2e1da93f9e4d48d0ddc9eb57",
+      "fact_id": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "origin_party": "JUNIPER-28",
+      "purpose": "two-sided-route-probe",
+      "recipient": "KITE-15",
+      "retention": "PT7M",
+      "sender": "JUNIPER-28"
+    },
+    {
+      "depth": 1,
+      "event_id": "reciprocal-disclosure-3842afc0740ec49a91f4afde",
+      "fact_id": "F-HWB-KITE-RECIP-DETAIL",
+      "origin_party": "KITE-15",
+      "purpose": "two-sided-route-probe",
+      "recipient": "JUNIPER-28",
+      "retention": "PT7M",
+      "sender": "KITE-15"
+    }
+  ],
+  "evaluation_step": 2,
+  "method_id": "controller-receipts-v3-post-oracle-representation-diagnosis",
+  "probes": [
+    {
+      "evidence_refs": [
+        "W-HWB-RECIPROCAL-RECEIPT"
+      ],
+      "offered_fact": "F-HWB-KITE-RECIP-DETAIL",
+      "probe_id": "reciprocal-exchange-5a96eb1c1d00283ef5191b8a",
+      "requested_fact": "F-HWB-JUNIPER-RECIP-DETAIL",
+      "requester": "KITE-15",
+      "responder": "JUNIPER-28",
+      "status": "RECIPROCAL_COMPLETE"
+    }
+  ],
+  "projection_updates": [
+    {
+      "evidence_ref": "W-HWB-MOBILE-VERSION-FLIP",
+      "from_version": 4,
+      "party": "DELTA-09",
+      "step": 2,
+      "to_version": 5
+    }
+  ],
+  "relation_handoffs": [
+    {
+      "commitment": false,
+      "detection_id": "DET-HWB-PUBLIC-COLD-AURORA-BASALT",
+      "evidence_refs": [
+        "W-HWB-COLD-SEEK-V2",
+        "W-HWB-COLD-OFFER-V5"
+      ],
+      "open_questions": [
+        "Current capacity, authority, terms and executable operation remain unqualified."
+      ],
+      "provider": "BASALT-04",
+      "seeker": "AURORA-17",
+      "status": "CANDIDATE_NOT_COMMITMENT"
+    },
+    {
+      "commitment": false,
+      "detection_id": "DET-HWB-HIDDEN-GRID-HELIOS-ION",
+      "evidence_refs": [
+        "W-HWB-HELIOS-PROJECTION",
+        "W-HWB-ION-PROJECTION"
+      ],
+      "open_questions": [
+        "The exact operation, current authority, willingness and execution conditions remain unqualified."
+      ],
+      "provider": "ION-06",
+      "seeker": "HELIOS-44",
+      "status": "CANDIDATE_NOT_COMMITMENT"
+    },
+    {
+      "commitment": false,
+      "detection_id": "DET-HWB-RECIP-JUNIPER-KITE",
+      "evidence_refs": [
+        "W-HWB-RECIPROCAL-RECEIPT"
+      ],
+      "open_questions": [
+        "Reciprocal discovery does not establish mandate, commitment, authority or execution."
+      ],
+      "provider": "KITE-15",
+      "seeker": "JUNIPER-28",
+      "status": "CANDIDATE_NOT_COMMITMENT"
+    }
+  ],
+  "schema_version": "1.1",
+  "world_id": "T1-HW-20260728-B"
+}

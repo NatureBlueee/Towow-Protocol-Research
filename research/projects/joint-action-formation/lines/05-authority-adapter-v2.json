@@ -1,0 +1,162 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-05-AUTHORITY-ADAPTER-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "AUTHORITY_NORMS",
+  "title": "版本化权威差异的现成授权栈与最小适配器",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-AUTH-001",
+    "CAP-AUTH-002",
+    "CAP-AUTH-003",
+    "CAP-AUTH-004",
+    "CAP-AUTH-005"
+  ],
+  "local_question": "在同一 authenticated Entity 和相同执行能力下，成熟 RBAC、ABAC、ReBAC、scoped delegation、approval、contract/version、reservation 与 audit 组合能否无损阻止角色串联、purpose/data-use 越界、旧版本 stance 继承、撤销后执行和伪 Acceptance；若不能，最小缺失状态是 AuthorityLocus、Mandate、RelationVersion/Stance、Standing 还是 adapter 约束？",
+  "blocked_decision": "决定 AuthorityLocus、Mandate、RelationVersion、Stance 与 Standing 中哪些差异可由成熟授权栈和 adapter 无损承担，哪些最小状态仍值得独立保留，同时避免一次 Allow 吞并 Commitment、Reservation、Effect 与 Acceptance。",
+  "reverse_result": "若成熟授权栈在相同 action、角色、purpose、数据、版本、撤销、reservation、第三方 challenge 和维护成本条件下不劣于 Mandate adapter，则新增对象应合并为 policy schema、workflow state 或 adapter；若 adapter 只重复事实，则不得创建第二授权现实。",
+  "minimum_discriminator": "冻结多角色 Authority Locus 与 purpose/data、material-version、revocation、reservation、受影响方 challenge 等 adversarial transitions，公平比较 MATURE-STACK 与 MANDATE-ADAPTER，并分别 readback policy decision、实际 operation 和 postcondition，报告 false allow/deny、stale-version acceptance、撤销传播、challenge coverage、重复事实与维护成本。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/lines/05-authority-norms.json",
+    "research/projects/joint-action-formation/lines/05-authority-norms.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/27_附录-b-mandate-采集表.md",
+    "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/28_附录-c-relationversion-最小结构.md",
+    "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/29_附录-d-explain-back-评分.md"
+  ],
+  "budget": {
+    "max_minutes": 60,
+    "max_attempts": 2,
+    "max_output_bytes": 3145728
+  },
+  "stop_conditions": [
+    "开始要求真人作出 Mandate explain-back、原生授权、承诺、接受或责任承担",
+    "把认证、token、VC、policy permit、approval 或执行成功自动提升为 Principal 授权或 Acceptance",
+    "比较臂没有获得相同角色、action、purpose/data、版本、撤销、reservation、challenge 与维护预算",
+    "adapter 创建了与 IAM、contract、workflow、reservation 或 audit 竞争的第二事实源",
+    "需要真实主体材料、受限数据、现实账户、生产策略写入或外部消息",
+    "机器 policy fixture 被描述成真人理解、法律充分性、公平或现实规范有效性"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "hypothesis_outcomes",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cost",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "必须给予 RBAC、ABAC、ReBAC、scoped delegation、approval、contract/version、reservation 与 audit 完整成熟组合基线",
+    "同一实现不能同时生成 policy、执行 operation 并充当唯一 oracle，policy decision、operation 和 postcondition 必须分开 readback",
+    "必须分别测试角色、purpose/data、material version、revocation、reservation 与 Standing，不能用一个总通过抹平失败切片",
+    "真人 Mandate explain-back、现实 Principal 认领、现实授权和 Acceptance 明确 DEFERRED，不得由模型、fixture 或 synthetic participant 替代",
+    "不得读取其他母线候选结果来把 policy 正确性提升为 capability、Commitment、Effect 或关系形成"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-AUTH-VERSIONED-ADAPTER-GAP"
+    ],
+    "hypothesis_ids": [
+      "E-AUTH-01-ADAPTER-SUFFICIENCY"
+    ],
+    "applicable_assumptions": [
+      "WORLD-AGENT-ENTITY",
+      "WORLD-INTENT-NORMATIVE-GAP",
+      "WORLD-INSTITUTIONAL-COEXISTENCE",
+      "WORLD-COMPILE-AND-REOPEN"
+    ],
+    "non_claims": [
+      "不运行 E-AUTH-02-MANDATE-EXPLAINBACK，不证明真人理解、自由认领或可接受认知成本",
+      "不建立任何现实 Principal 的 Mandate、授权、Commitment、Acceptance 或责任",
+      "不把认证、credential、policy permit、approval 或 token delegation 当作业务真相或最终权威充分性",
+      "不证明法律有效性、合法性、公平性、第三方代表充分性或跨制度普遍性",
+      "不把机器 fixture 的正确 permit/deny 提升为现实 Effect、Adoption、Settlement 或净价值"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/joint-action-formation/lines/05-authority-norms.json",
+      "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/27_附录-b-mandate-采集表.md",
+      "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/28_附录-c-relationversion-最小结构.md",
+      "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/29_附录-d-explain-back-评分.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/problem/v2.json",
+      "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "成熟 RBAC、ABAC、ReBAC、细粒度授权、委托、approval、credential 和 audit 已覆盖大部分表达与 enforcement；仍需检验 policy 所需事实的来源与认领、material-version stale stance、Standing 以及 Commitment、Reservation、Effect、Acceptance 不被一次 Allow 吞并是否需要最小 adapter state。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/lines/05-authority-norms.json",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "v0 合同保存身份、Principal、角色、Mandate Version 与能力分离，但未绑定 Problem v2、强授权栈或真人未启动边界。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/native_lines/05_authority_and_norms.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "原生线保留 Authority Root、Mandate、Stance 与 Standing 的设计差异，没有证明它们不能被成熟 policy 和 workflow 重建。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "矩阵显示前四项历史能力保留较强而 Standing 仍为部分覆盖，不能据此宣布整套对象必要。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/27_附录-b-mandate-采集表.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "Mandate 采集字段可作为 explain-back 材料来源，但没有真实参与者运行或与成熟授权 UX 对照。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/28_附录-c-relationversion-最小结构.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "RelationVersion 最小结构保留 material version 引用，但没有运行成熟 policy model version 与 contract version 的无损替代对照。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/large-docs/human-study-v1.1/29_附录-d-explain-back-评分.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "评分表定义了真人可理解性检验方向，但本合同没有真人授权，因此 E-AUTH-02 保持 DEFERRED。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/problem/v2.json",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "Problem v2 冻结 Intent、Principal、Mandate、Commitment、Execution 与 Acceptance 可分别失败，并要求现成制度强基线，但不决定最小 adapter gap。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "一手审计确认 RBAC、ABAC、ReBAC、RAR、Token Exchange、Macaroons、VC 与 approval 已覆盖大量候选字段；尚未运行 material-version、Standing 与跨状态边界对照。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能把 SC-AUTH-VERSIONED-ADAPTER-GAP 提升为候选证据，并精确冻结成熟栈不能无损表达的 AuthorityLocus、RelationVersion/Stance、Standing 或跨状态引用；不能登记 Mandate 本体必要性、真人授权或 Acceptance。",
+    "negative_effect": "负结果只会把相应 AuthorityLocus、Mandate、RelationVersion、Stance 或 Standing 表示降为 policy schema、workflow state、adapter 或派生视图；不删除授权不可代行、版本失效、受影响方 challenge 或分层生命周期问题，除非相同前提下无损重建其正例与移除失败。",
+    "unaffected_claim_ids": [
+      "SC-CAP-PROSPECTIVE-REALIZATION",
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有成熟栈或更小 adapter 在相同角色、purpose/data、material version、revocation、reservation、Standing、审计和维护成本条件下重建全部正例、失败切片与移除失败，并保持 IAM、contract、workflow、reservation 和 audit 的唯一事实所有权，才可登记为无损替代。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/05-authority-adapter-v2.md"
+}

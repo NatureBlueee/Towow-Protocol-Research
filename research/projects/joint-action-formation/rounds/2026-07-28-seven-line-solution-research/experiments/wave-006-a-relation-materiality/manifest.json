@@ -1,0 +1,132 @@
+{
+  "schema": "towow.relation-materiality-manifest.v1",
+  "experiment_id": "WAVE-006-A-RELATION-MATERIALITY",
+  "status": "LOCAL_SYNTHETIC_COMPARISON_COMPLETE",
+  "date": "2026-07-29",
+  "shared_task": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "integration_rubric": {
+    "path": "../../WAVE-006-INTEGRATION-RUBRIC.md",
+    "sha256": "79e6cabfcd2f3b293d97eb807f58ab53245bc4fa459e6852fa5d8956a61e0915"
+  },
+  "public_source_evidence": [
+    {
+      "path": "../wave-004-a-controller-executor/manifest.json",
+      "sha256": "cf617885cf447e38204f75a2566fd61fb00c474847969ca5bc46a81bc995d80c",
+      "use": "trusted local controller receipt and readback boundary"
+    },
+    {
+      "path": "../wave-005-b-cross-authority-receipts/manifest.json",
+      "sha256": "41ed88ff3d4d71dc9f42904a10b11a5b8e109ccad7cfe67861bb29e08aeb948c",
+      "use": "dual recipient ACK and cross-authority evidence boundary"
+    }
+  ],
+  "invariant": {
+    "shared_across_a_b_c": [
+      "operation",
+      "inputs",
+      "truth",
+      "authority",
+      "event sequence",
+      "drift cases",
+      "cost model"
+    ],
+    "only_changed": "relation representation and recognition rule"
+  },
+  "strategies": [
+    "A_DELIVERY_RECEIPT_ONLY",
+    "B_DUAL_RECIPIENT_ACK",
+    "C_ACK_EXPLAINBACK_RELATION_PROPOSAL"
+  ],
+  "measures": [
+    "false positive",
+    "false negative",
+    "false relation constitution",
+    "reuse success",
+    "stale reuse",
+    "withdrawal residual",
+    "clarification count",
+    "recovery time steps",
+    "disclosure units",
+    "coordination operations",
+    "net task value"
+  ],
+  "strongest_counterexample": {
+    "name": "one-shot retrieval mistaken for continuing relation",
+    "status": "REJECTED_BY_RECONSTRUCTED_METRICS",
+    "false_relation_constitution": 7,
+    "stale_reuse": 1,
+    "withdrawal_residual": 1
+  },
+  "result": {
+    "winner_at_relation_representation_scope": "A_DELIVERY_RECEIPT_ONLY",
+    "dual_ack_sufficient_for_task_receipt": true,
+    "relation_version_material_increment_over_dual_ack": false,
+    "relation_version_net_value_delta_over_dual_ack": -7,
+    "decision": "USE_SIMPLER_EXISTING_EVIDENCE; DO_NOT_CONSTITUTE_A_RELATION"
+  },
+  "excluded_inputs": [
+    "HW-C private packets",
+    "HW-C tests",
+    "HW-C oracle",
+    "HW-C controller-index"
+  ],
+  "evidence_boundary": {
+    "environment": "LOCAL_DETERMINISTIC_SYNTHETIC_SIMULATION",
+    "not_claimed": [
+      "real subject understanding",
+      "real relation formation",
+      "medical or production validity",
+      "cross-domain frequency",
+      "need for a novel Towow protocol"
+    ]
+  },
+  "validation": {
+    "unit_test_command": "python3 -m unittest discover -s tests -v",
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0,
+    "additional_checks": [
+      "PYTHONPYCACHEPREFIX=/tmp/towow-wave006-g2-pycache python3 -m py_compile simulator.py evaluator.py",
+      "git diff --check -- .",
+      "saved result summary compared with evaluator reconstruction"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "21ada114934a37682b804b1a843c989b358984709ce943204b805e8b7900547a"
+    },
+    {
+      "path": "simulator.py",
+      "sha256": "e748e214e4899424c190fb480e08f94a15dbf3e0bdb40a7b6af47e43852517c1"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "ca67368ad8ec7a9afd2de4df6b39a970ed6e3a833111e49cde03a1b26252a524"
+    },
+    {
+      "path": "fixtures/shared-world.json",
+      "sha256": "ab5806900c16ea8f6308b89dc04811428bf76c5663ff0d8b66e7e5f8fe8585d4"
+    },
+    {
+      "path": "fixtures/strategies.json",
+      "sha256": "838eac810fb329817f35836d4d777402b3185e1948f64b34ba9ced46c8e3164d"
+    },
+    {
+      "path": "fixtures/cost-model.json",
+      "sha256": "7415e295d324d788b55ec5896fc784d0e0ff288ec48086cf3328781a124999ae"
+    },
+    {
+      "path": "outputs/result-summary.json",
+      "sha256": "2f8c2315dacfee16c414b8310cad2a18146f5c334c2b41a42a746a64fc8a214f"
+    },
+    {
+      "path": "tests/test_materiality.py",
+      "sha256": "ff47885315499287a33c728caf238672cea4f7c7e21880737ddb18a80c5de858"
+    }
+  ]
+}

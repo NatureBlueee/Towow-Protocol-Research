@@ -1,0 +1,887 @@
+{
+  "authority_state": [
+    {
+      "adoption_acceptance": {
+        "acceptance_witness": "CITY_AWARD_NOTICE_FOR_EXACT_BID_VERSION",
+        "adoption_witness": "CITY_SHORTLIST_NOTICE",
+        "not_equivalent": true
+      },
+      "authority": "CITY-PROCUREMENT",
+      "budget": {
+        "ceiling": 360000,
+        "comparison": "TOTAL_BID_PRICE_LESS_THAN_OR_EQUAL_TO_CEILING",
+        "currency": "CNY",
+        "deadline": "D+5"
+      },
+      "current_tender": {
+        "approved_external_projection": "AGGREGATES_ONLY",
+        "current_tender_version": "CITY-RFC-17-V2",
+        "material_addendum_id": "ADD-DATA-LOCAL-02",
+        "raw_data_boundary": "RAW_TELEMETRY_CITY_TENANT_ONLY"
+      },
+      "scope": "tender, budget and outcome witness semantics",
+      "submission_evidence_rule": {
+        "does_not_prove": [
+          "ADOPTION",
+          "ACCEPTANCE",
+          "EFFECT"
+        ],
+        "eligibility_receipt_proves": "FORMAL_REVIEW_PASSED",
+        "portal_receipt_proves": "EXACT_PAYLOAD_BYTES_RECEIVED"
+      },
+      "target_readback": {
+        "readback_authority": "CITY-OPERATIONS",
+        "required_fields": [
+          "accepted_bid_version",
+          "site_count_reporting",
+          "offline_capture_hours_observed",
+          "sync_reconciliation_result",
+          "independent_audit_report_hash"
+        ]
+      }
+    },
+    {
+      "authority": "PRIME-BID",
+      "final_signature_occurred": false,
+      "liability": {
+        "excluded_liability": "CONSEQUENTIAL_LOSS",
+        "liability_cap_cny": 500000,
+        "required_allocation": "each principal remains liable for its signed scope"
+      },
+      "price": {
+        "currency": "CNY",
+        "fixed_price": 120000,
+        "scope": "prime integration, bid management, and bounded recovery support"
+      },
+      "stance": {
+        "conditions": [
+          "CURRENT_TENDER_BOUND",
+          "TOTAL_WITHIN_CEILING",
+          "EXACT_PROBE_PASSED",
+          "ALL_RESERVATIONS_VALID",
+          "SAME_RELATION_VERSION"
+        ],
+        "stance": "CONDITIONAL"
+      }
+    },
+    {
+      "authority": "FIELD-COMMERCIAL",
+      "final_signature_occurred": false,
+      "price": {
+        "currency": "CNY",
+        "fixed_price": 145000,
+        "scope": "12 kits, deployment, load test, and bounded weather remobilization"
+      },
+      "risk": {
+        "counterconditions": [
+          "TWO_DAY_WEATHER_BUFFER",
+          "PRE_DEPLOYMENT_LOAD_TEST_ALL_12_KITS"
+        ],
+        "risks": [
+          "TWO_SITES_MAY_REQUIRE_ONE_ADDITIONAL_MOBILIZATION_DAY",
+          "COLD_WEATHER_BATTERY_DERATING"
+        ]
+      },
+      "stance": {
+        "conditions": [
+          "12_KITS_RESERVED",
+          "DEPLOYMENT_RISK_ALLOCATED",
+          "FIRMWARE_AND_DATA_BOUNDARY_ON_SAME_RELATION_VERSION"
+        ],
+        "stance": "CONDITIONAL"
+      }
+    },
+    {
+      "authority": "ASSURE-COMMERCIAL",
+      "final_signature_occurred": false,
+      "independence": {
+        "current_conflict": false,
+        "must_not": [
+          "DESIGN_IMPLEMENTATION_CONTROLS",
+          "OPERATE_PILOT",
+          "HOLD_PAYMENT_ON_PASS_INTEREST",
+          "REPLACE_CITY_ACCEPTANCE_AUTHORITY"
+        ]
+      },
+      "price": {
+        "currency": "CNY",
+        "fixed_price": 70000,
+        "scope": "12-site independent audit and signed report"
+      },
+      "stance": {
+        "conditions": [
+          "AUDIT_SCOPE_FROZEN_BEFORE_IMPLEMENTATION_FREEZE",
+          "NO_DESIGN_OR_OPERATION_ROLE",
+          "TWO_AUDITOR_SLOT_RESERVED"
+        ],
+        "stance": "CONDITIONAL"
+      }
+    }
+  ],
+  "cannot_support": [
+    "A real bid was submitted.",
+    "The city adopted or accepted the candidate.",
+    "The synthetic probe proves general production capability.",
+    "The target-domain effect occurred.",
+    "Settlement occurred.",
+    "This method is better than all strong-center or standards-only alternatives."
+  ],
+  "capability_qualifications": [
+    {
+      "asserted_before_commitment": true,
+      "environment": "CITY_SANDBOX_LOCAL_TENANT",
+      "evidence_available_at_claim_time": {
+        "observed": {
+          "environment": "CITY_SANDBOX_LOCAL_TENANT",
+          "field_version": "4.2",
+          "offline_capture_hours_observed": 26,
+          "operation_id": "LOCAL-CAPTURE-SYNC-ACCEPT-V2",
+          "prime_version": "2.3.1",
+          "qualification_scope": "EXACT_VERSIONS_ENVIRONMENT_PERMISSION_AND_12_SITE_OPERATION",
+          "raw_export_attempts": 0,
+          "result": "PASS",
+          "sync_result": "COMPLETE_WITHOUT_DUPLICATE_EVENTS"
+        },
+        "receipt_hash": "85b61dfc899958251de3870cd5a1d0173df3f51fde6b988bd05dd275ea1ace34",
+        "receipt_id": "RCPT-eb344d8c112d3548e1814b4f"
+      },
+      "executor": "PRIME-TECH_WITH_FIELD_INTERFACE",
+      "operation": "LOCAL-CAPTURE-SYNC-ACCEPT-V2",
+      "permission": "CONTROLLER_AUTHORIZED_SYNTHETIC_BOUNDED_PROBE_ONLY",
+      "recovery": {
+        "does_not_prove_effect": true,
+        "local_queue_hours": 30,
+        "manual_reconcile_trigger": true,
+        "retry": "IDEMPOTENT_EVENT_BATCH"
+      },
+      "resource": "12_SITE_OPERATION",
+      "status": "QUALIFIED_EXACT_SYNTHETIC_OPERATION_NOT_GENERAL_CAPABILITY",
+      "version": {
+        "field": "4.2",
+        "prime": "2.3.1",
+        "tender": "CITY-RFC-17-V2"
+      }
+    }
+  ],
+  "controller_history_hash": "6640d2f0783f308c43b6c5797a6517ffe1bfea52c00d2b2fd5a4f2a94145662d",
+  "evaluator_hash": "69e8e53d5318c2cc3f449798223948e9cc95ec2160d68e69fca2c664128e9c70",
+  "input_hash": "d11bb54f75c70ffdd08ac63a261bb464e0a1c21e20495ef8dbb017004eb2830a",
+  "method_components": [
+    "deterministic authority-interface discovery",
+    "existing workflow/state-machine composition",
+    "controller-mediated IAM/policy disclosure receipts",
+    "bounded interoperability probe before commitment",
+    "authoritative outcome readback plan"
+  ],
+  "method_id": "T4-LOCAL-DETERMINISTIC-AUTHORITY-WORKFLOW-V1",
+  "migration_plan": {
+    "domain_specific_fields_to_rediscover": [
+      "participants",
+      "current target version",
+      "operation",
+      "environment",
+      "price and capacity",
+      "target-domain readback authority and fields"
+    ],
+    "hardcoded_current_entities_are_not_reused": true,
+    "invariants": [
+      "discover authority interfaces from the current task",
+      "qualify exact operation before commitment",
+      "bind reservations to one version",
+      "keep submission, adoption, acceptance and effect separate"
+    ],
+    "migration_claim": "PLAN_ONLY_NOT_RUN"
+  },
+  "outcomes": {
+    "acceptance": {
+      "required_witness": "CITY_AWARD_NOTICE_FOR_EXACT_BID_VERSION",
+      "state": "NOT_OCCURRED"
+    },
+    "action_attempt": {
+      "does_not_mean": [
+        "REAL_BID_SUBMISSION",
+        "PRODUCTION_EXECUTION",
+        "CITY_EFFECT"
+      ],
+      "state": "SYNTHETIC_INTEROP_PROBE_OCCURRED"
+    },
+    "adoption": {
+      "required_witness": "CITY_SHORTLIST_NOTICE",
+      "state": "NOT_OCCURRED"
+    },
+    "effect": {
+      "readback_authority": "CITY-OPERATIONS",
+      "required_fields": [
+        "accepted_bid_version",
+        "site_count_reporting",
+        "offline_capture_hours_observed",
+        "sync_reconciliation_result",
+        "independent_audit_report_hash"
+      ],
+      "state": "NOT_OCCURRED"
+    },
+    "receipt_or_eligibility": {
+      "required_witness": "FORMAL_REVIEW_PASSED",
+      "state": "NOT_OCCURRED"
+    },
+    "settlement": {
+      "required_witness": "SIGNED_SETTLEMENT_BY_RELEVANT_AUTHORITIES",
+      "state": "NOT_OCCURRED"
+    },
+    "submission": {
+      "required_witness": "EXACT_PAYLOAD_BYTES_RECEIVED",
+      "state": "NOT_OCCURRED"
+    }
+  },
+  "queries_and_disclosures": [
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "disclosed_fields": [
+        "approved_external_projection",
+        "current_tender_version",
+        "material_addendum_id",
+        "raw_data_boundary"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "a93cc0acf73501843e0f36bcdfe99a647098f24f0308ecbbd08bf789e9d96408",
+      "receipt_id": "RCPT-a7478c24e3cbdc34213cad21",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-79fa2265a86786df866a",
+      "request_type": "REQUEST_CURRENT_TENDER_VERSION",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "disclosed_fields": [
+        "ceiling",
+        "comparison",
+        "currency",
+        "deadline"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "3567adca73c8f460dee7c099abd18d656e705d0a6361ec99e03e2167549039d6",
+      "receipt_id": "RCPT-ec7152345e2dabaf44a437a6",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-5316ad3cfad55e27380c",
+      "request_type": "REQUEST_BUDGET_RULE",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "disclosed_fields": [
+        "does_not_prove",
+        "eligibility_receipt_proves",
+        "portal_receipt_proves"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "bccf243cae4ede96bcaefab275d3aacbcba6f3a78e76381406580cb700f958e9",
+      "receipt_id": "RCPT-9398ba785cd8563711fba139",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-2c27960b102505ec8744",
+      "request_type": "REQUEST_SUBMISSION_EVIDENCE_RULE",
+      "response_type": "WITNESS",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "disclosed_fields": [
+        "acceptance_witness",
+        "adoption_witness",
+        "not_equivalent"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "3ab1c1f43826ed82a0420462c9dcb1ee159ef8ad651fc1c726f23f188b82262a",
+      "receipt_id": "RCPT-e94ce326b64294ba279065a5",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-ce163307829beedd56cb",
+      "request_type": "REQUEST_ADOPTION_ACCEPTANCE_SEPARATION",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "disclosed_fields": [
+        "readback_authority",
+        "required_fields"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "9e61bb4c39434f90d63ddfa38dc05a2e07aa7ce26ed5b4a9fbc8ce1fba2356c5",
+      "receipt_id": "RCPT-bd6b1968da2b9d6146e0cb44",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-d9975fb60f7c163f18d7",
+      "request_type": "REQUEST_TARGET_READBACK_RULE",
+      "response_type": "WITNESS",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "disclosed_fields": [
+        "currency",
+        "fixed_price",
+        "scope"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "bf5c0fadb3a5877ba4a8a16c59305767dfc14696a1c1ab28122d0abb8b1b7b42",
+      "receipt_id": "RCPT-272671a1cb0ea93f36052d1d",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-c269488ea770bd39ede5",
+      "request_type": "REQUEST_PRIME_PRICE_BOUND",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "disclosed_fields": [
+        "excluded_liability",
+        "liability_cap_cny",
+        "required_allocation"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "4f16d0f4d420a4382638723fbccca1a28e54bf7a55b28ad01824a69e8fc9dd8a",
+      "receipt_id": "RCPT-54153d3f4caef82798af89e6",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-ff506e5faea3f2f095a4",
+      "request_type": "REQUEST_LIABILITY_BOUNDARY",
+      "response_type": "COUNTERCONDITION",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "disclosed_fields": [
+        "conditions",
+        "stance"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "8ea100224f8d9a3eed047a85e3a589d91637ba8666c367dd0d77df4264174b80",
+      "receipt_id": "RCPT-e8cb3a6545cdacadae793f5e",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-433adbb105befc4999ce",
+      "request_type": "REQUEST_PRIME_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "disclosed_fields": [
+        "exclusive_for_relation_version",
+        "reservation_id",
+        "resource",
+        "revocable_by",
+        "ttl_hours"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "9b23a134697c059b6521966046f0cb09a584bd14f1160044f05933062658b21c",
+      "receipt_id": "RCPT-25d5585af191a84107e141c0",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-886fad009c760b37473e",
+      "request_type": "RESERVE_PRIME_STAFF",
+      "response_type": "RESERVATION",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [
+        "component",
+        "exact_cross_party_operation",
+        "generic_capability",
+        "version"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "a5674480960e2f7a562a18956119633ffda70e9ded24eb7148ef8752bece985f",
+      "receipt_id": "RCPT-b1a4929c6d2f3d4881c7e2f1",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-4466ff095646d0dd3f4a",
+      "request_type": "REQUEST_INTEGRATION_CAPABILITY",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [
+        "deployment_target",
+        "local_execution",
+        "raw_telemetry_external_export"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "36d30902684d65c8755ff8a419657836c3f254e39442548ce931e38202dd2177",
+      "receipt_id": "RCPT-08253d727529ed01cedab914",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-993ff2a6a3e742eec41a",
+      "request_type": "REQUEST_LOCAL_EXECUTION_OPTION",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [
+        "must_precede",
+        "qualification_is_version_scoped",
+        "required_environment",
+        "required_field_interface"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "3ce8ec376a9593eafaf01a277a6863b7cdd7785d3f5ee5394489a4f60341ed90",
+      "receipt_id": "RCPT-11bea5413693c55c41bf059f",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-f0b5478015b54b96157d",
+      "request_type": "REQUEST_INTEROP_PROBE_TERMS",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "eda2efd34bb1128c7d92a0000f684aa5c0227449ceaf7b5d0ff0860cdbdc3f8f",
+      "receipt_id": "RCPT-0f6f48a499bedfbaf6bba37b",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-14c9d6c85337344a4f81",
+      "request_type": "RUN_INTEROP_PROBE",
+      "response_type": "DEFER",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [
+        "does_not_prove_effect",
+        "local_queue_hours",
+        "manual_reconcile_trigger",
+        "retry"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "785c633740d4771560450cb0524455643d853537fb5052a59aac31c7ac2279db",
+      "receipt_id": "RCPT-67d8de0f074d4424e7f604e6",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-e815fb626757d5a6a7f7",
+      "request_type": "REQUEST_FAILURE_RECOVERY",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "disclosed_fields": [
+        "currency",
+        "fixed_price",
+        "scope"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "515f9f55d720d1b15ca68b33554fdd192ae67d91b3e4e0c22b79842b29b13011",
+      "receipt_id": "RCPT-db34c78ff9b2572ea8bbed63",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-62287f2229728a85a3ef",
+      "request_type": "REQUEST_FIELD_PRICE_BOUND",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "disclosed_fields": [
+        "exclusive_for_relation_version",
+        "kit_count",
+        "reservation_is_not_signature",
+        "ttl_hours"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "dd9cf163944c942e090ee42aaeb06eafe076d1c2c2a7cfc1f7d86cd0d54f7ab9",
+      "receipt_id": "RCPT-8e2bdac566773f46e31fdc2c",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-be125960db23c7f1ea68",
+      "request_type": "REQUEST_KIT_RESERVATION_TERMS",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "disclosed_fields": [
+        "conditions",
+        "stance"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "12f44933320e678e1e866ad51f352a6f46aaef83ca858cba03da0e08bea6ac43",
+      "receipt_id": "RCPT-1cc2519a256dba6af56d33ba",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-cf00bc2a55f3b99f81ab",
+      "request_type": "REQUEST_FIELD_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "disclosed_fields": [],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "2306aa173af89a420b95005f734a2a0726334bd0f7e8ccdf0a30792805e2ff90",
+      "receipt_id": "RCPT-c3946f2b02964da0bf18b2b2",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-78eec0cac80a94af9288",
+      "request_type": "RESERVE_FIELD_CAPACITY",
+      "response_type": "DEFER",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "disclosed_fields": [
+        "availability_is_not_reservation",
+        "available_kits",
+        "deployment_window_days"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "9690aa9297d5730a7da14b1517c99618da519d4b3f76d3b0e87cb729c98b10e9",
+      "receipt_id": "RCPT-5de498958717a20224a7863b",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-c0dbf3c8f7694fc08224",
+      "request_type": "REQUEST_FIELD_CAPACITY_BOUND",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "disclosed_fields": [
+        "firmware_version",
+        "interface",
+        "raw_data_local_mode"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "cce366e581580753ffae9e21e48d4e569a9204694ef67dd1c116c37cd8467407",
+      "receipt_id": "RCPT-dac67d986f754a3a993e83ed",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-bcb0cc128d16c692c962",
+      "request_type": "REQUEST_FIRMWARE_INTERFACE",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "disclosed_fields": [
+        "counterconditions",
+        "risks"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "b8d4880999342339bf90c9786d0924937462b4b11be9d932cfc2fed459148970",
+      "receipt_id": "RCPT-d277069fa56ad2f60b0ffd45",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-076888a79fb53cbd6f0b",
+      "request_type": "REQUEST_DEPLOYMENT_RISK",
+      "response_type": "COUNTERCONDITION",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "disclosed_fields": [
+        "currency",
+        "fixed_price",
+        "scope"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "2b2fb3fd9a4191843d2bef6ba963c329755051e8b94b310253a64197e85f8320",
+      "receipt_id": "RCPT-3515d9414663a57da39b569a",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-e282363f4f9ee5ff4c03",
+      "request_type": "REQUEST_AUDIT_PRICE_BOUND",
+      "response_type": "BOUND",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "disclosed_fields": [
+        "auditor_count",
+        "exclusive_for_relation_version",
+        "reservation_is_not_signature",
+        "ttl_hours"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "be381f13e6d2f65edfdd71d92b68272b74597064c851ba1fa360c82ec873f868",
+      "receipt_id": "RCPT-41ad8d57b7dc4d30aebf5ebb",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-31f8c9f6ba33bd8ad26d",
+      "request_type": "REQUEST_AUDIT_SLOT_RESERVATION",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "disclosed_fields": [
+        "conditions",
+        "stance"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "bf98b7f344e9468f94852be4994ce155d4c89eef2187af7861288f9ffbd25180",
+      "receipt_id": "RCPT-d3b99f352f4277324fc38a5d",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-b29db56bba50970995c5",
+      "request_type": "REQUEST_AUDIT_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "disclosed_fields": [],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "f3cb766755a88d5f38961cf929e606efff069d1fbfddb79815034324a1046850",
+      "receipt_id": "RCPT-de1080417b28ec89012aab91",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-8e13ad932ab733ef04de",
+      "request_type": "RESERVE_AUDIT_SLOT",
+      "response_type": "DEFER",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "disclosed_fields": [
+        "availability_is_not_reservation",
+        "available_auditors",
+        "can_issue_signed_report",
+        "coverage_sites"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "e9fec3672c56b27e8a9b107f273e1752e453c3dd71bea718e679a61096eb36b3",
+      "receipt_id": "RCPT-d2b57897a15b9ba2f823498f",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-b9c5157d63457ae7f81a",
+      "request_type": "REQUEST_AUDIT_CAPABILITY",
+      "response_type": "FACT",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "disclosed_fields": [
+        "current_conflict",
+        "must_not"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "5bff6d09fd701e97ca0c4120757b32a59aa4e8a1ed78a6714daa3006cc228439",
+      "receipt_id": "RCPT-bcb3b4b2b917f866b496f696",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-bf8a63541d863dadaf80",
+      "request_type": "REQUEST_INDEPENDENCE_BOUNDARY",
+      "response_type": "COUNTERCONDITION",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "disclosed_fields": [
+        "audit_report_alone_proves_acceptance",
+        "required"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "077f181127fe1540a424ea10f10bf940eff640ff81744c4524a214326dc8c30d",
+      "receipt_id": "RCPT-a49e0c2e4d61b4f72c265655",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-474cb3b458b404ec7712",
+      "request_type": "REQUEST_ACCEPTANCE_WITNESS",
+      "response_type": "WITNESS",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "disclosed_fields": [
+        "environment",
+        "field_version",
+        "offline_capture_hours_observed",
+        "operation_id",
+        "prime_version",
+        "qualification_scope",
+        "raw_export_attempts",
+        "result",
+        "sync_result"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "85b61dfc899958251de3870cd5a1d0173df3f51fde6b988bd05dd275ea1ace34",
+      "receipt_id": "RCPT-eb344d8c112d3548e1814b4f",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-14c9d6c85337344a4f81",
+      "request_type": "RUN_INTEROP_PROBE",
+      "response_type": "WITNESS",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "disclosed_fields": [
+        "exclusive_for_relation_version",
+        "kit_count",
+        "reservation_id",
+        "revocable_by",
+        "ttl_hours"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "23915bb7263aa334efd8c25a5274c644099b00d0a725eec4c305b6de4e165006",
+      "receipt_id": "RCPT-5cd18e7c3b6514c8486cd106",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-78eec0cac80a94af9288",
+      "request_type": "RESERVE_FIELD_CAPACITY",
+      "response_type": "RESERVATION",
+      "retention_scope": "RUN_ONLY"
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "disclosed_fields": [
+        "auditor_count",
+        "exclusive_for_relation_version",
+        "reservation_id",
+        "revocable_by",
+        "ttl_hours"
+      ],
+      "purpose": "Evaluate the exact current joint-bid requirement before commitment",
+      "receipt_hash": "1e33bc43dc13562ba9dce500996316ab3ccf5f14a9f170fe952ebf25fa6ea7b9",
+      "receipt_id": "RCPT-15b0d21dbf91b8452356dd39",
+      "relation_version_ref": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_id": "REQ-8e13ad932ab733ef04de",
+      "request_type": "RESERVE_AUDIT_SLOT",
+      "response_type": "RESERVATION",
+      "retention_scope": "RUN_ONLY"
+    }
+  ],
+  "refusals": [],
+  "relation_versions": [
+    {
+      "addendum": "ADD-DATA-LOCAL-02",
+      "current_assessment": "ALL_DISCLOSED_CONDITIONS_SATISFIED; FINAL_SIGNATURES AND REAL_SUBMISSION_NOT_OCCURRED",
+      "participants": [
+        "PRIME",
+        "FIELD",
+        "ASSURE"
+      ],
+      "probe_receipt": "RCPT-eb344d8c112d3548e1814b4f",
+      "relation_version": "REL-T4-LOCAL-CANDIDATE-V1",
+      "reservation_receipts": [
+        "RCPT-25d5585af191a84107e141c0",
+        "RCPT-5cd18e7c3b6514c8486cd106",
+        "RCPT-15b0d21dbf91b8452356dd39"
+      ],
+      "state": "CANDIDATE_NOT_COMMITMENT",
+      "tender_version": "CITY-RFC-17-V2",
+      "total_price_cny": 335000
+    }
+  ],
+  "reopen_plan": {
+    "replay_rule": "same query and same run reuses receipt; it does not create a second disclosure or reservation",
+    "rules": [
+      {
+        "invalidate": [
+          "task reconstruction",
+          "all conditional stances",
+          "probe if affected fields change"
+        ],
+        "preserve": [
+          "historical receipts"
+        ],
+        "trigger": "tender or material addendum changes"
+      },
+      {
+        "invalidate": [
+          "interop qualification",
+          "dependent stances"
+        ],
+        "preserve": [
+          "unaffected price bounds if still within validity"
+        ],
+        "trigger": "PRIME or FIELD technical version changes"
+      },
+      {
+        "invalidate": [
+          "that reservation",
+          "dependent signing readiness"
+        ],
+        "preserve": [
+          "unaffected authority facts and probe"
+        ],
+        "trigger": "reservation revoked or TTL expires"
+      },
+      {
+        "invalidate": [
+          "independence stance",
+          "audit reservation",
+          "acceptance witness plan"
+        ],
+        "preserve": [
+          "PRIME and FIELD evidence"
+        ],
+        "trigger": "ASSURE conflict appears"
+      }
+    ]
+  },
+  "reservations": [
+    {
+      "authority": "PRIME-BID",
+      "exclusive_for_relation_version": true,
+      "receipt_id": "RCPT-25d5585af191a84107e141c0",
+      "relation_version": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_type": "RESERVE_PRIME_STAFF",
+      "reservation_id": "RSV-PRIME-72H-01",
+      "resource": "ONE_BID_MANAGER_PLUS_TWO_INTEGRATION_ENGINEERS",
+      "revocable_by": "PRIME-BID",
+      "status": "ACTIVE_SYNTHETIC_RESERVATION",
+      "ttl_hours": 72
+    },
+    {
+      "authority": "FIELD-COMMERCIAL",
+      "exclusive_for_relation_version": true,
+      "kit_count": 12,
+      "receipt_id": "RCPT-5cd18e7c3b6514c8486cd106",
+      "relation_version": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_type": "RESERVE_FIELD_CAPACITY",
+      "reservation_id": "RSV-FIELD-12KIT-72H-01",
+      "revocable_by": "FIELD-COMMERCIAL",
+      "status": "ACTIVE_SYNTHETIC_RESERVATION",
+      "ttl_hours": 72
+    },
+    {
+      "auditor_count": 2,
+      "authority": "ASSURE-COMMERCIAL",
+      "exclusive_for_relation_version": true,
+      "receipt_id": "RCPT-15b0d21dbf91b8452356dd39",
+      "relation_version": "REL-T4-LOCAL-CANDIDATE-V1",
+      "request_type": "RESERVE_AUDIT_SLOT",
+      "reservation_id": "RSV-ASSURE-2AUD-72H-01",
+      "revocable_by": "ASSURE-COMMERCIAL",
+      "status": "ACTIVE_SYNTHETIC_RESERVATION",
+      "ttl_hours": 72
+    }
+  ],
+  "run_id": "T4-LOCAL-BASELINE-20260728-001",
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "task_reconstruction": {
+    "approved_external_projection": "AGGREGATES_ONLY",
+    "budget_ceiling_cny": 360000,
+    "candidate_value": "12-site offline capture, deferred synchronization and independent verification under the current city data boundary",
+    "current_tender_version": "CITY-RFC-17-V2",
+    "deadline": "D+5",
+    "material_addendum_id": "ADD-DATA-LOCAL-02",
+    "minimum_offline_capture_hours": 24,
+    "principals": [
+      "PRIME",
+      "FIELD",
+      "ASSURE"
+    ],
+    "raw_data_boundary": "RAW_TELEMETRY_CITY_TENANT_ONLY",
+    "site_count": 12,
+    "total_price_cny": 335000,
+    "within_budget": true
+  },
+  "unknowns": [
+    "whether all three principals will issue final signatures",
+    "whether exact bid bytes will be submitted before D+5",
+    "whether the city will find the bid eligible, adopt or accept it",
+    "whether production deployment will create the target-domain effect",
+    "whether settlement will occur",
+    "whether the method passes the hidden cross-industry migration run"
+  ],
+  "workflow": {
+    "candidate_ready_to_request_final_signatures": true,
+    "commitment_created": false,
+    "method_family": "authority-aware deterministic broker using existing workflow, policy and receipt primitives",
+    "phase_order": [
+      "bind current tender and value floor",
+      "collect minimal price, capability, risk and authority bounds",
+      "run exact scoped interoperability probe",
+      "reserve scarce resources against one relation version",
+      "verify budget and all conditional stances",
+      "request final signatures",
+      "submit exact frozen bytes",
+      "separately wait for eligibility, adoption, acceptance and effect"
+    ],
+    "real_submission_executed": false
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "schema_version": "g2o1-public-v1",
+  "experiment_id": "G2-O1",
+  "evidence_level": "LOCAL_SYNTHETIC",
+  "worlds": [
+    {
+      "world_id": "G2O1-T2-01",
+      "family": "T2_BLIND",
+      "task_skin": "buyer-domain-readonly-pilot",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-04-03T09:00:00Z", "deadline": "2031-04-03T17:00:00Z"},
+      "principal_ids": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"],
+      "base_relation": {
+        "version": "R1",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}],
+          "actions": [{"id": "EXPORT_DATA"}, {"id": "TRAIN_MODEL"}],
+          "evidence": [{"id": "VENDOR_REPORT"}],
+          "exit_rules": [{"id": "CANCEL_BEFORE_EXPORT"}],
+          "evaluation_rules": [{"id": "REPORT_DELIVERED"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 90, "training": true}
+      },
+      "candidate_relation": {
+        "version": "R2",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}, {"id": "BUYER_EXECUTOR"}],
+          "actions": [{"id": "DEPLOY_CODE_TO_BUYER"}, {"id": "READ_ONLY_ANALYSIS"}],
+          "evidence": [{"id": "BUYER_READBACK"}, {"id": "NO_TRAINING_ATTESTATION"}],
+          "exit_rules": [{"id": "REVOKE_EXECUTOR_ACCESS"}, {"id": "DELETE_WORKSPACE"}],
+          "evaluation_rules": [{"id": "BUYER_ACCEPTS_READBACK"}],
+          "constraints": [{"id": "DATA_STAYS_IN_BUYER_DOMAIN", "operator": "ALL_TRUE", "paths": ["facts.data_local", "facts.read_only"]}]
+        },
+        "parameters": {"retention_days": 7, "training": false}
+      },
+      "public_context": {
+        "trigger": "buyer rejected raw export and requested an in-domain alternative",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_R2", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_ACTIVATION"],
+      "query_budget": {"actor_queries": 6, "private_oracle_queries": 0, "deadline_ticks": 8},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T2-02",
+      "family": "T2_BLIND",
+      "task_skin": "buyer-domain-readonly-pilot",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-04-04T09:00:00Z", "deadline": "2031-04-04T17:00:00Z"},
+      "principal_ids": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"],
+      "base_relation": {
+        "version": "R5",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}],
+          "actions": [{"id": "EXPORT_DATA"}, {"id": "TRAIN_MODEL"}],
+          "evidence": [{"id": "VENDOR_REPORT"}],
+          "exit_rules": [{"id": "CANCEL_BEFORE_EXPORT"}],
+          "evaluation_rules": [{"id": "REPORT_DELIVERED"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 60, "training": true}
+      },
+      "candidate_relation": {
+        "version": "R6",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}, {"id": "BUYER_EXECUTOR"}],
+          "actions": [{"id": "DEPLOY_CODE_TO_BUYER"}, {"id": "READ_ONLY_ANALYSIS"}],
+          "evidence": [{"id": "BUYER_READBACK"}, {"id": "DERIVATIVE_USE_LOG"}],
+          "exit_rules": [{"id": "REVOKE_EXECUTOR_ACCESS"}, {"id": "DELETE_WORKSPACE"}],
+          "evaluation_rules": [{"id": "BUYER_ACCEPTS_READBACK"}],
+          "constraints": [{"id": "DERIVATIVES_NOT_FOR_TRAINING", "operator": "ALL_TRUE", "paths": ["facts.no_derivative_training"]}]
+        },
+        "parameters": {"retention_days": 10, "training": false}
+      },
+      "public_context": {
+        "trigger": "a revised in-domain route adds derivative-use duties",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_R6", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_ACTIVATION"],
+      "query_budget": {"actor_queries": 6, "private_oracle_queries": 0, "deadline_ticks": 8},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T2-03",
+      "family": "T2_BLIND",
+      "task_skin": "buyer-domain-readonly-pilot",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-04-05T09:00:00Z", "deadline": "2031-04-05T17:00:00Z"},
+      "principal_ids": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"],
+      "base_relation": {
+        "version": "R9",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}, {"id": "BUYER_EXECUTOR"}],
+          "actions": [{"id": "DEPLOY_CODE_TO_BUYER"}, {"id": "READ_ONLY_ANALYSIS"}],
+          "evidence": [{"id": "BUYER_READBACK"}],
+          "exit_rules": [{"id": "REVOKE_EXECUTOR_ACCESS"}],
+          "evaluation_rules": [{"id": "BUYER_ACCEPTS_READBACK"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 7, "price": 18000}
+      },
+      "candidate_relation": {
+        "version": "R9-amendment",
+        "schema": {
+          "roles": [{"id": "VENDOR", "display_name": "service provider"}, {"id": "BUYER_EXECUTOR"}, {"id": "BUYER"}],
+          "actions": [{"id": "DEPLOY_CODE_TO_BUYER"}, {"id": "READ_ONLY_ANALYSIS"}],
+          "evidence": [{"id": "BUYER_READBACK", "wording": "buyer-side result confirmation"}],
+          "exit_rules": [{"id": "REVOKE_EXECUTOR_ACCESS"}],
+          "evaluation_rules": [{"id": "BUYER_ACCEPTS_READBACK"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 5, "price": 17600}
+      },
+      "public_context": {
+        "trigger": "commercial and retention amendment with reordered and reworded schema entries",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_AMENDMENT", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_ACTIVATION"],
+      "query_budget": {"actor_queries": 5, "private_oracle_queries": 0, "deadline_ticks": 6},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T2-04",
+      "family": "T2_BLIND",
+      "task_skin": "buyer-domain-readonly-pilot",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-04-06T09:00:00Z", "deadline": "2031-04-06T17:00:00Z"},
+      "principal_ids": ["BUYER-DATA", "BUYER-BUSINESS", "VENDOR-TECH"],
+      "base_relation": {
+        "version": "R12",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}],
+          "actions": [{"id": "EXPORT_AGGREGATES"}],
+          "evidence": [{"id": "VENDOR_REPORT"}],
+          "exit_rules": [{"id": "CANCEL_EXPORT"}],
+          "evaluation_rules": [{"id": "REPORT_DELIVERED"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 30}
+      },
+      "candidate_relation": {
+        "version": "R13",
+        "schema": {
+          "roles": [{"id": "BUYER"}, {"id": "VENDOR"}, {"id": "BUYER_EXECUTOR"}],
+          "actions": [{"id": "DEPLOY_CODE_TO_BUYER"}, {"id": "READ_ONLY_ANALYSIS"}],
+          "evidence": [{"id": "BUYER_READBACK"}],
+          "exit_rules": [{"id": "REVOKE_EXECUTOR_ACCESS"}],
+          "evaluation_rules": [{"id": "BUYER_ACCEPTS_READBACK"}],
+          "constraints": []
+        },
+        "parameters": {"retention_days": 5}
+      },
+      "public_context": {
+        "trigger": "old approval is present in the event history before the new execution route",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_R13", "IMPORT_PRIOR_EVENTS", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_ACTIVATION"],
+      "query_budget": {"actor_queries": 6, "private_oracle_queries": 0, "deadline_ticks": 8},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T4-01",
+      "family": "T4_HELD_OUT",
+      "task_skin": "three-party-joint-bid",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-05-01T08:00:00Z", "deadline": "2031-05-01T15:00:00Z"},
+      "principal_ids": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"],
+      "base_relation": {
+        "version": "B0",
+        "schema": {"roles": [{"id": "LEAD"}], "actions": [{"id": "SUBMIT_BID"}], "evidence": [{"id": "PRICE_SHEET"}], "exit_rules": [{"id": "WITHDRAW_BEFORE_SUBMIT"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 360000}
+      },
+      "candidate_relation": {
+        "version": "B1",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}, {"id": "ASSURANCE"}], "actions": [{"id": "ASSEMBLE_BID"}, {"id": "RESERVE_CAPACITY"}], "evidence": [{"id": "LOCAL_COLUMN_RECEIPT"}, {"id": "ASSURANCE_ATTESTATION"}], "exit_rules": [{"id": "SCOPED_WITHDRAWAL"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 360000}
+      },
+      "public_context": {"trigger": "the lead lacks one delivery capability", "available_endpoints": ["principal-actor", "private-column-oracle", "authority-evaluator", "reservation-ledger"]},
+      "event_schedule": ["QUERY_LOCAL_COLUMNS", "PROPOSE_B1", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_RESERVATION"],
+      "query_budget": {"actor_queries": 7, "private_oracle_queries": 2, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "private_query": 5, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T4-02",
+      "family": "T4_HELD_OUT",
+      "task_skin": "three-party-joint-bid",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-05-02T08:00:00Z", "deadline": "2031-05-02T15:00:00Z"},
+      "principal_ids": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"],
+      "base_relation": {
+        "version": "B4",
+        "schema": {"roles": [{"id": "LEAD"}], "actions": [{"id": "SUBMIT_BID"}], "evidence": [{"id": "PRICE_SHEET"}], "exit_rules": [{"id": "WITHDRAW_BEFORE_SUBMIT"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 350000}
+      },
+      "candidate_relation": {
+        "version": "B5",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}, {"id": "ASSURANCE"}], "actions": [{"id": "ASSEMBLE_BID"}, {"id": "RESERVE_CAPACITY"}], "evidence": [{"id": "LOCAL_COLUMN_RECEIPT"}], "exit_rules": [{"id": "SCOPED_WITHDRAWAL"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 350000}
+      },
+      "public_context": {"trigger": "a local partner may answer under its own disclosure policy", "available_endpoints": ["principal-actor", "private-column-oracle", "authority-evaluator", "reservation-ledger"]},
+      "event_schedule": ["QUERY_LOCAL_COLUMNS", "PROPOSE_B5", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_RESERVATION"],
+      "query_budget": {"actor_queries": 7, "private_oracle_queries": 2, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "private_query": 5, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T4-03",
+      "family": "T4_HELD_OUT",
+      "task_skin": "three-party-joint-bid",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-05-03T08:00:00Z", "deadline": "2031-05-03T15:00:00Z"},
+      "principal_ids": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"],
+      "base_relation": {
+        "version": "B8",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}], "actions": [{"id": "ASSEMBLE_BID"}], "evidence": [{"id": "FIELD_ATTESTATION"}], "exit_rules": [{"id": "WITHDRAW_BEFORE_SUBMIT"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 365000}
+      },
+      "candidate_relation": {
+        "version": "B9",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}, {"id": "ASSURANCE"}], "actions": [{"id": "ASSEMBLE_BID"}, {"id": "RESERVE_CAPACITY"}], "evidence": [{"id": "FIELD_ATTESTATION"}, {"id": "ASSURANCE_ATTESTATION"}], "exit_rules": [{"id": "SCOPED_WITHDRAWAL"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 365000}
+      },
+      "public_context": {"trigger": "one owner has a scoped objection to the proposed responsibility boundary", "available_endpoints": ["principal-actor", "private-column-oracle", "authority-evaluator", "reservation-ledger"]},
+      "event_schedule": ["QUERY_LOCAL_COLUMNS", "PROPOSE_B9", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_RESERVATION"],
+      "query_budget": {"actor_queries": 8, "private_oracle_queries": 2, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "private_query": 5, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T4-04",
+      "family": "T4_HELD_OUT",
+      "task_skin": "three-party-joint-bid",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-05-04T08:00:00Z", "deadline": "2031-05-04T15:00:00Z"},
+      "principal_ids": ["BID-LEAD", "FIELD-PARTNER", "ASSURANCE-PARTNER"],
+      "base_relation": {
+        "version": "B12",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}, {"id": "ASSURANCE"}], "actions": [{"id": "ASSEMBLE_BID"}], "evidence": [{"id": "PARTNER_ATTESTATIONS"}], "exit_rules": [{"id": "WITHDRAW_BEFORE_SUBMIT"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 355000}
+      },
+      "candidate_relation": {
+        "version": "B13",
+        "schema": {"roles": [{"id": "LEAD"}, {"id": "FIELD"}, {"id": "ASSURANCE"}], "actions": [{"id": "ASSEMBLE_BID"}, {"id": "RESERVE_CAPACITY"}], "evidence": [{"id": "PARTNER_ATTESTATIONS"}, {"id": "LOCAL_COLUMN_RECEIPT"}], "exit_rules": [{"id": "SCOPED_WITHDRAWAL"}], "evaluation_rules": [{"id": "BUDGET_AND_COVERAGE"}], "constraints": []},
+        "parameters": {"budget_cap": 355000}
+      },
+      "public_context": {"trigger": "individual terms appear admissible but the relation must be evaluated as a coupled arrangement", "available_endpoints": ["principal-actor", "private-column-oracle", "authority-evaluator", "reservation-ledger"]},
+      "event_schedule": ["QUERY_LOCAL_COLUMNS", "PROPOSE_B13", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "REQUEST_RESERVATION"],
+      "query_budget": {"actor_queries": 8, "private_oracle_queries": 2, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "private_query": 5, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T5-01",
+      "family": "T5_CONTROL",
+      "task_skin": "standard-saas-purchase",
+      "authority_topology": "PLATFORM_INSTITUTION",
+      "state_placement": "PLATFORM_CANONICAL",
+      "clock": {"now": "2031-06-01T10:00:00Z", "deadline": "2031-06-01T10:15:00Z"},
+      "principal_ids": ["PURCHASER", "PLATFORM"],
+      "base_relation": {
+        "version": "TERMS-7",
+        "schema": {"roles": [{"id": "PURCHASER"}, {"id": "PLATFORM"}], "actions": [{"id": "PURCHASE_STANDARD_PLAN"}], "evidence": [{"id": "PLATFORM_RECEIPT"}], "exit_rules": [{"id": "PLATFORM_CANCEL"}], "evaluation_rules": [{"id": "PLATFORM_STATUS"}], "constraints": []},
+        "parameters": {"plan": "TEAM", "seats": 8}
+      },
+      "candidate_relation": {
+        "version": "TERMS-7",
+        "schema": {"roles": [{"id": "PURCHASER"}, {"id": "PLATFORM"}], "actions": [{"id": "PURCHASE_STANDARD_PLAN"}], "evidence": [{"id": "PLATFORM_RECEIPT"}], "exit_rules": [{"id": "PLATFORM_CANCEL"}], "evaluation_rules": [{"id": "PLATFORM_STATUS"}], "constraints": []},
+        "parameters": {"plan": "TEAM", "seats": 8}
+      },
+      "public_context": {"trigger": "standard listed plan with an eligible purchaser", "available_endpoints": ["platform-direct"]},
+      "event_schedule": ["PLATFORM_QUOTE", "PURCHASER_CONFIRM", "PLATFORM_ACTIVATE"],
+      "query_budget": {"actor_queries": 1, "private_oracle_queries": 0, "deadline_ticks": 2},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-T5-02",
+      "family": "T5_CONTROL",
+      "task_skin": "standard-payment",
+      "authority_topology": "PLATFORM_INSTITUTION",
+      "state_placement": "PLATFORM_CANONICAL",
+      "clock": {"now": "2031-06-02T10:00:00Z", "deadline": "2031-06-02T10:05:00Z"},
+      "principal_ids": ["PAYER", "PAYMENT-PLATFORM"],
+      "base_relation": {
+        "version": "PAY-4",
+        "schema": {"roles": [{"id": "PAYER"}, {"id": "PAYMENT_PLATFORM"}], "actions": [{"id": "PAY_STANDARD_INVOICE"}], "evidence": [{"id": "PLATFORM_RECEIPT"}], "exit_rules": [{"id": "PLATFORM_DECLINE"}], "evaluation_rules": [{"id": "PLATFORM_STATUS"}], "constraints": []},
+        "parameters": {"amount": 420}
+      },
+      "candidate_relation": {
+        "version": "PAY-4",
+        "schema": {"roles": [{"id": "PAYER"}, {"id": "PAYMENT_PLATFORM"}], "actions": [{"id": "PAY_STANDARD_INVOICE"}], "evidence": [{"id": "PLATFORM_RECEIPT"}], "exit_rules": [{"id": "PLATFORM_DECLINE"}], "evaluation_rules": [{"id": "PLATFORM_STATUS"}], "constraints": []},
+        "parameters": {"amount": 420}
+      },
+      "public_context": {"trigger": "payer chooses the platform decline path", "available_endpoints": ["platform-direct"]},
+      "event_schedule": ["PLATFORM_INVOICE", "PAYER_DECLINE", "PLATFORM_CLOSE"],
+      "query_budget": {"actor_queries": 1, "private_oracle_queries": 0, "deadline_ticks": 2},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12}
+    },
+    {
+      "world_id": "G2O1-AUTH-01",
+      "family": "AUTHORITY_PRESSURE",
+      "task_skin": "incident-access-shared-institution",
+      "authority_topology": "SHARED_INSTITUTION",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-07-01T01:00:00Z", "deadline": "2031-07-01T02:00:00Z"},
+      "principal_ids": ["SERVICE-OWNER", "SECURITY-OWNER", "VENDOR-RESPONDER"],
+      "base_relation": {
+        "version": "I1",
+        "schema": {"roles": [{"id": "SERVICE"}, {"id": "SECURITY"}, {"id": "RESPONDER"}], "actions": [{"id": "READ_LOGS"}], "evidence": [{"id": "ACCESS_LOG"}], "exit_rules": [{"id": "REVOKE_ACCESS"}], "evaluation_rules": [{"id": "SERVICE_RECOVERY_READBACK"}], "constraints": []},
+        "parameters": {"environment": "staging", "ttl_minutes": 30}
+      },
+      "candidate_relation": {
+        "version": "I2",
+        "schema": {"roles": [{"id": "SERVICE"}, {"id": "SECURITY"}, {"id": "RESPONDER"}], "actions": [{"id": "READ_LOGS"}, {"id": "APPLY_SIGNED_PATCH"}], "evidence": [{"id": "ACCESS_LOG"}, {"id": "PATCH_ATTESTATION"}], "exit_rules": [{"id": "REVOKE_ACCESS"}, {"id": "ROLLBACK_PATCH"}], "evaluation_rules": [{"id": "SERVICE_RECOVERY_READBACK"}], "constraints": []},
+        "parameters": {"environment": "production", "ttl_minutes": 20}
+      },
+      "public_context": {
+        "trigger": "a shared incident institution emits conflicting current-head replies",
+        "transport_fault": "EQUIVOCATION",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_I2", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "INJECT_EQUIVOCATION", "REQUEST_RECOVERY"],
+      "query_budget": {"actor_queries": 8, "private_oracle_queries": 0, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12, "recovery_tick": 4}
+    },
+    {
+      "world_id": "G2O1-AUTH-02",
+      "family": "AUTHORITY_PRESSURE",
+      "task_skin": "incident-access-plural-authorities",
+      "authority_topology": "PLURAL_MUTUALLY_RECOGNIZED",
+      "state_placement": "METHOD_VARIABLE",
+      "clock": {"now": "2031-07-02T01:00:00Z", "deadline": "2031-07-02T02:00:00Z"},
+      "principal_ids": ["SERVICE-OWNER", "DATA-OWNER", "VENDOR-RESPONDER"],
+      "base_relation": {
+        "version": "J1",
+        "schema": {"roles": [{"id": "SERVICE"}, {"id": "DATA"}, {"id": "RESPONDER"}], "actions": [{"id": "READ_REDACTED_LOGS"}], "evidence": [{"id": "ACCESS_LOG"}], "exit_rules": [{"id": "REVOKE_ACCESS"}], "evaluation_rules": [{"id": "SERVICE_RECOVERY_READBACK"}], "constraints": []},
+        "parameters": {"ttl_minutes": 30}
+      },
+      "candidate_relation": {
+        "version": "J2",
+        "schema": {"roles": [{"id": "SERVICE"}, {"id": "DATA"}, {"id": "RESPONDER"}], "actions": [{"id": "READ_REDACTED_LOGS"}, {"id": "APPLY_SIGNED_PATCH"}], "evidence": [{"id": "ACCESS_LOG"}, {"id": "PATCH_ATTESTATION"}], "exit_rules": [{"id": "REVOKE_ACCESS"}, {"id": "ROLLBACK_PATCH"}], "evaluation_rules": [{"id": "SERVICE_RECOVERY_READBACK"}], "constraints": []},
+        "parameters": {"ttl_minutes": 20}
+      },
+      "public_context": {
+        "trigger": "independent authority domains lose inter-domain transport after owner acts",
+        "transport_fault": "PARTITION",
+        "available_endpoints": ["principal-actor", "authority-evaluator", "target-readback"]
+      },
+      "event_schedule": ["PROPOSE_J2", "REQUEST_EXPLAIN_BACK", "REQUEST_STANCE", "INJECT_PARTITION", "REQUEST_RECOVERY"],
+      "query_budget": {"actor_queries": 8, "private_oracle_queries": 0, "deadline_ticks": 10},
+      "cost_rates": {"actor_query": 3, "schema_reopen": 9, "state_message": 1, "human_review": 12, "recovery_tick": 4}
+    }
+  ]
+}

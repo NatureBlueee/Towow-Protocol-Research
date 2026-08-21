@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "contract_id": "WAVE-010-X1-OUTCOME-CONTRACT",
+  "contract_version": "0",
+  "status": "CANDIDATE_NOT_RUN",
+  "purpose": "Lossless, fail-closed X1 to X2 outcome handoff. This contract does not create an X1 result or authorize an X2 attempt.",
+  "canonicalization": {
+    "format": "UTF-8 JSON",
+    "object_keys": "lexicographic",
+    "arrays": "order-significant",
+    "whitespace": "none",
+    "numbers": "JSON canonical decimal form"
+  },
+  "category_registry": [
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE",
+    "REJECT",
+    "DEFER",
+    "UNKNOWN",
+    "INVALID",
+    "REVOKED",
+    "EXPIRED",
+    "BOUNDED_UNREACHABLE",
+    "SAFE_EXIT",
+    "UNRESOLVED_SCHEMA"
+  ],
+  "reason_registry_version": "x1-reason-registry-v1",
+  "reason_registry": {
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE": [
+      "ALL_LINE_OUTPUTS_ACCEPTED_AND_TRANSITIONS_CURRENT"
+    ],
+    "REJECT": [
+      "PRINCIPAL_REJECTED",
+      "G1_UNWILLING_TO_DISCLOSE",
+      "G2_RELATION_REJECTED",
+      "G5_DENY",
+      "G5_RESERVATION_CONFLICT",
+      "G5_STANDING_CHALLENGE_REJECTED",
+      "G5_PROGRAM_COORDINATOR_STANCE_REJECTED",
+      "G5_DELTA_CALIBRATION_STANCE_REJECTED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_REJECTED",
+      "G5_SITE_DATA_STEWARD_STANCE_REJECTED",
+      "G5_DELTA_RESOURCE_RESERVATION_CONFLICT"
+    ],
+    "DEFER": [
+      "PRINCIPAL_DEFERRED",
+      "G2_RELATION_PENDING",
+      "G5_REQUIRE_APPROVAL",
+      "G5_RESERVATION_REQUIRED",
+      "G5_STANDING_CHALLENGE_PENDING",
+      "G5_PROGRAM_COORDINATOR_STANCE_DEFERRED",
+      "G5_DELTA_CALIBRATION_STANCE_DEFERRED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_DEFERRED",
+      "G5_SITE_DATA_STEWARD_STANCE_DEFERRED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_NOT_YET_CREATED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_NOT_YET_CREATED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_NOT_YET_CREATED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_NOT_YET_CREATED",
+      "G5_DELTA_RESERVATION_NOT_YET_CREATED"
+    ],
+    "UNKNOWN": [
+      "G1_UNEXPRESSED",
+      "G1_UNKNOWN",
+      "G1_POLICY_UNDISCOVERABLE",
+      "G2_SEMANTICS_UNKNOWN",
+      "G3_REACHABILITY_UNKNOWN",
+      "G5_AUTHORITY_UNKNOWN",
+      "G5_PROGRAM_COORDINATOR_STANCE_UNKNOWN",
+      "G5_DELTA_CALIBRATION_STANCE_UNKNOWN",
+      "G5_INDEPENDENT_VALIDATION_STANCE_UNKNOWN",
+      "G5_SITE_DATA_STEWARD_STANCE_UNKNOWN",
+      "G5_PROGRAM_COORDINATOR_HEAD_READBACK_UNKNOWN",
+      "G5_DELTA_CALIBRATION_HEAD_READBACK_UNKNOWN",
+      "G5_INDEPENDENT_VALIDATION_HEAD_READBACK_UNKNOWN",
+      "G5_SITE_DATA_STEWARD_HEAD_READBACK_UNKNOWN",
+      "G5_DELTA_RESOURCE_HEAD_READBACK_UNKNOWN"
+    ],
+    "INVALID": [
+      "INVALID_INPUT_BINDING",
+      "INVALID_LINE_RECEIPT",
+      "INVALID_TRANSITION_BINDING",
+      "INVALID_PRINCIPAL_CLOSURE",
+      "G2_STALE_RELATION_VERSION",
+      "G3_MUTATE_PROBLEM",
+      "G3_INVALID_SUBSTITUTION",
+      "G5_STALE_VERSION",
+      "G5_CONTROLLER_SUBSTITUTION",
+      "G5_STANDING_VIOLATION",
+      "G5_RELATION_COORDINATE_MISMATCH",
+      "G5_G2_FORMED_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_INVALID",
+      "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_STANCE_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_INVALID",
+      "G5_DELTA_CALIBRATION_HEAD_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_INVALID",
+      "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_INVALID",
+      "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_INVALID",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_INVALID",
+      "G5_CROSS_DOMAIN_SIGNER_SUBSTITUTION",
+      "G5_SINGLE_COMMITMENT_FALSE_CLOSURE"
+    ],
+    "REVOKED": [
+      "G1_EVIDENCE_REVOKED",
+      "G2_RELATION_REVOKED",
+      "G5_MANDATE_REVOKED",
+      "G5_COMMITMENT_REVOKED",
+      "G5_RESERVATION_REVOKED",
+      "G5_PROGRAM_COORDINATOR_MANDATE_REVOKED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_REVOKED",
+      "G5_DELTA_CALIBRATION_MANDATE_REVOKED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_REVOKED",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_REVOKED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_REVOKED",
+      "G5_SITE_DATA_STEWARD_MANDATE_REVOKED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_REVOKED",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_REVOKED"
+    ],
+    "EXPIRED": [
+      "G1_EVIDENCE_EXPIRED",
+      "G2_STANCE_EXPIRED",
+      "G5_MANDATE_EXPIRED",
+      "G5_COMMITMENT_EXPIRED",
+      "G5_RESERVATION_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_MANDATE_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_STANCE_EXPIRED",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_EXPIRED",
+      "G5_DELTA_CALIBRATION_MANDATE_EXPIRED",
+      "G5_DELTA_CALIBRATION_STANCE_EXPIRED",
+      "G5_DELTA_CALIBRATION_COMMITMENT_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_STANCE_EXPIRED",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_EXPIRED",
+      "G5_SITE_DATA_STEWARD_MANDATE_EXPIRED",
+      "G5_SITE_DATA_STEWARD_STANCE_EXPIRED",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_EXPIRED",
+      "G5_DELTA_RESERVATION_OWNER_RECEIPT_EXPIRED"
+    ],
+    "BOUNDED_UNREACHABLE": [
+      "G3_BOUNDED_UNREACHABLE",
+      "G3_NO_ACTUAL_POLICY_PATH"
+    ],
+    "SAFE_EXIT": [
+      "PRINCIPAL_SAFE_EXIT",
+      "G1_SAFE_EXIT",
+      "G2_SAFE_EXIT",
+      "G3_SAFE_EXIT",
+      "G5_SAFE_EXIT",
+      "POLICY_BOUNDARY_SAFE_EXIT"
+    ],
+    "UNRESOLVED_SCHEMA": [
+      "UNKNOWN_SCHEMA_VERSION",
+      "SCHEMA_HASH_MISMATCH",
+      "REASON_REGISTRY_HASH_MISMATCH",
+      "UNREGISTERED_CATEGORY",
+      "UNREGISTERED_REASON_CODE",
+      "UNREGISTERED_CATEGORY_REASON_PAIR",
+      "MISSING_REQUIRED_RECEIPT",
+      "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_MISSING",
+      "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_STANCE_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_MISSING",
+      "G5_DELTA_CALIBRATION_HEAD_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_MISSING",
+      "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_MISSING",
+      "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_MISSING",
+      "G5_DELTA_RESERVATION_REQUIRED_RECEIPT_MISSING"
+    ]
+  },
+  "outcome_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "schema_sha256",
+      "reason_registry_version",
+      "reason_registry_sha256",
+      "x1_run_id",
+      "x1_world_id",
+      "x1_arm_id",
+      "raw_method_return_bytes_sha256",
+      "category",
+      "reason_code",
+      "line_receipt_refs",
+      "transition_receipt_refs"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "0"
+      },
+      "schema_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "reason_registry_version": {
+        "const": "x1-reason-registry-v1"
+      },
+      "reason_registry_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "x1_run_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "x1_world_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "x1_arm_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "raw_method_return_bytes_sha256": {
+        "$ref": "#/$defs/sha256"
+      },
+      "category": {
+        "enum": [
+          "AUTHORITY_VALID_FRONT_HALF_CANDIDATE",
+          "REJECT",
+          "DEFER",
+          "UNKNOWN",
+          "INVALID",
+          "REVOKED",
+          "EXPIRED",
+          "BOUNDED_UNREACHABLE",
+          "SAFE_EXIT",
+          "UNRESOLVED_SCHEMA"
+        ]
+      },
+      "reason_code": {
+        "type": "string",
+        "minLength": 1
+      },
+      "line_receipt_refs": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "G1",
+          "G2",
+          "G3",
+          "G5"
+        ],
+        "properties": {
+          "G1": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G2": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G3": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "G5": {
+            "$ref": "#/$defs/receipt_ref"
+          }
+        }
+      },
+      "transition_receipt_refs": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "T_G1_TO_G2",
+          "T_G2_TO_G3",
+          "T_G3_TO_G5",
+          "T_G5_TO_X2"
+        ],
+        "properties": {
+          "T_G1_TO_G2": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G2_TO_G3": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G3_TO_G5": {
+            "$ref": "#/$defs/receipt_ref"
+          },
+          "T_G5_TO_X2": {
+            "$ref": "#/$defs/receipt_ref"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "receipt_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "raw_bytes_sha256",
+        "owner_key_id",
+        "receipt_version",
+        "status"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "raw_bytes_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "owner_key_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "receipt_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "hash_binding_rules": {
+    "schema_sha256": {
+      "algorithm": "SHA-256",
+      "preimage": "canonical JSON bytes of the exact object {\"$defs\": <RFC6901 /$defs>, \"category_registry\": <RFC6901 /category_registry>, \"outcome_schema\": <RFC6901 /outcome_schema>}",
+      "current_preimage_sha256": "be1a818eef4f7438ed238559ed6594aa422b056af36f26ee7ff90f53aff3d4fe",
+      "instance_field": "schema_sha256",
+      "mismatch_result": "UNRESOLVED_SCHEMA/SCHEMA_HASH_MISMATCH"
+    },
+    "reason_registry_sha256": {
+      "algorithm": "SHA-256",
+      "preimage": "canonical JSON bytes of the exact object {\"reason_registry\": <RFC6901 /reason_registry>, \"reason_registry_version\": <RFC6901 /reason_registry_version>}",
+      "current_preimage_sha256": "6ab1de71f251c87414d00bc14693a970ddfa35474956a78928d9b65928b0d8dc",
+      "instance_field": "reason_registry_sha256",
+      "mismatch_result": "UNRESOLVED_SCHEMA/REASON_REGISTRY_HASH_MISMATCH"
+    }
+  },
+  "validation_rules": [
+    "category MUST be registered in category_registry",
+    "reason_code MUST be registered under the exact category in reason_registry",
+    "unregistered category, reason_code, or category/reason pair MUST fail closed as UNRESOLVED_SCHEMA and MUST NOT be normalized to UNKNOWN or INVALID",
+    "the unresolved wrapper MUST preserve the attempted raw bytes SHA-256 and the schema or registry failure reason",
+    "all four line receipt refs and all four transition receipt refs are mandatory; a non-reached line or transition MUST supply an owner-signed typed NOT_REACHED receipt rather than null",
+    "every receipt MUST resolve to the same x1_run_id, x1_world_id, x1_arm_id, episode anchor, and finalized output",
+    "reason_code MUST preserve the exact blocking reason proven by the raw receipt; generic G5_DENY or G5_BLOCKED normalization is forbidden when the receipt proves REQUIRE_APPROVAL, STALE_VERSION, RESERVATION_REQUIRED, RESERVATION_CONFLICT, REVOKED, or EXPIRED",
+    "AUTHORITY_VALID_FRONT_HALF_CANDIDATE is valid only with ALL_LINE_OUTPUTS_ACCEPTED_AND_TRANSITIONS_CURRENT and current owner-issued receipts",
+    "G5 success requires current owner receipts for mandate, stance, commitment, and heads from all four authority domains plus the delta resource-owner reservation receipt; one aggregate or single-domain commitment cannot satisfy the gate",
+    "G5 non-success MUST emit exactly one registered category/reason pair proven by the blocking receipt; composite reason buckets are forbidden and an unregistered pair fails closed as UNRESOLVED_SCHEMA/UNREGISTERED_CATEGORY_REASON_PAIR",
+    "schema and reason-registry hashes are recomputed from this exact contract version at every X1 finalize and X2 ingress",
+    "this outcome is an X1 front-half handoff only and MUST NOT imply execution permission, Effect, Adoption, Acceptance, Settlement, or Q_episode satisfaction"
+  ]
+}

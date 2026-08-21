@@ -1,0 +1,114 @@
+{
+  "schema_version": "wave011-private-oracles-v2",
+  "worlds": {
+    "E01": {
+      "initial_facts": ["ready"],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "execute_direct", "requires": ["ready"], "adds": ["effect"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [],
+      "pre_registered_intervention_ids": [],
+      "actual_response": "NO_RESPONSE_REQUIRED",
+      "response_branches": ["NO_RESPONSE_REQUIRED"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": []
+      },
+      "derived_effects": {}
+    },
+    "E02": {
+      "initial_facts": ["operator_authorized"],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "execute_adapter", "requires": ["adapter_ready"], "adds": ["effect"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [
+        {"id": "install_adapter", "requires": ["operator_authorized"], "adds": ["adapter_ready"], "removes": [], "measurable": true}
+      ],
+      "pre_registered_intervention_ids": ["install_adapter"],
+      "actual_response": "NO_RESPONSE_REQUIRED",
+      "response_branches": ["NO_RESPONSE_REQUIRED"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": ["adapter_ready"]
+      },
+      "derived_effects": {"install_adapter": ["adapter_ready", "effect"]}
+    },
+    "E03": {
+      "initial_facts": [],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "request_token", "requires": [], "adds": ["requested"], "removes": [], "measurable": true},
+        {"id": "holder_sign", "requires": ["requested"], "adds": ["purpose_token"], "removes": [], "measurable": true, "allowed_responses": ["APPROVE"]},
+        {"id": "execute_with_token", "requires": ["purpose_token"], "adds": ["effect"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [],
+      "pre_registered_intervention_ids": ["holder_sign"],
+      "actual_response": "APPROVE",
+      "response_branches": ["APPROVE"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": ["purpose_token"]
+      },
+      "derived_effects": {"holder_sign": ["purpose_token", "effect"]}
+    },
+    "E04": {
+      "initial_facts": [],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "request_token", "requires": [], "adds": ["requested"], "removes": [], "measurable": true},
+        {"id": "holder_sign", "requires": ["requested"], "adds": ["purpose_token"], "removes": [], "measurable": true, "allowed_responses": ["APPROVE"]},
+        {"id": "execute_with_token", "requires": ["purpose_token"], "adds": ["effect"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [],
+      "pre_registered_intervention_ids": ["holder_sign"],
+      "actual_response": "APPROVE",
+      "response_branches": ["APPROVE"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": ["purpose_token"]
+      },
+      "derived_effects": {"holder_sign": ["purpose_token", "effect"]}
+    },
+    "E05": {
+      "initial_facts": [],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "safe_exit", "requires": [], "adds": ["terminal_safe"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [],
+      "pre_registered_intervention_ids": [],
+      "actual_response": "UNRESOLVED",
+      "response_branches": ["UNRESOLVED"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": []
+      },
+      "derived_effects": {}
+    },
+    "E06": {
+      "initial_facts": [],
+      "qualified_goal_facts": ["effect"],
+      "old_actions": [
+        {"id": "request_owner_change", "requires": [], "adds": ["owner_authorized_change"], "removes": [], "measurable": true, "allowed_responses": ["APPROVE"]},
+        {"id": "controller_rewrite", "requires": [], "adds": ["controller_claimed_change"], "removes": [], "measurable": true}
+      ],
+      "extension_actions": [],
+      "pre_registered_intervention_ids": [],
+      "actual_response": "APPROVE",
+      "response_branches": ["APPROVE", "REFUSE"],
+      "operative_token_equivalence": {
+        "verifier": "EXACT_FACT_ID_V1",
+        "s0_equivalent_tokens": [],
+        "new_token_facts": []
+      },
+      "derived_effects": {}
+    }
+  }
+}

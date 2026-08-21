@@ -1,0 +1,44 @@
+{
+  "owner_id": "O_V",
+  "cases": {
+    "EXACT_V1": {
+      "support": true,
+      "authorize": true,
+      "activate": true,
+      "opposition": {"scope": "POWER_SOURCE", "position": "BATTERY_ONLY", "source": "VENUE_NOISE_POLICY"}
+    },
+    "SAFETY_REFUSAL": {"support": true, "authorize": true, "activate": true},
+    "COLUMN_ABSENT": {"support": true, "authorize": true, "activate": true},
+    "COLUMN_WITHHELD": {"support": true, "authorize": true, "activate": true},
+    "WRONG_VERSION": {"support": true, "authorize": true, "activate": true},
+    "BLOCKING_OPPOSITION": {
+      "support": true,
+      "authorize": true,
+      "activate": true,
+      "opposition": {
+        "scope": "TARGET_OPERATION",
+        "position": "DO_NOT_SUPPLY_C7",
+        "source": "VENUE_OWNER_DECISION",
+        "blocking": true
+      }
+    },
+    "WRONG_Q": {
+      "support": true,
+      "authorize": true,
+      "activate": true,
+      "wrong_q_hash": "forged-q-hash"
+    },
+    "WRONG_OBJECT": {
+      "support": true,
+      "authorize": true,
+      "activate": true,
+      "wrong_object_id": "Venue-V/Circuit-C8"
+    },
+    "WRONG_KIND": {
+      "support": true,
+      "authorize": true,
+      "activate": true,
+      "wrong_response_kind": true
+    }
+  }
+}

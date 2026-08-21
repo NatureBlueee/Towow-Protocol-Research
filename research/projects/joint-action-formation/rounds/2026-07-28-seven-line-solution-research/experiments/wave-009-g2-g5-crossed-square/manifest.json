@@ -1,0 +1,80 @@
+{
+  "schema": "towow.wave009-g2-g5-manifest.v1",
+  "status": "SECOND_REPAIR_LOCAL_SYNTHETIC",
+  "frozen_design": {
+    "core_worlds": 24,
+    "core_runs": 168,
+    "baselines": [
+      "B0",
+      "B1",
+      "B2",
+      "B3A",
+      "B3B",
+      "B4",
+      "B5"
+    ],
+    "paired_mutations": 6,
+    "presentation_noop_control_pairs": 2,
+    "section_binding_attacks": 6,
+    "sequence_cardinality_attack_cells": 12,
+    "residual_matrix_rows": 11,
+    "implementation_independence": "DISTINCT_PATHS_SAME_AUTHORING_STREAM",
+    "authority_truth_representation": "AUTHORITY_MODE_ONLY",
+    "completed_run_seal": "PARENT_TRUSTED_PUBLIC_KEY_MANIFEST_PINNED",
+    "trusted_run_seal_public_key_hex": "b96598eb08c36835cfbf95242e340a76072fe1d57184cdc1d266ab06b5b6052a",
+    "t5_bypass": true,
+    "b6": "NOT_IMPLEMENTED_NO_OBSERVED_RESIDUAL"
+  },
+  "frozen_inputs": {
+    "../../PROGRAM.md": "580938c57cc054973758e414ca21330f870ad916e842b516c773afe23cbd077b",
+    "../../WAVE-009-START.md": "1157fb48f1f97f8c4b63006bc5644a8285c6d9731aca092cb970a2af78e4e4b7",
+    "../../WAVE-009-G2-G5-DESIGN.md": "924edc898aa9c382b6b5e121509472b504c947eedbec9039f183b83a30c2dc0a",
+    "../../TASK-TRUTH-CORRECTION-001.md": "c7a4e74ab8f5509f4443f3545ec9e331e18fc21991b44144e704a5b7ca1cc372",
+    "../../WAVE-006-AUDIT-INVALIDATION.md": "dbd1d6ca9322f36152df27c5647e4393fab1fb6485cb891b0d6b0e96a86b4ab7",
+    "../../WAVE-007-AUDIT-STATUS.md": "732d05f8ad7480985502e5ea40d3e09d8f1691dae7780160d2331e32f55b3163",
+    "../../WAVE-008-STATUS.md": "d028dce6cf115ab6814f69242292c1453c49ea5b08b3d19c4a6ed6c1a2a40f15",
+    "../../WAVE-008-G3-SYNTHESIS.md": "f1476377d6bcd57e2ad592759df293aa8650cfd4faa582871034cff540ffdee8",
+    "../../wave-003-c-joint-bid/README.md": "fb6af128229a0ee320ea47f5cdece015b719d7964e46aefa0a556edafe0aa1f0",
+    "../../wave-003-c-joint-bid/evaluator/spec.json": "69e8e53d5318c2cc3f449798223948e9cc95ec2160d68e69fca2c664128e9c70",
+    "../../wave-003-c-joint-bid/oracle/truth.json": "bc62a81e02f64757794221eafdd52ab3365425f4695c13e21ac1d166822e55ac",
+    "../../tasks/t5-collapse-safe/README.md": "cc74be58cae4b2e9e476c0ab8103d7dfbfcb30ab0e0d507c47149d415f83c215",
+    "../../tasks/t5-collapse-safe/input.json": "a7a30462154f9a30b13c4443ed1ec2b6707635602091ad20613b60d7495c116d",
+    "../../tasks/t5-collapse-safe/FIRST-EVALUATOR-FAILURE.md": "5974db8c5c497b0fbb2b7732bdda5fd678fbdc5fa1c3e0cc9351eea824cce6cf",
+    "../../tasks/t5-collapse-safe/SECOND-EVALUATOR-FAILURE.md": "05de08c09cccb46dee516fde4cfbbfa803a657ce8c39107fe4ea3f1d21a32aa5"
+  },
+  "source_hashes": {
+    "common.py": "35898bea6573e33c9d825f2540b66b509b1a2edbb5af21a64dc446dd1163e2dd",
+    "world_factory.py": "8bce5ff22ca37fcb1a3d7ea17db38f7cd851873b481bcf77337b587bc96cc6c6",
+    "relation_truth_broker.py": "817058b6dae35569214a5a08a19ba23a03829d4e3cba523b5a0a6534c0f66bdd",
+    "authority_truth_broker.py": "1271ae90d8d5fd7e5437190bd6e48ed6be00fac8de7be88441a0eb18c4a887c2",
+    "baselines.py": "c143131db4134aaa1448dbc86b0355edc2c9522c1fbec97f8169fc94ae3a16b7",
+    "baseline_worker.py": "3fcc8ebb02178dc0eb69ae71aa7e4a6ca8e9846815c9e0528c7850063c08e0ae",
+    "relation_evaluator.py": "2f8e70c29bccf27f8c87ed595885b41cd2b51fb7ece44b4dc28e9f16b1154e82",
+    "authority_evaluator.py": "fbb6a89920a1974a596e4d59bd35b246f9094d77e354e23c0518365e7b49da41",
+    "integration_evaluator.py": "2fb92ecc419315a548c16cfef1a72aaff0b9869c129014f78c07785fac87ea5f",
+    "runner.py": "6626ec395d6db8822550cc8ad11761c7801f019663adbe1835839ce942c1e96b",
+    "tests/test_wave009_crossed_square.py": "6c3305958d35d733f1a9a8253b0adf5fd5ce16966e45f2cd4ff253e69071db41",
+    "README.md": "b50cea6145f58390772a410b03e209da5f7bd1cac8d9859dba17c7c960bdb2d4",
+    "FAILURE_HISTORY.md": "32d8f2ca8bcbd612c6297cbcdd3a0fb37e8d47b9a6d7c3c75bd4532d3178364b"
+  },
+  "frozen_output": {
+    "outputs/results.json": "7b618c626a7f4d466eeeab295d531a5257776f2f45d1e363ffdbab0587e6d28a"
+  },
+  "invalidated_output": {
+    "v1_outputs/results.json": "ec529db69d6083263fcbd5bcdf6130f1a58acf9c9f3b09708aeec6a707bffa2b",
+    "first_repair_outputs/results.json": "bc66d250d83a4366b9b40eeaac91008514b73b55d1035ad861474ed299b44e0f",
+    "reason": "V1_SHARED_IMPLEMENTATION_AND_CONTEXT_REPLAY_GAPS__FIRST_REPAIR_SEQUENCE_RESIDUAL_TRUTH_AND_COMPLETED_RUN_SEAL_GAPS"
+  },
+  "threat_model": {
+    "supported": "TRUSTED_PARENT_PRIVATE_MEMORY_AND_PIPE_CAPTURE",
+    "not_supported": [
+      "SAME_UID_FILESYSTEM_ADVERSARY",
+      "PARENT_RUNTIME_MEMORY_TAMPERING",
+      "INDEPENDENT_IMPLEMENTATION",
+      "NATURAL_LANGUAGE_SEMANTIC_GENERALIZATION",
+      "DISTRIBUTED_LINEARIZABILITY",
+      "REAL_PRINCIPAL_AUTHORIZATION",
+      "PRODUCTION_OR_LONGITUDINAL_VALIDITY"
+    ]
+  }
+}

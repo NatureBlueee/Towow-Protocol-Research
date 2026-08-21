@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "task_family": "THREE_PARTY_JOINT_BID_WITH_PRIVATE_COLUMNS",
+  "evidence_level": "HIGH_FIDELITY_SYNTHETIC_TRUTH_TASK",
+  "solver_visibility": "BLIND_INITIAL_INPUT",
+  "oracle_access": "PROHIBITED",
+  "analysis_scales": [
+    "AgentExecution",
+    "RelationEpisode",
+    "RelationEcology"
+  ],
+  "frozen_prestate": {
+    "snapshot_id": "S0-T4-BLIND-V1",
+    "time": "D0",
+    "public_world": [
+      "一座城市发布了偏远公共设施连续性试点招标：在多个偏远站点部署离线采集、同步和独立验收能力。",
+      "公开初始 brief 要求覆盖 12 个站点、在网络中断时至少持续采集 24 小时，并在恢复连接后向城市系统同步。",
+      "联合投标总价上限为 360000 元，提交截止为 D+5；生产扩展和后续采购不在本次承诺范围。",
+      "PRIME、FIELD、ASSURE 三个独立主体被认为可能具有互补能力，但此前没有共同关系版本、资源预留或联合签署。",
+      "PRIME 公开表示能够承担项目整合与投标管理；FIELD 公开表示拥有现场设备与部署经验；ASSURE 公开表示能够提供独立验证。",
+      "公开能力描述不构成精确 operation 的资格化，也不构成任何主体的报价、容量、签署、资源 reservation 或 Commitment。",
+      "城市 tender 可能存在更新或 addendum；候选方法必须依据当前权威版本，而不能只依赖初始 brief。",
+      "当前没有任何可提交、由必要 Authority 认领且具备前瞻性能力证据和目标域 readback 规则的完整联合投标。"
+    ],
+    "three_joint_bid_entities": [
+      {
+        "entity_id": "PRIME",
+        "public_role_candidate": "prime_integrator_and_bid_manager"
+      },
+      {
+        "entity_id": "FIELD",
+        "public_role_candidate": "field_equipment_and_deployment"
+      },
+      {
+        "entity_id": "ASSURE",
+        "public_role_candidate": "independent_verification"
+      }
+    ],
+    "known_unknowns": [
+      "当前具有权威性的 tender version 与 material addenda",
+      "三个主体的精确局部能力、可用容量、价格界和风险 countercondition",
+      "跨主体技术链在当前版本和环境中是否真实可运行",
+      "哪些主体内部 Authority 有权报价、预留资源、签署和承担责任",
+      "资源是否会与现有项目重复承诺",
+      "联合投标如何分别证明 submission、receipt、Adoption、Acceptance 与现实 Effect",
+      "任一主体撤销或条件漂移后哪些部分可复用、哪些必须重开",
+      "同一方法能否迁移到不同主体和行业，而不是硬编码当前对象"
+    ],
+    "prohibited_assumptions": [
+      "不能把公开 capability profile 当作当前容量、报价、Mandate 或 Commitment",
+      "不能假定三方完整组合事前存在，也不能假定必须形成组合",
+      "不能从技术 Authority 推出价格、签署或预算 Authority",
+      "不能从资源 reservation 推出签署或最终 Commitment",
+      "不能在有界跨主体 probe 之前承诺未资格化的精确 operation",
+      "不能把 portal submission receipt 当作 Adoption 或 Acceptance",
+      "不能把执行者日志当作城市目标域 Effect",
+      "不能把一个 reference witness 当作唯一正确技术或协议",
+      "不能为获得可提交答案而忽略拒绝、Unknown、预算超限或安全退出"
+    ]
+  },
+  "frozen_value_floor": {
+    "id": "V0-T4-BLIND-V1",
+    "must_preserve": [
+      {
+        "id": "V0-OUTCOME",
+        "statement": "投标必须保留城市试点的连续采集、同步和独立验收目标；不能降格为方案文档、演示或 portal 上传。"
+      },
+      {
+        "id": "V0-THREE-PRINCIPALS",
+        "statement": "PRIME、FIELD、ASSURE 的局部能力、价格、风险、拒绝与 Authority 不得被中心模型或其他主体代行。"
+      },
+      {
+        "id": "V0-PRIVATE-COLUMNS",
+        "statement": "私有容量、成本、margin、排期和风险只披露形成与验证所需的 column、界或 countercondition。"
+      },
+      {
+        "id": "V0-AUTHORITY",
+        "statement": "预算、签署、技术资格化、现场资源与独立验收 Authority 分别作数，并绑定精确关系版本。"
+      },
+      {
+        "id": "V0-EVIDENCE",
+        "statement": "Submission、Adoption、Acceptance 与 Effect 必须由相称权威域的独立证据分别建立。"
+      },
+      {
+        "id": "V0-EXIT",
+        "statement": "若当前约束下没有合格组合，Unknown、Reject、Defer 或 SAFE_EXIT 是合法结果。"
+      }
+    ],
+    "material_change_rule": "tender 目标、数据边界、主体、角色、operation、价格、容量、风险、Authority、witness 或接受语义发生实质变化时，必须建立新关系版本并重新取得受影响依赖；不得静默继承旧 Stance、probe 或 reservation。"
+  },
+  "frozen_qualification_predicate": {
+    "id": "Q-T4-BLIND-V1",
+    "statement": "存在一份在 D+5 前可提交且总价不超过 360000 元的联合投标：它依据当前 tender version，保留 V0；三主体对精确角色、责任、价格和退出作出相称 Stance；跨主体 operation 在精确 executor/environment/version/permission/resource 条件下先被资格化；稀缺资源被有效预留且不重复承诺；城市 Authority 可分别判断 submission、Adoption、Acceptance 与目标域 Effect；撤销、漂移、恢复、再次运行和异行业迁移可追溯。",
+    "must_hold": [
+      "current_tender_version_used",
+      "necessary_authorities_preserved",
+      "private_columns_minimally_disclosed",
+      "capability_qualified_before_commitment",
+      "budget_within_current_ceiling",
+      "resources_reserved_without_double_commitment",
+      "submission_adoption_acceptance_separable",
+      "target_domain_readback_defined",
+      "material_change_versioned",
+      "withdrawal_and_repeat_follow_dependencies",
+      "migration_does_not_hardcode_entities_or_domain"
+    ],
+    "does_not_require": [
+      "使用通爻协议或任何特定术语",
+      "使用某个 reference workflow 或关系对象",
+      "证明严格 formation 或协议独占性",
+      "现实提交、城市采用或签约",
+      "生产部署或 Settlement"
+    ]
+  },
+  "authority_interfaces": [
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "entity": "CITY",
+      "public_scope": [
+        "current_tender_version",
+        "budget_ceiling",
+        "submission_and_eligibility_receipts",
+        "adoption_and_acceptance_semantics",
+        "target_readback"
+      ],
+      "cannot_decide": [
+        "bidder_internal_capacity",
+        "bidder_signing",
+        "technical_capability",
+        "resource_reservation"
+      ],
+      "initial_public_projection": "初始 brief 和上限公开；当前 addendum、证据语义和 readback 细节只按有界请求披露。",
+      "allowed_request_types": [
+        "REQUEST_CURRENT_TENDER_VERSION",
+        "REQUEST_BUDGET_RULE",
+        "REQUEST_SUBMISSION_EVIDENCE_RULE",
+        "REQUEST_ADOPTION_ACCEPTANCE_SEPARATION",
+        "REQUEST_TARGET_READBACK_RULE"
+      ]
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "entity": "PRIME",
+      "public_scope": [
+        "prime_price",
+        "liability",
+        "joint_bid_signature",
+        "prime_staff_reservation"
+      ],
+      "cannot_decide": [
+        "technical_qualification",
+        "field_capacity",
+        "independent_acceptance"
+      ],
+      "initial_public_projection": "愿意评估 prime 角色；没有公开精确价格、责任边界、签署或资源 reservation。",
+      "allowed_request_types": [
+        "REQUEST_PRIME_PRICE_BOUND",
+        "REQUEST_LIABILITY_BOUNDARY",
+        "REQUEST_PRIME_SIGNING_STANCE",
+        "RESERVE_PRIME_STAFF"
+      ]
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "entity": "PRIME",
+      "public_scope": [
+        "integration_operation",
+        "local_execution",
+        "interop_probe",
+        "failure_and_recovery"
+      ],
+      "cannot_decide": [
+        "prime_price",
+        "joint_bid_signature",
+        "field_reservation",
+        "city_acceptance"
+      ],
+      "initial_public_projection": "通用整合能力存在；对 FIELD 当前版本和城市目标环境中的精确 operation 保持 Unknown。",
+      "allowed_request_types": [
+        "REQUEST_INTEGRATION_CAPABILITY",
+        "REQUEST_LOCAL_EXECUTION_OPTION",
+        "REQUEST_INTEROP_PROBE_TERMS",
+        "RUN_INTEROP_PROBE",
+        "REQUEST_FAILURE_RECOVERY"
+      ]
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "entity": "FIELD",
+      "public_scope": [
+        "field_price",
+        "kit_reservation",
+        "field_signature"
+      ],
+      "cannot_decide": [
+        "technical_probe_result",
+        "prime_liability",
+        "city_acceptance"
+      ],
+      "initial_public_projection": "愿意评估设备与现场角色；没有公开精确价格、可用库存、reservation 或签署。",
+      "allowed_request_types": [
+        "REQUEST_FIELD_PRICE_BOUND",
+        "REQUEST_KIT_RESERVATION_TERMS",
+        "REQUEST_FIELD_SIGNING_STANCE",
+        "RESERVE_FIELD_CAPACITY"
+      ]
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "entity": "FIELD",
+      "public_scope": [
+        "field_capacity",
+        "firmware_interface",
+        "deployment_risk"
+      ],
+      "cannot_decide": [
+        "field_price",
+        "field_signature",
+        "prime_integration_commitment"
+      ],
+      "initial_public_projection": "拥有现场设备和部署经验；当前可用容量、版本接口和风险边界未披露。",
+      "allowed_request_types": [
+        "REQUEST_FIELD_CAPACITY_BOUND",
+        "REQUEST_FIRMWARE_INTERFACE",
+        "REQUEST_DEPLOYMENT_RISK"
+      ]
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "entity": "ASSURE",
+      "public_scope": [
+        "audit_price",
+        "audit_slot_reservation",
+        "assure_signature"
+      ],
+      "cannot_decide": [
+        "audit_independence_finding",
+        "field_capacity",
+        "city_acceptance"
+      ],
+      "initial_public_projection": "愿意评估独立验证角色；没有公开精确价格、档期 reservation 或签署。",
+      "allowed_request_types": [
+        "REQUEST_AUDIT_PRICE_BOUND",
+        "REQUEST_AUDIT_SLOT_RESERVATION",
+        "REQUEST_AUDIT_SIGNING_STANCE",
+        "RESERVE_AUDIT_SLOT"
+      ]
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "entity": "ASSURE",
+      "public_scope": [
+        "audit_capability",
+        "independence_boundary",
+        "acceptance_witness"
+      ],
+      "cannot_decide": [
+        "audit_price",
+        "assure_signature",
+        "city_award"
+      ],
+      "initial_public_projection": "具有独立验证经验；当前任务容量、利益冲突边界和目标域 witness 未披露。",
+      "allowed_request_types": [
+        "REQUEST_AUDIT_CAPABILITY",
+        "REQUEST_INDEPENDENCE_BOUNDARY",
+        "REQUEST_ACCEPTANCE_WITNESS"
+      ]
+    }
+  ],
+  "disclosure_protocol": {
+    "rule": "solver 必须说明向哪个 Authority、为哪个决策、请求何种最小信息。controller 只返回冻结 allowlist 响应；越界、错配和前置条件不足可 REFUSE 或 DEFER，且不提示正确答案。",
+    "required_receipt_fields": [
+      "request_id",
+      "receipt_id",
+      "receipt_hash",
+      "authority_id",
+      "request_type",
+      "purpose",
+      "relation_version_ref",
+      "response_type",
+      "disclosed_fields",
+      "retention_scope"
+    ],
+    "response_types": [
+      "FACT",
+      "BOUND",
+      "COUNTERCONDITION",
+      "WITNESS",
+      "UNKNOWN",
+      "CONDITIONAL",
+      "RESERVATION",
+      "ACCEPT",
+      "REJECT",
+      "REFUSE",
+      "DEFER",
+      "REPLAY"
+    ]
+  },
+  "initial_relation_state": {
+    "id": "REL-T4-PRE-S0",
+    "status": "NOT_FORMED",
+    "known_role_candidates": [
+      "PRIME:prime_integrator_and_bid_manager",
+      "FIELD:field_equipment_and_deployment",
+      "ASSURE:independent_verification"
+    ],
+    "known_stances": [],
+    "known_reservations": [],
+    "known_qualified_cross_party_operations": []
+  },
+  "key_bottomlines": [
+    {
+      "id": "BL-NO-PRECOMPILED-CONSORTIUM",
+      "statement": "不得把三个公开 profile 直接拼成已经可提交的 consortium。",
+      "critical": true
+    },
+    {
+      "id": "BL-NO-AUTHORITY-INFERENCE",
+      "statement": "不得从 capability、身份或另一 Authority 意见推出价格、签署、预算或 Commitment。",
+      "critical": true
+    },
+    {
+      "id": "BL-PROBE-BEFORE-COMMITMENT",
+      "statement": "未在精确版本和环境中完成有界 probe 前，不得承诺跨主体 operation。",
+      "critical": true
+    },
+    {
+      "id": "BL-NO-DOUBLE-RESERVATION",
+      "statement": "资源必须由 owner Authority 有效预留并可撤销；重复承诺使当前路径失效。",
+      "critical": true
+    },
+    {
+      "id": "BL-SEPARATE-OUTCOMES",
+      "statement": "Submission、receipt/eligibility、Adoption、Acceptance 与 Effect 不互相蕴含。",
+      "critical": true
+    },
+    {
+      "id": "BL-SCOPED-REOPEN",
+      "statement": "material change 或撤销后必须沿依赖阻断和重开，不能静默沿用旧版本。",
+      "critical": true
+    },
+    {
+      "id": "BL-HONEST-NON-SOLUTION",
+      "statement": "若预算、能力、Authority 或 reservation 无法成立，必须保留 Reject、Unknown 或 SAFE_EXIT。",
+      "critical": true
+    }
+  ],
+  "baseline_contract": {
+    "same_information_rule": "每种方法只获得同一 blind input、可见 evaluator contract 与通过 controller 返回的同等 Authority 响应。",
+    "eligible_solution_families": [
+      "EXPERT_HUMAN_BROKER",
+      "AUTHORITY_AWARE_CENTRAL_MODEL",
+      "CMMN_BPMN_DMN_COMMITMENT_IAM_WORKFLOW",
+      "OTHER_METHOD_NEUTRAL_COMPOSITION"
+    ],
+    "must_report": [
+      "requirements_coverage",
+      "critical_bottomlines",
+      "disclosure_events",
+      "questions_and_rounds",
+      "private_column_exposure",
+      "human_judgments",
+      "false_closure",
+      "safe_exit",
+      "reservations",
+      "repeat_and_reopen",
+      "migration"
+    ]
+  },
+  "expected_solver_return": [
+    "method_components",
+    "queries_and_disclosure_receipts",
+    "task_reconstruction",
+    "candidate_relation_versions",
+    "prospective_capability_qualifications",
+    "authority_and_stance_state",
+    "resource_reservations",
+    "submission_and_execution_workflow",
+    "separate_outcome_rules",
+    "failure_recovery_repeat_and_reopen",
+    "migration_plan",
+    "unknowns_refusals_and_cannot_support"
+  ]
+}

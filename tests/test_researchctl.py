@@ -856,7 +856,21 @@ class ContractTests(unittest.TestCase):
                 )
             ],
         )
-        self.assertEqual([], researchctl.select_active_lines(project, v2))
+        self.assertEqual(
+            [
+                "LINE-01-BOUNDARY-SUFFICIENCY-V2",
+                "LINE-01-NAC",
+                "LINE-02-PRIVATE-COLUMN-V2",
+                "LINE-02-RELATION-MATERIALITY-V2",
+                "LINE-03-CONDITION-FORMATION-V2",
+                "LINE-03-TYPED-UNKNOWN-V2",
+                "LINE-04-CAPABILITY-REALIZATION-V2",
+                "LINE-05-AUTHORITY-ADAPTER-V2",
+                "LINE-06-EFFECT-AUTHORITY-GATE-V2",
+                "LINE-07-SCOPED-REOPEN-V2",
+            ],
+            [line["id"] for _, line in researchctl.select_active_lines(project, v2)],
+        )
         with self.assertRaises(researchctl.ResearchError):
             researchctl.select_active_lines(
                 project,
@@ -1660,6 +1674,7 @@ class ContractTests(unittest.TestCase):
         path = researchctl.DEFAULT_PROJECT / "lines" / "01-nac.json"
         active = copy.deepcopy(researchctl.load_json(path))
         active["status"] = "ACTIVE"
+        active["prior_solution_review"]["disposition"] = "UNRESOLVED"
         original_load_json = researchctl.load_json
 
         def load_active(candidate_path):
@@ -1709,7 +1724,10 @@ class RuntimeTests(unittest.TestCase):
         args = argparse.Namespace(
             project=None,
             problem="v0",
-            scenario=None,
+            scenario=(
+                "research/projects/joint-action-formation/scenarios/"
+                "problem-definition-archive-v0.json"
+            ),
             mode="mock",
             batch_id=batch_id,
             max_parallel=3,
@@ -2678,6 +2696,7 @@ class RuntimeTests(unittest.TestCase):
             project / "scenarios" / "problem-definition-archive-v0.json"
         )
         line = researchctl.load_json(project / "lines" / "01-nac.json")
+        line["status"] = "DRAFT"
         batch_id = "BATCH-TEST-MIXED-VERSIONS"
         run_id = f"{batch_id}-{line['id']}"
         plan = {
@@ -2716,7 +2735,10 @@ class RuntimeTests(unittest.TestCase):
         args = argparse.Namespace(
             project=None,
             problem="v0",
-            scenario=None,
+            scenario=(
+                "research/projects/joint-action-formation/scenarios/"
+                "problem-definition-archive-v0.json"
+            ),
             mode="codex",
             batch_id="BATCH-TEST-CODEX-CONSENT",
             max_parallel=3,
@@ -2740,7 +2762,10 @@ class RuntimeTests(unittest.TestCase):
         args = argparse.Namespace(
             project=None,
             problem="v0",
-            scenario=None,
+            scenario=(
+                "research/projects/joint-action-formation/scenarios/"
+                "problem-definition-archive-v0.json"
+            ),
             mode="codex",
             batch_id="BATCH-TEST-DISCLOSURE-MUTATION",
             max_parallel=3,
@@ -2765,7 +2790,10 @@ class RuntimeTests(unittest.TestCase):
                 argparse.Namespace(
                     project=None,
                     problem="v0",
-                    scenario=None,
+                    scenario=(
+                        "research/projects/joint-action-formation/scenarios/"
+                        "problem-definition-archive-v0.json"
+                    ),
                     mode="codex",
                     batch_id=batch_id,
                     max_parallel=3,

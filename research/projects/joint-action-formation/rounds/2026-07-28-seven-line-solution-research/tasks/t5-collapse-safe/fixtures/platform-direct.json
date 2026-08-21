@@ -1,0 +1,93 @@
+{
+  "schema_version": "3.0",
+  "task_id": "T5-COLLAPSE-SAFE-SAAS-V3",
+  "method_id": "platform-direct-baseline",
+  "path_kind": "DIRECT",
+  "adapter": {
+    "id": null,
+    "artifact_sha256": null
+  },
+  "operations": [
+    {
+      "op": "READ_CATALOG",
+      "authority_source": "STANDARD-SAAS-PLATFORM",
+      "inputs": {
+        "sku": "SKU-CRM-STD-M"
+      }
+    },
+    {
+      "op": "REQUEST_BUYER_APPROVAL",
+      "authority_source": "BUYER-APPROVER-1",
+      "inputs": {
+        "sku": "SKU-CRM-STD-M",
+        "seat_count": 5,
+        "total_price_cny": 600
+      }
+    },
+    {
+      "op": "CREATE_ORDER",
+      "authority_source": "STANDARD-SAAS-PLATFORM",
+      "inputs": {
+        "sku": "SKU-CRM-STD-M",
+        "seat_count": 5,
+        "billing_period": "MONTHLY"
+      }
+    },
+    {
+      "op": "AUTHORIZE_PAYMENT",
+      "authority_source": "STANDARD-SAAS-PLATFORM",
+      "inputs": {
+        "amount_cny": 600,
+        "payment_token_reference": "TOKEN-REF-ONLY"
+      }
+    },
+    {
+      "op": "READ_PROVISIONING",
+      "authority_source": "STANDARD-SAAS-PLATFORM",
+      "inputs": {
+        "sku": "SKU-CRM-STD-M"
+      }
+    },
+    {
+      "op": "READ_INVOICE",
+      "authority_source": "STANDARD-SAAS-PLATFORM",
+      "inputs": {
+        "sku": "SKU-CRM-STD-M"
+      }
+    }
+  ],
+  "disclosures": [
+    {
+      "recipient": "STANDARD-SAAS-PLATFORM",
+      "purpose": "PURCHASE_EXECUTION",
+      "retention": "ACCOUNT_POLICY",
+      "fields": [
+        "sku",
+        "seat_count",
+        "billing_period",
+        "buyer_account",
+        "payment_token_reference"
+      ]
+    },
+    {
+      "recipient": "BUYER-APPROVER-1",
+      "purpose": "PURCHASE_APPROVAL",
+      "retention": "RUN_ONLY",
+      "fields": [
+        "sku",
+        "seat_count",
+        "total_price_cny"
+      ]
+    }
+  ],
+  "failure_handling": {
+    "ORDER_REJECTED": "READ_PLATFORM_STATE_AND_STOP",
+    "PAYMENT_FAILED": "READ_PLATFORM_STATE_AND_STOP",
+    "PROVISIONING_FAILED": "READ_PLATFORM_STATE_AND_STOP",
+    "CANCELLED": "READ_PLATFORM_STATE_AND_STOP"
+  },
+  "cannot_support": [
+    "No real purchase or payment was executed.",
+    "This negative control does not establish platform production reliability."
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "summary": {
+    "bounded_human_institution": {
+      "applicable_cases": 8,
+      "correct_resolution": 7,
+      "exact_task_success": 6,
+      "unsafe_effect": 0,
+      "duplicate_effect": 0,
+      "wrong_object_reliance": 0,
+      "total_net_value": 3032.0,
+      "total_human_minutes": 425,
+      "total_wait_minutes": 645
+    },
+    "direct_platform": {
+      "applicable_cases": 1,
+      "correct_resolution": 1,
+      "exact_task_success": 1,
+      "unsafe_effect": 0,
+      "duplicate_effect": 0,
+      "wrong_object_reliance": 0,
+      "total_net_value": 864.0,
+      "total_human_minutes": 2,
+      "total_wait_minutes": 54
+    },
+    "existing_authority_aware_portfolio": {
+      "applicable_cases": 8,
+      "correct_resolution": 8,
+      "exact_task_success": 7,
+      "unsafe_effect": 0,
+      "duplicate_effect": 0,
+      "wrong_object_reliance": 0,
+      "total_net_value": 5540.0,
+      "total_human_minutes": 38,
+      "total_wait_minutes": 444
+    },
+    "naive_green_workflow": {
+      "applicable_cases": 8,
+      "correct_resolution": 0,
+      "exact_task_success": 4,
+      "unsafe_effect": 2,
+      "duplicate_effect": 1,
+      "wrong_object_reliance": 1,
+      "total_net_value": -26382.0,
+      "total_human_minutes": 0,
+      "total_wait_minutes": 72
+    }
+  },
+  "independence": {
+    "arm_source_hashes": {
+      "direct_platform": "c0a143c4c4d22c4f2f396d27393f70d8fb990f90ae114f5d00ebde016105fd5f",
+      "existing_authority_aware_portfolio": "512ef29d286c4d300ab7b1713ab7a893751f611bcb4c143c9d9d78ff84b6d5f4",
+      "bounded_human_institution": "0324d369ecfbda15925df767bf7ca2dedbdbdf53866af2a4ef05f4281044fcfd",
+      "naive_green_workflow": "19469636837ad906a9968ba6a77a6314637ec8024c03cdf943151d11e12c1cd0"
+    },
+    "all_hashes_distinct": true,
+    "sabotage_probe": {
+      "normal_portfolio": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E3B_ACK_LOST_NO_EFFECT",
+        "applicable": true,
+        "exact_task_success": true,
+        "correct_resolution": true,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": false,
+        "recovery_to_value": true,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": true,
+        "net_value": 752.0,
+        "human_minutes": 5,
+        "wait_minutes": 64,
+        "effect_count": 1,
+        "resolution": "SUCCESS",
+        "notes": []
+      },
+      "sabotaged_portfolio": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E3B_ACK_LOST_NO_EFFECT",
+        "applicable": true,
+        "exact_task_success": false,
+        "correct_resolution": false,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": true,
+        "recovery_to_value": true,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": false,
+        "net_value": -2718.0,
+        "human_minutes": 5,
+        "wait_minutes": 49,
+        "effect_count": 0,
+        "resolution": "SUCCESS",
+        "notes": [
+          "declared success without exact task success"
+        ]
+      },
+      "human_unchanged_reference": {
+        "arm": "bounded_human_institution",
+        "case": "E3B_ACK_LOST_NO_EFFECT",
+        "applicable": true,
+        "exact_task_success": true,
+        "correct_resolution": true,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": false,
+        "recovery_to_value": true,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": true,
+        "net_value": 492.0,
+        "human_minutes": 63,
+        "wait_minutes": 102,
+        "effect_count": 1,
+        "resolution": "SUCCESS",
+        "notes": []
+      },
+      "naive_unchanged_reference": {
+        "arm": "naive_green_workflow",
+        "case": "E3B_ACK_LOST_NO_EFFECT",
+        "applicable": true,
+        "exact_task_success": false,
+        "correct_resolution": false,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": true,
+        "recovery_to_value": true,
+        "acceptance_complete": false,
+        "settlement_complete": false,
+        "deadline_met": false,
+        "net_value": -2619.0,
+        "human_minutes": 0,
+        "wait_minutes": 9,
+        "effect_count": 0,
+        "resolution": "SUCCESS",
+        "notes": [
+          "declared success without exact task success"
+        ]
+      }
+    },
+    "formation_ablation": {
+      "operator_present": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E2_FORMATION",
+        "applicable": true,
+        "exact_task_success": true,
+        "correct_resolution": true,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": false,
+        "recovery_to_value": true,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": true,
+        "net_value": 730.0,
+        "human_minutes": 5,
+        "wait_minutes": 65,
+        "effect_count": 1,
+        "resolution": "SUCCESS",
+        "notes": []
+      },
+      "operator_removed": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E2_FORMATION",
+        "applicable": true,
+        "exact_task_success": false,
+        "correct_resolution": false,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": false,
+        "recovery_to_value": true,
+        "acceptance_complete": false,
+        "settlement_complete": false,
+        "deadline_met": false,
+        "net_value": -22.0,
+        "human_minutes": 4,
+        "wait_minutes": 3,
+        "effect_count": 0,
+        "resolution": "DEFER",
+        "notes": []
+      }
+    },
+    "target_fence_persistence_counterexample": {
+      "persistent_fence": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E6_MIGRATION_REPLAY",
+        "applicable": true,
+        "exact_task_success": true,
+        "correct_resolution": true,
+        "unsafe_effect": false,
+        "duplicate_effect": false,
+        "wrong_object_reliance": false,
+        "recovery_to_value": true,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": true,
+        "net_value": 758.0,
+        "human_minutes": 5,
+        "wait_minutes": 61,
+        "effect_count": 1,
+        "resolution": "SUCCESS",
+        "notes": [
+          "recovered after coordinator crash"
+        ]
+      },
+      "fence_lost_on_target_restart": {
+        "arm": "existing_authority_aware_portfolio",
+        "case": "E6_MIGRATION_REPLAY",
+        "applicable": true,
+        "exact_task_success": false,
+        "correct_resolution": false,
+        "unsafe_effect": false,
+        "duplicate_effect": true,
+        "wrong_object_reliance": false,
+        "recovery_to_value": false,
+        "acceptance_complete": true,
+        "settlement_complete": true,
+        "deadline_met": true,
+        "net_value": -3242.0,
+        "human_minutes": 5,
+        "wait_minutes": 61,
+        "effect_count": 2,
+        "resolution": "SUCCESS",
+        "notes": [
+          "declared success without exact task success"
+        ]
+      }
+    },
+    "truth_transplant": [
+      {
+        "arm": "existing_authority_aware_portfolio",
+        "refused_resolution": "REJECT",
+        "refused_correct": true,
+        "approved_resolution": "SUCCESS",
+        "approved_correct": true
+      },
+      {
+        "arm": "bounded_human_institution",
+        "refused_resolution": "REJECT",
+        "refused_correct": true,
+        "approved_resolution": "SUCCESS",
+        "approved_correct": true
+      },
+      {
+        "arm": "naive_green_workflow",
+        "refused_resolution": "SUCCESS",
+        "refused_correct": false,
+        "approved_resolution": "SUCCESS",
+        "approved_correct": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,569 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "visibility": "EVALUATOR_AND_CONTROLLER_ONLY",
+  "truth_status": "FROZEN_SYNTHETIC_WORLD",
+  "purpose": "为方法中立的盲测提供独立事实、最小披露响应、可达性 witness 与结果证据语义；不规定候选方法。",
+  "private_world": {
+    "city": {
+      "current_tender_version": "CITY-RFC-17-V2",
+      "supersedes": "CITY-RFC-17-V1",
+      "material_addendum": {
+        "id": "ADD-DATA-LOCAL-02",
+        "change": "站点原始 telemetry 不得离开城市 tenant；只有经批准的聚合指标可以导出。",
+        "invalidates": [
+          "依赖外部托管原始数据的技术 stance",
+          "未在 local execution 下运行的旧 interop evidence"
+        ]
+      },
+      "budget_ceiling_cny": 360000,
+      "deadline": "D+5",
+      "submission_semantics": {
+        "portal_receipt": "只证明精确 payload 字节已由 portal 接收",
+        "eligibility_receipt": "只证明形式审查通过",
+        "adoption": "由城市 shortlist notice 建立",
+        "acceptance": "由对精确 bid version 的 award notice 建立",
+        "effect": "由城市 operations ledger 和签名 readback 建立",
+        "settlement": "由城市 payment ledger 建立"
+      },
+      "target_readback": {
+        "authority": "CITY-OPERATIONS",
+        "required_fields": [
+          "accepted_bid_version",
+          "site_count_reporting",
+          "offline_capture_hours_observed",
+          "sync_reconciliation_result",
+          "independent_audit_report_hash"
+        ]
+      }
+    },
+    "principals": {
+      "PRIME": {
+        "commercial": {
+          "price_cny": 120000,
+          "liability_cap_cny": 500000,
+          "excluded_liability": "consequential_loss",
+          "signing_stance": "CONDITIONAL",
+          "signing_conditions": [
+            "current tender version bound",
+            "total price at or below current ceiling",
+            "exact interop probe passed",
+            "all three reservations valid",
+            "role and exit terms bound to the same relation version"
+          ],
+          "staff_capacity": {
+            "available": true,
+            "resource": "one_bid_manager_plus_two_integration_engineers",
+            "reservation_ttl_hours": 72
+          }
+        },
+        "technical": {
+          "integration_component": "edge-orchestrator",
+          "version": "2.3.1",
+          "generic_capability": "local collection orchestration and deferred sync",
+          "local_execution": true,
+          "pre_probe_exact_operation_status": "UNKNOWN",
+          "failure_recovery": {
+            "local_queue_hours": 30,
+            "retry": "idempotent_event_batch",
+            "manual_reconcile_trigger": true
+          }
+        }
+      },
+      "FIELD": {
+        "commercial": {
+          "price_cny": 145000,
+          "signing_stance": "CONDITIONAL",
+          "signing_conditions": [
+            "12 kits reserved",
+            "deployment risk allocation accepted",
+            "current relation version names firmware and local-data boundary"
+          ],
+          "reservation_ttl_hours": 72
+        },
+        "operations": {
+          "available_kits": 12,
+          "firmware_version": "4.2",
+          "interface": "signed_local_batch_v3",
+          "deployment_window_days": 8,
+          "risks": [
+            {
+              "id": "WEATHER-ACCESS",
+              "bound": "two sites may require one additional mobilization day",
+              "countercondition": "schedule includes a two-day weather buffer"
+            },
+            {
+              "id": "BATTERY-DERATING",
+              "bound": "cold-weather reserve must remain above 28 hours",
+              "countercondition": "pre-deployment load test on all 12 kits"
+            }
+          ]
+        }
+      },
+      "ASSURE": {
+        "commercial": {
+          "price_cny": 70000,
+          "signing_stance": "CONDITIONAL",
+          "signing_conditions": [
+            "audit scope is fixed before implementation freeze",
+            "ASSURE does not operate or design the system it judges",
+            "two-auditor slot reserved"
+          ],
+          "reservation_ttl_hours": 72
+        },
+        "audit": {
+          "available_auditors": 2,
+          "coverage_sites": 12,
+          "independence": "no ownership, implementation, operation, or payment-on-pass interest",
+          "cannot_do": [
+            "design implementation controls",
+            "operate the pilot",
+            "replace city acceptance Authority"
+          ],
+          "acceptance_witness": [
+            "signed independent audit report",
+            "city operations ledger",
+            "city signed target-domain readback"
+          ]
+        }
+      }
+    },
+    "cross_party_operation": {
+      "operation_id": "LOCAL-CAPTURE-SYNC-ACCEPT-V2",
+      "executor_versions": {
+        "prime": "edge-orchestrator@2.3.1",
+        "field": "firmware@4.2"
+      },
+      "environment": "city-sandbox-local-tenant",
+      "permission_boundary": "raw telemetry remains in city tenant",
+      "probe_result": "PASS",
+      "probe_observations": {
+        "offline_capture_hours": 26,
+        "reconnect_sync": "complete_without_duplicate_events",
+        "raw_export_attempts": 0,
+        "aggregate_export": "approved_only"
+      },
+      "qualification_scope": "only the exact versions, environment, permission boundary and 12-site bid operation"
+    }
+  },
+  "disclosure_transitions": [
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "request_type": "REQUEST_CURRENT_TENDER_VERSION",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "current_tender_version": "CITY-RFC-17-V2",
+        "material_addendum_id": "ADD-DATA-LOCAL-02",
+        "raw_data_boundary": "RAW_TELEMETRY_CITY_TENANT_ONLY",
+        "approved_external_projection": "AGGREGATES_ONLY"
+      }
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "request_type": "REQUEST_BUDGET_RULE",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "currency": "CNY",
+        "ceiling": 360000,
+        "deadline": "D+5",
+        "comparison": "TOTAL_BID_PRICE_LESS_THAN_OR_EQUAL_TO_CEILING"
+      }
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "request_type": "REQUEST_SUBMISSION_EVIDENCE_RULE",
+      "response_type": "WITNESS",
+      "disclosed_fields": {
+        "portal_receipt_proves": "EXACT_PAYLOAD_BYTES_RECEIVED",
+        "eligibility_receipt_proves": "FORMAL_REVIEW_PASSED",
+        "does_not_prove": [
+          "ADOPTION",
+          "ACCEPTANCE",
+          "EFFECT"
+        ]
+      }
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "request_type": "REQUEST_ADOPTION_ACCEPTANCE_SEPARATION",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "adoption_witness": "CITY_SHORTLIST_NOTICE",
+        "acceptance_witness": "CITY_AWARD_NOTICE_FOR_EXACT_BID_VERSION",
+        "not_equivalent": true
+      }
+    },
+    {
+      "authority_id": "CITY-PROCUREMENT",
+      "request_type": "REQUEST_TARGET_READBACK_RULE",
+      "response_type": "WITNESS",
+      "disclosed_fields": {
+        "readback_authority": "CITY-OPERATIONS",
+        "required_fields": [
+          "accepted_bid_version",
+          "site_count_reporting",
+          "offline_capture_hours_observed",
+          "sync_reconciliation_result",
+          "independent_audit_report_hash"
+        ]
+      }
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "request_type": "REQUEST_PRIME_PRICE_BOUND",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "currency": "CNY",
+        "fixed_price": 120000,
+        "scope": "prime integration, bid management, and bounded recovery support"
+      }
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "request_type": "REQUEST_LIABILITY_BOUNDARY",
+      "response_type": "COUNTERCONDITION",
+      "disclosed_fields": {
+        "liability_cap_cny": 500000,
+        "excluded_liability": "CONSEQUENTIAL_LOSS",
+        "required_allocation": "each principal remains liable for its signed scope"
+      }
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "request_type": "REQUEST_PRIME_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "stance": "CONDITIONAL",
+        "conditions": [
+          "CURRENT_TENDER_BOUND",
+          "TOTAL_WITHIN_CEILING",
+          "EXACT_PROBE_PASSED",
+          "ALL_RESERVATIONS_VALID",
+          "SAME_RELATION_VERSION"
+        ]
+      }
+    },
+    {
+      "authority_id": "PRIME-BID",
+      "request_type": "RESERVE_PRIME_STAFF",
+      "prerequisites": [
+        "CITY-PROCUREMENT|REQUEST_CURRENT_TENDER_VERSION",
+        "PRIME-BID|REQUEST_PRIME_PRICE_BOUND",
+        "PRIME-BID|REQUEST_LIABILITY_BOUNDARY"
+      ],
+      "response_type": "RESERVATION",
+      "disclosed_fields": {
+        "reservation_id": "RSV-PRIME-72H-01",
+        "resource": "ONE_BID_MANAGER_PLUS_TWO_INTEGRATION_ENGINEERS",
+        "ttl_hours": 72,
+        "exclusive_for_relation_version": true,
+        "revocable_by": "PRIME-BID"
+      }
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "request_type": "REQUEST_INTEGRATION_CAPABILITY",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "component": "EDGE_ORCHESTRATOR",
+        "version": "2.3.1",
+        "generic_capability": "LOCAL_COLLECTION_ORCHESTRATION_AND_DEFERRED_SYNC",
+        "exact_cross_party_operation": "UNKNOWN_UNTIL_PROBE"
+      }
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "request_type": "REQUEST_LOCAL_EXECUTION_OPTION",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "local_execution": true,
+        "raw_telemetry_external_export": false,
+        "deployment_target": "CITY_TENANT"
+      }
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "request_type": "REQUEST_INTEROP_PROBE_TERMS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "required_environment": "CITY_SANDBOX_LOCAL_TENANT",
+        "required_field_interface": "SIGNED_LOCAL_BATCH_V3",
+        "must_precede": "CROSS_PARTY_OPERATION_COMMITMENT",
+        "qualification_is_version_scoped": true
+      }
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "request_type": "RUN_INTEROP_PROBE",
+      "prerequisites": [
+        "CITY-PROCUREMENT|REQUEST_CURRENT_TENDER_VERSION",
+        "PRIME-TECH|REQUEST_LOCAL_EXECUTION_OPTION",
+        "PRIME-TECH|REQUEST_INTEROP_PROBE_TERMS",
+        "FIELD-OPS|REQUEST_FIRMWARE_INTERFACE"
+      ],
+      "response_type": "WITNESS",
+      "disclosed_fields": {
+        "result": "PASS",
+        "operation_id": "LOCAL-CAPTURE-SYNC-ACCEPT-V2",
+        "prime_version": "2.3.1",
+        "field_version": "4.2",
+        "environment": "CITY_SANDBOX_LOCAL_TENANT",
+        "offline_capture_hours_observed": 26,
+        "sync_result": "COMPLETE_WITHOUT_DUPLICATE_EVENTS",
+        "raw_export_attempts": 0,
+        "qualification_scope": "EXACT_VERSIONS_ENVIRONMENT_PERMISSION_AND_12_SITE_OPERATION"
+      }
+    },
+    {
+      "authority_id": "PRIME-TECH",
+      "request_type": "REQUEST_FAILURE_RECOVERY",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "local_queue_hours": 30,
+        "retry": "IDEMPOTENT_EVENT_BATCH",
+        "manual_reconcile_trigger": true,
+        "does_not_prove_effect": true
+      }
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "request_type": "REQUEST_FIELD_PRICE_BOUND",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "currency": "CNY",
+        "fixed_price": 145000,
+        "scope": "12 kits, deployment, load test, and bounded weather remobilization"
+      }
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "request_type": "REQUEST_KIT_RESERVATION_TERMS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "kit_count": 12,
+        "ttl_hours": 72,
+        "exclusive_for_relation_version": true,
+        "reservation_is_not_signature": true
+      }
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "request_type": "REQUEST_FIELD_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "stance": "CONDITIONAL",
+        "conditions": [
+          "12_KITS_RESERVED",
+          "DEPLOYMENT_RISK_ALLOCATED",
+          "FIRMWARE_AND_DATA_BOUNDARY_ON_SAME_RELATION_VERSION"
+        ]
+      }
+    },
+    {
+      "authority_id": "FIELD-COMMERCIAL",
+      "request_type": "RESERVE_FIELD_CAPACITY",
+      "prerequisites": [
+        "CITY-PROCUREMENT|REQUEST_CURRENT_TENDER_VERSION",
+        "FIELD-COMMERCIAL|REQUEST_KIT_RESERVATION_TERMS",
+        "FIELD-OPS|REQUEST_FIELD_CAPACITY_BOUND"
+      ],
+      "response_type": "RESERVATION",
+      "disclosed_fields": {
+        "reservation_id": "RSV-FIELD-12KIT-72H-01",
+        "kit_count": 12,
+        "ttl_hours": 72,
+        "exclusive_for_relation_version": true,
+        "revocable_by": "FIELD-COMMERCIAL"
+      }
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "request_type": "REQUEST_FIELD_CAPACITY_BOUND",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "available_kits": 12,
+        "deployment_window_days": 8,
+        "availability_is_not_reservation": true
+      }
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "request_type": "REQUEST_FIRMWARE_INTERFACE",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "firmware_version": "4.2",
+        "interface": "SIGNED_LOCAL_BATCH_V3",
+        "raw_data_local_mode": true
+      }
+    },
+    {
+      "authority_id": "FIELD-OPS",
+      "request_type": "REQUEST_DEPLOYMENT_RISK",
+      "response_type": "COUNTERCONDITION",
+      "disclosed_fields": {
+        "risks": [
+          "TWO_SITES_MAY_REQUIRE_ONE_ADDITIONAL_MOBILIZATION_DAY",
+          "COLD_WEATHER_BATTERY_DERATING"
+        ],
+        "counterconditions": [
+          "TWO_DAY_WEATHER_BUFFER",
+          "PRE_DEPLOYMENT_LOAD_TEST_ALL_12_KITS"
+        ]
+      }
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "request_type": "REQUEST_AUDIT_PRICE_BOUND",
+      "response_type": "BOUND",
+      "disclosed_fields": {
+        "currency": "CNY",
+        "fixed_price": 70000,
+        "scope": "12-site independent audit and signed report"
+      }
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "request_type": "REQUEST_AUDIT_SLOT_RESERVATION",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "auditor_count": 2,
+        "ttl_hours": 72,
+        "exclusive_for_relation_version": true,
+        "reservation_is_not_signature": true
+      }
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "request_type": "REQUEST_AUDIT_SIGNING_STANCE",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "stance": "CONDITIONAL",
+        "conditions": [
+          "AUDIT_SCOPE_FROZEN_BEFORE_IMPLEMENTATION_FREEZE",
+          "NO_DESIGN_OR_OPERATION_ROLE",
+          "TWO_AUDITOR_SLOT_RESERVED"
+        ]
+      }
+    },
+    {
+      "authority_id": "ASSURE-COMMERCIAL",
+      "request_type": "RESERVE_AUDIT_SLOT",
+      "prerequisites": [
+        "CITY-PROCUREMENT|REQUEST_CURRENT_TENDER_VERSION",
+        "ASSURE-COMMERCIAL|REQUEST_AUDIT_SLOT_RESERVATION",
+        "ASSURE-AUDIT|REQUEST_AUDIT_CAPABILITY"
+      ],
+      "response_type": "RESERVATION",
+      "disclosed_fields": {
+        "reservation_id": "RSV-ASSURE-2AUD-72H-01",
+        "auditor_count": 2,
+        "ttl_hours": 72,
+        "exclusive_for_relation_version": true,
+        "revocable_by": "ASSURE-COMMERCIAL"
+      }
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "request_type": "REQUEST_AUDIT_CAPABILITY",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "available_auditors": 2,
+        "coverage_sites": 12,
+        "can_issue_signed_report": true,
+        "availability_is_not_reservation": true
+      }
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "request_type": "REQUEST_INDEPENDENCE_BOUNDARY",
+      "response_type": "COUNTERCONDITION",
+      "disclosed_fields": {
+        "must_not": [
+          "DESIGN_IMPLEMENTATION_CONTROLS",
+          "OPERATE_PILOT",
+          "HOLD_PAYMENT_ON_PASS_INTEREST",
+          "REPLACE_CITY_ACCEPTANCE_AUTHORITY"
+        ],
+        "current_conflict": false
+      }
+    },
+    {
+      "authority_id": "ASSURE-AUDIT",
+      "request_type": "REQUEST_ACCEPTANCE_WITNESS",
+      "response_type": "WITNESS",
+      "disclosed_fields": {
+        "required": [
+          "SIGNED_INDEPENDENT_AUDIT_REPORT",
+          "CITY_OPERATIONS_LEDGER",
+          "CITY_SIGNED_TARGET_DOMAIN_READBACK"
+        ],
+        "audit_report_alone_proves_acceptance": false
+      }
+    }
+  ],
+  "reference_witness": {
+    "status": "ONE_FEASIBLE_WITNESS_NOT_UNIQUE_ANSWER",
+    "method_neutrality": "相同结果可由合格人类 broker、强中心模型、CMMN/BPMN/DMN + commitment + IAM + workflow，或其他组合建立。",
+    "relation_versions": [
+      {
+        "id": "JB-V1",
+        "basis": "CITY-RFC-17-V1",
+        "status": "INVALIDATED_BY_MATERIAL_ADDENDUM"
+      },
+      {
+        "id": "JB-V2",
+        "basis": "CITY-RFC-17-V2",
+        "roles": {
+          "PRIME": "prime_integrator_and_bid_manager",
+          "FIELD": "field_equipment_and_deployment",
+          "ASSURE": "independent_verification"
+        },
+        "total_price_cny": 335000,
+        "status": "QUALIFIED_AND_RESERVABLE"
+      }
+    ],
+    "necessary_sequence": [
+      "reconstruct current tender and material change",
+      "obtain bounded commercial, capacity, risk and authority disclosures",
+      "run the exact cross-party probe before operation commitment",
+      "reserve owner-controlled scarce resources without inferring signature",
+      "bind conditional stances to the same relation version",
+      "define submission, adoption, acceptance, effect and settlement witnesses separately",
+      "on material change or withdrawal, block dependent claims and reopen only affected dependencies"
+    ],
+    "current_external_outcomes": {
+      "submission": "NOT_OCCURRED",
+      "receipt_or_eligibility": "NOT_OCCURRED",
+      "adoption": "NOT_OCCURRED",
+      "acceptance": "NOT_OCCURRED",
+      "action_attempt": "NOT_OCCURRED",
+      "effect": "NOT_OCCURRED",
+      "settlement": "NOT_OCCURRED"
+    },
+    "safe_exit_is_correct_when": [
+      "current ceiling is exceeded",
+      "exact operation cannot be prospectively qualified",
+      "a required Authority rejects or remains unknown past deadline",
+      "a required reservation is unavailable or double-booked",
+      "independence cannot be preserved"
+    ]
+  },
+  "state_reachability": {
+    "S0": "public candidates only; no qualified relation",
+    "S1": "current tender and evidence semantics reconstructed",
+    "S2": "minimal commercial, capability, capacity and risk bounds disclosed",
+    "S3": "exact cross-party operation prospectively qualified",
+    "S4": "resources reserved and conditional stances bound to one version",
+    "S5": "submission-ready bid possible within ceiling",
+    "S6": "external outcome states remain independently evidence-gated"
+  },
+  "anti_answer_shaping": {
+    "required_protocol_names": [],
+    "required_proprietary_objects": [],
+    "scoring_by_keyword": false,
+    "standards_stack_may_receive_full_credit": true,
+    "strong_center_may_receive_full_credit": true,
+    "expert_human_broker_may_receive_full_credit": true,
+    "only_requirement": "the method must reconstruct, qualify, authorize, reserve, separate outcomes, read back, reopen and migrate without false closure"
+  }
+}

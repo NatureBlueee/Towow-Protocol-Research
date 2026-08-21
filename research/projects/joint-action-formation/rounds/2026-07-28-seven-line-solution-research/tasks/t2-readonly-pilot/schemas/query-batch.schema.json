@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:towow:t2-enterprise-pilot:query-batch:v1",
+  "title": "T2 method-visible disclosure query batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "method_id",
+    "run_id",
+    "round",
+    "previous_round_hash",
+    "queries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "const": "T2-ENTERPRISE-PILOT-BLIND-V1"
+    },
+    "method_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previous_round_hash": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      ]
+    },
+    "queries": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "authority_id",
+          "request_type",
+          "purpose",
+          "relation_version_ref",
+          "retention_scope"
+        ],
+        "properties": {
+          "authority_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "request_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "relation_version_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "retention_scope": {
+            "type": "string",
+            "enum": [
+              "EPHEMERAL",
+              "RUN_ONLY"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

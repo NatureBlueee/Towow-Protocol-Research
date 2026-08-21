@@ -1,0 +1,32 @@
+{
+  "controller_result": {
+    "execution_receipt": null,
+    "outcome": {
+      "code": "RECIPIENT_POLICY_DENIED",
+      "details": {
+        "authorized": "JUNIPER-28",
+        "requested": "KITE-15"
+      },
+      "message": "Requested recipient is not authorized.",
+      "status": "REJECTED"
+    },
+    "rejection_evidence": {
+      "contract_sha256": "8f223e1776733f7fc33f2591dfeb8c694e0b9c655bec7ebcd6ff1acc72c0a595",
+      "controller_id": "LOCAL-CONTROLLER-W4A",
+      "idempotency_key": "hwb:2:juniper-kite-reciprocal",
+      "input_sha256": "605ec26e660f408c212938416fc3d09bf4beba3c816df2cfff86163503170ec0",
+      "outcome_sha256": "b14dbdd4323969b4eaa39bf0f06ef1997f95a236db5fd22579dafcbcdf2a2528",
+      "policy_snapshot_sha256": "71bfde5704bd095e131200aed56e60fccb61f9a491be48503129f6a4469ea5e2",
+      "rejection_sha256": "047202c9c3b6c454db7a0435825749011225bd2ffcd7d7e7e0734ae113cdd806",
+      "schema": "towow.controller-rejection.v1",
+      "trusted_holder_envelopes_sha256": "a598ed23f676aa2901739696551310b1de6a1dbbf080845dc3f822db723784f1",
+      "unchanged_state_sha256": "7693e714528b96809f3b2f02201481e0ed69e72b96a5a57fbe8be6456ad0c45f"
+    },
+    "replay": "NOT_APPLICABLE_REJECTED",
+    "state_changed": false
+  },
+  "development_label": "DEVELOPMENT_POST_FEEDBACK_NOT_BLIND",
+  "reason": "Wave-004-A accepts one shared reciprocal recipient; HW-B requires JUNIPER→KITE and KITE→JUNIPER.",
+  "state_unchanged": true,
+  "status": "EXPECTED_TRUE_FAILURE"
+}

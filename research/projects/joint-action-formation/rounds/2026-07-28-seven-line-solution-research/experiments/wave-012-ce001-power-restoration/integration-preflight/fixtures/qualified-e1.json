@@ -1,0 +1,216 @@
+{
+  "schema_version": "ce001-integration-preflight-v0",
+  "episode": {
+    "episode_id": "ce001-e1-synthetic-001",
+    "case_id": "E1-EXTANT-MULTI-OWNER",
+    "q_version": "Q@v1",
+    "object_id": "VenueV:CircuitC7",
+    "operation_id": "temporary-power-op-001",
+    "target_id": "VenueV:CircuitC7"
+  },
+  "owner_sources": {
+    "O_Q": {"state_source_id": "oq-state", "act_source_id": "oq-act"},
+    "O_V": {"state_source_id": "ov-state", "act_source_id": "ov-act"},
+    "O_R": {"state_source_id": "or-state", "act_source_id": "or-act"},
+    "O_S": {"state_source_id": "os-state", "act_source_id": "os-act"},
+    "O_P": {"state_source_id": "op-state", "act_source_id": "op-act"},
+    "O_E": {"state_source_id": "oe-state", "act_source_id": "oe-act"}
+  },
+  "components": {
+    "G1": {
+      "namespace": "G1",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "candidate_id": "battery-resource-7",
+        "provenance_hash": "sha256:g1-provenance",
+        "discovery_denominator": 4,
+        "handoff_hash": "sha256:g1-handoff"
+      }
+    },
+    "G2": {
+      "namespace": "G2",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "relation_version": "rv-3",
+        "owner_attributed_act_hashes": ["sha256:g2-oq", "sha256:g2-or"],
+        "claimed_scope": "temporary-power-op-001"
+      }
+    },
+    "G3": {
+      "namespace": "G3",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "coordinates": {"C": 1, "N": 1, "E": 1, "T": 1, "V": 1},
+        "bounded_reachability_witness": "sha256:g3-reachability"
+      }
+    },
+    "G4": {
+      "namespace": "G4",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "P0_hash": "sha256:g4-p0",
+        "interaction_hash": "sha256:g4-i",
+        "P1_hash": "sha256:g4-p1",
+        "attempt_timing_hash": "sha256:g4-attempt",
+        "reconciliation_hash": "sha256:g4-reconcile"
+      }
+    },
+    "G5": {
+      "namespace": "G5",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "authority_closure": {
+          "current": true,
+          "episode_id": "ce001-e1-synthetic-001",
+          "q_version": "Q@v1",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "temporary-power-op-001",
+          "target_id": "VenueV:CircuitC7",
+          "receipts": [
+            {"owner_id": "O_V", "receipt_hash": "sha256:g5-ov"},
+            {"owner_id": "O_R", "receipt_hash": "sha256:g5-or"},
+            {"owner_id": "O_S", "receipt_hash": "sha256:g5-os"}
+          ]
+        },
+        "fence_hash": "sha256:g5-fence"
+      }
+    },
+    "G6": {
+      "namespace": "G6",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "target_authority_consumption": {
+          "consumed_by_target": true,
+          "consumption_event_hash": "sha256:g6-consumption",
+          "consumed_receipt_hashes": ["sha256:g5-ov", "sha256:g5-or", "sha256:g5-os"],
+          "episode_id": "ce001-e1-synthetic-001",
+          "q_version": "Q@v1",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "temporary-power-op-001",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "effect_occurrence": {
+          "occurred": true,
+          "occurrence_id": "occurrence-001",
+          "effect_hash": "sha256:effect-001",
+          "episode_id": "ce001-e1-synthetic-001",
+          "q_version": "Q@v1",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "temporary-power-op-001",
+          "target_id": "VenueV:CircuitC7",
+          "exact_constraints": {
+            "circuit_id": "C7",
+            "power_kw": 3.0,
+            "power_tolerance_percent": 5,
+            "duration_minutes": 45,
+            "safety_approved": true,
+            "no_other_circuit": true,
+            "deadline_satisfied": true
+          }
+        },
+        "owner_acceptances": [
+          {
+            "owner_id": "O_Q",
+            "act_source_id": "oq-act",
+            "acceptance_hash": "sha256:accept-oq",
+            "effect_hash": "sha256:effect-001",
+            "episode_id": "ce001-e1-synthetic-001",
+            "q_version": "Q@v1",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "temporary-power-op-001",
+            "target_id": "VenueV:CircuitC7"
+          },
+          {
+            "owner_id": "O_V",
+            "act_source_id": "ov-act",
+            "acceptance_hash": "sha256:accept-ov",
+            "effect_hash": "sha256:effect-001",
+            "episode_id": "ce001-e1-synthetic-001",
+            "q_version": "Q@v1",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "temporary-power-op-001",
+            "target_id": "VenueV:CircuitC7"
+          }
+        ],
+        "op_finality": {
+          "owner_id": "O_P",
+          "act_source_id": "op-act",
+          "finality_hash": "sha256:op-finality",
+          "derived_from_acceptance_object": false,
+          "after_acceptance_hashes": ["sha256:accept-oq", "sha256:accept-ov"],
+          "effect_hash": "sha256:effect-001",
+          "episode_id": "ce001-e1-synthetic-001",
+          "q_version": "Q@v1",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "temporary-power-op-001",
+          "target_id": "VenueV:CircuitC7"
+        }
+      }
+    },
+    "G7": {
+      "namespace": "G7",
+      "qualification": "QUALIFIED_COMPONENT_OUTPUT",
+      "binding": {
+        "episode_id": "ce001-e1-synthetic-001",
+        "case_id": "E1-EXTANT-MULTI-OWNER",
+        "q_version": "Q@v1",
+        "object_id": "VenueV:CircuitC7",
+        "operation_id": "temporary-power-op-001",
+        "target_id": "VenueV:CircuitC7"
+      },
+      "evidence": {
+        "append_only_history_hash": "sha256:g7-history",
+        "dependency_graph_hash": "sha256:g7-deps",
+        "reopen_set": []
+      }
+    }
+  }
+}

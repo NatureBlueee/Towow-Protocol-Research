@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "WAVE-007-C-G4-ACCESS-METERED-RELIANCE",
+  "status": "LOCAL_SYNTHETIC_REPAIR_COMPLETE_PENDING_INDEPENDENT_AUDIT",
+  "shared_task_binding": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "governance_input_provenance": {
+    "repair_harness": {
+      "path": "../../WAVE-007-REPAIR-HARNESS.md",
+      "sha256_at_final_read": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653",
+      "note": "The file changed after work began due to the duplicate-vote repair. The 007-C scoped semantics were not rewritten; this records the actual final-read bytes rather than claiming an earlier frozen match."
+    },
+    "independent_audit_protocol": {
+      "path": "../../WAVE-007-INDEPENDENT-AUDIT-PROTOCOL.md",
+      "sha256_at_final_read": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f",
+      "implementation_self_tests_are_independent_evidence": false
+    }
+  },
+  "repair_targets": [
+    "../wave-006-b-capability-reliance",
+    "../wave-006-d-cost-sensitivity"
+  ],
+  "candidate_boundary": {
+    "module": "strategies.py",
+    "only_runtime_input": "EvidenceAPI",
+    "hidden_truth_visible": false,
+    "private_signing_key_visible": false,
+    "candidate_cost_field_authoritative": false
+  },
+  "cost_semantics": {
+    "source": "raw EvidenceAPI operation_log",
+    "implicit_cache": false,
+    "repeated_reads_billed": true,
+    "repeated_signature_verification_billed": true,
+    "repeated_freshness_validation_billed": true,
+    "strategy_label_affects_cost": false
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "b7000e47b58eff674917cf7239f635280db6ce4d668d940e581f4953d859f4d5"
+    },
+    {
+      "path": "evidence_api.py",
+      "sha256": "e0b5600097a8213ba7b059eeb1e636b71eb83a7bf549424cf2b7cf9f65d85b09"
+    },
+    {
+      "path": "strategies.py",
+      "sha256": "999f03266bd3cf27a3cce7807707e396d90f759a0345d2dc394092081e9be80b"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "65d64ac1d5e4e142ff920a658a54be8d0c0d6d40c65c96c34f7c46b57dd06aef"
+    },
+    {
+      "path": "private/build_public_fixture.py",
+      "sha256": "54833a40af1c9a154ffa3085f269910c9cc2c5cd674f3714b565f1b60e851d6d"
+    },
+    {
+      "path": "private/truth.json",
+      "sha256": "0f5cb3e11498575ee9226b1abc76d080c90974ae4439800c6de29082554b6a5e"
+    },
+    {
+      "path": "fixtures/evidence.json",
+      "sha256": "b8a3a25cb8013c63ca148757df03666e1f78c24870edf2058dea0556f10aba24"
+    },
+    {
+      "path": "results/evaluation.json",
+      "sha256": "b2def2dd6ca8ff002834b816cf8ee4e2dd89a4ecb0ad398654a296f058d10963"
+    },
+    {
+      "path": "tests/test_wave007c.py",
+      "sha256": "fbc928deb862159911675c5d274dc8eb40eb2f1f90f4406fe56642c3b3056bee"
+    }
+  ],
+  "local_self_check": {
+    "independent_audit": false,
+    "opaque_rename": true,
+    "truth_label_flip": true,
+    "evidence_deletion": true,
+    "self_report_injection": true,
+    "label_function_swap": true,
+    "unauthorized_signature": true,
+    "bytes_binding": true,
+    "duplicate_evidence": true,
+    "operation_log_recompute": true,
+    "unknown_refuse_absent_preserved": true
+  },
+  "scoped_result": {
+    "pareto_frontier": [
+      "IMPL_DECLARATION",
+      "IMPL_LATEST_PROBE"
+    ],
+    "dominated_in_current_fixture": {
+      "IMPL_RECEIPT_WINDOW": [
+        "IMPL_DECLARATION",
+        "IMPL_LATEST_PROBE"
+      ],
+      "IMPL_SLA_RECOVERY": [
+        "IMPL_LATEST_PROBE"
+      ]
+    },
+    "universal_winner_claimed": false,
+    "real_world_frequency_claimed": false
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "actual_policy_transcript": {
+    "actual_response": "NO_RESPONSE_REQUIRED",
+    "execution": {
+      "final_facts": [
+        "effect",
+        "ready"
+      ],
+      "goal_reached": true,
+      "response": "NO_RESPONSE_REQUIRED",
+      "steps": [
+        {
+          "action_id": "execute_direct",
+          "after": [
+            "effect",
+            "ready"
+          ],
+          "applied": true,
+          "before": [
+            "ready"
+          ],
+          "index": 0,
+          "reason": "APPLIED"
+        }
+      ],
+      "terminal_safe": true,
+      "valid": true
+    },
+    "frozen_before_scoring": true,
+    "method_return": {
+      "action_ids": [
+        "execute_direct"
+      ],
+      "arm_id": "B-CENTER-LEGAL-CONTROL",
+      "authority_binding": {
+        "grants": [
+          "PUBLIC_EPISODE_ENDPOINTS",
+          "OWNER_DECLARED_CENTRAL_ORCHESTRATION"
+        ],
+        "principal_impersonation_used": false,
+        "selected_action_endpoints": [
+          {
+            "action_id": "execute_direct",
+            "authority_endpoint": "executor"
+          }
+        ]
+      },
+      "authority_mode": "OWNER_DECLARED_CENTRAL_CONTROL",
+      "baseline_implementation": "deterministic_center_rule",
+      "comparison_scope": "DIFFERENT_ENVIRONMENT_CONSTRUCTIVE_COUNTEREXAMPLE",
+      "environment_variant": "LEGITIMATELY_CENTRALIZED",
+      "formation_witness_proposal": {
+        "claimed_operator_ids": [],
+        "claims_oracle_verdict": false,
+        "source": "PUBLIC_PACKET_AND_SELECTED_ACTIONS_ONLY",
+        "task_change_claim": null
+      },
+      "lawful_inputs_used": {
+        "available_action_ids": [
+          "execute_direct"
+        ],
+        "operator_proposal_id": null,
+        "s0_observations": [
+          "ready",
+          "owner_task_current"
+        ]
+      },
+      "worker": "blind-actual-policy-v1",
+      "world_id": "E01"
+    },
+    "policy_sha256": "63ef0bbf406cecba325c295caaa1b118084d4bbd57f08b1440a4c5b9988185c8"
+  },
+  "arm_id": "B-CENTER-LEGAL-CONTROL",
+  "category": "PREEXISTING_QUALIFIED_PATH",
+  "comparison_scope": "DIFFERENT_ENVIRONMENT_CONSTRUCTIVE_COUNTEREXAMPLE",
+  "environment_variant": "LEGITIMATELY_CENTRALIZED",
+  "evidence_binding": {
+    "actual_policy_transcript_sha256": "49dc13525b4f1b5d2bd1bdadfb1f232125e767a1fed5f5956a786667225b5993",
+    "binding_sha256": "293e3abae673a1b7fb081a4fefb201087c173a8ce84e9276f41149c6fec364e2",
+    "exact_task_diff_sha256": "d0e17c0966d7279753ced698489b60dcb631fc953997c88c05412ad8232aad75",
+    "g3_body_sha256": "36d5bf09f28e940e48fce8327ac45bfa8ce168eb82e6b26483541693eaafce3f",
+    "oracle_receipts_sha256": "2ea46b8d7fc30b60ac9a919e9b69597ddf5dbfe5950a01addd1d1daaf6727c5c"
+  },
+  "exact_task_diff": {
+    "changes": [],
+    "classification": "UNCHANGED",
+    "controller_claim_refs": [],
+    "material_fields": [],
+    "original_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa",
+    "owner_authorization_receipts": [],
+    "result_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa"
+  },
+  "g3_receipt": {
+    "body": {
+      "C": "SAT",
+      "E": "SAME",
+      "N": "NONE",
+      "R": {
+        "R_actual": "TRUE",
+        "R_effect_robust": "TRUE",
+        "R_measurable_exists": "TRUE",
+        "R_physical_exists": "TRUE",
+        "R_safe_robust": "TRUE",
+        "R_terminal_robust": "TRUE"
+      },
+      "T": "INVARIANT",
+      "V": "VALID",
+      "counterfactual": {
+        "block_result": "NOT_APPLICABLE",
+        "evidence_sha256": "0e9aaf63b8c6f2f70d6993f46cf4f8badad89c291cf17464e4320abd60c1db00",
+        "operator_ids": [],
+        "remove_result": "NOT_APPLICABLE",
+        "reverse_result": "NOT_APPLICABLE",
+        "status": "NOT_APPLICABLE"
+      },
+      "inventory_completeness": {
+        "action_inventory": "COMPLETE",
+        "evidence_sha256": "1e4bbbe61348fda5d87728a9c0f5bda82cfc7ce9ded959efd748bb488c8dcee8",
+        "horizon": 4,
+        "observation_kernel": "COMPLETE",
+        "response_family": "COMPLETE",
+        "search_bound_frozen": true,
+        "transition_semantics": "COMPLETE",
+        "unresolved_items": []
+      },
+      "task_diff": {
+        "changes": [],
+        "classification": "UNCHANGED",
+        "controller_claim_refs": [],
+        "material_fields": [],
+        "original_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa",
+        "owner_authorization_receipts": [],
+        "result_task_sha256": "b05eb8ffe462718f955d38f073a9f050efda45fb766f021b5ec5e6b190b538fa"
+      }
+    },
+    "body_sha256": "36d5bf09f28e940e48fce8327ac45bfa8ce168eb82e6b26483541693eaafce3f",
+    "receipt_ref": {
+      "owner_key_id": "wave011-g3-evaluator",
+      "raw_bytes_sha256": "f66a9770939dc92fce18c05570f831f8149f20e83045d2f827d76bf68a7b36ce",
+      "receipt_version": "1",
+      "ref": "receipt:E01:B-CENTER-LEGAL-CONTROL:g3",
+      "status": "FINAL"
+    }
+  },
+  "oracle_receipts": {
+    "closure": {
+      "extended_closure": {
+        "branches": [
+          {
+            "response": "NO_RESPONSE_REQUIRED",
+            "result": "SAT",
+            "trace": [
+              "execute_direct"
+            ],
+            "visited_states": 2
+          }
+        ],
+        "quantifier": "EXISTS_LAWFUL_RESPONSE_BRANCH",
+        "result": "SAT"
+      },
+      "old_closure": {
+        "branches": [
+          {
+            "response": "NO_RESPONSE_REQUIRED",
+            "result": "SAT",
+            "trace": [
+              "execute_direct"
+            ],
+            "visited_states": 2
+          }
+        ],
+        "quantifier": "EXISTS_LAWFUL_RESPONSE_BRANCH",
+        "result": "SAT"
+      },
+      "worker": "closure-oracle-v1"
+    },
+    "counterfactual": {
+      "frozen_policy_sha256": "63ef0bbf406cecba325c295caaa1b118084d4bbd57f08b1440a4c5b9988185c8",
+      "status": "NOT_APPLICABLE",
+      "worker": "frozen-trace-counterfactual-v1"
+    },
+    "measurable": {
+      "branches": [
+        {
+          "response": "NO_RESPONSE_REQUIRED",
+          "result": "SAT",
+          "trace": [
+            "execute_direct"
+          ],
+          "visited_states": 2
+        }
+      ],
+      "quantifier": "EXISTS_OBSERVATION_MEASURABLE_POLICY_AND_LAWFUL_RESPONSE_BRANCH",
+      "reason": "FROZEN_OBSERVATION_POLICY_SEARCH",
+      "result": "SAT",
+      "trace": [
+        "execute_direct"
+      ],
+      "worker": "measurable-oracle-v1"
+    },
+    "robust": {
+      "branches": [
+        {
+          "final_facts": [
+            "effect",
+            "ready"
+          ],
+          "goal_reached": true,
+          "response": "NO_RESPONSE_REQUIRED",
+          "steps": [
+            {
+              "action_id": "execute_direct",
+              "after": [
+                "effect",
+                "ready"
+              ],
+              "applied": true,
+              "before": [
+                "ready"
+              ],
+              "index": 0,
+              "reason": "APPLIED"
+            }
+          ],
+          "terminal_safe": true,
+          "valid": true
+        }
+      ],
+      "effect_robust": true,
+      "safe_robust": true,
+      "terminal_robust": true,
+      "worker": "robust-tree-checker-v1"
+    }
+  },
+  "reason_code": "G3_DIRECT_OR_EXTANT_QUALIFIED_PATH",
+  "world_id": "E01"
+}

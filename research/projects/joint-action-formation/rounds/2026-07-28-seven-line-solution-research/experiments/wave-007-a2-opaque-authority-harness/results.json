@@ -1,0 +1,80 @@
+{
+  "schema": "towow.wave007-a2.stable-summary.v1",
+  "date": "2026-07-29",
+  "scope": "A v1 repair; G6/G7 minimum closure; no winner claim",
+  "prior_result": {
+    "wave007_a_v1": "INVALIDATED_BY_ROOT_ATTACK",
+    "root_attack_sha256": "1e99f17136f4868de724d13c52cb7018c48dc880b18c2cce35ce8ee5d8b9a72f",
+    "controller_refused_at_attempt": false,
+    "new_domain_postcondition_called": true,
+    "same_permission_peer_hidden_fixture_readable": true
+  },
+  "a2_aggregate": {
+    "normal_case_count": 13,
+    "terminal_match_count": 13,
+    "attempt_binding_delta_match_count": 13,
+    "l3_domain_postcondition_delta_match_count": 13,
+    "l4_beneficiary_acceptance_delta_match_count": 13,
+    "false_positive_count": 0,
+    "false_negative_count": 0
+  },
+  "root_attack_reproduction_and_repair": {
+    "actual_terminal": "REFUSE",
+    "controller_refused_at_attempt": true,
+    "new_delivery_called": false,
+    "new_domain_postcondition_called": false,
+    "attempt_binding_delta": 0,
+    "l3_domain_postcondition_delta": 0,
+    "l4_beneficiary_acceptance_delta": 0,
+    "operations": [
+      "READ_PUBLIC_REQUEST",
+      "REQUEST_HOLDER_AUTHORIZATION",
+      "VERIFY_EVIDENCE",
+      "REQUEST_HOLDER_AUTHORIZATION",
+      "VERIFY_EVIDENCE",
+      "REQUEST_EFFECT_ATTEMPT",
+      "VERIFY_EVIDENCE"
+    ]
+  },
+  "partial_history_matrix": {
+    "L1_ATTEMPT_then_changed": "REFUSE_AT_NEW_ATTEMPT_NO_NEW_L3_OR_L4",
+    "L2_DELIVERY_then_changed": "REFUSE_AT_NEW_ATTEMPT_NO_NEW_L3_OR_L4",
+    "L3_POSTCONDITION_then_changed": "REFUSE_AT_NEW_ATTEMPT_NO_NEW_L3_OR_L4",
+    "L4_BENEFICIARY_REFUSE_then_changed": "REFUSE_AT_NEW_ATTEMPT_NO_NEW_L3_OR_L4"
+  },
+  "l3_l4_separation": {
+    "normal_beneficiary_refuse_terminal": "REFUSE",
+    "normal_beneficiary_refuse_l3_delta": 1,
+    "normal_beneficiary_refuse_l4_delta": 0,
+    "exact_replay_l3_delta": 0,
+    "exact_replay_l4_delta": 0,
+    "schema_alias_l3_delta": 0,
+    "schema_alias_l4_delta": 0,
+    "material_new_key_l3_delta": 1,
+    "material_new_key_l4_delta": 1,
+    "environment_new_key_l3_delta": 1,
+    "environment_new_key_l4_delta": 1
+  },
+  "quorum_verifier": {
+    "valid_two_unique_allowlisted_bound_issuers": true,
+    "duplicate_forms_quorum": false,
+    "replay_forms_quorum": false,
+    "cross_checkpoint_forms_quorum": false,
+    "cross_slot_forms_quorum": false
+  },
+  "truth_isolation_scope": {
+    "same_os_permission_peer_can_read_hidden_fixture": true,
+    "filesystem_truth_isolation": "REFUTED_NOT_CLAIMED",
+    "fixed_candidate_source_truth_read": "NOT_OBSERVED_BY_SOURCE_AUDIT",
+    "spawn_boundary": "PARENT_MEMORY_KEYS_AND_LOG_NOT_PASSED"
+  },
+  "anchor_scope": {
+    "equivocation_fixture": "CENTRAL_HIDDEN_STATE_DETECTOR_FIXTURE_ONLY",
+    "malicious_anchor_self_proof": "NOT_CLAIMED",
+    "retained_claim": "UNIQUE_ALLOWLISTED_ISSUER_QUORUM_VERIFIER_CONDITION"
+  },
+  "claim_status": {
+    "a2_repair": "SAME_RESEARCHER_SELF_TEST_ONLY",
+    "independent_a2_audit": "NOT_YET_RUN_BY_ROOT"
+  }
+}

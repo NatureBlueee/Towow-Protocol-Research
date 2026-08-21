@@ -1,0 +1,1071 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:towow:wave025:executable-attack-profile:full:v1",
+  "title": "Wave 025 full executable attack profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema",
+    "profile_id",
+    "version",
+    "status",
+    "authority",
+    "feature_spec_binding",
+    "formal_population_override",
+    "inherited_attack_surface",
+    "control_primary_mapping",
+    "permutation_override",
+    "host_only_holm",
+    "execution_provider",
+    "deterministic_replay",
+    "cost_ceiling",
+    "deferred_challenge",
+    "evidence_states",
+    "external_bindings",
+    "blocking",
+    "output_prohibitions"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./EXECUTABLE-ATTACK-PROFILE.schema.json"
+    },
+    "schema": {
+      "const": "WAVE025_EXECUTABLE_ATTACK_PROFILE_FULL_V1"
+    },
+    "profile_id": {
+      "const": "WAVE025-EXECUTABLE-ATTACK-PROFILE-FULL-V1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "ROOT_ADOPTED_PREFORMAL_BLOCKED_NOT_EXECUTED"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "may_change_evaluator",
+        "may_change_runner",
+        "may_change_contract",
+        "may_produce_qualification_verdict",
+        "may_rank_treatments",
+        "formal_use_while_blocking_nonempty",
+        "promotion_requires_separate_adoption_and_external_anchor"
+      ],
+      "properties": {
+        "classification": {
+          "const": "ROOT_ADOPTED_SHARED_PREFORMAL_PROFILE"
+        },
+        "may_change_evaluator": {
+          "const": false
+        },
+        "may_change_runner": {
+          "const": false
+        },
+        "may_change_contract": {
+          "const": false
+        },
+        "may_produce_qualification_verdict": {
+          "const": false
+        },
+        "may_rank_treatments": {
+          "const": false
+        },
+        "formal_use_while_blocking_nonempty": {
+          "const": "FORBIDDEN"
+        },
+        "promotion_requires_separate_adoption_and_external_anchor": {
+          "const": true
+        }
+      }
+    },
+    "feature_spec_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path_from_profile",
+        "raw_byte_length",
+        "raw_bytes_sha256",
+        "expected_schema",
+        "expected_spec_version",
+        "load_rule",
+        "semantic_authority",
+        "reference_extractor_role",
+        "duplicate_definition_policy",
+        "override_pointer_allowlist",
+        "resolved_sections"
+      ],
+      "properties": {
+        "path_from_profile": {
+          "const": "feature-spec/FEATURE-SPEC.json"
+        },
+        "raw_byte_length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "raw_bytes_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "expected_schema": {
+          "const": "WAVE025_FEATURE_CLASSIFIER_SPEC_V1"
+        },
+        "expected_spec_version": {
+          "const": "1.0.0"
+        },
+        "load_rule": {
+          "const": "READ_EXACT_BYTES_VERIFY_LENGTH_AND_SHA256_THEN_PARSE_JSON_THEN_RESOLVE_POINTERS"
+        },
+        "semantic_authority": {
+          "const": "FEATURE_SPEC_BYTES_NOT_REFERENCE_EXTRACTOR_CODE"
+        },
+        "reference_extractor_role": {
+          "const": "NONAUTHORITATIVE_COMPARISON_IMPLEMENTATION_ONLY"
+        },
+        "duplicate_definition_policy": {
+          "const": "FORBIDDEN_EXCEPT_EXPLICIT_OVERRIDE_VALUES"
+        },
+        "override_pointer_allowlist": {
+          "const": [
+            "/formal_population",
+            "/permutation_plan/label_permutation"
+          ]
+        },
+        "resolved_sections": {
+          "type": "array",
+          "minItems": 18,
+          "maxItems": 18,
+          "items": {
+            "$ref": "#/$defs/resolvedSection"
+          }
+        }
+      }
+    },
+    "formal_population_override": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supersedes_json_pointer",
+        "reason_code",
+        "power_basis",
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY",
+        "T-OCI-ISOLATED",
+        "total_slots",
+        "total_blocks",
+        "role_balance",
+        "post_return_extension"
+      ],
+      "properties": {
+        "supersedes_json_pointer": {
+          "const": "/formal_population"
+        },
+        "reason_code": {
+          "const": "FIVE_ATTACK_UNION_BOUND_POWER_REPAIR_WITHOUT_CHANGING_FEATURE_OR_ATTACK_SEMANTICS"
+        },
+        "power_basis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "T_holdout_per_role",
+            "single_attack_pass_probability_lower_bound",
+            "five_attack_union_bound_pass_probability_lower_bound",
+            "attack_count",
+            "decision_ci",
+            "state"
+          ],
+          "properties": {
+            "T_holdout_per_role": {
+              "const": 1200
+            },
+            "single_attack_pass_probability_lower_bound": {
+              "const": 0.982255
+            },
+            "five_attack_union_bound_pass_probability_lower_bound": {
+              "const": 0.911276
+            },
+            "attack_count": {
+              "const": 5
+            },
+            "decision_ci": {
+              "const": "INHERIT_CLASSWISE_CLOPPER_PEARSON_FROM_FEATURE_SPEC"
+            },
+            "state": {
+              "const": "DESIGN_INPUT_NOT_EXECUTION_RESULT"
+            }
+          }
+        },
+        "D0-HOST-LEAK": {
+          "$ref": "#/$defs/controlPopulation"
+        },
+        "D1-OCI-CANARY": {
+          "$ref": "#/$defs/controlPopulation"
+        },
+        "T-OCI-ISOLATED": {
+          "$ref": "#/$defs/treatmentPopulation"
+        },
+        "total_slots": {
+          "const": 3200
+        },
+        "total_blocks": {
+          "const": 160
+        },
+        "role_balance": {
+          "const": "EXACT_WITHIN_EACH_CHALLENGE_PHASE_BLOCK"
+        },
+        "post_return_extension": {
+          "const": "FORBIDDEN"
+        }
+      }
+    },
+    "inherited_attack_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feature_family_ids",
+        "classifier_ids",
+        "leaf_partition",
+        "candidate_visible_leaf_cap",
+        "numeric_path_cap",
+        "categorical_bucket_reduction",
+        "ngram_bucket_reduction",
+        "unknown_or_unclassified_leaf",
+        "extract_from_raw_receipts_independently",
+        "runner_supplied_vectors_are_authoritative"
+      ],
+      "properties": {
+        "feature_family_ids": {
+          "$ref": "#/$defs/featureFamilyIds"
+        },
+        "classifier_ids": {
+          "$ref": "#/$defs/classifierIds"
+        },
+        "leaf_partition": {
+          "const": "INHERIT_EXACTLY_FROM_BOUND_FULL_LEAF_AUDIT_AND_EXCLUDED_FIELDS"
+        },
+        "candidate_visible_leaf_cap": {
+          "const": "NONE"
+        },
+        "numeric_path_cap": {
+          "const": "NONE"
+        },
+        "categorical_bucket_reduction": {
+          "const": "FORBIDDEN"
+        },
+        "ngram_bucket_reduction": {
+          "const": "FORBIDDEN"
+        },
+        "unknown_or_unclassified_leaf": {
+          "const": "NOT_QUALIFIED"
+        },
+        "extract_from_raw_receipts_independently": {
+          "const": true
+        },
+        "runner_supplied_vectors_are_authoritative": {
+          "const": false
+        }
+      }
+    },
+    "control_primary_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mapping_scope",
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY",
+        "pool_D0_and_D1",
+        "registry_binding_required_before_external_anchor"
+      ],
+      "properties": {
+        "mapping_scope": {
+          "const": "EVERY_REGISTERED_PRIVATE_FAMILY_WITHIN_CHALLENGE"
+        },
+        "D0-HOST-LEAK": {
+          "$ref": "#/$defs/primaryMappingD0"
+        },
+        "D1-OCI-CANARY": {
+          "$ref": "#/$defs/primaryMappingD1"
+        },
+        "pool_D0_and_D1": {
+          "const": false
+        },
+        "registry_binding_required_before_external_anchor": {
+          "const": true
+        }
+      }
+    },
+    "permutation_override": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supersedes_json_pointer",
+        "replicates",
+        "population",
+        "predictions",
+        "label_permutation",
+        "block_keys",
+        "retrain_or_reselect_per_replicate",
+        "seed_rule_json_pointer",
+        "permutation_order_json_pointer",
+        "p_value_json_pointer",
+        "nonrejection_is_equivalence",
+        "profile_reduction_after_holdout_read"
+      ],
+      "properties": {
+        "supersedes_json_pointer": {
+          "const": "/permutation_plan/label_permutation"
+        },
+        "replicates": {
+          "const": 9999
+        },
+        "population": {
+          "const": "FRESH_HOLDOUT_ONLY"
+        },
+        "predictions": {
+          "const": "FROZEN_BEFORE_HOLDOUT_LABEL_JOIN"
+        },
+        "label_permutation": {
+          "const": "PERMUTE_REVEALED_ROLE_WITHIN_CHALLENGE_PHASE_BLOCK_AND_RESCORE_FROZEN_HOLDOUT_PREDICTIONS"
+        },
+        "block_keys": {
+          "const": [
+            "challenge",
+            "phase",
+            "block"
+          ]
+        },
+        "retrain_or_reselect_per_replicate": {
+          "const": false
+        },
+        "seed_rule_json_pointer": {
+          "const": "/permutation_plan/seed"
+        },
+        "permutation_order_json_pointer": {
+          "const": "/permutation_plan/permutation_order"
+        },
+        "p_value_json_pointer": {
+          "const": "/permutation_plan/p_value"
+        },
+        "nonrejection_is_equivalence": {
+          "const": false
+        },
+        "profile_reduction_after_holdout_read": {
+          "const": "FORBIDDEN"
+        }
+      }
+    },
+    "host_only_holm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host_statistics_json_pointer",
+        "role_order_permutation_json_pointer",
+        "multiplicity_json_pointer",
+        "family_id",
+        "replicates",
+        "predictor_matrix_import",
+        "inventory_must_be_frozen_before_anchor"
+      ],
+      "properties": {
+        "host_statistics_json_pointer": {
+          "const": "/permutation_plan/host_only_association_statistics"
+        },
+        "role_order_permutation_json_pointer": {
+          "const": "/permutation_plan/role_order_permutation"
+        },
+        "multiplicity_json_pointer": {
+          "const": "/multiplicity"
+        },
+        "family_id": {
+          "const": "T_HOST_ONLY_ROLE_ORDER_ASSOCIATIONS"
+        },
+        "replicates": {
+          "const": 9999
+        },
+        "predictor_matrix_import": {
+          "const": "FORBIDDEN"
+        },
+        "inventory_must_be_frozen_before_anchor": {
+          "const": true
+        }
+      }
+    },
+    "execution_provider": {
+      "$ref": "#/$defs/executionProvider"
+    },
+    "deterministic_replay": {
+      "$ref": "#/$defs/deterministicReplay"
+    },
+    "cost_ceiling": {
+      "$ref": "#/$defs/costCeiling"
+    },
+    "deferred_challenge": {
+      "$ref": "#/$defs/deferredChallenge"
+    },
+    "evidence_states": {
+      "$ref": "#/$defs/evidenceStates"
+    },
+    "external_bindings": {
+      "type": "object",
+      "minProperties": 11,
+      "maxProperties": 11,
+      "additionalProperties": {
+        "$ref": "#/$defs/unboundExternalBinding"
+      }
+    },
+    "blocking": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "output_prohibitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "qualification_verdict",
+        "treatment_score_or_ranking",
+        "shared_contract_promotion",
+        "unknown_leak_absence_claim",
+        "claim_full_feature_spec_permutation_compatibility"
+      ],
+      "properties": {
+        "qualification_verdict": {
+          "const": "PROHIBITED"
+        },
+        "treatment_score_or_ranking": {
+          "const": "PROHIBITED"
+        },
+        "shared_contract_promotion": {
+          "const": "SELECTED_PREFORMAL_FORMAL_USE_REMAINS_BLOCKED_BY_BLOCKING_LIST"
+        },
+        "unknown_leak_absence_claim": {
+          "const": "PROHIBITED"
+        },
+        "claim_full_feature_spec_permutation_compatibility": {
+          "const": "PROHIBITED_MODEL_SELECTION_RANDOMIZATION_NOT_TESTED"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "resolvedSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "json_pointer",
+        "canonical_json_sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        },
+        "json_pointer": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "canonical_json_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "controlPopulation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration",
+        "fresh_holdout",
+        "calibration_per_role",
+        "holdout_per_role",
+        "block_size",
+        "calibration_blocks",
+        "holdout_blocks",
+        "total"
+      ],
+      "properties": {
+        "calibration": {
+          "const": 100
+        },
+        "fresh_holdout": {
+          "const": 100
+        },
+        "calibration_per_role": {
+          "const": 50
+        },
+        "holdout_per_role": {
+          "const": 50
+        },
+        "block_size": {
+          "const": 20
+        },
+        "calibration_blocks": {
+          "const": 5
+        },
+        "holdout_blocks": {
+          "const": 5
+        },
+        "total": {
+          "const": 200
+        }
+      }
+    },
+    "treatmentPopulation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration",
+        "fresh_holdout",
+        "calibration_per_role",
+        "holdout_per_role",
+        "block_size",
+        "calibration_blocks",
+        "holdout_blocks",
+        "total"
+      ],
+      "properties": {
+        "calibration": {
+          "const": 400
+        },
+        "fresh_holdout": {
+          "const": 2400
+        },
+        "calibration_per_role": {
+          "const": 200
+        },
+        "holdout_per_role": {
+          "const": 1200
+        },
+        "block_size": {
+          "const": 20
+        },
+        "calibration_blocks": {
+          "const": 20
+        },
+        "holdout_blocks": {
+          "const": 120
+        },
+        "total": {
+          "const": 2800
+        }
+      }
+    },
+    "featureFamilyIds": {
+      "const": [
+        "F01_PUBLIC_INPUT_BYTES",
+        "F02_ARGV_ENV_CWD",
+        "F03_HOSTNAME_IDENTITY",
+        "F04_DIRECTORY_AND_SHARED_STATE",
+        "F05_PROCESS_NAMESPACE_FD",
+        "F06_TIMING_AND_ERRORS",
+        "F07_VISIBLE_CANARY"
+      ]
+    },
+    "classifierIds": {
+      "const": [
+        "C01_EXACT_CATEGORICAL_SCAN",
+        "C02_L2_LOGISTIC",
+        "C03_DECISION_STUMP",
+        "C04_BOUNDED_TREE",
+        "C05_KNN_11"
+      ]
+    },
+    "primaryMappingD0": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_feature_family_id",
+        "primary_classifier_id",
+        "secondary_detector_can_rescue_failed_primary"
+      ],
+      "properties": {
+        "expected_feature_family_id": {
+          "const": "F04_DIRECTORY_AND_SHARED_STATE"
+        },
+        "primary_classifier_id": {
+          "const": "C01_EXACT_CATEGORICAL_SCAN"
+        },
+        "secondary_detector_can_rescue_failed_primary": {
+          "const": false
+        }
+      }
+    },
+    "primaryMappingD1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_feature_family_id",
+        "primary_classifier_id",
+        "secondary_detector_can_rescue_failed_primary"
+      ],
+      "properties": {
+        "expected_feature_family_id": {
+          "const": "F07_VISIBLE_CANARY"
+        },
+        "primary_classifier_id": {
+          "const": "C01_EXACT_CATEGORICAL_SCAN"
+        },
+        "secondary_detector_can_rescue_failed_primary": {
+          "const": false
+        }
+      }
+    },
+    "executionProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "python",
+        "numpy",
+        "platform",
+        "numeric_semantics",
+        "single_thread_environment",
+        "provider_must_be_bound_before_numpy_import",
+        "installed_distribution_record_must_match"
+      ],
+      "properties": {
+        "provider_id": {
+          "const": "WAVE025_NUMPY_2_0_2_FLOAT64_EINSUM_ARM64_V1"
+        },
+        "python": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "implementation",
+            "version",
+            "executable_sha256"
+          ],
+          "properties": {
+            "implementation": {
+              "const": "CPython"
+            },
+            "version": {
+              "const": "3.9.6"
+            },
+            "executable_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "numpy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "distribution",
+            "version",
+            "distribution_record_sha256",
+            "blas_lapack_backend",
+            "build_machine",
+            "baseline_simd"
+          ],
+          "properties": {
+            "distribution": {
+              "const": "numpy"
+            },
+            "version": {
+              "const": "2.0.2"
+            },
+            "distribution_record_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "blas_lapack_backend": {
+              "const": "ACCELERATE_SYSTEM"
+            },
+            "build_machine": {
+              "const": "DARWIN_AARCH64"
+            },
+            "baseline_simd": {
+              "const": [
+                "NEON",
+                "NEON_FP16",
+                "NEON_VFPV4",
+                "ASIMD"
+              ]
+            }
+          }
+        },
+        "platform": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "os",
+            "machine",
+            "byte_order"
+          ],
+          "properties": {
+            "os": {
+              "const": "macOS-26.6"
+            },
+            "machine": {
+              "const": "arm64"
+            },
+            "byte_order": {
+              "const": "little"
+            }
+          }
+        },
+        "numeric_semantics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dtype",
+            "array_order",
+            "einsum_optimize",
+            "C02_dot_provider",
+            "C05_dot_provider",
+            "float32",
+            "numpy_matmul_or_at_operator",
+            "warning_policy",
+            "nonfinite_policy",
+            "nondeterministic_reduction_policy"
+          ],
+          "properties": {
+            "dtype": {
+              "const": "float64"
+            },
+            "array_order": {
+              "const": "C_CONTIGUOUS"
+            },
+            "einsum_optimize": {
+              "const": false
+            },
+            "C02_dot_provider": {
+              "const": "NUMPY_EINSUM_OPTIMIZE_FALSE"
+            },
+            "C05_dot_provider": {
+              "const": "NUMPY_EINSUM_OPTIMIZE_FALSE"
+            },
+            "float32": {
+              "const": "FORBIDDEN"
+            },
+            "numpy_matmul_or_at_operator": {
+              "const": "FORBIDDEN_FOR_C02_AND_C05"
+            },
+            "warning_policy": {
+              "const": "ERROR_AND_NOT_QUALIFIED"
+            },
+            "nonfinite_policy": {
+              "const": "NOT_QUALIFIED"
+            },
+            "nondeterministic_reduction_policy": {
+              "const": "NOT_QUALIFIED"
+            }
+          }
+        },
+        "single_thread_environment": {
+          "type": "object",
+          "minProperties": 5,
+          "maxProperties": 5,
+          "additionalProperties": {
+            "const": "1"
+          }
+        },
+        "provider_must_be_bound_before_numpy_import": {
+          "const": true
+        },
+        "installed_distribution_record_must_match": {
+          "const": true
+        }
+      }
+    },
+    "deterministicReplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "independent_runs",
+        "hash_algorithm",
+        "canonical_json",
+        "required_hash_classes",
+        "allowed_byte_differences",
+        "allowed_prediction_differences",
+        "allowed_statistic_differences",
+        "warning_count_required",
+        "nonfinite_count_required",
+        "hash_manifest_external_binding"
+      ],
+      "properties": {
+        "independent_runs": {
+          "const": 2
+        },
+        "hash_algorithm": {
+          "const": "SHA256"
+        },
+        "canonical_json": {
+          "const": "UTF8_RECURSIVE_KEY_SORT_COMPACT_ONE_LF"
+        },
+        "required_hash_classes": {
+          "type": "array",
+          "minItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]+$"
+          }
+        },
+        "allowed_byte_differences": {
+          "const": 0
+        },
+        "allowed_prediction_differences": {
+          "const": 0
+        },
+        "allowed_statistic_differences": {
+          "const": 0
+        },
+        "warning_count_required": {
+          "const": 0
+        },
+        "nonfinite_count_required": {
+          "const": 0
+        },
+        "hash_manifest_external_binding": {
+          "const": "REQUIRED_BEFORE_FORMAL_USE"
+        }
+      }
+    },
+    "costCeiling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "candidate_visible_leaf_cap",
+        "maximum_resident_memory_bytes",
+        "maximum_temporary_derived_cache_bytes",
+        "maximum_formal_evaluation_output_bytes",
+        "maximum_feature_extraction_wall_seconds",
+        "maximum_model_ci_and_permutation_wall_seconds",
+        "maximum_total_attack_phase_wall_seconds",
+        "maximum_frozen_prediction_permutation_wall_seconds",
+        "ceiling_exceeded_action",
+        "preformal_rehearsal_population",
+        "preformal_rehearsal_must_use_actual_shape_receipts",
+        "preformal_rehearsal_must_include_max_size_fixtures",
+        "ceiling_pass_is_qualification_evidence"
+      ],
+      "properties": {
+        "scope": {
+          "const": "FULL_3200_SLOT_EVALUATOR_ATTACK_PHASE_AFTER_EVIDENCE_INTEGRITY"
+        },
+        "candidate_visible_leaf_cap": {
+          "const": "NONE"
+        },
+        "maximum_resident_memory_bytes": {
+          "const": 4294967296
+        },
+        "maximum_temporary_derived_cache_bytes": {
+          "const": 2147483648
+        },
+        "maximum_formal_evaluation_output_bytes": {
+          "const": 209715200
+        },
+        "maximum_feature_extraction_wall_seconds": {
+          "const": 1200
+        },
+        "maximum_model_ci_and_permutation_wall_seconds": {
+          "const": 1800
+        },
+        "maximum_total_attack_phase_wall_seconds": {
+          "const": 3600
+        },
+        "maximum_frozen_prediction_permutation_wall_seconds": {
+          "const": 600
+        },
+        "ceiling_exceeded_action": {
+          "const": "NOT_QUALIFIED_NO_AUTOMATIC_PROFILE_REDUCTION"
+        },
+        "preformal_rehearsal_population": {
+          "const": 3200
+        },
+        "preformal_rehearsal_must_use_actual_shape_receipts": {
+          "const": true
+        },
+        "preformal_rehearsal_must_include_max_size_fixtures": {
+          "const": true
+        },
+        "ceiling_pass_is_qualification_evidence": {
+          "const": false
+        }
+      }
+    },
+    "deferredChallenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "omitted_operation",
+        "not_claimed_by_this_profile",
+        "strongest_remaining_false_green",
+        "applicability_preconditions",
+        "precondition_failure_action",
+        "later_challenge_may_reuse_formal_holdout"
+      ],
+      "properties": {
+        "id": {
+          "const": "MODEL-SELECTION-RANDOMIZATION"
+        },
+        "status": {
+          "const": "NOT_TESTED"
+        },
+        "omitted_operation": {
+          "const": "RETRAIN_AND_RESCORE_C01_TO_C05_FOR_EACH_OF_9999_BLOCK_PRESERVING_LABEL_PERMUTATIONS"
+        },
+        "not_claimed_by_this_profile": {
+          "type": "string",
+          "minLength": 1
+        },
+        "strongest_remaining_false_green": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicability_preconditions": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "required_state"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Z0-9_]+$"
+              },
+              "required_state": {
+                "const": "MACHINE_VERIFIED_BEFORE_FORMAL_USE"
+              }
+            }
+          }
+        },
+        "precondition_failure_action": {
+          "const": "NOT_QUALIFIED_DO_NOT_USE_FROZEN_PREDICTION_SHORTCUT"
+        },
+        "later_challenge_may_reuse_formal_holdout": {
+          "const": false
+        }
+      }
+    },
+    "evidenceStates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_adoption",
+        "full_leaf_extraction",
+        "F01_TO_F07_coverage",
+        "C01_TO_C05_execution",
+        "D0_primary_sensitivity",
+        "D1_primary_sensitivity",
+        "T_classwise_equivalence",
+        "block_permutation",
+        "host_only_holm",
+        "provider_determinism",
+        "cost_ceiling",
+        "deterministic_replay",
+        "model_selection_randomization",
+        "inherited_not_tested_json_pointer",
+        "state_rule"
+      ],
+      "properties": {
+        "profile_adoption": {
+          "const": "ROOT_SELECTED_PREFORMAL_EXTERNAL_ANCHOR_PENDING"
+        },
+        "full_leaf_extraction": {
+          "const": "NOT_TESTED"
+        },
+        "F01_TO_F07_coverage": {
+          "const": "NOT_TESTED"
+        },
+        "C01_TO_C05_execution": {
+          "const": "NOT_TESTED"
+        },
+        "D0_primary_sensitivity": {
+          "const": "NOT_TESTED"
+        },
+        "D1_primary_sensitivity": {
+          "const": "NOT_TESTED"
+        },
+        "T_classwise_equivalence": {
+          "const": "NOT_TESTED"
+        },
+        "block_permutation": {
+          "const": "NOT_TESTED"
+        },
+        "host_only_holm": {
+          "const": "NOT_TESTED"
+        },
+        "provider_determinism": {
+          "const": "NOT_TESTED"
+        },
+        "cost_ceiling": {
+          "const": "NOT_TESTED"
+        },
+        "deterministic_replay": {
+          "const": "NOT_TESTED"
+        },
+        "model_selection_randomization": {
+          "const": "NOT_TESTED"
+        },
+        "inherited_not_tested_json_pointer": {
+          "const": "/not_tested"
+        },
+        "state_rule": {
+          "const": "EVERY_SCIENTIFIC_RESULT_REMAINS_NOT_TESTED_UNTIL_SEPARATELY_ANCHORED_EXECUTION"
+        }
+      }
+    },
+    "unboundExternalBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "sha256"
+      ],
+      "properties": {
+        "state": {
+          "const": "BLOCKING_UNBOUND"
+        },
+        "sha256": {
+          "type": "null"
+        }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "external_binding",
+        "required_before"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^B[0-9]{2}_[A-Z0-9_]+$"
+        },
+        "external_binding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_before": {
+          "enum": [
+            "PREFORMAL_REHEARSAL",
+            "EXTERNAL_PROFILE_ANCHOR",
+            "PRECOMMIT",
+            "FORMAL_USE"
+          ]
+        }
+      }
+    }
+  }
+}

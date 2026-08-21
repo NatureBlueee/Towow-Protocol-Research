@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "WAVE-011-G4-DUAL-OUTCOME-14W",
+  "run_state": "LOCAL_SYNTHETIC_DISCRIMINATOR_PILOT",
+  "world_count": 14,
+  "pair_count": 7,
+  "pair_class_counts": {"PASSIVE": 1, "ACTIVE": 4, "HARD": 2},
+  "pair_audit": {
+    "all_pairs_pass": true,
+    "active_pairs_with_distinguishing_lawful_trace": 4,
+    "hard_pairs": 2,
+    "hard_pair_plans_per_pair": 73,
+    "hard_pair_max_sequence_length": 2,
+    "hard_pair_unequal_transcript_plans": 0,
+    "scope": "finite deterministic action alphabet through sequence depth two"
+  },
+  "methods": {
+    "STATIC_PACKET": {
+      "P1_success": {"TP": 5, "FP": 5, "TN": 0, "FN": 0, "ABSTAIN_TRUE": 3, "ABSTAIN_FALSE": 1, "false_reliance_conditional": 0.5, "safe_recall": 0.625, "abstention_rate": 0.2857142857142857},
+      "P1_resolution": {"TP": 0, "FP": 0, "TN": 0, "FN": 0, "ABSTAIN_TRUE": 10, "ABSTAIN_FALSE": 4, "false_reliance_conditional": null, "safe_recall": 0.0, "abstention_rate": 1.0},
+      "cost": {"queries": 0, "disclosed_bytes": 0, "latency_ticks": 0, "sensitivity": 0, "human_interruptions": 0},
+      "recovery": {"ambiguous_submit_responses": 0, "correct_object_readbacks": 0, "duplicate_effect_worlds": 0}
+    },
+    "MATURE_COMPOSITE": {
+      "P1_success": {"TP": 5, "FP": 3, "TN": 2, "FN": 0, "ABSTAIN_TRUE": 2, "ABSTAIN_FALSE": 2, "false_reliance_conditional": 0.375, "safe_recall": 0.7142857142857143, "abstention_rate": 0.2857142857142857},
+      "P1_resolution": {"TP": 8, "FP": 2, "TN": 2, "FN": 0, "ABSTAIN_TRUE": 2, "ABSTAIN_FALSE": 0, "false_reliance_conditional": 0.2, "safe_recall": 0.8, "abstention_rate": 0.14285714285714285},
+      "cost": {"queries": 90, "disclosed_bytes": 15352, "latency_ticks": 386, "sensitivity": 252, "human_interruptions": 12},
+      "recovery": {"ambiguous_submit_responses": 4, "correct_object_readbacks": 6, "duplicate_effect_worlds": 0}
+    },
+    "SAME_PERMISSION_STRONG_CENTER": {
+      "P1_success": {"TP": 5, "FP": 3, "TN": 2, "FN": 0, "ABSTAIN_TRUE": 2, "ABSTAIN_FALSE": 2, "false_reliance_conditional": 0.375, "safe_recall": 0.7142857142857143, "abstention_rate": 0.2857142857142857},
+      "P1_resolution": {"TP": 8, "FP": 2, "TN": 0, "FN": 0, "ABSTAIN_TRUE": 2, "ABSTAIN_FALSE": 2, "false_reliance_conditional": 0.2, "safe_recall": 0.8, "abstention_rate": 0.2857142857142857},
+      "cost": {"queries": 90, "disclosed_bytes": 15352, "latency_ticks": 386, "sensitivity": 252, "human_interruptions": 12},
+      "recovery": {"ambiguous_submit_responses": 4, "correct_object_readbacks": 6, "duplicate_effect_worlds": 0}
+    },
+    "LEGITIMATELY_DELEGATED_CENTER": {
+      "P1_success": {"TP": 1, "FP": 0, "TN": 5, "FN": 2, "ABSTAIN_TRUE": 4, "ABSTAIN_FALSE": 2, "false_reliance_conditional": 0.0, "safe_recall": 0.14285714285714285, "abstention_rate": 0.42857142857142855},
+      "P1_resolution": {"TP": 8, "FP": 2, "TN": 0, "FN": 0, "ABSTAIN_TRUE": 2, "ABSTAIN_FALSE": 2, "false_reliance_conditional": 0.2, "safe_recall": 0.8, "abstention_rate": 0.2857142857142857},
+      "cost": {"queries": 70, "disclosed_bytes": 11575, "latency_ticks": 258, "sensitivity": 166, "human_interruptions": 6},
+      "recovery": {"ambiguous_submit_responses": 0, "correct_object_readbacks": 1, "duplicate_effect_worlds": 0}
+    }
+  },
+  "integrity": {
+    "oracle_unchanged_during_run": true,
+    "independent_worker_source_hashes": true,
+    "fixture_sha256": "9dcfad7dd8eb843a0383fc204d5b96abbab5860d5eead496169979111972d513",
+    "oracle_sha256": "d943f2721d4ff53a1497cc15cf84b376124ec031c24c210f6691fb86bb70e02b"
+  },
+  "cannot_support": [
+    "reality frequency or production reliability",
+    "formal G4 claim promotion",
+    "general strong-center superiority or inferiority",
+    "necessity of a new protocol or derived Capability Claim",
+    "unbounded impossibility beyond the frozen finite interaction model"
+  ]
+}

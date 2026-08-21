@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.1",
+  "world_id": "T1-HW-20260728-A",
+  "evaluation_step": 1,
+  "method_id": "candidate-method-b-local-projections-only",
+  "decisions": [
+    {
+      "detection_id": "cmb-claim-offline-audio-001",
+      "kind": "CLAIM",
+      "state": "UNKNOWN",
+      "claim_key": "capability:offline-node:audio-transcription",
+      "subject": "P-OFFLINE",
+      "evidence_refs": [
+        "W-OFFLINE-NO-RESPONSE"
+      ]
+    },
+    {
+      "detection_id": "cmb-claim-refusal-review-002",
+      "kind": "CLAIM",
+      "state": "REFUSE",
+      "claim_key": "capability:refusal-node:document-review",
+      "subject": "P-REFUSE",
+      "evidence_refs": [
+        "W-EXPLICIT-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "cmb-claim-closed-rare-format-003",
+      "kind": "CLAIM",
+      "state": "ABSENT",
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "subject": "POPULATION-CLOSED-RARE-FORMAT",
+      "evidence_refs": [
+        "W-CLOSED-POPULATION",
+        "W-CLOSED-P1-NEG",
+        "W-CLOSED-P2-NEG",
+        "W-CLOSED-P3-NEG"
+      ]
+    },
+    {
+      "detection_id": "cmb-pair-reciprocal-unknown-004",
+      "kind": "PAIR",
+      "state": "UNKNOWN",
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "F-RECIP-SEEK-DETAIL",
+        "POL-RECIP-SEEK",
+        "F-RECIP-OFFER-DETAIL",
+        "POL-RECIP-OFFER"
+      ]
+    },
+    {
+      "detection_id": "cmb-pair-data-cleaning-unknown-005",
+      "kind": "PAIR",
+      "state": "UNKNOWN",
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ]
+    },
+    {
+      "detection_id": "cmb-claim-dynamic-offer-006",
+      "kind": "CLAIM",
+      "state": "INVALIDATED",
+      "claim_key": "DYN-OFFER-STATE",
+      "subject": "published_offer",
+      "evidence_refs": [
+        "W-DYN-REVOKE"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "cmb-probe-reciprocal-001",
+      "requester": "P-RECIP-SEEK",
+      "responder": "P-RECIP-OFFER",
+      "requested_fact": "currently valid complementary joint-action opportunity from P-RECIP-OFFER",
+      "offered_fact": "F-RECIP-SEEK-DETAIL",
+      "status": "UNKNOWN",
+      "evidence_refs": [
+        "F-RECIP-SEEK-DETAIL",
+        "POL-RECIP-SEEK",
+        "F-RECIP-OFFER-DETAIL",
+        "POL-RECIP-OFFER"
+      ]
+    }
+  ],
+  "disclosures": [
+    {
+      "event_id": "cmb-disclosure-unexp-seek-001",
+      "origin_party": "P-UNEXP-SEEK",
+      "sender": "P-UNEXP-SEEK",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-SEEK-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    },
+    {
+      "event_id": "cmb-disclosure-unexp-offer-002",
+      "origin_party": "P-UNEXP-OFFER",
+      "sender": "P-UNEXP-OFFER",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-OFFER-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    }
+  ],
+  "projection_updates": [
+    {
+      "party": "P-DYN-OFFER",
+      "from_version": 1,
+      "to_version": 2,
+      "step": 1,
+      "evidence_ref": "W-DYN-REVOKE"
+    }
+  ],
+  "relation_handoffs": [
+    {
+      "detection_id": "cmb-handoff-reciprocal-007",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "evidence_refs": [
+        "F-RECIP-SEEK-DETAIL",
+        "POL-RECIP-SEEK",
+        "F-RECIP-OFFER-DETAIL",
+        "POL-RECIP-OFFER"
+      ],
+      "open_questions": [
+        "Can both parties complete a receipt-backed reciprocal probe?",
+        "Does the provider currently offer a fact complementary to the seeker's projected fact?"
+      ]
+    },
+    {
+      "detection_id": "cmb-handoff-data-cleaning-008",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ],
+      "open_questions": [
+        "Can the parties complete a bidirectional reciprocal probe?",
+        "Are both projections still current and mutually compatible?"
+      ]
+    }
+  ]
+}

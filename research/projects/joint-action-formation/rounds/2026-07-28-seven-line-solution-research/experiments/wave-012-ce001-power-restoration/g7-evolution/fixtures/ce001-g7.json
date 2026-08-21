@@ -1,0 +1,175 @@
+{
+  "fixture_id": "CE-001-G7-EVOLUTION-AGENT-B-V1",
+  "implementation_identity": "G7_INTERNAL_AGENT_B",
+  "evidence_level": "LOCAL_SYNTHETIC_COMPONENT_MODEL",
+  "private_expected_label": "ABSENT",
+  "hidden_pair_status": "NOT_CONSTRUCTED",
+  "safety_liveness_frontier": "NOT_RUN",
+  "frozen_contract": {
+    "q_version": "Q@v1",
+    "object_id": "Circuit-C7",
+    "operation_id": "power-C7-45m-v1",
+    "semantic_effect_key": "CE-001:C7:Q@v1:power"
+  },
+  "e4": {
+    "primary_reservation_ref": "lease-primary",
+    "primary_node": "resource-primary",
+    "global_reopen_root": "safety-root",
+    "lease_registry": {
+      "lease-primary": {
+        "registryOwner": "O_R_PRIMARY",
+        "leaseRecord": {
+          "resourceRef": "battery-primary",
+          "revision": 2,
+          "state": "REVOKED",
+          "scope": {
+            "qVersion": "Q@v1",
+            "objectRef": "Circuit-C7",
+            "operationRef": "power-C7-45m-v1",
+            "expiresEpoch": 3
+          }
+        },
+        "replacementRefs": [
+          "lease-alternative"
+        ]
+      },
+      "lease-alternative": {
+        "registryOwner": "O_R_ALTERNATIVE",
+        "leaseRecord": {
+          "resourceRef": "battery-alternative",
+          "revision": 7,
+          "state": "ACTIVE",
+          "scope": {
+            "qVersion": "Q@v1",
+            "objectRef": "Circuit-C7",
+            "operationRef": "power-C7-45m-v1",
+            "expiresEpoch": 3
+          }
+        },
+        "replacementRefs": []
+      }
+    },
+    "safety_policies": {
+      "S@7": {
+        "issuer": "O_S",
+        "verdictCode": 204,
+        "validThroughEpoch": 3,
+        "scope": {
+          "exactTargets": [
+            "Circuit-C7"
+          ],
+          "operations": [
+            "power-C7-45m-v1"
+          ]
+        }
+      }
+    },
+    "public_packet": {
+      "episode_id": "CE-001/E4",
+      "policy_revision": "S@7",
+      "operation": {
+        "operation_id": "power-C7-45m-v1",
+        "operation_version": "op@1",
+        "object_id": "Circuit-C7",
+        "q_version": "Q@v1",
+        "semantic_effect_key": "CE-001:C7:Q@v1:power",
+        "delivered_kw": 3.0,
+        "duration_minutes": 45
+      },
+      "dependency_graph": {
+        "version": "dep@4",
+        "nodes": [
+          "safety-root",
+          "resource-primary",
+          "resource-alternative",
+          "delivery-commitment",
+          "effect-C7",
+          "acceptance",
+          "settlement"
+        ],
+        "edges": [
+          [
+            "safety-root",
+            "resource-primary"
+          ],
+          [
+            "safety-root",
+            "resource-alternative"
+          ],
+          [
+            "resource-primary",
+            "delivery-commitment"
+          ],
+          [
+            "resource-alternative",
+            "delivery-commitment"
+          ],
+          [
+            "delivery-commitment",
+            "effect-C7"
+          ],
+          [
+            "effect-C7",
+            "acceptance"
+          ],
+          [
+            "acceptance",
+            "settlement"
+          ]
+        ]
+      }
+    }
+  },
+  "e6": {
+    "source_runtime_id": "coordinator-old",
+    "target_runtime_id": "coordinator-takeover",
+    "source_epoch": 1,
+    "target_epoch": 2,
+    "field_loss_path": "recovery.pending_acceptance",
+    "owner_evidence_hashes": [
+      "evidence-O_R-current",
+      "evidence-O_S-current",
+      "evidence-O_V-target"
+    ],
+    "public_packet": {
+      "episode_id": "CE-001/E6",
+      "operation": {
+        "operation_id": "power-C7-45m-v1",
+        "operation_version": "op@1",
+        "object_id": "Circuit-C7",
+        "q_version": "Q@v1",
+        "semantic_effect_key": "CE-001:C7:Q@v1:power",
+        "delivered_kw": 3.0,
+        "duration_minutes": 45
+      },
+      "dependency_graph": {
+        "version": "dep@4",
+        "nodes": [
+          "authority",
+          "intent",
+          "effect-C7",
+          "acceptance",
+          "settlement"
+        ],
+        "edges": [
+          [
+            "authority",
+            "intent"
+          ],
+          [
+            "intent",
+            "effect-C7"
+          ],
+          [
+            "effect-C7",
+            "acceptance"
+          ],
+          [
+            "acceptance",
+            "settlement"
+          ]
+        ]
+      }
+    }
+  }
+}

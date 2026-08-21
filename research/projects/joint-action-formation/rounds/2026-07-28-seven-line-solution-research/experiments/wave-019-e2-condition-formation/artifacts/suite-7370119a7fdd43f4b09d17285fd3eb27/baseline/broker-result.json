@@ -1,0 +1,985 @@
+{
+  "controller_signed_owner_fact_count": 0,
+  "schema": "E2_BROKER_RESULT_V1",
+  "status": "COMPLETED",
+  "transcript": [
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "proposal_bytes": "{\"deadline_minute\":90,\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-6cce1cedcf152729d9a91ed4f5297cd8\",\"owner_request_nonces\":{\"O_Q\":\"nonce-5e5d9982ae884f4efe74cb633b69fd1a\",\"O_R\":\"nonce-6b3fc25e0a6632349d29d520d8ddad4e\",\"O_S\":\"nonce-59ec55656d1c1344cf2c06adfdea0ce9\",\"O_V\":\"nonce-7180a167deb965ad7f0dcf9d451d248a\"},\"public_run_id\":\"run-3f738cac7ca50e1e7c1e681f7c5953e3\",\"purpose\":\"TEMPORARY_C7_3KW_45MIN\",\"q_version\":\"Q@v1\",\"requested_expiry_minute\":90,\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"E2_EXACT_FORMATION_PROPOSAL_V1\",\"scope_sha256\":\"da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b\",\"target_id\":\"VenueV:CircuitC7\",\"terms\":{\"delegation_scope\":\"VenueV:CircuitC7\",\"relation_duration\":\"ONE_OPERATION_ONLY\",\"resource\":{\"duration_minutes\":45,\"power_kw\":3.0},\"safety_profile\":\"LOCAL_SYNTHETIC_C7_PROFILE_V1\"},\"world_id\":\"episode-489319f0f539c9dfbe729b6d8b3ecd4c\"}",
+        "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+        "schema": "E2_BROKER_PROPOSAL_REQUEST_V1"
+      }
+    },
+    {
+      "direction": "BROKER_TO_ARM",
+      "message": {
+        "owner_responses": [
+          {
+            "counter": null,
+            "decision": "APPROVE",
+            "expiry_minute": 90,
+            "owner_head": "a1daed139ecdce030fe2455e06d76371410e682676d7d439590110a2e70eae93",
+            "owner_id": "owner-o_q-cb34cc9c101b4bbc99b487a7fd0542e6",
+            "owner_public_key_hex": "a65a106d616d381212e2c0a5877bea87bd4e000d39ab5fcdab16f270de43c344",
+            "owner_role": "O_Q",
+            "principal_id": "PRINCIPAL_REQUESTER_Q",
+            "process_id": 45416,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "request_nonce": "nonce-5e5d9982ae884f4efe74cb633b69fd1a",
+            "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "32f3093cdb7e4df7f886bd84878bbc0a6c96c97dcd116e5d8e0646409a0412cbfbd03fa77dd4a32bcf4fc8effa989286caa2e54f2a3814f98b0026bcc54c2b05"
+          },
+          {
+            "counter": null,
+            "decision": "APPROVE",
+            "expiry_minute": 90,
+            "owner_head": "62244cd465a99d41c53e5d69cb41237a018818309b12a1b343d11ddd8073f7da",
+            "owner_id": "owner-o_v-e28586037f9947c8a74b68e0455e385e",
+            "owner_public_key_hex": "eb6ddf459ea4ecd7749bddb260a627eba01e5057fd344b9d29ab65f39b6efe35",
+            "owner_role": "O_V",
+            "principal_id": "PRINCIPAL_VENUE_V",
+            "process_id": 45417,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "request_nonce": "nonce-7180a167deb965ad7f0dcf9d451d248a",
+            "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "deec8264c49990fe61af097ab85366b15dde7aafce8f995f765e5839028c544a361f33aa93e5ace38d7e59e606093b0a7318947e8c7331fb2a62e7c9cce60806"
+          },
+          {
+            "counter": {
+              "effective_expiry_minute": 85,
+              "resource_window_end_minute": 50,
+              "resource_window_start_minute": 5
+            },
+            "decision": "COUNTER",
+            "expiry_minute": 90,
+            "owner_head": "3c87f730ea2d4dab93dffc16fc10f8886123b43718876a8d443570639fb95c11",
+            "owner_id": "owner-o_r-6d3c97caacb044cea62eca1f5b3ad6bd",
+            "owner_public_key_hex": "243327fe2b90b9852293cc5a91c0ceb9435d0bcf205a1ca99386073f1caef451",
+            "owner_role": "O_R",
+            "principal_id": "PRINCIPAL_RESOURCE_R",
+            "process_id": 45418,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "request_nonce": "nonce-6b3fc25e0a6632349d29d520d8ddad4e",
+            "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "16312aeb652478de1eebcc34e7e7d99fd186abda7155b318ee69df7408c272b5cb43d52500c729a8835efe7fc79c6e4276feb1d511c7d3961c824e75ad16e30a"
+          },
+          {
+            "counter": null,
+            "decision": "APPROVE",
+            "expiry_minute": 90,
+            "owner_head": "ef8409f62f83e6bc947dc47380f4d48af320d42c6f75f8c814700d1114c41faa",
+            "owner_id": "owner-o_s-0f0fec5e203048b3bd2fe2a154c9e477",
+            "owner_public_key_hex": "5448fd3f2381d2aa49b80a81ccd11bf4c026a4f1ed0dcfa4b834cce7dfac5de7",
+            "owner_role": "O_S",
+            "principal_id": "PRINCIPAL_SAFETY_S",
+            "process_id": 45419,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "request_nonce": "nonce-59ec55656d1c1344cf2c06adfdea0ce9",
+            "schema": "E2_OWNER_PROPOSAL_RESPONSE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "f18a0587febd5a6aaaf6d623f58cbb7dfe039703fda0490a6eb9ff3f8689adf6e767ea953785461f1813f4814d93112217cfc39acbb11555f267da330124d102"
+          }
+        ],
+        "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+        "schema": "E2_BROKER_PROPOSAL_RESULT_V1"
+      }
+    },
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "accepted_counter_roles": [
+          "O_R"
+        ],
+        "accepted_response_sha256": {
+          "O_Q": "47befa886672549ed686e3955b753a5a154ca04536b06b5a21556880d2b9b4d4",
+          "O_R": "5235868207f5265fd47d789423a1c7fda4801eb6c6cb066bedd9c057ffac9f26",
+          "O_S": "c86d735ec4dab762cd21c35336afa80d7019b073109576d9b7321541d3451758",
+          "O_V": "689fee1231bfc110cb323bcff5dd7981623a32c36fffa503bc2e107d6dd8aa5f"
+        },
+        "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+        "schema": "E2_BROKER_MATERIALIZE_REQUEST_V1",
+        "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b"
+      }
+    },
+    {
+      "direction": "BROKER_TO_ARM",
+      "message": {
+        "owner_acts": [
+          {
+            "created_fact_kinds": [
+              "PURPOSE_TOKEN"
+            ],
+            "expiry_minute": 90,
+            "owner_id": "owner-o_q-cb34cc9c101b4bbc99b487a7fd0542e6",
+            "owner_public_key_hex": "a65a106d616d381212e2c0a5877bea87bd4e000d39ab5fcdab16f270de43c344",
+            "owner_role": "O_Q",
+            "post_head": "bf175bc221bdcfb9a26c6e75537b5edb606f5b0f25c32c42b9c37e6c3a99246d",
+            "pre_head": "a1daed139ecdce030fe2455e06d76371410e682676d7d439590110a2e70eae93",
+            "principal_id": "PRINCIPAL_REQUESTER_Q",
+            "process_id": 45416,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "response_sha256": "47befa886672549ed686e3955b753a5a154ca04536b06b5a21556880d2b9b4d4",
+            "schema": "E2_OWNER_FORMATION_ACT_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "9d86ade2ef1a022bea48d5f2915f0cd6ff37cca71f510701ed269501e5c548df1a07562ee9a05d4d8341685b0cb804bb9852113d81db55610344e1aaca214205"
+          },
+          {
+            "created_fact_kinds": [
+              "C7_SHORT_DELEGATION"
+            ],
+            "expiry_minute": 90,
+            "owner_id": "owner-o_v-e28586037f9947c8a74b68e0455e385e",
+            "owner_public_key_hex": "eb6ddf459ea4ecd7749bddb260a627eba01e5057fd344b9d29ab65f39b6efe35",
+            "owner_role": "O_V",
+            "post_head": "3605bbd94341237366c117aa930e08f763c83054c1777dffdf321af8336c953a",
+            "pre_head": "62244cd465a99d41c53e5d69cb41237a018818309b12a1b343d11ddd8073f7da",
+            "principal_id": "PRINCIPAL_VENUE_V",
+            "process_id": 45417,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "response_sha256": "689fee1231bfc110cb323bcff5dd7981623a32c36fffa503bc2e107d6dd8aa5f",
+            "schema": "E2_OWNER_FORMATION_ACT_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "b02e8bdbbe60c775f293688560ec7680e0a5c80aec66c39d4bde459338bed348d3fe85ce701f012ef47e5553c04f7894ef93688058ab4cb6aff5b4bf5ad0fa00"
+          },
+          {
+            "created_fact_kinds": [
+              "RESOURCE_COMMITMENT",
+              "RESOURCE_RESERVATION"
+            ],
+            "expiry_minute": 85,
+            "owner_id": "owner-o_r-6d3c97caacb044cea62eca1f5b3ad6bd",
+            "owner_public_key_hex": "243327fe2b90b9852293cc5a91c0ceb9435d0bcf205a1ca99386073f1caef451",
+            "owner_role": "O_R",
+            "post_head": "b2c8deb7a315df25d45f9e245838fa2a9faba5453cf30339073c638c57a7d12d",
+            "pre_head": "3c87f730ea2d4dab93dffc16fc10f8886123b43718876a8d443570639fb95c11",
+            "principal_id": "PRINCIPAL_RESOURCE_R",
+            "process_id": 45418,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "response_sha256": "5235868207f5265fd47d789423a1c7fda4801eb6c6cb066bedd9c057ffac9f26",
+            "schema": "E2_OWNER_FORMATION_ACT_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "9b50e5d8cd0f38ceab4b4a5ee0f3d99de26daf8e1c19118befd174db05fb94c32be79c01c0297e23f42df75c9a4887fef93d32e504fa475b04816128ec9a1c00"
+          },
+          {
+            "created_fact_kinds": [
+              "SAFETY_APPROVAL"
+            ],
+            "expiry_minute": 90,
+            "owner_id": "owner-o_s-0f0fec5e203048b3bd2fe2a154c9e477",
+            "owner_public_key_hex": "5448fd3f2381d2aa49b80a81ccd11bf4c026a4f1ed0dcfa4b834cce7dfac5de7",
+            "owner_role": "O_S",
+            "post_head": "b4827a3e3f321312e9f638faf075c202dcb06cbcb5d43068ba514455b3983938",
+            "pre_head": "ef8409f62f83e6bc947dc47380f4d48af320d42c6f75f8c814700d1114c41faa",
+            "principal_id": "PRINCIPAL_SAFETY_S",
+            "process_id": 45419,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "response_sha256": "c86d735ec4dab762cd21c35336afa80d7019b073109576d9b7321541d3451758",
+            "schema": "E2_OWNER_FORMATION_ACT_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "bb1b1c566e46ce56d89503a87cff31be5cb127e7144acc725182ca2dcd9920318fa05c6314048ab9d0c5d638ff52988ffc242b92dd1ab1c8fb8fb70df9e3e60f"
+          }
+        ],
+        "schema": "E2_BROKER_MATERIALIZE_RESULT_V1"
+      }
+    },
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "execute_minute": 5,
+        "owner_act_sha256": {
+          "O_Q": "48edc01ca0ba9af3c629b34773b4be17dbbb18ac1981bec9d57061dbfedc7eb5",
+          "O_R": "3da7ee89bea3450d27fe36e4836eb4ab66ee69400711d301d6adad819497a8bf",
+          "O_S": "1c4bb52d6ed1b44d19f5c5edce7186c352943b04582e67b9e54ad90f93a31e6f",
+          "O_V": "c24632bfeeff7c4d58b8bfcc884a180c7f6fcbaa6e9652261b554f38d821cfeb"
+        },
+        "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+        "schema": "E2_BROKER_TARGET_EXECUTE_REQUEST_V1",
+        "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b"
+      }
+    },
+    {
+      "direction": "BROKER_TO_ARM",
+      "message": {
+        "commit_revalidations": [
+          {
+            "execute_minute": 5,
+            "owner_head": "bf175bc221bdcfb9a26c6e75537b5edb606f5b0f25c32c42b9c37e6c3a99246d",
+            "owner_id": "owner-o_q-cb34cc9c101b4bbc99b487a7fd0542e6",
+            "owner_public_key_hex": "a65a106d616d381212e2c0a5877bea87bd4e000d39ab5fcdab16f270de43c344",
+            "owner_role": "O_Q",
+            "principal_id": "PRINCIPAL_REQUESTER_Q",
+            "process_id": 45416,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "required_fact_kinds": [
+              "PURPOSE_TOKEN"
+            ],
+            "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "5f0b463a957110813ac8f10995f8addad878cc1022c08f961ea430e5812d970da7a9e77e87dee8f8a7aad00361873436c6bdbf73f485c32226040bf32307f60e",
+            "status": "CURRENT"
+          },
+          {
+            "execute_minute": 5,
+            "owner_head": "3605bbd94341237366c117aa930e08f763c83054c1777dffdf321af8336c953a",
+            "owner_id": "owner-o_v-e28586037f9947c8a74b68e0455e385e",
+            "owner_public_key_hex": "eb6ddf459ea4ecd7749bddb260a627eba01e5057fd344b9d29ab65f39b6efe35",
+            "owner_role": "O_V",
+            "principal_id": "PRINCIPAL_VENUE_V",
+            "process_id": 45417,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "required_fact_kinds": [
+              "C7_SHORT_DELEGATION"
+            ],
+            "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "b52935266ba4db8d22b714ad59959ef26acd531136548866e5dd1766aa34057c527eecc3c0c574d41217326a677436913ac67bea4e48f81bc042adcab0f0460e",
+            "status": "CURRENT"
+          },
+          {
+            "execute_minute": 5,
+            "owner_head": "b2c8deb7a315df25d45f9e245838fa2a9faba5453cf30339073c638c57a7d12d",
+            "owner_id": "owner-o_r-6d3c97caacb044cea62eca1f5b3ad6bd",
+            "owner_public_key_hex": "243327fe2b90b9852293cc5a91c0ceb9435d0bcf205a1ca99386073f1caef451",
+            "owner_role": "O_R",
+            "principal_id": "PRINCIPAL_RESOURCE_R",
+            "process_id": 45418,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "required_fact_kinds": [
+              "RESOURCE_COMMITMENT",
+              "RESOURCE_RESERVATION"
+            ],
+            "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "bc90e39933a5618aed37ddc06b55d4ca7d54280b96de512f14574ffb493d668f7d3409d373a1483990d228400fc66c97436e136c95aac21e4d57176521c0120b",
+            "status": "CURRENT"
+          },
+          {
+            "execute_minute": 5,
+            "owner_head": "b4827a3e3f321312e9f638faf075c202dcb06cbcb5d43068ba514455b3983938",
+            "owner_id": "owner-o_s-0f0fec5e203048b3bd2fe2a154c9e477",
+            "owner_public_key_hex": "5448fd3f2381d2aa49b80a81ccd11bf4c026a4f1ed0dcfa4b834cce7dfac5de7",
+            "owner_role": "O_S",
+            "principal_id": "PRINCIPAL_SAFETY_S",
+            "process_id": 45419,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "required_fact_kinds": [
+              "SAFETY_APPROVAL"
+            ],
+            "schema": "E2_OWNER_COMMIT_REVALIDATION_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "18d469f7326caeb555501951513b450b0767e24757ef8a42763e2d4c4b47f288fdf10db28261745a2bd32084c232cb281fb6d0f26f6ca9450a4ac354b1fe6f05",
+            "status": "CURRENT"
+          }
+        ],
+        "readback": {
+          "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+          "attached_to_receipt_commit": true,
+          "capability_id": "e2-capability-baseline_counter_success-1d28f707ac474343a5255ae9c4154115",
+          "ledger_id": "e2-target-baseline_counter_success-60d3ea62e76348d8bd252dd5f4ee6306",
+          "observed_commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+          "observed_commit_id": "commit-cbf2bcbdd16840b1ba07b4077f995ae2",
+          "observed_state": {
+            "occurrences": [
+              {
+                "effect_end_minute": 50,
+                "effect_start_minute": 5,
+                "object_id": "VenueV:CircuitC7",
+                "occurrence_id": "occurrence-92cae499a128e36c561f0d782e38c264",
+                "operation_id": "operation-6cce1cedcf152729d9a91ed4f5297cd8",
+                "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+                "public_run_id": "run-3f738cac7ca50e1e7c1e681f7c5953e3",
+                "q_version": "Q@v1",
+                "samples": [
+                  {
+                    "observed_at_minute": 5,
+                    "offset_minute": 0,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 6,
+                    "offset_minute": 1,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 7,
+                    "offset_minute": 2,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 8,
+                    "offset_minute": 3,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 9,
+                    "offset_minute": 4,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 10,
+                    "offset_minute": 5,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 11,
+                    "offset_minute": 6,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 12,
+                    "offset_minute": 7,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 13,
+                    "offset_minute": 8,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 14,
+                    "offset_minute": 9,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 15,
+                    "offset_minute": 10,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 16,
+                    "offset_minute": 11,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 17,
+                    "offset_minute": 12,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 18,
+                    "offset_minute": 13,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 19,
+                    "offset_minute": 14,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 20,
+                    "offset_minute": 15,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 21,
+                    "offset_minute": 16,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 22,
+                    "offset_minute": 17,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 23,
+                    "offset_minute": 18,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 24,
+                    "offset_minute": 19,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 25,
+                    "offset_minute": 20,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 26,
+                    "offset_minute": 21,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 27,
+                    "offset_minute": 22,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 28,
+                    "offset_minute": 23,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 29,
+                    "offset_minute": 24,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 30,
+                    "offset_minute": 25,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 31,
+                    "offset_minute": 26,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 32,
+                    "offset_minute": 27,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 33,
+                    "offset_minute": 28,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 34,
+                    "offset_minute": 29,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 35,
+                    "offset_minute": 30,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 36,
+                    "offset_minute": 31,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 37,
+                    "offset_minute": 32,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 38,
+                    "offset_minute": 33,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 39,
+                    "offset_minute": 34,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 40,
+                    "offset_minute": 35,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 41,
+                    "offset_minute": 36,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 42,
+                    "offset_minute": 37,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 43,
+                    "offset_minute": 38,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 44,
+                    "offset_minute": 39,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 45,
+                    "offset_minute": 40,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 46,
+                    "offset_minute": 41,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 47,
+                    "offset_minute": 42,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 48,
+                    "offset_minute": 43,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 49,
+                    "offset_minute": 44,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 50,
+                    "offset_minute": 45,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  }
+                ],
+                "synthetic": true,
+                "target_id": "VenueV:CircuitC7",
+                "world_id": "episode-489319f0f539c9dfbe729b6d8b3ecd4c"
+              }
+            ]
+          },
+          "observed_state_sha256": "b5f3b3778e2f53a4aa31f4087756e2d0f4d839a84d26a40aa41cdb97fb3f8f20",
+          "observed_version": 1,
+          "readback_auth_hex": "738e9414598b19f80675a76633ad95a7e08671869e343330a73d7c21a2290e4e",
+          "readback_id": "readback-e9e2362520d74b6d906293742e96e3d2",
+          "readback_sha256": "b800b1613aa904464161b70fb73af7ad25d5f9f8aee4d104c9d0ec978f24b55a",
+          "receipt_commit_id": "commit-cbf2bcbdd16840b1ba07b4077f995ae2",
+          "receipt_decision": "COMMITTED",
+          "receipt_id": "receipt-02dcc27d7347464bbe56a2943cc952a5",
+          "receipt_mutation_applied": true,
+          "receipt_post_version": 1,
+          "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+          "request_id": "target-92cae499a128e36c561f0d782e38c264",
+          "request_sha256": "8bdf93cc81af2ab7743fcf335ab55ba76687a9d054a332096a5bed94643ece75",
+          "schema": "TARGET_READBACK_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "receipt": {
+          "actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+          "capability_id": "e2-capability-baseline_counter_success-1d28f707ac474343a5255ae9c4154115",
+          "commit_actor_id": "MATURE-WORKFLOW-HITL-FORMATION",
+          "commit_id": "commit-cbf2bcbdd16840b1ba07b4077f995ae2",
+          "decision": "COMMITTED",
+          "expected_version": 0,
+          "ledger_id": "e2-target-baseline_counter_success-60d3ea62e76348d8bd252dd5f4ee6306",
+          "mutation_applied": true,
+          "operation": "SET_STATE",
+          "post_state": {
+            "occurrences": [
+              {
+                "effect_end_minute": 50,
+                "effect_start_minute": 5,
+                "object_id": "VenueV:CircuitC7",
+                "occurrence_id": "occurrence-92cae499a128e36c561f0d782e38c264",
+                "operation_id": "operation-6cce1cedcf152729d9a91ed4f5297cd8",
+                "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+                "public_run_id": "run-3f738cac7ca50e1e7c1e681f7c5953e3",
+                "q_version": "Q@v1",
+                "samples": [
+                  {
+                    "observed_at_minute": 5,
+                    "offset_minute": 0,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 6,
+                    "offset_minute": 1,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 7,
+                    "offset_minute": 2,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 8,
+                    "offset_minute": 3,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 9,
+                    "offset_minute": 4,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 10,
+                    "offset_minute": 5,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 11,
+                    "offset_minute": 6,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 12,
+                    "offset_minute": 7,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 13,
+                    "offset_minute": 8,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 14,
+                    "offset_minute": 9,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 15,
+                    "offset_minute": 10,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 16,
+                    "offset_minute": 11,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 17,
+                    "offset_minute": 12,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 18,
+                    "offset_minute": 13,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 19,
+                    "offset_minute": 14,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 20,
+                    "offset_minute": 15,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 21,
+                    "offset_minute": 16,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 22,
+                    "offset_minute": 17,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 23,
+                    "offset_minute": 18,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 24,
+                    "offset_minute": 19,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 25,
+                    "offset_minute": 20,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 26,
+                    "offset_minute": 21,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 27,
+                    "offset_minute": 22,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 28,
+                    "offset_minute": 23,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 29,
+                    "offset_minute": 24,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 30,
+                    "offset_minute": 25,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 31,
+                    "offset_minute": 26,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 32,
+                    "offset_minute": 27,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 33,
+                    "offset_minute": 28,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 34,
+                    "offset_minute": 29,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 35,
+                    "offset_minute": 30,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 36,
+                    "offset_minute": 31,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 37,
+                    "offset_minute": 32,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 38,
+                    "offset_minute": 33,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 39,
+                    "offset_minute": 34,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 40,
+                    "offset_minute": 35,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 41,
+                    "offset_minute": 36,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 42,
+                    "offset_minute": 37,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 43,
+                    "offset_minute": 38,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 44,
+                    "offset_minute": 39,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 45,
+                    "offset_minute": 40,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 46,
+                    "offset_minute": 41,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 47,
+                    "offset_minute": 42,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 48,
+                    "offset_minute": 43,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 49,
+                    "offset_minute": 44,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  },
+                  {
+                    "observed_at_minute": 50,
+                    "offset_minute": 45,
+                    "power_kw": 3.0,
+                    "source": "LOCAL_SYNTHETIC"
+                  }
+                ],
+                "synthetic": true,
+                "target_id": "VenueV:CircuitC7",
+                "world_id": "episode-489319f0f539c9dfbe729b6d8b3ecd4c"
+              }
+            ]
+          },
+          "post_state_sha256": "b5f3b3778e2f53a4aa31f4087756e2d0f4d839a84d26a40aa41cdb97fb3f8f20",
+          "post_version": 1,
+          "pre_state": {
+            "occurrences": []
+          },
+          "pre_state_sha256": "8f0874b12e7e2a5bafc59eaaaf6438bee0195a7199624c3e280ded986315993c",
+          "pre_version": 0,
+          "reason": "TARGET_MUTATION_COMMITTED",
+          "receipt_auth_hex": "9639cc5fea716d13466736614d5072e9a3c3f7785e50456cb253e35f7cca2f08",
+          "receipt_id": "receipt-02dcc27d7347464bbe56a2943cc952a5",
+          "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+          "request_id": "target-92cae499a128e36c561f0d782e38c264",
+          "request_sha256": "8bdf93cc81af2ab7743fcf335ab55ba76687a9d054a332096a5bed94643ece75",
+          "schema": "TARGET_MUTATION_RECEIPT_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "schema": "E2_BROKER_TARGET_EXECUTE_RESULT_V1"
+      }
+    },
+    {
+      "direction": "ARM_TO_BROKER",
+      "message": {
+        "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+        "readback_sha256": "b800b1613aa904464161b70fb73af7ad25d5f9f8aee4d104c9d0ec978f24b55a",
+        "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+        "schema": "E2_BROKER_ACCEPTANCE_REQUEST_V1",
+        "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b"
+      }
+    },
+    {
+      "direction": "BROKER_TO_ARM",
+      "message": {
+        "acceptances": [
+          {
+            "owner_head": "2fe4a6f7017be55ecd39e0199d0a357902db9353ca8b5b2af97eb835bcb71143",
+            "owner_id": "owner-o_q-cb34cc9c101b4bbc99b487a7fd0542e6",
+            "owner_public_key_hex": "a65a106d616d381212e2c0a5877bea87bd4e000d39ab5fcdab16f270de43c344",
+            "owner_role": "O_Q",
+            "principal_id": "PRINCIPAL_REQUESTER_Q",
+            "process_id": 45416,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "readback_sha256": "b800b1613aa904464161b70fb73af7ad25d5f9f8aee4d104c9d0ec978f24b55a",
+            "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+            "schema": "E2_OWNER_ACCEPTANCE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "001633295b3c3f539a2f0f19bfedb81e1353f25aea5b17288bd702cd314151b3875fd968730d50a27f49ac2e5d6e51a54a277a5c1ddebc7beb355f3ced43b207",
+            "status": "ACCEPTED"
+          },
+          {
+            "owner_head": "aca04a81ca745f9f3777c3e1daff7e34c6d9b60e8007fa4a43086e218bc191ac",
+            "owner_id": "owner-o_v-e28586037f9947c8a74b68e0455e385e",
+            "owner_public_key_hex": "eb6ddf459ea4ecd7749bddb260a627eba01e5057fd344b9d29ab65f39b6efe35",
+            "owner_role": "O_V",
+            "principal_id": "PRINCIPAL_VENUE_V",
+            "process_id": 45417,
+            "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+            "readback_sha256": "b800b1613aa904464161b70fb73af7ad25d5f9f8aee4d104c9d0ec978f24b55a",
+            "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+            "schema": "E2_OWNER_ACCEPTANCE_V1",
+            "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+            "signature_hex": "5071e1b89f242bd13ba7aa531896ba2b4f6fa770fe267779aa83189d6be68376323ad30806f0f0a545aad50598d9176b0a500ce5129f9b597b3e13bf35dd7d09",
+            "status": "ACCEPTED"
+          }
+        ],
+        "finality": {
+          "acceptance_sha256": "aab4c59bd4f81ca40429a50e9196ba2ec139462fd3f45a50851ab0ffa63f2934",
+          "owner_head": "e40914d8ba6f8918d6ad514e3afbbe27fa7c3c0502e7b7196688f1a192424c02",
+          "owner_id": "owner-o_p-fbed6e3dcac44316b844e4651d8bb824",
+          "owner_public_key_hex": "2e8fd52497bf09f41acd8f8bd74d2de533594c6da8f606758686bc105691bbc0",
+          "owner_role": "O_P",
+          "principal_id": "PRINCIPAL_SETTLEMENT_P",
+          "process_id": 45420,
+          "proposal_sha256": "92cae499a128e36c561f0d782e38c2646e673980ef4d3bb349624a8bd6e2e053",
+          "receipt_sha256": "ff1cd64c66f26b77cc24669591d3f3c5cf027cfe0bb4d1fe300f72acd0913867",
+          "schema": "E2_OWNER_FINALITY_V1",
+          "scope_sha256": "da0b8a2690af3dbe43f7a232739f3338425e1df4f52b1f4cbfbec3ddb3a33f0b",
+          "signature_hex": "5c574ae0baf47facff73694775e05943dd39729bfb7075337aee4d76248eb1b8b50976d2c92595c479dc0bbb8c5241e315fe1742833daf91486d89a332175009",
+          "status": "FINAL"
+        },
+        "schema": "E2_BROKER_ACCEPTANCE_RESULT_V1"
+      }
+    }
+  ],
+  "transcript_sha256": "4cb4ec40ec01496e3ab8900eded04dd13036c1025af09d2633a59e11fcaa4848"
+}

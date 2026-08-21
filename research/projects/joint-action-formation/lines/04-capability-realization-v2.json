@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-04-CAPABILITY-REALIZATION-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "CAPABILITY_REALIZATION",
+  "title": "指定操作的前瞻能力兑现与现成信号组合",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-CAP-001",
+    "CAP-CAP-002",
+    "CAP-CAP-003",
+    "CAP-CAP-004",
+    "CAP-CAP-005"
+  ],
+  "local_question": "在冻结 operation、executor、source/environment version、account/approval path、resource state、oracle、expiry 与 recovery 后，一个带 freshness 和 Defeater 的派生 Capability Claim 能否比静态声明及成熟 eval/CI、IAM、health/readiness、telemetry 和 workflow 组合更准确地预测未见任务的首次执行、漂移失效与恢复？",
+  "blocked_decision": "决定 Capability Claim 与 Assurance Case 是否值得保留为跨现成信号的前瞻派生视图，还是应由 source、policy、reservation、operation、readback 和 recovery 的权威事实直接查询。",
+  "reverse_result": "若成熟组合在相同任务、首次尝试、probe、资源和人工预算下达到相同或更好的 coverage、首次预测、漂移阻断与恢复结果，则 Capability Claim 降为可替换查询或 adapter；若增益只来自 reservation、readback 或其他单一构件，增益只归该构件。",
+  "minimum_discriminator": "冻结包含错误 provenance、权限差异、资源竞争、依赖漂移、撤销和恢复的 held-out operation；公平比较 STATIC、MATURE-COMPOSITE 与 DERIVED-CLAIM 三臂，并用 executor result、authoritative postcondition 和独立 readback 分别报告首次准确率、误报能力、误报无能力、abstention、漂移延迟、恢复正确率与总成本。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/lines/04-capability-realization.json",
+    "research/projects/joint-action-formation/lines/04-capability-realization.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/12/12bf20bc6fa0d7a9afc76f6cd9bd819723f55df4c2c9d6c73d2f04deec7385f9.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/37/37b396f539402433b0e5f2ad8f537cb44265b220d5d41e885de1b6935cde1012.md"
+  ],
+  "budget": {
+    "max_minutes": 60,
+    "max_attempts": 2,
+    "max_output_bytes": 3145728
+  },
+  "stop_conditions": [
+    "比较臂没有获得相同 held-out operation、首次执行机会、probe、资源与人工预算",
+    "claim 在首次尝试后才生成，或把修复后的 intervention 成功回填为前瞻预测",
+    "把安装、自报、producer 文本、外层 exit code 或单次成功当作能力兑现闭包",
+    "需要扩大未授权账户、凭据、网络、生产写入或现实资源预留",
+    "合成或本地技术结果被提升为一般 Agent 能力、商业履约或跨域长期有效"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "hypothesis_outcomes",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cost",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "生成 Capability Claim 的实现不得同时充当唯一 oracle，必须保留 action-level executor result、authoritative postcondition 与独立 readback",
+    "必须给予成熟 eval/CI、IAM、readiness、telemetry、reservation、workflow 和 recovery 组合完整基线机会",
+    "必须分别消融 provenance、authority、resource、freshness、oracle、recovery 与 Defeater，不能把单一构件增益归给整个派生 claim",
+    "未达到预冻结样本量、置信区间或最小实质差异时只能返回 INCONCLUSIVE 或 NOT_RUN",
+    "不得读取其他母线的候选结果来把能力兑现提升为授权、关系形成或现实效力"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-CAP-PROSPECTIVE-REALIZATION"
+    ],
+    "hypothesis_ids": [
+      "E-CAP-01-PROSPECTIVE-REALIZATION"
+    ],
+    "applicable_assumptions": [
+      "WORLD-AGENT-ENTITY",
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE",
+      "WORLD-COMPILE-AND-REOPEN"
+    ],
+    "non_claims": [
+      "不从 capability 推导 Principal、Authority Locus、Mandate、Commitment 或 Acceptance",
+      "不证明一般 Agent、模型、组织或平台具有稳定能力",
+      "不研究新能力、角色或关系路径怎样形成",
+      "不把执行成功提升为目标域 Effect、Adoption、Settlement 或商业净价值",
+      "不把本地合成 holdout 外推为现实频率或跨域普遍性"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/joint-action-formation/lines/04-capability-realization.json",
+      "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/12/12bf20bc6fa0d7a9afc76f6cd9bd819723f55df4c2c9d6c73d2f04deec7385f9.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/37/37b396f539402433b0e5f2ad8f537cb44265b220d5d41e885de1b6935cde1012.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/problem/v2.json",
+      "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "现成 provenance、CI/eval、IAM、readiness、telemetry、reservation、workflow 与 recovery 分别覆盖部分事实，但尚需检验一个带 freshness 和 Defeater 的跨来源派生视图能否在 held-out operation 上减少误闭合，而不成为第二事实源。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/lines/04-capability-realization.json",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "v0 合同保存了环境、账户、权限、版本、留出任务与漂移区别，但未绑定 Problem v2、最强成熟组合或精确 outcome boundary。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/native_lines/04_capability_realization.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "原生线重建了 Capability Envelope 与验证方向，没有决定派生 claim 相对现成组合是否有独立净增益。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "能力矩阵显示环境索引和独立 readback 保留较强，前瞻 holdout 与组合容量仍为部分覆盖。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/12/12bf20bc6fa0d7a9afc76f6cd9bd819723f55df4c2c9d6c73d2f04deec7385f9.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "六轴 claim 在冻结任务上只达到 4/6，且修复后的 6/6 属于 intervention，说明结构有信息量但未达到前瞻门槛。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/37/37b396f539402433b0e5f2ad8f537cb44265b220d5d41e885de1b6935cde1012.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "当前系统 patch 明确 authoritative readback 高于文本与外层退出，但没有解决执行前预测或组合资源竞争。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/problem/v2.json",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "Problem v2 冻结 Capability、Execution、Effect、Acceptance 可分别失败及现成技术强基线，没有决定本线派生视图是否必要。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/04-05-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "一手审计确认成熟平台已有 provenance、probe、telemetry 与 approval 构件；尚未运行同预算 held-out 对照。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能把 SC-CAP-PROSPECTIVE-REALIZATION 提升为候选证据，并冻结实际有效的 operation、environment、authority、resource、freshness、oracle、expiry、recovery 与 Defeater 闭包；不能登记一般能力或 CRA 必要性。",
+    "negative_effect": "负结果只会把 Capability Claim、Assurance Case 或其部分字段降为 adapter、派生查询或现成构件；若只有 reservation、readback 或 recovery 有增益，结论只归该构件，不否定能力兑现问题及仍保留的历史能力。",
+    "unaffected_claim_ids": [
+      "SC-AUTH-VERSIONED-ADAPTER-GAP",
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有更小组合在相同 held-out 分布、首次尝试、漂移、撤销、组合容量、oracle、恢复和成本条件下重建全部正例、失败切片与移除失败，才可被登记为无损替代；正式事实仍分别归 source、policy、reservation、operation、readback 与 recovery 所有。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/04-capability-realization-v2.md"
+}

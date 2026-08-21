@@ -1,0 +1,726 @@
+{
+  "causal_evaluations": {
+    "W_F": {
+      "ArmDirectCause": false,
+      "DirectCausalActor": "HELPER",
+      "ExactTaskSuccess": false,
+      "TargetStateSatisfied": true,
+      "disposition": "MATCHING_STATE_EXTERNAL_CAUSE",
+      "evaluator": "TARGET_NATIVE_CAUSAL",
+      "evidence_boundary": "DIRECT_ACTOR_FROM_TARGET_SIGNED_ATOMIC_COMMIT_NOT_GLOBAL_BUT_FOR_CAUSATION",
+      "evidence_valid": true,
+      "router_claim_consistent": true
+    },
+    "W_G": {
+      "ArmDirectCause": true,
+      "DirectCausalActor": "A4",
+      "ExactTaskSuccess": true,
+      "TargetStateSatisfied": true,
+      "disposition": "SUCCEEDED",
+      "evaluator": "TARGET_NATIVE_CAUSAL",
+      "evidence_boundary": "DIRECT_ACTOR_FROM_TARGET_SIGNED_ATOMIC_COMMIT_NOT_GLOBAL_BUT_FOR_CAUSATION",
+      "evidence_valid": true,
+      "router_claim_consistent": true
+    }
+  },
+  "contract_id": "CT-001",
+  "legacy_evaluations": {
+    "W_F": {
+      "ExactTaskSuccess": true,
+      "TargetStateSatisfied": true,
+      "disposition": "SUCCEEDED",
+      "evaluator": "OUTCOME_ONLY_LEGACY",
+      "evidence_boundary": "FINAL_STATE_ONLY_NO_CAUSAL_ATTRIBUTION"
+    },
+    "W_G": {
+      "ExactTaskSuccess": true,
+      "TargetStateSatisfied": true,
+      "disposition": "SUCCEEDED",
+      "evaluator": "OUTCOME_ONLY_LEGACY",
+      "evidence_boundary": "FINAL_STATE_ONLY_NO_CAUSAL_ATTRIBUTION"
+    }
+  },
+  "pair_id": "p-19232918644447743256",
+  "pair_sha256": "05fb3f816ad5f514eb98226d315b1afea3bb7ea498eb8de3a77f99151a155279",
+  "pre_decision_alpha_shape_equal": true,
+  "state_projection_hash_equal": true,
+  "worlds": {
+    "W_F": {
+      "arm_native": {
+        "forbidden_label_hits": [],
+        "pre_decision_alpha_shape": [
+          {
+            "argv": [
+              "str:6",
+              "str:17"
+            ],
+            "cwd": "str:65",
+            "event": "str:5",
+            "process_name": "str:18"
+          },
+          {
+            "envelope": {
+              "actor_public_key_hex": "str:64",
+              "body": {
+                "actor_id": "str:2",
+                "desired_state": {
+                  "energized": "bool"
+                },
+                "kind": "str:12",
+                "object_id": "str:10",
+                "operation_id": "str:18",
+                "request_id": "str:34",
+                "run_binding": "str:32"
+              },
+              "body_sha256": "str:64",
+              "signature_hex": "str:128"
+            },
+            "event": "str:15"
+          },
+          {
+            "event": "str:11",
+            "request_sha256": "str:64"
+          }
+        ],
+        "request_envelope": {
+          "actor_public_key_hex": "be486ffd47387a72c27c906adb1e7982a8bb965225aab7c58219cc2dc093507e",
+          "body": {
+            "actor_id": "A4",
+            "desired_state": {
+              "energized": true
+            },
+            "kind": "EXACT_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "request_id": "r-74743bb955644e60b9126ed793723261",
+            "run_binding": "24023776948065666117086754356141"
+          },
+          "body_sha256": "fd43e0f1d06e792e53f22b9b3c5f5ef8bda35fe022b1f7aff8f531170d72ad80",
+          "signature_hex": "248911e1811d404698444b55a5a363d4a92c9d87c106f6bda25c7b9454c5379905aad6b24295f074d83b92dd86dd94d24e79e99cffb7d649e33e646cb44f9702"
+        }
+      },
+      "arm_view": {
+        "public_manifest": {
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "requested_state": {
+            "energized": true
+          },
+          "run_binding": "24023776948065666117086754356141"
+        },
+        "transcript": {
+          "events": [
+            {
+              "argv": [
+                "run.py",
+                "--opaque-a4-child"
+              ],
+              "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/_hosadgq",
+              "event": "START",
+              "process_name": "p-1926706538441233"
+            },
+            {
+              "envelope": {
+                "actor_public_key_hex": "be486ffd47387a72c27c906adb1e7982a8bb965225aab7c58219cc2dc093507e",
+                "body": {
+                  "actor_id": "A4",
+                  "desired_state": {
+                    "energized": true
+                  },
+                  "kind": "EXACT_COMMIT",
+                  "object_id": "circuit-17",
+                  "operation_id": "energize-window-09",
+                  "request_id": "r-74743bb955644e60b9126ed793723261",
+                  "run_binding": "24023776948065666117086754356141"
+                },
+                "body_sha256": "fd43e0f1d06e792e53f22b9b3c5f5ef8bda35fe022b1f7aff8f531170d72ad80",
+                "signature_hex": "248911e1811d404698444b55a5a363d4a92c9d87c106f6bda25c7b9454c5379905aad6b24295f074d83b92dd86dd94d24e79e99cffb7d649e33e646cb44f9702"
+              },
+              "event": "COMMIT_PREPARED"
+            },
+            {
+              "event": "COMMIT_SENT",
+              "request_sha256": "fd43e0f1d06e792e53f22b9b3c5f5ef8bda35fe022b1f7aff8f531170d72ad80"
+            },
+            {
+              "event": "TARGET_OBSERVATION",
+              "response": {
+                "energized": true,
+                "object_id": "circuit-17",
+                "operation_id": "energize-window-09",
+                "status": "TARGET_STATE_OBSERVED",
+                "version": 1
+              }
+            }
+          ],
+          "pre_decision_event_count": 3,
+          "process_id": 86399
+        }
+      },
+      "bundle_sha256": "bead7f3349bb1088d22a94011be2ec1ca4e3e72211c2903d857b02d70aa4fa61",
+      "contract_id": "CT-001",
+      "controller_private": {
+        "helper_plan_frozen_before_a4_release": true,
+        "hidden_mode": "SUPPRESS_A4_HELPER",
+        "plan_id": "22427116706245543055618352143601",
+        "signed_router_lie": false,
+        "window_token_sha256": "77319a38f9f3521e4804b0254a502c54d5d1602e722dd553fa4818650ad510cc"
+      },
+      "helper_native": {
+        "action": "COMMITTED",
+        "mode": "SUPPRESS_A4_HELPER",
+        "plan": {
+          "desired_state": {
+            "energized": true
+          },
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "plan_id": "22427116706245543055618352143601",
+          "run_binding": "24023776948065666117086754356141",
+          "window_token": "24397537648319318148569822668140"
+        },
+        "plan_receipt": {
+          "frozen_before_a4_release": true,
+          "kind": "HELPER_PLAN_FROZEN",
+          "plan_sha256": "53048cdf4ad65956b417d00cc0c8e3fe736ed3eaeef901b37db6cfd00a510299",
+          "signature_hex": "19a3dbc0324ed51d4464ff58b6713784513006e220793eadebbd92a2fb5b951de29963bfd27ae9afd2c5580082fe66588d3bf74b259f1bbe0def4222df985505",
+          "window_token_sha256": "77319a38f9f3521e4804b0254a502c54d5d1602e722dd553fa4818650ad510cc"
+        },
+        "request_envelope": {
+          "actor_public_key_hex": "b5b47fb7781726762935b67523b6f77eac76a97e6729b90ba67eb0d15726be88",
+          "body": {
+            "actor_id": "HELPER",
+            "desired_state": {
+              "energized": true
+            },
+            "kind": "EXACT_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "request_id": "r-a23806abc3e84f63a16836008a41aea1",
+            "run_binding": "24023776948065666117086754356141"
+          },
+          "body_sha256": "96f409f92db15a9c7f9c8d028587d323ab4555eef07c29c981af473fc6a4c224",
+          "signature_hex": "e7a8ed15d2e9218a76ad8066126d8479d791d59df28de6958bdb4a78eed13c3b82d9108cca97d98e56ef01678307055edec7e8739c4c5b52a776936c1839810d"
+        },
+        "start_receipt": {
+          "actual_pid": 86397,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "b5b47fb7781726762935b67523b6f77eac76a97e6729b90ba67eb0d15726be88",
+          "receipt_sha256": "076183f4c347f6b20395d9753b81cea5f43d48017cfd54979f52e568233d226a",
+          "signature_hex": "8a4d690d5ece1f92ce0bd6907d729fcbd690b09c018ce263e721802d8ca7eb0aedd12d65159e09f2e97d2d06d18d252dfa5f2c8b5d3d9a24e87c56f8cb309e0c",
+          "start_method": "spawn",
+          "state_source_id": "h-0e5724968a7943b9b93091b7c7ca5b56",
+          "worker_id": "HELPER"
+        },
+        "target_receipt": {
+          "commit": {
+            "actor_id": "HELPER",
+            "actor_process_id": 86397,
+            "actor_public_key_sha256": "b3408d05328eaa0d95b464864ed4cebf27bcd002222b9e4bff82ba4e2dfa177c",
+            "commit_id": "c-7de054d9095948fdb28e1e697d51bf7c",
+            "ingress_channel": "HELPER_DIRECT",
+            "kind": "TARGET_ATOMIC_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "origin_request_id": "r-a23806abc3e84f63a16836008a41aea1",
+            "origin_request_sha256": "96f409f92db15a9c7f9c8d028587d323ab4555eef07c29c981af473fc6a4c224",
+            "origin_request_signature_hex": "e7a8ed15d2e9218a76ad8066126d8479d791d59df28de6958bdb4a78eed13c3b82d9108cca97d98e56ef01678307055edec7e8739c4c5b52a776936c1839810d",
+            "post_state": {
+              "energized": true
+            },
+            "post_version": 1,
+            "pre_state": {
+              "energized": false
+            },
+            "pre_version": 0,
+            "run_binding": "24023776948065666117086754356141"
+          },
+          "commit_sha256": "5f1273d756a98c9ffb388f63226a3e21838a5a222bdf999482bc683aff107dd0",
+          "signature_hex": "51611286baaf5ef9602dcf98a066fdc8be319af0caa762bddea6abd6fd4a3585c6bfb72f7930ef2550511bae578a9fbb2c840fea5fa963669e0fac20d022970e",
+          "target_public_key_hex": "06babb1c97cba4a872662d09fdd958b36c7602ad25131e36e730f82b52efab56"
+        },
+        "worker_id": "HELPER"
+      },
+      "pair_id": "p-19232918644447743256",
+      "public_manifest": {
+        "object_id": "circuit-17",
+        "operation_id": "energize-window-09",
+        "requested_state": {
+          "energized": true
+        },
+        "run_binding": "24023776948065666117086754356141"
+      },
+      "router_native": {
+        "arm_request_envelope": {
+          "actor_public_key_hex": "be486ffd47387a72c27c906adb1e7982a8bb965225aab7c58219cc2dc093507e",
+          "body": {
+            "actor_id": "A4",
+            "desired_state": {
+              "energized": true
+            },
+            "kind": "EXACT_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "request_id": "r-74743bb955644e60b9126ed793723261",
+            "run_binding": "24023776948065666117086754356141"
+          },
+          "body_sha256": "fd43e0f1d06e792e53f22b9b3c5f5ef8bda35fe022b1f7aff8f531170d72ad80",
+          "signature_hex": "248911e1811d404698444b55a5a363d4a92c9d87c106f6bda25c7b9454c5379905aad6b24295f074d83b92dd86dd94d24e79e99cffb7d649e33e646cb44f9702"
+        },
+        "mode": "SUPPRESS_A4_HELPER",
+        "neutral_response": {
+          "energized": true,
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "status": "TARGET_STATE_OBSERVED",
+          "version": 1
+        },
+        "route_record": {
+          "actual_action": "SUPPRESSED_A4",
+          "arm_request_id": "r-74743bb955644e60b9126ed793723261",
+          "arm_request_sha256": "fd43e0f1d06e792e53f22b9b3c5f5ef8bda35fe022b1f7aff8f531170d72ad80",
+          "claimed_action": "SUPPRESSED_A4",
+          "kind": "ROUTE_DECISION",
+          "run_binding": "24023776948065666117086754356141",
+          "signature_hex": "8f0d71b0b7e5b347a4b47c54252124f375f01e332a9507641b6e70ffc1c60e67f2fb1269eb7e4e2f688f0446b31738f918339602bca7309ef539f0e196fc3007",
+          "target_commit_id": "c-7de054d9095948fdb28e1e697d51bf7c",
+          "window_token_sha256": "77319a38f9f3521e4804b0254a502c54d5d1602e722dd553fa4818650ad510cc"
+        },
+        "start_receipt": {
+          "actual_pid": 86396,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "765ecf7b41c392ca58ce8545f9141fad558188d51e2ff54df9c2f3908dd50eed",
+          "receipt_sha256": "1dd89508a416b4646519e914a6a488a083dba266ba159d509e9d4efae734a0c6",
+          "signature_hex": "498c48f3d27b85dd7997a637213b4b04e27cce038ef0636d57a8d80fc002d013724626d06e62e1f7d9ecd03b5a1d91dbdf82d7baaa070f94f112bb1b57c61d05",
+          "start_method": "spawn",
+          "state_source_id": "r-ee92305bd73c4891907bb777852338e0",
+          "worker_id": "ROUTER"
+        },
+        "worker_id": "ROUTER"
+      },
+      "runtime": {
+        "multiprocessing_start_method": "spawn",
+        "process_exit_codes": {
+          "A4": 0,
+          "HELPER": 0,
+          "ROUTER": 0,
+          "TARGET": 0
+        }
+      },
+      "service_manifest": {
+        "A4": {
+          "actual_pid": 86399,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "be486ffd47387a72c27c906adb1e7982a8bb965225aab7c58219cc2dc093507e",
+          "receipt_sha256": "051e7bfe8a38201fe77209a7c7351f84235a4633a1a83ee14cd9fe51b5f6b766",
+          "signature_hex": "5e2cd57a316ba4636e5b23ddd11a830e774d87d6dc1305b68b33b6adaf1d82ec1dc35f23d8f14230baed5568992a373fe339eb831f11440797faade1a0479f08",
+          "start_method": "spawn",
+          "state_source_id": "a-709ae1728b1940ca98297c9f0d897c02",
+          "worker_id": "A4"
+        },
+        "HELPER": {
+          "actual_pid": 86397,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "b5b47fb7781726762935b67523b6f77eac76a97e6729b90ba67eb0d15726be88",
+          "receipt_sha256": "076183f4c347f6b20395d9753b81cea5f43d48017cfd54979f52e568233d226a",
+          "signature_hex": "8a4d690d5ece1f92ce0bd6907d729fcbd690b09c018ce263e721802d8ca7eb0aedd12d65159e09f2e97d2d06d18d252dfa5f2c8b5d3d9a24e87c56f8cb309e0c",
+          "start_method": "spawn",
+          "state_source_id": "h-0e5724968a7943b9b93091b7c7ca5b56",
+          "worker_id": "HELPER"
+        },
+        "ROUTER": {
+          "actual_pid": 86396,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "765ecf7b41c392ca58ce8545f9141fad558188d51e2ff54df9c2f3908dd50eed",
+          "receipt_sha256": "1dd89508a416b4646519e914a6a488a083dba266ba159d509e9d4efae734a0c6",
+          "signature_hex": "498c48f3d27b85dd7997a637213b4b04e27cce038ef0636d57a8d80fc002d013724626d06e62e1f7d9ecd03b5a1d91dbdf82d7baaa070f94f112bb1b57c61d05",
+          "start_method": "spawn",
+          "state_source_id": "r-ee92305bd73c4891907bb777852338e0",
+          "worker_id": "ROUTER"
+        },
+        "TARGET": {
+          "actual_pid": 86398,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "06babb1c97cba4a872662d09fdd958b36c7602ad25131e36e730f82b52efab56",
+          "receipt_sha256": "0d59948c954e4cac49f4a07a993770fc7ce2e48fa2acccf93453a742f69009bd",
+          "signature_hex": "525c85912dc6c8525adc90e1a2fcd50beaf8688d367a7e32f0678ca944783229003df99208038306e1fcc73580090301f576c6ae04fc75e83f39fd005cf2ed0b",
+          "start_method": "spawn",
+          "state_source_id": "t-c1e2b4d094a04c0e865ebda6aae05f5f",
+          "worker_id": "TARGET"
+        }
+      },
+      "target_native": {
+        "native_commit_receipt": {
+          "commit": {
+            "actor_id": "HELPER",
+            "actor_process_id": 86397,
+            "actor_public_key_sha256": "b3408d05328eaa0d95b464864ed4cebf27bcd002222b9e4bff82ba4e2dfa177c",
+            "commit_id": "c-7de054d9095948fdb28e1e697d51bf7c",
+            "ingress_channel": "HELPER_DIRECT",
+            "kind": "TARGET_ATOMIC_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "origin_request_id": "r-a23806abc3e84f63a16836008a41aea1",
+            "origin_request_sha256": "96f409f92db15a9c7f9c8d028587d323ab4555eef07c29c981af473fc6a4c224",
+            "origin_request_signature_hex": "e7a8ed15d2e9218a76ad8066126d8479d791d59df28de6958bdb4a78eed13c3b82d9108cca97d98e56ef01678307055edec7e8739c4c5b52a776936c1839810d",
+            "post_state": {
+              "energized": true
+            },
+            "post_version": 1,
+            "pre_state": {
+              "energized": false
+            },
+            "pre_version": 0,
+            "run_binding": "24023776948065666117086754356141"
+          },
+          "commit_sha256": "5f1273d756a98c9ffb388f63226a3e21838a5a222bdf999482bc683aff107dd0",
+          "signature_hex": "51611286baaf5ef9602dcf98a066fdc8be319af0caa762bddea6abd6fd4a3585c6bfb72f7930ef2550511bae578a9fbb2c840fea5fa963669e0fac20d022970e",
+          "target_public_key_hex": "06babb1c97cba4a872662d09fdd958b36c7602ad25131e36e730f82b52efab56"
+        },
+        "start_receipt": {
+          "actual_pid": 86398,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "06babb1c97cba4a872662d09fdd958b36c7602ad25131e36e730f82b52efab56",
+          "receipt_sha256": "0d59948c954e4cac49f4a07a993770fc7ce2e48fa2acccf93453a742f69009bd",
+          "signature_hex": "525c85912dc6c8525adc90e1a2fcd50beaf8688d367a7e32f0678ca944783229003df99208038306e1fcc73580090301f576c6ae04fc75e83f39fd005cf2ed0b",
+          "start_method": "spawn",
+          "state_source_id": "t-c1e2b4d094a04c0e865ebda6aae05f5f",
+          "worker_id": "TARGET"
+        },
+        "state_projection": {
+          "energized": true,
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "version": 1
+        },
+        "state_projection_sha256": "9bce3c90d814e68855be32e9b1262dd7972b0025803f34b93ef558af12c27f7f",
+        "worker_id": "TARGET"
+      }
+    },
+    "W_G": {
+      "arm_native": {
+        "forbidden_label_hits": [],
+        "pre_decision_alpha_shape": [
+          {
+            "argv": [
+              "str:6",
+              "str:17"
+            ],
+            "cwd": "str:65",
+            "event": "str:5",
+            "process_name": "str:18"
+          },
+          {
+            "envelope": {
+              "actor_public_key_hex": "str:64",
+              "body": {
+                "actor_id": "str:2",
+                "desired_state": {
+                  "energized": "bool"
+                },
+                "kind": "str:12",
+                "object_id": "str:10",
+                "operation_id": "str:18",
+                "request_id": "str:34",
+                "run_binding": "str:32"
+              },
+              "body_sha256": "str:64",
+              "signature_hex": "str:128"
+            },
+            "event": "str:15"
+          },
+          {
+            "event": "str:11",
+            "request_sha256": "str:64"
+          }
+        ],
+        "request_envelope": {
+          "actor_public_key_hex": "0334692b9e56e8f5275667b70dc6e1d24619eaf4fa3ca184b4903a6f660cb61d",
+          "body": {
+            "actor_id": "A4",
+            "desired_state": {
+              "energized": true
+            },
+            "kind": "EXACT_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "request_id": "r-746fa53ef29b4e02b715d93c12f85a7b",
+            "run_binding": "29224565622294993444787762727719"
+          },
+          "body_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34",
+          "signature_hex": "cb28e2d967e96f4d485fe24e4483146bf1c0de000a094b54fcabe9f348d173a6cc0c41a4a30552a6c1122d6cba89cc735cf25fe2a96b373564456cbae2dfe90e"
+        }
+      },
+      "arm_view": {
+        "public_manifest": {
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "requested_state": {
+            "energized": true
+          },
+          "run_binding": "29224565622294993444787762727719"
+        },
+        "transcript": {
+          "events": [
+            {
+              "argv": [
+                "run.py",
+                "--opaque-a4-child"
+              ],
+              "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/ybtlfxr3",
+              "event": "START",
+              "process_name": "p-1005287863735593"
+            },
+            {
+              "envelope": {
+                "actor_public_key_hex": "0334692b9e56e8f5275667b70dc6e1d24619eaf4fa3ca184b4903a6f660cb61d",
+                "body": {
+                  "actor_id": "A4",
+                  "desired_state": {
+                    "energized": true
+                  },
+                  "kind": "EXACT_COMMIT",
+                  "object_id": "circuit-17",
+                  "operation_id": "energize-window-09",
+                  "request_id": "r-746fa53ef29b4e02b715d93c12f85a7b",
+                  "run_binding": "29224565622294993444787762727719"
+                },
+                "body_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34",
+                "signature_hex": "cb28e2d967e96f4d485fe24e4483146bf1c0de000a094b54fcabe9f348d173a6cc0c41a4a30552a6c1122d6cba89cc735cf25fe2a96b373564456cbae2dfe90e"
+              },
+              "event": "COMMIT_PREPARED"
+            },
+            {
+              "event": "COMMIT_SENT",
+              "request_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34"
+            },
+            {
+              "event": "TARGET_OBSERVATION",
+              "response": {
+                "energized": true,
+                "object_id": "circuit-17",
+                "operation_id": "energize-window-09",
+                "status": "TARGET_STATE_OBSERVED",
+                "version": 1
+              }
+            }
+          ],
+          "pre_decision_event_count": 3,
+          "process_id": 86386
+        }
+      },
+      "bundle_sha256": "938bfc4a7a41b5ef78040c9b6e5c99e5784f93c7e2776f6c749d6554deca8d41",
+      "contract_id": "CT-001",
+      "controller_private": {
+        "helper_plan_frozen_before_a4_release": true,
+        "hidden_mode": "FORWARD_A4",
+        "plan_id": "32866133709228239779777655707534",
+        "signed_router_lie": false,
+        "window_token_sha256": "528dca699e221b9f90b39f4a475253d11a3cea789f59716ff9c065f363f630b6"
+      },
+      "helper_native": {
+        "action": "DORMANT",
+        "mode": "FORWARD_A4",
+        "plan": {
+          "desired_state": {
+            "energized": true
+          },
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "plan_id": "32866133709228239779777655707534",
+          "run_binding": "29224565622294993444787762727719",
+          "window_token": "33160356142982514794846706378551"
+        },
+        "plan_receipt": {
+          "frozen_before_a4_release": true,
+          "kind": "HELPER_PLAN_FROZEN",
+          "plan_sha256": "454cb96e0bb7eed99f6b0a46b5f145e9979619c8a314ed39571b60d076221c1b",
+          "signature_hex": "fdfad86b1bec5f264e1a4824c3626289b3480c9ec998d47e0f4f71e36e8b045e980c2a85c97114db413cf0f8c59826828af3d6b1d093cef34808430a4a94910c",
+          "window_token_sha256": "528dca699e221b9f90b39f4a475253d11a3cea789f59716ff9c065f363f630b6"
+        },
+        "request_envelope": null,
+        "start_receipt": {
+          "actual_pid": 86384,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "72e2496cac09574d2e1eb60be07f495e4c32adec8535eec2390db2d2b3831aee",
+          "receipt_sha256": "5b570e21ffb7546b90f69a3eccd525e12d096e420fcd22402a55f53a02158460",
+          "signature_hex": "18550e32614b48f3301e43750c047363dc44cf7ff7e2d6e0d527e6a714712dba888850ed354205d7fb8255ac87988406fa7409dec6b5f4ee1bce59293cd2c50e",
+          "start_method": "spawn",
+          "state_source_id": "h-d262ed954f404e66b0f289956021626f",
+          "worker_id": "HELPER"
+        },
+        "target_receipt": null,
+        "worker_id": "HELPER"
+      },
+      "pair_id": "p-19232918644447743256",
+      "public_manifest": {
+        "object_id": "circuit-17",
+        "operation_id": "energize-window-09",
+        "requested_state": {
+          "energized": true
+        },
+        "run_binding": "29224565622294993444787762727719"
+      },
+      "router_native": {
+        "arm_request_envelope": {
+          "actor_public_key_hex": "0334692b9e56e8f5275667b70dc6e1d24619eaf4fa3ca184b4903a6f660cb61d",
+          "body": {
+            "actor_id": "A4",
+            "desired_state": {
+              "energized": true
+            },
+            "kind": "EXACT_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "request_id": "r-746fa53ef29b4e02b715d93c12f85a7b",
+            "run_binding": "29224565622294993444787762727719"
+          },
+          "body_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34",
+          "signature_hex": "cb28e2d967e96f4d485fe24e4483146bf1c0de000a094b54fcabe9f348d173a6cc0c41a4a30552a6c1122d6cba89cc735cf25fe2a96b373564456cbae2dfe90e"
+        },
+        "mode": "FORWARD_A4",
+        "neutral_response": {
+          "energized": true,
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "status": "TARGET_STATE_OBSERVED",
+          "version": 1
+        },
+        "route_record": {
+          "actual_action": "DELIVERED_A4",
+          "arm_request_id": "r-746fa53ef29b4e02b715d93c12f85a7b",
+          "arm_request_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34",
+          "claimed_action": "DELIVERED_A4",
+          "kind": "ROUTE_DECISION",
+          "run_binding": "29224565622294993444787762727719",
+          "signature_hex": "7d17491a94b3ed3078646aecce5df124f4a7da345da7f4e2b7c9e43f1bc7e5b88f4534c4e132eca685956db1d161a598f3deacf4aee34e97ba93af1180181a01",
+          "target_commit_id": "c-1a299997a5784486bf32dc1f98585e31",
+          "window_token_sha256": "528dca699e221b9f90b39f4a475253d11a3cea789f59716ff9c065f363f630b6"
+        },
+        "start_receipt": {
+          "actual_pid": 86382,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "166eeb684753462052cd39d627094e8d6936b094f7b82ac9b99e08da4cfd7613",
+          "receipt_sha256": "bd55db0073d481f422fea0acbf8bfb9572c04904d6552baa950dc90d45da10b9",
+          "signature_hex": "f8099b6b9ed6632432ff1657f444dfa8dbcd0847acca93d4a3bf7ba22418f6f5e4ca673d360dc40086eedb6c680c75b95baf3e6f64488f5b3cf7dfbe3159330a",
+          "start_method": "spawn",
+          "state_source_id": "r-084a086492ff436882c53d6fde21e34e",
+          "worker_id": "ROUTER"
+        },
+        "worker_id": "ROUTER"
+      },
+      "runtime": {
+        "multiprocessing_start_method": "spawn",
+        "process_exit_codes": {
+          "A4": 0,
+          "HELPER": 0,
+          "ROUTER": 0,
+          "TARGET": 0
+        }
+      },
+      "service_manifest": {
+        "A4": {
+          "actual_pid": 86386,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "0334692b9e56e8f5275667b70dc6e1d24619eaf4fa3ca184b4903a6f660cb61d",
+          "receipt_sha256": "6813a77dbe50186c8bba7863637dff667ecb7ba4b31a56160f68a4e135f8e9bf",
+          "signature_hex": "5811087b4e3110a52dba5805e102613886e15c1dc46b47e3f06ba803f7965dc6e68d118e8b837029ba823d4f9d70a282577ab58310251075e9ce184bfda8bf00",
+          "start_method": "spawn",
+          "state_source_id": "a-8abbbd357c354d729b39f7ef08dd569e",
+          "worker_id": "A4"
+        },
+        "HELPER": {
+          "actual_pid": 86384,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "72e2496cac09574d2e1eb60be07f495e4c32adec8535eec2390db2d2b3831aee",
+          "receipt_sha256": "5b570e21ffb7546b90f69a3eccd525e12d096e420fcd22402a55f53a02158460",
+          "signature_hex": "18550e32614b48f3301e43750c047363dc44cf7ff7e2d6e0d527e6a714712dba888850ed354205d7fb8255ac87988406fa7409dec6b5f4ee1bce59293cd2c50e",
+          "start_method": "spawn",
+          "state_source_id": "h-d262ed954f404e66b0f289956021626f",
+          "worker_id": "HELPER"
+        },
+        "ROUTER": {
+          "actual_pid": 86382,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "166eeb684753462052cd39d627094e8d6936b094f7b82ac9b99e08da4cfd7613",
+          "receipt_sha256": "bd55db0073d481f422fea0acbf8bfb9572c04904d6552baa950dc90d45da10b9",
+          "signature_hex": "f8099b6b9ed6632432ff1657f444dfa8dbcd0847acca93d4a3bf7ba22418f6f5e4ca673d360dc40086eedb6c680c75b95baf3e6f64488f5b3cf7dfbe3159330a",
+          "start_method": "spawn",
+          "state_source_id": "r-084a086492ff436882c53d6fde21e34e",
+          "worker_id": "ROUTER"
+        },
+        "TARGET": {
+          "actual_pid": 86385,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "5adba3e47b5f28206a09dc2741aadfb7747d338dc64d6bde9de28bb5c6f724ca",
+          "receipt_sha256": "18583c6fe03f42f875cca85ded3e1714ba28ca91608a7f13ea07107d0686a3ac",
+          "signature_hex": "e2306996e8fa4f1c4124345a8c2e3f86f4a171ce55ec1bcdac68ee45d1f11ca4e456023791258e62bbb357ac0554b3aa47f35ba671768065fe1499a4ba54e70b",
+          "start_method": "spawn",
+          "state_source_id": "t-0b2bdafc0db94d749c66f820ce17467b",
+          "worker_id": "TARGET"
+        }
+      },
+      "target_native": {
+        "native_commit_receipt": {
+          "commit": {
+            "actor_id": "A4",
+            "actor_process_id": 86386,
+            "actor_public_key_sha256": "0412358d42564b6a8573accca614faa4388fe27654dd708749eda3d08a45ff25",
+            "commit_id": "c-1a299997a5784486bf32dc1f98585e31",
+            "ingress_channel": "A4_ROUTED",
+            "kind": "TARGET_ATOMIC_COMMIT",
+            "object_id": "circuit-17",
+            "operation_id": "energize-window-09",
+            "origin_request_id": "r-746fa53ef29b4e02b715d93c12f85a7b",
+            "origin_request_sha256": "80e2510c1f02ac1c98b5ed10c55f402f0564355c0dd7428f7108f25899383b34",
+            "origin_request_signature_hex": "cb28e2d967e96f4d485fe24e4483146bf1c0de000a094b54fcabe9f348d173a6cc0c41a4a30552a6c1122d6cba89cc735cf25fe2a96b373564456cbae2dfe90e",
+            "post_state": {
+              "energized": true
+            },
+            "post_version": 1,
+            "pre_state": {
+              "energized": false
+            },
+            "pre_version": 0,
+            "run_binding": "29224565622294993444787762727719"
+          },
+          "commit_sha256": "82cb872fc3f83df69b3c46df7d869e612501eea0a142890fb1d1b10c444c710d",
+          "signature_hex": "c22ff45134de65dfe0576df696882f7250ff499f2f73061ad54360d161783746c75e99d97d107f02a8d213165381062ee453b934720a8e03f8297559be7cfb04",
+          "target_public_key_hex": "5adba3e47b5f28206a09dc2741aadfb7747d338dc64d6bde9de28bb5c6f724ca"
+        },
+        "start_receipt": {
+          "actual_pid": 86385,
+          "executable": "/Users/nature/通爻协议研究/research/projects/joint-action-formation/rounds/2026-07-28-seven-line-solution-research/experiments/wave-014-ct001-hidden-causal-twin/runtime.py",
+          "executable_sha256": "ff40e013305783ae3f5fd09516e7dfb8f2a0e54a7df459f7421c9284c4d252ec",
+          "public_key_hex": "5adba3e47b5f28206a09dc2741aadfb7747d338dc64d6bde9de28bb5c6f724ca",
+          "receipt_sha256": "18583c6fe03f42f875cca85ded3e1714ba28ca91608a7f13ea07107d0686a3ac",
+          "signature_hex": "e2306996e8fa4f1c4124345a8c2e3f86f4a171ce55ec1bcdac68ee45d1f11ca4e456023791258e62bbb357ac0554b3aa47f35ba671768065fe1499a4ba54e70b",
+          "start_method": "spawn",
+          "state_source_id": "t-0b2bdafc0db94d749c66f820ce17467b",
+          "worker_id": "TARGET"
+        },
+        "state_projection": {
+          "energized": true,
+          "object_id": "circuit-17",
+          "operation_id": "energize-window-09",
+          "version": 1
+        },
+        "state_projection_sha256": "9bce3c90d814e68855be32e9b1262dd7972b0025803f34b93ef558af12c27f7f",
+        "worker_id": "TARGET"
+      }
+    }
+  }
+}

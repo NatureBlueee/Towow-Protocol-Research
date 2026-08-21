@@ -1,0 +1,592 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://towow.local/research/contracts/nac-h1-embedding-manifest.schema.json",
+  "title": "NAC E-H1 Prime Precomputed Embedding Manifest",
+  "description": "Freezes the inputs and accounting needed to evaluate E-H1 Prime without invoking an embedding model. Schema validity is necessary but semantic validation by tools/nac_h1_eval.py is also required.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "experiment_id",
+    "input_evidence_class",
+    "hypothesis_id",
+    "tested_claim_id",
+    "dataset",
+    "models",
+    "required_cross_model_arms",
+    "critical_slices",
+    "recall_policy",
+    "fairness_policy",
+    "fair_budget",
+    "same_model_baselines",
+    "cross_model_evaluations",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "NACH1EmbeddingManifest"
+    },
+    "experiment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_evidence_class": {
+      "const": "EVALUATIVE_EH1"
+    },
+    "hypothesis_id": {
+      "const": "E-H1-PRIME"
+    },
+    "tested_claim_id": {
+      "const": "MC-NAC-ANCHOR"
+    },
+    "dataset": {
+      "$ref": "#/$defs/dataset"
+    },
+    "models": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "$ref": "#/$defs/model"
+      }
+    },
+    "required_cross_model_arms": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "nac_relative",
+          "vec2vec",
+          "procrustes",
+          "shared_reference",
+          "stable_schema_sparse"
+        ]
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "nac_relative"
+          }
+        },
+        {
+          "contains": {
+            "const": "vec2vec"
+          }
+        },
+        {
+          "contains": {
+            "const": "procrustes"
+          }
+        },
+        {
+          "contains": {
+            "const": "shared_reference"
+          }
+        },
+        {
+          "contains": {
+            "const": "stable_schema_sparse"
+          }
+        }
+      ]
+    },
+    "critical_slices": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "minimum_queries"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minimum_queries": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "recall_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "k",
+        "aggregation",
+        "threshold_fraction",
+        "source_denominator",
+        "target_denominator",
+        "symmetric_denominator",
+        "gate_scope"
+      ],
+      "properties": {
+        "k": {
+          "const": 100
+        },
+        "aggregation": {
+          "const": "macro_query_recall"
+        },
+        "threshold_fraction": {
+          "const": 0.8
+        },
+        "source_denominator": {
+          "const": "R_AB/R_AA"
+        },
+        "target_denominator": {
+          "const": "R_AB/R_BB"
+        },
+        "symmetric_denominator": {
+          "const": "R_AB/sqrt(R_AA*R_BB)"
+        },
+        "gate_scope": {
+          "const": "every_ordered_pair_and_critical_slice"
+        }
+      }
+    },
+    "fairness_policy": {
+      "const": "NATIVE_INFORMATION_CONDITIONS_ACCOUNTED_NOT_EQUAL_K"
+    },
+    "fair_budget": {
+      "$ref": "#/$defs/fairBudget"
+    },
+    "same_model_baselines": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "$ref": "#/$defs/sameModelEvaluation"
+      }
+    },
+    "cross_model_evaluations": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "$ref": "#/$defs/crossModelEvaluation"
+      }
+    },
+    "claim_boundary": {
+      "const": "TOOL_VALIDATION_IS_NOT_MECHANISM_VALIDATION"
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "labels",
+        "split_manifest",
+        "label_status",
+        "ground_truth_independent_of_tested_models",
+        "query_direction",
+        "candidate_direction"
+      ],
+      "properties": {
+        "labels": {
+          "$ref": "#/$defs/artifact"
+        },
+        "split_manifest": {
+          "$ref": "#/$defs/artifact"
+        },
+        "label_status": {
+          "const": "GOLD"
+        },
+        "ground_truth_independent_of_tested_models": {
+          "const": true
+        },
+        "query_direction": {
+          "const": "SEEK"
+        },
+        "candidate_direction": {
+          "const": "OFFER"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "provider",
+        "backbone",
+        "version",
+        "embedding_dimension",
+        "language_profile",
+        "receipt_status",
+        "receipt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "backbone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "embedding_dimension": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "language_profile": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "receipt_status": {
+          "const": "VERIFIED"
+        },
+        "receipt": {
+          "$ref": "#/$defs/artifact"
+        }
+      }
+    },
+    "budgetCost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "corpus_items",
+        "encoder_calls",
+        "training_compute_seconds",
+        "training_seed_count",
+        "onboarding_compute_seconds",
+        "query_encoding_compute_seconds",
+        "candidate_encoding_compute_seconds",
+        "retrieval_compute_seconds",
+        "storage_bytes",
+        "transfer_bytes",
+        "adapter_count",
+        "mapping_count",
+        "version_recompute_compute_seconds",
+        "dual_write_seconds",
+        "downtime_seconds"
+      ],
+      "properties": {
+        "corpus_items": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "encoder_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "training_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "training_seed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "onboarding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "query_encoding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidate_encoding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "retrieval_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "storage_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transfer_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "adapter_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mapping_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "version_recompute_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dual_write_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "downtime_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "fairBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ceiling_id",
+        "max_corpus_items",
+        "max_encoder_calls",
+        "max_training_compute_seconds",
+        "max_training_seed_count",
+        "max_onboarding_compute_seconds",
+        "max_query_encoding_compute_seconds",
+        "max_candidate_encoding_compute_seconds",
+        "max_retrieval_compute_seconds",
+        "max_storage_bytes",
+        "max_transfer_bytes",
+        "max_adapter_count",
+        "max_mapping_count",
+        "max_version_recompute_compute_seconds",
+        "max_dual_write_seconds",
+        "max_downtime_seconds"
+      ],
+      "properties": {
+        "ceiling_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "max_corpus_items": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_encoder_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_training_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_training_seed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_onboarding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_query_encoding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_candidate_encoding_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_retrieval_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_storage_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_transfer_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_adapter_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_mapping_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_version_recompute_compute_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_dual_write_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_downtime_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "embeddingInputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query_embeddings",
+        "candidate_embeddings"
+      ],
+      "properties": {
+        "query_embeddings": {
+          "$ref": "#/$defs/artifact"
+        },
+        "candidate_embeddings": {
+          "$ref": "#/$defs/artifact"
+        }
+      }
+    },
+    "informationCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition_type",
+        "anchor_text_count",
+        "paired_correspondence_count",
+        "unpaired_source_embedding_count",
+        "unpaired_target_embedding_count",
+        "shared_encoder_call_count",
+        "lexical_corpus_item_count",
+        "receipt"
+      ],
+      "properties": {
+        "condition_type": {
+          "enum": [
+            "public_anchor_texts",
+            "paired_correspondences",
+            "unpaired_corpora",
+            "shared_reference_encoder",
+            "lexical_or_sparse_corpus"
+          ]
+        },
+        "anchor_text_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "paired_correspondence_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unpaired_source_embedding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unpaired_target_embedding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shared_encoder_call_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lexical_corpus_item_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receipt": {
+          "$ref": "#/$defs/artifact"
+        }
+      }
+    },
+    "sameModelEvaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_id",
+        "budget_ceiling_id",
+        "inputs",
+        "cost"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "budget_ceiling_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "$ref": "#/$defs/embeddingInputs"
+        },
+        "cost": {
+          "$ref": "#/$defs/budgetCost"
+        }
+      }
+    },
+    "crossModelEvaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arm_id",
+        "source_model_id",
+        "target_model_id",
+        "information_condition",
+        "budget_ceiling_id",
+        "inputs",
+        "cost"
+      ],
+      "properties": {
+        "arm_id": {
+          "enum": [
+            "nac_relative",
+            "vec2vec",
+            "procrustes",
+            "shared_reference",
+            "stable_schema_sparse"
+          ]
+        },
+        "source_model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "information_condition": {
+          "$ref": "#/$defs/informationCondition"
+        },
+        "budget_ceiling_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "$ref": "#/$defs/embeddingInputs"
+        },
+        "cost": {
+          "$ref": "#/$defs/budgetCost"
+        }
+      }
+    }
+  }
+}

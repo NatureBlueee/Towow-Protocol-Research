@@ -1,0 +1,434 @@
+{
+  "schema": "towow.wave010.x1.m01.g2-private-fragment.v0",
+  "fragment_id": "wave010-x1-m01-g2-fragment-v0",
+  "status": "CANDIDATE_NOT_RUN",
+  "truth_domain": "G2_RELATION_SEMANTICS",
+  "owner": {
+    "owner_id": "wave010-x1-m01-g2-truth-owner",
+    "owner_key_id": "wave010-x1-m01-g2-truth-owner-key-v0",
+    "authority_scope": [
+      "relation-role-semantics",
+      "relation-action-semantics",
+      "relation-purpose-semantics",
+      "relation-evidence-semantics",
+      "relation-exit-semantics",
+      "relation-horizon",
+      "relation-version",
+      "principal-stance-requirements",
+      "relation-provenance",
+      "relation-materiality"
+    ],
+    "does_not_own": [
+      "G1 discovery truth",
+      "G3 reachability truth",
+      "G5 authority truth",
+      "X2 execution or postcondition truth"
+    ]
+  },
+  "ledger": {
+    "genesis": {
+      "ledger_id": "wave010-x1-m01-g2-ledger-v0",
+      "entry_index": 0,
+      "previous_root": null,
+      "entry_type": "G2_TRUTH_FRAGMENT_CANDIDATE_GENESIS"
+    },
+    "root_candidate": {
+      "root_candidate_id": "wave010-x1-m01-g2-ledger-root-candidate-v0",
+      "covers": [
+        "owner",
+        "source_boundary",
+        "common_coordinate_binding",
+        "assessment_boundary",
+        "branch_truth_projections",
+        "comparison_contract",
+        "not_run_boundary"
+      ],
+      "seal_status": "UNSEALED_NOT_RUN"
+    }
+  },
+  "source_boundary": {
+    "read_inputs": [
+      "public/common-coordinate.json",
+      "public/episode-765f0698.json",
+      "public/episode-d952741e.json",
+      "certificates/t-g1-to-g2.json"
+    ],
+    "exact_input_bindings": [
+      {
+        "ref": "public/common-coordinate.json",
+        "sha256_raw": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+        "required": true
+      },
+      {
+        "ref": "public/episode-765f0698.json",
+        "sha256_raw": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c",
+        "required": true
+      },
+      {
+        "ref": "public/episode-d952741e.json",
+        "sha256_raw": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de",
+        "required": true
+      },
+      {
+        "ref": "certificates/t-g1-to-g2.json",
+        "sha256_raw": "9d954bd4e179f9cbe3c046a60aa014fbaf2f24e507411b31fc1b2f692e944b1c",
+        "required": true,
+        "ingress_requirement": "EXACT_REF_AND_RAW_HASH"
+      }
+    ],
+    "excluded_inputs": [
+      "all other private fragments",
+      "motif labels",
+      "branch labels",
+      "expected outcomes from other truth domains"
+    ]
+  },
+  "common_coordinate_binding": {
+    "source_ref": "public/common-coordinate.json",
+    "source_sha256_raw": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87",
+    "coordinate_version": "x1-common-v0",
+    "task_family": "joint-bid-estuary-sensor-calibration",
+    "intent_id": "intent-estuary-calibration-0001",
+    "V0_preserved": true,
+    "BE0_endpoint_boundary_preserved": true,
+    "Q_episode_not_pre_satisfied": true,
+    "transition_horizon": "ONE_SHOT_EPISODE",
+    "max_logical_steps": 16
+  },
+  "assessment_boundary": {
+    "starts_after": "LAWFUL_G1_CANDIDATE_SEMANTIC_HANDOFF",
+    "ingress_transition_binding": {
+      "certificate_ref": "certificates/t-g1-to-g2.json",
+      "certificate_sha256_raw": "9d954bd4e179f9cbe3c046a60aa014fbaf2f24e507411b31fc1b2f692e944b1c",
+      "semantic_payload_ref": "certificates/t-g1-to-g2.json#/success_output_contract/semantic_handoff_payload",
+      "validation": "EXACT_REF_AND_RAW_HASH_REQUIRED",
+      "on_missing_or_mismatch": "NOT_REACHED"
+    },
+    "handoff_semantic_key": "estuary-calibration-two-role-joint-bid-candidate-v0",
+    "handoff_status": "CANDIDATE_NOT_COMMITMENT",
+    "does_assess": [
+      "the exact relation semantics proposed after the lawful G1 handoff",
+      "the Principal stances and provenance required to form that exact RelationVersion",
+      "whether a change requires the same version or a new material version"
+    ],
+    "does_not_assess": [
+      "whether G1 discovered the candidate correctly",
+      "whether any path is reachable",
+      "whether Mandate Commitment or Reservation is current",
+      "whether execution or an external postcondition occurs"
+    ],
+    "directory_provenance_rule": {
+      "classification": "DISCOVERY_ONLY_NON_NORMATIVE",
+      "may_record": [
+        "where a candidate reference was encountered",
+        "when the reference was returned"
+      ],
+      "must_not_establish_or_change": [
+        "role qualification",
+        "Principal identity or stance",
+        "RelationVersion",
+        "relation formation",
+        "authority",
+        "commitment",
+        "reservation"
+      ],
+      "g2_truth_effect": "NONE"
+    }
+  },
+  "branch_truth_projections": [
+    {
+      "episode_key": "765f0698-edb8-459d-bba6-ceb0ae154e51",
+      "truth_projection": {
+        "semantic_handoff": {
+          "handoff_semantic_key": "estuary-calibration-two-role-joint-bid-candidate-v0",
+          "status_at_g2_entry": "CANDIDATE_NOT_COMMITMENT",
+          "directory_provenance_effect_on_g2_truth": "NONE"
+        },
+        "relation_version": {
+          "relation_id": "relation-estuary-sensor-calibration-joint-bid",
+          "version": 1,
+          "exact_version": "relation-estuary-sensor-calibration-joint-bid@v1",
+          "status_at_handoff": "PROPOSAL_NOT_FORMED",
+          "horizon": "ONE_SHOT_EPISODE",
+          "purpose_limit": "this emergency estuary sensor calibration joint bid only"
+        },
+        "roles": [
+          {
+            "role": "calibration_operator",
+            "semantic_requirements": [
+              "field-calibration-capability",
+              "response-within-18-hours",
+              "signed-calibration-evidence"
+            ],
+            "separation_constraint": "must-not-control-independent-validation-witness"
+          },
+          {
+            "role": "independent_validation_witness",
+            "semantic_requirements": [
+              "organizationally-independent-from-calibration-operator",
+              "signed-validation-evidence"
+            ],
+            "separation_constraint": "must-remain-organizationally-independent"
+          }
+        ],
+        "actions": [
+          {
+            "action": "prepare-calibration-contribution-for-joint-bid",
+            "actor_role": "calibration_operator",
+            "does_not_mean": [
+              "submission",
+              "execution",
+              "Effect"
+            ]
+          },
+          {
+            "action": "prepare-independent-validation-contribution-for-joint-bid",
+            "actor_role": "independent_validation_witness",
+            "does_not_mean": [
+              "submission",
+              "execution",
+              "Acceptance"
+            ]
+          }
+        ],
+        "purpose": {
+          "value": "form the authority-valid front half of one emergency calibration and independent-validation joint bid",
+          "allowed_data_use": "this bid to named recipients only",
+          "forbidden_expansion": [
+            "reuse for another bid",
+            "training use",
+            "unnamed-recipient disclosure"
+          ]
+        },
+        "evidence_requirements": [
+          "current signed calibration-capability evidence",
+          "current signed independent-validation evidence",
+          "organizational-independence evidence",
+          "owner-signed exact-version Principal stances",
+          "source-preserving proposal counter explain-back and stance provenance"
+        ],
+        "exit_semantics": [
+          "explicit Principal rejection",
+          "safe exit before formation",
+          "one-shot episode expiry",
+          "material change requiring a new RelationVersion",
+          "unresolved opposition or challenge"
+        ],
+        "necessary_principal_stances": [
+          {
+            "principal_selector": "estuary-monitoring-program",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          },
+          {
+            "principal_selector": "controlling-principal-of-selected-calibration-operator",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          },
+          {
+            "principal_selector": "controlling-principal-of-selected-independent-validation-witness",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          }
+        ],
+        "provenance_rules": {
+          "authoritative_sources": [
+            "principal-signed proposal or counter",
+            "principal-signed explain-back",
+            "principal-signed exact-version stance"
+          ],
+          "non_authoritative_sources": [
+            "directory listing",
+            "directory ranking",
+            "controller summary",
+            "workflow green status"
+          ],
+          "controller_substitution": "INVALID"
+        },
+        "formation_rule": {
+          "formed_only_if": [
+            "all necessary Principal stances bind the exact RelationVersion",
+            "all role action purpose evidence exit and horizon semantics remain unchanged",
+            "opposition and challenge state are retained",
+            "stance provenance is owner-signed and current"
+          ],
+          "truth_at_semantic_handoff": "PROPOSAL_NOT_FORMED"
+        },
+        "materiality": {
+          "requires_new_relation_version": [
+            "change to either role or separation constraint",
+            "change to selected role-filler controlling Principal",
+            "change to action or purpose",
+            "change to evidence requirement",
+            "change to exit challenge or recourse semantics",
+            "change to horizon",
+            "change to recipient purpose retention or onward-use restriction"
+          ],
+          "does_not_change_g2_truth": [
+            "directory source",
+            "directory result ordering",
+            "candidate reference identifier permutation",
+            "presentation-only wording that preserves all frozen semantics"
+          ]
+        }
+      }
+    },
+    {
+      "episode_key": "d952741e-11f8-44db-a98d-7a34c12e6801",
+      "truth_projection": {
+        "semantic_handoff": {
+          "handoff_semantic_key": "estuary-calibration-two-role-joint-bid-candidate-v0",
+          "status_at_g2_entry": "CANDIDATE_NOT_COMMITMENT",
+          "directory_provenance_effect_on_g2_truth": "NONE"
+        },
+        "relation_version": {
+          "relation_id": "relation-estuary-sensor-calibration-joint-bid",
+          "version": 1,
+          "exact_version": "relation-estuary-sensor-calibration-joint-bid@v1",
+          "status_at_handoff": "PROPOSAL_NOT_FORMED",
+          "horizon": "ONE_SHOT_EPISODE",
+          "purpose_limit": "this emergency estuary sensor calibration joint bid only"
+        },
+        "roles": [
+          {
+            "role": "calibration_operator",
+            "semantic_requirements": [
+              "field-calibration-capability",
+              "response-within-18-hours",
+              "signed-calibration-evidence"
+            ],
+            "separation_constraint": "must-not-control-independent-validation-witness"
+          },
+          {
+            "role": "independent_validation_witness",
+            "semantic_requirements": [
+              "organizationally-independent-from-calibration-operator",
+              "signed-validation-evidence"
+            ],
+            "separation_constraint": "must-remain-organizationally-independent"
+          }
+        ],
+        "actions": [
+          {
+            "action": "prepare-calibration-contribution-for-joint-bid",
+            "actor_role": "calibration_operator",
+            "does_not_mean": [
+              "submission",
+              "execution",
+              "Effect"
+            ]
+          },
+          {
+            "action": "prepare-independent-validation-contribution-for-joint-bid",
+            "actor_role": "independent_validation_witness",
+            "does_not_mean": [
+              "submission",
+              "execution",
+              "Acceptance"
+            ]
+          }
+        ],
+        "purpose": {
+          "value": "form the authority-valid front half of one emergency calibration and independent-validation joint bid",
+          "allowed_data_use": "this bid to named recipients only",
+          "forbidden_expansion": [
+            "reuse for another bid",
+            "training use",
+            "unnamed-recipient disclosure"
+          ]
+        },
+        "evidence_requirements": [
+          "current signed calibration-capability evidence",
+          "current signed independent-validation evidence",
+          "organizational-independence evidence",
+          "owner-signed exact-version Principal stances",
+          "source-preserving proposal counter explain-back and stance provenance"
+        ],
+        "exit_semantics": [
+          "explicit Principal rejection",
+          "safe exit before formation",
+          "one-shot episode expiry",
+          "material change requiring a new RelationVersion",
+          "unresolved opposition or challenge"
+        ],
+        "necessary_principal_stances": [
+          {
+            "principal_selector": "estuary-monitoring-program",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          },
+          {
+            "principal_selector": "controlling-principal-of-selected-calibration-operator",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          },
+          {
+            "principal_selector": "controlling-principal-of-selected-independent-validation-witness",
+            "required_stance": "ACCEPT_EXACT_RELATION_VERSION",
+            "provenance_requirement": "principal-owner-signed"
+          }
+        ],
+        "provenance_rules": {
+          "authoritative_sources": [
+            "principal-signed proposal or counter",
+            "principal-signed explain-back",
+            "principal-signed exact-version stance"
+          ],
+          "non_authoritative_sources": [
+            "directory listing",
+            "directory ranking",
+            "controller summary",
+            "workflow green status"
+          ],
+          "controller_substitution": "INVALID"
+        },
+        "formation_rule": {
+          "formed_only_if": [
+            "all necessary Principal stances bind the exact RelationVersion",
+            "all role action purpose evidence exit and horizon semantics remain unchanged",
+            "opposition and challenge state are retained",
+            "stance provenance is owner-signed and current"
+          ],
+          "truth_at_semantic_handoff": "PROPOSAL_NOT_FORMED"
+        },
+        "materiality": {
+          "requires_new_relation_version": [
+            "change to either role or separation constraint",
+            "change to selected role-filler controlling Principal",
+            "change to action or purpose",
+            "change to evidence requirement",
+            "change to exit challenge or recourse semantics",
+            "change to horizon",
+            "change to recipient purpose retention or onward-use restriction"
+          ],
+          "does_not_change_g2_truth": [
+            "directory source",
+            "directory result ordering",
+            "candidate reference identifier permutation",
+            "presentation-only wording that preserves all frozen semantics"
+          ]
+        }
+      }
+    }
+  ],
+  "comparison_contract": {
+    "canonicalization": "UTF-8 JSON with lexicographic object keys, order-significant arrays, no insignificant whitespace",
+    "comparison_path": "branch_truth_projections[*].truth_projection",
+    "episode_key_excluded": true,
+    "required_relation": "BYTE_IDENTICAL_AFTER_CANONICALIZATION",
+    "expected_equal": true
+  },
+  "not_run_boundary": {
+    "experiment_status": "NOT_RUN",
+    "fragment_status": "PRIVATE_TRUTH_CANDIDATE_UNSEALED",
+    "does_not_establish": [
+      "an X1 method output",
+      "a G2 PASS",
+      "a formed real relation",
+      "Principal consent",
+      "G3 reachability",
+      "G5 execution authority",
+      "Effect Adoption Acceptance or Settlement"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "OBLIGATION_SCHEME_SUBGRAPH_LEDGER",
+  "worlds": {
+    "P1-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P1-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P2-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P2-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P3-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P3-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P4-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P4-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P5-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P5-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P6-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P6-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P7-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P7-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P8-A": {"scheme": "two-leg-payout-v1", "obligations": [{"id": "ob-provider", "debtor": "payer", "creditor": "provider", "amount": 100}, {"id": "ob-beneficiary", "debtor": "provider", "creditor": "beneficiary", "amount": 90}], "transitions": [{"obligation": "ob-provider", "phase": "PROVIDER_SETTLED", "final": true}], "reversal_window": "OPEN"},
+    "P8-B": {"scheme": "two-leg-payout-v1", "obligations": [{"id": "ob-provider", "debtor": "payer", "creditor": "provider", "amount": 100}, {"id": "ob-beneficiary", "debtor": "provider", "creditor": "beneficiary", "amount": 90}], "transitions": [{"obligation": "ob-provider", "phase": "PROVIDER_SETTLED", "final": true}, {"obligation": "ob-beneficiary", "phase": "BENEFICIARY_PAID_OUT", "final": true}], "reversal_window": "OPEN"},
+    "P9-A": {"scheme": "two-leg-payout-v1", "obligations": [{"id": "ob-provider", "debtor": "payer", "creditor": "provider", "amount": 100}, {"id": "ob-beneficiary", "debtor": "provider", "creditor": "beneficiary", "amount": 90}], "transitions": [{"obligation": "ob-provider", "phase": "PROVIDER_SETTLED", "final": true}, {"obligation": "ob-beneficiary", "phase": "BENEFICIARY_PAID_OUT", "final": true}], "reversal_window": "CLOSED", "disputes": []},
+    "P9-B": {"scheme": "two-leg-payout-v1", "obligations": [{"id": "ob-provider", "debtor": "payer", "creditor": "provider", "amount": 100}, {"id": "ob-beneficiary", "debtor": "provider", "creditor": "beneficiary", "amount": 90}], "transitions": [{"obligation": "ob-provider", "phase": "PROVIDER_SETTLED", "final": true}, {"obligation": "ob-beneficiary", "phase": "BENEFICIARY_PAID_OUT", "final": false}, {"obligation": "ob-beneficiary", "phase": "REVERSAL_OPEN", "final": false}], "reversal_window": "OPEN", "disputes": ["chargeback-1"]},
+    "P10-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P10-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P11-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P11-B": {"scheme": "none", "obligations": [], "transitions": []},
+    "P12-A": {"scheme": "none", "obligations": [], "transitions": []},
+    "P12-B": {"scheme": "none", "obligations": [], "transitions": []}
+  }
+}

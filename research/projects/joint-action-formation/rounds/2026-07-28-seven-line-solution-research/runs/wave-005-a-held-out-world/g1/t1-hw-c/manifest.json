@@ -1,0 +1,73 @@
+{
+  "schema_version": "2.0",
+  "run_id": "T1-HW-C-TRUTH-EVALUATOR-20260729",
+  "status": "TRUTH_EVALUATOR_FROZEN_NO_CANDIDATE",
+  "world_id": "T1-HW-20260729-C",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "8937a934c8d242522b283ca7c10198333601621ebda1cb47fd59391a89aa99ce"
+    },
+    {
+      "path": "method-visible/README.md",
+      "sha256": "9bb872ba7e0f1ed0a612ee390c4b2a57c04cb91ad0fc5e94d6c9a11514e86b3f"
+    },
+    {
+      "path": "method-visible/submission_schema.json",
+      "sha256": "8a00aea7fbdbcc4d50994b57e6348617827aa6ead08ef478c9b4488c18bf2b4a"
+    },
+    {
+      "path": "controller_input.json",
+      "sha256": "c53705949223f2b1cf5daf5cfaa33aec3292bb3df104bc73d3eb56bdd5716b7a"
+    },
+    {
+      "path": "packet_builder.py",
+      "sha256": "a6d2a4d62090df4bb454152dcc77d0db114d4d640947306d638c352f6f0cff7a"
+    },
+    {
+      "path": "private/oracle_truth.json",
+      "sha256": "a1551802213ca91787f0981ed9255699fc4d7cdf063c24f23a16f319a50d4108"
+    },
+    {
+      "path": "private/scorer.py",
+      "sha256": "3910597b7a436e90916342bf33b524549b96eae9786e1177d424713ed5e6e47c"
+    },
+    {
+      "path": "private/fixtures/scorer_conformance_receipt.json",
+      "sha256": "fdf50df7071e84d25bd49777d0065291491e3fb3a87645a66a8240cc082d45f4"
+    },
+    {
+      "path": "private/mutations/negative_mutations.json",
+      "sha256": "abff179c28821c08be3350951b41dc950b3e2b921a04bbbd2f6e833218a66f3f"
+    },
+    {
+      "path": "tests/test_hwc.py",
+      "sha256": "ac7a31165ca7670e22939f822bcb6a990ef488e52207b6fdcb1f29f3643fce8e"
+    },
+    {
+      "path": "delivery-packets/controller-index.json",
+      "sha256": "cd9e102c384fd5ed9c32b99fb923091404efc45d09b4214ead22f8c3a3b25976"
+    }
+  ],
+  "packet_closure": {
+    "index_path": "delivery-packets/controller-index.json",
+    "packet_count": 12,
+    "physical_scope": "one coordinator plus eleven isolated local packets"
+  },
+  "claims": {
+    "candidate_generated": false,
+    "calibration_fixture_is_candidate_result": false,
+    "method_visible_schema_contains_hidden_solution": false,
+    "controller_receipt_alone_proves_execution": false,
+    "three_domain_execution_evidence_required": true
+  },
+  "forbidden_pre_submission_paths": [
+    "controller_input.json",
+    "delivery-packets/controller-index.json",
+    "private/oracle_truth.json",
+    "private/scorer.py",
+    "private/fixtures/",
+    "private/mutations/",
+    "tests/"
+  ]
+}

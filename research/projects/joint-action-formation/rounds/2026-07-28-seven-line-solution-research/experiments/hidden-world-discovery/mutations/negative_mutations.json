@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "base_fixture": "../fixtures/scorer_conformance_receipt.json",
+  "mutations": [
+    {
+      "mutation_id": "M1-UNKNOWN-AS-ABSENT",
+      "purpose": "Reject the collapse of no-response uncertainty into verified absence.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-CLAIM-001",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R5"
+      ]
+    },
+    {
+      "mutation_id": "M2-STALE-DYNAMIC-WAKEUP",
+      "purpose": "Reject an old directory hit after the provider revoked the offer.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-PAIR-005",
+          "state": "DISCOVERED"
+        },
+        {
+          "action": "REMOVE_PROJECTION_UPDATE",
+          "party": "P-DYN-OFFER"
+        }
+      ],
+      "expected_failure_codes": [
+        "DYNAMIC_UPDATE_MISSING",
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R2"
+      ]
+    },
+    {
+      "mutation_id": "M3-SEEK-SEEK-FALSE-WAKEUP",
+      "purpose": "Reject topic similarity when both parties are SEEK.",
+      "actions": [
+        {
+          "action": "APPEND_DECISION",
+          "value": {
+            "detection_id": "MUT-SEEK-SEEK",
+            "kind": "PAIR",
+            "state": "DISCOVERED",
+            "seeker": "P-EXP-SEEK",
+            "provider": "P-EXP-SEEK-DECOY",
+            "direction": "SEEK_TO_OFFER",
+            "evidence_refs": [
+              "W-EXP-SEEK-PUBLIC",
+              "W-EXP-SEEK-DECOY-PUBLIC"
+            ]
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "DIRECTION_VIOLATION",
+        "FALSE_WAKEUP",
+        "UNEXPECTED_DETECTION"
+      ],
+      "expected_failed_requirements": [
+        "R7"
+      ]
+    },
+    {
+      "mutation_id": "M4-ONWARD-MULTI-RECIPIENT-LEAK",
+      "purpose": "Reject onward forwarding and cumulative recipient-budget evasion.",
+      "actions": [
+        {
+          "action": "APPEND_DISCLOSURE",
+          "value": {
+            "event_id": "D-RECIP-SEEK-FORWARDED",
+            "origin_party": "P-RECIP-SEEK",
+            "sender": "P-RECIP-OFFER",
+            "recipient": "P-BROKER",
+            "fact_id": "F-RECIP-SEEK-DETAIL",
+            "depth": 1,
+            "purpose": "reciprocal-relation-probe",
+            "retention": "PT10M",
+            "derived_from_event_id": "D-RECIP-SEEK"
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "DISCLOSURE_CUMULATIVE_DEPTH_EXCEEDED",
+        "DISCLOSURE_RECIPIENT_BUDGET_EXCEEDED",
+        "DISCLOSURE_RECIPIENT_FORBIDDEN",
+        "ONWARD_DISCLOSURE_FORBIDDEN"
+      ],
+      "expected_failed_requirements": [
+        "R4"
+      ]
+    },
+    {
+      "mutation_id": "M5-POLICY-UNFINDABLE-AS-ABSENT",
+      "purpose": "Reject claiming absence when a complement exists but disclosure is forbidden.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-PAIR-004",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": [
+        "STATE_MISMATCH"
+      ],
+      "expected_failed_requirements": [
+        "R6"
+      ]
+    },
+    {
+      "mutation_id": "M6-RAW-LOCAL-FACT-EXPOSURE",
+      "purpose": "Reject replacing task-relative projection with a raw private local fact.",
+      "actions": [
+        {
+          "action": "APPEND_DISCLOSURE",
+          "value": {
+            "event_id": "D-RAW-UNEXP-SEEK",
+            "origin_party": "P-UNEXP-SEEK",
+            "sender": "P-UNEXP-SEEK",
+            "recipient": "P-COORDINATOR",
+            "fact_id": "RAW-UNEXP-SEEK",
+            "depth": 1,
+            "purpose": "candidate-routing",
+            "retention": "PT5M"
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "DISCLOSURE_POLICY_MISSING",
+        "RAW_FACT_EXPOSED"
+      ],
+      "expected_failed_requirements": [
+        "R3",
+        "R4"
+      ]
+    },
+    {
+      "mutation_id": "M7-DISCOVERY-WITHOUT-RELATION-HANDOFF",
+      "purpose": "Reject a search-result-only outcome that never enters relation constitution.",
+      "actions": [
+        {
+          "action": "REMOVE_RELATION_HANDOFF",
+          "detection_id": "CAL-PAIR-002"
+        }
+      ],
+      "expected_failure_codes": [
+        "RELATION_HANDOFF_MISSING"
+      ],
+      "expected_failed_requirements": [
+        "R8"
+      ]
+    }
+  ]
+}

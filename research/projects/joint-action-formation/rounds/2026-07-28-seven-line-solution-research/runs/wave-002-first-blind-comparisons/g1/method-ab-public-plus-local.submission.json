@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.1",
+  "world_id": "T1-HW-20260728-A",
+  "evaluation_step": 1,
+  "method_id": "candidate-method-ab-public-plus-local",
+  "decisions": [
+    {
+      "detection_id": "det-exp-seek-offer-translation",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-EXP-SEEK",
+      "provider": "P-EXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ]
+    },
+    {
+      "detection_id": "det-exp-decoy-offer-translation",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-EXP-SEEK-DECOY",
+      "provider": "P-EXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-DECOY-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ]
+    },
+    {
+      "detection_id": "det-dyn-gpu-burst-invalidated",
+      "kind": "PAIR",
+      "state": "INVALIDATED",
+      "seeker": "P-DYN-SEEK",
+      "provider": "P-DYN-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-DYN-SEEK-PUBLIC",
+        "W-DYN-OFFER-V1",
+        "W-DYN-REVOKE"
+      ]
+    },
+    {
+      "detection_id": "det-policy-sensitive-export",
+      "kind": "PAIR",
+      "state": "UNFINDABLE_UNDER_POLICY",
+      "seeker": "P-POLICY-SEEK",
+      "provider": "P-POLICY-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-POLICY-SEEK-PUBLIC",
+        "W-POLICY-HOLDER-PUBLIC",
+        "W-POLICY-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "det-unexpected-data-cleaning",
+      "kind": "PAIR",
+      "state": "DISCOVERED",
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ]
+    },
+    {
+      "detection_id": "det-reciprocal-pair-unresolved",
+      "kind": "PAIR",
+      "state": "UNKNOWN",
+      "seeker": "P-RECIP-SEEK",
+      "provider": "P-RECIP-OFFER",
+      "direction": "SEEK_TO_OFFER",
+      "evidence_refs": [
+        "F-RECIP-SEEK-DETAIL",
+        "POL-RECIP-SEEK",
+        "F-RECIP-OFFER-DETAIL",
+        "POL-RECIP-OFFER"
+      ]
+    },
+    {
+      "detection_id": "det-claim-offline-audio-transcription",
+      "kind": "CLAIM",
+      "state": "UNKNOWN",
+      "claim_key": "capability:offline-node:audio-transcription",
+      "subject": "P-OFFLINE",
+      "evidence_refs": [
+        "W-OFFLINE-NO-RESPONSE"
+      ]
+    },
+    {
+      "detection_id": "det-claim-refusal-document-review",
+      "kind": "CLAIM",
+      "state": "REFUSE",
+      "claim_key": "capability:refusal-node:document-review",
+      "subject": "P-REFUSE",
+      "evidence_refs": [
+        "W-EXPLICIT-REFUSAL"
+      ]
+    },
+    {
+      "detection_id": "det-claim-closed-rare-format",
+      "kind": "CLAIM",
+      "state": "ABSENT",
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "subject": "POPULATION-CLOSED-RARE-FORMAT",
+      "evidence_refs": [
+        "W-CLOSED-POPULATION",
+        "W-CLOSED-P1-NEG",
+        "W-CLOSED-P2-NEG",
+        "W-CLOSED-P3-NEG"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "probe-recip-seek-to-offer",
+      "requester": "P-RECIP-SEEK",
+      "responder": "P-RECIP-OFFER",
+      "requested_fact": "currently valid complementary joint-action opportunity from P-RECIP-OFFER",
+      "offered_fact": "F-RECIP-SEEK-DETAIL",
+      "status": "UNKNOWN",
+      "evidence_refs": [
+        "F-RECIP-SEEK-DETAIL",
+        "POL-RECIP-SEEK",
+        "F-RECIP-OFFER-DETAIL",
+        "POL-RECIP-OFFER"
+      ]
+    },
+    {
+      "probe_id": "probe-closed-2-negative",
+      "requester": "P-COORDINATOR",
+      "responder": "P-CLOSED-2",
+      "requested_fact": "currently valid complementary joint-action opportunity",
+      "offered_fact": "matching offer at frozen snapshot",
+      "status": "ABSENT",
+      "evidence_refs": [
+        "W-CLOSED-P2-NEG"
+      ]
+    },
+    {
+      "probe_id": "probe-closed-3-negative",
+      "requester": "P-COORDINATOR",
+      "responder": "P-CLOSED-3",
+      "requested_fact": "currently valid complementary joint-action opportunity in SEEK_TO_OFFER direction",
+      "offered_fact": "CLOSED-NEG-3",
+      "status": "ABSENT",
+      "evidence_refs": [
+        "W-CLOSED-P3-NEG"
+      ]
+    }
+  ],
+  "disclosures": [
+    {
+      "event_id": "disclosure-closed-1-projection",
+      "origin_party": "P-CLOSED-1",
+      "sender": "P-CLOSED-1",
+      "recipient": "P-CLOSED-1",
+      "fact_id": "CLOSED-NEG-1",
+      "depth": 0,
+      "purpose": "Find currently valid complementary joint-action opportunities without asserting commitments.",
+      "retention": "frozen snapshot only"
+    },
+    {
+      "event_id": "disclosure-closed-3-projection",
+      "origin_party": "P-CLOSED-3",
+      "sender": "P-CLOSED-3",
+      "recipient": "P-CLOSED-3",
+      "fact_id": "CLOSED-NEG-3",
+      "depth": 0,
+      "purpose": "Find currently valid complementary joint-action opportunities without asserting commitments.",
+      "retention": "FROZEN_SNAPSHOT"
+    },
+    {
+      "event_id": "disclosure-unexpected-seek-projection",
+      "origin_party": "P-UNEXP-SEEK",
+      "sender": "P-UNEXP-SEEK",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-SEEK-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    },
+    {
+      "event_id": "disclosure-unexpected-offer-projection",
+      "origin_party": "P-UNEXP-OFFER",
+      "sender": "P-UNEXP-OFFER",
+      "recipient": "P-COORDINATOR",
+      "fact_id": "F-UNEXP-OFFER-PROJECTION",
+      "depth": 1,
+      "purpose": "candidate-routing",
+      "retention": "PT5M"
+    }
+  ],
+  "projection_updates": [
+    {
+      "party": "P-DYN-OFFER",
+      "from_version": 1,
+      "to_version": 2,
+      "step": 1,
+      "evidence_ref": "W-DYN-REVOKE"
+    }
+  ],
+  "relation_handoffs": [
+    {
+      "detection_id": "det-exp-seek-offer-translation",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-EXP-SEEK",
+      "provider": "P-EXP-OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ],
+      "open_questions": [
+        "Current reciprocal compatibility and willingness are not witnessed.",
+        "No commitment authority is available."
+      ]
+    },
+    {
+      "detection_id": "det-exp-decoy-offer-translation",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-EXP-SEEK-DECOY",
+      "provider": "P-EXP-OFFER",
+      "evidence_refs": [
+        "W-EXP-SEEK-DECOY-PUBLIC",
+        "W-EXP-OFFER-PUBLIC"
+      ],
+      "open_questions": [
+        "Current reciprocal compatibility and willingness are not witnessed.",
+        "No commitment authority is available."
+      ]
+    },
+    {
+      "detection_id": "det-unexpected-data-cleaning",
+      "status": "CANDIDATE_NOT_COMMITMENT",
+      "commitment": false,
+      "seeker": "P-UNEXP-SEEK",
+      "provider": "P-UNEXP-OFFER",
+      "evidence_refs": [
+        "W-UNEXP-SEEK-PROJECTION",
+        "W-UNEXP-OFFER-PROJECTION"
+      ],
+      "open_questions": [
+        "The projections support only a candidate relation, not global availability or current reciprocal validity.",
+        "Provider verification, task compatibility, willingness, and commitment remain unsupported."
+      ]
+    }
+  ]
+}

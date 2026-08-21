@@ -1,0 +1,106 @@
+{
+  "coverage": {
+    "ratio": 0.5,
+    "requirements_passed": 4,
+    "requirements_total": 8
+  },
+  "critical_failures": [
+    {
+      "code": "RECIPROCAL_PROBE_MISSING",
+      "detail": "No two-sided probe maps to the frozen reciprocal contract.",
+      "detection_id": null,
+      "requirements": [
+        "R4",
+        "R7"
+      ],
+      "target_signature_sha256": "33cf188cf956b0e38d44c6d350434d1d919ada83caf2dcd7cce90402eec516cf"
+    },
+    {
+      "code": "REQUIRED_DISCLOSURE_PATH_MISSING",
+      "detail": "A required authorized projection route is incomplete.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "target_signature_sha256": "d58a468de39bd6cc6b9154f6bc6e6b72451ff0de5344c21980ca70f3d241e8bf"
+    },
+    {
+      "code": "REQUIRED_DISCLOSURE_PATH_MISSING",
+      "detail": "A required authorized projection route is incomplete.",
+      "detection_id": null,
+      "requirements": [
+        "R1",
+        "R3",
+        "R4"
+      ],
+      "target_signature_sha256": "d58a468de39bd6cc6b9154f6bc6e6b72451ff0de5344c21980ca70f3d241e8bf"
+    }
+  ],
+  "evidence_boundary": "One synthetic held-out world only. A calibration fixture is not a candidate result and cannot establish real-world frequency or value.",
+  "metrics": {
+    "correctly_discovered_count": 3,
+    "disclosure_event_count": 5,
+    "discoverable_opportunity_count": 3,
+    "false_wakeup_count": 0,
+    "frozen_item_count": 8,
+    "mapped_item_count": 8,
+    "opportunity_recall": 1.0
+  },
+  "requirement_results": {
+    "R1": {
+      "description": "Recover an unexpressed opportunity without requiring a prebuilt public card.",
+      "failure_codes": [
+        "REQUIRED_DISCLOSURE_PATH_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R2": {
+      "description": "Invalidate stale discovery after the dynamic state flip.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R3": {
+      "description": "Use task-relative projections rather than raw or full-world disclosure.",
+      "failure_codes": [
+        "REQUIRED_DISCLOSURE_PATH_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R4": {
+      "description": "Respect receiver, purpose, retention, depth, onward, and cumulative disclosure limits.",
+      "failure_codes": [
+        "RECIPROCAL_PROBE_MISSING",
+        "REQUIRED_DISCLOSURE_PATH_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R5": {
+      "description": "Keep UNKNOWN, REFUSE, and ABSENT distinct.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R6": {
+      "description": "Report a real but policy-unfindable opportunity honestly.",
+      "failure_codes": [],
+      "status": "PASS"
+    },
+    "R7": {
+      "description": "Avoid direction/version false wakeups and structural misses.",
+      "failure_codes": [
+        "RECIPROCAL_PROBE_MISSING"
+      ],
+      "status": "FAIL"
+    },
+    "R8": {
+      "description": "Handoff discoveries to relation constitution without inventing commitment.",
+      "failure_codes": [],
+      "status": "PASS"
+    }
+  },
+  "schema_version": "1.1",
+  "status": "FAIL",
+  "submission_sha256": "b9666f8c3770ec28c19208cf733f3f7d2afbf484878ea8d5883d320afd6d6cae",
+  "world_id": "T1-HW-20260728-B"
+}

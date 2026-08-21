@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:towow:t2-enterprise-pilot:final-submission:v1",
+  "title": "T2 method final submission",
+  "description": "Method-visible return shape. It contains no reference solution or oracle truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "method_id",
+    "run_id",
+    "input_hash",
+    "evaluator_hash",
+    "controller_history_hash",
+    "queries_and_disclosures",
+    "diagnosis",
+    "relation_versions",
+    "capability_claims",
+    "authority_state",
+    "operator_sequence",
+    "outcomes",
+    "repeat_and_reopen",
+    "unknowns",
+    "refusals",
+    "cannot_support"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "const": "T2-ENTERPRISE-PILOT-BLIND-V1"
+    },
+    "method_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "evaluator_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "controller_history_hash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "queries_and_disclosures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "request_id",
+          "receipt_hash",
+          "authority_id",
+          "request_type",
+          "purpose",
+          "relation_version_ref",
+          "response_type",
+          "disclosed_fields",
+          "retention_scope"
+        ],
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receipt_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "authority_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "request_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relation_version_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "response_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "disclosed_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "retention_scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "$ref": "#/$defs/freeRecord"
+    },
+    "relation_versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/freeRecord"
+      }
+    },
+    "capability_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operation",
+          "executor",
+          "environment",
+          "version",
+          "permission",
+          "resource",
+          "recovery",
+          "status",
+          "evidence_available_at_claim_time",
+          "asserted_before_commitment"
+        ],
+        "properties": {
+          "operation": {},
+          "executor": {},
+          "environment": {},
+          "version": {},
+          "permission": {},
+          "resource": {},
+          "recovery": {},
+          "status": {},
+          "evidence_available_at_claim_time": {},
+          "asserted_before_commitment": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "authority_state": {
+      "$ref": "#/$defs/freeRecord"
+    },
+    "operator_sequence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/freeRecord"
+      }
+    },
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_attempt",
+        "effect",
+        "adoption",
+        "acceptance",
+        "settlement"
+      ],
+      "properties": {
+        "action_attempt": {},
+        "effect": {},
+        "adoption": {},
+        "acceptance": {},
+        "settlement": {}
+      }
+    },
+    "repeat_and_reopen": {
+      "$ref": "#/$defs/freeRecord"
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {}
+    },
+    "refusals": {
+      "type": "array",
+      "items": {}
+    },
+    "cannot_support": {
+      "type": "array",
+      "items": {}
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "freeRecord": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

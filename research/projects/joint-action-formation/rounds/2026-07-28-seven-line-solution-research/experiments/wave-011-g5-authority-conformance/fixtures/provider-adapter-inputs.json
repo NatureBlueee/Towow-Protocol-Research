@@ -1,0 +1,157 @@
+{
+  "schema": "mcb-g5-v2.provider-adapter-inputs.v1",
+  "status": "SYNTHETIC_NATIVE_SHAPE_FIXTURE_PRODUCTS_NOT_RUN",
+  "mapping_version": "task-mapping-estuary-v1",
+  "cases": [
+    {
+      "case_id": "opa-defined-allow-fresh",
+      "native_engine": "OPA",
+      "native_outcome": "OPA_DEFINED_ALLOW",
+      "native_error": null,
+      "policy_version": "bundle-revision-17",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": null
+    },
+    {
+      "case_id": "opa-undefined",
+      "native_engine": "OPA",
+      "native_outcome": "OPA_UNDEFINED",
+      "native_error": null,
+      "policy_version": "bundle-revision-17",
+      "input_complete": false,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": "policy-owner"
+    },
+    {
+      "case_id": "opa-stale-bundle-allow",
+      "native_engine": "OPA",
+      "native_outcome": "OPA_DEFINED_ALLOW",
+      "native_error": null,
+      "policy_version": "bundle-revision-16",
+      "input_complete": true,
+      "source_freshness": "STALE",
+      "negative_authority_fact": false,
+      "resolver": "bundle-distributor"
+    },
+    {
+      "case_id": "cedar-allow",
+      "native_engine": "CEDAR",
+      "native_outcome": "CEDAR_ALLOW",
+      "native_error": null,
+      "policy_version": "cedar-set-v9",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": null
+    },
+    {
+      "case_id": "cedar-explicit-forbid",
+      "native_engine": "CEDAR",
+      "native_outcome": "CEDAR_DENY_EXPLICIT_FORBID",
+      "native_error": null,
+      "policy_version": "cedar-set-v9",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": true,
+      "resolver": null
+    },
+    {
+      "case_id": "cedar-skip-on-error-plus-permit",
+      "native_engine": "CEDAR",
+      "native_outcome": "CEDAR_ALLOW_WITH_EVALUATION_ERRORS",
+      "native_error": {
+        "code": "POLICY_EVALUATION_ERROR",
+        "materiality": "UNKNOWN"
+      },
+      "policy_version": "cedar-set-v9",
+      "input_complete": false,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": "policy-owner"
+    },
+    {
+      "case_id": "openfga-allowed-true",
+      "native_engine": "OPENFGA",
+      "native_outcome": "OPENFGA_ALLOWED_TRUE",
+      "native_error": null,
+      "policy_version": "model-01JABC",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": null
+    },
+    {
+      "case_id": "openfga-allowed-false",
+      "native_engine": "OPENFGA",
+      "native_outcome": "OPENFGA_ALLOWED_FALSE",
+      "native_error": null,
+      "policy_version": "model-01JABC",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": "tuple-owner"
+    },
+    {
+      "case_id": "openfga-undefined-relation-400",
+      "native_engine": "OPENFGA",
+      "native_outcome": "OPENFGA_HTTP_400_UNDEFINED_RELATION",
+      "native_error": {
+        "code": "UNDEFINED_RELATION"
+      },
+      "policy_version": "model-01JABC",
+      "input_complete": false,
+      "source_freshness": "UNKNOWN",
+      "negative_authority_fact": false,
+      "resolver": "model-owner"
+    },
+    {
+      "case_id": "xacml-permit",
+      "native_engine": "XACML",
+      "native_outcome": "XACML_PERMIT",
+      "native_error": null,
+      "policy_version": "policy-set-v12",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": null
+    },
+    {
+      "case_id": "xacml-deny",
+      "native_engine": "XACML",
+      "native_outcome": "XACML_DENY",
+      "native_error": null,
+      "policy_version": "policy-set-v12",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": true,
+      "resolver": null
+    },
+    {
+      "case_id": "xacml-not-applicable",
+      "native_engine": "XACML",
+      "native_outcome": "XACML_NOT_APPLICABLE",
+      "native_error": null,
+      "policy_version": "policy-set-v12",
+      "input_complete": true,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": "policy-owner"
+    },
+    {
+      "case_id": "xacml-indeterminate-dp",
+      "native_engine": "XACML",
+      "native_outcome": "XACML_INDETERMINATE_DP",
+      "native_error": {
+        "code": "MISSING_ATTRIBUTE"
+      },
+      "policy_version": "policy-set-v12",
+      "input_complete": false,
+      "source_freshness": "FRESH",
+      "negative_authority_fact": false,
+      "resolver": "attribute-owner"
+    }
+  ]
+}

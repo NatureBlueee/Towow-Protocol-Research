@@ -1,0 +1,1051 @@
+{
+  "schema": "CE001_SEALED_BATCH_ADMISSION_V1",
+  "contract_id": "CE001-SEALED-RUN-ADMISSION@v1",
+  "contract_sha256": "0a6313ae6ec835be6c044dd75cf546db3d63d31f988782962065baaae531f627",
+  "batch_manifest_sha256": "b8e59eaf87dc64d0e8e32f3c1ea4faf91674cf503e5b7361755f95cd36708620",
+  "batch_id": "wave023-development-smoke-fixture-no-run",
+  "batch_family": "DIRECT_A1_A5",
+  "execution_mode": "DEVELOPMENT_SMOKE_UNSCORED",
+  "comparison_status": "NOT_RUN",
+  "winner": "NOT_EVALUATED",
+  "receipt_provenance": "DEVELOPMENT_FIXTURE_NOT_EXECUTION_EVIDENCE",
+  "task_packet": {
+    "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+    "byte_length": 1699,
+    "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+  },
+  "sealed_candidates": [
+    {
+      "treatment_id": "A1-LAWFUL-CENTER",
+      "candidate_id": "candidate-dev-01",
+      "sealed_before_world_assignment": true,
+      "alternate_candidate_ids": [],
+      "bundle_bytes_utf8": "{\"artifact_sha256s\":{\"console\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"executable\":\"9fe57505bb6bd1ff462a1ec85a4537c2168c9d3f9346966c9f7356c1d3bb35d6\",\"model\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"prompt\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},\"candidate_id\":\"candidate-dev-01\",\"development_fixture\":true,\"no_post_world_selection\":true,\"no_private_oracle\":true,\"no_semantic_case_router\":true,\"schema\":\"CE001_CANDIDATE_BUNDLE_V1\",\"treatment_id\":\"A1-LAWFUL-CENTER\"}",
+      "bundle_sha256": "fcd3409b6f3f9556854c1bebade92a604052a1a132f2170e8fd424c87f12781d",
+      "artifacts": {
+        "executable": {
+          "present": true,
+          "bytes_utf8": "fixture executable A1 lawful center v1\n",
+          "sha256": "9fe57505bb6bd1ff462a1ec85a4537c2168c9d3f9346966c9f7356c1d3bb35d6"
+        },
+        "model": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "prompt": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "console": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "treatment_id": "A2-EQUAL-INFORMATION-CENTER",
+      "candidate_id": "candidate-dev-02",
+      "sealed_before_world_assignment": true,
+      "alternate_candidate_ids": [],
+      "bundle_bytes_utf8": "{\"artifact_sha256s\":{\"console\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"executable\":\"8c38ac78f47e84667a2171fb980082eaf8f5e72fe34c4f642487f943cae61cf2\",\"model\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"prompt\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},\"candidate_id\":\"candidate-dev-02\",\"development_fixture\":true,\"no_post_world_selection\":true,\"no_private_oracle\":true,\"no_semantic_case_router\":true,\"schema\":\"CE001_CANDIDATE_BUNDLE_V1\",\"treatment_id\":\"A2-EQUAL-INFORMATION-CENTER\"}",
+      "bundle_sha256": "e053c6100d8ac1586432fe5527af84f8baa4b521266428158c316c025b02d376",
+      "artifacts": {
+        "executable": {
+          "present": true,
+          "bytes_utf8": "fixture executable A2 equal information center v1\n",
+          "sha256": "8c38ac78f47e84667a2171fb980082eaf8f5e72fe34c4f642487f943cae61cf2"
+        },
+        "model": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "prompt": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "console": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "treatment_id": "A3-GENERAL-MODEL-MATURE-STACK",
+      "candidate_id": "candidate-dev-03",
+      "sealed_before_world_assignment": true,
+      "alternate_candidate_ids": [],
+      "bundle_bytes_utf8": "{\"artifact_sha256s\":{\"console\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"executable\":\"ff0ae24ff466e3aed8e917bdffdce10ec08cb18f860885c6bfe02f38ee43f9a4\",\"model\":\"49ef2ae0926a34a00cc2e20f081744d6d8b2fa8a6897525f581e5cd370dd764d\",\"prompt\":\"5c329726bf4f4ef0e6e50ab6f9e8c2ee62f6d3519401ff721e1772deb0c5b603\"},\"candidate_id\":\"candidate-dev-03\",\"development_fixture\":true,\"no_post_world_selection\":true,\"no_private_oracle\":true,\"no_semantic_case_router\":true,\"schema\":\"CE001_CANDIDATE_BUNDLE_V1\",\"treatment_id\":\"A3-GENERAL-MODEL-MATURE-STACK\"}",
+      "bundle_sha256": "567f65112f4df5c514f48c51a133803857f681781c2b6617bcfbddeda7e30715",
+      "artifacts": {
+        "executable": {
+          "present": true,
+          "bytes_utf8": "fixture executable A3 model stack v1\n",
+          "sha256": "ff0ae24ff466e3aed8e917bdffdce10ec08cb18f860885c6bfe02f38ee43f9a4"
+        },
+        "model": {
+          "present": true,
+          "bytes_utf8": "fixture frozen model identity A3 v1\n",
+          "sha256": "49ef2ae0926a34a00cc2e20f081744d6d8b2fa8a6897525f581e5cd370dd764d"
+        },
+        "prompt": {
+          "present": true,
+          "bytes_utf8": "fixture frozen prompt A3 v1\n",
+          "sha256": "5c329726bf4f4ef0e6e50ab6f9e8c2ee62f6d3519401ff721e1772deb0c5b603"
+        },
+        "console": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "treatment_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "candidate_id": "candidate-dev-04",
+      "sealed_before_world_assignment": true,
+      "alternate_candidate_ids": [],
+      "bundle_bytes_utf8": "{\"artifact_sha256s\":{\"console\":\"6c03ef32666df3a21e60d704459233085c1cb153126953022e4f6f6b6cbbee72\",\"executable\":\"5ab3ca44f324f039d9d76ae7de45bd4e8e7486f2990a065dbd0936b3c7e494c7\",\"model\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"prompt\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},\"candidate_id\":\"candidate-dev-04\",\"development_fixture\":true,\"no_post_world_selection\":true,\"no_private_oracle\":true,\"no_semantic_case_router\":true,\"schema\":\"CE001_CANDIDATE_BUNDLE_V1\",\"treatment_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\"}",
+      "bundle_sha256": "f4e5ed2698396f6dfb2dc1ceb82fcf9c2472e18af5c40e2a029beef2bd6c1a84",
+      "artifacts": {
+        "executable": {
+          "present": true,
+          "bytes_utf8": "fixture executable A4 deterministic composition v1\n",
+          "sha256": "5ab3ca44f324f039d9d76ae7de45bd4e8e7486f2990a065dbd0936b3c7e494c7"
+        },
+        "model": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "prompt": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "console": {
+          "present": true,
+          "bytes_utf8": "fixture bounded non-recommending console A4 v1\n",
+          "sha256": "6c03ef32666df3a21e60d704459233085c1cb153126953022e4f6f6b6cbbee72"
+        }
+      }
+    },
+    {
+      "treatment_id": "A5-BOUNDED-HUMAN-INSTITUTION",
+      "candidate_id": "candidate-dev-05",
+      "sealed_before_world_assignment": true,
+      "alternate_candidate_ids": [],
+      "bundle_bytes_utf8": "{\"artifact_sha256s\":{\"console\":\"7b5a29c2144f05b9643f3a451a54f1d80ec148ceccd21530a73943dfa1b49bfa\",\"executable\":\"969f6250354fb47ca5dcd7b2223ce042678a5372ce1c4530b57312d6be4e5814\",\"model\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"prompt\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},\"candidate_id\":\"candidate-dev-05\",\"development_fixture\":true,\"no_post_world_selection\":true,\"no_private_oracle\":true,\"no_semantic_case_router\":true,\"schema\":\"CE001_CANDIDATE_BUNDLE_V1\",\"treatment_id\":\"A5-BOUNDED-HUMAN-INSTITUTION\"}",
+      "bundle_sha256": "70c1dde7342bf3ea41bf2dee3b1163923f22d5169b97ed995ab91b707a663a00",
+      "artifacts": {
+        "executable": {
+          "present": true,
+          "bytes_utf8": "fixture executable A5 human institution v1\n",
+          "sha256": "969f6250354fb47ca5dcd7b2223ce042678a5372ce1c4530b57312d6be4e5814"
+        },
+        "model": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "prompt": {
+          "present": false,
+          "bytes_utf8": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "console": {
+          "present": true,
+          "bytes_utf8": "fixture non-recommending human console A5 v1\n",
+          "sha256": "7b5a29c2144f05b9643f3a451a54f1d80ec148ceccd21530a73943dfa1b49bfa"
+        }
+      }
+    }
+  ],
+  "world_preimages": [
+    {
+      "world_id": "opaque-world-dev-001",
+      "authority_stratum": "P",
+      "semantic_case_id_location": "EVALUATOR_PRIVATE_ONLY",
+      "preimage": {
+        "bytes_utf8": "{\"authority_stratum\":\"P\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"owner_heads\":[\"O_P@7\",\"O_Q@11\",\"O_V@5\"],\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"schema\":\"CE001_WORLD_PREIMAGE_V1\",\"semantic_case\":\"DEVELOPMENT_P_AUTHORITY_ADMISSION_ONLY\",\"target_id\":\"VenueV:CircuitC7\",\"target_prefix\":\"NO_EFFECT_GENESIS\",\"world_id\":\"opaque-world-dev-001\"}",
+        "byte_length": 390,
+        "sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a"
+      },
+      "authority_topology_witness": {
+        "witness_id": "authority-witness-dev-001",
+        "algorithm": "ED25519",
+        "signer_key_id": "development-fixture-topology-key",
+        "public_key_b64": "bxF2xg6dtIDdPD1Izw3TyGHQd9G7LIQfLjlw0QP3UVU=",
+        "signed_statement_bytes_utf8": "{\"authority_epoch\":\"authority-epoch-7\",\"authority_stratum\":\"P\",\"delegation_ids\":[],\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"principals\":[\"O_P\",\"O_Q\",\"O_V\"],\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"schema\":\"CE001_SIGNED_AUTHORITY_TOPOLOGY_V1\",\"target_id\":\"VenueV:CircuitC7\",\"valid_at_logical_minute\":0,\"world_id\":\"opaque-world-dev-001\",\"world_preimage_sha256\":\"a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a\"}",
+        "signed_statement_sha256": "7d7f1cd4f82e6c0091cdb101f3a5298ede78ce52b7fed578a94548b2ae1fdace",
+        "signature_b64": "LXhD3Fe1Lp9WoIJxD8vdY5XjmPs4QQ4SDquDH8VNN6KRAwASNRJZoenj3ygVE/a3zjVQZiOrh9aIF06oXw8eCA=="
+      },
+      "isomorphic_twin_group_id": null,
+      "twin_role": null,
+      "shared_public_prefix_sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+    }
+  ],
+  "world_clones": [
+    {
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A1-LAWFUL-CENTER",
+      "clone_id": "opaque-clone-dev-01",
+      "world_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "semantic_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "storage_namespace": "/sealed/clones/dev-01",
+      "keyset_preimage": "development fixture isolated keyset opaque-clone-dev-01\n",
+      "keyset_sha256": "d86dd4a40d02a72058739325c00ffb7d4aace3fefab0d38eb8e82f8320f3dd81",
+      "initial_state_preimage": "NO_EFFECT_GENESIS|Q=8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b|Target=VenueV:CircuitC7|heads=O_P@7,O_Q@11,O_V@5",
+      "initial_state_semantic_sha256": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+      "shared_mutable_state_paths": [],
+      "cross_clone_channels": []
+    },
+    {
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A2-EQUAL-INFORMATION-CENTER",
+      "clone_id": "opaque-clone-dev-02",
+      "world_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "semantic_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "storage_namespace": "/sealed/clones/dev-02",
+      "keyset_preimage": "development fixture isolated keyset opaque-clone-dev-02\n",
+      "keyset_sha256": "8b23fc46a432ddd9b3f11b9f86776b1ebf3cb117f2e9be8f2ce703f90f074b07",
+      "initial_state_preimage": "NO_EFFECT_GENESIS|Q=8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b|Target=VenueV:CircuitC7|heads=O_P@7,O_Q@11,O_V@5",
+      "initial_state_semantic_sha256": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+      "shared_mutable_state_paths": [],
+      "cross_clone_channels": []
+    },
+    {
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A3-GENERAL-MODEL-MATURE-STACK",
+      "clone_id": "opaque-clone-dev-03",
+      "world_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "semantic_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "storage_namespace": "/sealed/clones/dev-03",
+      "keyset_preimage": "development fixture isolated keyset opaque-clone-dev-03\n",
+      "keyset_sha256": "caadd140388371768bce21fbeebefc3f64b29eb93d496e46b1abcbe7ca5dde08",
+      "initial_state_preimage": "NO_EFFECT_GENESIS|Q=8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b|Target=VenueV:CircuitC7|heads=O_P@7,O_Q@11,O_V@5",
+      "initial_state_semantic_sha256": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+      "shared_mutable_state_paths": [],
+      "cross_clone_channels": []
+    },
+    {
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "clone_id": "opaque-clone-dev-04",
+      "world_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "semantic_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "storage_namespace": "/sealed/clones/dev-04",
+      "keyset_preimage": "development fixture isolated keyset opaque-clone-dev-04\n",
+      "keyset_sha256": "99e0852fc76abf42e06db7f7cdf329ebdfdd0be07fcba9f5411063bbd6bcf03a",
+      "initial_state_preimage": "NO_EFFECT_GENESIS|Q=8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b|Target=VenueV:CircuitC7|heads=O_P@7,O_Q@11,O_V@5",
+      "initial_state_semantic_sha256": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+      "shared_mutable_state_paths": [],
+      "cross_clone_channels": []
+    },
+    {
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A5-BOUNDED-HUMAN-INSTITUTION",
+      "clone_id": "opaque-clone-dev-05",
+      "world_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "semantic_preimage_sha256": "a9dfb7566d9a10e61679df1ebe10668a01f42286c4b864150368f848ea46a27a",
+      "storage_namespace": "/sealed/clones/dev-05",
+      "keyset_preimage": "development fixture isolated keyset opaque-clone-dev-05\n",
+      "keyset_sha256": "62775ef90dec3a6e473a9302283f591e28d7cbb1604707cead3b2a09cf3fa318",
+      "initial_state_preimage": "NO_EFFECT_GENESIS|Q=8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b|Target=VenueV:CircuitC7|heads=O_P@7,O_Q@11,O_V@5",
+      "initial_state_semantic_sha256": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+      "shared_mutable_state_paths": [],
+      "cross_clone_channels": []
+    }
+  ],
+  "run_admissions": [
+    {
+      "run_id": "run-dev-01",
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A1-LAWFUL-CENTER",
+      "candidate_id": "candidate-dev-01",
+      "clone_id": "opaque-clone-dev-01",
+      "authority_witness_id": "authority-witness-dev-001",
+      "planned_status": "NOT_APPLICABLE",
+      "launch_receipt": {
+        "initial_payload": {
+          "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+          "byte_length": 1699,
+          "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+        },
+        "argv": {
+          "actual": [
+            "/sealed/common-runner",
+            "--read-task-from-fd",
+            "3"
+          ],
+          "sha256": "24b811fe50d915a240d2ecfca02c973b0563b52a4c071cd0720687d9f4f23b5f"
+        },
+        "env": {
+          "actual": {
+            "CE001_BROKER_ENDPOINT": "broker://fixed-main",
+            "CE001_DISCLOSURE_POLICY": "CE001-DISCLOSURE-POLICY@v1"
+          },
+          "sha256": "e6dd7fde5359b24149707dca3911ab12af1c344cfdfbf88d18d8414cf438db0c"
+        },
+        "cwd": {
+          "actual": "/sealed/opaque-episode",
+          "sha256": "bdfbb0238983a709d3cda02f9f419d9e28ed50389a1cec8ca1ac0e3736a4d228"
+        },
+        "process_name": {
+          "actual": "ce001-common-candidate",
+          "sha256": "ccae72d38db50cc795354a16552b131d00296ef1ade0617767c0259628bc2320"
+        },
+        "fd_inventory": {
+          "actual": [
+            {
+              "fd": 0,
+              "role": "stdin-closed"
+            },
+            {
+              "fd": 1,
+              "role": "candidate-output"
+            },
+            {
+              "fd": 2,
+              "role": "candidate-error"
+            },
+            {
+              "fd": 3,
+              "role": "task-packet-readonly"
+            }
+          ],
+          "sha256": "2be2c154a00a23a32acf15453090a53493724c98b20945cbd8b849f6228f4d7f"
+        },
+        "network_inventory": {
+          "actual": [
+            {
+              "direction": "connect",
+              "endpoint_id": "broker-main",
+              "family": "AF_UNIX"
+            }
+          ],
+          "sha256": "ee099ed1d356ab281d2997a6a2f22e41e1fefd2075e235e03f73d9ceea414042"
+        },
+        "endpoint_inventory": {
+          "actual": [
+            {
+              "endpoint_id": "broker-main",
+              "surface": "CE001_FIXED_BROKER_V1"
+            }
+          ],
+          "sha256": "04350f07d1c964dc58b2ad907c1e91f13f78e3942a629cc82720d16d7ee7d606"
+        }
+      },
+      "trigger_receipt": {
+        "trigger_id": "trigger-dev-01",
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+        "target_id": "VenueV:CircuitC7",
+        "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+        "equivalent_event_class": "BEFORE_TARGET_EFFECT_COMMIT",
+        "current_owner_head_set": [
+          "O_P@7",
+          "O_Q@11",
+          "O_V@5"
+        ],
+        "target_prefix_semantic_digest": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+        "intervention": "MATERIAL_Q_CHANGE_BY_O_Q",
+        "fired_status": "FROZEN_NOT_FIRED",
+        "fired_count": 0,
+        "pre_state_sha256": "df53ed970d1818f4d477514f49f1a491e2c7084f71ee85d6ad056a3a9095874a",
+        "post_state_sha256": "cfad583aae1f15715f031d98493eb9638de11526163dc66066f5bdda8acf4270",
+        "clone_native_event_sha256": "a11914f74c2bb82e05bfd2229d9b071288db8a91b9e9a67fad54ab8ddb964d51",
+        "semantic_projection_sha256": "f4c49c267131673486cb96945aec0a00c9e2fb6f84c49c40283fe81210e42c04",
+        "receipt_sha256": "2565187ca93cd3d44e6f0b065267c209c2004fb0683db1f0519d538680203c88"
+      },
+      "budget_receipt": {
+        "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+        "limits": {
+          "logical_deadline_minute": 90,
+          "wall_timeout_seconds": 300,
+          "owner_queries_max": 24,
+          "broker_round_trips_max": 48,
+          "target_execute_calls_max": 2,
+          "target_status_or_readback_calls_max": 6,
+          "retry_or_recovery_actions_max": 12,
+          "dynamic_disclosed_bytes_max": 65536,
+          "disclosure_sensitivity_points_max": 32,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "observed": {
+          "logical_deadline_minute": 0,
+          "wall_timeout_seconds": 0,
+          "owner_queries_max": 0,
+          "broker_round_trips_max": 0,
+          "target_execute_calls_max": 0,
+          "target_status_or_readback_calls_max": 0,
+          "retry_or_recovery_actions_max": 0,
+          "dynamic_disclosed_bytes_max": 0,
+          "disclosure_sensitivity_points_max": 0,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "meter_log": {
+          "bytes_utf8": "{\"events\":[],\"schema\":\"CE001_METER_LEDGER_V1\"}",
+          "byte_length": 46,
+          "sha256": "45ae5d862a870ffc5ef40ec3fba65c971c6d25f06eaf0f37e5244e535d5228b4"
+        },
+        "budget_overrides": {},
+        "component_budget_grants": [],
+        "single_total_budget": true,
+        "exhausted": false
+      },
+      "alias_assessment": {
+        "required": false,
+        "status": "NOT_APPLICABLE_DIRECT_ARM",
+        "behavior_trace_sha256": null,
+        "decision_provenance_sha256": null,
+        "aliases_treatment_id": null
+      },
+      "runtime_native_receipts_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN"
+    },
+    {
+      "run_id": "run-dev-02",
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A2-EQUAL-INFORMATION-CENTER",
+      "candidate_id": "candidate-dev-02",
+      "clone_id": "opaque-clone-dev-02",
+      "authority_witness_id": "authority-witness-dev-001",
+      "planned_status": "SEALED_NOT_RUN",
+      "launch_receipt": {
+        "initial_payload": {
+          "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+          "byte_length": 1699,
+          "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+        },
+        "argv": {
+          "actual": [
+            "/sealed/common-runner",
+            "--read-task-from-fd",
+            "3"
+          ],
+          "sha256": "24b811fe50d915a240d2ecfca02c973b0563b52a4c071cd0720687d9f4f23b5f"
+        },
+        "env": {
+          "actual": {
+            "CE001_BROKER_ENDPOINT": "broker://fixed-main",
+            "CE001_DISCLOSURE_POLICY": "CE001-DISCLOSURE-POLICY@v1"
+          },
+          "sha256": "e6dd7fde5359b24149707dca3911ab12af1c344cfdfbf88d18d8414cf438db0c"
+        },
+        "cwd": {
+          "actual": "/sealed/opaque-episode",
+          "sha256": "bdfbb0238983a709d3cda02f9f419d9e28ed50389a1cec8ca1ac0e3736a4d228"
+        },
+        "process_name": {
+          "actual": "ce001-common-candidate",
+          "sha256": "ccae72d38db50cc795354a16552b131d00296ef1ade0617767c0259628bc2320"
+        },
+        "fd_inventory": {
+          "actual": [
+            {
+              "fd": 0,
+              "role": "stdin-closed"
+            },
+            {
+              "fd": 1,
+              "role": "candidate-output"
+            },
+            {
+              "fd": 2,
+              "role": "candidate-error"
+            },
+            {
+              "fd": 3,
+              "role": "task-packet-readonly"
+            }
+          ],
+          "sha256": "2be2c154a00a23a32acf15453090a53493724c98b20945cbd8b849f6228f4d7f"
+        },
+        "network_inventory": {
+          "actual": [
+            {
+              "direction": "connect",
+              "endpoint_id": "broker-main",
+              "family": "AF_UNIX"
+            }
+          ],
+          "sha256": "ee099ed1d356ab281d2997a6a2f22e41e1fefd2075e235e03f73d9ceea414042"
+        },
+        "endpoint_inventory": {
+          "actual": [
+            {
+              "endpoint_id": "broker-main",
+              "surface": "CE001_FIXED_BROKER_V1"
+            }
+          ],
+          "sha256": "04350f07d1c964dc58b2ad907c1e91f13f78e3942a629cc82720d16d7ee7d606"
+        }
+      },
+      "trigger_receipt": {
+        "trigger_id": "trigger-dev-02",
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+        "target_id": "VenueV:CircuitC7",
+        "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+        "equivalent_event_class": "BEFORE_TARGET_EFFECT_COMMIT",
+        "current_owner_head_set": [
+          "O_P@7",
+          "O_Q@11",
+          "O_V@5"
+        ],
+        "target_prefix_semantic_digest": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+        "intervention": "MATERIAL_Q_CHANGE_BY_O_Q",
+        "fired_status": "FROZEN_NOT_FIRED",
+        "fired_count": 0,
+        "pre_state_sha256": "1c60a990efb2c6e0acc0ddbce696d8817ad11596f5436d1cb65797ff9ec21508",
+        "post_state_sha256": "3c807f1f04f23f37ed148c6e8354d3aeb947dc199c80532bec9d2a10817907d9",
+        "clone_native_event_sha256": "e61ed9c4d125941474de8a27385865089e0770d4e2c5035a2949a738cf5e2956",
+        "semantic_projection_sha256": "e677051a5037d786c52390beb2e7d67709ea5db32d16cd0ba1a6d405700b0df9",
+        "receipt_sha256": "eda93c6aa3f61a0f1e8bd547fd3454d0cb973e34f54cbd74f1de27c91caacb89"
+      },
+      "budget_receipt": {
+        "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+        "limits": {
+          "logical_deadline_minute": 90,
+          "wall_timeout_seconds": 300,
+          "owner_queries_max": 24,
+          "broker_round_trips_max": 48,
+          "target_execute_calls_max": 2,
+          "target_status_or_readback_calls_max": 6,
+          "retry_or_recovery_actions_max": 12,
+          "dynamic_disclosed_bytes_max": 65536,
+          "disclosure_sensitivity_points_max": 32,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "observed": {
+          "logical_deadline_minute": 0,
+          "wall_timeout_seconds": 0,
+          "owner_queries_max": 0,
+          "broker_round_trips_max": 0,
+          "target_execute_calls_max": 0,
+          "target_status_or_readback_calls_max": 0,
+          "retry_or_recovery_actions_max": 0,
+          "dynamic_disclosed_bytes_max": 0,
+          "disclosure_sensitivity_points_max": 0,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "meter_log": {
+          "bytes_utf8": "{\"events\":[],\"schema\":\"CE001_METER_LEDGER_V1\"}",
+          "byte_length": 46,
+          "sha256": "45ae5d862a870ffc5ef40ec3fba65c971c6d25f06eaf0f37e5244e535d5228b4"
+        },
+        "budget_overrides": {},
+        "component_budget_grants": [],
+        "single_total_budget": true,
+        "exhausted": false
+      },
+      "alias_assessment": {
+        "required": false,
+        "status": "NOT_APPLICABLE_DIRECT_ARM",
+        "behavior_trace_sha256": null,
+        "decision_provenance_sha256": null,
+        "aliases_treatment_id": null
+      },
+      "runtime_native_receipts_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN"
+    },
+    {
+      "run_id": "run-dev-03",
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A3-GENERAL-MODEL-MATURE-STACK",
+      "candidate_id": "candidate-dev-03",
+      "clone_id": "opaque-clone-dev-03",
+      "authority_witness_id": "authority-witness-dev-001",
+      "planned_status": "SEALED_NOT_RUN",
+      "launch_receipt": {
+        "initial_payload": {
+          "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+          "byte_length": 1699,
+          "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+        },
+        "argv": {
+          "actual": [
+            "/sealed/common-runner",
+            "--read-task-from-fd",
+            "3"
+          ],
+          "sha256": "24b811fe50d915a240d2ecfca02c973b0563b52a4c071cd0720687d9f4f23b5f"
+        },
+        "env": {
+          "actual": {
+            "CE001_BROKER_ENDPOINT": "broker://fixed-main",
+            "CE001_DISCLOSURE_POLICY": "CE001-DISCLOSURE-POLICY@v1"
+          },
+          "sha256": "e6dd7fde5359b24149707dca3911ab12af1c344cfdfbf88d18d8414cf438db0c"
+        },
+        "cwd": {
+          "actual": "/sealed/opaque-episode",
+          "sha256": "bdfbb0238983a709d3cda02f9f419d9e28ed50389a1cec8ca1ac0e3736a4d228"
+        },
+        "process_name": {
+          "actual": "ce001-common-candidate",
+          "sha256": "ccae72d38db50cc795354a16552b131d00296ef1ade0617767c0259628bc2320"
+        },
+        "fd_inventory": {
+          "actual": [
+            {
+              "fd": 0,
+              "role": "stdin-closed"
+            },
+            {
+              "fd": 1,
+              "role": "candidate-output"
+            },
+            {
+              "fd": 2,
+              "role": "candidate-error"
+            },
+            {
+              "fd": 3,
+              "role": "task-packet-readonly"
+            }
+          ],
+          "sha256": "2be2c154a00a23a32acf15453090a53493724c98b20945cbd8b849f6228f4d7f"
+        },
+        "network_inventory": {
+          "actual": [
+            {
+              "direction": "connect",
+              "endpoint_id": "broker-main",
+              "family": "AF_UNIX"
+            }
+          ],
+          "sha256": "ee099ed1d356ab281d2997a6a2f22e41e1fefd2075e235e03f73d9ceea414042"
+        },
+        "endpoint_inventory": {
+          "actual": [
+            {
+              "endpoint_id": "broker-main",
+              "surface": "CE001_FIXED_BROKER_V1"
+            }
+          ],
+          "sha256": "04350f07d1c964dc58b2ad907c1e91f13f78e3942a629cc82720d16d7ee7d606"
+        }
+      },
+      "trigger_receipt": {
+        "trigger_id": "trigger-dev-03",
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+        "target_id": "VenueV:CircuitC7",
+        "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+        "equivalent_event_class": "BEFORE_TARGET_EFFECT_COMMIT",
+        "current_owner_head_set": [
+          "O_P@7",
+          "O_Q@11",
+          "O_V@5"
+        ],
+        "target_prefix_semantic_digest": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+        "intervention": "MATERIAL_Q_CHANGE_BY_O_Q",
+        "fired_status": "FROZEN_NOT_FIRED",
+        "fired_count": 0,
+        "pre_state_sha256": "e9043bdd186ac186a0917a6c0c841abb8ece54096409f344aac713e3b518cd5a",
+        "post_state_sha256": "10e0f7772a40a0ffcdc6ebacfe38ec352531f39544b6f9cb090ad50d49894856",
+        "clone_native_event_sha256": "92006b1e8a736e162724dffad70ad8267133a9899f5b0c534d4784ebf2cbeb07",
+        "semantic_projection_sha256": "0939bc7a20df2e9d4472805d596ef1bc34e5e0cd5a8c005f79208929f0fa0503",
+        "receipt_sha256": "0432f13ff3ba84504182f6be1300b7829df2680d8e80fbbf4e6b5be14f0de99b"
+      },
+      "budget_receipt": {
+        "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+        "limits": {
+          "logical_deadline_minute": 90,
+          "wall_timeout_seconds": 300,
+          "owner_queries_max": 24,
+          "broker_round_trips_max": 48,
+          "target_execute_calls_max": 2,
+          "target_status_or_readback_calls_max": 6,
+          "retry_or_recovery_actions_max": 12,
+          "dynamic_disclosed_bytes_max": 65536,
+          "disclosure_sensitivity_points_max": 32,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "observed": {
+          "logical_deadline_minute": 0,
+          "wall_timeout_seconds": 0,
+          "owner_queries_max": 0,
+          "broker_round_trips_max": 0,
+          "target_execute_calls_max": 0,
+          "target_status_or_readback_calls_max": 0,
+          "retry_or_recovery_actions_max": 0,
+          "dynamic_disclosed_bytes_max": 0,
+          "disclosure_sensitivity_points_max": 0,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "meter_log": {
+          "bytes_utf8": "{\"events\":[],\"schema\":\"CE001_METER_LEDGER_V1\"}",
+          "byte_length": 46,
+          "sha256": "45ae5d862a870ffc5ef40ec3fba65c971c6d25f06eaf0f37e5244e535d5228b4"
+        },
+        "budget_overrides": {},
+        "component_budget_grants": [],
+        "single_total_budget": true,
+        "exhausted": false
+      },
+      "alias_assessment": {
+        "required": false,
+        "status": "NOT_APPLICABLE_DIRECT_ARM",
+        "behavior_trace_sha256": null,
+        "decision_provenance_sha256": null,
+        "aliases_treatment_id": null
+      },
+      "runtime_native_receipts_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN"
+    },
+    {
+      "run_id": "run-dev-04",
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "candidate_id": "candidate-dev-04",
+      "clone_id": "opaque-clone-dev-04",
+      "authority_witness_id": "authority-witness-dev-001",
+      "planned_status": "SEALED_NOT_RUN",
+      "launch_receipt": {
+        "initial_payload": {
+          "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+          "byte_length": 1699,
+          "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+        },
+        "argv": {
+          "actual": [
+            "/sealed/common-runner",
+            "--read-task-from-fd",
+            "3"
+          ],
+          "sha256": "24b811fe50d915a240d2ecfca02c973b0563b52a4c071cd0720687d9f4f23b5f"
+        },
+        "env": {
+          "actual": {
+            "CE001_BROKER_ENDPOINT": "broker://fixed-main",
+            "CE001_DISCLOSURE_POLICY": "CE001-DISCLOSURE-POLICY@v1"
+          },
+          "sha256": "e6dd7fde5359b24149707dca3911ab12af1c344cfdfbf88d18d8414cf438db0c"
+        },
+        "cwd": {
+          "actual": "/sealed/opaque-episode",
+          "sha256": "bdfbb0238983a709d3cda02f9f419d9e28ed50389a1cec8ca1ac0e3736a4d228"
+        },
+        "process_name": {
+          "actual": "ce001-common-candidate",
+          "sha256": "ccae72d38db50cc795354a16552b131d00296ef1ade0617767c0259628bc2320"
+        },
+        "fd_inventory": {
+          "actual": [
+            {
+              "fd": 0,
+              "role": "stdin-closed"
+            },
+            {
+              "fd": 1,
+              "role": "candidate-output"
+            },
+            {
+              "fd": 2,
+              "role": "candidate-error"
+            },
+            {
+              "fd": 3,
+              "role": "task-packet-readonly"
+            }
+          ],
+          "sha256": "2be2c154a00a23a32acf15453090a53493724c98b20945cbd8b849f6228f4d7f"
+        },
+        "network_inventory": {
+          "actual": [
+            {
+              "direction": "connect",
+              "endpoint_id": "broker-main",
+              "family": "AF_UNIX"
+            }
+          ],
+          "sha256": "ee099ed1d356ab281d2997a6a2f22e41e1fefd2075e235e03f73d9ceea414042"
+        },
+        "endpoint_inventory": {
+          "actual": [
+            {
+              "endpoint_id": "broker-main",
+              "surface": "CE001_FIXED_BROKER_V1"
+            }
+          ],
+          "sha256": "04350f07d1c964dc58b2ad907c1e91f13f78e3942a629cc82720d16d7ee7d606"
+        }
+      },
+      "trigger_receipt": {
+        "trigger_id": "trigger-dev-04",
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+        "target_id": "VenueV:CircuitC7",
+        "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+        "equivalent_event_class": "BEFORE_TARGET_EFFECT_COMMIT",
+        "current_owner_head_set": [
+          "O_P@7",
+          "O_Q@11",
+          "O_V@5"
+        ],
+        "target_prefix_semantic_digest": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+        "intervention": "MATERIAL_Q_CHANGE_BY_O_Q",
+        "fired_status": "FROZEN_NOT_FIRED",
+        "fired_count": 0,
+        "pre_state_sha256": "a1ff238343f31c032b9a267efffc899c64f89268c4cbc2b382901281c34a5df7",
+        "post_state_sha256": "1fa7f518b4fac0e12ffe4c57d9866b4916823f00ae25a9d77fbdcd34e6759921",
+        "clone_native_event_sha256": "302821b64d6d9d1ab505e6f2cd5ee2afdd58888e964d12fb6e76cbb5c6867cdd",
+        "semantic_projection_sha256": "9ad5757d211170504883486075a796edfeca11f0de64ab0e51fae812334395b0",
+        "receipt_sha256": "0ae20b1112441346f96cc3397aed7dbf6e451b6cd3c8f98c1fbb9c5ac7758c9e"
+      },
+      "budget_receipt": {
+        "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+        "limits": {
+          "logical_deadline_minute": 90,
+          "wall_timeout_seconds": 300,
+          "owner_queries_max": 24,
+          "broker_round_trips_max": 48,
+          "target_execute_calls_max": 2,
+          "target_status_or_readback_calls_max": 6,
+          "retry_or_recovery_actions_max": 12,
+          "dynamic_disclosed_bytes_max": 65536,
+          "disclosure_sensitivity_points_max": 32,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "observed": {
+          "logical_deadline_minute": 0,
+          "wall_timeout_seconds": 0,
+          "owner_queries_max": 0,
+          "broker_round_trips_max": 0,
+          "target_execute_calls_max": 0,
+          "target_status_or_readback_calls_max": 0,
+          "retry_or_recovery_actions_max": 0,
+          "dynamic_disclosed_bytes_max": 0,
+          "disclosure_sensitivity_points_max": 0,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "meter_log": {
+          "bytes_utf8": "{\"events\":[],\"schema\":\"CE001_METER_LEDGER_V1\"}",
+          "byte_length": 46,
+          "sha256": "45ae5d862a870ffc5ef40ec3fba65c971c6d25f06eaf0f37e5244e535d5228b4"
+        },
+        "budget_overrides": {},
+        "component_budget_grants": [],
+        "single_total_budget": true,
+        "exhausted": false
+      },
+      "alias_assessment": {
+        "required": false,
+        "status": "NOT_APPLICABLE_DIRECT_ARM",
+        "behavior_trace_sha256": null,
+        "decision_provenance_sha256": null,
+        "aliases_treatment_id": null
+      },
+      "runtime_native_receipts_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN"
+    },
+    {
+      "run_id": "run-dev-05",
+      "world_id": "opaque-world-dev-001",
+      "treatment_id": "A5-BOUNDED-HUMAN-INSTITUTION",
+      "candidate_id": "candidate-dev-05",
+      "clone_id": "opaque-clone-dev-05",
+      "authority_witness_id": "authority-witness-dev-001",
+      "planned_status": "SEALED_NOT_RUN",
+      "launch_receipt": {
+        "initial_payload": {
+          "bytes_utf8": "{\"acceptance_owners\":[\"O_Q\",\"O_V\"],\"arm_binding_token\":\"opaque-arm-token-common\",\"common_budget_profile_id\":\"CE001-COMMON-INTERACTION-BUDGET@v1\",\"deadline_minute\":90,\"disclosure_policy_id\":\"CE001-DISCLOSURE-POLICY@v1\",\"finality_owner\":\"O_P\",\"fixed_broker_capabilities\":[\"AUTHORITY_STATUS\",\"OWNER_QUERY\",\"TARGET_EXECUTE\",\"TARGET_STATUS\",\"TARGET_READBACK\",\"ACCEPT\",\"FINALIZE\",\"RECOVER\"],\"noise_required\":true,\"object_id\":\"PowerOccurrence:VenueV:CircuitC7\",\"opaque_episode_handle\":\"opaque-episode-dev-001\",\"opaque_run_binding\":\"opaque-binding-dev-common\",\"operation_id\":\"opaque-operation-dev-001\",\"operation_scope\":\"ENERGIZE_EXACTLY_ONCE_45_MINUTES\",\"power_tolerance_percent\":5,\"q_bytes_utf8\":\"Q@v1: Before logical minute 90, create exactly one verified electrical-power occurrence on object PowerOccurrence:VenueV:CircuitC7 and Target VenueV:CircuitC7. It must last exactly 45 minutes at 3.0 kW within plus or minus 5 percent, satisfy safety and noise requirements, energize no other circuits, and be established by exact Target-native status and readback. The current lawful Authority for the operation must be verified again at commit time. O_Q and O_V must each issue owner-native Acceptance bound to the exact readback, after which O_P must issue owner-native finality. If completion is impossible, refused, revoked, or not lawfully authorized, return the correct non-effect resolution without substituting the object, Target, operation, owners, or task.\",\"q_sha256\":\"8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"safety_required\":true,\"schema\":\"CE001_INITIAL_PACKET_V1\",\"target_id\":\"VenueV:CircuitC7\"}",
+          "byte_length": 1699,
+          "sha256": "db6fff39c06b8c588805b89d07ba97aa060db0999fa1a44dfd70b601d67ab0ca"
+        },
+        "argv": {
+          "actual": [
+            "/sealed/common-runner",
+            "--read-task-from-fd",
+            "3"
+          ],
+          "sha256": "24b811fe50d915a240d2ecfca02c973b0563b52a4c071cd0720687d9f4f23b5f"
+        },
+        "env": {
+          "actual": {
+            "CE001_BROKER_ENDPOINT": "broker://fixed-main",
+            "CE001_DISCLOSURE_POLICY": "CE001-DISCLOSURE-POLICY@v1"
+          },
+          "sha256": "e6dd7fde5359b24149707dca3911ab12af1c344cfdfbf88d18d8414cf438db0c"
+        },
+        "cwd": {
+          "actual": "/sealed/opaque-episode",
+          "sha256": "bdfbb0238983a709d3cda02f9f419d9e28ed50389a1cec8ca1ac0e3736a4d228"
+        },
+        "process_name": {
+          "actual": "ce001-common-candidate",
+          "sha256": "ccae72d38db50cc795354a16552b131d00296ef1ade0617767c0259628bc2320"
+        },
+        "fd_inventory": {
+          "actual": [
+            {
+              "fd": 0,
+              "role": "stdin-closed"
+            },
+            {
+              "fd": 1,
+              "role": "candidate-output"
+            },
+            {
+              "fd": 2,
+              "role": "candidate-error"
+            },
+            {
+              "fd": 3,
+              "role": "task-packet-readonly"
+            }
+          ],
+          "sha256": "2be2c154a00a23a32acf15453090a53493724c98b20945cbd8b849f6228f4d7f"
+        },
+        "network_inventory": {
+          "actual": [
+            {
+              "direction": "connect",
+              "endpoint_id": "broker-main",
+              "family": "AF_UNIX"
+            }
+          ],
+          "sha256": "ee099ed1d356ab281d2997a6a2f22e41e1fefd2075e235e03f73d9ceea414042"
+        },
+        "endpoint_inventory": {
+          "actual": [
+            {
+              "endpoint_id": "broker-main",
+              "surface": "CE001_FIXED_BROKER_V1"
+            }
+          ],
+          "sha256": "04350f07d1c964dc58b2ad907c1e91f13f78e3942a629cc82720d16d7ee7d606"
+        }
+      },
+      "trigger_receipt": {
+        "trigger_id": "trigger-dev-05",
+        "basis": "SEMANTIC_NATIVE_BOUNDARY",
+        "q_sha256": "8b66d611556654c70346665cfc5052cbd81b315bd4e1ccbfe64d083cfbfb485b",
+        "target_id": "VenueV:CircuitC7",
+        "operation_scope": "ENERGIZE_EXACTLY_ONCE_45_MINUTES",
+        "equivalent_event_class": "BEFORE_TARGET_EFFECT_COMMIT",
+        "current_owner_head_set": [
+          "O_P@7",
+          "O_Q@11",
+          "O_V@5"
+        ],
+        "target_prefix_semantic_digest": "b24d377c58b2809fcc614186db0224b89625b764307b9b87b7536f7b54560d1b",
+        "intervention": "MATERIAL_Q_CHANGE_BY_O_Q",
+        "fired_status": "FROZEN_NOT_FIRED",
+        "fired_count": 0,
+        "pre_state_sha256": "dc19d92b3739bfd97155545a626a34187a68afc92466f6545d3920d98644dea2",
+        "post_state_sha256": "dcede3da3fdafc3e7053a2494b07cce40df5231b293c9695e80f6f258046b558",
+        "clone_native_event_sha256": "683a144af1e8c4ae3c7604f4708c0991c68fc8b8fb239bfdb808fea991a1330b",
+        "semantic_projection_sha256": "f4a02922edaf69c36bde00a307d181a352806cd28b837914a7dd2daa83576880",
+        "receipt_sha256": "b90035cbb847aa5bfc3326a4a7c731729ea4bb1f7b852e0a2d6972702fd2b281"
+      },
+      "budget_receipt": {
+        "profile_id": "CE001-COMMON-INTERACTION-BUDGET@v1",
+        "limits": {
+          "logical_deadline_minute": 90,
+          "wall_timeout_seconds": 300,
+          "owner_queries_max": 24,
+          "broker_round_trips_max": 48,
+          "target_execute_calls_max": 2,
+          "target_status_or_readback_calls_max": 6,
+          "retry_or_recovery_actions_max": 12,
+          "dynamic_disclosed_bytes_max": 65536,
+          "disclosure_sensitivity_points_max": 32,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "observed": {
+          "logical_deadline_minute": 0,
+          "wall_timeout_seconds": 0,
+          "owner_queries_max": 0,
+          "broker_round_trips_max": 0,
+          "target_execute_calls_max": 0,
+          "target_status_or_readback_calls_max": 0,
+          "retry_or_recovery_actions_max": 0,
+          "dynamic_disclosed_bytes_max": 0,
+          "disclosure_sensitivity_points_max": 0,
+          "evaluated_episode_reruns_max": 0,
+          "grader_feedback_reads_max": 0,
+          "private_truth_reads_max": 0,
+          "prior_arm_transcript_reads_max": 0
+        },
+        "meter_log": {
+          "bytes_utf8": "{\"events\":[],\"schema\":\"CE001_METER_LEDGER_V1\"}",
+          "byte_length": 46,
+          "sha256": "45ae5d862a870ffc5ef40ec3fba65c971c6d25f06eaf0f37e5244e535d5228b4"
+        },
+        "budget_overrides": {},
+        "component_budget_grants": [],
+        "single_total_budget": true,
+        "exhausted": false
+      },
+      "alias_assessment": {
+        "required": false,
+        "status": "NOT_APPLICABLE_DIRECT_ARM",
+        "behavior_trace_sha256": null,
+        "decision_provenance_sha256": null,
+        "aliases_treatment_id": null
+      },
+      "runtime_native_receipts_status": "NOT_AVAILABLE_COMPARISON_NOT_RUN"
+    }
+  ],
+  "randomization": {
+    "algorithm": "FISHER_YATES_SHA256_DRBG_V1",
+    "seed_commitment_sha256": "df03cf2d3f446a1f851080c745d4f7be52e2cfeeb945f440d535aa55964ae5f7",
+    "seed_reveal_status": "SEALED_NOT_REVEALED",
+    "ordered_run_ids": [
+      "run-dev-03",
+      "run-dev-01",
+      "run-dev-05",
+      "run-dev-02",
+      "run-dev-04"
+    ],
+    "order_commitment_sha256": "bed920a267f9c44a79e3a94d0efdb5ae069097d1e0836840cc54cfd723c9e0da",
+    "evaluator_private": true
+  },
+  "replication_and_ci": {
+    "replicates_per_world_treatment": 1,
+    "ci_method": "STRATIFIED_NONPARAMETRIC_BOOTSTRAP",
+    "ci_level": 0.95,
+    "ci_status": "NOT_COMPUTED_COMPARISON_NOT_RUN",
+    "fixed_stop_rule": "RUN_ALL_SEALED_REPLICATES_THEN_STOP",
+    "optional_stopping": false,
+    "repair_rule": "NEW_BATCH_AND_ALL_FAMILY_TREATMENTS"
+  },
+  "claim_boundary": {
+    "development_smoke_unscored": true,
+    "admission_is_not_execution": true,
+    "comparative_evidence": "NONE",
+    "winner_claim_allowed": false
+  }
+}

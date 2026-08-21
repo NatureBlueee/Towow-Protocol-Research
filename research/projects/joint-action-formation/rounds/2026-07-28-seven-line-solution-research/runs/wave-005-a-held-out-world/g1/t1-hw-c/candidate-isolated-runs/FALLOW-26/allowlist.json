@@ -1,0 +1,35 @@
+{
+  "task_id": "HWC-ISOLATED-FALLOW-26",
+  "party": "FALLOW-26",
+  "model_requested": "gpt-5.6-sol",
+  "files": [
+    {
+      "model_visible_name": "method-visible-README.md",
+      "source_path": "method-visible/README.md",
+      "sha256": "9bb872ba7e0f1ed0a612ee390c4b2a57c04cb91ad0fc5e94d6c9a11514e86b3f"
+    },
+    {
+      "model_visible_name": "submission_schema.json",
+      "source_path": "method-visible/submission_schema.json",
+      "sha256": "8a00aea7fbdbcc4d50994b57e6348617827aa6ead08ef478c9b4488c18bf2b4a"
+    },
+    {
+      "model_visible_name": "isolated_return_schema.json",
+      "source_path": "solver/isolated_return_schema.json",
+      "sha256": "0d21c9a66a3f1736a48d03e2efc2737544832e7558fd5cb7e7b73a3cdf68d5e0"
+    },
+    {
+      "model_visible_name": "local-packet.json",
+      "source_path": "delivery-packets/local/FALLOW-26.json",
+      "sha256": "b90abbe4227fd59e032fa6709a3f12d0d403194852fe9caa92aacfa845943fac"
+    }
+  ],
+  "forbidden": [
+    "controller_input.json",
+    "delivery-packets/controller-index.json",
+    "delivery-packets/coordinator.json",
+    "private/**",
+    "tests/**",
+    "other delivery-packets/local/*.json"
+  ]
+}

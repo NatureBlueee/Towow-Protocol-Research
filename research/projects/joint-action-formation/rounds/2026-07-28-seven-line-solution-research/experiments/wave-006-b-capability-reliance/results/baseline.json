@@ -1,0 +1,422 @@
+{
+  "claims": {
+    "all_strategies_received_same_visible_snapshot_per_row": true,
+    "business_effect_inferred_from_operation_success": false,
+    "steady_low_risk_allows_simplest_strategy_to_win": true,
+    "strategies_received_truth": false,
+    "synthetic_result_is_real_world_frequency": false
+  },
+  "epistemic_states_preserved": {
+    "DECLARATION": [
+      "ABSENT",
+      "REFUSE",
+      "UNKNOWN"
+    ],
+    "LATEST_PROBE": [
+      "ABSENT",
+      "REFUSE",
+      "UNKNOWN"
+    ],
+    "RECEIPT_HISTORY": [
+      "ABSENT",
+      "REFUSE",
+      "UNKNOWN"
+    ],
+    "SLA_RECOVERY": [
+      "ABSENT",
+      "REFUSE",
+      "UNKNOWN"
+    ]
+  },
+  "fixture_sha256": "a1c600613a585e771f9a4dd2acc213dc6ef6732d35a1fb2b7317b48827fbbf8c",
+  "operation": {
+    "anchor": "ANCHOR-W6",
+    "beneficiary": "BENEFICIARY-REVIEWER",
+    "evaluation_step": 7,
+    "offerer": "LAB-OFFER",
+    "operation_family": "sterile-route-simulation",
+    "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+    "purpose": "sterile-route-simulation",
+    "recipient": "SIM-RECIPIENT",
+    "retention": "PT7M",
+    "seeker": "LAB-SEEK",
+    "world_id": "W6-STERILE-ROUTE-WORLD"
+  },
+  "per_scenario": {
+    "anchor-fork": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -18.7
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.5
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -2.8
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -3.0
+        }
+      },
+      "winners": [
+        "LATEST_PROBE"
+      ]
+    },
+    "beneficiary-refusal": {
+      "risk": "MEDIUM",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -0.7
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -1.5
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -2.8
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -3.0
+        }
+      },
+      "winners": [
+        "DECLARATION"
+      ]
+    },
+    "delayed-ack": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -18.7
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.5
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -2.8
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -3.0
+        }
+      },
+      "winners": [
+        "LATEST_PROBE"
+      ]
+    },
+    "environment-drift-and-adapter-recovery": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 0.6
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 17.0
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -4.6
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 13.5
+        }
+      },
+      "winners": [
+        "LATEST_PROBE"
+      ]
+    },
+    "epistemic-states": {
+      "risk": "MEDIUM",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.8
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.8
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.8
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": -1.8
+        }
+      },
+      "winners": [
+        "DECLARATION",
+        "LATEST_PROBE",
+        "RECEIPT_HISTORY",
+        "SLA_RECOVERY"
+      ]
+    },
+    "partial-materialization-and-recovery": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 0.6
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 17.0
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -4.1
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 13.5
+        }
+      },
+      "winners": [
+        "LATEST_PROBE"
+      ]
+    },
+    "probe-success-then-revocation-recovery": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 58.5
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 1,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": 34.5
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 2,
+          "score_before_recovery_cost": 27.0
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 64.5
+        }
+      },
+      "winners": [
+        "SLA_RECOVERY"
+      ]
+    },
+    "replay-and-command-change": {
+      "risk": "HIGH",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 0.6
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -3.0
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -5.6
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 14.0
+        }
+      },
+      "winners": [
+        "SLA_RECOVERY"
+      ]
+    },
+    "schema-alias-versus-material-change": {
+      "risk": "MEDIUM",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 1,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 0.6
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -3.0
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 1,
+          "score_before_recovery_cost": -5.6
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 14.0
+        }
+      },
+      "winners": [
+        "SLA_RECOVERY"
+      ]
+    },
+    "steady-low-risk": {
+      "risk": "LOW",
+      "strategy_metrics": {
+        "DECLARATION": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 57.9
+        },
+        "LATEST_PROBE": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 55.5
+        },
+        "RECEIPT_HISTORY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 51.6
+        },
+        "SLA_RECOVERY": {
+          "false_reliance": 0,
+          "missed_opportunity": 0,
+          "score_before_recovery_cost": 51.0
+        }
+      },
+      "winners": [
+        "DECLARATION"
+      ]
+    }
+  },
+  "per_strategy": {
+    "DECLARATION": {
+      "accepted_task_value": 220.0,
+      "business_effect_accepted": 11,
+      "coordination_operations": 22.0,
+      "decision_count": 22,
+      "disclosure_units": 4.1000000000000005,
+      "evidence_cost": 15.1,
+      "false_action_loss": 126.0,
+      "false_reliance": 7,
+      "missed_opportunity": 0,
+      "net_task_value": 78.9,
+      "operation_success": 13,
+      "operation_success_without_business_effect": 2,
+      "recovery_cost": 0.0,
+      "recovery_time_steps": 0,
+      "relied_count": 19,
+      "verified_reliance_success": 12
+    },
+    "LATEST_PROBE": {
+      "accepted_task_value": 160.0,
+      "business_effect_accepted": 8,
+      "coordination_operations": 41.0,
+      "decision_count": 22,
+      "disclosure_units": 9.799999999999999,
+      "evidence_cost": 30.3,
+      "false_action_loss": 18.0,
+      "false_reliance": 1,
+      "missed_opportunity": 4,
+      "net_task_value": 109.7,
+      "operation_success": 8,
+      "operation_success_without_business_effect": 0,
+      "recovery_cost": 2.0,
+      "recovery_time_steps": 1,
+      "relied_count": 9,
+      "verified_reliance_success": 8
+    },
+    "RECEIPT_HISTORY": {
+      "accepted_task_value": 100.0,
+      "business_effect_accepted": 5,
+      "coordination_operations": 72.0,
+      "decision_count": 22,
+      "disclosure_units": 15.500000000000004,
+      "evidence_cost": 51.5,
+      "false_action_loss": 0.0,
+      "false_reliance": 0,
+      "missed_opportunity": 7,
+      "net_task_value": 34.5,
+      "operation_success": 5,
+      "operation_success_without_business_effect": 0,
+      "recovery_cost": 14.0,
+      "recovery_time_steps": 7,
+      "relied_count": 5,
+      "verified_reliance_success": 5
+    },
+    "SLA_RECOVERY": {
+      "accepted_task_value": 220.0,
+      "business_effect_accepted": 11,
+      "coordination_operations": 82.0,
+      "decision_count": 22,
+      "disclosure_units": 19.300000000000004,
+      "evidence_cost": 60.3,
+      "false_action_loss": 0.0,
+      "false_reliance": 0,
+      "missed_opportunity": 0,
+      "net_task_value": 159.7,
+      "operation_success": 12,
+      "operation_success_without_business_effect": 1,
+      "recovery_cost": 0.0,
+      "recovery_time_steps": 0,
+      "relied_count": 12,
+      "verified_reliance_success": 12
+    }
+  },
+  "ranking_by_net_task_value": [
+    "SLA_RECOVERY",
+    "LATEST_PROBE",
+    "DECLARATION",
+    "RECEIPT_HISTORY"
+  ],
+  "schema_version": "1.0",
+  "scope_distinctions": {
+    "business_effect": "Beneficiary separately accepts the exact frozen output.",
+    "capability": "Evidence supports ability for the exact operation under bound key and environment, not all future operations.",
+    "operation_success": "Frozen simulator reaches domain postcondition within the operation deadline.",
+    "reliance": "Principal has a calibrated basis to assign this exact operation at this decision point."
+  },
+  "shared_task": {
+    "source": "../../WAVE-006-SHARED-TASK.md",
+    "source_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001"
+  }
+}

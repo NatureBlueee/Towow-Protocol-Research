@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "kind": "PRIVATE_G6_GRADER_ORACLE",
+  "visibility": "NEVER_METHOD_VISIBLE",
+  "worlds": {
+    "P1-A": {"raw_effect": false, "authority_valid": true, "counts_toward_q": false, "recovery_required": false, "causal_attribution": "NO_EFFECT", "control_action": "OBSERVE"},
+    "P1-B": {"raw_effect": true, "authority_valid": false, "counts_toward_q": false, "recovery_required": true, "causal_attribution": "EXACT_ATTEMPT", "control_action": "RECOVER_AND_BLOCK"},
+    "P2-A": {"raw_effect": true, "authority_valid": true, "counts_toward_q": false, "recovery_required": false, "causal_attribution": "PREEXISTING_OR_OTHER", "control_action": "OBSERVE"},
+    "P2-B": {"raw_effect": true, "authority_valid": true, "counts_toward_q": true, "recovery_required": false, "causal_attribution": "EXACT_ATTEMPT", "control_action": "OBSERVE"},
+    "P3-A": {"raw_effect": true, "authority_valid": true, "counts_toward_q": true, "recovery_required": false, "causal_attribution": "EXACT_ATTEMPT", "control_action": "OBSERVE"},
+    "P3-B": {"raw_effect": true, "authority_valid": true, "counts_toward_q": false, "recovery_required": true, "causal_attribution": "EXACT_ATTEMPT_WRONG_TARGET", "control_action": "RECOVER_AND_BLOCK"},
+    "P4-A": {"raw_effect": true, "authority_valid": true, "counts_toward_q": true, "recovery_required": false, "read_fresh": true, "control_action": "OBSERVE"},
+    "P4-B": {"raw_effect": true, "authority_valid": true, "counts_toward_q": false, "recovery_required": true, "read_fresh": false, "control_action": "RECOVER_AND_BLOCK"},
+    "P5-A": {"raw_effect": true, "counts_toward_q": true, "adoption": false, "control_action": "OBSERVE"},
+    "P5-B": {"raw_effect": true, "counts_toward_q": true, "adoption": true, "control_action": "OBSERVE"},
+    "P6-A": {"raw_acceptance_act": true, "acceptance_exact_object": true, "qualified_acceptance_count": 1},
+    "P6-B": {"raw_acceptance_act": true, "acceptance_exact_object": false, "qualified_acceptance_count": 0},
+    "P7-A": {"raw_acceptance_act": true, "acceptance_conflict": false},
+    "P7-B": {"raw_acceptance_act": true, "acceptance_conflict": true, "control_action": "BLOCK_DISPUTED"},
+    "P8-A": {"settlement_status": "PROVIDER_SETTLED_ONLY"},
+    "P8-B": {"settlement_status": "PAID_OUT_REVERSIBLE"},
+    "P9-A": {"settlement_status": "FINAL"},
+    "P9-B": {"settlement_status": "REVERSAL_OPEN"},
+    "P10-A": {"raw_effect": false, "control_action": "RETRY_SAFE", "duplicate_effect_forbidden": true},
+    "P10-B": {"raw_effect": true, "control_action": "READBACK_NO_RETRY", "duplicate_effect_forbidden": true},
+    "P11-A": {"consistent_cut": true, "control_action": "OBSERVE"},
+    "P11-B": {"consistent_cut": false, "counts_toward_q": false, "control_action": "BOUNDED_UNKNOWN"},
+    "P12-A": {"authority_form": "INDEPENDENT_OWNERS", "lawful": true},
+    "P12-B": {
+      "authority_form": "DELEGATED_CENTER",
+      "strata": {
+        "S1": {"lawful": true},
+        "S2": {"lawful": false},
+        "S3": {"lawful": true}
+      }
+    }
+  },
+  "pair_requirements": {
+    "P1": ["preserve unauthorized real Effect", "never count it toward Q", "require recovery"],
+    "P2": ["separate current postcondition from transition", "separate causal attribution"],
+    "P3": ["bind exact target", "recover wrong-target damage"],
+    "P4": ["signed does not imply fresh"],
+    "P5": ["Effect does not imply Adoption"],
+    "P6": ["Acceptance binds exact object and version"],
+    "P7": ["preserve multi-owner disagreement"],
+    "P8": ["provider settlement does not imply beneficiary payout"],
+    "P9": ["payout does not imply finality while reversal is open"],
+    "P10": ["timeout before commit may retry", "timeout after Effect must read back and not duplicate"],
+    "P11": ["green heads require a consistent cut"],
+    "P12": ["independent owners are valid", "lawfully delegated center is a positive solution in its stratum"]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "accepted_claim": "Under the frozen local digital world, the mature composition distinguishes ACK-lost committed from ACK-lost not-committed and selects no-replay versus freshness-gated safe retry.",
+  "artifact_freeze_sha256": "3059bdc91c09bd1e71a5f6827453bbc157290f45967bdffa7f589e6e856b2abe",
+  "checks": {
+    "actual_spawn_startup_view_bytes_equal": true,
+    "first_difference_exact_target_status": true,
+    "ledger_receipt_readback_hmac_and_sqlite_binding_valid": true,
+    "pre_readback_prefix_raw_equal": true,
+    "standalone_delete_journal_sqlite_truth_bound": true,
+    "target_endpoint_keys_bound_and_signatures_valid": true,
+    "world_a_exact_target_mutation_count": 1,
+    "world_a_existing_commit_no_replay": true,
+    "world_b_decoy_backed_by_real_historical_commit": true,
+    "world_b_exact_target_mutation_count": 1,
+    "world_b_signed_negative_then_freshness_then_retry": true
+  },
+  "decision_source": "RAW_ARM_AND_BROKER_ARTIFACTS_PLUS_ED25519_PLUS_SQLITE; PAIR_RUNTIME_EVALUATION_NOT_TRUSTED",
+  "evaluator_version": "WAVE016_ROOT_EVALUATOR_V1",
+  "not_proved": [
+    "physical electrical Effect or 46 physical samples",
+    "legal Authority or independent Principal identity",
+    "external PKI binding of the evaluator-private endpoint key",
+    "resistance to a malicious same-user artifact rewriter",
+    "production reliability or cross-domain generality",
+    "relation formation, protocol-wide validity, or formal promotion"
+  ],
+  "run_id": "run-5e3bb50c02a545ed8594c982b5f54c90",
+  "schema": "WAVE016_ROOT_INDEPENDENT_ACCEPTANCE_V1",
+  "status": "ACCEPTED_SCOPED_LOCAL_DIGITAL_E3_PAIR",
+  "worlds": {
+    "world-a": {
+      "disposition": "RECOVERED_EXISTING_EFFECT_NO_REPLAY",
+      "historical_decoy_snapshot_sha256": null,
+      "retry_performed": false,
+      "target_final_head": "fce0142285fd452434955eab7fa71a066e7ad9cae2fe4cbae067c6271845713f",
+      "target_ledger_snapshot_sha256": "c16bd4e480b2ecc5b0e073a7332b49d4b28aec6a22a9505b661804449c635f96",
+      "target_mutation_count": 1,
+      "target_public_key_hex": "0be04c08278b6191e9271e19a37245df43fa2664eb9a5c538dbf5b8c009b6867",
+      "world_slot": "world-a"
+    },
+    "world-b": {
+      "disposition": "RECOVERED_NO_EFFECT_SAFE_RETRY",
+      "historical_decoy_snapshot_sha256": "9974683d6bb88dfe4465ad8c36e78bce69eb9326edda9e74480efcba9dd76d5f",
+      "retry_performed": true,
+      "target_final_head": "eda31d2c7d03626d96a8e747a704bf2547ff5293efa1e288f37b81c008648c50",
+      "target_ledger_snapshot_sha256": "0f4531ae048b172b8c675e1e5b50a51eae2868af1e63e410599c5d74d814d0e7",
+      "target_mutation_count": 1,
+      "target_public_key_hex": "cd6154c32f02d44e4fbeeb8b842f2e17304f9c1b1cd8e0394a4303d1672a747f",
+      "world_slot": "world-b"
+    }
+  }
+}

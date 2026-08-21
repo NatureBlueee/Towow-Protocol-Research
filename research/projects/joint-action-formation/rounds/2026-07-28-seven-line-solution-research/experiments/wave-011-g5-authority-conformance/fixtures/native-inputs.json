@@ -1,0 +1,138 @@
+{
+  "schema": "mcb-g5-v2.native-inputs.v1",
+  "mapping_version": "task-mapping-estuary-v1",
+  "cases": [
+    {
+      "case_id": "native-permit-fresh",
+      "request": {
+        "principal": "calibration-agent",
+        "action": "reserve",
+        "resource": "delta-field-slot",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "PERMIT",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "FRESH",
+      "resolvable_by": null
+    },
+    {
+      "case_id": "native-explicit-forbid",
+      "request": {
+        "principal": "controller",
+        "action": "sign",
+        "resource": "non-delegable-contract",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "FORBID",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "FRESH",
+      "resolvable_by": null
+    },
+    {
+      "case_id": "native-not-applicable",
+      "request": {
+        "principal": "unknown-role",
+        "action": "reserve",
+        "resource": "delta-field-slot",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "NOT_APPLICABLE",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "FRESH",
+      "resolvable_by": "policy-owner"
+    },
+    {
+      "case_id": "native-missing-attribute",
+      "request": {
+        "principal": "calibration-agent",
+        "action": "reserve",
+        "resource": "delta-field-slot",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "PERMIT",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "FRESH",
+      "resolvable_by": "mandate-owner"
+    },
+    {
+      "case_id": "native-stale-permit",
+      "request": {
+        "principal": "calibration-agent",
+        "action": "reserve",
+        "resource": "delta-field-slot",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v6",
+        "effect": "PERMIT",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "STALE",
+      "resolvable_by": "policy-head-service"
+    },
+    {
+      "case_id": "native-pending-approval",
+      "request": {
+        "principal": "calibration-agent",
+        "action": "commit",
+        "resource": "bid-v2",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "PENDING_EXTERNAL_APPROVAL",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "FRESH",
+      "resolvable_by": "human-approval-board"
+    },
+    {
+      "case_id": "native-engine-error",
+      "request": {
+        "principal": "calibration-agent",
+        "action": "reserve",
+        "resource": "delta-field-slot",
+        "attributes": {
+          "purpose": "EMERGENCY_CALIBRATION",
+          "mandate": "ACTIVE"
+        }
+      },
+      "policy": {
+        "version": "policy-v7",
+        "effect": "ENGINE_ERROR",
+        "requires": ["purpose", "mandate"]
+      },
+      "source_freshness": "UNKNOWN",
+      "resolvable_by": "engine-operator"
+    }
+  ]
+}

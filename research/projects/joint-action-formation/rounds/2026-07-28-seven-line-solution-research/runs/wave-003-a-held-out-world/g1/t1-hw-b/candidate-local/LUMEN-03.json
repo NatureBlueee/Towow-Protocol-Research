@@ -1,0 +1,60 @@
+{
+  "receipt_version": "1.0",
+  "receipt_type": "LOCAL_HOLDER_RECEIPT",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "recipient": "LUMEN-03",
+  "delivery_scope": "LOCAL_ONLY:LUMEN-03",
+  "packet_hash": {
+    "algorithm": "sha256",
+    "value": "ad932ea9e148c271758209e3898ce72bdc9fcd9e77bb3c01448449e23da7797f"
+  },
+  "authorized_projections": [],
+  "authorized_updates": [],
+  "authorized_refusals": [
+    {
+      "refusal_id": "LUMEN-03-REFUSE-UNSUPPORTED-INFERENCE",
+      "action": "REFUSE",
+      "scope": [
+        "OTHER_PARTY_STATE",
+        "JOINT_ACTION_OPPORTUNITY",
+        "COMMITMENT",
+        "AUTHORITY",
+        "EXECUTION"
+      ],
+      "reason": "The method-visible local packet establishes only response unavailability inside the frozen evaluation window.",
+      "evidence_refs": [
+        "packet:delivery-packets/local/LUMEN-03.json#/execution_contract/must_not_infer_other_party_state",
+        "packet:delivery-packets/local/LUMEN-03.json#/local_view/observations/0"
+      ]
+    }
+  ],
+  "authorized_probe_offers": [],
+  "claim_observations": [
+    {
+      "claim_key": "response_available_in_frozen_evaluation_window",
+      "subject": "LUMEN-03",
+      "state": "ABSENT",
+      "scope": "RESPONSE_AVAILABILITY_IN_FROZEN_EVALUATION_WINDOW_ONLY",
+      "observation": "No response is available inside the frozen evaluation window.",
+      "evidence_refs": [
+        "local-fact:HWB-LUMEN-WINDOW-STATE",
+        "witness:W-HWB-NO-RESPONSE"
+      ]
+    }
+  ],
+  "evidence_refs": [
+    {
+      "ref": "packet-sha256:ad932ea9e148c271758209e3898ce72bdc9fcd9e77bb3c01448449e23da7797f",
+      "kind": "PACKET_HASH"
+    },
+    {
+      "ref": "local-fact:HWB-LUMEN-WINDOW-STATE",
+      "kind": "LOCAL_FACT"
+    },
+    {
+      "ref": "witness:W-HWB-NO-RESPONSE",
+      "kind": "PERMITTED_WITNESS"
+    }
+  ]
+}

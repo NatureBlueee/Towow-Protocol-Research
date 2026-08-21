@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "kind": "HOLDER_RECEIPT",
+  "world_id": "T1-HW-20260728-B",
+  "evaluation_step": 2,
+  "packet_sha256": "638b05a8e200a0f60e005d9abd3c567f1dd5760879cc3bf1ece989c288019ae3",
+  "recipient": "DELTA-09",
+  "delivery_scope": "LOCAL_ONLY:DELTA-09",
+  "authorized_projections": [
+    {
+      "holder": "DELTA-09",
+      "version": 5,
+      "step": 2,
+      "direction": "SEEK",
+      "compatibility_key": "enzyme-lot-qc@5",
+      "scope": "TASK_RELATIVE",
+      "evidence_refs": [
+        "packet:sha256:638b05a8e200a0f60e005d9abd3c567f1dd5760879cc3bf1ece989c288019ae3",
+        "W-HWB-MOBILE-VERSION-FLIP"
+      ]
+    }
+  ],
+  "authorized_updates": [
+    {
+      "party": "DELTA-09",
+      "from_version": 4,
+      "to_version": 5,
+      "step": 2,
+      "invalidates_public_signature": "SIG-HWB-MOBILE-OFFER-V4",
+      "evidence_refs": [
+        "packet:sha256:638b05a8e200a0f60e005d9abd3c567f1dd5760879cc3bf1ece989c288019ae3",
+        "W-HWB-MOBILE-VERSION-FLIP"
+      ]
+    }
+  ],
+  "refusals": [
+    {
+      "request": "RAW_OR_FULL_LOCAL_STATE",
+      "status": "REFUSE",
+      "evidence_refs": [
+        "packet:sha256:638b05a8e200a0f60e005d9abd3c567f1dd5760879cc3bf1ece989c288019ae3"
+      ]
+    },
+    {
+      "request": "INFER_OTHER_PARTY_STATE_COMMITMENT_OR_AUTHORITY",
+      "status": "REFUSE",
+      "evidence_refs": [
+        "packet:sha256:638b05a8e200a0f60e005d9abd3c567f1dd5760879cc3bf1ece989c288019ae3"
+      ]
+    }
+  ],
+  "probe_offers": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "towow.effect-reopen-cases.v1",
+  "shared_event_sequence": [
+    "E0_DECLARED",
+    "E1_PROBED",
+    "E2_DELIVERED",
+    "E3_ACKED",
+    "E4_DOMAIN_POSTCONDITION",
+    "E5_ACCEPTED",
+    "E6_REUSE_REQUEST",
+    "E7_DRIFT",
+    "E8_WITHDRAW_OR_RECOVER"
+  ],
+  "cases": [
+    {"id": "exact_replay", "material_change": false, "best_strategy": "IMMUTABLE_REPLAY"},
+    {"id": "contract_change", "material_change": true, "best_strategy": "REAUTHORIZE"},
+    {"id": "key_rotation", "material_change": true, "best_strategy": "REAUTHORIZE"},
+    {"id": "recipient_withdrawal", "material_change": true, "best_strategy": "REAUTHORIZE"},
+    {"id": "anchor_fork", "material_change": true, "best_strategy": "REAUTHORIZE"},
+    {"id": "schema_alias", "material_change": false, "best_strategy": "MIGRATION_ADAPTER"},
+    {"id": "partial_recovery", "material_change": false, "best_strategy": "IMMUTABLE_REPLAY"},
+    {"id": "delayed_ack", "material_change": false, "best_strategy": "IMMUTABLE_REPLAY"},
+    {"id": "single_side_partial", "material_change": false, "best_strategy": "REAUTHORIZE"},
+    {"id": "holder_revocation", "material_change": true, "best_strategy": "SAFE_REJECTION"},
+    {"id": "beneficiary_refusal", "material_change": false, "best_strategy": "SAFE_REJECTION"},
+    {"id": "material_semantic_change", "material_change": true, "best_strategy": "REAUTHORIZE"}
+  ],
+  "terminal_states_preserved": ["UNKNOWN", "REFUSE", "ABSENT"]
+}

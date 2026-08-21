@@ -1,0 +1,29 @@
+{
+  "schema": "towow.effect-ladder-spec.v1",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "world_id": "W6-STERILE-ROUTE-WORLD",
+  "evaluation_step": 7,
+  "operation": "RUN-STERILE-ROUTE-SIM-v1",
+  "purpose": "sterile-route-simulation",
+  "retention": "PT7M",
+  "frozen_truth": {
+    "route_status": "STERILE_ROUTE_FEASIBLE",
+    "window": "E2-E5",
+    "capacity_units": 2
+  },
+  "levels": [
+    {"level": 0, "name": "ATTEMPT", "independent_requirement": "controller signed attempt"},
+    {"level": 1, "name": "DELIVERY", "independent_requirement": "controller delivery plus external anchor"},
+    {"level": 2, "name": "RECIPIENT_ACK", "independent_requirement": "recipient signed exact readback"},
+    {"level": 3, "name": "DOMAIN_POSTCONDITION", "independent_requirement": "deterministic simulator signed frozen output"},
+    {"level": 4, "name": "BENEFICIARY_ACCEPTANCE", "independent_requirement": "beneficiary signed exact output acceptance"}
+  ],
+  "protected_denominator": [
+    "operation",
+    "frozen truth",
+    "holder permissions",
+    "recipient permissions",
+    "beneficiary refusal right"
+  ]
+}

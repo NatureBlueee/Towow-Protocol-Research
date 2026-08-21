@@ -1,0 +1,44 @@
+{
+  "schema": "towow.relation-materiality-strategies.v1",
+  "invariant": "Only relation representation changes; operation, truth, authority, task and event stream are shared.",
+  "strategies": [
+    {
+      "strategy_id": "A_DELIVERY_RECEIPT_ONLY",
+      "relation_evidence": [
+        "CONTROLLER_DELIVERY_RECEIPT"
+      ],
+      "relation_rule": "NEVER_CONSTITUTE_CONTINUITY_FROM_ONE_TASK_DELIVERY",
+      "extra_disclosure_units": 0,
+      "fixed_coordination_operations": 2
+    },
+    {
+      "strategy_id": "B_DUAL_RECIPIENT_ACK",
+      "relation_evidence": [
+        "RECIPIENT_ACK_LAB_SEEK",
+        "RECIPIENT_ACK_LAB_OFFER"
+      ],
+      "relation_rule": "ACK_PROVES_TASK_RECEIPT_NOT_CONTINUING_RELATION",
+      "extra_disclosure_units": 0,
+      "fixed_coordination_operations": 4
+    },
+    {
+      "strategy_id": "C_ACK_EXPLAINBACK_RELATION_PROPOSAL",
+      "relation_evidence": [
+        "RECIPIENT_ACK_LAB_SEEK",
+        "RECIPIENT_ACK_LAB_OFFER",
+        "EXPLAIN_BACK_LAB_SEEK",
+        "EXPLAIN_BACK_LAB_OFFER",
+        "VERSION_BOUND_RELATION_PROPOSAL"
+      ],
+      "relation_rule": "PROPOSAL_REMAINS_NON_ACTIVE_WHEN_EXPLAIN_BACK_SAYS_ONE_OPERATION_ONLY",
+      "extra_disclosure_units": 2,
+      "fixed_coordination_operations": 9
+    }
+  ],
+  "attack_strategy": {
+    "strategy_id": "ATTACK_ONE_SHOT_AS_CONTINUING_RELATION",
+    "based_on": "A_DELIVERY_RECEIPT_ONLY",
+    "relation_rule": "CONSTITUTE_ACTIVE_RELATION_FROM_DELIVERY",
+    "expected_to_fail": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "interface_contract_version": "x1-method-neutral-interface-v0",
+  "status": "METHOD_NEUTRAL_CANDIDATE_NOT_RUN",
+  "common_rules": {
+    "all_requests_bind": [
+      "episode_id",
+      "intent_id",
+      "purpose",
+      "recipient",
+      "request_version",
+      "current_head"
+    ],
+    "all_responses_bind": [
+      "request_hash",
+      "owner_key_id",
+      "response_version",
+      "current_head",
+      "status",
+      "payload_hash",
+      "expiry"
+    ],
+    "no_response_field_may_contain": [
+      "private evaluator coordinate",
+      "private truth label",
+      "scoring expectation",
+      "other_arm_output"
+    ]
+  },
+  "endpoints": {
+    "current-directory-query": {
+      "request": [
+        "role_constraints",
+        "purpose",
+        "recipient"
+      ],
+      "response_status": [
+        "MATCH",
+        "NO_MATCH_CURRENT",
+        "STALE",
+        "DENIED",
+        "UNAVAILABLE"
+      ],
+      "result_semantics": "A current MATCH returns a candidate projection, not commitment, relation, authority, or absence proof."
+    },
+    "purpose-bound-local-projection": {
+      "request": [
+        "role_constraints",
+        "purpose",
+        "recipient",
+        "retention"
+      ],
+      "response_status": [
+        "AVAILABLE",
+        "NO_MATCH_WITHIN_LOCAL_BOUND",
+        "REJECT",
+        "DEFER",
+        "DENIED",
+        "UNAVAILABLE"
+      ],
+      "result_semantics": "An AVAILABLE response returns the same semantic candidate projection under its owner policy."
+    },
+    "reciprocal-probe": {
+      "response_status": [
+        "QUALIFIED_HANDOFF",
+        "REJECT",
+        "DEFER",
+        "UNKNOWN",
+        "EXPIRED"
+      ]
+    },
+    "relation-version-propose-counter-explain-stance": {
+      "response_status": [
+        "PROPOSAL",
+        "COUNTER",
+        "EXPLAINED",
+        "STANCE_RECORDED",
+        "REJECT",
+        "DEFER",
+        "STALE_VERSION"
+      ]
+    },
+    "current-authority-readback": {
+      "response_status": [
+        "CURRENT",
+        "MISSING",
+        "REVOKED",
+        "EXPIRED",
+        "STALE_VERSION",
+        "CHALLENGED",
+        "UNAVAILABLE"
+      ]
+    },
+    "transactional-reservation": {
+      "response_status": [
+        "HELD",
+        "CONFLICT",
+        "EXPIRED",
+        "REVOKED",
+        "UNAVAILABLE"
+      ],
+      "atomicity_requirement": "compare-and-set within the frozen local uniqueness domain"
+    }
+  }
+}

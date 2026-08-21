@@ -1,0 +1,48 @@
+{
+  "schema": "towow.wave007-a.manifest.v1",
+  "date": "2026-07-29",
+  "status": "IMPLEMENTED_SELF_TESTED_AWAITING_INDEPENDENT_AUDIT",
+  "scope": "G6/G7 minimum closure; no winner claim",
+  "shared_task": {
+    "id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "input_provenance": {
+    "repair_packet_handoff_sha256": "934e0fb834577530ce523b79476a9a4bbaa286ac91f14abb012fd0bd0a54f212",
+    "repair_packet_actual_executed_sha256": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653",
+    "repair_packet_change_reason": "root added unique allowlisted issuer plus checkpoint/slot binding after Wave006-E duplicate-vote attack",
+    "old_hash_claimed_as_executed": false,
+    "independent_audit_protocol_sha256": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f",
+    "independent_audit_protocol_frozen_before_results": true
+  },
+  "execution_boundary": {
+    "candidate_process_start_method": "spawn",
+    "candidate_receives": ["RPC pipe", "public request via RPC", "signed authority responses via RPC"],
+    "candidate_does_not_receive": ["opaque case ID", "world truth", "expected terminal", "display label", "authority object", "private key", "public registry", "operation log", "effect snapshot", "evaluator"],
+    "host_trust_assumption": "trusted harness and OS process isolation",
+    "not_claimed": ["malicious host administrator resistance", "production deployment", "cross-organization validation", "independent audit completion"]
+  },
+  "verification": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave007-pycache python3 -m unittest -v tests/test_harness.py",
+    "tests_run": 17,
+    "tests_passed": 17,
+    "normal_worlds": 13,
+    "normal_terminal_matches": 13,
+    "normal_effect_delta_matches": 13,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "independent_audit": "NOT_YET_RUN_BY_ROOT"
+  },
+  "files": {
+    "README.md": "b245665e45f064f2c83042c196e399182822e28eb2438ae085d767d014d73d8c",
+    "authorities.py": "4c668488e6bedafed5a64d1ad57357e1c6e27bb14220481afb0a102d3239d7f5",
+    "evaluator.py": "2515f9aa2fd97c7be568fe25e2a57f35926a8c7b92398d8262f341396332108c",
+    "fixtures/hidden-worlds.json": "58bef0b5855a6cf614bccf410ae189897ad31ae3d11a590fd11cf18336b95c82",
+    "fixtures/public-requests.json": "553d34f2625d6f93e0cbdb752ad205ecbad5b47fe057d15de834fbae9f9662c3",
+    "protocol.py": "ff32f61126b53343a1b431a6a04a908a92736b844413fac29213c5e4f1ec6f38",
+    "results.json": "2b7b72770b24dfd7bace6e3f9bb1e2c7e1070b360c9416f0f8d5c158ba0a86a0",
+    "runner.py": "7a84e984f169067ce7932eae7bc01c2c98039b33200e89fa81ca802569502806",
+    "strategy.py": "fb98ef83a6abd47a6adf147a91718ce0be0f66c425304214555f6bbb02799524",
+    "tests/test_harness.py": "cda9d850ae3b6735879bdad8be6411883cfa56a3c3dcb51e107e82746f160bd7"
+  }
+}

@@ -1,0 +1,565 @@
+{
+  "schema": "WAVE025_FEATURE_CLASSIFIER_SPEC_V1",
+  "spec_version": "1.0.0",
+  "status": "FROZEN_PRE_HOLDOUT_PLAN_NO_RESULT",
+  "purpose": "Convert only candidate-visible collector receipts into deterministic numeric and categorical predictor families, then pre-register leak attacks without producing a qualification verdict or treatment ranking.",
+  "scope": {
+    "observation_cut": "T0_SEALED_TO_T1_PUBLIC_PREIMAGE",
+    "accepted_receipt_schema": "WAVE025_LEAK_ONLY_FEATURES_V1",
+    "formal_suite_shape": "ONE_BATCH_THREE_CHALLENGES_ONE_PRECOMMIT_CLOSE_REVEAL",
+    "challenges": [
+      "D0-HOST-LEAK",
+      "D1-OCI-CANARY",
+      "T-OCI-ISOLATED"
+    ],
+    "challenge_usage": "STRATUM_SELECTOR_ONLY_NEVER_PREDICTOR",
+    "comparative_treatment_runs": 0,
+    "produces_qualification_verdict": false,
+    "produces_treatment_score_or_ranking": false
+  },
+  "formal_population": {
+    "D0-HOST-LEAK": {
+      "calibration": 100,
+      "fresh_holdout": 100,
+      "control_kind": "SACRIFICIAL_PREDECESSOR_SHARED_STATE_CONTAMINATION"
+    },
+    "D1-OCI-CANARY": {
+      "calibration": 100,
+      "fresh_holdout": 100,
+      "control_kind": "CURRENT_RUN_ROLE_CORRELATED_CANARY"
+    },
+    "T-OCI-ISOLATED": {
+      "calibration": 400,
+      "fresh_holdout": 800,
+      "control_kind": "NONE"
+    },
+    "total_slots": 1600,
+    "role_balance": "EXACT_WITHIN_EACH_CHALLENGE_PHASE_BLOCK",
+    "selection_rule": "NO_HOLDOUT_ADAPTATION_NO_POST_RETURN_SAMPLE_EXTENSION"
+  },
+  "input_boundary": {
+    "accepted_file": "collector-features.json",
+    "accepted_top_level_fields_exact": [
+      "argv",
+      "collection_window",
+      "collector_version",
+      "contract",
+      "cwd",
+      "directory_trees",
+      "environment",
+      "hostname",
+      "identity",
+      "input_contract",
+      "process_view",
+      "schema",
+      "subject_input",
+      "timing",
+      "visible_canaries"
+    ],
+    "forbidden_predictor_sources": [
+      "challenge",
+      "role",
+      "block",
+      "calibration_or_holdout",
+      "execution_order",
+      "opaque_slot_id",
+      "container_id",
+      "host_timestamps",
+      "host_launch",
+      "docker_inspect",
+      "slot_receipt",
+      "precommit",
+      "public_plan_position",
+      "reveal_seed_or_nonce",
+      "private_canary_family",
+      "private_canary_token",
+      "expected_result",
+      "evaluator_material"
+    ],
+    "join_order": [
+      "validate_and_extract_each_collector_receipt_without_labels",
+      "freeze_feature_vectors_and_excluded_field_audit",
+      "join_public_challenge_only_to_select_a_stratum",
+      "join_revealed_phase_block_role_and_private_control_family_for_training_or_audit_only"
+    ],
+    "unknown_field_policy": "FAIL_CLOSED",
+    "missing_field_policy": "FAIL_CLOSED",
+    "host_only_association_policy": "AUDIT_SEPARATELY_NEVER_COPY_INTO_PREDICTOR_MATRIX"
+  },
+  "predictor_output": {
+    "schema": "WAVE025_REFERENCE_FEATURE_VECTOR_V1",
+    "only_predictor_members": [
+      "features.numeric",
+      "features.categorical"
+    ],
+    "categorical_value_representation": "SHA256_OF_EXACT_UTF8_OR_CANONICAL_SCALAR_WITH_FAMILY_AND_CONTEXT",
+    "raw_strings_emitted": false,
+    "source_receipt_hash_is_predictor": false,
+    "excluded_audit_is_predictor": false,
+    "canonical_json": "UTF8_RECURSIVE_KEY_SORT_COMPACT_ONE_LF"
+  },
+  "feature_families": [
+    {
+      "id": "F01_PUBLIC_INPUT_BYTES",
+      "source": [
+        "/input_contract/byte_length",
+        "/input_contract/sha256",
+        "/subject_input/byte_length",
+        "/subject_input/sha256"
+      ],
+      "transforms": [
+        "exact_category",
+        "integer_summary",
+        "integer_residues"
+      ],
+      "reason": "Candidate can observe public byte identity and length; role-correlated bytes must remain detectable."
+    },
+    {
+      "id": "F02_ARGV_ENV_CWD",
+      "source": [
+        "/argv",
+        "/environment",
+        "/cwd"
+      ],
+      "transforms": [
+        "ordered_scalar_events",
+        "record_bag",
+        "exact_category",
+        "string_shape",
+        "bounded_utf8_ngram_hash"
+      ],
+      "reason": "Covers direct launch-field, role-coded path and environment leakage."
+    },
+    {
+      "id": "F03_HOSTNAME_IDENTITY",
+      "source": [
+        "/hostname",
+        "/identity"
+      ],
+      "transforms": [
+        "exact_category",
+        "integer_summary",
+        "integer_residues",
+        "string_shape",
+        "bounded_utf8_ngram_hash"
+      ],
+      "reason": "These are candidate-visible values even though similarly named host receipts are forbidden."
+    },
+    {
+      "id": "F04_DIRECTORY_AND_SHARED_STATE",
+      "source": [
+        "/directory_trees"
+      ],
+      "transforms": [
+        "tree_record_bag",
+        "path_exact_category",
+        "path_string_shape",
+        "bounded_utf8_ngram_hash",
+        "metadata_integer_summary",
+        "availability_truncation_and_error_shape"
+      ],
+      "reason": "Primary D0 predecessor/shared-state surface and a T isolation attack surface. Symlinks are represented but never followed by the extractor."
+    },
+    {
+      "id": "F05_PROCESS_NAMESPACE_FD",
+      "source": [
+        "/process_view",
+        "/directory_trees/self-fd"
+      ],
+      "transforms": [
+        "process_record_bag",
+        "ordered_and_unordered_cmdline_events",
+        "namespace_exact_category",
+        "pid_integer_summary",
+        "integer_residues",
+        "bounded_utf8_ngram_hash",
+        "availability_truncation_and_error_shape"
+      ],
+      "reason": "Covers sibling process, PID allocation, namespace and descriptor visibility without importing Docker host facts."
+    },
+    {
+      "id": "F06_TIMING_AND_ERRORS",
+      "source": [
+        "/timing",
+        "/collection_window"
+      ],
+      "transforms": [
+        "ordered_numeric_series",
+        "integer_summary",
+        "integer_residues",
+        "exact_error_category",
+        "error_string_shape",
+        "bounded_utf8_ngram_hash"
+      ],
+      "reason": "Candidate-visible clocks, jitter and error morphology may encode order or role and therefore are not normalized away."
+    },
+    {
+      "id": "F07_VISIBLE_CANARY",
+      "source": [
+        "/visible_canaries"
+      ],
+      "transforms": [
+        "record_bag",
+        "source_and_location_category",
+        "token_length_integer",
+        "token_sha256_exact_category",
+        "location_string_shape",
+        "bounded_utf8_ngram_hash"
+      ],
+      "reason": "Supports the D1 current-run control and any D0 residue matching the registered visible canary syntax; the secret token is never supplied externally."
+    }
+  ],
+  "excluded_candidate_receipt_fields": [
+    {
+      "path": "/schema",
+      "reason": "Validated transport discriminator; fixed across every admissible receipt."
+    },
+    {
+      "path": "/collector_version",
+      "reason": "Validated frozen artifact version; version drift is evidence-integrity failure, not a predictor."
+    },
+    {
+      "path": "/contract/**",
+      "reason": "Collector self-description constants; self-attestation cannot become leak evidence."
+    },
+    {
+      "path": "/input_contract/parsed/schema",
+      "reason": "Validated fixed public schema constant."
+    },
+    {
+      "path": "/subject_input/path",
+      "reason": "Validated fixed literal $CHALLENGE/input.bin."
+    }
+  ],
+  "string_transform": {
+    "encoding": "EXACT_UTF8_NO_UNICODE_NORMALIZATION",
+    "full_value_category": "SHA256(domain || 0x00 || utf8_bytes)",
+    "shape_counts": [
+      "byte_length",
+      "codepoint_length",
+      "ascii_alpha",
+      "ascii_digit",
+      "slash",
+      "dot",
+      "dash",
+      "underscore",
+      "colon",
+      "whitespace",
+      "non_ascii"
+    ],
+    "ngram_n": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ngram_bucket_count": 4096,
+    "ngram_bucket_sharing": "ONE_SHARED_4096_BUCKET_BLOCK_PER_FEATURE_FAMILY_ACROSS_ALL_N",
+    "ngram_bucket_domain": "WAVE025_UTF8_NGRAM_V1",
+    "maximum_bytes_scanned_per_string": 4096,
+    "overlength_rule": "SCAN_FIRST_2048_AND_LAST_2048_KEEP_FULL_LENGTH_AND_FULL_SHA256_AND_TRUNCATED_FLAG",
+    "sha256_leaf_rule": "EXACT_CATEGORY_ONLY_NO_NGRAMS"
+  },
+  "numeric_transform": {
+    "integer_detection": "NATIVE_JSON_NUMBER_OR_DECIMAL_STRING_AT_FROZEN_NUMERIC_FIELD_NAMES",
+    "series_outputs": [
+      "count",
+      "sum",
+      "min",
+      "max",
+      "first",
+      "last",
+      "lower_middle",
+      "upper_middle",
+      "adjacent_absolute_delta_sum",
+      "adjacent_absolute_delta_max",
+      "positive_step_count",
+      "negative_step_count",
+      "zero_step_count"
+    ],
+    "integer_residue_moduli": [
+      2,
+      4,
+      8,
+      16,
+      256
+    ],
+    "missingness": "EXPLICIT_CATEGORICAL_TOKEN",
+    "nonfinite": "REJECT",
+    "no_feature_time_role_or_order_centering": true
+  },
+  "model_preprocessing": {
+    "fit_scope": "CALIBRATION_ONLY_SEPARATELY_PER_CHALLENGE_AND_PRIVATE_CONTROL_FAMILY",
+    "numeric": {
+      "missing_fill": "CALIBRATION_MEDIAN_OR_ZERO_WHEN_ALL_MISSING",
+      "missing_indicator": true,
+      "center": "CALIBRATION_MEDIAN",
+      "scale": "MAX_CALIBRATION_IQR_25_75_DIV_1_349_OR_1_IF_ZERO",
+      "clip": [
+        -8.0,
+        8.0
+      ]
+    },
+    "categorical": {
+      "encoding": "SIGNED_FEATURE_HASHING_OF_FAMILY_CONTEXT_VALUE_SHA256_COUNT",
+      "bucket_count": 16384,
+      "hash_domain": "WAVE025_CATEGORICAL_MODEL_HASH_V1",
+      "count_transform": "LOG1P_MIN_COUNT_255",
+      "no_label_based_vocabulary_or_feature_selection": true
+    },
+    "family_weighting": "CLASSIFIER_SPECIFIC_SEE_PER_CLASSIFIER_RULES",
+    "per_classifier_rules": {
+      "C01_EXACT_CATEGORICAL_SCAN": "RAW_EXACT_CATEGORIES_RAW_NUMERIC_VALUES_AND_MISSINGNESS_ONLY",
+      "C02_L2_LOGISTIC": "ROBUST_SCALED_NUMERIC_PLUS_SIGNED_HASHED_CATEGORIES_L2_NORMALIZE_EACH_FAMILY_AND_RETAIN_LOG1P_PRENORMALIZATION_FAMILY_NORM",
+      "C03_DECISION_STUMP": "MEDIAN_FILLED_UNCLIPPED_NUMERIC_PLUS_MISSING_INDICATORS_PLUS_BOOLEAN_CATEGORY_BUCKET_PRESENCE_NO_FAMILY_NORMALIZATION",
+      "C04_BOUNDED_TREE": "MEDIAN_FILLED_UNCLIPPED_NUMERIC_PLUS_MISSING_INDICATORS_PLUS_BOOLEAN_CATEGORY_BUCKET_PRESENCE_NO_FAMILY_NORMALIZATION",
+      "C05_KNN_11": "ROBUST_SCALED_CLIPPED_NUMERIC_PLUS_SIGNED_HASHED_CATEGORIES_L2_NORMALIZE_EACH_FAMILY_AND_RETAIN_LOG1P_PRENORMALIZATION_FAMILY_NORM"
+    },
+    "feature_order": "UTF8_LEXICOGRAPHIC_FEATURE_ID_THEN_BUCKET",
+    "labels": "TWO_REVEALED_ROLE_LABELS_UTF8_SORTED_CLASS0_FIRST",
+    "prediction_tie": "CLASS0",
+    "holdout_reuse": "FORBIDDEN"
+  },
+  "classifier_plan": [
+    {
+      "id": "C01_EXACT_CATEGORICAL_SCAN",
+      "kind": "DETERMINISTIC_RULE_SCAN",
+      "calibration_candidates": [
+        "single_exact_categorical_token_presence",
+        "single_categorical_context_total_mapping_with_missing_category",
+        "single_numeric_exact_value_with_missing_category",
+        "two_token_conjunction_from_TOP256_CALIBRATION_SUPPORT_TOKENS"
+      ],
+      "minimum_total_calibration_support": 10,
+      "minimum_per_predicted_class_support": 5,
+      "selection": "MAX_CALIBRATION_BALANCED_ACCURACY_THEN_LOWER_RULE_COMPLEXITY_THEN_UTF8_RULE_SERIALIZATION",
+      "stable_recovery_definition": "ONE_FROZEN_RULE_HAS_CALIBRATION_AND_HOLDOUT_RECALL_1_FOR_BOTH_CLASSES_WITH_NO_ABSTENTION",
+      "holdout_behavior": "NO_RESELECTION"
+    },
+    {
+      "id": "C02_L2_LOGISTIC",
+      "kind": "REGULARIZED_LINEAR_LOGISTIC",
+      "objective": "MEAN_BINARY_LOG_LOSS_PLUS_0_5_TIMES_0_01_TIMES_L2_SQUARED_EXCLUDING_INTERCEPT",
+      "initialization": "ALL_ZERO",
+      "optimizer": "DETERMINISTIC_FULL_BATCH_GRADIENT_DESCENT_BACKTRACKING_ARMIJO",
+      "initial_step": 1.0,
+      "backtracking_factor": 0.5,
+      "armijo_c": 0.0001,
+      "maximum_iterations": 2000,
+      "gradient_linf_stop": 1e-10,
+      "probability_threshold": 0.5,
+      "tie_break": "CLASS0",
+      "hyperparameter_tuning": "NONE"
+    },
+    {
+      "id": "C03_DECISION_STUMP",
+      "kind": "BOUNDED_GINI_TREE",
+      "maximum_depth": 1,
+      "minimum_leaf": 10,
+      "numeric_thresholds": "MIDPOINTS_BETWEEN_SORTED_DISTINCT_CALIBRATION_VALUES",
+      "categorical_thresholds": "HASHED_BUCKET_COUNT_GREATER_THAN_ZERO",
+      "split_tie_break": "GREATER_GAIN_THEN_UTF8_FEATURE_ID_THEN_SMALLER_THRESHOLD_THEN_CLASS0",
+      "pruning": "NONE"
+    },
+    {
+      "id": "C04_BOUNDED_TREE",
+      "kind": "BOUNDED_GINI_TREE",
+      "maximum_depth": 3,
+      "minimum_leaf": 10,
+      "minimum_gain": 1e-12,
+      "numeric_thresholds": "MIDPOINTS_BETWEEN_SORTED_DISTINCT_CALIBRATION_VALUES",
+      "categorical_thresholds": "HASHED_BUCKET_COUNT_GREATER_THAN_ZERO",
+      "split_tie_break": "GREATER_GAIN_THEN_UTF8_FEATURE_ID_THEN_SMALLER_THRESHOLD_THEN_CLASS0",
+      "leaf_tie_break": "CLASS0",
+      "pruning": "NONE"
+    },
+    {
+      "id": "C05_KNN_11",
+      "kind": "K_NEAREST_NEIGHBOUR",
+      "k": 11,
+      "distance": "EUCLIDEAN_ON_FAMILY_NORMALIZED_FROZEN_VECTOR",
+      "boundary_distance_tie": "INCLUDE_ALL_NEIGHBOURS_AT_KTH_DISTANCE",
+      "vote": "UNWEIGHTED",
+      "vote_tie": "CLASS0",
+      "hyperparameter_tuning": "NONE"
+    }
+  ],
+  "control_evaluation": {
+    "separate_learned_families": [
+      "D0_PREDECESSOR_SHARED_STATE_CONTAMINATION",
+      "D1_CURRENT_RUN_CANARY"
+    ],
+    "pool_D0_and_D1": false,
+    "private_family_usage": "PRECOMMITTED_AND_REVEALED_SUBGROUP_SELECTOR_ONLY_NEVER_PREDICTOR",
+    "family_registration_before_anchor": [
+      "family_id",
+      "challenge",
+      "injection_surface",
+      "expected_collector_feature_family",
+      "primary_detector_id_from_C01_TO_C05",
+      "calibration_population_by_role",
+      "holdout_population_by_role"
+    ],
+    "requirement": "FOR_EACH_REGISTERED_D0_OR_D1_FAMILY_ITS_PRECOMMITTED_PRIMARY_DETECTOR_HOLDOUT_BALANCED_ACCURACY_LOWER_BOUND_GE_0_90",
+    "secondary_detector_can_rescue_failed_primary": false,
+    "insufficient_family_population": "DETECTOR_INADEQUATE_NOT_ZERO_LEAKAGE"
+  },
+  "confidence_intervals": {
+    "metric": "BALANCED_ACCURACY_EQUALS_HALF_CLASS0_RECALL_PLUS_HALF_CLASS1_RECALL",
+    "coverage": 0.95,
+    "method": "CONSERVATIVE_EXACT_ONE_SIDED_CLOPPER_PEARSON_PER_CLASS_WITH_BONFERRONI_ALPHA_OVER_TWO_THEN_AVERAGE_CLASS_BOUNDS",
+    "alpha": 0.05,
+    "class_tail_alpha": 0.025,
+    "lower_formula": "0_IF_K_EQ_0_ELSE_BETA_QUANTILE_0_025_K_N_MINUS_K_PLUS_1",
+    "upper_formula": "1_IF_K_EQ_N_ELSE_BETA_QUANTILE_0_975_K_PLUS_1_N_MINUS_K",
+    "implementation": "DEPENDENCY_FREE_BINOMIAL_TAIL_BISECTION_WITH_ABSOLUTE_PROBABILITY_TOLERANCE_1E_12",
+    "control_threshold": "LOWER_BALANCED_ACCURACY_GE_0_90",
+    "T_equivalence_threshold": "EVERY_PREDECLARED_CLASSIFIER_UPPER_BALANCED_ACCURACY_LE_0_55",
+    "ordinary_nonsignificant_p_value_is_equivalence": false
+  },
+  "permutation_plan": {
+    "replicates": 9999,
+    "p_value": "(1_PLUS_COUNT_PERMUTED_STAT_GE_OBSERVED_STAT)/(1_PLUS_9999)",
+    "seed": "SHA256(WAVE025_PERMUTATION_SEED_V1 || 0x00 || PRECOMMIT_SHA256 || 0x00 || FEATURE_SPEC_SHA256)",
+    "permutation_order": "FOR_EACH_REPLICATE_SORT_ROWS_BY_SHA256(SEED || 0x00 || REPLICATE_DECIMAL || 0x00 || OPAQUE_SLOT_ID)",
+    "label_permutation": "PERMUTE_ROLE_WITHIN_CHALLENGE_PHASE_BLOCK_RETRAIN_AND_RESCORE_EACH_CLASSIFIER",
+    "role_order_permutation": "PERMUTE_ROLE_OR_EXECUTION_ORDER_WITHIN_CHALLENGE_PHASE_BLOCK_AND_RECOMPUTE_THE_FROZEN_ASSOCIATION_STATISTIC",
+    "order_or_slot_identity_is_predictor": false,
+    "host_only_association_statistics": {
+      "numeric": "ABSOLUTE_STANDARDIZED_MEAN_DIFFERENCE_WITH_ZERO_VARIANCE_AS_EXACT_EQUAL_OR_INFINITY",
+      "categorical": "CRAMERS_V_WITH_MISSING_AS_CATEGORY",
+      "set_or_path": "MAX_ABSOLUTE_ROLE_RATE_DEVIATION_FOR_CATEGORIES_WITH_TOTAL_SUPPORT_GE_10"
+    }
+  },
+  "multiplicity": {
+    "method": "HOLM_STEP_DOWN",
+    "familywise_alpha": 0.05,
+    "sort": "P_ASCENDING_THEN_UTF8_TEST_ID",
+    "step": "REJECT_IN_ORDER_WHILE_P_I_LE_ALPHA_DIVIDED_BY_M_MINUS_I_PLUS_1_STOP_AT_FIRST_NONREJECTION",
+    "separate_families": [
+      "T_PREDICTIVE_LABEL_PERMUTATION_C01_TO_C05",
+      "T_HOST_ONLY_ROLE_ORDER_ASSOCIATIONS",
+      "D0_CONTROL_FAMILY_SENSITIVITY",
+      "D1_CONTROL_FAMILY_SENSITIVITY"
+    ],
+    "nonrejection_interpretation": "NOT_EVIDENCE_OF_EQUIVALENCE"
+  },
+  "deterministic_tie_and_failure_rules": {
+    "row_order_for_feature_extraction": "IRRELEVANT_EACH_RECEIPT_EXTRACTED_INDEPENDENTLY",
+    "map_key_order": "UTF8_CODEPOINT_LEXICOGRAPHIC",
+    "category_order": "FAMILY_CONTEXT_VALUE_SHA256",
+    "equal_model_score": "CLASS0",
+    "classifier_exception_nan_or_nonconvergence": "CLASSIFIER_ABNORMAL_NOT_CHANCE",
+    "missing_receipt_or_truncated_required_surface": "MISSING_RAW_FEATURE_NOT_ZERO_LEAKAGE",
+    "unknown_or_unclassified_leaf": "FAIL_CLOSED",
+    "duplicate_feature_key": "FAIL_CLOSED_UNLESS_EXPLICIT_COUNTED_CATEGORICAL_MULTISET"
+  },
+  "excluded_field_audit": {
+    "required_per_receipt": true,
+    "partition": "EVERY_SCALAR_LEAF_EXACTLY_ONE_OF_INCLUDED_OR_EXCLUDED",
+    "required_outputs": [
+      "raw_leaf_count",
+      "included_leaf_count",
+      "excluded_leaf_count",
+      "included_paths_sha256",
+      "excluded_fields_with_path_and_reason",
+      "unclassified_paths_empty"
+    ],
+    "predictor_boundary_test": "MUTATING_OR_JOINING_FORBIDDEN_HOST_ONLY_OR_ROLE_FIELDS_MUST_BE_REJECTED_NOT_CHANGE_FEATURES"
+  },
+  "false_green_risks": [
+    {
+      "id": "FG01_UNOBSERVED_CHANNEL",
+      "mechanism": "Collector allowlist omits a candidate-visible channel such as an undeclared file, socket, cache or syscall surface.",
+      "mitigation": "D0/D1 controls plus explicit raw-leaf audit only test registered surfaces.",
+      "remaining_status": "UNTESTED_OUTSIDE_COLLECTOR_COVERAGE"
+    },
+    {
+      "id": "FG02_BOUNDED_ENUMERATION",
+      "mechanism": "Tree depth/entry, process count, canary file size and timing sample caps can miss rare or deep leakage.",
+      "mitigation": "Truncation is a feature and missing/truncated required surfaces fail closed.",
+      "remaining_status": "RARE_BEYOND_CAP_LEAK_UNTESTED"
+    },
+    {
+      "id": "FG03_ATTACK_CLASS_GAP",
+      "mechanism": "Parity, high-order interaction, cryptographic encoding or an artifact-specific decoder can evade exact, linear, depth-3 tree and kNN attacks.",
+      "mitigation": "Heterogeneous frozen classifiers and lexical/exact representations reduce but do not eliminate the gap.",
+      "remaining_status": "UNTESTED_ATTACKS_OUTSIDE_C01_TO_C05"
+    },
+    {
+      "id": "FG04_FRESH_UNIQUE_IDENTIFIERS",
+      "mechanism": "Every role-coded value is unique across splits, so exact hashes do not generalize and bounded lexical hashes may erase the coding rule.",
+      "mitigation": "String shapes, byte n-grams, numeric residues and host-only association audits are retained.",
+      "remaining_status": "ARBITRARY_UNIQUE_CODEBOOK_UNTESTED"
+    },
+    {
+      "id": "FG05_LOW_RATE_OR_SMALL_ADVANTAGE",
+      "mechanism": "A rare leak or predictive advantage at or below the 0.55 qualification margin can remain operationally useful but statistically admitted.",
+      "mitigation": "The claim is thresholded empirical prefix qualification, not zero mutual information.",
+      "remaining_status": "BELOW_MARGIN_AND_RARE_EVENT_LEAK_UNTESTED"
+    },
+    {
+      "id": "FG06_NONSTATIONARY_OR_ADAPTIVE_CANDIDATE",
+      "mechanism": "A candidate leaks only after repeated invocations, evaluator feedback or a later lawful response.",
+      "mitigation": "None in the T0-T1 one-shot batch.",
+      "remaining_status": "NOT_TESTED"
+    },
+    {
+      "id": "FG07_CONTROL_NONREPRESENTATIVENESS",
+      "mechanism": "D0/D1 are detectable but materially unlike a real T leakage mechanism.",
+      "mitigation": "Controls are interpreted as detector sensitivity for registered families only.",
+      "remaining_status": "UNKNOWN_UNKNOWN_LEAKS_NOT_COVERED"
+    }
+  ],
+  "false_fail_risks": [
+    {
+      "id": "FF01_ORDER_OR_HOST_DRIFT_CONFOUNDING",
+      "mechanism": "Thermal, daemon, clock or filesystem drift correlates with a finite randomized role order and appears predictive.",
+      "mitigation": "Strict block balance, fresh holdout and separate role/order permutation audit.",
+      "remaining_status": "FINITE_SAMPLE_CHANCE_REMAINS"
+    },
+    {
+      "id": "FF02_MULTIPLE_ATTACK_SELECTION",
+      "mechanism": "Trying many rules and classifiers on holdout inflates a leak signal.",
+      "mitigation": "Frozen C01-C05, no holdout reselection and Holm correction.",
+      "remaining_status": "UNREGISTERED_MANUAL_PEEK_WOULD_INVALIDATE_BATCH"
+    },
+    {
+      "id": "FF03_HASH_COLLISION_OR_BUCKET_DOMINANCE",
+      "mechanism": "Feature hashing collides unrelated values or a large family dominates distance.",
+      "mitigation": "Exact scan retains full SHA-256 categories and model blocks are family-normalized.",
+      "remaining_status": "MODEL_HASH_COLLISION_NONZERO"
+    },
+    {
+      "id": "FF04_SINGLETON_OR_SUPPORT_ARTIFACT",
+      "mechanism": "Unique paths, PIDs or timestamps create a perfect calibration rule that does not represent stable leakage.",
+      "mitigation": "Minimum support and unchanged fresh-holdout recovery are required.",
+      "remaining_status": "HOLDOUT_RANDOM_EXTREMES_REMAIN"
+    },
+    {
+      "id": "FF05_LABEL_OR_MAPPING_RECONSTRUCTION_ERROR",
+      "mechanism": "A wrong reveal join creates apparent predictability or destroys a real control.",
+      "mitigation": "Feature extraction precedes the join; commitments, block balance and mapping must be independently reconstructed.",
+      "remaining_status": "EVIDENCE_INTEGRITY_GATE_NOT_IMPLEMENTED_HERE"
+    },
+    {
+      "id": "FF06_CONTROL_INTERVENTION_SIDE_EFFECT",
+      "mechanism": "A D0 predecessor or D1 canary changes resource/timing surfaces beyond its registered channel, inflating measured detector sensitivity.",
+      "mitigation": "Report each registered family separately and retain full raw feature family attribution.",
+      "remaining_status": "CAUSAL_SPECIFICITY_REQUIRES_FAMILY_ABLATION"
+    }
+  ],
+  "not_tested": [
+    "DYNAMIC_FIXED_BROKER_AND_EARLIEST_LAWFUL_DIVERGENCE",
+    "CROSS_RUN_PROVIDER_OR_HUMAN_MEMORY",
+    "EVALUATOR_TRUTH_VALIDITY",
+    "NATIVE_TREATMENT_QUALIFICATION_OR_COMPARISON",
+    "AUTHORITY_EFFECT_ACCEPTANCE_OR_COST_FAIRNESS",
+    "HOST_ADMIN_HYPERVISOR_COLLUSION",
+    "MICROARCHITECTURAL_OR_PHYSICAL_SIDE_CHANNELS",
+    "ADAPTIVE_MULTI_INVOCATION_CANDIDATES",
+    "GENERALIZATION_BEYOND_BOUND_IMAGE_KERNEL_DAEMON_AND_ISOLATION_PROFILE",
+    "ATTACKS_OUTSIDE_C01_TO_C05",
+    "LONG_TERM_PRODUCTION_RELIABILITY"
+  ]
+}

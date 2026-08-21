@@ -1,0 +1,19 @@
+{
+  "schema": "mcb-g5-v2.provider-adapter-oracle.v1",
+  "note": "Synthetic native-shape adapter expectations only. No provider engine was run.",
+  "cases": {
+    "opa-defined-allow-fresh": "ALLOW",
+    "opa-undefined": "DEFER",
+    "opa-stale-bundle-allow": "DEFER",
+    "cedar-allow": "ALLOW",
+    "cedar-explicit-forbid": "REJECT",
+    "cedar-skip-on-error-plus-permit": "DEFER",
+    "openfga-allowed-true": "ALLOW",
+    "openfga-allowed-false": "DEFER",
+    "openfga-undefined-relation-400": "DEFER",
+    "xacml-permit": "ALLOW",
+    "xacml-deny": "REJECT",
+    "xacml-not-applicable": "DEFER",
+    "xacml-indeterminate-dp": "DEFER"
+  }
+}

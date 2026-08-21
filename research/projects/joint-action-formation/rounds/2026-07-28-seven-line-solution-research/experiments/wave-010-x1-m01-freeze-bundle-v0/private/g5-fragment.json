@@ -1,0 +1,561 @@
+{
+  "fragment_version": "wave010-x1-m01-g5-assembly-v1",
+  "gate": "G5",
+  "status": "CANDIDATE_NOT_RUN",
+  "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+  "assembly_owner": {
+    "owner_key_id": "wave010-x1-m01:g5-assembly-owner:key-candidate-v1",
+    "role": "VERIFY_AND_COMBINE_ONLY",
+    "may_generate_edit_or_sign_domain_truth_or_receipts": false,
+    "private_key_material_included": false
+  },
+  "path_base": "wave-010-x1-m01-freeze-bundle-v0",
+  "source_bindings": {
+    "common_coordinate": {
+      "path": "public/common-coordinate.json",
+      "raw_bytes_sha256": "e110ec2651fe3d240ed3343bbedf9446e4f1815627ed00c90a8b378a3b648c87"
+    },
+    "episode_packets": [
+      {
+        "episode_key": "765f0698-edb8-459d-bba6-ceb0ae154e51",
+        "path": "public/episode-765f0698.json",
+        "raw_bytes_sha256": "d1d2597c50197bf9af298a61f1ca827f47cbd61df702afb5436c9d5e2d54079c"
+      },
+      {
+        "episode_key": "d952741e-11f8-44db-a98d-7a34c12e6801",
+        "path": "public/episode-d952741e.json",
+        "raw_bytes_sha256": "3972e25eb24750d75e20453987c5814f2c9941fd33e57882a67816c0a897c6de"
+      }
+    ],
+    "outcome_contract": {
+      "path": "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json",
+    "raw_bytes_sha256": "4492aeb31048044a2aacd54de72b2f86a4317236f36f788125014da9c9ba5b88",
+      "reason_registry_version": "x1-reason-registry-v1"
+    }
+  },
+  "domain_truth_bindings": [
+    {
+      "authority_domain_id": "program-coordinator-domain",
+      "path": "private/g5-domains/program-coordinator.json",
+    "raw_bytes_sha256": "eb50b90fab3c4b22e552eb56a55ba1467bc5449602c5371e386a6edcc2778805",
+      "owner_key_id": "program-coordinator-domain:owner-key:v1"
+    },
+    {
+      "authority_domain_id": "delta-calibration-domain",
+      "path": "private/g5-domains/delta-calibration.json",
+    "raw_bytes_sha256": "6cc45e9330c6ae24974656ab7bf1629472ea25ecebd25f5a9fb7dc5b241fd330",
+      "owner_key_id": "delta-calibration-domain:owner-key:v1"
+    },
+    {
+      "authority_domain_id": "independent-validation-domain",
+      "path": "private/g5-domains/independent-validation.json",
+    "raw_bytes_sha256": "47f32527c4fb1d0b7ed7f1d5782a4bdf5bd8cfb3b3039d262b6d751d59ac56ed",
+      "owner_key_id": "independent-validation-domain:owner-key:v1"
+    },
+    {
+      "authority_domain_id": "site-data-steward-domain",
+      "path": "private/g5-domains/site-data-steward.json",
+    "raw_bytes_sha256": "79512b5f53c904abac2ff49055d66552b3e2e75d9f8c40bbb09661db028aecb0",
+      "owner_key_id": "site-data-steward-domain:owner-key:v1"
+    }
+  ],
+  "domain_truth_closure": {
+    "algorithm": "SHA-256",
+    "preimage_format": "four lines in domain_truth_bindings order, each authority_domain_id=raw_bytes_sha256 followed by LF",
+  "candidate_sha256": "dabf0218c691896799de68a44df60ff693efaba385d529d44c4c5ba6126a46ce",
+    "assembly_must_recompute_before_g5": true,
+    "hash_mismatch_pair": {
+      "category": "UNRESOLVED_SCHEMA",
+      "reason_code": "SCHEMA_HASH_MISMATCH"
+    }
+  },
+  "separation_invariants": [
+    "g5-fragment contains no mutable copy of any authority domain private truth",
+    "every domain raw hash is verified before its receipt rules are used",
+    "four owner_key_id values must be distinct",
+    "the strong center may call and sequence all lawful interfaces but is not a domain truth owner",
+    "the G5 evaluator and line owner only verify and combine owner receipts",
+    "no strong center evaluator line owner controller or Agent Entity may sign for another domain",
+    "one commitment or one aggregate signature cannot satisfy four-domain closure",
+    "delta calibration is the sole resource and reservation authority for field-service-slot-estuary-18h-01"
+  ],
+  "s0_contract": {
+    "relation_formation_state": "PROPOSAL_NOT_FORMED",
+    "all_four_domain_commitments": "NOT_CREATED_AT_S0",
+    "delta_resource_state": "AVAILABLE_UNHELD",
+    "delta_reservation_state": "NOT_CREATED_AT_S0",
+    "method_completion_prejudged": false
+  },
+  "g5_gate_receipt_requirements": {
+    "relation": {
+      "required_receipt": "owner-signed G2 formed receipt@v1",
+      "required_relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+      "required_status": "FORMED"
+    },
+    "program_coordinator": {
+      "owner_key_id": "program-coordinator-domain:owner-key:v1",
+      "required_current_owner_receipts": [
+        "mandate",
+        "stance",
+        "commitment",
+        "heads"
+      ]
+    },
+    "delta_calibration": {
+      "owner_key_id": "delta-calibration-domain:owner-key:v1",
+      "required_current_owner_receipts": [
+        "mandate",
+        "stance",
+        "commitment",
+        "heads",
+        "resource-owner reservation"
+      ],
+      "reservation_must_be_atomic_unique_and_current": true
+    },
+    "independent_validation": {
+      "owner_key_id": "independent-validation-domain:owner-key:v1",
+      "required_current_owner_receipts": [
+        "mandate",
+        "stance",
+        "commitment",
+        "heads"
+      ],
+      "must_remain_independent_from_delta_calibration": true
+    },
+    "site_data_steward": {
+      "owner_key_id": "site-data-steward-domain:owner-key:v1",
+      "required_current_owner_receipts": [
+        "mandate",
+        "stance",
+        "commitment",
+        "heads"
+      ]
+    },
+    "closure_rule": "Every listed receipt must resolve to its own domain raw hash, exact owner key, relation coordinate, scope, version, freshness, revocation head, world, arm, and run. No field is satisfied by another domain receipt."
+  },
+  "frozen_transition_rules": [
+    {
+      "order": 1,
+      "from": "S0",
+      "to": "RELATION_FORMED_RECEIPT_VERIFIED",
+      "operation": "verify owner-signed G2 formed receipt@v1 at the exact relation coordinate"
+    },
+    {
+      "order": 2,
+      "from": "RELATION_FORMED_RECEIPT_VERIFIED",
+      "to": "FOUR_CURRENT_STANCES_VERIFIED",
+      "operation": "each domain owner independently creates and signs only its own current stance receipt"
+    },
+    {
+      "order": 3,
+      "from": "FOUR_CURRENT_STANCES_VERIFIED",
+      "to": "FOUR_COMMITMENTS_VERIFIED",
+      "operation": "each domain owner independently creates and signs only its own commitment receipt"
+    },
+    {
+      "order": 4,
+      "from": "FOUR_COMMITMENTS_VERIFIED",
+      "to": "DELTA_RESERVATION_VERIFIED",
+      "operation": "delta resource owner atomically creates and signs the unique reservation receipt"
+    },
+    {
+      "order": 5,
+      "from": "DELTA_RESERVATION_VERIFIED",
+      "to": "G5_DECIDED",
+      "operation": "G5 recomputes all raw hashes and reads all current authoritative receipts and heads",
+      "success": "X2_HANDOFF_ELIGIBLE",
+      "success_is_attempt_permit": false
+    }
+  ],
+  "exact_non_success_pairs": {
+    "relation": {
+      "coordinate_mismatch": {
+        "category": "INVALID",
+        "reason_code": "G5_RELATION_COORDINATE_MISMATCH"
+      },
+      "formed_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_G2_FORMED_RECEIPT_INVALID"
+      }
+    },
+    "program_coordinator": {
+      "mandate_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_MISSING"
+      },
+      "mandate_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_PROGRAM_COORDINATOR_MANDATE_RECEIPT_INVALID"
+      },
+      "mandate_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_PROGRAM_COORDINATOR_MANDATE_REVOKED"
+      },
+      "mandate_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_PROGRAM_COORDINATOR_MANDATE_EXPIRED"
+      },
+      "stance_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_MISSING"
+      },
+      "stance_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_RECEIPT_INVALID"
+      },
+      "stance_rejected": {
+        "category": "REJECT",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_REJECTED"
+      },
+      "stance_deferred": {
+        "category": "DEFER",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_DEFERRED"
+      },
+      "stance_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_UNKNOWN"
+      },
+      "stance_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_PROGRAM_COORDINATOR_STANCE_EXPIRED"
+      },
+      "commitment_not_created": {
+        "category": "DEFER",
+        "reason_code": "G5_PROGRAM_COORDINATOR_COMMITMENT_NOT_YET_CREATED"
+      },
+      "commitment_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_MISSING"
+      },
+      "commitment_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_PROGRAM_COORDINATOR_COMMITMENT_RECEIPT_INVALID"
+      },
+      "commitment_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_PROGRAM_COORDINATOR_COMMITMENT_REVOKED"
+      },
+      "commitment_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_PROGRAM_COORDINATOR_COMMITMENT_EXPIRED"
+      },
+      "head_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_MISSING"
+      },
+      "head_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_PROGRAM_COORDINATOR_HEAD_RECEIPT_INVALID"
+      },
+      "head_readback_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_PROGRAM_COORDINATOR_HEAD_READBACK_UNKNOWN"
+      }
+    },
+    "delta_calibration": {
+      "mandate_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_MISSING"
+      },
+      "mandate_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_DELTA_CALIBRATION_MANDATE_RECEIPT_INVALID"
+      },
+      "mandate_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_DELTA_CALIBRATION_MANDATE_REVOKED"
+      },
+      "mandate_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_DELTA_CALIBRATION_MANDATE_EXPIRED"
+      },
+      "stance_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_RECEIPT_MISSING"
+      },
+      "stance_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_RECEIPT_INVALID"
+      },
+      "stance_rejected": {
+        "category": "REJECT",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_REJECTED"
+      },
+      "stance_deferred": {
+        "category": "DEFER",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_DEFERRED"
+      },
+      "stance_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_UNKNOWN"
+      },
+      "stance_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_DELTA_CALIBRATION_STANCE_EXPIRED"
+      },
+      "commitment_not_created": {
+        "category": "DEFER",
+        "reason_code": "G5_DELTA_CALIBRATION_COMMITMENT_NOT_YET_CREATED"
+      },
+      "commitment_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_MISSING"
+      },
+      "commitment_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_DELTA_CALIBRATION_COMMITMENT_RECEIPT_INVALID"
+      },
+      "commitment_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_DELTA_CALIBRATION_COMMITMENT_REVOKED"
+      },
+      "commitment_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_DELTA_CALIBRATION_COMMITMENT_EXPIRED"
+      },
+      "head_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_DELTA_CALIBRATION_HEAD_RECEIPT_MISSING"
+      },
+      "head_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_DELTA_CALIBRATION_HEAD_RECEIPT_INVALID"
+      },
+      "head_readback_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_DELTA_CALIBRATION_HEAD_READBACK_UNKNOWN"
+      },
+      "reservation_not_created": {
+        "category": "DEFER",
+        "reason_code": "G5_DELTA_RESERVATION_NOT_YET_CREATED"
+      },
+      "reservation_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_DELTA_RESERVATION_REQUIRED_RECEIPT_MISSING"
+      },
+      "reservation_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_DELTA_RESERVATION_OWNER_RECEIPT_INVALID"
+      },
+      "reservation_conflict": {
+        "category": "REJECT",
+        "reason_code": "G5_DELTA_RESOURCE_RESERVATION_CONFLICT"
+      },
+      "reservation_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_DELTA_RESERVATION_OWNER_RECEIPT_REVOKED"
+      },
+      "reservation_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_DELTA_RESERVATION_OWNER_RECEIPT_EXPIRED"
+      },
+      "resource_head_readback_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_DELTA_RESOURCE_HEAD_READBACK_UNKNOWN"
+      }
+    },
+    "independent_validation": {
+      "mandate_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_MISSING"
+      },
+      "mandate_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_MANDATE_RECEIPT_INVALID"
+      },
+      "mandate_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_MANDATE_REVOKED"
+      },
+      "mandate_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_MANDATE_EXPIRED"
+      },
+      "stance_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_MISSING"
+      },
+      "stance_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_RECEIPT_INVALID"
+      },
+      "stance_rejected": {
+        "category": "REJECT",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_REJECTED"
+      },
+      "stance_deferred": {
+        "category": "DEFER",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_DEFERRED"
+      },
+      "stance_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_UNKNOWN"
+      },
+      "stance_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_STANCE_EXPIRED"
+      },
+      "commitment_not_created": {
+        "category": "DEFER",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_COMMITMENT_NOT_YET_CREATED"
+      },
+      "commitment_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_MISSING"
+      },
+      "commitment_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_COMMITMENT_RECEIPT_INVALID"
+      },
+      "commitment_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_COMMITMENT_REVOKED"
+      },
+      "commitment_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_COMMITMENT_EXPIRED"
+      },
+      "head_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_MISSING"
+      },
+      "head_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_HEAD_RECEIPT_INVALID"
+      },
+      "head_readback_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_INDEPENDENT_VALIDATION_HEAD_READBACK_UNKNOWN"
+      }
+    },
+    "site_data_steward": {
+      "mandate_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_MISSING"
+      },
+      "mandate_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_SITE_DATA_STEWARD_MANDATE_RECEIPT_INVALID"
+      },
+      "mandate_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_SITE_DATA_STEWARD_MANDATE_REVOKED"
+      },
+      "mandate_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_SITE_DATA_STEWARD_MANDATE_EXPIRED"
+      },
+      "stance_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_MISSING"
+      },
+      "stance_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_RECEIPT_INVALID"
+      },
+      "stance_rejected": {
+        "category": "REJECT",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_REJECTED"
+      },
+      "stance_deferred": {
+        "category": "DEFER",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_DEFERRED"
+      },
+      "stance_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_UNKNOWN"
+      },
+      "stance_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_SITE_DATA_STEWARD_STANCE_EXPIRED"
+      },
+      "commitment_not_created": {
+        "category": "DEFER",
+        "reason_code": "G5_SITE_DATA_STEWARD_COMMITMENT_NOT_YET_CREATED"
+      },
+      "commitment_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_MISSING"
+      },
+      "commitment_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_SITE_DATA_STEWARD_COMMITMENT_RECEIPT_INVALID"
+      },
+      "commitment_revoked": {
+        "category": "REVOKED",
+        "reason_code": "G5_SITE_DATA_STEWARD_COMMITMENT_REVOKED"
+      },
+      "commitment_expired": {
+        "category": "EXPIRED",
+        "reason_code": "G5_SITE_DATA_STEWARD_COMMITMENT_EXPIRED"
+      },
+      "head_receipt_missing": {
+        "category": "UNRESOLVED_SCHEMA",
+        "reason_code": "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_MISSING"
+      },
+      "head_receipt_invalid": {
+        "category": "INVALID",
+        "reason_code": "G5_SITE_DATA_STEWARD_HEAD_RECEIPT_INVALID"
+      },
+      "head_readback_unknown": {
+        "category": "UNKNOWN",
+        "reason_code": "G5_SITE_DATA_STEWARD_HEAD_READBACK_UNKNOWN"
+      }
+    },
+    "cross_domain": {
+      "signer_substitution": {
+        "category": "INVALID",
+        "reason_code": "G5_CROSS_DOMAIN_SIGNER_SUBSTITUTION"
+      },
+      "single_commitment_false_closure": {
+        "category": "INVALID",
+        "reason_code": "G5_SINGLE_COMMITMENT_FALSE_CLOSURE"
+      },
+      "standing_challenge_pending": {
+        "category": "DEFER",
+        "reason_code": "G5_STANDING_CHALLENGE_PENDING"
+      },
+      "standing_challenge_rejected": {
+        "category": "REJECT",
+        "reason_code": "G5_STANDING_CHALLENGE_REJECTED"
+      },
+      "standing_violation": {
+        "category": "INVALID",
+        "reason_code": "G5_STANDING_VIOLATION"
+      }
+    }
+  },
+  "branch_truth_projections": [
+    {
+      "episode_key": "765f0698-edb8-459d-bba6-ceb0ae154e51",
+      "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+      "domain_truth_binding_set_ref": "domain_truth_bindings",
+      "domain_truth_closure_ref": "domain_truth_closure",
+      "gate_receipt_requirements_ref": "g5_gate_receipt_requirements",
+      "transition_rules_ref": "frozen_transition_rules",
+      "non_success_pairs_ref": "exact_non_success_pairs",
+      "run_state": "NOT_RUN",
+      "success_achieved": false,
+      "attempt_permit": false
+    },
+    {
+      "episode_key": "d952741e-11f8-44db-a98d-7a34c12e6801",
+      "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+      "domain_truth_binding_set_ref": "domain_truth_bindings",
+      "domain_truth_closure_ref": "domain_truth_closure",
+      "gate_receipt_requirements_ref": "g5_gate_receipt_requirements",
+      "transition_rules_ref": "frozen_transition_rules",
+      "non_success_pairs_ref": "exact_non_success_pairs",
+      "run_state": "NOT_RUN",
+      "success_achieved": false,
+      "attempt_permit": false
+    }
+  ],
+  "not_run_boundary": {
+    "g5_check_run_state": "NOT_RUN",
+    "domain_receipts_created_by_assembly": false,
+    "x2_handoff_eligibility_granted": false,
+    "attempt_or_execution_authorized": false,
+    "formal_status_changed": false
+  }
+}

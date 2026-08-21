@@ -1,0 +1,219 @@
+{
+  "accepted_claim": "LOCAL_SYNTHETIC_U_PLATFORM_DIRECT_IS_A_POSITIVE_SCOPED_SOLUTION",
+  "bound_files": {
+    "contract": {
+      "path": "CONTRACT.md",
+      "sha256": "28c926883e2ca3995a776858f58a25d16354efa5b7ca497f99247d4930961f9b"
+    },
+    "implementation": {
+      "path": "platform_direct.py",
+      "sha256": "4065c0cccb017d3c3d721183cb6c1f3a9b7fa0ae1253d9f63f5c74929d27be63"
+    },
+    "independent_evaluator": {
+      "path": "independent_evaluator.py",
+      "sha256": "1053410d1c5629c0067e48ec0c3e8d45443ed23e66d46c579913adc2fd7cbb22"
+    },
+    "positive_artifact": {
+      "path": "artifacts/batch-8672988589969883/run-0001/artifact.json",
+      "sha256": "e29314c917874f3bad8aa599392ea2f00b0e2f65f4c135dab52b7f0ea892d1cb"
+    },
+    "positive_platform_db": {
+      "path": "artifacts/batch-8672988589969883/run-0001/platform-native.sqlite3",
+      "sha256": "2da180548a5b7aed1493f3d438825ec93cc63c8505eaf4c941f713d4938341ce"
+    },
+    "positive_target_db": {
+      "path": "artifacts/batch-8672988589969883/run-0001/target-ledger.sqlite3",
+      "sha256": "dfbf48cb5dc129f977805ac366cd1ef072498eecf2d4dc48fc73ce559babeeb6"
+    },
+    "removal_artifact": {
+      "path": "artifacts/batch-8672988589969883/run-0002/artifact.json",
+      "sha256": "32fba03fd3495c5f07507887b6dac17e60d38bc631a6ede5e22e378ff5234bca"
+    },
+    "removal_platform_db": {
+      "path": "artifacts/batch-8672988589969883/run-0002/platform-native.sqlite3",
+      "sha256": "35bbd5f472c286f8d90e0c2f461b97ff8401699631dc56a2ba2c692e8faa8ad0"
+    },
+    "removal_target_db": {
+      "path": "artifacts/batch-8672988589969883/run-0002/target-ledger.sqlite3",
+      "sha256": "cc91ac96f6c66784deb807498deaefc21b685468a0a30bb0b08b77d770bc101c"
+    },
+    "summary": {
+      "path": "artifacts/actual-e0-platform-direct.json",
+      "sha256": "690013ebb159a8137597f4d12ed791ae4e2ac29e97ae69b87e8ba749c428b092"
+    }
+  },
+  "decision": "ACCEPTED_SCOPED",
+  "effect_attribution_scope": "DIRECT_DIGITAL_TARGET_COMMIT_ONLY",
+  "independent_pair_audit": {
+    "accepted": true,
+    "accepted_claim": "LOCAL_SYNTHETIC_U_PLATFORM_DIRECT_IS_A_POSITIVE_SCOPED_SOLUTION",
+    "authority_removal": {
+      "accepted": true,
+      "artifact": "artifact.json",
+      "blind_execution_checks": {
+        "child_environments_sanitized": true,
+        "distinct_processes": true,
+        "native_request_exact": true,
+        "one_actual_native_call": true,
+        "opaque_process_surface": true,
+        "private_canary_absent": true,
+        "private_fields_absent": true,
+        "same_opaque_pair_run_id": true,
+        "semantic_case_label_absent": true,
+        "spawn_start_method": true,
+        "visible_schema_exact": true
+      },
+      "common_checks": {
+        "artifact_hash_valid": true,
+        "blind_execution_accepted": true,
+        "common_request_frozen": true,
+        "database_hashes_valid": true,
+        "frozen_input_valid": true,
+        "platform_database_accepted": true,
+        "service_key_frozen": true,
+        "signed_authority_status_valid": true,
+        "target_database_accepted": true,
+        "task_valid": true
+      },
+      "digital_target_commit_attributable_to_platform": false,
+      "effect_attribution_scope": "DIRECT_DIGITAL_TARGET_COMMIT_ONLY",
+      "external_activity_from_platform_database": {
+        "delegation_events": 0,
+        "discovery_calls": 0,
+        "external_transfer_count": 0,
+        "relation_events": 0
+      },
+      "not_proven": [
+        "PHYSICAL_POWER_DELIVERY",
+        "OS_LEVEL_NETWORK_NONINTERFERENCE",
+        "P_WORLD_MULTI_PRINCIPAL_COORDINATION",
+        "GENERAL_CE001",
+        "LONG_TERM_MAINTENANCE_COST",
+        "MALICIOUS_SAME_DIRECTORY_WRITER_RESISTANCE"
+      ],
+      "platform_database_checks": {
+        "event_count_matches": true,
+        "event_rows_match_artifact": true,
+        "event_types_registered": true,
+        "external_counts_recomputed": true,
+        "integrity_ok": true,
+        "journal_mode_delete": true,
+        "payload_events_complete": true,
+        "resource_matches_artifact": true
+      },
+      "positive_closed": false,
+      "removal_safe": true,
+      "schema": "E0_INDEPENDENT_RUN_AUDIT_V1",
+      "signed_authority_status": "REMOVED",
+      "target_database_checks": {
+        "authentication_key_frozen": true,
+        "genesis_frozen_when_unmodified": true,
+        "integrity_ok": true,
+        "journal_mode_delete": true,
+        "ledger_id_frozen": true,
+        "readback_authentic": true,
+        "readbacks_match_artifact": true,
+        "receipt_authentic": true,
+        "receipts_match_artifact": true,
+        "target_matches_artifact": true
+      }
+    },
+    "not_proven": [
+      "PHYSICAL_POWER_DELIVERY",
+      "OS_LEVEL_NETWORK_NONINTERFERENCE",
+      "P_WORLD_MULTI_PRINCIPAL_COORDINATION",
+      "GENERAL_CE001",
+      "EXTERNAL_RELATION_OR_TRANSFER_PROTOCOL",
+      "LONG_TERM_MAINTENANCE_COST",
+      "MALICIOUS_SAME_DIRECTORY_WRITER_RESISTANCE"
+    ],
+    "only_direct_authority_input_differs": true,
+    "positive": {
+      "accepted": true,
+      "artifact": "artifact.json",
+      "blind_execution_checks": {
+        "child_environments_sanitized": true,
+        "distinct_processes": true,
+        "native_request_exact": true,
+        "one_actual_native_call": true,
+        "opaque_process_surface": true,
+        "private_canary_absent": true,
+        "private_fields_absent": true,
+        "same_opaque_pair_run_id": true,
+        "semantic_case_label_absent": true,
+        "spawn_start_method": true,
+        "visible_schema_exact": true
+      },
+      "common_checks": {
+        "artifact_hash_valid": true,
+        "blind_execution_accepted": true,
+        "common_request_frozen": true,
+        "database_hashes_valid": true,
+        "frozen_input_valid": true,
+        "platform_database_accepted": true,
+        "service_key_frozen": true,
+        "signed_authority_status_valid": true,
+        "target_database_accepted": true,
+        "task_valid": true
+      },
+      "digital_target_commit_attributable_to_platform": true,
+      "effect_attribution_scope": "DIRECT_DIGITAL_TARGET_COMMIT_ONLY",
+      "external_activity_from_platform_database": {
+        "delegation_events": 0,
+        "discovery_calls": 0,
+        "external_transfer_count": 0,
+        "relation_events": 0
+      },
+      "not_proven": [
+        "PHYSICAL_POWER_DELIVERY",
+        "OS_LEVEL_NETWORK_NONINTERFERENCE",
+        "P_WORLD_MULTI_PRINCIPAL_COORDINATION",
+        "GENERAL_CE001",
+        "LONG_TERM_MAINTENANCE_COST",
+        "MALICIOUS_SAME_DIRECTORY_WRITER_RESISTANCE"
+      ],
+      "platform_database_checks": {
+        "event_count_matches": true,
+        "event_rows_match_artifact": true,
+        "event_types_registered": true,
+        "external_counts_recomputed": true,
+        "integrity_ok": true,
+        "journal_mode_delete": true,
+        "payload_events_complete": true,
+        "resource_matches_artifact": true
+      },
+      "positive_closed": true,
+      "removal_safe": false,
+      "schema": "E0_INDEPENDENT_RUN_AUDIT_V1",
+      "signed_authority_status": "PRESENT",
+      "target_database_checks": {
+        "authentication_key_frozen": true,
+        "genesis_frozen_when_unmodified": true,
+        "integrity_ok": true,
+        "journal_mode_delete": true,
+        "ledger_id_frozen": true,
+        "readback_authentic": true,
+        "readbacks_match_artifact": true,
+        "receipt_authentic": true,
+        "receipts_match_artifact": true,
+        "target_matches_artifact": true
+      }
+    },
+    "same_frozen_input": true,
+    "same_signed_grant_subject": true,
+    "schema": "E0_INDEPENDENT_PAIR_AUDIT_V1",
+    "summary_bindings_valid": true,
+    "summary_hash_valid": true
+  },
+  "not_proven": [
+    "PHYSICAL_POWER_DELIVERY",
+    "OS_LEVEL_NETWORK_NONINTERFERENCE",
+    "P_WORLD_MULTI_PRINCIPAL_COORDINATION",
+    "GENERAL_CE001",
+    "EXTERNAL_RELATION_OR_TRANSFER_PROTOCOL",
+    "LONG_TERM_MAINTENANCE_COST",
+    "MALICIOUS_SAME_DIRECTORY_WRITER_RESISTANCE"
+  ],
+  "root_sha256": "eec9d5944812b374714b0c7962cdf91f2687f4b1a84cfbb75323484461cc6001",
+  "schema": "E0_PLATFORM_DIRECT_ROOT_ACCEPTANCE_V1"
+}

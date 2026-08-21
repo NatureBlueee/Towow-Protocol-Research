@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "towow-t1-hidden-world-b-submission-1.1",
+  "title": "T1-HW-B method-visible submission",
+  "description": "Candidate-owned observable signatures only. Oracle identifiers are forbidden.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "world_id",
+    "evaluation_step",
+    "method_id",
+    "decisions",
+    "probes",
+    "disclosures",
+    "projection_updates",
+    "relation_handoffs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.1"
+    },
+    "world_id": {
+      "const": "T1-HW-20260728-B"
+    },
+    "evaluation_step": {
+      "const": 2
+    },
+    "method_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    },
+    "probes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/probe"
+      }
+    },
+    "disclosures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/disclosure"
+      }
+    },
+    "projection_updates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/projectionUpdate"
+      }
+    },
+    "relation_handoffs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationHandoff"
+      }
+    }
+  },
+  "$defs": {
+    "state": {
+      "enum": [
+        "DISCOVERED",
+        "INVALIDATED",
+        "UNFINDABLE_UNDER_POLICY",
+        "UNKNOWN",
+        "REFUSE",
+        "ABSENT"
+      ]
+    },
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "decision": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "detection_id",
+            "kind",
+            "state",
+            "seeker",
+            "provider",
+            "direction",
+            "evidence_refs"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "detection_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "PAIR"
+            },
+            "state": {
+              "$ref": "#/$defs/state"
+            },
+            "seeker": {
+              "type": "string",
+              "minLength": 1
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            },
+            "direction": {
+              "const": "SEEK_TO_OFFER"
+            },
+            "evidence_refs": {
+              "$ref": "#/$defs/stringList"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "detection_id",
+            "kind",
+            "state",
+            "claim_key",
+            "subject",
+            "evidence_refs"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "detection_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "kind": {
+              "const": "CLAIM"
+            },
+            "state": {
+              "$ref": "#/$defs/state"
+            },
+            "claim_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subject": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_refs": {
+              "$ref": "#/$defs/stringList"
+            }
+          }
+        }
+      ]
+    },
+    "probe": {
+      "type": "object",
+      "required": [
+        "probe_id",
+        "requester",
+        "responder",
+        "requested_fact",
+        "offered_fact",
+        "status",
+        "evidence_refs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "probe_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requester": {
+          "type": "string",
+          "minLength": 1
+        },
+        "responder": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requested_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "offered_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "disclosure": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "origin_party",
+        "sender",
+        "recipient",
+        "fact_id",
+        "depth",
+        "purpose",
+        "retention"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "origin_party": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sender": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recipient": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retention": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derived_from_event_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "projectionUpdate": {
+      "type": "object",
+      "required": [
+        "party",
+        "from_version",
+        "to_version",
+        "step",
+        "evidence_ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "party": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from_version": {
+          "type": "integer"
+        },
+        "to_version": {
+          "type": "integer"
+        },
+        "step": {
+          "type": "integer"
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "relationHandoff": {
+      "type": "object",
+      "required": [
+        "detection_id",
+        "status",
+        "commitment",
+        "seeker",
+        "provider",
+        "evidence_refs",
+        "open_questions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "detection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "CANDIDATE_NOT_COMMITMENT"
+        },
+        "commitment": {
+          "const": false
+        },
+        "seeker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringList"
+        },
+        "open_questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

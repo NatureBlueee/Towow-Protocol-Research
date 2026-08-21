@@ -1,0 +1,127 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-03-TYPED-UNKNOWN-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "POSSIBILITY_FORMATION",
+  "title": "类型化 Unknown 到最小形成动作的路由",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-FORM-001"
+  ],
+  "local_question": "面对信息、工具、伙伴、Authority、现实可判定性、任务表示、明确拒绝或原则性不可达等不同 Unknown，什么可观察条件足以路由到 ask、search、probe、tool、partner、authority、rewrite 或 exit，并比固定追问、普通规划和 strong-center 加 HITL 减少误授权、无效循环与总成本？",
+  "blocked_decision": "决定 typed Unknown router 应组合现成分类、规划、主动信息获取、工具选择、审批与 HITL，还是只保留为 Formation Planner 中的普通策略与可解释日志。",
+  "reverse_result": "若稳定 Schema 加强模型、普通 planner/tool router 与 strong-center 加 HITL 在相同案例、信息、动作和成本下持续同等选择有效动作，或 typed taxonomy 只增加分类文本而不改变结果，则独立 typed Unknown router 应降为普通策略；该结果不影响 causal formation。",
+  "minimum_discriminator": "冻结真实缺口分别为信息、工具、伙伴、Authority、需现实 probe、任务表示错误、明确拒绝和原则性不可达的盲化案例，比较固定追问、search/planning、稳定 Schema 强模型加工具、strong-center 加 HITL 与 typed router，报告正确路由、合格路径、不必要披露/打扰、误授权、无效循环、退出质量和总成本。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/lines/03-possibility-formation.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+    "research/projects/a2a-reconstruction/04_audit/source_registry.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b623a1001de7684b6812fee6de4850a0c957b0db9cba68ab5f74589f1cc0e6f7.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 45,
+    "max_attempts": 2,
+    "max_output_bytes": 2097152
+  },
+  "stop_conditions": [
+    "开始从 Intent 到达或 router 分类推出 Principal、Mandate 或 Commitment",
+    "把明确拒绝或原则性不可达强制路由为更多追问与形成",
+    "比较臂没有相同输入、工具、动作权限、HITL 和总成本口径",
+    "分类准确率被单独当成现实路径、价值或 formation 证据"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "必须给稳定 Schema 强模型加工具、普通 planning/router 和 strong-center 加 HITL 完整基线机会",
+    "必须把 Refuse、Defer、Protective Contraction 与原则性不可达保留为合法输出",
+    "必须分别报告 taxonomy 判别、动作选择和动作结果，不能用分类分数替代因果增量",
+    "不得读取 causal formation 成功来预设任何 Unknown 应进入 formation"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-FORM-TYPED-UNKNOWN"
+    ],
+    "hypothesis_ids": [
+      "FORM-H-TYPED-ROUTER-NET-VALUE"
+    ],
+    "applicable_assumptions": [
+      "WORLD-INTENT-INGRESS",
+      "WORLD-INTENT-NORMATIVE-GAP",
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE"
+    ],
+    "non_claims": [
+      "不证明分类后的动作已经获得 Principal 授权",
+      "不证明任何路径是 formation 而非 discovery 或普通执行",
+      "不证明 PFE 是所有 Intent 必经的顶层引擎",
+      "不证明 Effect、Adoption、Acceptance、商业净值或拓扑优越性",
+      "不把 Refuse、Defer 或 exit 当成研究失败"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/03_possibility_formation.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b623a1001de7684b6812fee6de4850a0c957b0db9cba68ab5f74589f1cc0e6f7.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+    ],
+    "disposition": "COMPOSE",
+    "uncovered_requirement": "Planning、action-model learning、主动信息获取、工具路由、审批、workflow amendment 与 HITL 分别覆盖多类 Unknown 的处理；仍需组合并检验一个保留 Refuse/Defer、规范状态 Unknown 和不同现实动作成本的可执行路由，而不是新建事实根。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "一手核验显示不完整 action model 与不确定 effect 已有成熟研究，但没有提供覆盖信息、工具、伙伴、Authority、拒绝和 rewrite 的统一有界路由与净值比较。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "系统能记录 Unknown，但 typed Unknown 到动作的可执行映射不完整。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能提升 SC-FORM-TYPED-UNKNOWN 的候选证据，并冻结 Unknown 类型、动作集、基线、错误、拒绝、成本和案例分布；不能支持 formation 或规范地位。",
+    "negative_effect": "负结果只会把 typed taxonomy 或 router 降为强模型 Schema、普通 planning/tool router、审批或 HITL 的组合策略与日志；不否定 causal formation 或 Possibility Formation 母线。",
+    "unaffected_claim_ids": [
+      "CAP-FORM-002",
+      "CAP-FORM-003",
+      "CAP-FORM-004",
+      "CAP-FORM-005",
+      "CAP-REL-001",
+      "CAP-REL-002",
+      "CAP-REL-003",
+      "CAP-REL-004",
+      "CAP-REL-005",
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有现成方案组合在相同案例与动作权限下重放 ask/search/probe/tool/partner/authority/rewrite/exit、Refuse、Defer、正例和移除失败，并在总成本上不劣，才能登记为 SC-FORM-TYPED-UNKNOWN 的无损替代。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/03-typed-unknown-v2.md"
+}

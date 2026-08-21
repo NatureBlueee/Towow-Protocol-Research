@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "WAVE025_PRIVATE_CONTROL_REGISTRY_V1.schema.json",
+  "title": "Wave 025 private D0 and D1 control registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "registry_id",
+    "status",
+    "binding_state",
+    "profile_id",
+    "public_registration_sha256",
+    "generated_at",
+    "role_labels",
+    "material_provenance",
+    "families",
+    "per_family_canonical_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "WAVE025_PRIVATE_CONTROL_REGISTRY_V1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "registry_id": {
+      "const": "WAVE025-PRIVATE-CONTROL-REGISTRY-PREFORMAL-V1"
+    },
+    "status": {
+      "const": "PREFORMAL_CANDIDATE_NOT_BOUND_REUSES_REVEALED_D1"
+    },
+    "binding_state": {
+      "const": "NOT_BOUND_TO_PROFILE_OR_PRECOMMIT"
+    },
+    "profile_id": {
+      "const": "WAVE025-EXECUTABLE-ATTACK-PROFILE-FULL-V1"
+    },
+    "public_registration_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "role_labels": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "const": "R"
+        },
+        {
+          "const": "S"
+        }
+      ],
+      "items": false
+    },
+    "material_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D0-HOST-LEAK",
+        "D1-OCI-CANARY"
+      ],
+      "properties": {
+        "D0-HOST-LEAK": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "generator",
+            "fresh_for_this_candidate"
+          ],
+          "properties": {
+            "kind": {
+              "const": "OS_CSPRNG"
+            },
+            "generator": {
+              "const": "PYTHON_SECRETS_TOKEN_HEX_16"
+            },
+            "fresh_for_this_candidate": {
+              "const": true
+            }
+          }
+        },
+        "D1-OCI-CANARY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "source_batch_id",
+            "source_reveal_sha256",
+            "fresh_for_formal"
+          ],
+          "properties": {
+            "kind": {
+              "const": "REUSED_FROM_ALREADY_REVEALED_SMOKE_PREFORMAL_ONLY"
+            },
+            "source_batch_id": {
+              "const": "w025-smoke-v13-20260801-f"
+            },
+            "source_reveal_sha256": {
+              "const": "7f698271d211441ad46b6851d8b219238f6e81b87f72afbdcf6de579adb70287"
+            },
+            "fresh_for_formal": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "families": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/d0_private_family"
+        },
+        {
+          "$ref": "#/$defs/d1_private_family"
+        }
+      ],
+      "items": false
+    },
+    "per_family_canonical_sha256": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D0_RESIDUE_OPAQUE_BASENAME_V1",
+        "D1_CURRENT_RUN_CANARY_V1"
+      ],
+      "properties": {
+        "D0_RESIDUE_OPAQUE_BASENAME_V1": {
+          "$ref": "#/$defs/sha256"
+        },
+        "D1_CURRENT_RUN_CANARY_V1": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "d0_role_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role_label",
+        "tag_hex",
+        "candidate_visible_basename"
+      ],
+      "properties": {
+        "role_label": {
+          "enum": [
+            "R",
+            "S"
+          ]
+        },
+        "tag_hex": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "candidate_visible_basename": {
+          "type": "string",
+          "pattern": "^d0-residue-v1-[a-f0-9]{32}$"
+        }
+      }
+    },
+    "d1_role_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role_label",
+        "token_utf8",
+        "token_byte_length",
+        "candidate_visible_sources"
+      ],
+      "properties": {
+        "role_label": {
+          "enum": [
+            "R",
+            "S"
+          ]
+        },
+        "token_utf8": {
+          "type": "string",
+          "pattern": "^WAVE025_CANARY_D1_CURRENT_[a-f0-9]{24}$"
+        },
+        "token_byte_length": {
+          "const": 50
+        },
+        "candidate_visible_sources": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "const": "challenge-entry-name"
+            },
+            {
+              "const": "challenge-file-content"
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "d0_private_family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "challenge",
+        "private_value_kind",
+        "mapping_stability",
+        "role_mappings"
+      ],
+      "properties": {
+        "family_id": {
+          "const": "D0_RESIDUE_OPAQUE_BASENAME_V1"
+        },
+        "challenge": {
+          "const": "D0-HOST-LEAK"
+        },
+        "private_value_kind": {
+          "const": "TWO_DISTINCT_16_BYTE_CSPRNG_TAGS_HEX_ENCODED_IN_BASENAME"
+        },
+        "mapping_stability": {
+          "const": "ONE_VALUE_PER_ROLE_REUSED_ACROSS_CALIBRATION_AND_HOLDOUT"
+        },
+        "role_mappings": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/d0_role_mapping"
+                },
+                {
+                  "properties": {
+                    "role_label": {
+                      "const": "R"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/d0_role_mapping"
+                },
+                {
+                  "properties": {
+                    "role_label": {
+                      "const": "S"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "d1_private_family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "challenge",
+        "private_value_kind",
+        "mapping_stability",
+        "role_mappings"
+      ],
+      "properties": {
+        "family_id": {
+          "const": "D1_CURRENT_RUN_CANARY_V1"
+        },
+        "challenge": {
+          "const": "D1-OCI-CANARY"
+        },
+        "private_value_kind": {
+          "const": "CURRENT_WAVE025_CANARY_TOKEN_UTF8"
+        },
+        "mapping_stability": {
+          "const": "ONE_VALUE_PER_ROLE_REUSED_ACROSS_CALIBRATION_AND_HOLDOUT"
+        },
+        "role_mappings": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/d1_role_mapping"
+                },
+                {
+                  "properties": {
+                    "role_label": {
+                      "const": "R"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/d1_role_mapping"
+                },
+                {
+                  "properties": {
+                    "role_label": {
+                      "const": "S"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  }
+}

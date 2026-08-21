@@ -1,0 +1,128 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-02-PRIVATE-COLUMN-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "RELATION_CONSTITUTION",
+  "title": "私有行动集的本地候选列与最小贡献见证",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-REL-004"
+  ],
+  "local_question": "当主体行动集私有、非枚举或只能本地验证时，local column、阻断反例或最小不可行见证是否比中心全量收集、静态摘要和直接宣告无解提高合格路径召回或减少必要披露，同时不把候选升级为承诺？",
+  "blocked_decision": "决定历史丢失的 CAP-REL-004 应恢复为独立本地候选接口、组合进现有优化与 Boundary Oracle，还是被成熟分解优化、安全聚合或普通本地工具无损替代。",
+  "reverse_result": "若中心安全摘要、成熟 Dantzig-Wolfe/Benders/CEGIS 组合或普通本地工具在相同私有行动集、查询和成本条件下持续获得相同路径召回、披露量和错误率，则通爻特有 local-column 协议不应恢复为独立机制；该结果不影响 relation materiality 或 formation。",
+  "minimum_discriminator": "冻结中心不能直接枚举但存在独立 truth 的私有行动集与全局目标，比较中心请求全量集合、安全静态摘要、成熟分解优化接口和本地 oracle 只返回改善列/阻断反例/最小不可行见证，报告合格路径召回、错误无解率、披露量、查询轮数、策略性遗漏、计算与治理成本，并做移除 local generation 的消融。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/joint-action-formation/lines/02-relation-constitution.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+    "research/projects/a2a-reconstruction/04_audit/source_registry.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/e2/e2777bd62c7b93319d3115d4ccf3e04047da4967ab8ec954377fdc455492448b.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b623a1001de7684b6812fee6de4850a0c957b0db9cba68ab5f74589f1cc0e6f7.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 45,
+    "max_attempts": 2,
+    "max_output_bytes": 2097152
+  },
+  "stop_conditions": [
+    "开始要求主体披露完整私有行动集或未经授权材料",
+    "把 candidate、column、cut 或局部 witness 提升成承诺或全局事实",
+    "比较臂没有相同目标 truth、查询预算、隐私边界和总成本账",
+    "策略性遗漏和错误无解没有作为一等负结果保存"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "design_proposals",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "必须给 Dantzig-Wolfe、Benders、CEGIS、安全静态摘要和普通本地工具完整基线机会",
+    "不得把形式优化中诚实 oracle 的成功外推为社会主体不会拒绝或策略隐瞒",
+    "必须分别报告 candidate generation、最小贡献证明、隐私披露和错误无解消融",
+    "不得读取 materiality、formation 或 Authority 线候选结论来把 column 变成关系认领"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "SC-REL-PRIVATE-COLUMN"
+    ],
+    "hypothesis_ids": [
+      "REL-H-PRIVATE-COLUMN-VALUE"
+    ],
+    "applicable_assumptions": [
+      "WORLD-NETWORK-SCALE",
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE"
+    ],
+    "non_claims": [
+      "不证明候选已经成为 Commitment 或获得 Authority",
+      "不证明 Relation Schema 发生了 material change",
+      "不证明 formation、Effect、Adoption、Acceptance 或商业净值",
+      "不证明联邦、去中心或通爻协议普遍优于中心",
+      "不假定本地 oracle 诚实、完整或无策略行为"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/02_problem_and_relation_constitution.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+      "research/projects/joint-action-formation/problem/v2-history-alignment.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/e2/e2777bd62c7b93319d3115d4ccf3e04047da4967ab8ec954377fdc455492448b.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b623a1001de7684b6812fee6de4850a0c957b0db9cba68ab5f74589f1cc0e6f7.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "Dantzig-Wolfe、Benders 与 CEGIS 已提供成熟的局部子问题、列、切割和反例修复内核；仍需扩展并检验不可安全汇聚行动集下的最小披露、主体拒绝、策略性遗漏、Authority 边界和 candidate 非承诺语义。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/02-03-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "一手论文确认分解与反例方法真实存在，但其形式前提不自动覆盖社会主体的拒绝、策略性隐瞒、授权和最小披露。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+        "coverage": "NONE",
+        "uncovered_requirement": "CAP-REL-004 在当前系统审计中为 LOST，且没有明确 owner 或等价运行协议。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能提升 SC-REL-PRIVATE-COLUMN 的候选证据，并冻结私有行动集、truth、查询、披露、策略行为、基线和成本；不能把 column 提升为承诺或关系成立。",
+    "negative_effect": "负结果只会把 local candidate/column 接口降为成熟分解优化、安全摘要、普通本地工具或 Boundary Oracle 的 provider；不否定 Relation Constitution 母线或其他未受检验能力。",
+    "unaffected_claim_ids": [
+      "CAP-REL-001",
+      "CAP-REL-002",
+      "CAP-REL-003",
+      "CAP-REL-005",
+      "CAP-FORM-001",
+      "CAP-FORM-002",
+      "CAP-FORM-003",
+      "CAP-FORM-004",
+      "CAP-FORM-005",
+      "MC-NAC-ANCHOR",
+      "MC-NAC-PREFIX",
+      "MC-NAC-DIRECTION",
+      "MC-NAC-SELF-DESCRIPTION",
+      "MC-NAC-MIGRATION"
+    ],
+    "integration_gate": "只有现成方案在相同私有行动集与社会边界下同时重放改善列、阻断反例、最小不可行见证、拒绝、策略遗漏、正例和移除失败，才能登记为 SC-REL-PRIVATE-COLUMN 的无损替代。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/02-private-column-v2.md"
+}

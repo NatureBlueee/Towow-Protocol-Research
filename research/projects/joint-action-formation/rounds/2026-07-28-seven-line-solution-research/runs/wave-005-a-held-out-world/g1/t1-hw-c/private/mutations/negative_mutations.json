@@ -1,0 +1,255 @@
+{
+  "schema_version": "2.0",
+  "base_fixture": "../fixtures/scorer_conformance_receipt.json",
+  "mutations": [
+    {
+      "mutation_id": "HWC-M01-SELF-SIGNED-CONTROLLER-RECEIPT",
+      "purpose": "Reject candidate-authored execution receipt.",
+      "actions": [
+        {
+          "action": "SET_PROOF_FIELD",
+          "action_id": "ACT-HWC-RELAY-01",
+          "field": "controller_receipt_ref",
+          "value": "CR-HWC-CANDIDATE-SELF-SIGNED"
+        }
+      ],
+      "expected_failure_codes": ["EXECUTION_RECEIPT_UNTRUSTED"],
+      "expected_failed_requirements": ["R4"]
+    },
+    {
+      "mutation_id": "HWC-M02-MISSING-RECIPIENT-ACK",
+      "purpose": "Reject controller execution without every receiving domain ACK.",
+      "actions": [
+        {
+          "action": "REMOVE_ACK",
+          "action_id": "ACT-HWC-RELAY-01",
+          "ack_ref": "ACK-HWC-NODE-REED-0014"
+        }
+      ],
+      "expected_failure_codes": ["RECIPIENT_ACK_SET_MISMATCH"],
+      "expected_failed_requirements": ["R4"]
+    },
+    {
+      "mutation_id": "HWC-M03-WRONG-EXTERNAL-ANCHOR",
+      "purpose": "Reject an anchor outside the frozen append-only chain.",
+      "actions": [
+        {
+          "action": "SET_PROOF_FIELD",
+          "action_id": "ACT-HWC-RECIP-01",
+          "field": "external_anchor_ref",
+          "value": "ANCHOR-HWC-UNTRUSTED-999"
+        }
+      ],
+      "expected_failure_codes": ["EXTERNAL_ANCHOR_MISMATCH"],
+      "expected_failed_requirements": ["R4"]
+    },
+    {
+      "mutation_id": "HWC-M04-TAMPERED-ACTION-DIGEST",
+      "purpose": "Reject evidence rebound to a changed action.",
+      "actions": [
+        {
+          "action": "SET_PROOF_FIELD",
+          "action_id": "ACT-HWC-RELAY-01",
+          "field": "action_digest",
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "expected_failure_codes": [
+        "EXECUTION_BINDING_MISMATCH",
+        "EXECUTION_RECEIPT_BINDING_INVALID"
+      ],
+      "expected_failed_requirements": ["R3", "R4"]
+    },
+    {
+      "mutation_id": "HWC-M05-IDEMPOTENCY-REPLAY-CONFLICT",
+      "purpose": "Reject reuse of a frozen idempotency key by a different action.",
+      "actions": [
+        {
+          "action": "APPEND_PROOF",
+          "value": {
+            "action_id": "ACT-HWC-UNEXPECTED-REPLAY",
+            "detection_id": "CAL-C-PAIR-004",
+            "action_kind": "RECIPROCAL_EXCHANGE",
+            "status": "EXECUTED_VERIFIED",
+            "action_digest": "41541744bed90978fcfad37a872dbf65344fb33d7bcd41e7a03bf7c418589619",
+            "idempotency_key": "HWC-CANOPY-ROUTE-01",
+            "delivery_events": [
+              {
+                "event_ref": "EV-HWC-REPLAY-001",
+                "origin_party": "ISLET-53",
+                "sender": "ISLET-53",
+                "recipient": "JUNCTION-88",
+                "fact_id": "F-HWC-ISLET-RECIP-PROJECTION",
+                "depth": 0,
+                "purpose": "symmetric-tidal-probe",
+                "retention": "PT6M"
+              }
+            ],
+            "controller_receipt_ref": "CR-HWC-RECIP-0011",
+            "recipient_ack_refs": ["ACK-HWC-ISLET-0028", "ACK-HWC-JUNCTION-0033"],
+            "external_anchor_ref": "ANCHOR-HWC-000092"
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "IDEMPOTENCY_REPLAY_CONFLICT",
+        "UNEXPECTED_EXECUTION_PROOF"
+      ],
+      "expected_failed_requirements": ["R4"]
+    },
+    {
+      "mutation_id": "HWC-M06-ONWARD-DEPTH-OFF-BY-ONE",
+      "purpose": "Reject counting the first onward hop as depth 0.",
+      "actions": [
+        {
+          "action": "SET_DELIVERY_FIELD",
+          "action_id": "ACT-HWC-RELAY-01",
+          "event_ref": "EV-HWC-HOLLOW-HUB-002",
+          "field": "depth",
+          "value": 0
+        }
+      ],
+      "expected_failure_codes": ["DELIVERY_PATH_MISMATCH"],
+      "expected_failed_requirements": ["R3", "R4"]
+    },
+    {
+      "mutation_id": "HWC-M07-RECIPROCAL-ORIENTATION-REVERSED",
+      "purpose": "Reject provider-to-seeker labeling even though exchange is symmetric.",
+      "actions": [
+        {
+          "action": "SET_DECISION_FIELD",
+          "detection_id": "CAL-C-PAIR-004",
+          "field": "seeker",
+          "value": "JUNCTION-88"
+        },
+        {
+          "action": "SET_DECISION_FIELD",
+          "detection_id": "CAL-C-PAIR-004",
+          "field": "provider",
+          "value": "ISLET-53"
+        }
+      ],
+      "expected_failure_codes": ["UNEXPECTED_DETECTION", "FALSE_WAKEUP"],
+      "expected_failed_requirements": ["R7"]
+    },
+    {
+      "mutation_id": "HWC-M08-STALE-VERSION-WAKEUP",
+      "purpose": "Reject promotion of a public offer after its direction changed.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-C-PAIR-002",
+          "state": "DISCOVERED"
+        },
+        {
+          "action": "REMOVE_UPDATE",
+          "party": "FALLOW-26"
+        }
+      ],
+      "expected_failure_codes": ["STATE_MISMATCH", "DYNAMIC_UPDATE_MISSING"],
+      "expected_failed_requirements": ["R2", "R7"]
+    },
+    {
+      "mutation_id": "HWC-M09-UNKNOWN-AS-ABSENT",
+      "purpose": "Reject no response collapsed into closed-world absence.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-C-CLAIM-001",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": ["STATE_MISMATCH"],
+      "expected_failed_requirements": ["R5"]
+    },
+    {
+      "mutation_id": "HWC-M10-REFUSE-AS-UNKNOWN",
+      "purpose": "Reject explicit refusal collapsed into lack of information.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-C-CLAIM-002",
+          "state": "UNKNOWN"
+        }
+      ],
+      "expected_failure_codes": ["STATE_MISMATCH"],
+      "expected_failed_requirements": ["R5"]
+    },
+    {
+      "mutation_id": "HWC-M11-ABSENT-AS-UNKNOWN",
+      "purpose": "Reject completed closed-population absence collapsed into unknown.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-C-CLAIM-003",
+          "state": "UNKNOWN"
+        }
+      ],
+      "expected_failure_codes": ["STATE_MISMATCH"],
+      "expected_failed_requirements": ["R5"]
+    },
+    {
+      "mutation_id": "HWC-M12-POLICY-UNFINDABLE-AS-ABSENT",
+      "purpose": "Reject policy-blocked existence represented as absence.",
+      "actions": [
+        {
+          "action": "SET_DECISION_STATE",
+          "detection_id": "CAL-C-PAIR-005",
+          "state": "ABSENT"
+        }
+      ],
+      "expected_failure_codes": ["STATE_MISMATCH"],
+      "expected_failed_requirements": ["R5", "R6"]
+    },
+    {
+      "mutation_id": "HWC-M13-COMPATIBILITY-VERSION-DECOY",
+      "purpose": "Reject facet-only matching across a different compatibility version.",
+      "actions": [
+        {
+          "action": "APPEND_DECISION",
+          "value": {
+            "detection_id": "MUT-C-DECOY-001",
+            "kind": "PAIR",
+            "state": "DISCOVERED",
+            "seeker": "CEDAR-72",
+            "provider": "TUNDRA-41",
+            "direction": "SEEK_TO_OFFER",
+            "evidence_refs": ["W-HWC-SPECTRAL-SEEK-V3", "W-HWC-SPECTRAL-DECOY-V6"]
+          }
+        }
+      ],
+      "expected_failure_codes": [
+        "UNEXPECTED_DETECTION",
+        "FALSE_WAKEUP",
+        "VERSION_DECOY_WAKEUP"
+      ],
+      "expected_failed_requirements": ["R7"]
+    },
+    {
+      "mutation_id": "HWC-M14-DISCOVERY-WITHOUT-HANDOFF",
+      "purpose": "Reject a discovered opportunity that never enters relation constitution.",
+      "actions": [
+        {
+          "action": "REMOVE_HANDOFF",
+          "detection_id": "CAL-C-PAIR-003"
+        }
+      ],
+      "expected_failure_codes": ["RELATION_HANDOFF_MISSING"],
+      "expected_failed_requirements": ["R8"]
+    },
+    {
+      "mutation_id": "HWC-M15-INVENTED-AUTHORITY",
+      "purpose": "Reject execution evidence promoted into business authority.",
+      "actions": [
+        {
+          "action": "SET_HANDOFF_FIELD",
+          "detection_id": "CAL-C-PAIR-004",
+          "field": "authority_inferred",
+          "value": true
+        }
+      ],
+      "expected_failure_codes": ["AUTHORITY_INVENTED"],
+      "expected_failed_requirements": ["R8"]
+    }
+  ]
+}

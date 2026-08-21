@@ -1,0 +1,271 @@
+{
+  "schema": "X1ProcessAllowlistCandidate-v0",
+  "gate_id": "wave010-x1-m01-owner-process-gate-v0",
+  "status": "CANDIDATE_IDENTITIES_UNRESOLVED_NOT_ENFORCED",
+  "runner_implemented": false,
+  "enforcement": {
+    "active": false,
+    "required_future_boundary": "OS-enforced sandbox, container, distinct user, or capability broker with deny-by-default file descriptor and network policy",
+    "path_allowlist_alone_is_security_boundary": false,
+    "same_uid_malicious_process_excluded": false,
+    "symlink_and_toctou_protection_implemented": false,
+    "inherited_file_descriptor_audit_implemented": false,
+    "network_egress_denied": false
+  },
+  "executable_identity_contract": {
+    "required_fields_before_enforcement": [
+      "canonical_executable_path",
+      "executable_raw_sha256",
+      "argv_exact",
+      "working_directory",
+      "effective_uid",
+      "effective_gid",
+      "code_signature_or_package_identity",
+      "sandbox_profile_raw_sha256",
+      "environment_allowlist_sha256"
+    ],
+    "interpreter_rule": "For interpreted methods, bind interpreter bytes, entrypoint bytes, import closure or sealed environment, and exact argv; an entrypoint hash alone is insufficient.",
+    "identity_change_semantics": "INVALIDATE_ALLOWLIST_AND_REQUIRE_NEW_USER_DECISION"
+  },
+  "global_denies": [
+    "**/.git/**",
+    "**/.env",
+    "**/*private-key*",
+    "**/owner-public-key-registry-write/**",
+    "**/runs/**"
+  ],
+  "processes": [
+    {
+      "role_id": "owner-signer-program-coordinator",
+      "authority_domain_id": "program-coordinator-domain",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/program-coordinator.json",
+        "owner-commitment-requests.json"
+      ],
+      "write_allowlist": [
+        "owner-decisions/program-coordinator.json"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/delta-calibration.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/independent-validation.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/site-data-steward.json",
+        "owner-decisions/delta-calibration.json",
+        "owner-decisions/independent-validation.json",
+        "owner-decisions/site-data-steward.json"
+      ],
+      "private_key_provider": "EXTERNAL_OWNER_CONTROLLED_PROVIDER_UNRESOLVED",
+      "network": "DENY"
+    },
+    {
+      "role_id": "owner-signer-delta-calibration",
+      "authority_domain_id": "delta-calibration-domain",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/delta-calibration.json",
+        "owner-commitment-requests.json"
+      ],
+      "write_allowlist": [
+        "owner-decisions/delta-calibration.json"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/program-coordinator.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/independent-validation.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/site-data-steward.json",
+        "owner-decisions/program-coordinator.json",
+        "owner-decisions/independent-validation.json",
+        "owner-decisions/site-data-steward.json"
+      ],
+      "private_key_provider": "EXTERNAL_OWNER_CONTROLLED_PROVIDER_UNRESOLVED",
+      "network": "DENY"
+    },
+    {
+      "role_id": "owner-signer-independent-validation",
+      "authority_domain_id": "independent-validation-domain",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/independent-validation.json",
+        "owner-commitment-requests.json"
+      ],
+      "write_allowlist": [
+        "owner-decisions/independent-validation.json"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/program-coordinator.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/delta-calibration.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/site-data-steward.json",
+        "owner-decisions/program-coordinator.json",
+        "owner-decisions/delta-calibration.json",
+        "owner-decisions/site-data-steward.json"
+      ],
+      "private_key_provider": "EXTERNAL_OWNER_CONTROLLED_PROVIDER_UNRESOLVED",
+      "network": "DENY"
+    },
+    {
+      "role_id": "owner-signer-site-data-steward",
+      "authority_domain_id": "site-data-steward-domain",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/site-data-steward.json",
+        "owner-commitment-requests.json"
+      ],
+      "write_allowlist": [
+        "owner-decisions/site-data-steward.json"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/program-coordinator.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/delta-calibration.json",
+        "../wave-010-x1-m01-freeze-bundle-v0/private/g5-domains/independent-validation.json",
+        "owner-decisions/program-coordinator.json",
+        "owner-decisions/delta-calibration.json",
+        "owner-decisions/independent-validation.json"
+      ],
+      "private_key_provider": "EXTERNAL_OWNER_CONTROLLED_PROVIDER_UNRESOLVED",
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-method-strong-center",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/public/**",
+        "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json"
+      ],
+      "write_allowlist": [
+        "future-method-outputs/strong-center/**"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/**",
+        "../wave-010-x1-m01-freeze-bundle-v0/certificates/**",
+        "owner-decisions/**",
+        "future-method-outputs/mature-composition/**",
+        "future-method-outputs/human-interface/**",
+        "future-method-outputs/candidate-arm/**"
+      ],
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-method-mature-composition",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/public/**",
+        "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json"
+      ],
+      "write_allowlist": [
+        "future-method-outputs/mature-composition/**"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/**",
+        "../wave-010-x1-m01-freeze-bundle-v0/certificates/**",
+        "owner-decisions/**",
+        "future-method-outputs/strong-center/**",
+        "future-method-outputs/human-interface/**",
+        "future-method-outputs/candidate-arm/**"
+      ],
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-method-human-interface",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/public/**",
+        "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json"
+      ],
+      "write_allowlist": [
+        "future-method-outputs/human-interface/**"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/**",
+        "../wave-010-x1-m01-freeze-bundle-v0/certificates/**",
+        "owner-decisions/**",
+        "future-method-outputs/strong-center/**",
+        "future-method-outputs/mature-composition/**",
+        "future-method-outputs/candidate-arm/**"
+      ],
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-method-candidate-arm",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/public/**",
+        "../../WAVE-010-X1-OUTCOME-CONTRACT-v0.json"
+      ],
+      "write_allowlist": [
+        "future-method-outputs/candidate-arm/**"
+      ],
+      "explicit_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/**",
+        "../wave-010-x1-m01-freeze-bundle-v0/certificates/**",
+        "owner-decisions/**",
+        "future-method-outputs/strong-center/**",
+        "future-method-outputs/mature-composition/**",
+        "future-method-outputs/human-interface/**"
+      ],
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-neutral-controller",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/public/**",
+        "owner-decisions/**",
+        "process-allowlist-candidate.json"
+      ],
+      "write_allowlist": [
+        "future-controller-state/**"
+      ],
+      "read_denies": [
+        "../wave-010-x1-m01-freeze-bundle-v0/private/**",
+        "**/*private-key*"
+      ],
+      "write_denies": [
+        "owner-decisions/**"
+      ],
+      "owner_signature_capability": "NONE",
+      "network": "DENY"
+    },
+    {
+      "role_id": "future-independent-evaluator",
+      "identity_status": "UNRESOLVED_EXECUTABLE",
+      "executable_identity": null,
+      "read_allowlist": [
+        "../wave-010-x1-m01-freeze-bundle-v0/**",
+        "owner-decisions/**",
+        "future-method-outputs/**",
+        "future-controller-state/**"
+      ],
+      "write_allowlist": [
+        "future-evaluation/**"
+      ],
+      "read_denies": [
+        "**/*private-key*"
+      ],
+      "write_denies": [
+        "owner-decisions/**",
+        "future-method-outputs/**",
+        "future-controller-state/**"
+      ],
+      "owner_signature_capability": "NONE",
+      "network": "DENY"
+    }
+  ],
+  "user_decision_gate": {
+    "required_after_owner_decisions_and_identity_resolution": true,
+    "exact_inputs": [
+      "four owner decision envelopes and public keys",
+      "this allowlist with all executable identities resolved",
+      "actual OS enforcement profile and hash",
+      "runner candidate and rollback boundary"
+    ],
+    "automatic_activation_or_promotion": false
+  }
+}

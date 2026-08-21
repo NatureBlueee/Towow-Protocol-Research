@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "WAVE-010-G4-RELIANCE-FRONTIER-V1",
+  "status": "LOCAL_SYNTHETIC_METHOD_NEUTRAL_FIXTURE",
+  "evidence_boundary": {
+    "can_support": [
+      "在冻结的合成任务中重建 attempt 前 RELY/BLOCK/ABSTAIN 的混淆矩阵",
+      "检验 operation tuple、current Authority head、reservation、recovery 与 dependency observation 的非蕴含",
+      "证明两个 method-visible packet 完全相同的 hidden-dependency worlds 不能被公开证据策略分流"
+    ],
+    "cannot_support": [
+      "现实企业 capability 或 production reliability",
+      "真人 Authority、Acceptance、商业净值或现实频率",
+      "任何通爻新机制的必要性、独占性或一般有效性"
+    ]
+  },
+  "decision_space": [
+    "RELY",
+    "BLOCK",
+    "ABSTAIN"
+  ],
+  "worlds": [
+    {
+      "world_id": "T2-EXACT-CURRENT-SUCCESS",
+      "task_family": "T2",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "RUN-READONLY-AGGREGATES-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "NONE",
+          "query_supported": false,
+          "query_result": "NOT_REQUIRED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": true,
+        "reason": "exact tuple is current and the bounded recovery path is evidenced",
+        "required_recovery_action": "NONE"
+      }
+    },
+    {
+      "world_id": "T2-HEALTHY-BUT-VERSION-REGRESSED",
+      "task_family": "T2",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "RUN-READONLY-AGGREGATES-v2",
+        "executor": "provider-container@sha256:222",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "FAIL",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "NONE",
+          "query_supported": false,
+          "query_result": "NOT_REQUIRED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "service readiness is healthy but the exact v2 operation regressed",
+        "required_recovery_action": "REQUALIFY_OPERATION"
+      }
+    },
+    {
+      "world_id": "T2-PROBE-PASS-PERMISSION-REVOKED",
+      "task_family": "T2",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "RUN-READONLY-AGGREGATES-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "REVOKED",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "NONE",
+          "query_supported": false,
+          "query_result": "NOT_REQUIRED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "technical capability does not create current data permission",
+        "required_recovery_action": "REAUTHORIZE"
+      }
+    },
+    {
+      "world_id": "T2-CURRENT-BUT-ASSURANCE-MISSING",
+      "task_family": "T2",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "RUN-READONLY-AGGREGATES-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "MISSING",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "NONE",
+          "query_supported": false,
+          "query_result": "NOT_REQUIRED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "the executable identity is not bound to the evaluated artifact",
+        "required_recovery_action": "REATTEST"
+      }
+    },
+    {
+      "world_id": "T4-QUALIFIED-AND-RESERVED",
+      "task_family": "T4",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "PRIME-v5+FIELD-fw17+ASSURE-audit2",
+        "executor": "three-principal-joint-chain",
+        "environment": "city-tender@addendum-3",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "ACTIVE"
+        },
+        "human": {
+          "required": true,
+          "owner_stance": "APPROVE"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": true,
+        "reason": "the exact interop chain, current reservations and owner decisions are all current",
+        "required_recovery_action": "NONE"
+      }
+    },
+    {
+      "world_id": "T4-CAPABLE-BUT-RESERVATION-CONFLICT",
+      "task_family": "T4",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "PRIME-v5+FIELD-fw17+ASSURE-audit2",
+        "executor": "three-principal-joint-chain",
+        "environment": "city-tender@addendum-3",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "CONFLICT",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "ACTIVE"
+        },
+        "human": {
+          "required": true,
+          "owner_stance": "APPROVE"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "the exact operation is technically qualified but FIELD capacity is double-reserved",
+        "required_recovery_action": "RE_RESERVE"
+      }
+    },
+    {
+      "world_id": "T4-TECH-PASS-AUTHORITY-UNKNOWN",
+      "task_family": "T4",
+      "drift_case": false,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "PRIME-v5+FIELD-fw17+ASSURE-audit2",
+        "executor": "three-principal-joint-chain",
+        "environment": "city-tender@addendum-3",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "ACTIVE"
+        },
+        "human": {
+          "required": true,
+          "owner_stance": "UNKNOWN"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "risk allocation and audit scope still lack their owners' current stance",
+        "required_recovery_action": "HUMAN_AMEND"
+      }
+    },
+    {
+      "world_id": "T6-HIDDEN-DEPENDENCY-VALID",
+      "task_family": "T6",
+      "drift_case": true,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "REPEAT-READONLY-PILOT-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "HIDDEN",
+          "query_supported": false,
+          "query_result": "UNAVAILABLE"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": true,
+        "reason": "the unexpressed sidecar account is still valid",
+        "required_recovery_action": "NONE"
+      }
+    },
+    {
+      "world_id": "T6-HIDDEN-DEPENDENCY-REVOKED",
+      "task_family": "T6",
+      "drift_case": true,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "REPEAT-READONLY-PILOT-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "HIDDEN",
+          "query_supported": false,
+          "query_result": "UNAVAILABLE"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "the unexpressed sidecar account was revoked",
+        "required_recovery_action": "GLOBAL_REOPEN"
+      }
+    },
+    {
+      "world_id": "T6-QUERYABLE-DEPENDENCY-VALID",
+      "task_family": "T6",
+      "drift_case": true,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "REPEAT-READONLY-PILOT-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "ACTIVE"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": true,
+        "reason": "the dependency owner returned a current ACTIVE head",
+        "required_recovery_action": "NONE"
+      }
+    },
+    {
+      "world_id": "T6-QUERYABLE-DEPENDENCY-REVOKED",
+      "task_family": "T6",
+      "drift_case": true,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "REPEAT-READONLY-PILOT-v1",
+        "executor": "provider-container@sha256:111",
+        "environment": "buyer-sandbox@2026.07",
+        "exact_probe": {
+          "status": "PASS",
+          "binding_matches": true,
+          "head_current": true
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "STABLE",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "DECLARED",
+          "query_supported": true,
+          "query_result": "REVOKED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "the dependency owner returned a current REVOKED head",
+        "required_recovery_action": "REAUTHORIZE_DEPENDENCY"
+      }
+    },
+    {
+      "world_id": "T6-MODEL-UPGRADE-REGIME-SHIFT",
+      "task_family": "T6",
+      "drift_case": true,
+      "method_packet": {
+        "declaration": "ACTIVE",
+        "readiness": "HEALTHY",
+        "operation": "REPEAT-READONLY-PILOT-v2",
+        "executor": "provider-container@sha256:333",
+        "environment": "buyer-sandbox@2026.08",
+        "exact_probe": {
+          "status": "MISSING",
+          "binding_matches": false,
+          "head_current": false
+        },
+        "permission": {
+          "status": "ACTIVE",
+          "head_current": true
+        },
+        "reservation": {
+          "required": true,
+          "status": "VALID",
+          "current": true
+        },
+        "telemetry": "SHIFTED",
+        "attestation": "CURRENT",
+        "recovery_evidence": "PASS",
+        "dependency": {
+          "kind": "NONE",
+          "query_supported": false,
+          "query_result": "NOT_REQUIRED"
+        },
+        "human": {
+          "required": false,
+          "owner_stance": "NOT_REQUIRED"
+        }
+      },
+      "private_oracle": {
+        "safe_to_rely": false,
+        "reason": "history belongs to the prior model and environment distribution",
+        "required_recovery_action": "REQUALIFY_OPERATION"
+      }
+    }
+  ],
+  "invariance_checks": [
+    {
+      "id": "HIDDEN-PAIR-IDENTICAL-METHOD-PACKETS",
+      "left": "T6-HIDDEN-DEPENDENCY-VALID",
+      "right": "T6-HIDDEN-DEPENDENCY-REVOKED"
+    },
+    {
+      "id": "QUERYABLE-PAIR-DIFFERS-ONLY-IN-DEPENDENCY-OBSERVATION",
+      "left": "T6-QUERYABLE-DEPENDENCY-VALID",
+      "right": "T6-QUERYABLE-DEPENDENCY-REVOKED",
+      "allowed_difference_path": "dependency.query_result"
+    }
+  ]
+}

@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T2-ENTERPRISE-PILOT-BLIND-V1",
+  "oracle_id": "T2-ENTERPRISE-PILOT-ORACLE-V1",
+  "visibility": "CONTROLLER_AND_INDEPENDENT_EVALUATOR_ONLY",
+  "evidence_boundary": {
+    "level": "ARCHIVAL_DESIGN_DERIVED_SYNTHETIC",
+    "is_real_enterprise_case": false,
+    "is_real_principal_evidence": false,
+    "can_test": [
+      "whether a method preserves frozen value while finding or creating a qualified path",
+      "whether a method keeps authority, prospective capability, Effect, Adoption and Acceptance distinct",
+      "whether a method handles material change and dependency-sensitive reopen"
+    ],
+    "cannot_support": [
+      "real enterprise adoption",
+      "legal sufficiency",
+      "population frequency",
+      "commercial net value",
+      "strict formation in the real world",
+      "long-term stability"
+    ]
+  },
+  "private_local_states_at_s0": {
+    "BUYER-BUSINESS": {
+      "goal": "在 14 天内获得足以改变续费问题处理的业务结论",
+      "budget_ceiling_cny": 9800,
+      "acceptance_floor": "至少 3 条结论能够进入采购方真实客服 backlog，并由业务负责人判断试点有用",
+      "production_purchase_committed": false,
+      "probe_budget_stance": "可为一次有界 discovery probe 支付或预留小额成本，具体金额未冻结"
+    },
+    "BUYER-DATA": {
+      "initial_v1_stance": "REJECT",
+      "rejection_scope": [
+        "raw_data_export",
+        "provider_model_improvement",
+        "90_day_retention",
+        "provider_only_effect_witness"
+      ],
+      "minimum_counterconditions": [
+        "原始数据不离开采购方权限域",
+        "只允许明确批准的聚合查询和只读执行",
+        "不允许训练或持久记忆",
+        "Effect 必须由采购方审计回执见证"
+      ],
+      "bounded_probe_can_be_authorized": true,
+      "probe_credential_rule": "临时、只读、仅测试数据、测试后自动撤销",
+      "known_at_s0": "不知道任何本地替代路径是否可运行"
+    },
+    "PROVIDER-BUSINESS": {
+      "standard_offer_cny": 9800,
+      "standard_deadline_days": 14,
+      "alternate_scope_stance": "若保持固定试点范围，reference v2 仍可按 9800 元和 14 天重新认领",
+      "production_integration_included": false
+    },
+    "PROVIDER-TECH": {
+      "standard_cloud_path": "KNOWN_RUNNABLE",
+      "latent_alternate_path": "固定分析容器可能在采购方 sandbox 内运行",
+      "prospective_status_at_s0": "UNKNOWN",
+      "required_evidence": "30 至 60 分钟有界 probe",
+      "commitment_before_probe": "PROHIBITED"
+    }
+  },
+  "disclosure_transitions": [
+    {
+      "request_type": "CLARIFY_ACCEPTANCE",
+      "authority_id": "BUYER-BUSINESS",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "acceptance_floor": "至少 3 条可进入真实客服 backlog 的结论",
+        "acceptance_scope": "只接受试点有用，不等于生产上线或未来采购"
+      }
+    },
+    {
+      "request_type": "REQUEST_PILOT_BUDGET_STANCE",
+      "authority_id": "BUYER-BUSINESS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "budget_ceiling_cny": 9800,
+        "condition": "精确试点版本满足数据权威与业务接受条件"
+      }
+    },
+    {
+      "request_type": "REQUEST_ADOPTION_STANCE",
+      "authority_id": "BUYER-BUSINESS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "adoption_rule": "业务负责人复核后，至少 3 条合格结论进入采购方真实客服 backlog"
+      }
+    },
+    {
+      "request_type": "REQUEST_MINIMAL_COUNTERCONDITION",
+      "authority_id": "BUYER-DATA",
+      "response_type": "COUNTERCONDITION",
+      "disclosed_fields": {
+        "conditions": [
+          "原始数据不离开采购方权限域",
+          "只允许明确批准的聚合查询和只读执行",
+          "不允许训练或持久记忆",
+          "Effect 必须由采购方审计回执见证"
+        ]
+      }
+    },
+    {
+      "request_type": "REQUEST_DATA_PURPOSE_BOUNDARY",
+      "authority_id": "BUYER-DATA",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "allowed_purpose": "pilot_evaluation_only",
+        "training": false,
+        "persistent_memory": false,
+        "raw_export": false
+      }
+    },
+    {
+      "request_type": "REQUEST_BOUNDED_PROBE_AUTHORIZATION",
+      "authority_id": "BUYER-DATA",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "credential": "temporary_readonly_test_only",
+        "allowed_queries": 3,
+        "buyer_audit_required": true,
+        "auto_revoke_after_test": true
+      }
+    },
+    {
+      "request_type": "REQUEST_ACCEPTABLE_WITNESS",
+      "authority_id": "BUYER-DATA",
+      "response_type": "WITNESS",
+      "disclosed_fields": {
+        "required": [
+          "buyer_audit_receipt",
+          "output_hash",
+          "raw_row_export_count"
+        ],
+        "provider_log_role": "corroborating_only"
+      }
+    },
+    {
+      "request_type": "REQUEST_REVOCATION_RULE",
+      "authority_id": "BUYER-DATA",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "triggers": [
+          "credential_revoked",
+          "data_rule_changed",
+          "approved_query_scope_changed",
+          "audit_witness_missing_or_invalid"
+        ],
+        "required_action": "stop_and_scoped_reopen"
+      }
+    },
+    {
+      "request_type": "REQUEST_SCOPE_STANCE",
+      "authority_id": "PROVIDER-BUSINESS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "scope": "fixed_two_week_pilot",
+        "production_integration": false,
+        "material_change_requires_new_stance": true
+      }
+    },
+    {
+      "request_type": "REQUEST_PRICE_STANCE",
+      "authority_id": "PROVIDER-BUSINESS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "price_cny": 9800,
+        "condition": "固定 reference v2 试点范围，不含生产集成"
+      }
+    },
+    {
+      "request_type": "REQUEST_SCHEDULE_STANCE",
+      "authority_id": "PROVIDER-BUSINESS",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "deadline_days": 14,
+        "condition": "probe 通过且必要 Mandate 生效"
+      }
+    },
+    {
+      "request_type": "REQUEST_ALTERNATIVE_PATH",
+      "authority_id": "PROVIDER-TECH",
+      "response_type": "UNKNOWN",
+      "disclosed_fields": {
+        "candidate": "固定分析容器可能在采购方 sandbox 内运行",
+        "qualified": false,
+        "reason": "从未在该采购方环境运行"
+      }
+    },
+    {
+      "request_type": "REQUEST_CAPABILITY_EVIDENCE",
+      "authority_id": "PROVIDER-TECH",
+      "response_type": "UNKNOWN",
+      "disclosed_fields": {
+        "current_evidence": "none_for_this_environment",
+        "minimum_next_evidence": "bounded_probe"
+      }
+    },
+    {
+      "request_type": "REQUEST_MINIMAL_PROBE",
+      "authority_id": "PROVIDER-TECH",
+      "response_type": "CONDITIONAL",
+      "disclosed_fields": {
+        "duration_minutes": [
+          30,
+          60
+        ],
+        "executor": "fixed_container",
+        "environment": "buyer_controlled_sandbox",
+        "query_count": 3,
+        "success_observations": [
+          "container_runs",
+          "approved_aggregate_queries_complete",
+          "buyer_audit_receipt_exists",
+          "raw_row_export_count_is_zero"
+        ]
+      }
+    },
+    {
+      "request_type": "REQUEST_FAILURE_AND_RECOVERY",
+      "authority_id": "PROVIDER-TECH",
+      "response_type": "FACT",
+      "disclosed_fields": {
+        "on_environment_mismatch": "stop_without_delivery_commitment",
+        "on_probe_failure": "retain_unknown_and_return_diagnostics",
+        "on_credential_revocation": "stop_and_do_not_retry_without_new_authorization"
+      }
+    }
+  ],
+  "world_state_sequence": [
+    {
+      "state_id": "S0",
+      "qualification": "NO_CURRENTLY_QUALIFIED_PATH",
+      "reason": "v1 被数据权威拒绝；替代技术路径尚未披露或验证；其余必要 Stance 未绑定精确版本。"
+    },
+    {
+      "state_id": "S1_AFTER_COUNTERCONDITIONS",
+      "qualification": "NO_CURRENTLY_QUALIFIED_PATH",
+      "reason": "可行性边界变得可搜索，但替代路径仍只有未验证可能性。"
+    },
+    {
+      "state_id": "S2_AFTER_ALTERNATE_PATH_DISCLOSURE",
+      "qualification": "NO_CURRENTLY_QUALIFIED_PATH",
+      "reason": "候选路径已发现，但 capability 仍为 Unknown，不能据此承诺。"
+    },
+    {
+      "state_id": "S3_AFTER_REFERENCE_PROBE",
+      "qualification": "TECHNICAL_PATH_LOCALLY_QUALIFIED_ONLY",
+      "reason": "probe 只资格化精确容器、采购方 sandbox、临时凭证和三类查询；尚不自动产生业务、数据或商务 Stance。"
+    },
+    {
+      "state_id": "S4_REFERENCE_V2_CLAIMED",
+      "qualification": "Q_SATISFIED_FOR_EXACT_PILOT_VERSION",
+      "reason": "reference probe、当前 Mandate、四个 Authority 对精确 v2 的 Stance、预算/排期和目标域见证要求共同成立。"
+    }
+  ],
+  "reference_probe": {
+    "probe_id": "PROBE-T2-REF-1",
+    "preconditions": [
+      "buyer_data_authorizes_temporary_readonly_test_credential",
+      "provider_tech_declares_fixed_container_digest",
+      "three_aggregate_queries_are_preapproved",
+      "buyer_audit_is_enabled"
+    ],
+    "observed_result": {
+      "container_runs": true,
+      "approved_queries_completed": 3,
+      "buyer_audit_receipt_exists": true,
+      "raw_row_export_count": 0,
+      "output_supports_pilot": true,
+      "credential_revoked_after_test": true
+    },
+    "supports": [
+      "the exact container path can run in the tested buyer sandbox",
+      "the three approved aggregate queries complete without raw row export",
+      "a buyer-domain Effect witness can be produced"
+    ],
+    "does_not_support": [
+      "general provider capability in other environments or versions",
+      "future capability after dependency drift",
+      "business Adoption",
+      "business Acceptance",
+      "production integration"
+    ]
+  },
+  "reference_relation_v2": {
+    "id": "REL-T2-V2-REFERENCE",
+    "status_after_all_claims": "CONDITIONALLY_ACTIVE",
+    "objective": "在 14 天内生成并验证至少 3 条可进入采购方客服 backlog 的续费问题结论",
+    "data_rules": {
+      "source_data_location": "buyer_authority_domain",
+      "access": "approved_readonly_aggregate_queries_only",
+      "raw_export": false,
+      "training": false,
+      "persistent_memory": false,
+      "purpose": "pilot_evaluation_only"
+    },
+    "execution": {
+      "executor": "provider_fixed_container",
+      "environment": "buyer_controlled_sandbox",
+      "credential": "temporary_readonly",
+      "version_bound": true
+    },
+    "effect_witness": [
+      "buyer_audit_receipt",
+      "output_hash",
+      "raw_row_export_count",
+      "provider_run_log_as_corroborating_evidence"
+    ],
+    "price_cny": 9800,
+    "deadline_days": 14,
+    "adoption_rule": "至少 3 条合格结论进入采购方真实客服 backlog",
+    "acceptance_rule": "采购方业务负责人仅对试点有用作条件接受，不等于生产上线",
+    "reopen_triggers": [
+      "data_rule_changed",
+      "success_target_changed",
+      "mandate_changed_or_revoked",
+      "credential_or_permission_changed",
+      "container_or_environment_version_changed",
+      "audit_receipt_missing_or_invalid"
+    ],
+    "authority_stances": [
+      {
+        "authority_id": "BUYER-BUSINESS",
+        "stance": "COMMIT",
+        "scope": "9800_cny_pilot_budget_and_business_review_only"
+      },
+      {
+        "authority_id": "BUYER-DATA",
+        "stance": "AUTHORIZE",
+        "scope": "buyer_controlled_readonly_execution_without_training_or_export"
+      },
+      {
+        "authority_id": "PROVIDER-BUSINESS",
+        "stance": "COMMIT",
+        "scope": "fixed_two_week_pilot_without_production_integration"
+      },
+      {
+        "authority_id": "PROVIDER-TECH",
+        "stance": "COMMIT",
+        "scope": "approved_container_and_environment_only_stop_on_mismatch"
+      }
+    ]
+  },
+  "reference_transition_truth": {
+    "from": "REL-T2-V1",
+    "to": "REL-T2-V2-REFERENCE",
+    "classification": "MATERIAL_SCHEMA_CHANGE",
+    "changed_components": [
+      "valid_action_alphabet",
+      "data_rights_and_purpose",
+      "executor_and_environment",
+      "required_authority_rules",
+      "Effect_witness",
+      "Adoption_rule",
+      "Acceptance_scope",
+      "reopen_triggers"
+    ],
+    "not_a_field_patch": true
+  },
+  "formation_truth": {
+    "best_supported_operator_sequence": [
+      "ASK_MINIMAL_COUNTERCONDITION",
+      "DISCLOSE_LATENT_ALTERNATE_PATH_AS_UNKNOWN",
+      "AUTHORIZE_BOUNDED_PROBE",
+      "RUN_PROBE",
+      "QUALIFY_EXACT_CAPABILITY",
+      "CREATE_NEW_RELATION_VERSION",
+      "OBTAIN_VERSION_BOUND_STANCES"
+    ],
+    "best_supported_local_classification": "CONDITION_CREATION_WITH_RELATION_RECONSTITUTION",
+    "strict_formation": "UNKNOWN",
+    "why_strict_is_unknown": "档案没有与盲化强中心或优秀人类经纪的真实对照，也没有 30 天保持性证据。",
+    "still_live_alternatives": [
+      "MEDIATED_DISCOVERY",
+      "NORMATIVE_REFINEMENT"
+    ],
+    "not_supported": [
+      "GLOBAL_NOVELTY",
+      "TOWOW_EXCLUSIVE_FORMATION",
+      "REAL_WORLD_NET_VALUE"
+    ]
+  },
+  "outcome_truth": {
+    "action_attempt": {
+      "status": "SUCCEEDED_IN_SYNTHETIC_REFERENCE",
+      "evidence": "provider run record"
+    },
+    "effect": {
+      "status": "ESTABLISHED_IN_SYNTHETIC_REFERENCE",
+      "authority_domain": "BUYER",
+      "evidence": [
+        "buyer audit receipt",
+        "output hash",
+        "raw row export count equals zero"
+      ]
+    },
+    "adoption": {
+      "status": "ESTABLISHED_IN_SYNTHETIC_REFERENCE",
+      "evidence": "at least 3 findings entered the buyer's real customer-service backlog"
+    },
+    "acceptance": {
+      "status": "CONDITIONAL_IN_SYNTHETIC_REFERENCE",
+      "authority": "BUYER-BUSINESS",
+      "scope": "pilot result is useful",
+      "not_implied": [
+        "production deployment",
+        "future procurement",
+        "Settlement"
+      ]
+    },
+    "settlement": {
+      "status": "NOT_IN_SCOPE"
+    }
+  },
+  "repeat_run_truth": {
+    "safe_reuse": [
+      "stable relation schema may be reused as a candidate",
+      "unchanged explanatory text may be reused",
+      "deterministic workflow steps may be compiled"
+    ],
+    "must_be_currently_revalidated": [
+      "Authority and Mandate",
+      "version-bound Stance and Commitment",
+      "credential and permission",
+      "container digest and buyer environment",
+      "approved query set",
+      "audit witness availability",
+      "business target and acceptance rule",
+      "budget and schedule Reservation"
+    ],
+    "scoped_reopen_rule": "只重开受变化依赖影响的子图；无法证明依赖闭包时停止而不是全局乐观继续。",
+    "global_reopen_is_always_required": false
+  },
+  "pseudo_success_mutations": [
+    {
+      "id": "MUT-TARGET-LAUNDERING",
+      "mutation": "把目标改成生成报告并据此宣布完成",
+      "expected": "CRITICAL_FAIL",
+      "violates": [
+        "V0-OUTCOME",
+        "R2-RELATION-FROM-TASK",
+        "R6-EFFECT-THAT-COUNTS"
+      ]
+    },
+    {
+      "id": "MUT-PRODUCER-ONLY-EFFECT",
+      "mutation": "仅凭服务方运行日志或 exit code 建立 Effect",
+      "expected": "CRITICAL_FAIL",
+      "violates": [
+        "V0-EVIDENCE",
+        "R6-EFFECT-THAT-COUNTS"
+      ]
+    },
+    {
+      "id": "MUT-CAPABILITY-AFTER-THE-FACT",
+      "mutation": "先承诺替代路径，再用同一次结果倒填 capability 证据",
+      "expected": "CRITICAL_FAIL",
+      "violates": [
+        "R4-CAPABILITY-TO-RELIANCE"
+      ]
+    },
+    {
+      "id": "MUT-STALE-STANCE",
+      "mutation": "容器版本、数据用途或目标改变后继续沿用 v2 Stance",
+      "expected": "CRITICAL_FAIL",
+      "violates": [
+        "R5-AUTHORITY-COMPOSITION",
+        "R7-REUSE-AND-SAFE-REOPEN"
+      ]
+    },
+    {
+      "id": "MUT-REVOKED-MANDATE-CONTINUE",
+      "mutation": "数据 Mandate 或凭证撤销后仍执行或自动重试",
+      "expected": "CRITICAL_FAIL",
+      "violates": [
+        "R5-AUTHORITY-COMPOSITION",
+        "R7-REUSE-AND-SAFE-REOPEN"
+      ]
+    },
+    {
+      "id": "MUT-DUPLICATE-RETRY",
+      "mutation": "重复重试被计为新的 Effect 或 Adoption",
+      "expected": "FAIL",
+      "violates": [
+        "R6-EFFECT-THAT-COUNTS",
+        "R7-REUSE-AND-SAFE-REOPEN"
+      ]
+    },
+    {
+      "id": "MUT-GLOBAL-REOPEN",
+      "mutation": "任一变化都丢弃全部已验证子图并全局重开",
+      "expected": "PARTIAL",
+      "violates": [
+        "R7-REUSE-AND-SAFE-REOPEN"
+      ]
+    },
+    {
+      "id": "MUT-DENY-ALL",
+      "mutation": "把初始拒绝解释为永久不可达，不询问反条件或可验证下一步",
+      "expected": "FAIL",
+      "violates": [
+        "R2-RELATION-FROM-TASK",
+        "R3-FORM-REACHABILITY"
+      ]
+    },
+    {
+      "id": "MUT-STRICT-FORMATION-CLAIM",
+      "mutation": "从这个虚构 witness 直接宣称严格 formation 或协议独占价值",
+      "expected": "FAIL",
+      "violates": [
+        "R3-FORM-REACHABILITY",
+        "R8-CLAIM-BOUNDARY"
+      ]
+    }
+  ],
+  "alternate_solution_policy": {
+    "reference_v2_is_unique": false,
+    "pass_rule": "候选不需要复现 reference 文案或技术名；任何保持冻结 V0、满足 Q、获得必要 Authority 对精确版本的当前 Stance、用前瞻性证据资格化 capability 并由目标域分别建立 Effect、Adoption 和 Acceptance 的路径都可通过。",
+    "unsupported_rejection_rule": "不同于 reference 不是失败；只有违反冻结要求、缺少必要证据、越权、误闭合或把 Unknown 包装成成立才失败。"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": "2.0",
+  "kind": "LineContract",
+  "id": "LINE-07-SCOPED-REOPEN-V2",
+  "version": "v1",
+  "status": "ACTIVE",
+  "native_line": "RUNTIME_EVOLUTION",
+  "title": "跨规范依赖与有条件局部重开",
+  "problem_ref": {
+    "id": "PRB-JOINT-ACTION-FORMATION",
+    "version": "v2"
+  },
+  "capability_ids": [
+    "CAP-RUN-003",
+    "CAP-RUN-004",
+    "CAP-RUN-005"
+  ],
+  "local_question": "给定已形成且带精确 RelationVersion、Authority、Evidence、Effect、Acceptance 和依赖引用的关系，显式 dependency/Defeater planner 能否区分模型升级、Mandate 撤销、账户离线、证据失效与目标改变，安全计算最小阻断、恢复或重开闭包，并相对不可变合同、普通监控、人工 amendment 和成熟 workflow migration 减少无关重开而不增加陈旧关系继续执行？",
+  "blocked_decision": "决定 scoped reopen 应作为现成 durable workflow、事件历史、版本迁移、token revocation、telemetry 和人工治理之上的有界扩展，还是因依赖维护、隐藏依赖和误重开成本而退化为更广阻断与人工重审。",
+  "reverse_result": "若不可变版本合同、OpenTelemetry 监控、Temporal history/replay、Camunda migration、AWS immutable versions、RFC 7009 撤销、Saga 补偿与人工 amendment 的组合在同等漂移和权限下没有更多 unsafe continuation 或漏重开且总成本更低，则自动 scoped-reopen planner 应降级或关闭，CLM-017 不得获得支持。",
+  "minimum_discriminator": "冻结完整 RelationVersion、显式依赖图、事后评分用隐藏依赖、相同事件流与人工预算，对 scoped-reopen 候选和两个强基线分别注入模型升级、Mandate 撤销、账户离线恢复、证据失效、目标改变、隐藏依赖以及高耦合与低漂移对照，评分错误继续、漏重开、误重开、恢复延迟和全生命周期成本。",
+  "source_allowlist": [
+    "research/projects/joint-action-formation/problem/v2.json",
+    "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/capability_preservation_matrix.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/evidence_ledger.csv",
+    "research/projects/a2a-reconstruction/04_audit/ledgers/formal_fact_ownership.csv",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/00/004142f8275b76a91ce5d9b994395d7bf843e5e5cf1f49654e4039fe4ff019bd.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/93/938949f5c145310b046381720f27aef8a36327d4ea7e73c75529f1ce3eaaa2d7.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b638b95098fa28c57f169fe30938c0552eae80da2373570066a2468decd2716d.md",
+    "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/31/31403fde5285ce077dc0601738d48bf56872406b14145684d8a6bf0395cda536.md",
+    "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md"
+  ],
+  "budget": {
+    "max_minutes": 60,
+    "max_attempts": 2,
+    "max_output_bytes": 3145728
+  },
+  "stop_conditions": [
+    "通过覆盖旧版本、删除失败、改写历史 Acceptance 或隐藏 Unknown 制造连续性",
+    "把 workflow replay、process migration、日志存在、进程存活或版本号递增描述成 relation continuity",
+    "遇到隐藏依赖或不完整 authority provenance 时仍输出安全局部重开的确定结论",
+    "成熟 workflow、不可变合同、监控、撤销和人工 amendment 基线没有获得相同 history、事件流、权限和恢复机会",
+    "运行开始要求真实关系、生产账户、真人重新接受或未经授权的外部副作用"
+  ],
+  "expected_return": [
+    "direct_observations",
+    "source_statements",
+    "drift_classification",
+    "reopen_closure",
+    "unsafe_continuation_results",
+    "baseline_comparison",
+    "scoped_claim_updates",
+    "negative_results",
+    "unaffected_claim_ids",
+    "alternative_explanations",
+    "cannot_support"
+  ],
+  "independence_rules": [
+    "必须将 workflow execution state 与 Authority、Evidence、Effect、Acceptance 和 relation validity 分别评分",
+    "必须给予不可变合同加监控加人工 amendment 和成熟 workflow/event-history/version/migration 两个完整强基线",
+    "隐藏依赖必须由独立评分面保存，候选 planner 不得在运行前读取答案",
+    "高耦合或 Unknown 条件下允许更广阻断和人工重审获胜，不能以局部重开率优化代替安全",
+    "本线不得自动评价关系最初是否正确形成，也不得支持 Router 或中心联邦拓扑"
+  ],
+  "research_target": {
+    "kind": "EXISTING_SOLUTION",
+    "mechanism_ref": null,
+    "scoped_claim_ids": [
+      "CLM-017",
+      "CLM-V2-CONTINUITY-IS-LINEAGE",
+      "CLM-V2-SCOPED-REOPEN-CONDITIONAL"
+    ],
+    "hypothesis_ids": [
+      "H-V2-SCOPED-REOPEN-01"
+    ],
+    "applicable_assumptions": [
+      "WORLD-AGENT-ENTITY",
+      "WORLD-OPEN-ACTION-SPACE",
+      "WORLD-INSTITUTIONAL-COEXISTENCE",
+      "WORLD-COMPILE-AND-REOPEN"
+    ],
+    "non_claims": [
+      "不证明原关系曾正确发现、形成、授权、执行或接受",
+      "不改写历史 Acceptance，只判断其对当前或未来版本的适用性",
+      "不从合成漂移精度推出生产连续性、真人治理接受或长期净价值",
+      "不把 history、replay、versioning、migration、compensation、revocation 或 telemetry 登记为通爻原创",
+      "不激活自动 Router、完整 runtime kernel 或中心与联邦拓扑结论"
+    ]
+  },
+  "prior_solution_review": {
+    "checked_historical_refs": [
+      "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+      "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/93/938949f5c145310b046381720f27aef8a36327d4ea7e73c75529f1ce3eaaa2d7.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b638b95098fa28c57f169fe30938c0552eae80da2373570066a2468decd2716d.md",
+      "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/31/31403fde5285ce077dc0601738d48bf56872406b14145684d8a6bf0395cda536.md"
+    ],
+    "checked_existing_solution_refs": [
+      "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md"
+    ],
+    "disposition": "EXTEND",
+    "uncovered_requirement": "已核验方案覆盖 workflow history/replay、不可变版本、实例迁移、事件重建、补偿、token 撤销、telemetry 和人工 amendment；待检验扩展仅是这些事件跨 Authority、Evidence、Effect、Acceptance 与 RelationVersion 依赖传播时的安全最小阻断和有条件局部重开。",
+    "coverage_findings": [
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/native_lines/07_runtime_and_evolution.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "历史母线保存运行、Defeater 和 scoped reopen 语义，但明确缺少真实 precision、漏开率和净值证据。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/04_audit/ledgers/claim_ledger.csv",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "CLM-017 仍为 OPEN，CLM-020 与 CLM-022 也未获得 Router 冷启动或现实净值证据。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/93/938949f5c145310b046381720f27aef8a36327d4ea7e73c75529f1ce3eaaa2d7.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "R5C 方法支持稳定局部编译和恢复路径，没有测量相对成熟 workflow 的重开精度与全生命周期成本。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/b6/b638b95098fa28c57f169fe30938c0552eae80da2373570066a2468decd2716d.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "R5C patch 提供 Defeater 和重开设计来源，不能证明隐藏依赖条件下的安全性。"
+      },
+      {
+        "source_ref": "research/projects/a2a-reconstruction/02_derived/zip-text-search-corpus/files/31/31403fde5285ce077dc0601738d48bf56872406b14145684d8a6bf0395cda536.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "Harness 支持 IR、Context Compiler 和 Evidence Closure，但不是现实关系 scoped reopen 的对照实验。"
+      },
+      {
+        "source_ref": "research/projects/joint-action-formation/studies/full-line-startup/06-07-audit-2026-07-28.md",
+        "coverage": "PARTIAL",
+        "uncovered_requirement": "Temporal、Camunda、AWS、Event Sourcing、Saga、RFC 7009 与 OpenTelemetry 已覆盖通用运行能力；尚未共同计算跨规范状态依赖的安全 reopen closure。"
+      }
+    ]
+  },
+  "outcome_policy": {
+    "supported_effect": "支持结果只能为 CLM-017、CLM-V2-CONTINUITY-IS-LINEAGE 与 CLM-V2-SCOPED-REOPEN-CONDITIONAL 形成候选证据，并冻结关系图、漂移分布、隐藏依赖、两个强基线、安全错误和成本；不能晋升自动 runtime。",
+    "negative_effect": "负结果会使 CLM-017 保持 OPEN、被缩窄或形成反对候选，并把 dependency/Defeater planner 降为 workflow 配置、人工 checklist、广域阻断或关闭；不删除历史运行能力与其他母线。",
+    "unaffected_claim_ids": [
+      "CLM-001",
+      "CLM-002",
+      "CLM-003",
+      "CLM-004",
+      "CLM-005",
+      "CLM-006",
+      "CLM-007",
+      "CLM-008",
+      "CLM-009",
+      "CLM-010",
+      "CLM-011",
+      "CLM-012",
+      "CLM-013",
+      "CLM-014",
+      "CLM-015",
+      "CLM-016",
+      "CLM-018",
+      "CLM-019",
+      "CLM-020",
+      "CLM-021",
+      "CLM-022"
+    ],
+    "integration_gate": "只有在相同前提下重放七类漂移、显式与隐藏依赖、高耦合和低漂移反例，保留旧版本、Authority、Evidence、Effect 与 Acceptance 谱系，在 Unknown 时安全扩大阻断，并相对两个强基线证明净增益，planner 才能进入机制候选。"
+  },
+  "companion_markdown": "research/projects/joint-action-formation/lines/07-scoped-reopen-v2.md"
+}

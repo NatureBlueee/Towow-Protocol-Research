@@ -1,0 +1,1043 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "T6-G7-ORTHOGONAL-REPLAY-001",
+  "evidence_level": "LOCAL_SYNTHETIC_CANDIDATE",
+  "method_visibility": {
+    "allowed": [
+      "public_packet",
+      "provider-native responses returned by an invoked endpoint",
+      "runtime-local intent, dispatch, fence and capsule events"
+    ],
+    "not_in_this_file": [
+      "private full dependency graph",
+      "hidden-edge identity",
+      "normalized truth label",
+      "expected action",
+      "expected closure",
+      "T6 score"
+    ]
+  },
+  "worlds": [
+    {
+      "world_id": "w001",
+      "public_packet": {
+        "case_id": "c001",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "delegated_authority": true,
+        "delegated_condition_write": true,
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c001/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c001", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {
+              "status_code": 200,
+              "headers": {"ETag": "\"grant-42\""},
+              "body": {"active": true, "revision": 42, "scope": "op-fulfil@1"}
+            }
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 42}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c001", "phase": "completed", "effectKey": "effect/c001/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-c001", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 42,
+        "target_epoch": 42,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w002",
+      "public_packet": {
+        "case_id": "c002",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c002/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance", "optional-note"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"],
+            ["relation", "optional-note"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c002", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {
+              "status_code": 200,
+              "headers": {"ETag": "\"grant-43\""},
+              "body": {"active": false, "revision": 43, "reason": "rescinded"}
+            }
+          },
+          "commit_stance": {"status_code": 409, "body": {"decision": "deny", "revision": 43}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 43,
+        "target_epoch": 43,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w003",
+      "public_packet": {
+        "case_id": "c003",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c003/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c003", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {"a1": {"transport": "TIMEOUT", "elapsed_ms": 900}},
+          "commit_stance": {"transport": "UNAVAILABLE"},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 50,
+        "target_epoch": 50,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w004",
+      "public_packet": {
+        "case_id": "c004",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c004/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c004", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {"a1": {"transport": "TIMEOUT", "elapsed_ms": 900}},
+          "commit_stance": {"transport": "UNAVAILABLE"},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ATTEMPTED",
+          "response_outcome": "LOST",
+          "readback_state": {"transport": "TIMEOUT", "elapsed_ms": 1100}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 51,
+        "target_epoch": 52,
+        "migration_phase": "CRASH_TAKEOVER",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w005",
+      "public_packet": {
+        "case_id": "c005",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c005/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/replica",
+            "request": {"grantRef": "grant-c005", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {
+              "status_code": 200,
+              "headers": {"Age": "480", "ETag": "\"grant-17\""},
+              "body": {"active": true, "revision": 17, "replica": "r2"}
+            }
+          },
+          "commit_stance": {"status_code": 412, "body": {"code": "head_mismatch", "actualRevision": 19}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 19,
+        "target_epoch": 19,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w006",
+      "public_packet": {
+        "case_id": "c006",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c006/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/view-a",
+            "request": {"grantRef": "grant-c006", "operationVersion": "1"},
+            "response_ref": "a1"
+          },
+          {
+            "endpoint": "owner://grant/view-b",
+            "request": {"grantRef": "grant-c006", "operationVersion": "1"},
+            "response_ref": "a2"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": "21-a", "signature": "sig-a"}},
+            "a2": {"status_code": 200, "body": {"active": false, "revision": "21-b", "signature": "sig-b"}}
+          },
+          "commit_stance": {"status_code": 409, "body": {"code": "conflicting_heads"}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 21,
+        "target_epoch": 21,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w007",
+      "public_packet": {
+        "case_id": "c007",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c007/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c007", "purpose": "recovery-analysis"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 403, "body": {"code": "purpose_not_authorized", "mayRetry": false}}
+          },
+          "commit_stance": {"status_code": 403, "body": {"code": "no_disclosure_basis"}},
+          "fence_supported": false
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 60,
+        "target_epoch": 60,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w008",
+      "public_packet": {
+        "case_id": "c008",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c008/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://decision",
+            "request": {"requestRef": "request-c008", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"decision": "deny", "reason": "owner_declined", "revision": 61}}
+          },
+          "commit_stance": {"status_code": 409, "body": {"decision": "deny", "revision": 61}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 200, "body": {"decision": "declined", "object": "request-c008"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 61,
+        "target_epoch": 61,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w009",
+      "public_packet": {
+        "case_id": "c009",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c009/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c009", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 70, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 70}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c009", "phase": "completed", "effectKey": "effect/c009/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-c009-shadow", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 70,
+        "target_epoch": 70,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w010",
+      "public_packet": {
+        "case_id": "c010",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c010/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-pair-10", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 80, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 80}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-pair-10", "phase": "completed", "effectKey": "effect/pair-10/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-pair-10", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 80,
+        "target_epoch": 80,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w011",
+      "public_packet": {
+        "case_id": "c011",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c011/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-pair-10", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 80, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 80}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-pair-10", "phase": "completed", "effectKey": "effect/pair-10/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-pair-10", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 80,
+        "target_epoch": 80,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w012",
+      "public_packet": {
+        "case_id": "c012",
+        "goal_version": "goal-v2",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c012/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c012", "operationVersion": "1", "goal": "goal-v2"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 90, "goal": "goal-v1"}}
+          },
+          "commit_stance": {"status_code": 412, "body": {"code": "goal_binding_mismatch"}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c012-v1", "phase": "completed", "goal": "goal-v1"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-c012-v1", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 90,
+        "target_epoch": 90,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w013",
+      "public_packet": {
+        "case_id": "c013",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-leaf",
+          "version": "1",
+          "semantic_effect_key": "effect/c013/leaf"
+        },
+        "public_graph": {
+          "nodes": ["relation", "shared-root", "main-effect", "optional-leaf", "leaf-effect", "acceptance"],
+          "edges": [
+            ["relation", "shared-root"],
+            ["shared-root", "main-effect"],
+            ["main-effect", "acceptance"],
+            ["relation", "optional-leaf"],
+            ["optional-leaf", "leaf-effect"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://leaf/check",
+            "request": {"grantRef": "leaf-c013", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": false, "revision": 101, "reason": "leaf_retired"}}
+          },
+          "commit_stance": {"status_code": 409, "body": {"decision": "deny", "revision": 101}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 404, "body": {"code": "leaf_effect_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "main-effect-c013", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 101,
+        "target_epoch": 101,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w014",
+      "public_packet": {
+        "case_id": "c014",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-shared",
+          "version": "1",
+          "semantic_effect_key": "effect/c014/shared"
+        },
+        "public_graph": {
+          "nodes": ["relation", "shared-root", "effect-a", "effect-b", "acceptance-a", "acceptance-b"],
+          "edges": [
+            ["relation", "shared-root"],
+            ["shared-root", "effect-a"],
+            ["shared-root", "effect-b"],
+            ["effect-a", "acceptance-a"],
+            ["effect-b", "acceptance-b"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://root/check",
+            "request": {"grantRef": "root-c014", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": false, "revision": 110, "reason": "root_superseded"}}
+          },
+          "commit_stance": {"status_code": 409, "body": {"decision": "deny", "revision": 110}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "NOT_DISPATCHED",
+          "response_outcome": "NOT_SENT",
+          "readback_state": {"status_code": 206, "body": {"effectA": "completed", "effectB": "pending"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 409, "body": {"code": "acceptance_scope_conflict"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 110,
+        "target_epoch": 110,
+        "migration_phase": "NONE",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w015",
+      "public_packet": {
+        "case_id": "c015",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c015/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c015", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 120, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 121}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c015", "phase": "completed", "effectKey": "effect/c015/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-c015", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 120,
+        "target_epoch": 121,
+        "migration_phase": "PLANNED_DRAIN",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w016",
+      "public_packet": {
+        "case_id": "c016",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c016/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c016", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 130, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 131}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ATTEMPTED",
+          "response_outcome": "LOST",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c016", "phase": "completed", "effectKey": "effect/c016/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 130,
+        "target_epoch": 131,
+        "migration_phase": "CRASH_TAKEOVER",
+        "old_runtime_restart": false,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w017",
+      "public_packet": {
+        "case_id": "c017",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c017/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c017", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 140, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 141}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ATTEMPTED",
+          "response_outcome": "TIMEOUT",
+          "readback_state": {"status_code": 404, "body": {"code": "object_not_found"}}
+        },
+        "acceptance": {
+          "native_response": {"status_code": 404, "body": {"code": "decision_not_found"}}
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 140,
+        "target_epoch": 141,
+        "migration_phase": "RECONCILING",
+        "old_runtime_restart": true,
+        "capsule_field_drop": []
+      }
+    },
+    {
+      "world_id": "w018",
+      "public_packet": {
+        "case_id": "c018",
+        "goal_version": "goal-v1",
+        "relation_version": "rel-v1",
+        "operation": {
+          "id": "op-fulfil",
+          "version": "1",
+          "semantic_effect_key": "effect/c018/fulfil"
+        },
+        "public_graph": {
+          "nodes": ["relation", "authorization", "intent", "fulfilment", "acceptance"],
+          "edges": [
+            ["relation", "authorization"],
+            ["authorization", "intent"],
+            ["intent", "fulfilment"],
+            ["fulfilment", "acceptance"]
+          ]
+        },
+        "native_queries": [
+          {
+            "endpoint": "owner://grant/check",
+            "request": {"grantRef": "grant-c018", "operationVersion": "1"},
+            "response_ref": "a1"
+          }
+        ]
+      },
+      "provider_scenario": {
+        "authority": {
+          "responses": {
+            "a1": {"status_code": 200, "body": {"active": true, "revision": 150, "scope": "op-fulfil@1"}}
+          },
+          "commit_stance": {"status_code": 200, "body": {"decision": "permit", "epoch": 151}},
+          "fence_supported": true
+        },
+        "effect": {
+          "dispatch_outcome": "ACCEPTED",
+          "response_outcome": "DELIVERED",
+          "readback_state": {
+            "status_code": 200,
+            "body": {"object": "delivery-c018", "phase": "completed", "effectKey": "effect/c018/fulfil"}
+          }
+        },
+        "acceptance": {
+          "native_response": {
+            "status_code": 200,
+            "body": {"decision": "accepted", "object": "delivery-c018", "goal": "goal-v1"}
+          }
+        }
+      },
+      "runtime_scenario": {
+        "source_epoch": 150,
+        "target_epoch": 151,
+        "migration_phase": "IMPORTED",
+        "old_runtime_restart": false,
+        "capsule_field_drop": ["compensation_obligations", "acceptance_records"]
+      }
+    }
+  ]
+}

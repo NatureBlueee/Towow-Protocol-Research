@@ -1,0 +1,64 @@
+{
+  "schema_version": "2.0",
+  "fixture_id": "CE-001-G4-RELIANCE-HOLDOUT-V2",
+  "status": "LOCAL_COMPONENT_MODEL",
+  "claim_boundary": "This packet describes the exact CE-001 operation and callable owner/target interfaces. It contains no case identity, transition mode, expected label, or future owner decision.",
+  "episode": {
+    "episode_id": "CE-001",
+    "Q_version": "Q@v1",
+    "object_id": "VenueV:CircuitC7",
+    "native_object_id": "Venue-V/Circuit-C7",
+    "object_adapter": {
+      "adapter_id": "G4_LEGACY_TARGET_V1_TO_CE001_CANONICAL_V1",
+      "adapter_version": "1",
+      "source_object_id": "Venue-V/Circuit-C7",
+      "canonical_object_id": "VenueV:CircuitC7",
+      "mapping_sha256": "3f8cdf7895c1b6c84865641a12a7d04ca88b628d7a5636bdd0b58fbf88bcbe8b"
+    },
+    "operation_id": "restore-power/CE-001/Q@v1/C7",
+    "idempotency_key": "idem/CE-001/Q@v1/C7",
+    "deadline_tick": 90,
+    "effect_contract": {
+      "power_kw": 3.0,
+      "tolerance_percent": 5,
+      "minimum_continuous_minutes": 45,
+      "forbid_other_circuits": true
+    },
+    "owners": {
+      "Q": "O_Q",
+      "venue": "O_V",
+      "resource": "O_R",
+      "safety": "O_S",
+      "effect": "O_E"
+    },
+    "acceptance_owners": [
+      "O_Q",
+      "O_V"
+    ]
+  },
+  "available_actions": [
+    "inspect_interfaces",
+    "reserve",
+    "read_commit_evidence",
+    "submit_operation",
+    "readback_operation",
+    "reconcile_operation",
+    "retry_idempotent",
+    "request_q_acceptance",
+    "request_venue_acceptance"
+  ],
+  "worker_interface": {
+    "receives": [
+      "public episode",
+      "available action names",
+      "raw response to each requested action"
+    ],
+    "never_receives": [
+      "case_ref",
+      "transition_mode",
+      "expected label",
+      "future owner decision",
+      "target private state"
+    ]
+  }
+}

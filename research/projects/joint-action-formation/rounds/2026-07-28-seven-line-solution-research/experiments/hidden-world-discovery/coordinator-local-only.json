@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "world_id": "T1-HW-20260728-A",
+  "kind": "METHOD_VISIBLE_COORDINATOR_PACKET",
+  "recipient": "P-COORDINATOR",
+  "evaluation_step": 1,
+  "query": {
+    "intent": "Find currently valid complementary joint-action opportunities without asserting commitments.",
+    "required_direction": "SEEK_TO_OFFER",
+    "allowed_terminal_states": [
+      "DISCOVERED",
+      "INVALIDATED",
+      "UNFINDABLE_UNDER_POLICY",
+      "UNKNOWN",
+      "REFUSE",
+      "ABSENT"
+    ]
+  },
+  "public_view": {
+    "signals": [],
+    "claims_to_resolve": [
+      {
+        "claim_key": "capability:offline-node:audio-transcription",
+        "subject": "P-OFFLINE",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:refusal-node:document-review",
+        "subject": "P-REFUSE",
+        "question": "Does the subject currently offer the requested capability?"
+      },
+      {
+        "claim_key": "capability:closed-population:rare-format-conversion",
+        "subject": "POPULATION-CLOSED-RARE-FORMAT",
+        "question": "Does any eligible member currently offer the requested capability?"
+      }
+    ],
+    "closed_population_notice": {
+      "claim_key": "capability:closed-population:rare-format-conversion",
+      "eligible_parties": [
+        "P-CLOSED-1",
+        "P-CLOSED-2",
+        "P-CLOSED-3"
+      ],
+      "snapshot": "population-v1",
+      "witness_id": "W-CLOSED-POPULATION"
+    }
+  },
+  "available_actions": [
+    "EMIT_TASK_RELATIVE_PROJECTION",
+    "PROPOSE_RECIPROCAL_PROBE",
+    "REFUSE",
+    "ABSTAIN_AS_UNKNOWN",
+    "EMIT_VERSION_INVALIDATION",
+    "HANDOFF_RELATION_CANDIDATE"
+  ],
+  "execution_contract": {
+    "may_read_local_packets": false,
+    "may_create_commitment": false,
+    "may_invent_party_authority": false
+  },
+  "delivery_scope": "COORDINATOR_ONLY",
+  "submission_schema_ref": "submission_schema.json"
+}

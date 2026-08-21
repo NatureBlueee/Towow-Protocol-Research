@@ -1,0 +1,891 @@
+{
+  "migration": {
+    "distinct_runtime_processes": true,
+    "old_source_restarted_pid": 39743,
+    "source_runtime_pid": 39735,
+    "target_runtime_pid": 39739
+  },
+  "processes": [
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39733,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39743,
+      "service_id": "O_E_TARGET[strict][old-source-restarted]"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39739,
+      "service_id": "O_E_TARGET[strict][target-restored]"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39735,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39721,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39727,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39732,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "E6-MIGRATION",
+      "pid": 39724,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39625,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39634,
+      "service_id": "O_E_TARGET[ignore_fence][target]"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39598,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39610,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39618,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-ignore_fence",
+      "pid": 39603,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39662,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39672,
+      "service_id": "O_E_TARGET[restart_loses_fence][target]"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39647,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39658,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39660,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-restart_loses_fence",
+      "pid": 39654,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39591,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39593,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39584,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39588,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39589,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "FENCE-INJECTION-strict",
+      "pid": 39587,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38683,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38691,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38666,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38678,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38681,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-D-execute",
+      "pid": 38672,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38542,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38550,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38516,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38529,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38536,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-D-read",
+      "pid": 38522,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38648,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38653,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38622,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38636,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38641,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-D-reserve",
+      "pid": 38630,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38601,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38607,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38572,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38589,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38595,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-D-sign",
+      "pid": 38579,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38896,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38903,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38867,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38884,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38890,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-P-execute",
+      "pid": 38873,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38728,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38734,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38703,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38716,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38722,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-P-read",
+      "pid": 38710,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38829,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38854,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38801,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38814,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38820,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-P-reserve",
+      "pid": 38806,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38775,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38781,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38744,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38757,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38763,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "RACE-P-sign",
+      "pid": 38751,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "RACE-U-execute",
+      "pid": 38501,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-U-execute",
+      "pid": 38507,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-U-execute",
+      "pid": 38493,
+      "service_id": "O_UNIFIED"
+    },
+    {
+      "cell_id": "RACE-U-read",
+      "pid": 38427,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-U-read",
+      "pid": 38433,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-U-read",
+      "pid": 38419,
+      "service_id": "O_UNIFIED"
+    },
+    {
+      "cell_id": "RACE-U-reserve",
+      "pid": 38470,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-U-reserve",
+      "pid": 38480,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-U-reserve",
+      "pid": 38463,
+      "service_id": "O_UNIFIED"
+    },
+    {
+      "cell_id": "RACE-U-sign",
+      "pid": 38449,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "RACE-U-sign",
+      "pid": 38455,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "RACE-U-sign",
+      "pid": 38443,
+      "service_id": "O_UNIFIED"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39582,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39583,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39575,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39580,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39581,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-ACTIVE_SNAPSHOT_COMPENSATION",
+      "pid": 39578,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39472,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39474,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39465,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39467,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39469,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_EXPIRY",
+      "pid": 39466,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39230,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39275,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39085,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39157,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39193,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_ID",
+      "pid": 39119,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39439,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39444,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39334,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39403,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39437,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_OBJECT_REVISION",
+      "pid": 39368,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39070,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39071,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39052,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39066,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39067,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_Q",
+      "pid": 39065,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39459,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39462,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39447,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39454,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39457,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-CHANGED_SCOPE",
+      "pid": 39451,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39566,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39569,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39536,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39538,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39546,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-FORGED_RECEIPT",
+      "pid": 39537,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38988,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38998,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38965,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38977,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38983,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-NAKED_FENCE_INJECTION",
+      "pid": 38971,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38950,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38957,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38925,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38937,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38943,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-NO_OWNER_RECEIPTS",
+      "pid": 38931,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39015,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39017,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39000,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39005,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39013,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-POST_CHECK_REVOKE",
+      "pid": 39002,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39524,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39535,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39493,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39496,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39497,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-RELABELED_TOPOLOGY",
+      "pid": 39494,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39484,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39488,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39476,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39478,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39480,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-RUNTIME_EXPIRED",
+      "pid": 39477,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39046,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39049,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39037,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39041,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39044,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-STALE_HEAD",
+      "pid": 39039,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39715,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39717,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39679,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39687,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39709,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-UNRESOLVED-STANDING",
+      "pid": 39684,
+      "service_id": "O_V"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39030,
+      "service_id": "AUTHORITY_CHANNEL"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39033,
+      "service_id": "O_E_TARGET[strict][target]"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39020,
+      "service_id": "O_Q"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39024,
+      "service_id": "O_R"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39027,
+      "service_id": "O_S"
+    },
+    {
+      "cell_id": "TARGET-GATE-WRONG_OWNER",
+      "pid": 39022,
+      "service_id": "O_V"
+    }
+  ],
+  "schema": "ce001.g5.process-inventory.v1"
+}

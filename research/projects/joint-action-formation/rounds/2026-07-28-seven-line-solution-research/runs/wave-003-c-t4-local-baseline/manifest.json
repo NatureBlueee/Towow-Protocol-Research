@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "WAVE-003-C-T4-LOCAL-BASELINE-001",
+  "status": "INDEPENDENT_EVALUATION_COMPLETE_PARTIAL",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "method_id": "T4-LOCAL-DETERMINISTIC-AUTHORITY-WORKFLOW-V1",
+  "run_id": "T4-LOCAL-BASELINE-20260728-001",
+  "blind_isolation": {
+    "solver_read_oracle": false,
+    "solver_read_mutations": false,
+    "solver_read_migration_truth": false,
+    "controller_interface_only": true
+  },
+  "result": {
+    "overall_score": 0.6,
+    "overall_grade": "PARTIAL",
+    "r6_outcome_readback": "PASS",
+    "r2_r3_r4_r5_r7": "PARTIAL",
+    "critical_failures": 0,
+    "external_outcome_false_closures": 0,
+    "mutation": "3_PASS_4_PARTIAL_3_UNKNOWN",
+    "migration": "UNKNOWN_NOT_RUN"
+  },
+  "evidence_boundary": [
+    "Same-model different-context evaluation is not model diversity.",
+    "The task, authorities, probe and reservations are synthetic.",
+    "The score evaluates one frozen method return, not all deterministic brokers or standards-only compositions."
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "RUN_SUMMARY_AND_BOUNDARY",
+      "sha256": "8cd27d096742c40f55a52ab46610ceb8f87293102129e50801802a40806ac68c"
+    },
+    {
+      "path": "query_controller.py",
+      "role": "SOLVER_SIDE_CONTROLLER_CLIENT",
+      "sha256": "6a3773dac7b6ae7cfa867a7a8967fc7b65a22ee017240f468557382c18085a7f"
+    },
+    {
+      "path": "build_submission.py",
+      "role": "CONSERVATIVE_CANDIDATE_BUILDER",
+      "sha256": "096d032c77bcdb64556f3024c123f116f542bae2d7ac94ee8d39e16e4aee928b"
+    },
+    {
+      "path": "output-v3/query-round-1.json",
+      "role": "ROUND_1_QUERY",
+      "sha256": "e2c52a9e5eca53ed052faf0676183f48f0c426018a30275d30b9330b1fd06171"
+    },
+    {
+      "path": "output-v3/response-round-1.json",
+      "role": "ROUND_1_CONTROLLER_RESPONSE",
+      "sha256": "e14a382460d1fdf1b9bd9e11f3ff9190d7b974851546809637e86ccea89c0d35"
+    },
+    {
+      "path": "output-v3/query-round-2.json",
+      "role": "ROUND_2_DEFERRED_QUERY_RETRY",
+      "sha256": "5987a696a469ca231dc14dfa70a53f5fe4eb000ccd42d3c73bb21c6fb834cbdf"
+    },
+    {
+      "path": "output-v3/response-round-2.json",
+      "role": "ROUND_2_CONTROLLER_RESPONSE",
+      "sha256": "f4b886f9a8431ca073f5cbcf002c4d5e688b4750180514b53633f6c74540e1d2"
+    },
+    {
+      "path": "output-v3/controller-state.json",
+      "role": "HASH_CHAINED_CONTROLLER_STATE",
+      "sha256": "b2bdc8552979dbe326789a509fa5a39745fac0b7c16d0d92faa07dab50721458"
+    },
+    {
+      "path": "output-v3/disclosure-summary.json",
+      "role": "31_RECEIPT_DISCLOSURE_SUMMARY",
+      "sha256": "350ae3f141b90665ff2296d0fd8d6109de8b870f89df95a0e3270d78d621e4cc"
+    },
+    {
+      "path": "output-v3/final-submission.json",
+      "role": "FROZEN_CANDIDATE",
+      "sha256": "b7b9fc972b3c051841a37cc3af6a80f80459e0faf7458c57bffdb63737f2fd5a"
+    },
+    {
+      "path": "output-v3/independent-evaluation.json",
+      "role": "SAME_MODEL_DIFFERENT_CONTEXT_EVALUATION",
+      "sha256": "713be34375d164fcd5b048943df7f5c43e71d2888064551a2a54f5228332bfa5"
+    }
+  ]
+}

@@ -1,0 +1,701 @@
+{
+  "schema_version": "1.0",
+  "shared_task": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "source": "../../WAVE-006-SHARED-TASK.md",
+    "source_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "operation": {
+    "world_id": "W6-STERILE-ROUTE-WORLD",
+    "evaluation_step": 7,
+    "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+    "operation_family": "sterile-route-simulation",
+    "purpose": "sterile-route-simulation",
+    "retention": "PT7M",
+    "seeker": "LAB-SEEK",
+    "offerer": "LAB-OFFER",
+    "recipient": "SIM-RECIPIENT",
+    "beneficiary": "BENEFICIARY-REVIEWER",
+    "anchor": "ANCHOR-W6"
+  },
+  "economics": {
+    "accepted_task_value": 20.0,
+    "disclosure_unit_cost": 1.0,
+    "coordination_operation_cost": 0.5,
+    "recovery_step_cost": 2.0,
+    "false_action_loss": 18.0
+  },
+  "base_visible": {
+    "declaration": {
+      "active": true,
+      "operation_family": "sterile-route-simulation",
+      "declared_at_step": 0
+    },
+    "latest_probe": {
+      "status": "SUCCESS",
+      "step": 0,
+      "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+      "key_id": "RECIPIENT-KEY-v1",
+      "environment": "SIM-ENV-A",
+      "command_hash": "CMD-W6-V1",
+      "semantic_hash": "SEM-W6-V1",
+      "latency_ms": 90
+    },
+    "receipt_history": [
+      {
+        "receipt_id": "R-HIST-001",
+        "status": "SUCCESS",
+        "step": -2,
+        "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+        "key_id": "RECIPIENT-KEY-v1",
+        "environment": "SIM-ENV-A",
+        "command_hash": "CMD-W6-V1",
+        "semantic_hash": "SEM-W6-V1",
+        "latency_ms": 100,
+        "recipient_ack": true,
+        "external_anchor": true
+      },
+      {
+        "receipt_id": "R-HIST-002",
+        "status": "SUCCESS",
+        "step": -1,
+        "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+        "key_id": "RECIPIENT-KEY-v1",
+        "environment": "SIM-ENV-A",
+        "command_hash": "CMD-W6-V1",
+        "semantic_hash": "SEM-W6-V1",
+        "latency_ms": 105,
+        "recipient_ack": true,
+        "external_anchor": true
+      },
+      {
+        "receipt_id": "R-HIST-003",
+        "status": "SUCCESS",
+        "step": 0,
+        "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+        "key_id": "RECIPIENT-KEY-v1",
+        "environment": "SIM-ENV-A",
+        "command_hash": "CMD-W6-V1",
+        "semantic_hash": "SEM-W6-V1",
+        "latency_ms": 95,
+        "recipient_ack": true,
+        "external_anchor": true
+      }
+    ],
+    "sla": {
+      "status": "IN_FORCE",
+      "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+      "key_id": "RECIPIENT-KEY-v1",
+      "environment": "SIM-ENV-A",
+      "command_hash": "CMD-W6-V1",
+      "semantic_hash": "SEM-W6-V1",
+      "max_latency_ms": 180,
+      "health": "GREEN",
+      "recovery_owner": "SIM-RECIPIENT-OPS",
+      "recovery_receipt_valid": false
+    },
+    "current": {
+      "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+      "operation_family": "sterile-route-simulation",
+      "key_id": "RECIPIENT-KEY-v1",
+      "environment": "SIM-ENV-A",
+      "command_hash": "CMD-W6-V1",
+      "semantic_hash": "SEM-W6-V1",
+      "deadline_ms": 250,
+      "ack_delay_ms": 80,
+      "authority_state": "ACTIVE",
+      "partial_state": "NONE",
+      "anchor_state": "VALID",
+      "idempotency_state": "NEW",
+      "schema_state": "EXACT",
+      "epistemic_state": "NONE"
+    }
+  },
+  "visible_presets": {
+    "steady": {},
+    "fresh-v1": {
+      "latest_probe": {"step": 3},
+      "receipt_history": [
+        {
+          "receipt_id": "R-V1-011",
+          "status": "SUCCESS",
+          "step": 1,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 100,
+          "recipient_ack": true,
+          "external_anchor": true
+        },
+        {
+          "receipt_id": "R-V1-012",
+          "status": "SUCCESS",
+          "step": 2,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 105,
+          "recipient_ack": true,
+          "external_anchor": true
+        },
+        {
+          "receipt_id": "R-V1-013",
+          "status": "SUCCESS",
+          "step": 3,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 95,
+          "recipient_ack": true,
+          "external_anchor": true
+        }
+      ]
+    },
+    "revoked-after-probe": {
+      "latest_probe": {"step": 3},
+      "current": {"authority_state": "REVOKED"},
+      "sla": {"status": "SUSPENDED", "health": "RED"}
+    },
+    "rotated-recovered": {
+      "current": {"key_id": "RECIPIENT-KEY-v2"},
+      "sla": {
+        "status": "IN_FORCE",
+        "key_id": "RECIPIENT-KEY-v2",
+        "health": "RECOVERED",
+        "recovery_receipt_valid": true
+      }
+    },
+    "rotated-probed": {
+      "latest_probe": {
+        "status": "SUCCESS",
+        "step": 6,
+        "key_id": "RECIPIENT-KEY-v2"
+      },
+      "receipt_history": [
+        {
+          "receipt_id": "R-V2-001",
+          "status": "SUCCESS",
+          "step": 6,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v2",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 110,
+          "recipient_ack": true,
+          "external_anchor": true
+        }
+      ],
+      "current": {"key_id": "RECIPIENT-KEY-v2"},
+      "sla": {
+        "status": "IN_FORCE",
+        "key_id": "RECIPIENT-KEY-v2",
+        "health": "GREEN",
+        "recovery_receipt_valid": false
+      }
+    },
+    "rotated-history": {
+      "latest_probe": {
+        "status": "SUCCESS",
+        "step": 8,
+        "key_id": "RECIPIENT-KEY-v2"
+      },
+      "receipt_history": [
+        {
+          "receipt_id": "R-V2-011",
+          "status": "SUCCESS",
+          "step": 6,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v2",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 110,
+          "recipient_ack": true,
+          "external_anchor": true
+        },
+        {
+          "receipt_id": "R-V2-012",
+          "status": "SUCCESS",
+          "step": 7,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v2",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 105,
+          "recipient_ack": true,
+          "external_anchor": true
+        },
+        {
+          "receipt_id": "R-V2-013",
+          "status": "SUCCESS",
+          "step": 8,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v2",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 100,
+          "recipient_ack": true,
+          "external_anchor": true
+        }
+      ],
+      "current": {"key_id": "RECIPIENT-KEY-v2"},
+      "sla": {
+        "status": "IN_FORCE",
+        "key_id": "RECIPIENT-KEY-v2",
+        "health": "GREEN"
+      }
+    },
+    "environment-drift": {
+      "current": {"environment": "SIM-ENV-B"},
+      "sla": {"status": "SUSPENDED", "health": "RED"}
+    },
+    "environment-recovered": {
+      "latest_probe": {
+        "status": "SUCCESS",
+        "step": 8,
+        "environment": "SIM-ENV-B"
+      },
+      "receipt_history": [
+        {
+          "receipt_id": "R-ENV-B-001",
+          "status": "SUCCESS",
+          "step": 8,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-B",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 120,
+          "recipient_ack": true,
+          "external_anchor": true
+        }
+      ],
+      "current": {"environment": "SIM-ENV-B"},
+      "sla": {
+        "status": "IN_FORCE",
+        "environment": "SIM-ENV-B",
+        "health": "RECOVERED",
+        "recovery_receipt_valid": true
+      }
+    },
+    "delayed-ack": {
+      "current": {"ack_delay_ms": 420},
+      "sla": {"health": "DEGRADED", "max_latency_ms": 420}
+    },
+    "partial": {
+      "receipt_history": [
+        {
+          "receipt_id": "R-PARTIAL-FAIL",
+          "status": "FAILED",
+          "step": 7,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 160,
+          "recipient_ack": false,
+          "external_anchor": true
+        }
+      ],
+      "current": {"partial_state": "SINGLE_SIDE_MATERIALIZED"},
+      "sla": {"health": "RED"}
+    },
+    "partial-recovered": {
+      "latest_probe": {"step": 8},
+      "receipt_history": [
+        {
+          "receipt_id": "R-PARTIAL-FAIL",
+          "status": "FAILED",
+          "step": 7,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 160,
+          "recipient_ack": false,
+          "external_anchor": true
+        },
+        {
+          "receipt_id": "R-RECOVERY-001",
+          "status": "SUCCESS",
+          "step": 8,
+          "operation_id": "RUN-STERILE-ROUTE-SIM-v1",
+          "key_id": "RECIPIENT-KEY-v1",
+          "environment": "SIM-ENV-A",
+          "command_hash": "CMD-W6-V1",
+          "semantic_hash": "SEM-W6-V1",
+          "latency_ms": 130,
+          "recipient_ack": true,
+          "external_anchor": true
+        }
+      ],
+      "current": {"partial_state": "NONE"},
+      "sla": {"health": "RECOVERED", "recovery_receipt_valid": true}
+    },
+    "command-conflict": {
+      "current": {
+        "command_hash": "CMD-W6-V1-MUTATED",
+        "idempotency_state": "CONFLICT"
+      }
+    },
+    "anchor-fork": {
+      "current": {"anchor_state": "FORK"}
+    },
+    "schema-alias": {
+      "current": {"schema_state": "ALIAS_COMPATIBLE"}
+    },
+    "semantic-change": {
+      "current": {
+        "semantic_hash": "SEM-W6-MATERIAL-V2",
+        "schema_state": "MATERIAL_CHANGE"
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "scenario_id": "steady-low-risk",
+      "risk": "LOW",
+      "snapshots": [
+        {
+          "step": 0,
+          "label": "declared-probed-and-current",
+          "visible_preset": "steady",
+          "event_history": ["E0_DECLARED", "E1_PROBED"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 1,
+          "label": "recipient-ack-current",
+          "visible_preset": "steady",
+          "event_history": ["E0_DECLARED", "E1_PROBED", "E2_DELIVERED", "E3_ACKED"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 2,
+          "label": "accepted-current",
+          "visible_preset": "steady",
+          "event_history": ["E0_DECLARED", "E1_PROBED", "E2_DELIVERED", "E3_ACKED", "E4_DOMAIN_POSTCONDITION", "E5_ACCEPTED"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "probe-success-then-revocation-recovery",
+      "risk": "HIGH",
+      "recovery_at_step": 5,
+      "horizon_step": 8,
+      "snapshots": [
+        {
+          "step": 3,
+          "label": "last-valid-success",
+          "visible_preset": "fresh-v1",
+          "event_history": ["E0_DECLARED", "E1_PROBED", "E4_DOMAIN_POSTCONDITION", "E5_ACCEPTED"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 4,
+          "label": "holder-revoked-after-probe",
+          "visible_preset": "revoked-after-probe",
+          "event_history": ["E0_DECLARED", "E1_PROBED", "E7_HOLDER_REVOCATION"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "REFUSE"
+          }
+        },
+        {
+          "step": 5,
+          "label": "re-authorized-with-key-rotation",
+          "visible_preset": "rotated-recovered",
+          "event_history": ["E7_HOLDER_REVOCATION", "E8_REAUTHORIZED", "E8_KEY_ROTATED", "E8_RECOVERY_RECEIPT"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 6,
+          "label": "fresh-probe-on-rotated-key",
+          "visible_preset": "rotated-probed",
+          "event_history": ["E8_REAUTHORIZED", "E8_KEY_ROTATED", "E1_PROBED"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 8,
+          "label": "continuous-receipts-on-rotated-key",
+          "visible_preset": "rotated-history",
+          "event_history": ["E8_REAUTHORIZED", "E8_KEY_ROTATED", "E1_PROBED", "E3_ACKED", "E4_DOMAIN_POSTCONDITION"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "environment-drift-and-adapter-recovery",
+      "risk": "HIGH",
+      "recovery_at_step": 8,
+      "horizon_step": 9,
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "environment-version-drift",
+          "visible_preset": "environment-drift",
+          "event_history": ["E6_REUSE_REQUEST", "E7_ENVIRONMENT_DRIFT"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "UNKNOWN"
+          }
+        },
+        {
+          "step": 8,
+          "label": "adapter-validated-recovery",
+          "visible_preset": "environment-recovered",
+          "event_history": ["E7_ENVIRONMENT_DRIFT", "E8_ADAPTER_VALIDATED", "E8_RECOVERY_RECEIPT"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "delayed-ack",
+      "risk": "HIGH",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "ack-misses-operation-deadline",
+          "visible_preset": "delayed-ack",
+          "event_history": ["E1_PROBED", "E2_DELIVERED", "E3_ACK_DELAYED"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "PRESENT"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "partial-materialization-and-recovery",
+      "risk": "HIGH",
+      "recovery_at_step": 8,
+      "horizon_step": 9,
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "single-side-partial-materialization",
+          "visible_preset": "partial",
+          "event_history": ["E2_DELIVERED_ONE_SIDE", "E3_ACKED_ONE_SIDE", "E7_PARTIAL_FAILURE"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "UNKNOWN"
+          }
+        },
+        {
+          "step": 8,
+          "label": "recovered-after-compensation",
+          "visible_preset": "partial-recovered",
+          "event_history": ["E7_PARTIAL_FAILURE", "E8_COMPENSATED", "E8_RECOVERY_RECEIPT"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "beneficiary-refusal",
+      "risk": "MEDIUM",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "operation-success-but-beneficiary-refuses",
+          "visible_preset": "fresh-v1",
+          "event_history": ["E1_PROBED", "E3_ACKED", "E4_DOMAIN_POSTCONDITION", "E5_BENEFICIARY_REFUSE"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": false,
+            "epistemic_truth": "REFUSE"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "replay-and-command-change",
+      "risk": "HIGH",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "exact-replay",
+          "visible_preset": "fresh-v1",
+          "visible_override": {"current": {"idempotency_state": "EXACT_REPLAY"}},
+          "event_history": ["E6_REUSE_REQUEST", "E6_EXACT_REPLAY"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 7,
+          "label": "same-key-changed-command",
+          "visible_preset": "command-conflict",
+          "event_history": ["E6_REUSE_REQUEST", "E7_SAME_KEY_CHANGED_COMMAND"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "REFUSE"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "anchor-fork",
+      "risk": "HIGH",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "physical-operation-but-untrusted-anchor",
+          "visible_preset": "anchor-fork",
+          "event_history": ["E3_ACKED", "E4_DOMAIN_POSTCONDITION", "E7_ANCHOR_FORK"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "UNKNOWN"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "schema-alias-versus-material-change",
+      "risk": "MEDIUM",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "schema-compatible-alias",
+          "visible_preset": "schema-alias",
+          "event_history": ["E6_REUSE_REQUEST", "E7_SCHEMA_ALIAS"],
+          "truth": {
+            "operation_success": true,
+            "safe_to_rely": true,
+            "business_effect_accepted": true,
+            "epistemic_truth": "PRESENT"
+          }
+        },
+        {
+          "step": 7,
+          "label": "material-semantic-change",
+          "visible_preset": "semantic-change",
+          "event_history": ["E6_REUSE_REQUEST", "E7_MATERIAL_SEMANTIC_CHANGE"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "UNKNOWN"
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "epistemic-states",
+      "risk": "MEDIUM",
+      "snapshots": [
+        {
+          "step": 7,
+          "label": "open-population-unknown",
+          "visible_preset": "fresh-v1",
+          "visible_override": {"current": {"epistemic_state": "UNKNOWN"}},
+          "event_history": ["E6_REUSE_REQUEST", "E7_NO_RESPONSE_IN_WINDOW"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "UNKNOWN"
+          }
+        },
+        {
+          "step": 7,
+          "label": "authority-refuses",
+          "visible_preset": "fresh-v1",
+          "visible_override": {"current": {"epistemic_state": "REFUSE"}},
+          "event_history": ["E6_REUSE_REQUEST", "E7_EXPLICIT_REFUSAL"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "REFUSE"
+          }
+        },
+        {
+          "step": 7,
+          "label": "closed-population-absent",
+          "visible_preset": "fresh-v1",
+          "visible_override": {"current": {"epistemic_state": "ABSENT"}},
+          "event_history": ["E6_REUSE_REQUEST", "E7_CLOSED_POPULATION_EXHAUSTED"],
+          "truth": {
+            "operation_success": false,
+            "safe_to_rely": false,
+            "business_effect_accepted": false,
+            "epistemic_truth": "ABSENT"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "qualified-e1.json",
+  "patch": {
+    "owner_sources.O_P.state_source_id": "oq-state",
+    "owner_sources.O_P.act_source_id": "oq-act",
+    "components.G6.evidence.op_finality.act_source_id": "oq-act",
+    "components.G6.evidence.op_finality.derived_from_acceptance_object": true
+  },
+  "expected_rejection": "OP_NOT_INDEPENDENT"
+}

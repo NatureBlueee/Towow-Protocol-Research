@@ -1,0 +1,57 @@
+{
+  "schema": "towow.relation-materiality-result-summary.v1",
+  "experiment_id": "WAVE-006-A-RELATION-MATERIALITY",
+  "shared_task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+  "shared_task_sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3",
+  "safe_strategy_results": [
+    {
+      "strategy_id": "A_DELIVERY_RECEIPT_ONLY",
+      "reuse_success": 1,
+      "false_relation_constitution": 0,
+      "stale_reuse": 0,
+      "withdrawal_residual": 0,
+      "clarification_count": 1,
+      "disclosure_units": 2,
+      "coordination_operations": 2,
+      "net_task_value": 51
+    },
+    {
+      "strategy_id": "B_DUAL_RECIPIENT_ACK",
+      "reuse_success": 1,
+      "false_relation_constitution": 0,
+      "stale_reuse": 0,
+      "withdrawal_residual": 0,
+      "clarification_count": 1,
+      "disclosure_units": 2,
+      "coordination_operations": 4,
+      "net_task_value": 49
+    },
+    {
+      "strategy_id": "C_ACK_EXPLAINBACK_RELATION_PROPOSAL",
+      "reuse_success": 1,
+      "false_relation_constitution": 0,
+      "stale_reuse": 0,
+      "withdrawal_residual": 0,
+      "clarification_count": 1,
+      "disclosure_units": 4,
+      "coordination_operations": 9,
+      "net_task_value": 42
+    }
+  ],
+  "strongest_counterexample": {
+    "name": "one-shot retrieval mistaken for continuing relation",
+    "passed": false,
+    "false_positive": 9,
+    "false_negative": 1,
+    "false_relation_constitution": 7,
+    "stale_reuse": 1,
+    "withdrawal_residual": 1,
+    "net_task_value": -116
+  },
+  "selection": {
+    "winner_at_relation_representation_scope": "A_DELIVERY_RECEIPT_ONLY",
+    "relation_version_material_increment_over_dual_ack": false,
+    "relation_version_net_value_delta_over_dual_ack": -7,
+    "decision": "USE_SIMPLER_EXISTING_EVIDENCE; DO_NOT_CONSTITUTE_A_RELATION"
+  }
+}

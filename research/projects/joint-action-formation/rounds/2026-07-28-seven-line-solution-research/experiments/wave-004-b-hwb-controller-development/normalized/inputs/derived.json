@@ -1,0 +1,79 @@
+{
+  "authorizations": [
+    {
+      "declared_sha256": "94444dd068af022d233a8a8019ea7bfc90afc70499646fdd4c11b4d05c6873d5",
+      "payload": {
+        "authorization_type": "PROJECTION_ROUTE",
+        "evaluation_step": 2,
+        "issuer": "ION-06",
+        "policy": {
+          "budget_units": 1,
+          "max_depth": 1,
+          "onward_allowed": true,
+          "onward_policy": {
+            "budget_units": 1,
+            "max_depth": 1,
+            "purpose": "scoped-topology-screen",
+            "recipient": "NODE-COPPER-ROUTER",
+            "retention": "PT3M",
+            "source_recipient": "NODE-SILVER-RELAY"
+          },
+          "purpose": "scoped-topology-screen",
+          "recipient": "NODE-SILVER-RELAY",
+          "retention": "PT3M"
+        },
+        "projection": {
+          "compatibility_key": "microgrid-anomaly-replay@6",
+          "direction": "OFFER",
+          "facet": "grid-replay-window",
+          "fact_id": "F-HWB-ION-TASK-PROJECTION"
+        },
+        "receipt_id": "HWB-AUTH-ION-06",
+        "revoked": false,
+        "schema": "towow.holder-authorization.v1",
+        "source_file_sha256": "7d21eb56c0724dd22b03981a6daab032a4905b539ae36dbc8febd0cd7e50ef39",
+        "source_semantics": {
+          "authorization_is_not_execution": true,
+          "derived_receipt_required": true,
+          "receipt_type": "AUTHORIZED_PROJECTION",
+          "source_execution_status": "NOT_FORWARDED",
+          "witness_ref": "W-HWB-ION-PROJECTION"
+        },
+        "status": "AUTHORIZED",
+        "valid_from_step": 2,
+        "valid_through_step": 2,
+        "world_id": "T1-HW-20260728-B"
+      }
+    }
+  ],
+  "evaluation_step": 2,
+  "idempotency_key": "hwb:2:ion-derived",
+  "request_id": "HWB-REQ-ION-DERIVED",
+  "route": {
+    "hops": [
+      {
+        "budget_units": 1,
+        "depth": 0,
+        "purpose": "scoped-topology-screen",
+        "recipient": "NODE-SILVER-RELAY",
+        "retention": "PT3M"
+      },
+      {
+        "budget_units": 1,
+        "depth": 1,
+        "purpose": "scoped-topology-screen",
+        "recipient": "NODE-COPPER-ROUTER",
+        "retention": "PT3M"
+      }
+    ],
+    "projection": {
+      "compatibility_key": "microgrid-anomaly-replay@6",
+      "direction": "OFFER",
+      "facet": "grid-replay-window",
+      "fact_id": "F-HWB-ION-TASK-PROJECTION"
+    }
+  },
+  "route_type": "DERIVED_ONWARD",
+  "schema": "towow.controller-request.v1",
+  "world_id": "T1-HW-20260728-B"
+}

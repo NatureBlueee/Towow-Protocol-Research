@@ -1,0 +1,143 @@
+{
+  "schema": "towow.wave006-effect-reopen-manifest.v1",
+  "experiment_id": "WAVE-006-C-EFFECT-REOPEN",
+  "status": "LOCAL_SYNTHETIC_COMPOSED_SOLUTION_SUPPORTED",
+  "date": "2026-07-29",
+  "shared_task": {
+    "task_id": "W6-STERILE-ROUTE-SIMULATION-001",
+    "path": "../../WAVE-006-SHARED-TASK.md",
+    "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+  },
+  "scoped_claims": {
+    "g6": "Five independently-authorized levels prevent predecessor self-claim from promoting effect in the frozen task.",
+    "g7": "Immutable replay, allowlisted migration, and re-authorization separate exact reuse, representation-only change, and material drift.",
+    "unaffected": [
+      "shared operation",
+      "frozen truth",
+      "holder and recipient authority",
+      "beneficiary refusal right",
+      "G2 relation claims",
+      "G4 reliance claims"
+    ]
+  },
+  "solution_result": {
+    "class": "EXISTING_COMPOSED_WORKFLOW_EVENT_SOURCING_AND_STRONG_CENTRAL_COORDINATION",
+    "novel_protocol_required_in_frozen_scope": false,
+    "components": [
+      "Ed25519 signed receipts from existing Wave 005-B public kernel",
+      "strong central idempotent workflow",
+      "event-sourced external anchor",
+      "allowlisted schema adapter",
+      "explicit re-authorization workflow"
+    ]
+  },
+  "effect_ladder": [
+    "ATTEMPT",
+    "DELIVERY",
+    "RECIPIENT_ACK",
+    "DOMAIN_POSTCONDITION",
+    "BENEFICIARY_ACCEPTANCE"
+  ],
+  "strategies": [
+    "IMMUTABLE_REPLAY",
+    "MIGRATION_ADAPTER",
+    "REAUTHORIZE"
+  ],
+  "drift_cases": [
+    "exact replay",
+    "contract change",
+    "key rotation",
+    "recipient withdrawal",
+    "anchor fork",
+    "schema alias",
+    "partial recovery",
+    "delayed ACK",
+    "single-side partial materialization",
+    "holder revocation",
+    "beneficiary refusal",
+    "material environment change"
+  ],
+  "results": {
+    "promotion_mutations": 4,
+    "false_promotions": 0,
+    "stale_reuse_total": 0,
+    "terminal_states_preserved": [
+      "UNKNOWN",
+      "REFUSE",
+      "ABSENT"
+    ],
+    "best_strategy_by_case": {
+      "exact_replay": "IMMUTABLE_REPLAY",
+      "partial_recovery": "IMMUTABLE_REPLAY",
+      "delayed_ack": "IMMUTABLE_REPLAY",
+      "schema_alias": "MIGRATION_ADAPTER",
+      "contract_change": "REAUTHORIZE",
+      "key_rotation": "REAUTHORIZE",
+      "recipient_withdrawal": "REAUTHORIZE",
+      "anchor_fork": "REAUTHORIZE",
+      "material_semantic_change": "REAUTHORIZE",
+      "single_side_partial": "REAUTHORIZE",
+      "holder_revocation": "SAFE_REJECTION",
+      "beneficiary_refusal": "SAFE_REJECTION"
+    }
+  },
+  "evidence_boundary": {
+    "environment": "LOCAL_SYNTHETIC_SHARED_TASK",
+    "not_claimed": [
+      "real-world frequency",
+      "human beneficiary acceptance",
+      "medical safety",
+      "production reliability",
+      "Byzantine cross-store atomicity",
+      "multi-observer anchor equivocation resistance",
+      "cross-domain generality"
+    ]
+  },
+  "excluded_inputs": [
+    "HW-C private/**",
+    "HW-C oracle",
+    "HW-C tests",
+    "HW-C local packets"
+  ],
+  "validation": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave006-effect-pycache python3 -m unittest discover -s tests -v",
+    "tests_run": 16,
+    "failures": 0,
+    "errors": 0,
+    "additional_checks": [
+      "python3 -m py_compile simulator.py evaluator.py",
+      "git diff --check for experiment path",
+      "artifact SHA-256 verification"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "f22ef106ff8c460618fe1e4b5a74218178a20d530b9432bbefcd7e006fb5710d"
+    },
+    {
+      "path": "simulator.py",
+      "sha256": "22e6cf4ba9c00b8d8337e533801c910e1a6d2fb2903219f96cff176a571ee336"
+    },
+    {
+      "path": "evaluator.py",
+      "sha256": "2e2b31d9cbc98fead462d147665234aa7491b1876402f8c1522a51ecc82f155b"
+    },
+    {
+      "path": "fixtures/ladder-spec.json",
+      "sha256": "666403804680c27eca0ac2611826546c44a57bd200cb60b1786ba7f667860f6a"
+    },
+    {
+      "path": "fixtures/drift-cases.json",
+      "sha256": "591fec344bb867f6ea5ef2c0d1cfecf965fb7ca0d97dfa62f02f698aa0c61240"
+    },
+    {
+      "path": "tests/test_effect_reopen.py",
+      "sha256": "035c8bbf6fd8759d38ccc358bbf3dd06abdbdbb72f3e537c8d722442edfda1ce"
+    },
+    {
+      "path": "results.json",
+      "sha256": "c5176fdfcee3015429a8aec1645d3f0114b96cab0a67293e73b9aae7ae1dd4a0"
+    }
+  ]
+}

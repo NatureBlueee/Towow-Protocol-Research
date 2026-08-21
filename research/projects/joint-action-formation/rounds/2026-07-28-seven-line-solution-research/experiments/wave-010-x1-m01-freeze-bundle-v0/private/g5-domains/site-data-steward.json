@@ -1,0 +1,89 @@
+{
+  "fragment_version": "wave010-x1-m01-g5-domain-v0",
+  "authority_domain_id": "site-data-steward-domain",
+  "relation_coordinate": "relation-estuary-sensor-calibration-joint-bid@v1",
+  "applies_to_episode_keys": [
+    "765f0698-edb8-459d-bba6-ceb0ae154e51",
+    "d952741e-11f8-44db-a98d-7a34c12e6801"
+  ],
+  "truth_owner": {
+    "principal_id": "estuary-site-data-steward",
+    "controller_id": "estuary-site-data-governance-board",
+    "agent_entity_id": "estuary-site-disclosure-policy-agent",
+    "owner_key_id": "site-data-steward-domain:owner-key:v1",
+    "private_key_material_included": false,
+    "exclusive_signing_scope": [
+      "site-data mandate",
+      "purpose-bound disclosure stance",
+      "site-data handling commitment"
+    ],
+    "may_not_sign_for_other_domains": true
+  },
+  "ledger_candidates": {
+    "genesis_candidate_id": "site-data-steward-domain:ledger-genesis:v0",
+    "root_candidate_id": "site-data-steward-domain:ledger-root:v0",
+    "root_preimage_rule": "canonical JSON object containing authority_domain_id, relation_coordinate, truth_owner, private_truth, and not_run_boundary",
+    "root_candidate_sha256": "b53a5289b716be73247e5875dcaefe47985acef9d9f24c966d64aea10604f22f",
+    "status": "CANDIDATE_UNSEALED_NOT_RUN"
+  },
+  "private_truth": {
+    "s0": {
+      "relation_formation_state": "PROPOSAL_NOT_FORMED",
+      "mandate": {
+        "mandate_id": "mandate-site-data-steward-joint-bid-0001",
+        "version_head": "mandate-site-data-steward-joint-bid-0001@v2",
+        "revocation_head": "mandate-site-data-steward-joint-bid-0001/revocations@seq-0",
+        "status": "CURRENT_ACTIVE_EXACT_SCOPE",
+        "owner_receipt_id": "site-data-steward-domain:mandate-owner-receipt@v2",
+        "exact_scope": "decide purpose-bound site-coordinate disclosure, named recipients, and retention for this bid"
+      },
+      "stance": {
+        "status": "NOT_RECORDED_AT_S0",
+        "version_head": null,
+        "owner_receipt_id": null
+      },
+      "commitment": {
+        "candidate_id": "commitment-site-data-steward-joint-bid-0001",
+        "status": "NOT_CREATED_AT_S0",
+        "version_head": null,
+        "revocation_head": null,
+        "owner_receipt_id": null
+      }
+    },
+    "transition_receipt_rules": [
+      {
+        "transition": "S0_TO_CURRENT_STANCE",
+        "requires": [
+          "owner-signed G2 formed receipt@v1",
+          "receipt relation coordinate equals relation-estuary-sensor-calibration-joint-bid@v1",
+          "current mandate owner receipt",
+          "exact purpose named recipients and retention are explicit"
+        ],
+        "effect": "owner may create a current attributable site-data disclosure stance receipt",
+        "only_valid_signer_key_id": "site-data-steward-domain:owner-key:v1"
+      },
+      {
+        "transition": "CURRENT_STANCE_TO_COMMITMENT",
+        "requires": [
+          "current site-data steward stance owner receipt",
+          "current exact-scope mandate head",
+          "no unresolved site-data-domain challenge"
+        ],
+        "effect": "owner may create the site-data handling commitment and receipt",
+        "only_valid_signer_key_id": "site-data-steward-domain:owner-key:v1"
+      }
+    ],
+    "forbidden": [
+      "program coordinator silently broadens disclosure scope",
+      "another domain signs the site-data receipt",
+      "G5 evaluator signs or edits the site-data receipt",
+      "disclosure to unnamed recipients or beyond retention"
+    ]
+  },
+  "not_run_boundary": {
+    "run_state": "NOT_RUN",
+    "stance_receipt_created": false,
+    "commitment_receipt_created": false,
+    "formal_status_changed": false
+  }
+}

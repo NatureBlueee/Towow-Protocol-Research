@@ -1,0 +1,2248 @@
+[
+  [
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "CLAIMED_WITH_SCOPED_OPPOSITION"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-EXACT-V1",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [
+        {
+          "opposition": {
+            "position": "BATTERY_ONLY",
+            "scope": "POWER_SOURCE",
+            "source": "VENUE_NOISE_POLICY"
+          },
+          "owner_id": "O_V",
+          "scope": "RELATION"
+        }
+      ],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_Q": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT"
+        },
+        "authorized": {
+          "O_P": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_Q": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-SAFETY-REFUSAL",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_CANDIDATE_UNRESOLVED_CONSTITUTION_NOT_A_RELATION_FACT",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": false,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": false,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "UNRESOLVED_CONSTITUTION"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": false,
+        "evidence_status": "DERIVED_CANDIDATE_WITH_UNRESOLVED_CONSTITUTION",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": false,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-COLUMN-ABSENT",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "ABSENT",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-COLUMN-WITHHELD",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "WITHHELD",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-WRONG-VERSION",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [
+        {
+          "owner_id": "O_R",
+          "reason": "exact binding mismatch: relation_version_hash"
+        }
+      ],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v2",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "authorized": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "claimed": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "constituted": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "understood": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        }
+      },
+      "episode_id": "CE001-E2-ALL-UNKNOWN",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_CANDIDATE_UNRESOLVED_CONSTITUTION_NOT_A_RELATION_FACT",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "UNKNOWN",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": false,
+          "owner_exact_constitution": {
+            "O_P": false,
+            "O_Q": false,
+            "O_R": false,
+            "O_S": false,
+            "O_V": false
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "UNRESOLVED_CONSTITUTION"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": false,
+        "evidence_status": "DERIVED_CANDIDATE_WITH_UNRESOLVED_CONSTITUTION",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": false,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": null,
+        "authorized": null,
+        "claimed": null,
+        "constituted": null,
+        "understood": null
+      },
+      "episode_id": "CE001-T5-PLATFORM-DIRECT",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "platform_assertion_classification": "LOCAL_FIXTURE_SELF_ASSERTION_VERIFIED",
+        "real_owner": "NOT_RUN",
+        "real_platform_applicability": "NOT_ESTABLISHED",
+        "real_platform_identity": "NOT_ESTABLISHED",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "T5_PLATFORM_DIRECT_BYPASS",
+      "platform": {
+        "proof_decision": "APPLICABLE",
+        "readback_decision": "READBACK_CONFIRMED"
+      },
+      "private_column_state": null,
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": null
+    }
+  ],
+  [
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "CLAIMED_WITH_SCOPED_OPPOSITION"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-EXACT-V1",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [
+        {
+          "opposition": {
+            "position": "BATTERY_ONLY",
+            "scope": "POWER_SOURCE",
+            "source": "VENUE_NOISE_POLICY"
+          },
+          "owner_id": "O_V",
+          "scope": "RELATION"
+        }
+      ],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_Q": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT"
+        },
+        "authorized": {
+          "O_P": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_Q": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "REFUSED_BLOCKING",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-SAFETY-REFUSAL",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_CANDIDATE_UNRESOLVED_CONSTITUTION_NOT_A_RELATION_FACT",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": false,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": false,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "UNRESOLVED_CONSTITUTION"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": false,
+        "evidence_status": "DERIVED_CANDIDATE_WITH_UNRESOLVED_CONSTITUTION",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": false,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-COLUMN-ABSENT",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "ABSENT",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "G6_UNVERIFIED_NO_EFFECT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-COLUMN-WITHHELD",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "WITHHELD",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "G6_UNVERIFIED_NO_EFFECT",
+          "O_Q": "G6_UNVERIFIED_NO_EFFECT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "G6_UNVERIFIED_NO_EFFECT",
+          "O_V": "G6_UNVERIFIED_NO_EFFECT"
+        },
+        "authorized": {
+          "O_P": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_Q": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "G5_UNVERIFIED_OWNER_INTENT_ONLY",
+          "O_V": "G5_UNVERIFIED_OWNER_INTENT_ONLY"
+        },
+        "claimed": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "constituted": {
+          "O_P": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_Q": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_R": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_OWNER_ACT",
+          "O_V": "SUPPORTED_BY_VERIFIED_OWNER_ACT"
+        },
+        "understood": {
+          "O_P": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_Q": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_R": "UNKNOWN_NO_VERIFIED_EXACT_BOUND_OWNER_ACT",
+          "O_S": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK",
+          "O_V": "SUPPORTED_BY_VERIFIED_EXPLAIN_BACK"
+        }
+      },
+      "episode_id": "CE001-E2-WRONG-VERSION",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_ESTABLISHED_G2_SNAPSHOT_NOT_OWNER_OR_AUTHORITY_OR_EFFECT_OR_ACCEPTANCE",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "DISCLOSED",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [
+        {
+          "owner_id": "O_R",
+          "reason": "exact binding mismatch: relation_version_hash"
+        }
+      ],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": true,
+          "owner_exact_constitution": {
+            "O_P": true,
+            "O_Q": true,
+            "O_R": true,
+            "O_S": true,
+            "O_V": true
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "CLOSED_EXACT_FIVE_OWNER"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT",
+                "SUPPLY_C7"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "RESOURCE_PROVIDER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": true,
+        "evidence_status": "DERIVED_SNAPSHOT_OF_VERIFIED_EXACT_BOUND_OWNER_EVIDENCE",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": true,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v2",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "SUPPLY_C7",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "RESOURCE_PROVIDER",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "authorized": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "claimed": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "constituted": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        },
+        "understood": {
+          "O_P": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_Q": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_R": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_S": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION",
+          "O_V": "UNKNOWN_OWNER_POLICY_MISSING_OR_NO_DECISION"
+        }
+      },
+      "episode_id": "CE001-E2-ALL-UNKNOWN",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "real_owner": "NOT_RUN",
+        "real_owner_identity": "NOT_ESTABLISHED",
+        "relation_version": "DERIVED_CANDIDATE_UNRESOLVED_CONSTITUTION_NOT_A_RELATION_FACT",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "RELATION_FORMATION",
+      "platform": null,
+      "private_column_state": "UNKNOWN",
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": {
+        "constitution_closure": {
+          "may_be_treated_as_established_relation": false,
+          "owner_exact_constitution": {
+            "O_P": false,
+            "O_Q": false,
+            "O_R": false,
+            "O_S": false,
+            "O_V": false
+          },
+          "required_owners": [
+            "O_Q",
+            "O_V",
+            "O_R",
+            "O_S",
+            "O_P"
+          ],
+          "status": "UNRESOLVED_CONSTITUTION"
+        },
+        "delta": {
+          "changed_fields": {
+            "actions": {
+              "added": [
+                "APPROVE_C7_CONNECTION",
+                "AUTHORIZE_PAYMENT"
+              ],
+              "removed": []
+            },
+            "constraints": {
+              "added": [
+                "BATTERY_ONLY_AT_VENUE"
+              ],
+              "removed": []
+            },
+            "evidence": {
+              "added": [
+                "PURPOSE_TOKEN",
+                "SAFETY_APPROVAL",
+                "TARGET_BINDING"
+              ],
+              "removed": []
+            },
+            "exit": {
+              "added": [
+                "REVOKE_BEFORE_EFFECT"
+              ],
+              "removed": []
+            },
+            "roles": {
+              "added": [
+                "PAYER",
+                "SAFETY_APPROVER"
+              ],
+              "removed": []
+            }
+          },
+          "material": true
+        },
+        "downstream_relation_gate_open": false,
+        "evidence_status": "DERIVED_CANDIDATE_WITH_UNRESOLVED_CONSTITUTION",
+        "non_entailments": [
+          "NOT_AN_OWNER_ACT",
+          "NOT_AUTHORITY",
+          "NOT_EFFECT",
+          "NOT_ACCEPTANCE",
+          "NOT_SETTLEMENT",
+          "NOT_CONTRACT_SUCCESS"
+        ],
+        "object_id": "Venue-V/Circuit-C7",
+        "purpose": "CE001_TEMPORARY_POWER_RELATION_FORMATION",
+        "q": {
+          "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+          "id": "CE001-Q",
+          "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+          "version": "Q@v1"
+        },
+        "relation_established": false,
+        "relation_id": "REL-CE001-E2",
+        "revision": "v1",
+        "schema": {
+          "actions": [
+            "REQUEST_TEMPORARY_POWER",
+            "APPROVE_C7_CONNECTION",
+            "AUTHORIZE_PAYMENT"
+          ],
+          "constraints": [
+            "NO_OTHER_CIRCUIT",
+            "BATTERY_ONLY_AT_VENUE"
+          ],
+          "evaluation": [
+            "EXACT_C7",
+            "3KW_PLUS_MINUS_5_PERCENT",
+            "45_MINUTES"
+          ],
+          "evidence": [
+            "Q_VERSION",
+            "PURPOSE_TOKEN",
+            "SAFETY_APPROVAL",
+            "TARGET_BINDING"
+          ],
+          "exit": [
+            "REFUSE_BEFORE_ACTIVATION",
+            "REVOKE_BEFORE_EFFECT"
+          ],
+          "roles": [
+            "REQUESTER",
+            "VENUE",
+            "SAFETY_APPROVER",
+            "PAYER"
+          ]
+        },
+        "verified_source_count": 6
+      }
+    },
+    {
+      "axis_owner_states": {
+        "activated": null,
+        "authorized": null,
+        "claimed": null,
+        "constituted": null,
+        "understood": null
+      },
+      "episode_id": "CE001-T5-PLATFORM-DIRECT",
+      "evidence_boundaries": {
+        "acceptance": "NOT_RUN",
+        "authority": "NOT_ESTABLISHED",
+        "effect": "NOT_RUN",
+        "evidence_origin": "LOCAL_SYNTHETIC_EPHEMERAL_SELF_KEY",
+        "legal_sufficiency": "NOT_ESTABLISHED",
+        "platform_assertion_classification": "LOCAL_FIXTURE_SELF_ASSERTION_VERIFIED",
+        "real_owner": "NOT_RUN",
+        "real_platform_applicability": "NOT_ESTABLISHED",
+        "real_platform_identity": "NOT_ESTABLISHED",
+        "settlement": "NOT_RUN"
+      },
+      "object_id": "Venue-V/Circuit-C7",
+      "opposition": [],
+      "path": "T5_PLATFORM_DIRECT_BYPASS",
+      "platform": {
+        "proof_decision": "APPLICABLE",
+        "readback_decision": "READBACK_CONFIRMED"
+      },
+      "private_column_state": null,
+      "q": {
+        "hash": "6d7368328b9bedbc65758a1568fb58b513f75238a63f1b09d09da51cd5906430",
+        "id": "CE001-Q",
+        "statement": "T0+90min前为Venue V/Circuit C7提供至少45分钟3kW±5%临时供电；满足噪声、安全、exact-target限制且不得给其他线路送电",
+        "version": "Q@v1"
+      },
+      "rejected_reasons": [],
+      "relation_version": null
+    }
+  ]
+]

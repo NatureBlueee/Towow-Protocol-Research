@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "kind": "MANDATE_DELEGATION_CURRENT_HEAD_STORE",
+  "strata_defaults": {
+    "S1": {
+      "topology": "UNIFIED_AUTHORITY",
+      "current_head": "auth-s1-8",
+      "attempt_grants": [
+        {"actor": "executor-1", "operations": ["apply", "pay"], "objects": ["target-v1", "invoice-v1"]},
+        {"actor": "owner-agent", "operations": ["apply"], "objects": ["target-v1"]},
+        {"actor": "center-delegate", "operations": ["apply"], "objects": ["target-v1"]}
+      ],
+      "acceptance_authorities": ["owner-a", "owner-b", "center-delegate"],
+      "required_acceptors": ["owner-a"],
+      "delegations": []
+    },
+    "S2": {
+      "topology": "EQUAL_PERMISSION_MULTI_OWNER",
+      "current_head": "auth-s2-11",
+      "attempt_grants": [
+        {"actor": "executor-1", "operations": ["apply", "pay"], "objects": ["target-v1", "invoice-v1"]},
+        {"actor": "owner-agent", "operations": ["apply"], "objects": ["target-v1"]}
+      ],
+      "acceptance_authorities": ["owner-a", "owner-b"],
+      "required_acceptors": ["owner-a", "owner-b"],
+      "delegations": []
+    },
+    "S3": {
+      "topology": "LAWFULLY_DELEGATED",
+      "current_head": "auth-s3-15",
+      "attempt_grants": [
+        {"actor": "executor-1", "operations": ["apply", "pay"], "objects": ["target-v1", "invoice-v1"]},
+        {"actor": "owner-agent", "operations": ["apply"], "objects": ["target-v1"]},
+        {"actor": "center-delegate", "operations": ["apply"], "objects": ["target-v1"]}
+      ],
+      "acceptance_authorities": ["owner-a", "owner-b", "center-delegate"],
+      "required_acceptors": ["center-delegate"],
+      "delegations": [{"delegate": "center-delegate", "scope": "target-v1:criterion-v1", "status": "CURRENT", "delegators": ["owner-a", "owner-b"]}]
+    }
+  },
+  "worlds": {
+    "P1-A": {}, "P1-B": {}, "P2-A": {}, "P2-B": {},
+    "P3-A": {}, "P3-B": {}, "P4-A": {}, "P4-B": {},
+    "P5-A": {}, "P5-B": {}, "P6-A": {}, "P6-B": {},
+    "P7-A": {}, "P7-B": {}, "P8-A": {}, "P8-B": {},
+    "P9-A": {}, "P9-B": {}, "P10-A": {}, "P10-B": {},
+    "P11-A": {}, "P11-B": {},
+    "P12-A": {
+      "strata": {
+        "S2": {"required_acceptors": ["owner-a", "owner-b"]},
+        "S3": {"required_acceptors": ["owner-a", "owner-b"]}
+      }
+    },
+    "P12-B": {
+      "strata": {
+        "S1": {"required_acceptors": ["center-delegate"]}
+      }
+    }
+  }
+}

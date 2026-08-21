@@ -1,0 +1,69 @@
+{
+  "schema": "towow.controller-request.v1",
+  "request_id": "REQ-ONWARD-001",
+  "idempotency_key": "idem-onward-001",
+  "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+  "evaluation_step": 7,
+  "route_type": "DERIVED_ONWARD",
+  "authorizations": [
+    {
+      "declared_sha256": "015296ddb354172a6145eab91df0fdf90b2371f470c1fe6dda83146739060701",
+      "payload": {
+        "schema": "towow.holder-authorization.v1",
+        "receipt_id": "AUTH-ONWARD-BETA-001",
+        "issuer": "HOLDER-BETA",
+        "world_id": "T1-CONTROLLER-SYNTHETIC-W1",
+        "evaluation_step": 7,
+        "valid_from_step": 7,
+        "valid_through_step": 7,
+        "status": "AUTHORIZED",
+        "revoked": false,
+        "authorization_type": "PROJECTION_ROUTE",
+        "projection": {
+          "direction": "OFFER",
+          "facet": "inspection-window",
+          "compatibility_key": "inspection-port-17"
+        },
+        "policy": {
+          "recipient": "DISCLOSURE-ROUTER",
+          "purpose": "task-relative-filtering",
+          "retention": "transaction",
+          "max_depth": 1,
+          "onward_allowed": true,
+          "budget_units": 1,
+          "onward_policy": {
+            "source_recipient": "DISCLOSURE-ROUTER",
+            "recipient": "COORDINATOR-A",
+            "purpose": "joint-action-matching",
+            "retention": "session:1h",
+            "max_depth": 1,
+            "budget_units": 1
+          }
+        }
+      }
+    }
+  ],
+  "route": {
+    "projection": {
+      "direction": "OFFER",
+      "facet": "inspection-window",
+      "compatibility_key": "inspection-port-17"
+    },
+    "hops": [
+      {
+        "recipient": "DISCLOSURE-ROUTER",
+        "purpose": "task-relative-filtering",
+        "retention": "transaction",
+        "depth": 0,
+        "budget_units": 1
+      },
+      {
+        "recipient": "COORDINATOR-A",
+        "purpose": "joint-action-matching",
+        "retention": "session:1h",
+        "depth": 1,
+        "budget_units": 1
+      }
+    ]
+  }
+}

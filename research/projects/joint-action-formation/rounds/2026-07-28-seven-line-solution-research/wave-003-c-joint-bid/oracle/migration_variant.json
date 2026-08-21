@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T4-JOINT-BID-BLIND-V1",
+  "variant_id": "T4-MIGRATION-MUSEUM-V1",
+  "visibility": "EVALUATOR_ONLY",
+  "purpose": "检验方法是否迁移抽象能力，而不是硬编码当前城市、站点、固件、主体 ID 或答案。",
+  "public_variant": {
+    "target": "一家区域博物馆拟采购馆藏数字化联合服务：扫描 40000 件藏品、建立可追溯 rights clearance，并把被接受的对象写入馆方 repository。",
+    "deadline": "M+10",
+    "budget_ceiling_cny": 510000,
+    "independent_entities": [
+      {
+        "entity_id": "ARCHIVE-PRIME",
+        "public_role_candidate": "digitization_integrator"
+      },
+      {
+        "entity_id": "SCAN-FIELD",
+        "public_role_candidate": "capture_and_metadata"
+      },
+      {
+        "entity_id": "RIGHTS-AUDIT",
+        "public_role_candidate": "rights_and_quality_assurance"
+      }
+    ],
+    "known_unknowns": [
+      "current collection handling addendum",
+      "format interoperability under exact repository version",
+      "private throughput, price, rights-risk and staff capacity",
+      "separated signing, technical, reservation and museum acceptance authorities",
+      "submission, shortlist, award, repository adoption and accepted-object effect"
+    ]
+  },
+  "private_variant_truth": {
+    "current_request_version": "MUSEUM-RFP-09-V3",
+    "material_change": "fragile objects must be captured on museum premises and master images may not leave the preservation network",
+    "prices_cny": {
+      "ARCHIVE-PRIME": 165000,
+      "SCAN-FIELD": 248000,
+      "RIGHTS-AUDIT": 82000
+    },
+    "total_price_cny": 495000,
+    "capacity": {
+      "SCAN-FIELD": "43000 objects within the requested window",
+      "RIGHTS-AUDIT": "40000 rights and quality records",
+      "ARCHIVE-PRIME": "two local ingest engineers"
+    },
+    "exact_probe": {
+      "operation": "TIFF_MASTER_PLUS_JSONLD_INGEST",
+      "repository_version": "museum-repository@6.8",
+      "capture_exporter_version": "scan-exporter@3.4",
+      "environment": "museum-preservation-network",
+      "result": "PASS"
+    },
+    "authority_split": [
+      "museum procurement controls current request, ceiling, submission and award",
+      "museum registrar controls accepted-object repository readback",
+      "each principal has separate commercial signer and technical/capacity authority",
+      "RIGHTS-AUDIT independence authority may reject conflicts"
+    ],
+    "outcome_witnesses": {
+      "submission": "portal payload receipt",
+      "adoption": "museum shortlist notice",
+      "acceptance": "award notice for exact joint-bid version",
+      "effect": "registrar-signed repository readback with accepted object count and rights-record hashes"
+    },
+    "safe_exit_condition": "any unresolved ownership claim affecting more than 500 objects blocks full-scope closure and requires a scoped counterproposal or exit"
+  },
+  "migration_evaluation": {
+    "must_preserve": [
+      "current authoritative request reconstruction",
+      "minimal disclosure of private columns",
+      "prospective exact-operation qualification",
+      "separated Authority and owner-controlled reservations",
+      "submission, adoption, acceptance and effect separation",
+      "target-domain readback",
+      "material-change and withdrawal dependency reopen",
+      "honest safe exit"
+    ],
+    "must_not_require": [
+      "CITY, PRIME, FIELD or ASSURE IDs",
+      "12 sites, telemetry, firmware 4.2 or edge orchestrator 2.3.1",
+      "a Towow-specific object or protocol name",
+      "the same workflow topology when the domain demands a different one"
+    ],
+    "full_credit_policy": "A standards-only CMMN/BPMN/DMN, IAM/policy, commitment and workflow composition may receive full migration credit if it preserves all required distinctions and evidence gates."
+  }
+}

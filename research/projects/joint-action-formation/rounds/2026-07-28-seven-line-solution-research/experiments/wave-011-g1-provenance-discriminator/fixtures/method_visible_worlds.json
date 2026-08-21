@@ -1,0 +1,434 @@
+{
+  "schema_version": "wave011-method-visible-v1",
+  "intent_boundary": "IntentAtCoordinationInterface",
+  "explicit_non_goal": "vague-goal-to-Intent generation",
+  "world_defaults": {
+    "budget": 3,
+    "equal_action_envelope": [
+      "READ_PUBLIC",
+      "ASK_OWNER",
+      "RUN_SHARED_PREDICATE"
+    ],
+    "human_action_envelope": [
+      "READ_PUBLIC",
+      "ASK_OWNER",
+      "RUN_SHARED_PREDICATE"
+    ],
+    "public_evidence_ids": [],
+    "t0_paths": [],
+    "full_trace": [],
+    "visible_response": "UNKNOWN",
+    "arm_costs": {
+      "PUBLIC_BASELINE": {
+        "model_calls": 0,
+        "exposure_units": 0,
+        "human_minutes": 0,
+        "wait_units": 1
+      },
+      "C_EQUAL_ACCESS": {
+        "model_calls": 1,
+        "exposure_units": 1,
+        "human_minutes": 0,
+        "wait_units": 2
+      },
+      "H_EQUAL_ENVELOPE": {
+        "model_calls": 0,
+        "exposure_units": 1,
+        "human_minutes": 12,
+        "wait_units": 3
+      },
+      "C_RAW_UPPER": {
+        "model_calls": 1,
+        "exposure_units": 10,
+        "human_minutes": 0,
+        "wait_units": 1
+      },
+      "FINAL_PROPOSAL_ONLY": {
+        "model_calls": 0,
+        "exposure_units": 0,
+        "human_minutes": 0,
+        "wait_units": 0
+      },
+      "FULL_TRACE": {
+        "model_calls": 1,
+        "exposure_units": 2,
+        "human_minutes": 0,
+        "wait_units": 4
+      }
+    }
+  },
+  "worlds": [
+    {
+      "world_id": "CASE-001",
+      "public_transcript": "intent=restore service; catalog=current compatible patch",
+      "public_evidence_ids": [
+        "E01-OWNER-PUBLIC"
+      ],
+      "public_proposal": {
+        "world_id": "CASE-001",
+        "proposal_id": "P01",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E01-OWNER-PUBLIC"
+        ],
+        "declared_labels": [
+          "INDEX_HIT"
+        ]
+      },
+      "final_proposal": {
+        "world_id": "CASE-001",
+        "proposal_id": "P01",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E01-OWNER-PUBLIC"
+        ]
+      },
+      "t0_paths": [
+        {
+          "path_id": "PATH01-PUBLIC",
+          "action": "READ_PUBLIC",
+          "evidence_ids": [
+            "E01-OWNER-PUBLIC"
+          ],
+          "allowed": true,
+          "cost": 1
+        }
+      ],
+      "full_trace": [
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E01-OWNER-PUBLIC"
+        }
+      ],
+      "raw_upper": {
+        "legally_available": true,
+        "proposal": {
+          "world_id": "CASE-001",
+          "proposal_id": "P01",
+          "principals": [
+            "product-owner",
+            "dependency-owner"
+          ],
+          "evidence_ids": [
+            "E01-OWNER-PUBLIC"
+          ]
+        }
+      }
+    },
+    {
+      "world_id": "CASE-002",
+      "public_transcript": "intent=restore service; catalog=no match; owner query allowed",
+      "final_proposal": {
+        "world_id": "CASE-002",
+        "proposal_id": "P02",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E02-OWNER-PRIVATE"
+        ],
+        "declared_labels": [
+          "ACTIVE_REVELATION"
+        ]
+      },
+      "t0_paths": [
+        {
+          "path_id": "PATH02-OWNER-QUERY",
+          "action": "ASK_OWNER",
+          "evidence_ids": [
+            "E02-OWNER-PRIVATE"
+          ],
+          "allowed": true,
+          "cost": 2
+        }
+      ],
+      "full_trace": [
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E02-OWNER-PRIVATE"
+        }
+      ],
+      "raw_upper": {
+        "legally_available": true,
+        "proposal": {
+          "world_id": "CASE-002",
+          "proposal_id": "P02",
+          "principals": [
+            "product-owner",
+            "dependency-owner"
+          ],
+          "evidence_ids": [
+            "E02-OWNER-PRIVATE"
+          ]
+        }
+      }
+    },
+    {
+      "world_id": "CASE-003",
+      "public_transcript": "intent=restore service; no qualifying evidence exists at t0",
+      "final_proposal": {
+        "world_id": "CASE-003",
+        "proposal_id": "P03",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E03-T1-RECEIPT"
+        ],
+        "operator_ids": [
+          "OP03-CAPABILITY"
+        ]
+      },
+      "full_trace": [
+        {
+          "event_type": "OPERATOR_CAPABILITY",
+          "operator_id": "OP03-CAPABILITY"
+        },
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E03-T1-RECEIPT",
+          "requires_operator": "OP03-CAPABILITY"
+        },
+        {
+          "event_type": "OPERATOR_REVERSED",
+          "operator_id": "OP03-REVERSE",
+          "evidence_ids": [
+            "E03-REVOKED"
+          ]
+        }
+      ],
+      "raw_upper": {
+        "legally_available": false,
+        "proposal": {
+          "world_id": "CASE-003",
+          "proposal_id": "P03",
+          "principals": [
+            "product-owner",
+            "dependency-owner"
+          ],
+          "evidence_ids": [
+            "E03-T1-RECEIPT"
+          ]
+        }
+      }
+    },
+    {
+      "world_id": "CASE-004",
+      "public_transcript": "intent=restore service; coordinator publishes compatibility attestation",
+      "public_evidence_ids": [
+        "E04-COORDINATOR"
+      ],
+      "public_proposal": {
+        "world_id": "CASE-004",
+        "proposal_id": "P04",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E04-COORDINATOR"
+        ]
+      },
+      "final_proposal": {
+        "world_id": "CASE-004",
+        "proposal_id": "P04",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E04-COORDINATOR"
+        ]
+      },
+      "t0_paths": [
+        {
+          "path_id": "PATH04-UNTRUSTED",
+          "action": "READ_PUBLIC",
+          "evidence_ids": [
+            "E04-COORDINATOR"
+          ],
+          "allowed": true,
+          "cost": 1
+        }
+      ],
+      "full_trace": [
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E04-COORDINATOR"
+        }
+      ]
+    },
+    {
+      "world_id": "CASE-005",
+      "public_transcript": "intent=restore service; fact exists; disclosure to coordinator prohibited",
+      "final_proposal": {
+        "world_id": "CASE-005",
+        "proposal_id": "P05",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E05-FORBIDDEN"
+        ]
+      },
+      "t0_paths": [
+        {
+          "path_id": "PATH05-FORBIDDEN",
+          "action": "ASK_OWNER",
+          "evidence_ids": [
+            "E05-FORBIDDEN"
+          ],
+          "allowed": false,
+          "cost": 1
+        }
+      ],
+      "full_trace": [
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E05-FORBIDDEN"
+        }
+      ]
+    },
+    {
+      "world_id": "CASE-006",
+      "public_transcript": "intent=restore service; no public record; projection and probe prohibited",
+      "visible_response": "UNKNOWN",
+      "final_proposal": {
+        "world_id": "CASE-006",
+        "proposal_id": "P06",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": []
+      }
+    },
+    {
+      "world_id": "CASE-007",
+      "public_transcript": "intent=restore service; no public record; projection and probe prohibited",
+      "visible_response": "UNKNOWN",
+      "final_proposal": {
+        "world_id": "CASE-007",
+        "proposal_id": "P07",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": []
+      }
+    },
+    {
+      "world_id": "CASE-008",
+      "public_transcript": "intent=restore service; owner returns signed purpose-bound refusal",
+      "visible_response": "UNWILLING_TO_DISCLOSE",
+      "final_proposal": {
+        "world_id": "CASE-008",
+        "proposal_id": "P08",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": []
+      }
+    },
+    {
+      "world_id": "CASE-009",
+      "public_transcript": "intent=restore service; initial terms incompatible; owner may issue new terms",
+      "final_proposal": {
+        "world_id": "CASE-009",
+        "proposal_id": "P09",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E09-T1-TERMS"
+        ],
+        "operator_ids": [
+          "OP09-TERMS"
+        ]
+      },
+      "full_trace": [
+        {
+          "event_type": "OPERATOR_TERMS",
+          "operator_id": "OP09-TERMS"
+        },
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E09-T1-TERMS",
+          "requires_operator": "OP09-TERMS"
+        },
+        {
+          "event_type": "OPERATOR_REVERSED",
+          "operator_id": "OP09-REVERSE",
+          "evidence_ids": [
+            "E09-REVOKED"
+          ]
+        }
+      ]
+    },
+    {
+      "world_id": "CASE-010",
+      "public_transcript": "intent=restore service; two named attestations claim independent quorum",
+      "public_evidence_ids": [
+        "E10-ALIAS-A",
+        "E10-ALIAS-B"
+      ],
+      "public_proposal": {
+        "world_id": "CASE-010",
+        "proposal_id": "P10",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E10-ALIAS-A",
+          "E10-ALIAS-B"
+        ]
+      },
+      "final_proposal": {
+        "world_id": "CASE-010",
+        "proposal_id": "P10",
+        "principals": [
+          "product-owner",
+          "dependency-owner"
+        ],
+        "evidence_ids": [
+          "E10-ALIAS-A",
+          "E10-ALIAS-B"
+        ]
+      },
+      "t0_paths": [
+        {
+          "path_id": "PATH10-ALIASES",
+          "action": "READ_PUBLIC",
+          "evidence_ids": [
+            "E10-ALIAS-A",
+            "E10-ALIAS-B"
+          ],
+          "allowed": true,
+          "cost": 1
+        }
+      ],
+      "full_trace": [
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E10-ALIAS-A"
+        },
+        {
+          "event_type": "EVIDENCE_ISSUED",
+          "evidence_id": "E10-ALIAS-B"
+        }
+      ]
+    }
+  ]
+}

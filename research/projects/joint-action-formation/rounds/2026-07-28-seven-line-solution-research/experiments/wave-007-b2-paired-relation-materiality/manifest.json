@@ -1,0 +1,100 @@
+{
+  "schema": "towow.wave007b2-artifact-manifest.v1",
+  "experiment_id": "WAVE-007-B2-PAIRED-RELATION-MATERIALITY",
+  "status": "SAME_RESEARCHER_REPAIR_LOCAL_SELF_TEST_COMPLETE_PENDING_ROOT_REAUDIT",
+  "created_on": "2026-07-29",
+  "scope": "G2 paired relation materiality process-isolation and implementation-identity repair",
+  "supersession": {
+    "previous_artifact": "../wave-007-b-paired-relation-materiality",
+    "previous_manifest_sha256": "cc96753da2490640b0802e2288054e609498c8b84393c72ff69b37264de87738",
+    "previous_status": "INVALIDATED_BY_INDEPENDENT_ROOT_ATTACK",
+    "original_preserved": true,
+    "repair_is_independent_evidence": false
+  },
+  "invalidation_evidence": {
+    "path": "../../audits/wave-007/root_attack_b.py",
+    "sha256": "acd60ef55d297e098ed247de8f944359a943e33912a6f67d3efd488f398add9e",
+    "observed_failures": [
+      "gateway closure exposed parent service and private truth",
+      "closure-exposed mutable log could be cleared from one operation to zero",
+      "deterministic signing helper reconstructed the contract public key",
+      "candidate label replaced runner implementation identity"
+    ]
+  },
+  "provenance": {
+    "shared_task": {
+      "path": "../../WAVE-006-SHARED-TASK.md",
+      "sha256": "0cde980b1cd9754d61e1cc2f9478a85c9f587ec5fb5b4e7c07ccb068fbc100a3"
+    },
+    "repair_harness": {
+      "path": "../../WAVE-007-REPAIR-HARNESS.md",
+      "actual_read_sha256": "7b6fe448b16cbeb48b749b76b454c8b3fd10e1669605927b49c28e575cdee653"
+    },
+    "independent_audit_protocol": {
+      "path": "../../WAVE-007-INDEPENDENT-AUDIT-PROTOCOL.md",
+      "sha256": "5eec08681a819d6c1ade908c127baa986da8db689b2f6df8765cf0d83ad7e98f"
+    }
+  },
+  "runtime_boundary": {
+    "transport": "SPAWNED_PROCESS_NDJSON_RPC",
+    "candidate_and_parent_distinct_pid": true,
+    "broker_object_transferred": false,
+    "mutable_audit_handle_transferred": false,
+    "signer_generation": "Ed25519PrivateKey.generate per broker run",
+    "deterministic_private_key_helper": false,
+    "implementation_identity_source": "raw RPC operations matched to runner representation registry",
+    "candidate_label_trusted": false,
+    "runner_identity_field_trusted_without_reconstruction": false,
+    "filesystem_sandbox": false,
+    "protected_claim": "parent broker memory is not transferred through the candidate RPC interface",
+    "not_protected": [
+      "same-permission workspace files",
+      "hostile-code containment",
+      "same-user operating-system process capabilities",
+      "administrator or host compromise"
+    ]
+  },
+  "forbidden_rpc_attacks": {
+    "get_private_world_state": "METHOD_NOT_ALLOWED",
+    "clear_audit_log": "METHOD_NOT_ALLOWED",
+    "sign_for_authority": "METHOD_NOT_ALLOWED"
+  },
+  "validation": {
+    "command": "PYTHONPYCACHEPREFIX=/tmp/wave007b2-pycache python3 -W error::ResourceWarning -m unittest discover -s tests -v",
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "resource_warnings": 0,
+    "independent_reaudit": "PENDING"
+  },
+  "scoped_claims": {
+    "task_bound_evidence_sufficient_for_one_shot_non_constitution": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC",
+    "explicit_bounded_relation_evidence_enables_legitimate_reuse": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC",
+    "explain_back_alone_is_reuse_authority": "REFUTED_LOCAL_SYNTHETIC",
+    "no_evidence_zero_cost_is_adequate_across_paired_worlds": "REFUTED_LOCAL_SYNTHETIC",
+    "withdrawal_clears_active_relation": "SUPPORTED_SCOPED_LOCAL_SYNTHETIC",
+    "b2_closes_b1_attacks": "LOCAL_SELF_TEST_ONLY_PENDING_INDEPENDENT_REAUDIT"
+  },
+  "artifacts": {
+    "README.md": "74581b343717ca996138ea67bdb5023e0fc8a686b9a6fc98ee1373e91f62ff2f",
+    "public_api.py": "11e6ff9ffd901959f7e21bb53ac3fe05e1dc39002d1475495b83001a6933eb1f",
+    "candidate.py": "216474180fb637645efc0cbbc9e9a24fa22e2505abc45fe9f19e4fa64877ff5f",
+    "candidate_worker.py": "0d4e5858e1fd1142d08a4f667df2897c0de50b89bdfbb7a4fa111c08583e8ddc",
+    "authority.py": "31b842f94bff8ad001d31b19dd0ac408a06a1daf9ee9e91f22538c4db3b41a70",
+    "simulator.py": "67d3410469d986f6a42b20e68aedcba62718bc169e0e42e0cfb9ac39622c98c0",
+    "evaluator.py": "9f70f0a0ffd4e40d051afd27e88bb7fd77af950c4b446daf511b03e51703d66b",
+    "fixtures/cost-model.json": "c116be2fc7bbe05b78b315b6bd12a480c1b80b63b37be5a114d5b509d3a49d53",
+    "fixtures/paired-worlds.json": "a23110c92872134d9ff9763a3638a19761f28af214a2f6c6a1b332929a3b7844",
+    "fixtures/representations.json": "583704dbf5631f71a3dc834463b0c1aaed4f792221328e324e1599cdee3e67b4",
+    "tests/test_b2_process_isolation.py": "62df5e5635e48316a05cbab1b6bfd48ad0fb2c4b5cc8e60409cd46a4706f0a66",
+    "results.json": "fedcb445064001c5219c1f9ea63c8358b637e5f7c8e8f4a55c4403fca3a75cf3"
+  },
+  "overall_grade": null,
+  "evidence_boundary": [
+    "same-researcher local synthetic process-isolation repair",
+    "not independent evidence",
+    "no filesystem sandbox",
+    "no production or real-subject validation",
+    "pending root independent re-audit"
+  ]
+}

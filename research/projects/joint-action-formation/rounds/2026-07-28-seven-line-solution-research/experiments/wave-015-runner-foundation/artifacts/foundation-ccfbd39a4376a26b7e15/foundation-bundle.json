@@ -1,0 +1,669 @@
+{
+  "bundle_sha256": "5d373bba2af9e5ea8e7a54456059fe2621a070666a4cad241177723e0f8dba32",
+  "claim_boundary": "RUNNER_FOUNDATION_ONLY; E3_E4_E6_TASKS_NOT_RUN; DIGITAL_TARGET_DIRECT_COMMIT_ATTRIBUTION_ONLY",
+  "controller_identity": {
+    "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+    "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd"
+  },
+  "hidden_scenarios": {
+    "e3": {
+      "alpha_equivalent": true,
+      "forks": [
+        {
+          "arm_view": {
+            "arm_binding_token": "arm-bind-2ae250a0caaafad14f8dd6422add9df5a4c8bb7ea1a5e68c8cae5fc5574e6d4b",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "6870aa9713c1d272735d8cd79cdcf2a9",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-8950ef36ef2678cf0524c85bb9aa5954",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-bdc401e2326855c0757910a67460feb9",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-105bc19b42f9d518e93e54c1a83f0362",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "private_packet": {
+            "private_payload": {
+              "first_permitted_divergence": "EXACT_TARGET_READBACK",
+              "scenario_label": "E3A-ACK-LOST-EFFECT",
+              "submit_ack": "LOST",
+              "target_commit_before_readback": true
+            },
+            "receipt": {
+              "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+              "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+              "episode_binding": "foundation-ccfbd39a4376a26b7e15-e3",
+              "kind": "E3_PAIRED_FORK",
+              "private_payload_sha256": "513e7b244bcf92c1b04f187855f6b97f588d54dc811eb0504bbc163bd744c79f",
+              "public_view_sha256": "b00401b253e564829ff43c42f209d9eb24e03b37e34d486e403b7684783f8ab0",
+              "receipt_id": "e2619c7e5a8f46f79c4fb7b097f5ee82",
+              "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+              "signature_hex": "b97f806ce0d02e5d0a9be17a59b140516660aabfe2a2410571c030e8a48be340fbb5138fc50ac2f91cde3add2b641d5abff04c33ad37ea39cca05192f9a99900"
+            }
+          },
+          "public_prefix": [
+            {
+              "kind": "SUBMIT_RETURN",
+              "operation_handle": "2851b10ff7564f68af43a523be58a690",
+              "status": "OUTCOME_UNCONFIRMED"
+            }
+          ]
+        },
+        {
+          "arm_view": {
+            "arm_binding_token": "arm-bind-2ae250a0caaafad14f8dd6422add9df5a4c8bb7ea1a5e68c8cae5fc5574e6d4b",
+            "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+            "broker_surface": {
+              "capabilities": [
+                "DISCOVER",
+                "REQUEST",
+                "STATUS"
+              ],
+              "endpoint_handle": "6870aa9713c1d272735d8cd79cdcf2a9",
+              "surface_version": 1
+            },
+            "deadline_minute": 90,
+            "episode_instance_id": "episode-8950ef36ef2678cf0524c85bb9aa5954",
+            "object_id": "VenueV:CircuitC7",
+            "operation_id": "operation-bdc401e2326855c0757910a67460feb9",
+            "power_tolerance_percent": 5,
+            "public_run_id": "run-105bc19b42f9d518e93e54c1a83f0362",
+            "q_version": "Q@v1",
+            "required_duration_minutes": 45,
+            "required_power_kw": 3.0,
+            "schema": "CE001_ARM_VIEW_V1",
+            "target_id": "VenueV:CircuitC7"
+          },
+          "private_packet": {
+            "private_payload": {
+              "first_permitted_divergence": "EXACT_TARGET_READBACK",
+              "scenario_label": "E3B-ACK-LOST-NO-EFFECT",
+              "submit_ack": "LOST",
+              "target_commit_before_readback": false
+            },
+            "receipt": {
+              "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+              "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+              "episode_binding": "foundation-ccfbd39a4376a26b7e15-e3",
+              "kind": "E3_PAIRED_FORK",
+              "private_payload_sha256": "14920a9c238d284c3076d718fb64e6d5984aa48a0140f2dd2843d8ff539a577a",
+              "public_view_sha256": "b00401b253e564829ff43c42f209d9eb24e03b37e34d486e403b7684783f8ab0",
+              "receipt_id": "efc7635717fd4f1ba8c84e134314cb4b",
+              "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+              "signature_hex": "268ce7c0dc4ebb73a6636eb808cf2ab634d3bae0bba9ff0d179c83083debe43882d1d0e56446d9b87cb84000094c57dd82c5c2d6edbba79b2fa0a341c793be0e"
+            }
+          },
+          "public_prefix": [
+            {
+              "kind": "SUBMIT_RETURN",
+              "operation_handle": "2851b10ff7564f68af43a523be58a690",
+              "status": "OUTCOME_UNCONFIRMED"
+            }
+          ]
+        }
+      ],
+      "pair_private_packet": {
+        "private_payload": {
+          "first_permitted_divergence": "EXACT_TARGET_READBACK",
+          "fork_private_payload_sha256": [
+            "513e7b244bcf92c1b04f187855f6b97f588d54dc811eb0504bbc163bd744c79f",
+            "14920a9c238d284c3076d718fb64e6d5984aa48a0140f2dd2843d8ff539a577a"
+          ],
+          "shared_public_prefix_sha256": "a697726696e37014ca96f08f1026c589b42a31fb8b6fbd5ffbe378561faaceea"
+        },
+        "receipt": {
+          "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+          "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+          "episode_binding": "foundation-ccfbd39a4376a26b7e15-e3",
+          "kind": "E3_PAIR_BINDING",
+          "private_payload_sha256": "89014064831fd32e78930ce6301ee96fa520f933666f4a0d5a4073d99673d780",
+          "public_view_sha256": "b00401b253e564829ff43c42f209d9eb24e03b37e34d486e403b7684783f8ab0",
+          "receipt_id": "a997f68ff3b0428ba337ef739e5e340d",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "660f2b4b9874a930493172f89aaddd0d317a22d65a0e5c7b73273a354d60b8c57aa95284933cf33334396510f773bc667f03259340546deb08f20b155fde5306"
+        }
+      },
+      "raw_prefix_equal": true,
+      "shared_pre_readback_public_view": {
+        "public_prefix": [
+          {
+            "kind": "SUBMIT_RETURN",
+            "operation_handle": "2851b10ff7564f68af43a523be58a690",
+            "status": "OUTCOME_UNCONFIRMED"
+          }
+        ],
+        "startup_arm_view": {
+          "arm_binding_token": "arm-bind-2ae250a0caaafad14f8dd6422add9df5a4c8bb7ea1a5e68c8cae5fc5574e6d4b",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "6870aa9713c1d272735d8cd79cdcf2a9",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-8950ef36ef2678cf0524c85bb9aa5954",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-bdc401e2326855c0757910a67460feb9",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-105bc19b42f9d518e93e54c1a83f0362",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        }
+      }
+    },
+    "e4": {
+      "alternative_discovery": {
+        "owner_handle": "106cd4c1745a491d93f6b95b1a8dff84",
+        "resource_handle": "ddd9a7e9da314520b92db392641a90bf",
+        "status": "FOUND"
+      },
+      "frozen": {
+        "arm_view": {
+          "arm_binding_token": "arm-bind-59231d7fefd2a071c908b7af36aefc7f344346bbf52f9e617d0c522c6855966d",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "2528eb3eaba143599595b67262e05c48",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-d5d5b4b87b9366f8189119ca3eaea347",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-e558064ddaed1326ed144ca1429d0f48",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-17a8ec03031d2762f9ccebdb16cdbe40",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "private_packet": {
+          "private_payload": {
+            "alternative_reveal_condition": "AFTER_PRIMARY_REVOKE_AND_DISCOVER",
+            "broker_instance_id": "3c1bc432a20b4135bf0215270f4cd9d6",
+            "owner_topology": [
+              {
+                "authority_locus": "P",
+                "current_head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "discoverability_condition": "INITIAL",
+                "epoch": 1,
+                "owner_instance_id": "O_R:primary",
+                "owner_role": "RESOURCE_PRIMARY",
+                "principal_id": "principal-primary",
+                "resource_kind": "MOBILE_3KW_GENERATOR"
+              },
+              {
+                "authority_locus": "P",
+                "current_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "discoverability_condition": "AFTER_PRIMARY_REVOKE",
+                "epoch": 1,
+                "owner_instance_id": "O_R:alternative",
+                "owner_role": "RESOURCE_ALTERNATIVE",
+                "principal_id": "principal-alternative",
+                "resource_kind": "MOBILE_3KW_GENERATOR"
+              }
+            ],
+            "scenario_label": "E4-REVOKE-WITH-ALTERNATIVE",
+            "topology_sha256": "a75ec3b1d4e82db0dece9221acaffa591e1aa10fd44c99f341daab7404cdc00f"
+          },
+          "receipt": {
+            "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+            "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+            "episode_binding": "foundation-ccfbd39a4376a26b7e15-e4",
+            "kind": "E4_HIDDEN_TOPOLOGY",
+            "private_payload_sha256": "b5defbac9d4a88e364aff0db0f7be36e851a5ebf7bac28e3ed9c4652e336c30e",
+            "public_view_sha256": "a36038da154f95997845d063d9c543bedd36a65cbcea7dd31dfaff829f807d96",
+            "receipt_id": "8668b3c40d7f4ea5ace46d1c1ab5c6ed",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "c2efb8c63abbc4d9a5f0444e35b9d176b3e9df0dc051298585e1e393128e655e4b0f178b9862f596a4cf9dca11c3a9447c269dd37e47fa67158f013dc5f9bf09"
+          }
+        }
+      },
+      "primary_discovery": {
+        "owner_handle": "704439c207a54de19e0aaed0398222a9",
+        "resource_handle": "e21f49262c1e43cc8e34440fa363c5d3",
+        "status": "FOUND"
+      },
+      "revoke_private_packet": {
+        "private_payload": {
+          "broker_epoch": 1,
+          "broker_instance_id": "3c1bc432a20b4135bf0215270f4cd9d6",
+          "kind": "PRIMARY_REVOKED",
+          "logical_minute": 12,
+          "native_event_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "source_topology_receipt_id": "8668b3c40d7f4ea5ace46d1c1ab5c6ed"
+        },
+        "receipt": {
+          "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+          "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+          "episode_binding": "foundation-ccfbd39a4376a26b7e15-e4",
+          "kind": "E4_PRIMARY_REVOKE",
+          "private_payload_sha256": "1394a02ae7f2b87f41ac3c37858edf3020dc872c6cd8394f2fde1fe033eb33f5",
+          "public_view_sha256": "a36038da154f95997845d063d9c543bedd36a65cbcea7dd31dfaff829f807d96",
+          "receipt_id": "f1d46fe7410b4a8194e99d4f442d5d34",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "b9f62c37bfedee35b43e14c7ece98cc2cda60af5d9859d41f206aaaf983ebfb1fbe21c1925cea03f408234434709fe0faa4694fc3004f0578179d3c0ed96fa04"
+        }
+      },
+      "route_private_packets": [
+        {
+          "private_payload": {
+            "broker_epoch": 0,
+            "broker_instance_id": "3c1bc432a20b4135bf0215270f4cd9d6",
+            "kind": "BROKER_DISCOVERY_ROUTE",
+            "public_result_sha256": "71fb726aec549b06cb03b61e97fec2c5bf64407d3bd57f72865b882d5dca4e3d",
+            "resource_kind": "MOBILE_3KW_GENERATOR",
+            "selected_owner_instance_id": "O_R:primary"
+          },
+          "receipt": {
+            "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+            "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+            "episode_binding": "foundation-ccfbd39a4376a26b7e15-e4",
+            "kind": "E4_BROKER_ROUTE",
+            "private_payload_sha256": "13cbd7e8e82cb0265d99ab411d0a526fc6207b91af283dd75435ec7de18739a6",
+            "public_view_sha256": "a36038da154f95997845d063d9c543bedd36a65cbcea7dd31dfaff829f807d96",
+            "receipt_id": "96d1f69b2d794760a7250a35692426ce",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "f95471d729b14eed4bef9946b3751235560bbab2fc86c7e71e9842263aa7c279f71c2885af0611385272a2f25a485d95dd41c938de66b5a9f0de94e0c924db00"
+          }
+        },
+        {
+          "private_payload": {
+            "broker_epoch": 1,
+            "broker_instance_id": "3c1bc432a20b4135bf0215270f4cd9d6",
+            "kind": "BROKER_DISCOVERY_ROUTE",
+            "public_result_sha256": "50bd57c116718876706f89ab87be67d0e372da7fd12c271fd77f93bcb3c25757",
+            "resource_kind": "MOBILE_3KW_GENERATOR",
+            "selected_owner_instance_id": "O_R:alternative"
+          },
+          "receipt": {
+            "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+            "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+            "episode_binding": "foundation-ccfbd39a4376a26b7e15-e4",
+            "kind": "E4_BROKER_ROUTE",
+            "private_payload_sha256": "123651ebf058282c1d4bd6b94eb0f07d0cc8fe688a268cc4b0a7058c0b8c50be",
+            "public_view_sha256": "a36038da154f95997845d063d9c543bedd36a65cbcea7dd31dfaff829f807d96",
+            "receipt_id": "05cd1dd54b5942d291b52d5bf337984e",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "5bfef03386360a1070fb62c2937ed1d072882a9bf3e208761cc28f93d2be266e35ee425bbfe53e9696bfec314601f109cfcb260676696fa13f8129242ba20c0a"
+          }
+        }
+      ]
+    },
+    "e6": {
+      "fired_private_packet": {
+        "private_payload": {
+          "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+          "observed_logical_minute": 46,
+          "observed_native_event_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "old_runtime_restart_minute": 49,
+          "source_schedule_receipt_id": "0128856fca3d415c9acc192c30e906be",
+          "target_epoch": 2
+        },
+        "receipt": {
+          "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+          "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+          "episode_binding": "foundation-ccfbd39a4376a26b7e15-e6",
+          "kind": "E6_TRIGGER_FIRED",
+          "private_payload_sha256": "6c87a65acbe138de6d3fe057adde008e9a8e7c6cfefbfa0e9d992953e697e778",
+          "public_view_sha256": "d530f2fd1052a616e5a303d3126ab098f3299f0b88f982a20d3eac316ba7bea1",
+          "receipt_id": "e9063731934c43c19a76fb23313b40e1",
+          "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+          "signature_hex": "fb8aede665ed7f3567e44829cbe8142c61e1e3ade099f1821aef652bade75eb4a8ea9765ac904be80d5b58868e3af106787abe3d6cf25bd443041a7da2186f02"
+        }
+      },
+      "frozen": {
+        "arm_view": {
+          "arm_binding_token": "arm-bind-16af2d587a566295da1e40df22b9a390d5026541787e446d9bb560aa112a845e",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "f5d8412e03e433d76fde2cf9c7bb9198",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-64e91e9979f83045b817f14a9684bbbd",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-65a7206752c9f6eb60dfe630ca743a87",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-9eab4f22a9c81d064a1189c354a497d5",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "private_packet": {
+          "private_payload": {
+            "scenario_label": "E6-MIGRATION-REPLAY",
+            "schedule": {
+              "crash_cut": "AFTER_TARGET_READBACK_BEFORE_ACCEPTANCE",
+              "old_runtime_restart_minute": 49,
+              "target_epoch": 2,
+              "trigger_event_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+              "trigger_logical_minute": 46
+            },
+            "trigger_rule": "NATIVE_EVENT_HASH_AND_LOGICAL_MINUTE"
+          },
+          "receipt": {
+            "controller_instance_id": "6785c8d1d27c4527ac99131ae515760a",
+            "controller_public_key_hex": "c619404f5f2f3c65dd2ffd2f581270824c4a3f081108fb2ddcab1a2c92edbccd",
+            "episode_binding": "foundation-ccfbd39a4376a26b7e15-e6",
+            "kind": "E6_CRASH_SCHEDULE",
+            "private_payload_sha256": "11dfe91d15a2fe4c60d8ef366d720cabab3785f1bd0b66cf74584b9c6aba1aa3",
+            "public_view_sha256": "d530f2fd1052a616e5a303d3126ab098f3299f0b88f982a20d3eac316ba7bea1",
+            "receipt_id": "0128856fca3d415c9acc192c30e906be",
+            "schema": "HIDDEN_WORLD_PRIVATE_RECEIPT_V1",
+            "signature_hex": "8b2f0707c1d988044e190ee18ca35428a6b7a402f15cf166b7d69e14b0181d05baa7d081e9381cdc476a4852214cb01ac5d4090b4f896c613b0a61b5d03d5e0d"
+          }
+        }
+      }
+    }
+  },
+  "run_id": "foundation-ccfbd39a4376a26b7e15",
+  "schema": "WAVE015_RUNNER_FOUNDATION_BUNDLE_V1",
+  "target_ledger": {
+    "a4_after_h_readback": {
+      "actor_id": "A4",
+      "attached_to_receipt_commit": true,
+      "capability_id": "cap-a4",
+      "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+      "observed_commit_actor_id": "H",
+      "observed_commit_id": "commit-6817a6abbb7b4626ba72947d3f274d58",
+      "observed_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "observed_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "observed_version": 1,
+      "readback_auth_hex": "e53f65bea1123b6ccd68ddd0c96146194a8ae560b50ba2d4867621671c1daa56",
+      "readback_id": "readback-6b32b8a65be4498cb066b0695a3d2e80",
+      "readback_sha256": "99c8a3b261660d8c5eb6ddd89c3cfdf2cf51a3e2f056bd2bc4a96b2792fbd4a5",
+      "receipt_commit_id": "commit-6817a6abbb7b4626ba72947d3f274d58",
+      "receipt_decision": "ALREADY_SATISFIED",
+      "receipt_id": "receipt-2c03986806ed434895cf8c2e71a60539",
+      "receipt_mutation_applied": false,
+      "receipt_post_version": 1,
+      "receipt_sha256": "d9f2e48b4cd8e49e173811402960a43268d1c6a22f73c212fdfb46ffb1a44fdd",
+      "request_id": "request-a4",
+      "request_sha256": "f2c96e51450095b8f2b7ee13f24caf8bcf462db9649d13a7dcdc9914918be92e",
+      "schema": "TARGET_READBACK_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "a4_after_h_receipt": {
+      "actor_id": "A4",
+      "capability_id": "cap-a4",
+      "commit_actor_id": "H",
+      "commit_id": "commit-6817a6abbb7b4626ba72947d3f274d58",
+      "decision": "ALREADY_SATISFIED",
+      "expected_version": 0,
+      "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+      "mutation_applied": false,
+      "operation": "SET_STATE",
+      "post_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "post_version": 1,
+      "pre_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "pre_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "pre_version": 1,
+      "reason": "TARGET_ALREADY_IN_DESIRED_STATE",
+      "receipt_auth_hex": "f5e14873e8fd8af1057537cf81cf9b2d7034935d2290547103f0fd40d66b1ad2",
+      "receipt_id": "receipt-2c03986806ed434895cf8c2e71a60539",
+      "receipt_sha256": "d9f2e48b4cd8e49e173811402960a43268d1c6a22f73c212fdfb46ffb1a44fdd",
+      "request_id": "request-a4",
+      "request_sha256": "f2c96e51450095b8f2b7ee13f24caf8bcf462db9649d13a7dcdc9914918be92e",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "concurrent_receipts": [
+      {
+        "actor_id": "actor-a",
+        "capability_id": "cap-concurrent-a",
+        "commit_actor_id": "actor-b",
+        "commit_id": "commit-1214c5a26ac4467c944b2614c8ae38f6",
+        "decision": "CONFLICT",
+        "expected_version": 0,
+        "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+        "mutation_applied": false,
+        "operation": "SET_STATE",
+        "post_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "post_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "post_version": 1,
+        "pre_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "pre_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "pre_version": 1,
+        "reason": "EXPECTED_VERSION_MISMATCH",
+        "receipt_auth_hex": "fd31032efb1f637ed7f6094700a9e554ade71d0b8f0d618d145f17b0e2026ab7",
+        "receipt_id": "receipt-36b16c987a0c43ba85931193632cddeb",
+        "receipt_sha256": "58c5a673004eb237e4436fa44d943ba2a8332c2ac851c97883b3752286163321",
+        "request_id": "request-concurrent-a",
+        "request_sha256": "e5b736d0d4cf2d5c668f2e939c712a78d24beba834296c573d5d90a91c245ace",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7:concurrency-probe"
+      },
+      {
+        "actor_id": "actor-b",
+        "capability_id": "cap-concurrent-b",
+        "commit_actor_id": "actor-b",
+        "commit_id": "commit-1214c5a26ac4467c944b2614c8ae38f6",
+        "decision": "COMMITTED",
+        "expected_version": 0,
+        "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+        "mutation_applied": true,
+        "operation": "SET_STATE",
+        "post_state": {
+          "energized": true,
+          "power_kw": 2.9
+        },
+        "post_state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+        "post_version": 1,
+        "pre_state": {
+          "energized": false,
+          "power_kw": 0.0
+        },
+        "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+        "pre_version": 0,
+        "reason": "TARGET_MUTATION_COMMITTED",
+        "receipt_auth_hex": "580734f666ce3c628e9e9f5534adda5f083aefa5d2a786e445c36f82d6318378",
+        "receipt_id": "receipt-562b3c842eea467e8f94251674d120fb",
+        "receipt_sha256": "e5b2ec117cfdca97b2148b9fe5a9413d94ba2250f6143ae7a1857f17ffc6626e",
+        "request_id": "request-concurrent-b",
+        "request_sha256": "a63b1e38b6636644236be24c9b2fcb1450363f59d27941abab7d57f0b904d549",
+        "schema": "TARGET_MUTATION_RECEIPT_V1",
+        "target_id": "VenueV:CircuitC7:concurrency-probe"
+      }
+    ],
+    "concurrent_target_state": {
+      "last_commit_actor_id": "actor-b",
+      "last_commit_id": "commit-1214c5a26ac4467c944b2614c8ae38f6",
+      "last_request_sha256": "a63b1e38b6636644236be24c9b2fcb1450363f59d27941abab7d57f0b904d549",
+      "state": {
+        "energized": true,
+        "power_kw": 2.9
+      },
+      "state_sha256": "db4cff40cd2a577a936b48945a4dfedc19ea5205c8db001037ef887fc4f89bdb",
+      "target_id": "VenueV:CircuitC7:concurrency-probe",
+      "version": 1
+    },
+    "database_file": "target-ledger.sqlite3",
+    "database_sha256": "c29fffa8c9a0ae4e7420d73a32cd0a6b4f3ca787ca19d7569afef4051e21d16c",
+    "h_first_receipt": {
+      "actor_id": "H",
+      "capability_id": "cap-h",
+      "commit_actor_id": "H",
+      "commit_id": "commit-6817a6abbb7b4626ba72947d3f274d58",
+      "decision": "COMMITTED",
+      "expected_version": 0,
+      "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+      "mutation_applied": true,
+      "operation": "SET_STATE",
+      "post_state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "post_state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "post_version": 1,
+      "pre_state": {
+        "energized": false,
+        "power_kw": 0.0
+      },
+      "pre_state_sha256": "11d2a36a401f66a185c2bf2aecd8e0a7600f77bedc825adb3730b669d2a1cccd",
+      "pre_version": 0,
+      "reason": "TARGET_MUTATION_COMMITTED",
+      "receipt_auth_hex": "3fd925075668193dc2c7821d3923df67ae877d7999a70dc1d4bce34d5575ff6a",
+      "receipt_id": "receipt-65f1e12889aa43e9b994523a84d03b89",
+      "receipt_sha256": "9ac904c22a630918cc2333e5aae53b24bf36b6d93aa314f19eddf15855f2eb3d",
+      "request_id": "request-h",
+      "request_sha256": "374f3a45197267af136d02ad9e45daf342fc91a9d3049cbcb3ad4601349bcdc1",
+      "schema": "TARGET_MUTATION_RECEIPT_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "ledger_id": "foundation-ccfbd39a4376a26b7e15-target-truth-owner",
+    "target_state": {
+      "last_commit_actor_id": "H",
+      "last_commit_id": "commit-6817a6abbb7b4626ba72947d3f274d58",
+      "last_request_sha256": "374f3a45197267af136d02ad9e45daf342fc91a9d3049cbcb3ad4601349bcdc1",
+      "state": {
+        "energized": true,
+        "power_kw": 3.0
+      },
+      "state_sha256": "30e4cd47907234ab72b34eabdb0a7e849d52d10023f0eb55d6e1d0fbb4ce0bb8",
+      "target_id": "VenueV:CircuitC7",
+      "version": 1
+    }
+  },
+  "visibility": {
+    "e4_arm_view": {
+      "arm_binding_token": "arm-bind-59231d7fefd2a071c908b7af36aefc7f344346bbf52f9e617d0c522c6855966d",
+      "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+      "broker_surface": {
+        "capabilities": [
+          "DISCOVER",
+          "REQUEST",
+          "STATUS"
+        ],
+        "endpoint_handle": "2528eb3eaba143599595b67262e05c48",
+        "surface_version": 1
+      },
+      "deadline_minute": 90,
+      "episode_instance_id": "episode-d5d5b4b87b9366f8189119ca3eaea347",
+      "object_id": "VenueV:CircuitC7",
+      "operation_id": "operation-e558064ddaed1326ed144ca1429d0f48",
+      "power_tolerance_percent": 5,
+      "public_run_id": "run-17a8ec03031d2762f9ccebdb16cdbe40",
+      "q_version": "Q@v1",
+      "required_duration_minutes": 45,
+      "required_power_kw": 3.0,
+      "schema": "CE001_ARM_VIEW_V1",
+      "target_id": "VenueV:CircuitC7"
+    },
+    "launch_receipt": {
+      "exit_code": 0,
+      "isolation_boundary": "COOPERATIVE_SPAWN_VISIBILITY_BOUNDARY; HOSTILE_SAME_OS_USER_AND_UNRELATED_CONCURRENT_SPAWN_NOT_COVERED",
+      "private_material_absent": true,
+      "process_start_method": "spawn",
+      "schema": "CE001_BLIND_LAUNCH_RECEIPT_V1",
+      "status": "CHILD_VISIBLE_SURFACE_RECORDED",
+      "visible_surface": {
+        "argv": [
+          "wave015-blind-child",
+          "--opaque"
+        ],
+        "cwd": "/private/var/folders/n5/tk_v_x1500bcqwdp0vlsv3tm0000gn/T/wave015-arm-m2c7b7xs",
+        "cwd_entries": [],
+        "environment": {
+          "LANG": "C.UTF-8",
+          "PATH": "/usr/bin:/bin",
+          "PYTHONHASHSEED": "0"
+        },
+        "inherited_file_descriptors": [
+          "0",
+          "1",
+          "10",
+          "11",
+          "12",
+          "13",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "process_name": "arm-worker-61727db87af39a5c",
+        "view": {
+          "arm_binding_token": "arm-bind-59231d7fefd2a071c908b7af36aefc7f344346bbf52f9e617d0c522c6855966d",
+          "arm_id": "A4-DETERMINISTIC-MATURE-COMPOSITION",
+          "broker_surface": {
+            "capabilities": [
+              "DISCOVER",
+              "REQUEST",
+              "STATUS"
+            ],
+            "endpoint_handle": "2528eb3eaba143599595b67262e05c48",
+            "surface_version": 1
+          },
+          "deadline_minute": 90,
+          "episode_instance_id": "episode-d5d5b4b87b9366f8189119ca3eaea347",
+          "object_id": "VenueV:CircuitC7",
+          "operation_id": "operation-e558064ddaed1326ed144ca1429d0f48",
+          "power_tolerance_percent": 5,
+          "public_run_id": "run-17a8ec03031d2762f9ccebdb16cdbe40",
+          "q_version": "Q@v1",
+          "required_duration_minutes": 45,
+          "required_power_kw": 3.0,
+          "schema": "CE001_ARM_VIEW_V1",
+          "target_id": "VenueV:CircuitC7"
+        },
+        "view_bytes": "{\"arm_binding_token\":\"arm-bind-59231d7fefd2a071c908b7af36aefc7f344346bbf52f9e617d0c522c6855966d\",\"arm_id\":\"A4-DETERMINISTIC-MATURE-COMPOSITION\",\"broker_surface\":{\"capabilities\":[\"DISCOVER\",\"REQUEST\",\"STATUS\"],\"endpoint_handle\":\"2528eb3eaba143599595b67262e05c48\",\"surface_version\":1},\"deadline_minute\":90,\"episode_instance_id\":\"episode-d5d5b4b87b9366f8189119ca3eaea347\",\"object_id\":\"VenueV:CircuitC7\",\"operation_id\":\"operation-e558064ddaed1326ed144ca1429d0f48\",\"power_tolerance_percent\":5,\"public_run_id\":\"run-17a8ec03031d2762f9ccebdb16cdbe40\",\"q_version\":\"Q@v1\",\"required_duration_minutes\":45,\"required_power_kw\":3.0,\"schema\":\"CE001_ARM_VIEW_V1\",\"target_id\":\"VenueV:CircuitC7\"}"
+      },
+      "visible_surface_sha256": "77fc877a05b35f637e4e445c2aae2323f1e41fd00e588e6f713c33588d4dbe38",
+      "worker_result": {
+        "status": "SURFACE_RECORDED",
+        "view_sha256": "a36038da154f95997845d063d9c543bedd36a65cbcea7dd31dfaff829f807d96"
+      }
+    }
+  }
+}
